@@ -1,6 +1,6 @@
 # from https://www.drupal.org/requirements/php#drupalversions
 FROM php:7.0-apache
-FROM mysql:latest
+FROM mysql:5.7
 
 RUN a2enmod rewrite
 

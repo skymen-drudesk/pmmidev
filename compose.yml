@@ -1,0 +1,21 @@
+web:
+  container_name: pmmi-web
+  build: .
+  image: php:7.0-apache
+  ports:
+   - "80"
+   - "443"
+   - "22"
+  volumes:
+   - .:/var/www
+  links:
+   - mysql
+
+mysql:
+  container_name: pmmi-mysql
+  image: mysql:5.7
+  environment:
+    MYSQL_ROOT_PASSWORD: rootpasswd
+    MYSQL_DATABASE: drupal
+  ports:
+    - "3306"
