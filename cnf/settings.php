@@ -242,7 +242,11 @@ $databases = array();
  *   );
  * @endcode
  */
-$config_directories = array();
+$config_directories = array(
+    CONFIG_ACTIVE_DIRECTORY => './../config/active/',
+    CONFIG_STAGING_DIRECTORY => './../config/staging/',
+    CONFIG_SYNC_DIRECTORY => './../config/sync/',
+);
 
 /**
  * Settings:
@@ -562,7 +566,7 @@ if ($settings['hash_salt']) {
  *   override in a services.yml file in the same directory as settings.php
  *   (definitions in this file will override service definition defaults).
  */
-# $settings['bootstrap_config_storage'] = array('Drupal\Core\Config\BootstrapConfigStorageFactory', 'getFileStorage');
+$settings['bootstrap_config_storage'] = array('Drupal\Core\Config\BootstrapConfigStorageFactory', 'getFileStorage');
 
 /**
  * Configuration overrides.
@@ -668,16 +672,25 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
  * example.org, with all subdomains included.
  */
 
-$databases['default']['default'] = array (
-  'database' => 'default',
-  'username' => 'default',
-  'password' => 'default',
-  'prefix' => '',
-  'host' => 'localhost',
-  'port' => '3306',
-  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
-  'driver' => 'mysql',
+$databases['default']['default'] = array(
+    /*'database' => getenv("MYSQL_ENV_MYSQL_DATABASE"),
+    'username' => getenv("MYSQL_ENV_MYSQL_USER"),
+    'password' => getenv("MYSQL_ENV_MYSQL_PASSWORD"),
+    'prefix' => '',
+    'host' => getenv("MYSQL_PORT_3306_TCP_ADDR"),
+    'port' => getenv("MYSQL_PORT_3306_TCP_PORT"),
+    'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+    'driver' => 'mysql',*/
+    'database' => 'drupal',
+    'username' => 'drupal',
+    'password' => 'drupal',
+    'prefix' => '',
+    'host' => 'mysql',
+    'port' => '3306',
+    'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+    'driver' => 'mysql',
 );
+
 $settings['hash_salt'] = 'rvvJu-Qlt1quqisz0QpseUWI4ONIUzWPZDeLlCM3oNsyT3vZvZrzUti3175pgfbKHGvgi8_eng';
 
 /**
@@ -691,9 +704,6 @@ $settings['hash_salt'] = 'rvvJu-Qlt1quqisz0QpseUWI4ONIUzWPZDeLlCM3oNsyT3vZvZrzUt
  * Keep this code block at the end of this file to take full effect.
  */
 if (file_exists(__DIR__ . '/settings.local.php')) {
-  include __DIR__ . '/settings.local.php';
+    include __DIR__ . '/settings.local.php';
 }
-$settings['install_profile'] = 'minimal';
-$config_directories = array(
-  'sync' => '../cnf/drupal',
-);
+$settings['install_profile'] = 'standard';
