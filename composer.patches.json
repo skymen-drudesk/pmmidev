@@ -2,6 +2,9 @@
     "patches": {
         "drupal/bootstrap": {
             "Add SASS starterkit": "https://www.drupal.org/files/issues/2102895-SASS-starterkit-67.patch"
+        },
+        "drupal/drupal": {
+            "Avoid illegal characters in database name": "https://www.drupal.org/files/issues/fix-dbname-validation-2443839-40.patch"
         }
     }
 }

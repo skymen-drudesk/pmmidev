@@ -63,11 +63,11 @@
     },
     "extra": {
         "installer-paths": {
-            "www/core": ["type:drupal-core"],
-            "www/modules/contrib/{$name}": ["type:drupal-module"],
-            "www/profiles/contrib/{$name}": ["type:drupal-profile"],
-            "www/themes/contrib/{$name}": ["type:drupal-theme"],
-            "www/drush/commands/{$name}": ["type:drupal-drush"]
+            "html/core": ["type:drupal-core"],
+            "html/modules/contrib/{$name}": ["type:drupal-module"],
+            "html/profiles/contrib/{$name}": ["type:drupal-profile"],
+            "html/themes/contrib/{$name}": ["type:drupal-theme"],
+            "html/drush/commands/{$name}": ["type:drupal-drush"]
         },
         "patches-file": "composer.patches.json"
     }

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "785337773c7330d63cea9f77f931d61a",
-    "content-hash": "41bf857eecd6ab5d67ed7864f1b8fda0",
+    "hash": "306f36151e44eb8e6b73130df05302b3",
+    "content-hash": "a92e64f7c0133776f7ad11abd50efc60",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -712,12 +712,6 @@
                 "url": "http://git.drupal.org/project/admin_menu",
                 "reference": "61acfcb5bf14f7e58d6a3b79d82b42a5a9cafd78"
             },
-            "dist": {
-                "type": "zip",
-                "url": "http://ftp.drupal.org/files/projects/admin_menu-8.x-3.x-dev.zip",
-                "reference": null,
-                "shasum": null
-            },
             "require": {
                 "drupal/core": "8.*"
             },
@@ -726,7 +720,6 @@
                 "drupal/admin_menu_toolbar": "self.version"
             },
             "suggest": {
-                "drupal/admin_menu": "Required by drupal/admin_menu_toolbar",
                 "drupal/core": "Required by drupal/admin_devel, drupal/admin_menu_toolbar"
             },
             "type": "drupal-module",
@@ -745,12 +738,12 @@
             "version": "8.3.0-beta2",
             "source": {
                 "type": "git",
-                "url": "http://git.drupal.org/project/bootstrap",
+                "url": "https://git.drupal.org/project/bootstrap",
                 "reference": "aa0e4982d68102e5fbb63ce767589c76f73dc3b5"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://ftp.drupal.org/files/projects/bootstrap-8.x-3.0-beta2.zip",
+                "url": "https://ftp.drupal.org/files/projects/bootstrap-8.x-3.0-beta2.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -1086,12 +1079,12 @@
             "version": "8.3.0-alpha21",
             "source": {
                 "type": "git",
-                "url": "http://git.drupal.org/project/ctools",
+                "url": "https://git.drupal.org/project/ctools",
                 "reference": "58ba369085fc117b02ca9027718ce17218caa193"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://ftp.drupal.org/files/projects/ctools-8.x-3.0-alpha21.zip",
+                "url": "https://ftp.drupal.org/files/projects/ctools-8.x-3.0-alpha21.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -1393,38 +1386,49 @@
         },
         {
             "name": "drupal/pathauto",
-            "version": "dev-8.x-1.x",
+            "version": "8.1.0-alpha1",
             "source": {
                 "type": "git",
-                "url": "http://git.drupal.org/project/pathauto",
-                "reference": "0ceda1f9b0fbb5251facfdf4e3f79faa0659b1aa"
+                "url": "https://git.drupal.org/project/pathauto",
+                "reference": "616e72abe5dee822444b67e3754b9f7652447540"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://ftp.drupal.org/files/projects/pathauto-8.x-1.x-dev.zip",
+                "url": "https://ftp.drupal.org/files/projects/pathauto-8.x-1.0-alpha1.zip",
                 "reference": null,
                 "shasum": null
             },
-            "type": "library",
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/ctools": "~8.3.0-alpha21",
+                "drupal/path": "8.*",
+                "drupal/token": "~8.1.0-alpha2"
+            },
+            "type": "drupal-module",
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
-            "time": "2015-10-04 20:51:38"
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a mechanism for modules to automatically generate aliases for the content they manage.",
+            "homepage": "https://www.drupal.org/project/pathauto",
+            "time": "2016-01-21 21:50:23"
         },
         {
             "name": "drupal/token",
-            "version": "8.1.0-alpha1",
+            "version": "8.1.0-alpha2",
             "source": {
                 "type": "git",
                 "url": "http://git.drupal.org/project/token",
-                "reference": "744aafa22afeb5abdbd300179ae7299263f20c5a"
+                "reference": "918d0d5e8e8ee7f446d3e068cb6aa2d7c61ee625"
             },
             "dist": {
                 "type": "zip",
-                "url": "http://ftp.drupal.org/files/projects/token-8.x-1.0-alpha1.zip",
+                "url": "http://ftp.drupal.org/files/projects/token-8.x-1.0-alpha2.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -1443,7 +1447,7 @@
             ],
             "description": "Provides a user interface for the Token API and some missing core tokens.",
             "homepage": "https://www.drupal.org/project/token",
-            "time": "2015-12-23 08:08:43"
+            "time": "2016-01-21 08:02:24"
         },
         {
             "name": "drush/drush",
@@ -2241,12 +2245,12 @@
             "version": "1.2.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobLoach/Console_Table.git",
-                "reference": "10d89fbbe533351dcfe5dc1e84de25d9a8395950"
+                "url": "https://github.com/pear/Console_Table.git",
+                "reference": "a129a91d8bf19317d81e68d1d3a2e18932f684e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/RobLoach/Console_Table/zipball/10d89fbbe533351dcfe5dc1e84de25d9a8395950",
+                "url": "https://api.github.com/repos/pear/Console_Table/zipball/a129a91d8bf19317d81e68d1d3a2e18932f684e4",
                 "reference": "10d89fbbe533351dcfe5dc1e84de25d9a8395950",
                 "shasum": ""
             },
@@ -4301,7 +4305,7 @@
             "version": "8.2.5",
             "source": {
                 "type": "git",
-                "url": "http://git.drupal.org/project/coder",
+                "url": "https://git.drupal.org/project/coder",
                 "reference": "9ced5f2ad0e77534f6d53c8db43e6c6c3fe1b482"
             },
             "dist": {
@@ -4465,16 +4469,16 @@
         },
         {
             "name": "squizlabs/php_codesniffer",
-            "version": "2.5.0",
+            "version": "2.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "e4fb41d5d0387d556e2c25534d630b3cce90ea67"
+                "reference": "6731851d6aaf1d0d6c58feff1065227b7fda3ba8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/e4fb41d5d0387d556e2c25534d630b3cce90ea67",
-                "reference": "e4fb41d5d0387d556e2c25534d630b3cce90ea67",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/6731851d6aaf1d0d6c58feff1065227b7fda3ba8",
+                "reference": "6731851d6aaf1d0d6c58feff1065227b7fda3ba8",
                 "shasum": ""
             },
             "require": {
@@ -4492,7 +4496,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.x-dev"
                 }
             },
             "autoload": {
@@ -4538,7 +4542,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2015-12-11 00:12:46"
+            "time": "2016-01-19 23:39:10"
         }
     ],
     "aliases": [],

@@ -1,11 +1,19 @@
 # from https://www.drupal.org/requirements/php#drupalversions
 FROM php:7.0-apache
-FROM mysql:5.7
+
+ENV MYSQL_ENV_MYSQL_DATABASE drupal
+ENV MYSQL_ENV_MYSQL_USER root
+ENV MYSQL_ENV_MYSQL_PASSWORD rootpass
+ENV MYSQL_PORT_3306_TCP_ADDR pmmi-mysql
+ENV MYSQL_PORT_3306_TCP_PORT 3306
+
+EXPOSE 80
 
 RUN a2enmod rewrite
 
 # install the PHP extensions we need
 RUN apt-get update && apt-get install -y \
+        git \
         vim \
         libpng12-dev \
         libjpeg-dev \
@@ -24,9 +32,32 @@ RUN echo 'opcache.memory_consumption=128'; \
 		echo 'opcache.enable_cli=1'; \
 	} > /usr/local/etc/php/conf.d/opcache-recommended.ini
 
-WORKDIR /var/www/pmmi
+WORKDIR /var/www/
 
-# COPY bin/ /var/www/pmmi/
-# COPY build/ /var/www/pmmi/
-COPY cnf/ /var/www/pmmi/
-COPY www/ /var/www/pmmi/
+COPY html/ html/
+COPY bin/ bin/
+COPY cnf/ cnf/
+COPY config/ config/
+COPY build/ build/
+COPY vendor/ vendor/
+COPY env.dist .
+COPY .env .
+COPY composer.json .
+COPY composer.lock .
+COPY composer.patches.json .
+COPY README.md .
+#COPY . ./
+
+RUN chmod -R 755 .
+RUN chmod -R 777 config
+RUN chmod -R 777 html/sites/default/files
+RUN chown -R www-data:www-data .
+RUN pwd
+#RUN ls -l
+#RUN ls -la html
+#RUN ls -l html/core
+RUN ls -la html/sites/default
+RUN ls -la config
+
+RUN ./build/setup.sh ${DRUPAL_SITE_NAME}
+#RUN ./build/install.sh

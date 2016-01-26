@@ -28,4 +28,4 @@ echo "Clearing caches one last time.";
 $drush cr
 
 chmod -R +w "$base/cnf"
-chmod -R +w "$base/www/sites/default"
+chmod -R +w "$base/html/sites/default"

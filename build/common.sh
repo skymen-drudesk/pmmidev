@@ -5,7 +5,7 @@ path="$(dirname "$0")"
 pushd $path/..
 base="$(pwd)";
 
-drupal_base="$base/www"
+drupal_base="$base/html"
 
 while getopts ":r:d:" opt; do
   case $opt in
@@ -22,12 +22,12 @@ while getopts ":r:d:" opt; do
       echo "
 Usage: install.sh [-r DRUPAL_ROOT] [-d \"DRUSH COMMAND\"]
  Examples:
- `basename $0`                     # Installs in 'www' using 'drush -r www'
-                                    or 'vendor/bin/drush -y -r www'
+ `basename $0`                     # Installs in 'html' using 'drush -r html'
+                                    or 'vendor/bin/drush -y -r html'
 
  `basename $0` -r docroot          # Installs in 'docroot' using
                                     'drush -r docroot' or
-                                    'vendor/bin/drush -y -r www'
+                                    'vendor/bin/drush -y -r html'
 
  `basename $0` -d \"drush @local\"   # Sets the drush command to what you want
 
@@ -39,6 +39,7 @@ done
 
 # Set the Default (or custom) drush commaand.
 if [[ "$drush" == "" ]]; then
+  echo "defining drush"
   if which drush > /dev/null && [[ $(echo "$(drush --version --pipe) >= 8.0" | bc) == 1 ]]; then
     drush="drush -r $drupal_base"
   else
