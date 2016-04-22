@@ -26,13 +26,15 @@
     "prefer-stable": true,
     "require": {
         "composer/installers": "^1.0.20",
-        "cweagans/composer-patches": "1.*",
+        "drupal-composer/drupal-scaffold": "^1.3.1",
+        "cweagans/composer-patches": "~1.0",
+        "derhasi/composer-preserve-paths": "0.1.*",
         "drupal/admin_menu": "8.3.*@dev",
         "drupal/bootstrap": "8.3.*@beta",
         "drupal/config_readonly": "8.1.*",
         "drupal/config_update": "8.1.*",
-        "drupal/console": "0.10.*",
-        "drupal/core": "8.0.*",
+        "drupal/console": "~0.10",
+        "drupal/core": "~8.0",
         "drupal/date": "8.1.*@dev",
         "drupal/diff": "8.1.*@dev",
         "drupal/eform": "8.1.*@dev",
@@ -42,20 +44,40 @@
         "drupal/panels": "8.3.*",
         "drupal/pathauto": "8.1.*@dev",
         "drupal/token": "8.1.*@dev",
-        "drush/drush": "8.*"
+        "drush/drush": "~8.0"
     },
     "require-dev": {
+        "behat/mink": "~1.6",
+        "behat/mink-goutte-driver": "~1.2",
         "drupal/coder": "8.2.*",
         "drupal/config_devel": "8.1.*@beta",
         "drupal/devel": "8.1.*@dev",
         "drupal/diff": "8.1.*",
         "drupal/stage_file_proxy": "8.1.*@dev",
-        "drupal/xhprof": "8.1.*"
+        "drupal/xhprof": "8.1.*",
+        "jcalderonzumba/gastonjs": "^1.1@dev",
+        "jcalderonzumba/mink-phantomjs-driver": "~0.3.1",
+        "mikey179/vfsStream": "~1.2",
+        "phpunit/phpunit": "~4.8",
+        "symfony/css-selector": "2.7.*"
+    },
+    "conflict": {
+        "drupal/drupal": "*"
+    },
+    "autoload": {
+        "classmap": [
+            "build/scripts/composer/ScriptHandler.php"
+        ]
     },
     "scripts": {
+        "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
         "post-install-cmd": [
-            "bin/wrapper",
-            "build/scripts/composer/post-install.sh"
+            "DrupalProject\\composer\\ScriptHandler::buildScaffold",
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
+        ],
+        "post-update-cmd": [
+            "DrupalProject\\composer\\ScriptHandler::buildScaffold",
+            "DrupalProject\\composer\\ScriptHandler::createRequiredFiles"
         ]
     },
     "config": {
@@ -69,6 +91,15 @@
             "html/themes/contrib/{$name}": ["type:drupal-theme"],
             "html/drush/commands/{$name}": ["type:drupal-drush"]
         },
+        "preserve-paths": [
+            "html/sites/all/modules/contrib",
+            "html/sites/all/modules/custom",
+            "html/sites/all/modules/feature_modules",
+            "html/sites/all/themes/contrib",
+            "html/sites/all/libraries",
+            "html/sites/default/settings.php",
+            "html/sites/default/files"
+        ],
         "patches-file": "composer.patches.json"
     }
 }

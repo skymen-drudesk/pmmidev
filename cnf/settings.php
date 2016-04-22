@@ -687,7 +687,7 @@ $databases['default']['default'] = array(
     'prefix' => '',
     'host' => 'mysql',
     'port' => '3306',
-    'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+    //'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
     'driver' => 'mysql',
 );
 

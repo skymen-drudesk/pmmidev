@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 set -e
 path=$(dirname "$0")
 base=$PWD/$path/..

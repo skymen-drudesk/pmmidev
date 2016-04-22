@@ -1,32 +1,38 @@
-mysql:
-  container_name: pmmimysql
-  image: mysql:5.7
-  environment:
-    MYSQL_ROOT_PASSWORD: rootpasswd
-    MYSQL_USER: drupal
-    MYSQL_PASSWORD: drupal
-    MYSQL_DATABASE: drupal
-  expose:
-    - "3306"
-  ports:
-    - "3306:3306"
+version: '2'
+services:
+  mysql:
+    container_name: pmmimysql
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpasswd
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_DATABASE: drupal
+    volumes:
+      -  ./conf/mysql/conf.d:/etc/mysql/conf.d
+    ports:
+      - "3306:3306"
+    expose:
+          - "3306"
 
-web:
-  container_name: pmmiweb
-  build: .
-  dockerfile: drupal-php7.0-apache
-  # Environment variables
-  environment:
-    # Drupal settings
-    DRUPAL_PROFILE: minimal
-    DRUPAL_SITE_NAME: pmmi
-    DRUPAL_USER: admin
-    DRUPAL_PASS: admin
-    DRUPAL_DBURL: mysql://drupal:drupal@mysql:3306/drupal
-  ports:
-   - "8080:80"
-   - "8022:22"
-  volumes:
-   - .:/var/www
-  links:
-   - mysql:mysql
+  web:
+    container_name: pmmiweb
+    build: .
+    build:
+      context: .
+      dockerfile: drupal-php7.0-apache
+    # Environment variables
+    environment:
+      # Drupal settings
+      DRUPAL_PROFILE: minimal
+      DRUPAL_SITE_NAME: pmmi
+      DRUPAL_USER: admin
+      DRUPAL_PASS: admin
+      DRUPAL_DBURL: mysql://root:rootpasswd@mysql:3306/drupal
+    ports:
+     - "8080:80"
+     - "8022:22"
+    volumes:
+     - .:/var/www
+    links:
+     - mysql:mysql

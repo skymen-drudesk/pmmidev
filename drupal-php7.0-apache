@@ -3,8 +3,8 @@ FROM php:7.0-apache
 
 ENV MYSQL_ENV_MYSQL_DATABASE drupal
 ENV MYSQL_ENV_MYSQL_USER root
-ENV MYSQL_ENV_MYSQL_PASSWORD rootpass
-ENV MYSQL_PORT_3306_TCP_ADDR pmmi-mysql
+ENV MYSQL_ENV_MYSQL_PASSWORD rootpasswd
+ENV MYSQL_PORT_3306_TCP_ADDR pmmimysql
 ENV MYSQL_PORT_3306_TCP_PORT 3306
 
 EXPOSE 80
@@ -34,30 +34,33 @@ RUN echo 'opcache.memory_consumption=128'; \
 
 WORKDIR /var/www/
 
-COPY html/ html/
-COPY bin/ bin/
-COPY cnf/ cnf/
-COPY config/ config/
-COPY build/ build/
-COPY vendor/ vendor/
-COPY env.dist .
-COPY .env .
-COPY composer.json .
-COPY composer.lock .
-COPY composer.patches.json .
-COPY README.md .
+volumes:
+ - .:/var/www
+
+#COPY html/ html/
+#COPY bin/ bin/
+#COPY cnf/ cnf/
+#COPY config/ config/
+#COPY build/ build/
+#COPY vendor/ vendor/
+#COPY env.dist .
+#COPY .env .
+#COPY composer.json .
+#COPY composer.lock .
+#COPY composer.patches.json .
+#COPY README.md .
 #COPY . ./
 
-RUN chmod -R 755 .
-RUN chmod -R 777 config
-RUN chmod -R 777 html/sites/default/files
-RUN chown -R www-data:www-data .
-RUN pwd
+#RUN chmod -R 755 .
+#RUN chmod -R 777 config
+#RUN chmod -R 777 html/sites/default/files
+#RUN chown -R www-data:www-data .
+#RUN pwd
 #RUN ls -l
 #RUN ls -la html
 #RUN ls -l html/core
-RUN ls -la html/sites/default
-RUN ls -la config
+#RUN ls -la html/sites/default
+#RUN ls -la config
 
 RUN ./build/setup.sh ${DRUPAL_SITE_NAME}
 #RUN ./build/install.sh
