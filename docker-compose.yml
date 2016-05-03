@@ -1,7 +1,7 @@
 version: '2'
 services:
-  mysql:
-    container_name: pmmimysql
+  db:
+    container_name: pmmidb
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: rootpasswd
@@ -13,11 +13,12 @@ services:
     ports:
       - "3306:3306"
     expose:
-          - "3306"
+      - "3306"
 
   web:
     container_name: pmmiweb
-    build: .
+    depends_on:
+      - db
     build:
       context: .
       dockerfile: drupal-php7.0-apache
@@ -30,9 +31,12 @@ services:
       DRUPAL_PASS: admin
       DRUPAL_DBURL: mysql://root:rootpasswd@mysql:3306/drupal
     ports:
-     - "8080:80"
-     - "8022:22"
+      - "8080:80"
+      - "8022:22"
+    expose:
+      - "80"
+      - "22"
     volumes:
-     - .:/var/www
+      - .:/var/www
     links:
-     - mysql:mysql
+      - db
