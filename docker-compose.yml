@@ -31,8 +31,8 @@ services:
       DRUPAL_PASS: admin
       DRUPAL_DBURL: mysql://root:rootpasswd@mysql:3306/drupal
     ports:
-      - "8080:80"
-      - "8022:22"
+      - "80:80"
+      - "22:22"
     expose:
       - "80"
       - "22"
