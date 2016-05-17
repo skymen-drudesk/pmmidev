@@ -34,9 +34,9 @@ else
     #--db-su=drupal \
     #do--db-su-pw=drupal
 
-  if [[ -e "$base/cnf/drupal/system.site.yml" ]]; then
+  if [[ -e "$base/config/drupal/sync/system.site.yml" ]]; then
     # Without this, our import would fail in update.sh. See https://github.com/drush-ops/drush/pull/1635
-    site_uuid="$(grep "uuid: " "$base/cnf/drupal/system.site.yml" | sed "s/uuid: //")"
+    site_uuid="$(grep "uuid: " "$base/config/drupal/sync/system.site.yml" | sed "s/uuid: //")"
     $drush cset system.site uuid $site_uuid -y
   fi
 fi

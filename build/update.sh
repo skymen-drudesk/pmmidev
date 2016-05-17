@@ -16,7 +16,7 @@ $drush en $(echo $DROPSHIP_SEEDS | tr ':' ' ') -y
 echo "Clearing drush caches.";
 $drush cc drush
 # In the future, use --force https://github.com/drush-ops/drush/pull/1635
-if [[ ! -e "$base/cnf/drupal/system.site.yml" ]]; then
+if [[ ! -e "$base/config/drupal/syncsystem.site.yml" ]]; then
   echo "Exporting Configuration for BRAND NEW SITE."
   $drush cex -y
   echo "Commit these changes."
