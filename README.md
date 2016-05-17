@@ -38,13 +38,14 @@ start your development. Simply add a sql file to either of the following:
 
 Use the .env file to customize the modules the site is seeded from. There are
 defaults set up for different environments in env.dist. This file will be used
-by default if .env does not exist and the production environment is assumed if
+by default if .env does not exist. The production environment is assumed if
 a global environment variable is not set to say otherwise.
 
 You can add you own custom modules to be built with your local install by
 making your .env file look something like this:
 
 ```bash
+export SITE_ENVIRONMENT=dev
 source env.dist
 DROPSHIP_SEEDS=$DROPSHIP_SEEDS:devel:devel_themer:views_ui:features_ui
 ```
