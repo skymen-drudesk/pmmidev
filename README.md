@@ -1,23 +1,25 @@
 # pmmi
 
+## Requirements
+
+* Docker
+** [Linux](https://docs.docker.com/linux/)
+** [Mac](https://docs.docker.com/mac/)
+** [Windows](https://docs.docker.com/windows/)
+
 ## Getting Started Developing
 
-* You need to edit your machine's local host file. Add the entry
-  `10.33.36.11 pmmi.dev`
-* Run `vagrant up --provision` to build the environment.
-* ssh in with `vagrant ssh`
-* Navigate to `/var/www/sites/pmmi.dev`.
-* PARTY!!!
+You can most easily start your Drupal project with this baseline by using
+[Composer](https://getcomposer.org/) and [Docker](https://www.docker.com/):
 
-**Note:** You may come across where composer couldn't download everything the
-very first time you try to install this machine. You may need to run
-`composer install` in your virtual machine the first time so you can grab an api
-key from github. Just follow the instructions provided by composer.
+```bash
+composer create-project summitmedia/pmmi your_project_name
+cd your_project_name
+./build/party.sh -b
+```
 
-Vagrant provision currently does a full site install.
-
-To update without rebuilding from scratch, run `build/update.sh` from the
-project root in the vagrant box.
+To update without rebuilding from scratch, run `./build/party.sh` from the
+project root.
 
 It is also worth noting, if you are working on an existing site, that the
 default install script allows you to provide a reference database in order to
@@ -25,9 +27,6 @@ start your development. Simply add a sql file to either of the following:
 
 * `build/ref/pmmi.sql`
 * `build/ref/pmmi.sql.gz`
-
-If you are encountering "Warning: Authentication failure. Retrying..", run:
-`ssh-add ~/.vagrant.d/insecure_private_key`.
 
 ## Use
 
@@ -46,27 +45,20 @@ source env.dist
 DROPSHIP_SEEDS=$DROPSHIP_SEEDS:devel:devel_themer:views_ui:features_ui
 ```
 
-# Easy Development with Vagrant
+# Easy Development with Docker
 
-We have a Vagrantfile that references a Slackware 14.1 box with php 5.6,
-apache 2.4, and MariaDB 5.5.43. Once you have installed Vagrant, you can begin
-development like so:
 
-```bash
-vagrant up                                 # turn on the box and provision it
-vagrant ssh                                # log into the box like it's a server
-cd /var/www/sites/pmmi.dev             # go to the sync'ed folder on the box
-alias drush="$PWD/vendor/bin/drush -r $PWD/www" # use drush from composer
-drush <whatever>                           # do some stuff to your website
-```
 
 # The Build and Deployment Scripts
 
-You may have noticed that provisioning the Vagrant box causes `build/install.sh`
-to be invoked, and that this causes all of our modules to be enabled, giving us
-a starting schema.
+You may have noticed that `build/party.sh` builds and links the necessary
+Docker containers (using Docker Compose v2).
 
-Keep in mind this build is using Vagrant merely as a wrapper to the scripts you
+Then, Composer installs all the necessary packages.
+
+Finally, either `build/install.sh` or `build/update.sh` is invoked.
+
+Keep in mind this build is using Docker merely as a wrapper to the scripts you
 would use to do your normal deployment on any other machine. The scripts are
 intended to work on any environment.
 
@@ -107,8 +99,8 @@ collaborators don't!
 We reference a custom composer repository in composer.json
 [here](composer.json#L5-8). This repository was created by
 traversing the list of known projects on drupal.org using
-`drupal/parse-composer`, and has the package metadata for all the valid packages
-with a Drupal 8 release, including Drupal itself.
+`drupal/parse-composer`, and has the package metadata for all the valid
+packages with a Drupal 8 release, including Drupal itself.
 
 As you add modules to your project, just update composer.json and run `composer
 update`. You will also need to pin some versions down as you run across point
@@ -158,18 +150,18 @@ sure to commit any changes to git.
 
 You will find that a place for your custom code has already been created.
 
-`www/modules/custom` contains a single custom modules that is used as the parent
+`html/modules/custom` contains a single custom modules that is used as the parent
 for all custom modules of the site. To enable new modules. Simply add them as
 a dependency of this module or as a dependency of a module this module considers
 a dependency and it will be enabled when running `./build/install.sh` or
 `./build/update.sh`
 
 
-`www/themes/custom` will need to be created when you are ready to create a theme.
+`html/themes/custom` will need to be created when you are ready to create a theme.
 
 # Contributed Code
 
 All Contributed code is downloaded using composer. Simply put the version you
 wish to download in composer.json and run `composer update`. These will be
-downloaded to www/modules/contrib and www/themes/contrib. The rest will stay in
+downloaded to `www/modules/contrib and www/themes/contrib`. The rest will stay in
 the created vendor folder.
