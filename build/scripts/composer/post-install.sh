@@ -22,14 +22,6 @@ if [ ! -d config/drupal ]
   then
     mkdir -m777 config/drupal
 fi
-if [ ! -d config/drupal/active ]
-  then
-    mkdir -m777 config/drupal/active
-fi
-if [ ! -d config/drupal/staging ]
-  then
-    mkdir -m777 config/drupal/staging
-fi
 if [ ! -d config/drupal/sync ]
   then
     mkdir -m777 config/drupal/sync
