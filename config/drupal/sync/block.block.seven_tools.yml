@@ -1,6 +1,6 @@
 uuid: f060b300-c042-4df8-bc3f-4a7df6b68bed
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.tools
@@ -12,8 +12,8 @@ _core:
   default_config_hash: xCOijLdB1-UgXxQ9a0D1_pd8vxNEhfMnxXZc8jYhHjs
 id: seven_tools
 theme: seven
-region: header
-weight: 0
+region: '-1'
+weight: -3
 provider: null
 plugin: 'system_menu_block:tools'
 settings:
