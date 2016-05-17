@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f620a019c1d9fc82302da65a42f4bd42",
-    "content-hash": "b6ab87b2a1cfd553084ace9e7d77b6b4",
+    "hash": "20b5bd39fdea70f399e8622bdf2a66aa",
+    "content-hash": "0eec4b8eb61c9ff1ccc07cda50adfafb",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -910,35 +910,6 @@
             ],
             "description": "Composer Plugin for updating the Drupal scaffold files when using drupal/core",
             "time": "2016-04-13 15:46:44"
-        },
-        {
-            "name": "drupal/admin_menu",
-            "version": "dev-8.x-3.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/admin_menu",
-                "reference": "61acfcb5bf14f7e58d6a3b79d82b42a5a9cafd78"
-            },
-            "require": {
-                "drupal/core": "8.*"
-            },
-            "replace": {
-                "drupal/admin_devel": "self.version",
-                "drupal/admin_menu_toolbar": "self.version"
-            },
-            "suggest": {
-                "drupal/core": "Required by drupal/admin_devel, drupal/admin_menu_toolbar"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-8.x-3.x": "8.3.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
-            "description": "Provides a dropdown menu to most administrative tasks and other common destinations (to users with the proper permissions).",
-            "homepage": "https://www.drupal.org/project/admin_menu",
-            "time": "2015-03-20 18:23:09"
         },
         {
             "name": "drupal/bootstrap",
@@ -6612,7 +6583,6 @@
     "aliases": [],
     "minimum-stability": "alpha",
     "stability-flags": {
-        "drupal/admin_menu": 20,
         "drupal/bootstrap": 10,
         "drupal/console": 15,
         "drupal/date": 20,
