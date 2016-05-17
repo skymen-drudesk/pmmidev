@@ -1,4 +1,4 @@
-# pmmi
+# PMMI
 
 ## Requirements
 
@@ -6,6 +6,10 @@
 ** [Linux](https://docs.docker.com/linux/)
 ** [Mac](https://docs.docker.com/mac/)
 ** [Windows](https://docs.docker.com/windows/)
+
+* [Direnv](http://direnv.net/)
+** Optional
+** Used with wrapper scripts to add `dbash` and `ddrush` commands
 
 ## Getting Started Developing
 
@@ -37,7 +41,7 @@ defaults set up for different environments in env.dist. This file will be used
 by default if .env does not exist and the production environment is assumed if
 a global environment variable is not set to say otherwise.
 
-You can add you own custom modules to be built with your local install by adding
+You can add you own custom modules to be built with your local install by
 making your .env file look something like this:
 
 ```bash
@@ -45,11 +49,18 @@ source env.dist
 DROPSHIP_SEEDS=$DROPSHIP_SEEDS:devel:devel_themer:views_ui:features_ui
 ```
 
-# Easy Development with Docker
+## Easy Development with Docker
 
+### Wrapper Scripts
 
+* `ddrush` executes [drush](https://github.com/drush-ops/drush)
+  inside the web container.
+* `dbash` opens a bash shell inside the web container (as *www-data*)
 
-# The Build and Deployment Scripts
+[Direnv](http://direnv.net/) is used to include the wrapper scripts and
+the `vendor/bin` directory into the PATH.
+
+## The Build and Deployment Scripts
 
 You may have noticed that `build/party.sh` builds and links the necessary
 Docker containers (using Docker Compose v2).
@@ -94,7 +105,7 @@ working now and you see that it is not working as expected. This is a great time
 to fix these issues, because you know what you meant to do and your
 collaborators don't!
 
-# Composer with Drupal
+## Composer with Drupal
 
 We reference a custom composer repository in composer.json
 [here](composer.json#L5-8). This repository was created by
@@ -131,7 +142,7 @@ See:
   * [composer scripts](https://getcomposer.org/doc/articles/scripts.md)
   * [composer and Patching](http://generalredneck.com/blog/patching-modules-using-composer-patches-plugin)
 
-# Configuration with Drupal 8
+## Configuration with Drupal 8
 
 By default configuration uses the core Configuration Import Manager. You will
 notice that this project actually imports all configuration from `cnf/drupal`.
@@ -146,7 +157,7 @@ This should dump all configuration all modules implement to `cnf/drupal`
 allowing our build script to import it at build time using `drush cim`. Make
 sure to commit any changes to git.
 
-# Custom Code
+## Custom Code
 
 You will find that a place for your custom code has already been created.
 
@@ -159,7 +170,7 @@ a dependency and it will be enabled when running `./build/install.sh` or
 
 `html/themes/custom` will need to be created when you are ready to create a theme.
 
-# Contributed Code
+## Contributed Code
 
 All Contributed code is downloaded using composer. Simply put the version you
 wish to download in composer.json and run `composer update`. These will be
