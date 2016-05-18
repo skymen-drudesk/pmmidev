@@ -8,8 +8,8 @@ services:
       MYSQL_USER: drupal
       MYSQL_PASSWORD: drupal
       MYSQL_DATABASE: drupal
-    volumes:
-      -  ./conf/mysql/conf.d:/etc/mysql/conf.d
+    volumes_from:
+      - mysqldata
     ports:
       - "3306:3306"
     expose:
@@ -38,5 +38,19 @@ services:
       - "22"
     volumes:
       - .:/var/www
+    volumes_from:
+      - drupaldata
     links:
       - db
+
+  mysqldata:
+    container_name: pmmimysqldata
+    image: tianon/true
+    volumes:
+      - /var/lib/mysql
+
+  drupaldata:
+    container_name: pmmidrupaldata
+    image: tianon/true
+    volumes:
+      - /var/www/html/sites/default/files
