@@ -1519,6 +1519,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
+                },
+                "patches_applied": {
+                    "Don't call getCacheTagsToInvalidate() when null": "https://www.drupal.org/files/issues/2696345-2.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -5218,7 +5221,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/devel",
-                "reference": "34538908ad46551c4251556b678d36baa3c12083"
+                "reference": "8dc277d763ec233fea889084922a9eb7202b518f"
             },
             "require": {
                 "drupal/core": "8.*"
@@ -5253,7 +5256,7 @@
             ],
             "description": "Various blocks, pages, and functions for developers.",
             "homepage": "http://drupal.org/project/devel",
-            "time": "2016-05-14 18:40:47"
+            "time": "2016-05-23 19:16:52"
         },
         {
             "name": "drupal/diff",
