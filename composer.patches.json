@@ -5,6 +5,9 @@
         },
         "drupal/drupal": {
             "Avoid illegal characters in database name": "https://www.drupal.org/files/issues/fix-dbname-validation-2443839-40.patch"
+        },
+        "drupal/page_manager": {
+            "Don't call getCacheTagsToInvalidate() when null": "https://www.drupal.org/files/issues/2696345-2.patch"
         }
     }
 }
