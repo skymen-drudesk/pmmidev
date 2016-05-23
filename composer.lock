@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "176713f7fe2001430dac1b726d12e484",
-    "content-hash": "f8f2f1eb54a638e73a57b85d2af62379",
+    "hash": "ccaddb4187056c2bc1b733bd87c35db6",
+    "content-hash": "7691f79ebb9e2a9254692fc1ceb40f95",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -5259,6 +5259,33 @@
             "time": "2016-05-23 19:16:52"
         },
         {
+            "name": "drupal/devel_debug_log",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/devel_debug_log",
+                "reference": "c99c948db8b9f7cb0199d56f67f4d5a3ccc5c137"
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/kint": "8.*",
+                "drupal/serialization": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Stores debug information for an easier AJAX debugging.",
+            "homepage": "https://www.drupal.org/project/devel_debug_log",
+            "time": "2016-04-23 16:34:02"
+        },
+        {
             "name": "drupal/diff",
             "version": "8.1.0-alpha2",
             "source": {
@@ -6788,6 +6815,7 @@
         "drupal/token": 15,
         "drupal/config_devel": 5,
         "drupal/devel": 20,
+        "drupal/devel_debug_log": 20,
         "drupal/diff": 15,
         "drupal/stage_file_proxy": 15,
         "drupal/xhprof": 20
