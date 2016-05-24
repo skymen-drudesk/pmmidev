@@ -1,0 +1,16 @@
+gateway:
+  path: /gateway
+  defaults:
+    _controller:  Drupal\audience_select\Controller\AudienceSelectController:content
+  requirements:
+    _permission: 'access content'
+
+audience_select.settings_form:
+  path: '/admin/config/audience_select'
+  defaults:
+    _form: 'Drupal\audience_select\Form\SettingsForm'
+    _title: 'Audience select settings'
+  requirements:
+    _permission: 'set audiences'
+  options:
+    _admin_route: TRUE
