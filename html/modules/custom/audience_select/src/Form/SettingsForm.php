@@ -39,12 +39,6 @@ class SettingsForm extends ConfigFormBase {
       '#description' => t('Enter each audience on its own line as: key|value'),
       '#default_value' => $config->get('audiences'),
     );
-    $form['template'] = array(
-      '#type' => 'textfield',
-      '#title' => $this->t('Template Path'),
-      '#description' => t('Enter the path to the template file relative to the webroot.'),
-      '#default_value' => $config->get('template'),
-    );
     return parent::buildForm($form, $form_state);
   }
 
