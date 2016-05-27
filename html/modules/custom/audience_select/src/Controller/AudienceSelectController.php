@@ -19,7 +19,6 @@ class AudienceSelectController {
   
   public function content() {
     $audiences = $this->getKeyedAudiences();
-    //return new Response('shit');
     return [
       '#theme' => 'audience_select_gateway',
       '#audiences' => $audiences,
@@ -44,7 +43,7 @@ class AudienceSelectController {
 
     return($keyed_audiences);
   }
-  
+
   public static function getTemplatePath() {
     $module_path = drupal_get_path('module', 'audience_select');
     $config = \Drupal::config('audience_select.settings');

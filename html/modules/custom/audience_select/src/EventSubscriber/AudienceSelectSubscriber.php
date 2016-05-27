@@ -38,66 +38,22 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * This method is called whenever the KernelEvents::REQUEST event is
-   * dispatched.
-   *
-   * @param GetResponseEvent $event
+   * Checks for audience_select_audience cookie and redirects to /gateway if not
+   * set when the KernelEvents::REQUEST event is dispatched.
    */
-  /*public function checkForRedirection(GetResponseEvent $event) {
-  //public function checkForRedirection() {
-    // If system maintenance mode is enabled, redirect to a different domain.
-    $enabled = \Drupal::state()->get('system.maintenance_mode');
-    ddl($enabled, 'maintenance mode?');
-    if (!isset($enabled) || $enabled === 0) {
-      $event->setResponse(new RedirectResponse('http://google.com'));
-    }
-    else {
-      $cookie = new SetCookie();
-      // If audience_select_audience cookie is not set, redirect to gateway page.
-      $cookie_value = $cookie->getValue();
-      ddl($_COOKIE, 'straight cookie');
-      ddl($cookie_value, 'cookie using guzzle http');
-    }
-  }*/
 
-  public function checkForRedirection(GetResponseEvent $event) {
-    drupal_set_message('Whoot, I got called!');
-    //ddl($event, 'event');
+  public function checkForRedirection() {
     $request = \Drupal::request();
     $request_uri = $request->getRequestUri();
-    //dpm($request, 'request');
-    dpm($request->cookies, 'request cookies');
-    //dpm($_COOKIE, 'straight up cookie');
-    dpm($request_uri);
-    //$cookie = new Cookie('audience_select_audience', 'member');
-    //dpm($cookie, 'new cookie');
     // If audience_select_audience cookie is not set, redirect to gateway page.
     if (preg_match('/^\/\badmin/i', $request_uri) !== 1 && preg_match('/^\/\buser/i', $request_uri) !== 1 && $request_uri != '/gateway' && !$request->cookies->has('audience_select_audience')) {
-      drupal_set_message('NOOOO! WE HAZ NO AUDIENCE_SELECT_AUDIENCE flavored cookie');
-      //$url = new Url('gateway')​;
-      //$path = $url->toString();​
       $path = Url::fromRoute('gateway')->toString();
-      drupal_set_message($path);
       $response = new LocalRedirectResponse($path);
-      //$response = new RedirectResponse($path);
-      //$response->headers->setCookie(new Cookie('audience_select_audience', 'member', 0, '/', NULL, FALSE, FALSE));
-      $response->addCacheableDependency((new CacheableMetadata())->addCacheContexts(['cookies:' . 'audience_select_audience', 'session.exists']));
-      dpm($response, 'response');
-      $get_cookies = $response->headers->getCookies();
-      dpm($get_cookies, 'get cookies');
+      $response->addCacheableDependency((new CacheableMetadata())->addCacheContexts([
+        'cookies:' . 'audience_select_audience',
+        'session.exists'
+      ]));
       return $response;
     }
-    else {
-      drupal_set_message('YAAAY! WE HAZ AUDIENCE_SELECT_AUDIENCE flavored cookie');
-    }
-    //$cookie_name = $cookie->getName();
-    //$cookie_value = $cookie->getValue();
-    //ddl($cookie_name, 'cookie name using symfony http foundation');
-    //ddl($cookie_value, 'cookie value using symfony http foundation');
-    //$response = new LocalRedirectResponse($request->query->get('destination'));
-    // Set cookie without httpOnly, so that JavaScript can delete it.
-    //$response->headers->setCookie(new Cookie(BigPipeStrategy::NOJS_COOKIE, TRUE, 0, '/', NULL, FALSE, FALSE));
-    //$response->addCacheableDependency((new CacheableMetadata())->addCacheContexts(['cookies:' . BigPipeStrategy::NOJS_COOKIE, 'session.exists']));
-    //return $response;
   }
 }
