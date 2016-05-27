@@ -1,0 +1,5 @@
+services:
+  audience_select.audience_select_subscriber:
+    class: Drupal\audience_select\EventSubscriber\AudienceSelectSubscriber
+    tags:
+      - { name: event_subscriber }
