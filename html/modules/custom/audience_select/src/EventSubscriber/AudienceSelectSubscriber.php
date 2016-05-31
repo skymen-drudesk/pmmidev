@@ -55,6 +55,7 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
       $response = new TrustedRedirectResponse($path);
       $event->setResponse($response);
     }
+
     // If audience_select_audience cookie is not set and route is / with
     // audience query parameter, set cookie.
     elseif (preg_match('/^\/\badmin/i', $request_uri) !== 1
@@ -72,6 +73,16 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
       $event->setResponse($response);
     }
 
+    // If audience_select_audience cookie is set and route is /gateway redirect
+    // to frontpage.
+    elseif (preg_match('/^\/\badmin/i', $request_uri) !== 1
+      && preg_match('/^\/\buser/i', $request_uri) !== 1
+      && $request_uri == '/gateway'
+      && $request->cookies->has('audience_select_audience')
+    ) {
+      $response = new TrustedRedirectResponse('/');
+      $event->setResponse($response);
+    }
   }
 
   /**
