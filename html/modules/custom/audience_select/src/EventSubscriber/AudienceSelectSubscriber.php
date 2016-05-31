@@ -69,7 +69,7 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
       $response->addCacheableDependency((new CacheableMetadata())->addCacheContexts([
         'cookies:' . 'audience_select_audience',
       ]));
-      return $response;
+      $event->setResponse($response);
     }
 
   }
