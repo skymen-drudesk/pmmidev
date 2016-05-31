@@ -2,7 +2,7 @@
   <h1>I am a(n):</h1>
 
   {% for key, item in audiences %}
-    <p><a href="/" id="audience-select-{{ key }}" onclick='document.cookie = "audience_select_audience={{ key }}; expires=Fri, 18 Jan 2038 23:59:59 GMT; path=/"'>{{ item }}</a></p>
+    <p><a href="/?audience={{ key }}" id="audience-select-{{ key }}">{{ item }}</a></p>
   {% endfor %}
 
 </div>{# /.audience-select #}
