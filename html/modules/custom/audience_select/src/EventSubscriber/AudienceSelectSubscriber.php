@@ -12,12 +12,7 @@ namespace Drupal\audience_select\EventSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 // This class contains the event we want to subscribe to.
 use Symfony\Component\HttpKernel\KernelEvents;
-// Our event listener method will receive one of these.
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-// We'll use this to perform a redirect if necessary.
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Cookie;
-use Symfony\Component\HttpFoundation\Request;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Routing\LocalRedirectResponse;
 use Drupal\Core\Url;
@@ -65,9 +60,7 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
       $response = new LocalRedirectResponse($path);
       $response->addCacheableDependency((new CacheableMetadata())->addCacheContexts([
         'cookies:' . 'audience_select_audience',
-        'session.exists'
       ]));
-      return $response;
     }
     // If audience_select_audience cookie is not set and route is / with
     // audience query parameter, set cookie.
@@ -77,8 +70,17 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
       && !$request->cookies->has('audience_select_audience')
       && isset($audience)
     ) {
-      $request->cookies->set('audience_select_audience', $audience);
+      drupal_set_message('setting cookie');
+      $response = new LocalRedirectResponse($request->query->get('destination'));
+      // Set cookie without httpOnly, so that JavaScript can delete it.
+      $response->headers->setCookie(new Cookie('audience_select_audience', $audience, 0, '/', NULL, FALSE, FALSE));
+      $response->addCacheableDependency((new CacheableMetadata())->addCacheContexts([
+        'cookies:' . 'audience_select_audience',
+      ]));
     }
+
+    if (isset($response)) return $response;
+
     return $request;
   }
 }
