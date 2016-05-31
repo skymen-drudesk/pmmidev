@@ -53,14 +53,17 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
       && preg_match('/^\/\buser/i', $request_uri) !== 1
       && $request_uri != '/gateway'
       && !$request->cookies->has('audience_select_audience')
+      && !isset($audience)
     ) {
       drupal_set_message('no cookie');
       $path = Url::fromRoute('gateway')->toString();
       drupal_set_message($path);
       $response = new LocalRedirectResponse($path);
-      $response->addCacheableDependency((new CacheableMetadata())->addCacheContexts([
-        'cookies:' . 'audience_select_audience',
-      ]));
+      $response->addCacheableDependency((new CacheableMetadata())->addCacheContexts(['cookies:' . 'audience_select_audience', 'session.exists']));
+      dpm($response, 'response');
+      $get_cookies = $response->headers->getCookies();
+      dpm($get_cookies, 'get cookies');
+      return $response;
     }
     // If audience_select_audience cookie is not set and route is / with
     // audience query parameter, set cookie.
@@ -71,16 +74,14 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
       && isset($audience)
     ) {
       drupal_set_message('setting cookie');
-      $response = new LocalRedirectResponse($request->query->get('destination'));
+      $response = new LocalRedirectResponse('/');
       // Set cookie without httpOnly, so that JavaScript can delete it.
-      $response->headers->setCookie(new Cookie('audience_select_audience', $audience, 0, '/', NULL, FALSE, FALSE));
+      setcookie('audience_select_audience', $audience, time() + (86400 * 365), '/', NULL, FALSE, FALSE);
+      //$response->headers->setCookie(new Cookie('audience_select_audience', $audience, 0, '/', NULL, FALSE, FALSE));
       $response->addCacheableDependency((new CacheableMetadata())->addCacheContexts([
         'cookies:' . 'audience_select_audience',
       ]));
+      return $response;
     }
-
-    if (isset($response)) return $response;
-
-    return $request;
   }
 }
