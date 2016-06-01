@@ -1,0 +1,11 @@
+{{ dump(elements.content['#audiences']) }}
+
+
+<div class="block audience-select" id="block--audience-switcher-">
+  <span id="audience-switcher-label">I am a(n):</span>
+
+  {% for key, item in elements.content['#audiences'] %}
+    <span class="audience-select-audience"><a href="/?audience={{ key }}" id="audience-select-{{ key }}">{{ item }}</a></span>
+  {% endfor %}
+
+</div>{# /.audience-select #}
