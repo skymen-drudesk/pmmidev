@@ -36,7 +36,10 @@ class SettingsForm extends ConfigFormBase {
     $form['audiences'] = array(
       '#type' => 'textarea',
       '#title' => $this->t('Audiences'),
-      '#description' => t('Enter each audience on its own line as: key|Gateway Value|Block Value'),
+      '#description' => t('Enter each audience on its own line as: 
+        <pre>key|Gateway Value|opt: Block Value</pre>
+        If no block value is specified, the gateway value will be used.'
+      ),
       '#default_value' => $config->get('audiences'),
     );
     return parent::buildForm($form, $form_state);
@@ -47,6 +50,19 @@ class SettingsForm extends ConfigFormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
+
+    $audiences = $form_state->getValue('audiences');
+
+    if (strlen($audiences) < 3
+      && strpos($audiences, '|') === FALSE
+    ) {
+      $form_state->setErrorByName(
+        'audiences',
+        $this->t('Enter each audience on its own line as: 
+        <pre>key|Gateway Value|opt: Block Value</pre>
+        If no block value is specified, the gateway value will be used.')
+      );
+    }
   }
 
   /**
