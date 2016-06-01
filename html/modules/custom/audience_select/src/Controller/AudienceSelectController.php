@@ -7,11 +7,6 @@
 
 namespace Drupal\audience_select\Controller;
 
-use Drupal\Core\Url;
-// Change following https://www.drupal.org/node/2457593
-use Drupal\Component\Utility\SafeMarkup;
-use Symfony\Component\HttpFoundation\Response;
-
 /**
  * Controller routines for Audience select pages.
  */
