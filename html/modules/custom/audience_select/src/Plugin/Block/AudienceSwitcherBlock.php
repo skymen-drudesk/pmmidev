@@ -25,7 +25,7 @@ class AudienceSwitcherBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    $audiences = AudienceSelectController::getKeyedAudiences();
+    $audiences = AudienceSelectController::getUnselectedAudiences();
     return array(
       '#theme' => 'audience_switcher_block',
       '#audiences' => $audiences,

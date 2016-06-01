@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Response;
 class AudienceSelectController {
   
   public function content() {
-    $audiences = $this->getKeyedAudiences();
+    $audiences = $this->getAllAudiences();
     return [
       '#theme' => 'page__gateway',
       '#audiences' => $audiences,
@@ -30,7 +30,7 @@ class AudienceSelectController {
    *
    * @return array
    */
-  public static function getKeyedAudiences() {
+  public static function getAllAudiences() {
     $config = \Drupal::config('audience_select.settings');
     $audiences = $config->get('audiences');
     $audiences = explode(PHP_EOL, $audiences);
@@ -51,6 +51,20 @@ class AudienceSelectController {
     }
 
     return($keyed_audiences);
+  }
+
+  /**
+   * Turns audiences settings string into keyed array.
+   *
+   * @return array
+   */
+  public static function getUnselectedAudiences() {
+    $audiences = self::getAllAudiences();
+    $audience = isset($_COOKIE['audience_select_audience']) ? $_COOKIE['audience_select_audience'] : FALSE;
+
+    if ($audience && array_key_exists($audience, $audiences)) unset($audiences[$audience]);
+
+    return($audiences);
   }
 
   public static function getTemplatePath() {
