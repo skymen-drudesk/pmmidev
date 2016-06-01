@@ -38,7 +38,15 @@ class AudienceSelectController {
 
     foreach ($audiences as $audience) {
       $split = explode('|', $audience);
-      $keyed_audiences[$split[0]] = $split[1];
+      $keyed_audiences[$split[0]] = [
+        'gateway' => $split[1],
+      ];
+      if (isset($split[2]) && !empty($split[2])) {
+        $keyed_audiences[$split[0]]['block'] = $split[2];
+      }
+      else {
+        $keyed_audiences[$split[0]]['block'] = $split[1];
+      }
     }
 
     return($keyed_audiences);

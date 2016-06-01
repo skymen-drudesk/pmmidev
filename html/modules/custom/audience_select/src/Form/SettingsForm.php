@@ -36,7 +36,7 @@ class SettingsForm extends ConfigFormBase {
     $form['audiences'] = array(
       '#type' => 'textarea',
       '#title' => $this->t('Audiences'),
-      '#description' => t('Enter each audience on its own line as: key|value'),
+      '#description' => t('Enter each audience on its own line as: key|Gateway Value|Block Value'),
       '#default_value' => $config->get('audiences'),
     );
     return parent::buildForm($form, $form_state);
