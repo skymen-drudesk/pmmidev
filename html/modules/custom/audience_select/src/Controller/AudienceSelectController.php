@@ -37,6 +37,7 @@ class AudienceSelectController {
     $keyed_audiences = [];
 
     foreach ($audiences as $audience) {
+      $audience = rtrim($audience, ' \t\0\x0B|');
       $split = explode('|', $audience);
       $keyed_audiences[$split[0]] = [
         'gateway' => $split[1],
