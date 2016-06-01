@@ -56,12 +56,10 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
       $event->setResponse($response);
     }
 
-    // If audience_select_audience cookie is not set and route is / with
-    // audience query parameter, set cookie.
+    // If route is / with audience query parameter, set cookie.
     elseif (preg_match('/^\/\badmin/i', $request_uri) !== 1
       && preg_match('/^\/\buser/i', $request_uri) !== 1
       && $request_uri != '/gateway'
-      && !$request->cookies->has('audience_select_audience')
       && isset($audience)
     ) {
       $response = new TrustedRedirectResponse('/');
