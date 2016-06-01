@@ -67,11 +67,4 @@ class AudienceSelectController {
     return($audiences);
   }
 
-  public static function getTemplatePath() {
-    $module_path = drupal_get_path('module', 'audience_select');
-    $config = \Drupal::config('audience_select.settings');
-    $template = $config->get('template');
-    $template = empty($template) ? $module_path . '/templates/page--gateway.html.twig' : $template;
-    return $template;
-  }
 }
