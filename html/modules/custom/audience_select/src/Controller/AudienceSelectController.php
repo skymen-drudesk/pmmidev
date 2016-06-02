@@ -20,7 +20,7 @@ class AudienceSelectController {
   public function content() {
     $audiences = $this->getKeyedAudiences();
     return [
-      '#theme' => 'audience_select_gateway',
+      '#theme' => 'page__gateway',
       '#audiences' => $audiences,
     ];
   }
