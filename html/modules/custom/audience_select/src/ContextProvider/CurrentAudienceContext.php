@@ -4,30 +4,36 @@ namespace Drupal\audience_select\ContextProvider;
 
 use Drupal\audience_select\Service\AudienceManager;
 use Drupal\Core\Cache\CacheableMetadata;
+use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Plugin\Context\Context;
 use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Sets the current audience as a context.
  *
  * @package Drupal\audience_select\ContextProvider
  */
-class CurrentAudienceContext extends AudienceManager {
+class CurrentAudienceContext implements ContainerInjectionInterface {
 
   use StringTranslationTrait;
 
-  /**
-   * @var null
-   */
+  private $audience_manager;
+
   protected $audience;
 
-  /**
-   * CurrentAudienceContext constructor.
-   */
-  public function __construct() {
-    $this->audience = $this->getCurrentAudience();
+  public function __construct(AudienceManager $audience_manager)
+  {
+    $this->audience_manager = $audience_manager;
+    $this->audience = $this->audience_manager->getCurrentAudience();
   }
+
+  public static function create(ContainerInterface $container)
+  {
+    return new self($container->get('audience_select.audience_manager'));
+  }
+
 
   /**
    * {@inheritdoc}
