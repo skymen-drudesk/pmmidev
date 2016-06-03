@@ -14,6 +14,7 @@ class AudienceSelectController {
   
   public function content() {
     $audiences = $this->getAllAudiences();
+    //var_dump($audiences);
     return [
       '#theme' => 'page__gateway',
       '#audiences' => $audiences,

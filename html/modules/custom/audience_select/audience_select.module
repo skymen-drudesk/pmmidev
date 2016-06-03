@@ -24,6 +24,7 @@ function audience_select_help($route_name, RouteMatchInterface $route_match) {
  */
 function audience_select_theme($existing, $type, $theme, $path) {
   $audiences = \Drupal\audience_select\Controller\AudienceSelectController::getAllAudiences();
+  //var_dump($audiences);
   return [
     'page__gateway' => [
       'variables' => ['audiences' => $audiences],
