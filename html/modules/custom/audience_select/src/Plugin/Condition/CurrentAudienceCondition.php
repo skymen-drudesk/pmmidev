@@ -54,7 +54,7 @@ class CurrentAudienceCondition extends ConditionPluginBase implements ContainerF
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $audiences = $audiences = AudienceSelectController::getKeyedAudiences();
+    $audiences = $audiences = AudienceSelectController::getAllAudiences();
     $options = [];
     foreach ($audiences as $key => $audience) {
       $options[$key] = $audience['gateway'];
