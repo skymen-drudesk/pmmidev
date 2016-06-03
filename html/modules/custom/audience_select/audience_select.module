@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\audience_select\Service\AudienceManager;
 
 /**
  * Implements hook_help().
@@ -23,8 +24,9 @@ function audience_select_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_theme().
  */
 function audience_select_theme($existing, $type, $theme, $path) {
-  $audiences = \Drupal\audience_select\Controller\AudienceSelectController::getAllAudiences();
-  //var_dump($audiences);
+  $audience_manager = new AudienceManager();
+  $audiences = $audience_manager->getAllAudiences();
+
   return [
     'page__gateway' => [
       'variables' => ['audiences' => $audiences],
@@ -41,5 +43,8 @@ function audience_select_theme($existing, $type, $theme, $path) {
  * Implements hook_preprocess_HOOK().
  */
 function audience_select_preprocess_page__gateway(&$variables) {
-  $variables['audiences'] = \Drupal\audience_select\Controller\AudienceSelectController::getAllAudiences();
+  $audience_manager = new AudienceManager();
+  $audiences = $audience_manager->getAllAudiences();
+
+  $variables['audiences'] = $audiences;
 }

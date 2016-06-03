@@ -1,8 +1,13 @@
 services:
+
   audience_select.audience_select_subscriber:
     class: Drupal\audience_select\EventSubscriber\AudienceSelectSubscriber
     tags:
       - { name: event_subscriber }
+
+  audience_select.audience_manager:
+    class: Drupal\audience_select\Service\AudienceManager
+
   audience_select.current_audience_context:
     class: Drupal\audience_select\ContextProvider\CurrentAudienceContext
     tags:
