@@ -2,7 +2,7 @@
 
 /**
  * @file
- * Contains \Drupal\audience_select\Service\AudienceManager
+ * Contains \Drupal\audience_select\Service
  */
 
 namespace Drupal\audience_select\Service;
