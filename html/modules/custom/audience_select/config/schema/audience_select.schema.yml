@@ -8,3 +8,11 @@ audience_select.settings:
       type: string
       label: 'Audiences:'
       translatable: true
+
+condition.plugin.audience:
+  type: condition.plugin
+  mapping:
+    audience:
+      type: sequence
+      sequence:
+        type: string
