@@ -42,6 +42,17 @@ class AudienceManager {
     return($keyed_audiences);
   }
 
+  public function getGatewayAudiences() {
+    $all_audiences = self::getAllAudiences();
+    $audiences = [];
+
+    foreach ($all_audiences as $key => $audience) {
+      $audiences[$key] = $audience;
+    }
+
+    return $audiences;
+  }
+
   public function getCurrentAudience() {
     $audience = isset($_COOKIE['audience_select_audience']) ? $_COOKIE['audience_select_audience'] : NULL;
 
