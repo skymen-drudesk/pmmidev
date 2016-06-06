@@ -1,5 +1,4 @@
 services:
-
   audience_select.audience_select_subscriber:
     class: Drupal\audience_select\EventSubscriber\AudienceSelectSubscriber
     tags:
@@ -10,5 +9,6 @@ services:
 
   audience_select.current_audience_context:
     class: Drupal\audience_select\ContextProvider\CurrentAudienceContext
+    arguments: ['@audience_select.audience_manager']
     tags:
       - { name: 'context_provider' }
