@@ -932,6 +932,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-3.x": "8.3.x-dev"
+                },
+                "patches_applied": {
+                    "Add SASS starterkit": "https://www.drupal.org/files/issues/2102895-SASS-starterkit-67.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -1281,12 +1284,31 @@
                 "reference": null,
                 "shasum": null
             },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "replace": {
+                "drupal/ctools_block": "self.version",
+                "drupal/ctools_views": "self.version"
+            },
+            "suggest": {
+                "drupal/block": "Required by drupal/ctools_views",
+                "drupal/core": "Required by drupal/ctools_block, drupal/ctools_views",
+                "drupal/views": "Required by drupal/ctools_views"
+            },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
                     "dev-8.x-3.x": "8.3.x-dev"
                 }
-            }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a number of utility and helper APIs for Drupal developers and site builders.",
+            "homepage": "https://www.drupal.org/project/ctools",
+            "time": "2016-05-06 18:51:13"
         },
         {
             "name": "drupal/date",
@@ -1494,6 +1516,9 @@
             "extra": {
                 "branch-alias": {
                     "dev-8.x-1.x": "8.1.x-dev"
+                },
+                "patches_applied": {
+                    "Don't call getCacheTagsToInvalidate() when null": "https://www.drupal.org/files/issues/2696345-2.patch"
                 }
             },
             "notification-url": "https://packagist.drupal-composer.org/downloads/",
@@ -2804,16 +2829,16 @@
         },
         {
             "name": "phpseclib/phpseclib",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "ba6fb78f727cd09f2a649113b95468019e490585"
+                "reference": "3d265f7c079f5b37d33475f996d7a383c5fc8aeb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/ba6fb78f727cd09f2a649113b95468019e490585",
-                "reference": "ba6fb78f727cd09f2a649113b95468019e490585",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/3d265f7c079f5b37d33475f996d7a383c5fc8aeb",
+                "reference": "3d265f7c079f5b37d33475f996d7a383c5fc8aeb",
                 "shasum": ""
             },
             "require": {
@@ -2833,6 +2858,9 @@
             },
             "type": "library",
             "autoload": {
+                "files": [
+                    "phpseclib/bootstrap.php"
+                ],
                 "psr-4": {
                     "phpseclib\\": "phpseclib/"
                 }
@@ -2889,7 +2917,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2016-01-18 17:07:21"
+            "time": "2016-05-13 01:15:21"
         },
         {
             "name": "psr/http-message",
@@ -5226,7 +5254,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/devel",
-                "reference": "fdc8b5254b88277de3bd3c0f57dc286dc1ca5417"
+                "reference": "5c6a5068bbf9e3ea0c46ed34777b679a14a38580"
             },
             "require": {
                 "drupal/core": "8.*"
@@ -5261,15 +5289,21 @@
             ],
             "description": "Various blocks, pages, and functions for developers.",
             "homepage": "http://drupal.org/project/devel",
-            "time": "2016-06-02 19:46:19"
+            "time": "2016-06-06 06:59:02"
         },
         {
             "name": "drupal/devel_debug_log",
-            "version": "dev-8.x-1.x",
+            "version": "8.1.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/devel_debug_log",
-                "reference": "c99c948db8b9f7cb0199d56f67f4d5a3ccc5c137"
+                "reference": "0dab8c89d4968605e79b658b102089efac6d5cda"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/devel_debug_log-8.x-1.0-beta1.zip",
+                "reference": null,
+                "shasum": null
             },
             "require": {
                 "drupal/core": "8.*",
@@ -5288,7 +5322,7 @@
             ],
             "description": "Stores debug information for an easier AJAX debugging.",
             "homepage": "https://www.drupal.org/project/devel_debug_log",
-            "time": "2016-04-23 16:34:02"
+            "time": "2016-06-04 18:14:41"
         },
         {
             "name": "drupal/diff",
@@ -6025,16 +6059,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "5.3.4",
+            "version": "5.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "00dd95ffb48805503817ced06399017df315fe5c"
+                "reference": "08c513bfcab57f3dd72f5214c1c3940439fae7fe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/00dd95ffb48805503817ced06399017df315fe5c",
-                "reference": "00dd95ffb48805503817ced06399017df315fe5c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/08c513bfcab57f3dd72f5214c1c3940439fae7fe",
+                "reference": "08c513bfcab57f3dd72f5214c1c3940439fae7fe",
                 "shasum": ""
             },
             "require": {
@@ -6046,11 +6080,11 @@
                 "myclabs/deep-copy": "~1.3",
                 "php": "^5.6 || ^7.0",
                 "phpspec/prophecy": "^1.3.1",
-                "phpunit/php-code-coverage": "^3.3.0",
+                "phpunit/php-code-coverage": ">=3.3.0,<4.0.0",
                 "phpunit/php-file-iterator": "~1.4",
                 "phpunit/php-text-template": "~1.2",
                 "phpunit/php-timer": "^1.0.6",
-                "phpunit/phpunit-mock-objects": "^3.1",
+                "phpunit/phpunit-mock-objects": ">=3.1.0,<3.2.0",
                 "sebastian/comparator": "~1.1",
                 "sebastian/diff": "~1.2",
                 "sebastian/environment": "~1.3",
@@ -6096,7 +6130,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2016-05-11 13:28:45"
+            "time": "2016-06-03 09:42:56"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
