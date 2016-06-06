@@ -1,70 +1,53 @@
 <?php
 
-namespace Drupal\system\Plugin\Condition;
+namespace Drupal\current_audience\Plugin\Condition;
 
+use Drupal\audience_select\Service\AudienceManager;
 use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\audience_select\Controller\AudienceSelectController;
 
 /**
- * Provides a 'Current Theme' condition.
+ * Provides a 'Audience' condition.
  *
  * @Condition(
- *   id = "current_audience",
- *   label = @Translation("Current Audience"),
+ *   id = "audience",
+ *   label = @Translation("Audience"),
+ *   context = {
+ *     "audience" = @ContextDefinition("configuration:audience",
+ *       label = @Translation("Audience"))
+ *   }
  * )
  */
-class CurrentAudienceCondition extends ConditionPluginBase implements ContainerFactoryPluginInterface {
+class CurrentAudienceCondition extends ConditionPluginBase {
 
   /**
-   * Constructs a CurrentAudienceCondition condition plugin.
+   * The audience manager service.
    *
-   * @param array $configuration
-   *   A configuration array containing information about the plugin instance.
-   * @param string $plugin_id
-   *   The plugin_id for the plugin instance.
-   * @param mixed $plugin_definition
-   *   The plugin implementation definition.
+   * @var \Drupal\audience_select\Service\AudienceManager
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition);
-  }
+  protected $audience_manager;
 
   /**
-   * {@inheritdoc}
+   * The configured audiences.
+   *
+   * @var null
    */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition
-    );
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function defaultConfiguration() {
-    return array('settings' => '') + parent::defaultConfiguration();
-  }
+  protected $audiences;
 
   /**
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $audiences = $audiences = AudienceSelectController::getAllAudiences();
-    $options = [];
-    foreach ($audiences as $key => $audience) {
-      $options[$key] = $audience['gateway'];
-    }
+    $this->audience_manager = new AudienceManager();
+    $this->audiences = $this->audience_manager->getGatewayAudiences();
 
-    $form['audience'] = array(
+    $form['audiences'] = array(
       '#type' => 'select',
-      '#title' => $this->t('Audience'),
-      '#default_value' => $this->configuration['settings'],
-      '#options' => $options,
+      '#title' => $this->t('When the viewer has the following audience'),
+      '#default_value' => $this->configuration['audiences'],
+      '#options' => array_map('\Drupal\Component\Utility\Html::escape', $this->audiences),
+      '#description' => $this->t('If you select no audience, the condition will 
+        evaluate to TRUE for all viewers.'),
     );
     return parent::buildConfigurationForm($form, $form_state);
   }
@@ -72,42 +55,64 @@ class CurrentAudienceCondition extends ConditionPluginBase implements ContainerF
   /**
    * {@inheritdoc}
    */
+  public function defaultConfiguration() {
+    $this->audience_manager = new AudienceManager();
+    $this->audiences = $this->audience_manager->getGatewayAudiences();
+    return array(
+      'audiences' => $this->audiences,
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
-    $this->configuration['audience'] = $form_state->getValue('audience');
+    $this->configuration['audiences'] = array_filter($form_state->getValue('audiences'));
     parent::submitConfigurationForm($form, $form_state);
   }
 
   /**
    * {@inheritdoc}
    */
-  public function evaluate() {
-    $cookie = $_COOKIE;
-    var_dump($cookie);
-
-    if (!$this->configuration['settings']) {
-      return TRUE;
+  public function summary() {
+    $this->audience_manager = new AudienceManager();
+    // Use the audience gateway labels. They will be sanitized below.
+    $this->audiences = $this->audience_manager->getGatewayAudiences();
+    $audiences = array_intersect_key($this->audiences, $this->configuration['audiences']);
+    if (count($audiences) > 1) {
+      $audiences = implode(', ', $audiences);
     }
-
-    return $cookie;
+    else {
+      $audiences = reset($audiences);
+    }
+    if (!empty($this->configuration['negate'])) {
+      return $this->t('The viewer is not a member of @audiences', array('@audiences' => $audiences));
+    }
+    else {
+      return $this->t('The viewer is a member of @audiences', array('@audiences' => $audiences));
+    }
   }
 
   /**
    * {@inheritdoc}
    */
-  public function summary() {
-    if ($this->isNegated()) {
-      return $this->t('The current audience is not @audience', array('@audience' => $this->configuration['settings']));
+  public function evaluate() {
+    if (empty($this->configuration['audiences']) && !$this->isNegated()) {
+      return TRUE;
     }
-
-    return $this->t('The current audience is @audience', array('@audience' => $this->configuration['settings']));
+    $audience = $this->getContextValue('audience');
+    return (bool) array_intersect($this->configuration['audiences'], $audience);
   }
 
   /**
    * {@inheritdoc}
    */
   public function getCacheContexts() {
-    $contexts = parent::getCacheContexts();
-    $contexts[] = 'audience';
+    $contexts = $contexts = [];
+    foreach (parent::getCacheContexts() as $context) {
+      $contexts[] = 'audience' ? 'audience' : $context;
+    }
+
     return $contexts;
   }
 
