@@ -4,45 +4,58 @@ namespace Drupal\audience_select\ContextProvider;
 
 use Drupal\audience_select\Service\AudienceManager;
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Drupal\Core\Plugin\Context\Context;
 use Drupal\Core\Plugin\Context\ContextDefinition;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Plugin\Context\ContextProviderInterface;
 
 /**
  * Sets the current audience as a context.
  *
  * @package Drupal\audience_select\ContextProvider
  */
-class CurrentAudienceContext implements ContainerInjectionInterface {
+class CurrentAudienceContext implements ContextProviderInterface {
 
   use StringTranslationTrait;
 
-  private $audience_manager;
+  /**
+   * The audience manager service.
+   *
+   * @var \Drupal\audience_select\Service\AudienceManager
+   */
+  protected $audience_manager;
 
+  /**
+   * The current audience.
+   *
+   * @var null
+   */
   protected $audience;
 
-  public function __construct(AudienceManager $audience_manager)
-  {
+  /**
+   * Constructs a new CurrentAudienceContext.
+   *
+   * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
+   *   The audience manager.
+   */
+  public function __construct(AudienceManager $audience_manager) {
     $this->audience_manager = $audience_manager;
     $this->audience = $this->audience_manager->getCurrentAudience();
-  }
-
-  public static function create(ContainerInterface $container)
-  {
-    return new self($container->get('audience_select.audience_manager'));
   }
 
 
   /**
    * {@inheritdoc}
    */
-  public function getRuntimeContexts() {
+  public function getRuntimeContexts(array $unqualified_context_ids) {
+    ddl('in CurrentAudienceContext getRuntimeContexts().');
 
-    $context = new Context(new ContextDefinition('cookie:audience',
-      $this->t('Current audience')),
+    $context = new Context(new ContextDefinition('audience',
+      $this->t('Current audience'),
+      FALSE
+    ),
       $this->audience);
+
     $cacheability = new CacheableMetadata();
     $cacheability->setCacheContexts(['audience']);
     $context->addCacheableDependency($cacheability);
@@ -58,7 +71,7 @@ class CurrentAudienceContext implements ContainerInjectionInterface {
    * {@inheritdoc}
    */
   public function getAvailableContexts() {
-    return $this->getRuntimeContexts();
+    return $this->getRuntimeContexts([]);
   }
 
 }
