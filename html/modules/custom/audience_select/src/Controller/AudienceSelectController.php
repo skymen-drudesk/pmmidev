@@ -7,6 +7,7 @@
 
 namespace Drupal\audience_select\Controller;
 
+use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\audience_select\Service\AudienceManager;
@@ -14,7 +15,7 @@ use Drupal\audience_select\Service\AudienceManager;
 /**
  * Controller routines for Audience select pages.
  */
-class AudienceSelectController implements ContainerInjectionInterface {
+class AudienceSelectController extends ControllerBase {
 
   private $audience_manager;
 
@@ -23,9 +24,13 @@ class AudienceSelectController implements ContainerInjectionInterface {
     $this->audience_manager = $audience_manager;
   }
 
-  public static function create(ContainerInterface $container)
-  {
-    return new self($container->get('audience_select.audience_manager'));
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container) {
+    return new static(
+      $container->get('audience_select.audience_manager')
+    );
   }
   
   public function content() {
