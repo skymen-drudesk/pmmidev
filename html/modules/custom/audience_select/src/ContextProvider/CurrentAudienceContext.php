@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * @TODO: Make this actually work! Does a context actually have to be an entity
+ *   (e.g. a config entity)? Is a context necessary to have a condition plugin?
+ *   Does it actually make sense to provide this context?
+ */
+
 namespace Drupal\audience_select\ContextProvider;
 
 use Drupal\audience_select\Service\AudienceManager;
