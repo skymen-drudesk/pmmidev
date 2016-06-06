@@ -7,7 +7,7 @@
 
 namespace Drupal\audience_select\Plugin\Block;
 
-use Drupal\audience_select\Controller\AudienceSelectController;
+use Drupal\audience_select\Service\AudienceManager;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block;
 
@@ -25,7 +25,8 @@ class AudienceSwitcherBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    $audiences = AudienceSelectController::getUnselectedAudiences();
+    $audience_manager = new AudienceManager();
+    $audiences = $audience_manager->getUnselectedAudiences();
     return array(
       '#theme' => 'audience_switcher_block',
       '#audiences' => $audiences,
