@@ -1,56 +1,37 @@
 version: '2'
 services:
   db:
-    container_name: pmmidb
+    container_name: pmmi_dev_db
     image: mysql:5.7
     environment:
       MYSQL_ROOT_PASSWORD: rootpasswd
       MYSQL_USER: drupal
       MYSQL_PASSWORD: drupal
       MYSQL_DATABASE: drupal
-    volumes_from:
-      - mysqldata
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./config/mysql/config:/etc/mysql/conf.d
     ports:
-      - "3306:3306"
-    expose:
-      - "3306"
+      - "3307:3306"
 
   web:
-    container_name: pmmiweb
+    container_name: pmmi_dev_web
+    image: pmguser/drupal-php7.0-apache:latest
     depends_on:
       - db
-    build:
-      context: .
-      dockerfile: drupal-php7.0-apache
     # Environment variables
     environment:
+      TERM: xterm
       # Drupal settings
       DRUPAL_PROFILE: minimal
-      DRUPAL_SITE_NAME: pmmi
+      DRUPAL_SITE_NAME: PMMI
       DRUPAL_USER: admin
       DRUPAL_PASS: admin
       DRUPAL_DBURL: mysql://root:rootpasswd@mysql:3306/drupal
+      VIRTUAL_HOST: pmmi.dev
     ports:
-      - "80:80"
-      - "22:22"
-    expose:
-      - "80"
-      - "22"
+      - "8080:80"
     volumes:
       - .:/var/www
-    volumes_from:
-      - drupaldata
     links:
       - db
-
-  mysqldata:
-    container_name: pmmimysqldata
-    image: tianon/true
-    volumes:
-      - /var/lib/mysql
-
-  drupaldata:
-    container_name: pmmidrupaldata
-    image: tianon/true
-    volumes:
-      - /var/www/html/sites/default/files

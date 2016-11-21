@@ -43,14 +43,14 @@ class ScriptHandler {
 
     // Prepare the settings file for installation
     if (!$fs->exists($root . '/sites/default/settings.php')) {
-      $fs->copy($root . '/sites/default/default.settings.php', $root . '/sites/default/settings.php');
+      $fs->copy('cnf/settings.php', $root . '/sites/default/settings.php');
       $fs->chmod($root . '/sites/default/settings.php', 0666);
       $event->getIO()->write("Create a sites/default/settings.php file with chmod 0666");
     }
 
     // Prepare the local settings file for installation
     if (!$fs->exists($root . '/sites/default/settings.local.php')) {
-      $fs->copy($root . '/sites/example.settings.local.php', $root . '/sites/default/settings.local.php');
+      $fs->copy('cnf/settings.local.php', $root . '/sites/default/settings.local.php');
       $fs->chmod($root . '/sites/default/settings.local.php', 0666);
       $event->getIO()->write("Create a sites/default/settings.local.php file with chmod 0666");
     }

@@ -6,6 +6,7 @@ pushd $path/..
 base="$(pwd)";
 
 drupal_base="$base/html"
+theme_base="$base/html/themes/custom/pmmi_bootstrap"
 
 while getopts ":r:d:" opt; do
   case $opt in
@@ -49,6 +50,15 @@ fi
 echo "DRUSH: $drush"
 echo "DRUPAL BASE: $drupal_base"
 
+# Set the Default (or custom) drupal (console) command.
+if [[ "$drupal" == "" ]]; then
+  if which drupal > /dev/null && [[ $(echo "$(drupal --version --pipe) >= 1.0.0-beta5" | bc) == 1 ]]; then
+    drupal="drupal --root=$drupal_base $@"
+  else
+    drupal="$base/vendor/bin/drupal --root=$drupal_base $@"
+  fi
+fi
+
 if [[ -f "$base/.env" ]]; then
   echo "Using Custom ENV file at $base/.env"
   source "$base/.env"
@@ -57,9 +67,16 @@ else
   source "$base/env.dist"
 fi
 
-# If Composer.json exists and the composer command.
+# If Composer.json exists and the composer command exist.
 if [[ -e "$base/composer.json" ]] && which composer > /dev/null; then
-  # Then run Composer
+  # Then run Composer Install
   echo "Installing dependencies with Composer.";
   composer install
+fi
+
+# If package.json for pmmi_bootstrap exists and the npm command exists.
+if [[ -e "$theme_base/package.json" ]] && which npm > /dev/null; then
+  # Then run npm install
+  echo "Installing packages for custom theme with npm.";
+  npm install --prefix $theme_base
 fi

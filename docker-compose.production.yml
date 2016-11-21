@@ -1,0 +1,52 @@
+version: '2'
+services:
+
+  db:
+    container_name: pmmi_prod_db
+    image: mysql:5.7
+    networks:
+      - back
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpasswd
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal
+      MYSQL_DATABASE: drupal
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./config/mysql/config:/etc/mysql/conf.d
+    ports:
+      - "3307:3306"
+
+  web:
+    container_name: pmmi_prod_web
+    image: pmguser/drupal-php7.0-apache:latest
+    depends_on:
+      - db
+    networks:
+      - front
+      - back
+    restart: always
+    # Environment variables
+    environment:
+      TERM: xterm
+      # Drupal settings
+      DRUPAL_PROFILE: minimal
+      DRUPAL_SITE_NAME: PMMI
+      DRUPAL_USER: admin
+      DRUPAL_PASS: admin
+      DRUPAL_DBURL: mysql://root:rootpasswd@mysql:3306/drupal
+      VIRTUAL_HOST: pmmi.org,www.pmmi.org
+    volumes:
+      - .:/var/www
+      - ./config/cron:/etc/cron.d
+    links:
+      - db
+    ports:
+      - "8080:80"
+
+networks:
+  back:
+    driver: bridge
+  front:
+    external: true

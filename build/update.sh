@@ -11,19 +11,17 @@ pushd "$drupal_base"
 # the updates are run.
 echo "Initial Update so updated modules can work.";
 $drush updb -y;
-echo "Enabling modules";
+# Rebuild cache so recently added modules are found.
+echo "Clearing cache.";
+$drush cr
+echo "Enabling modules.";
 $drush en $(echo $DROPSHIP_SEEDS | tr ':' ' ') -y
-echo "Clearing drush caches.";
+echo "Enabling themes.";
+$drush en $DEFAULT_THEME $ADMIN_THEME -y
+echo "Clearing Drush cache."
 $drush cc drush
-# In the future, use --force https://github.com/drush-ops/drush/pull/1635
-if [[ ! -e "$base/config/drupal/sync/system.site.yml" ]]; then
-  echo "Exporting Configuration for BRAND NEW SITE."
-  $drush cex -y
-  echo "Commit these changes."
-fi
-echo "Reverting Configuration"
-$drush cim sync -y
-# Default Theme is now set up in Drupal Configuration.
+echo "Reverting configuration."
+$drush cim --skip-modules -y
 echo "Clearing caches one last time.";
 $drush cr
 

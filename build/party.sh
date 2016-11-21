@@ -1,50 +1,102 @@
 #!/bin/bash
 
+# Set defaults
+build=
+install=
+dockercompose=docker-compose.yml
+webcontainer=pmmi_prod_web
+
 # Usage info
 usage() {
 cat << EOF
-Usage: ${0##*/} [-hb]
+Usage: ${0##*/} [[[-i] [-b]] | [-h]]
 
-    -h  Display this help and exit.
-    -b  Perform Docker Compose build and Drupal install.
+    -b | --build        Perform Docker Compose build.
+    -i | --install      Perform Drupal install.
+    -h | --help         Display this help and exit.
+
+The default will start the containers and update Drupal to match the
+code on the local environment.
+
 EOF
 }
 
-while getopts ":hb" opt; do
-  case ${opt} in
-    h )
-      usage
-      exit
+while [ "$1" != "" ]; do
+  case $1 in
+    -b | --build )
+      build=1
       ;;
-    b )
-      # Need to do composer install to make sure all files/packages in place.
-      composer install
-      docker-compose up -d --build
-      docker exec -it pmmiweb  ./build/install.sh
-      if [ "$?" != "0" ]; then
-        echo "Uh oh. The install failed. You should check the output above for errors."
-        exit 1
-      fi
+    -i | --install )
+      install=1
       ;;
-    \? )
+    -h | --help )
       usage
+      exit 1
       ;;
   esac
+  shift
 done
 
-if [ $OPTIND -eq 1 ]; then
-  # Need to do composer install to make sure all files/packages in place.
-  composer install
-  docker-compose up -d
-  docker exec -it pmmiweb /bin/bash ./build/update.sh
-  if [ "$?" != "0" ]; then
-	echo "Uh oh. The update failed. You should check the output above for errors."
-	exit 1
-  fi
+# Set Docker Compose file based on environment.
+if [ "$SITE_ENVIRONMENT" = "prod" ]; then
+  dockercompose=docker-compose.production.yml
+  webcontainer=pmmi_prod_web
+elif [ "$SITE_ENVIRONMENT" = "staging" ]; then
+  dockercompose=docker-compose.staging.yml
+  webcontainer=pmmi_staging_web
+elif [ "$SITE_ENVIRONMENT" = "dev" ]; then
+  dockercompose=docker-compose.yml
+  webcontainer=pmmi_dev_web
 fi
 
-shift $((OPTIND-1))
+echo "Running on the $SITE_ENVIRONMENT environment using the $dockercompose Docker Compose file."
+
+if [ "$build" = "1" ]; then
+  echo "The Docker containers will be (re)built."
+fi
+
+if [ "$install" = "1" ]; then
+  echo "Drupal will be installed."
+fi
+
+echo -e "Do you wish to proceed (y/n): \c "
+read  confirm
+
+if [ "$confirm" != "y" ]; then
+  exit 1
+fi
+
+if [ "$build" = "1" ]; then
+  echo "Starting and building Docker containters."
+  docker-compose --file $dockercompose up -d --build
+  docker exec -it $webcontainer service rsyslog start
+  docker exec -it $webcontainer ./build/sendmail_config.sh
+  docker exec -it $webcontainer service sendmail start
+  docker exec -it $webcontainer service apache2 graceful
+else
+  echo "Starting Docker containers."
+  docker-compose --file $dockercompose up -d
+fi
+
+if [ "$?" != "0" ]; then
+  echo "Uh oh. The Docker build failed. You should check the output above for errors."
+  exit 1
+fi
+
+if [ "$install" = "1" ]; then
+  echo "Initiating Drupal install."
+  docker exec -it $webcontainer ./build/install.sh
+  if [ "$?" != "0" ]; then
+    echo "Uh oh. The Drupal install failed. You should check the output above for errors."
+    exit 1
+  fi
+else
+  echo "Initiating updates."
+  docker exec -it $webcontainer ./build/update.sh
+fi
 
 if [ "$?" = "0" ]; then
-  echo "Setup complete. Now get the party started!"
+  echo "Success! Now get the party started!"
+else
+  echo "Uh oh. The party failed to get started. You should check the output above for errors."
 fi
