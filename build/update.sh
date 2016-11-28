@@ -21,7 +21,7 @@ $drush en $DEFAULT_THEME $ADMIN_THEME -y
 echo "Clearing Drush cache."
 $drush cc drush
 echo "Reverting configuration."
-$drush cim --skip-modules -y
+$drush cim --partial -y
 echo "Clearing caches one last time.";
 $drush cr
 
