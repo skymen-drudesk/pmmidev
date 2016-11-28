@@ -22,7 +22,7 @@
       "url": "https://packages.drupal.org/8"
     }
   ],
-  "minimum-stability": "alpha",
+  "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
     "composer/installers": "~1.0.20",
@@ -51,7 +51,7 @@
     "behat/mink-goutte-driver": "~1.2.1",
     "drupal/coder": "~2.7",
     "drupal/config_devel": "~1.0@rc",
-    "drupal/devel": "~1.0@alpha",
+    "drupal/devel": "1.x-dev",
     "drupal/devel_debug_log": "~1.0@beta",
     "drupal/diff": "~1.0@alpha",
     "drupal/stage_file_proxy": "~1.0@alpha",
