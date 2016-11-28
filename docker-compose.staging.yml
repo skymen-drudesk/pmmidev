@@ -31,7 +31,7 @@ services:
     environment:
       TERM: xterm
       # Drupal settings
-      DRUPAL_PROFILE: minimal
+      DRUPAL_PROFILE: config_installer
       DRUPAL_SITE_NAME: PMMI
       DRUPAL_USER: admin
       DRUPAL_PASS: admin

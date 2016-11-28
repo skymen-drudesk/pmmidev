@@ -268,7 +268,7 @@ $config_directories = array(
  *
  * @see install_select_profile()
  */
-# $settings['install_profile'] = '';
+$settings['install_profile'] = 'config_installer';
 
 /**
  * Salt for one-time login links, cancel links, form tokens, etc.
@@ -706,4 +706,3 @@ $settings['hash_salt'] = 'rvvJu-Qlt1quqisz0QpseUWI4ONIUzWPZDeLlCM3oNsyT3vZvZrzUt
 if (file_exists(__DIR__ . '/settings.local.php')) {
     include __DIR__ . '/settings.local.php';
 }
-$settings['install_profile'] = 'standard';

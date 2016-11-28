@@ -713,7 +713,7 @@ $settings['trusted_host_patterns'] = array(
   '^localhost$',
 );
 
-$settings['install_profile'] = 'config_installer';
+$settings['install_profile'] = 'minimal';
 
 /**
  * Load local development override configuration, if available.
@@ -728,4 +728,3 @@ $settings['install_profile'] = 'config_installer';
 if (file_exists(__DIR__ . '/settings.local.php')) {
   include __DIR__ . '/settings.local.php';
 }
-

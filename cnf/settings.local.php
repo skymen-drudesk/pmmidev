@@ -65,7 +65,7 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  *
  * Do not use this setting until after the site is installed.
  */
-# $settings['cache']['bins']['render'] = 'cache.backend.null';
+#$settings['cache']['bins']['render'] = 'cache.backend.null';
 
 /**
  * Disable Dynamic Page Cache.
@@ -74,7 +74,7 @@ $config['system.performance']['js']['preprocess'] = FALSE;
  * cacheability metadata is present (and hence the expected behavior). However,
  * in the early stages of development, you may want to disable it.
  */
-# $settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
+#$settings['cache']['bins']['dynamic_page_cache'] = 'cache.backend.null';
 
 /**
  * Allow test modules and themes to be installed.
@@ -95,3 +95,21 @@ $settings['extension_discovery_scan_tests'] = TRUE;
  */
 $settings['rebuild_access'] = TRUE;
 
+/**
+ * Stage File Proxy settings.
+ */
+$config['stage_file_proxy.settings']['origin'] = 'http://demo:demo@staging.pmmi.org'; // no trailing slash
+$config['stage_file_proxy.settings']['use_imagecache_root'] = TRUE;
+$config['stage_file_proxy.settings']['hotlink'] = FALSE;
+$config['stage_file_proxy.settings']['origin_dir'] = 'sites/default/files';
+
+$databases['default']['default'] = array (
+  'database' => 'drupal',
+  'username' => 'root',
+  'password' => 'rootpasswd',
+  'prefix' => '',
+  'host' => 'pmmi_dev_db',
+  'port' => '3306',
+  'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
+  'driver' => 'mysql',
+);
