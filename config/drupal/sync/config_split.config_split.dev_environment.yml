@@ -6,6 +6,7 @@ id: dev_environment
 label: 'Dev environment'
 folder: ../config/drupal/dev
 module:
+  config_devel: 0
   config_update: 0
   config_update_ui: 0
   dblog: 0
@@ -18,4 +19,4 @@ module:
 theme: {  }
 blacklist: {  }
 graylist: {  }
-weight: 1
+weight: 2
