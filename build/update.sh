@@ -16,8 +16,6 @@ echo "Clearing cache.";
 $drush cr
 echo "Enabling modules.";
 $drush en $(echo $DROPSHIP_SEEDS | tr ':' ' ') -y
-echo "Enabling themes.";
-$drush en $DEFAULT_THEME $ADMIN_THEME -y
 echo "Clearing Drush cache."
 $drush cc drush
 echo "Reverting configuration."
