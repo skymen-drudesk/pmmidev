@@ -66,6 +66,9 @@ source env.dist
 DROPSHIP_SEEDS=$DROPSHIP_SEEDS:devel:devel_themer:views_ui:features_ui
 ```
 
+Note that the last line is only necessary if you wish to enable modules
+in addition to the `DROPSHIP_SEEDS` defined in the `env.dist` file.
+
 ## Easy Development with Docker
 
 ### Wrapper Scripts
@@ -176,14 +179,20 @@ To add the current configuration of your site to this folder use:
 
 This should dump all configuration all modules implement to 
 `config/drupal/sync` allowing our build script to import it at build 
-time using `drush cim`. Make sure to commit any changes to git.
+time using `drush cim --partial`. The `partial` option prevents 
+configuration not exported from being deleted. Make sure to commit any 
+changes to git.
 
-Configuration for development modules (such as `devel`) is excluded 
-from export and import using the `--skip-modules` flag. Skipped modules 
-are set in `drush/drushrc.php`. See [Using the Configuration Module 
-Filter in Drush 8]
-(https://pantheon.io/blog/using-configuration-module-filter-drush-8) 
-for more on the theory behind this approach.
+Ideally, configuration for development modules (such as `devel`) is 
+excluded from export and import using the `--skip-modules` flag. 
+Skipped modules  are set in `drush/drushrc.php`. However, this 
+currently skips only the enabling and uninstalling of modules. See 
+[issue](https://github.com/drush-ops/drush/issues/2133). In the 
+interim, do not commit configuration for skipped modules.
+
+For more on the theory behind the skipped modules approach see [Using 
+the Configuration Module Filter in Drush 8]
+(https://pantheon.io/blog/using-configuration-module-filter-drush-8).
 
 ## Custom Code
 
