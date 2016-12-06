@@ -6,6 +6,7 @@
 $ignore_modules = [
   'config_devel',
   'config_read_only',
+  'config_update',
   'config_update_ui',
   'dblog',
   'devel',
