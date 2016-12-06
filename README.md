@@ -163,8 +163,12 @@ See:
   * [composer create-project]
   (https://getcomposer.org/doc/03-cli.md#create-project)
   * [composer scripts](https://getcomposer.org/doc/articles/scripts.md)
-  * [composer and Patching]
-  (http://generalredneck.com/blog/patching-modules-using-composer-patches-plugin)
+
+### Applying Patches
+
+[cweagans/composer-patches]
+(https://github.com/cweagans/composer-patches) is used to apply Drupal 
+patches, whcih are specified in `composer.patches.json`.
 
 ## Configuration with Drupal 8
 
