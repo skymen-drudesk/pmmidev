@@ -1,7 +1,9 @@
 Audience Select
 ===============
 
-Lorem ipsum generator for Drupal.
+Creates a site gateway page for audience selection, sets a cookie, and 
+redirects to homepage. Also provides an Audience context and condition 
+for varying display.
 
 Instructions
 ------------
