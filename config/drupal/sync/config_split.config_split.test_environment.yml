@@ -1,0 +1,14 @@
+uuid: f70bfea9-dac2-44c6-89ed-bc02a7214fea
+langcode: en
+status: true
+dependencies: {  }
+id: test_environment
+label: 'Test environment'
+folder: ../config/drupal/test
+module:
+  dblog: 0
+  stage_file_proxy: 0
+theme: {  }
+blacklist: {  }
+graylist: {  }
+weight: 0

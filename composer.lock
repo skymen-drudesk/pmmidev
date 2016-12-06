@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d4a5e149ebb74a237fa5f183bf58494c",
-    "content-hash": "f94f26092d648b11c0a09cd7a6477a72",
+    "hash": "7ba9d1606929ffd92039f31635ad3c6f",
+    "content-hash": "ab466df5e199826a93d3314b0cf5673f",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1098,6 +1098,61 @@
             "homepage": "https://www.drupal.org/project/config_readonly",
             "support": {
                 "source": "http://cgit.drupalcode.org/config_readonly"
+            }
+        },
+        {
+            "name": "drupal/config_split",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/config_split",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/config_split-8.x-1.0-beta1.zip",
+                "reference": null,
+                "shasum": "8a5839160a432712165d5aab9e7b4c33fc2eea44"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1480263780"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "ademarco",
+                    "homepage": "https://www.drupal.org/user/186696"
+                },
+                {
+                    "name": "bircher",
+                    "homepage": "https://www.drupal.org/user/1344166"
+                },
+                {
+                    "name": "pescetti",
+                    "homepage": "https://www.drupal.org/user/436244"
+                }
+            ],
+            "description": "Configuration filter for importing and exporting extra config",
+            "homepage": "https://www.drupal.org/project/config_split",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/config_split",
+                "issues": "https://www.drupal.org/project/issues/config_split"
             }
         },
         {
@@ -7408,6 +7463,7 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "drupal/config_readonly": 10,
+        "drupal/config_split": 10,
         "drupal/ctools": 15,
         "drupal/date": 20,
         "drupal/job_scheduler": 20,

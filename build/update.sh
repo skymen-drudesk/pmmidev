@@ -21,7 +21,15 @@ $drush en $DEFAULT_THEME $ADMIN_THEME -y
 echo "Clearing Drush cache."
 $drush cc drush
 echo "Reverting configuration."
-$drush cim --partial -y
+$drush cim sync --partial -y
+if [ "$SITE_ENVIRONMENT" = "test" ]; then
+  echo "Importing test configuration."
+  $drush cim test --partial -y
+fi
+if [ "$SITE_ENVIRONMENT" = "dev" ]; then
+  echo "Importing dev configuration."
+  $drush cim dev --partial -y
+fi
 echo "Clearing caches one last time.";
 $drush cr
 
