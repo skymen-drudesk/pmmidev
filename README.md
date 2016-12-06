@@ -119,7 +119,7 @@ ddrush -y sql-drop && drush sqlc < base.sql  # restore baseline state
 build/party.sh                               # apply changes to baseline
 ```
 
-Note: The above assumes the use of Direnv
+Note: The above assumes the use of Direnv.
 
 You should see a lot of errors if, for example, you failed to provide 
 an update hook for deleting a field whose fundamental config you are 
@@ -168,31 +168,44 @@ See:
 
 ## Configuration with Drupal 8
 
-By default configuration uses the core Configuration Import Manager. 
+By default, configuration uses the core Configuration Import Manager. 
 You will notice that this project actually imports all configuration 
 from `config/drupal/sync`. This directory is set up in the settings 
-file to be the default configuration sync folder.
+file to be the default configuration sync folder. `config/drupal/test` 
+and `config/drupal/dev` are also set up in the settings file as 
+additional configuration folders.
 
-To add the current configuration of your site to this folder use:
+Environment specific configuration is set based on the 
+`SITE_ENVIRONMENT` environment variable using the [Configuration Split]
+(https://www.drupal.org/project/config_split) module. Configuration for 
+the test dev environments live in `config/drupal/test` and 
+`config/drupal/dev`, respectively.
 
-`drush cex`
-
-This should dump all configuration all modules implement to 
-`config/drupal/sync` allowing our build script to import it at build 
-time using `drush cim --partial`. The `partial` option prevents 
-configuration not exported from being deleted. Make sure to commit any 
-changes to git.
-
-Ideally, configuration for development modules (such as `devel`) is 
-excluded from export and import using the `--skip-modules` flag. 
-Skipped modules  are set in `drush/drushrc.php`. However, this 
-currently skips only the enabling and uninstalling of modules. See 
-[issue](https://github.com/drush-ops/drush/issues/2133). In the 
-interim, do not commit configuration for skipped modules.
-
-For more on the theory behind the skipped modules approach see [Using 
-the Configuration Module Filter in Drush 8]
+Skipped modules are set in `drush/drushrc.php`. This excludes the 
+modules from `core.extension.yml` and skips the enabling and 
+uninstalling of modules during configuration import. For more on the 
+theory behind the skipped modules approach see [Using the Configuration 
+Module Filter in Drush 8]
 (https://pantheon.io/blog/using-configuration-module-filter-drush-8).
+
+To export the current configuration of your site use:
+
+`ddrush csex sync -y` (Note: This assumes the use of Direnv.)
+
+This should dump all configuration that all modules implement to 
+`config/drupal/sync` allowing our build script to import it at build 
+time using `drush cim sync --partial`. The `partial` option prevents 
+configuration not exported from being deleted.
+
+Configuration for test environments is exported to 
+`config/drupal/test` and imported with `drush cim test --partial` if 
+the `SITE_ENVIRONMENT` variable is set to `test`.
+
+Configuration for dev environments is exported to 
+`config/drupal/dev` and imported with `drush cim dev --partial` if 
+the `SITE_ENVIRONMENT` variable is set to `dev`. 
+
+*Make sure to commit any changes to git.*
 
 ## Custom Code
 
