@@ -1,48 +1,23 @@
-name = PMMI Bootstrap
-description = Custom PMMI.org theme based on Bootstrap.
-core = 7.x
-base theme = bootstrap
+core: 8.x
+type: theme
+base theme: bootstrap
 
+name: 'PMMI Bootstrap'
+description: 'Custom PMMI.org theme based on Bootstrap.'
+package: 'PMMI'
 
-;;;;;;;;;;;;;;;;;;;;;
-;; Regions
-;;;;;;;;;;;;;;;;;;;;;
+libraries:
+  - pmmi_bootstrap/bootstrap-scripts
+  - pmmi_bootstrap/theme
 
-regions[navigation]     = 'Navigation'
-regions[header]         = 'Top Bar'
-regions[highlighted]    = 'Highlighted'
-regions[help]           = 'Help'
-regions[content]        = 'Content'
-regions[sidebar_first]  = 'Primary'
-regions[sidebar_second] = 'Secondary'
-regions[footer]         = 'Footer'
-regions[page_top]       = 'Page top'
-regions[page_bottom]    = 'Page bottom'
-
-
-;;;;;;;;;;;;;;;;;;;;;
-;; Stylesheets
-;;;;;;;;;;;;;;;;;;;;;
-
-stylesheets[all][] = css/style.css
-
-
-;;;;;;;;;;;;;;;;;;;;;
-;; Scripts
-;;;;;;;;;;;;;;;;;;;;;
-
-scripts[] = 'bootstrap-sass/assets/javascripts/bootstrap/affix.js'
-scripts[] = 'bootstrap-sass/assets/javascripts/bootstrap/alert.js'
-scripts[] = 'bootstrap-sass/assets/javascripts/bootstrap/button.js'
-scripts[] = 'bootstrap-sass/assets/javascripts/bootstrap/carousel.js'
-scripts[] = 'bootstrap-sass/assets/javascripts/bootstrap/collapse.js'
-scripts[] = 'bootstrap-sass/assets/javascripts/bootstrap/dropdown.js'
-scripts[] = 'bootstrap-sass/assets/javascripts/bootstrap/modal.js'
-scripts[] = 'bootstrap-sass/assets/javascripts/bootstrap/tooltip.js'
-scripts[] = 'bootstrap-sass/assets/javascripts/bootstrap/popover.js'
-scripts[] = 'bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js'
-scripts[] = 'bootstrap-sass/assets/javascripts/bootstrap/tab.js'
-scripts[] = 'bootstrap-sass/assets/javascripts/bootstrap/transition.js'
-
-; Disable BootstrapCDN so the compiled SASS source files can be used.
-settings[bootstrap_cdn] = ''
+regions:
+  navigation: 'Navigation'
+  header: 'Top Bar'
+  highlighted: 'Highlighted'
+  help: 'Help'
+  content: 'Content'
+  sidebar_first: 'Primary'
+  sidebar_second: 'Secondary'
+  footer: 'Footer'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'

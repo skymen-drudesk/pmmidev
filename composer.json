@@ -34,6 +34,7 @@
     "drupal/config_readonly": "~1.0@beta",
     "drupal/config_split": "~1.0@beta",
     "drupal/config_update": "~1.2",
+    "drupal/console": "~1.0",
     "drupal/core": "~8.2.1",
     "drupal/ctools": "~3.0@alpha",
     "drupal/date": "~1.0@dev",
@@ -58,7 +59,10 @@
     "drupal/stage_file_proxy": "~1.0@alpha",
     "drupal/xhprof": "~1.0@dev",
     "phpunit/phpunit": "~5.3.4",
-    "symfony/css-selector": "~2.7"
+    "symfony/config": "~2.8.0",
+    "symfony/css-selector": "~2.7.0",
+    "symfony/dom-crawler": "~2.8.0",
+    "symfony/filesystem": "~2.8.0"
   },
   "conflict": {
     "drupal/drupal": "*"
@@ -86,6 +90,9 @@
     "installer-paths": {
       "html/core": [
         "type:drupal-core"
+      ],
+      "html/libraries/{$name}": [
+        "type:drupal-library"
       ],
       "html/modules/contrib/{$name}": [
         "type:drupal-module"
