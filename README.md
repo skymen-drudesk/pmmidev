@@ -75,6 +75,9 @@ in addition to the `DROPSHIP_SEEDS` defined in the `env.dist` file.
 
 * `ddrush` executes [drush](https://github.com/drush-ops/drush)
   inside the web container.
+* `ddrupal` executes [drupal console]
+(https://github.com/hechoendrupal/DrupalConsole) inside the web 
+container.
 * `dbash` opens a bash shell inside the web container (as *www-data*)
 
 [Direnv](http://direnv.net/) is used to include the wrapper scripts and
