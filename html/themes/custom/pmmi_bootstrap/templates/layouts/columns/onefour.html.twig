@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Template for a 4-up (1 row of 4 columns) layout.
+ */
+#}
+<div class="layout-4up clearfix">
+  <div class="region-top col-sm-12">
+    {{ content.top }}
+  </div>
+  <div class="rows">
+    <div class="row-1">
+      <div class="col col-1 col-sm-3">
+        {{ content.oneone }}
+      </div>
+      <div class="col col-2 col-sm-3">
+        {{ content.onetwo }}
+      </div>
+      <div class="col col-3 col-sm-3">
+        {{ content.onethree }}
+      </div>
+      <div class="col col-4 col-sm-3">
+        {{ content.onefour }}
+      </div>
+    </div>
+  </div>
+  <div class="region-bottom col-sm-12">
+    {{ content.top }}
+  </div>
+</div>

@@ -1,0 +1,54 @@
+<div class="cert-test">
+  <div class="content-left col-sm-4">
+    {% set info = [
+      'field_cert_test_who',
+      'field_cert_test_length',
+      'field_cert_test_time_to_take',
+      'field_cert_test_num_attempts',
+    ] %}
+    <ul class="cert-info">
+      {% for field in info %}
+        {% set field_item %}
+          {{ content[field] }}
+        {% endset %}
+        {% if field_item|trim is not empty %}
+          <li class="{{ field|clean_class }}">{{ field_item }}</li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+  </div>
+  <div class="content-right col-sm-8">
+    <h2 class="node-title">
+      {{ content.title }}
+    </h2>
+
+    <div class="img">
+      {{ content.field_image }}
+    </div>
+    {% set body_text_rendered %}
+      {{ content.body }}
+    {% endset %}
+    {% if body_text_rendered|trim is not empty %}
+      <div class="node-body">
+        {{ body_text_rendered }}
+      </div>
+    {% endif %}
+    <div class="links">
+      {{ content.field_links }}
+    </div>
+    <div class="member-price price">
+      {{ content.field_member_price }}
+    </div>
+    <div class="non-member-price price">
+      {{ content.field_non_member_price }}
+    </div>
+    <div class="download-link">
+      {{ content.field_file_download_button }}
+    </div>
+    <div class="disclaimer">
+      {{ content.field_disclaimer }}
+    </div>
+  </div>
+
+</div>

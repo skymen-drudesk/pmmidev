@@ -1,0 +1,127 @@
+sitewide:
+  label: Sitewide (Page)
+  category: PMMI: Layouts
+  template: templates/layouts/sitewide
+  regions:
+    main:
+      label: Main content
+
+article:
+  label: Article
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/artcile
+  regions:
+    main:
+      label: Main content
+cert_test:
+  label: Certification Test
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/cert-test
+  regions:
+    main:
+      label: Main content
+download:
+  label: Download
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/download
+  regions:
+    main:
+      label: Main content
+
+oneone:
+  label: Column 1-up (1 row of 1 column)
+  category: PMMI: Columns
+  template: templates/layouts/columns/oneone
+  regions:
+    top:
+      label: Top content
+    oneone:
+      label: 1st row 1st column
+    bottom:
+      label: Bottom content
+onetwo:
+  label: Column 2-up (1 row of 2 columns)
+  category: PMMI: Columns
+  template: templates/layouts/columns/onetwo
+  regions:
+    top:
+      label: Top content
+    oneone:
+      label: 1st row 1st column
+    onetwo:
+      label: 1st row 2nd column
+    bottom:
+      label: Bottom content
+onethree:
+  label: Column 3-up (1 row of 3 columns)
+  category: PMMI: Columns
+  template: templates/layouts/columns/onethree
+  regions:
+    top:
+      label: Top content
+    oneone:
+      label: 1st row 1st column
+    onetwo:
+      label: 1st row 2nd column
+    onethree:
+      label: 1st row 3rd column
+    bottom:
+      label: Bottom content
+onefour:
+  label: Column 4-up (1 row of 4 columns)
+  category: PMMI: Columns
+  template: templates/layouts/columns/onefour
+  regions:
+    top:
+      label: Top content
+    oneone:
+      label: 1st row 1st column
+    onetwo:
+      label: 1st row 2nd column
+    onethree:
+      label: 1st row 3rd column
+    onefou4:
+      label: 1st row 4th column
+    bottom:
+      label: Bottom content
+onefive:
+  label: Column 5-up (1 row of 5 columns)
+  category: PMMI: Columns
+  template: templates/layouts/columns/onefive
+  css: css/layouts/one-five.css
+  regions:
+    top:
+      label: Top content
+    oneone:
+      label: 1st row 1st column
+    onetwo:
+      label: 1st row 2nd column
+    onethree:
+      label: 1st row 3rd column
+    onefour:
+      label: 1st row 4th column
+    onefive:
+      label: 1st row 5th column
+    bottom:
+      label: Bottom content
+onesix:
+  label: Column 6-up (2 rows of 3 columns each)
+  category: PMMI: Columns
+  template: templates/layouts/columns/onesix
+  regions:
+    top:
+      label: Top content
+    oneone:
+      label: 1st row 1st column
+    onetwo:
+      label: 1st row 2nd column
+    onethree:
+      label: 1st row 3rd column
+    twoone:
+      label: 2nd row 1st column
+    twotwo:
+      label: 2nd row 2nd column
+    twothree:
+      label: 2nd row 3rd column
+    bottom:
+      label: Bottom content

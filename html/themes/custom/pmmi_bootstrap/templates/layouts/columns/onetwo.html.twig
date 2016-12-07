@@ -1,0 +1,24 @@
+{#
+/**
+ * @file
+ * Template for a 2-up (1 row of 2 columns) layout.
+ */
+#}
+<div class="layout-2up clearfix">
+  <div class="region-top col-sm-12">
+    {{ content.top }}
+  </div>
+  <div class="rows">
+    <div class="row-1">
+      <div class="col col-1 col-sm-6">
+        {{ content.oneone }}
+      </div>
+      <div class="col col-2 col-sm-6">
+        {{ content.onetwo }}
+      </div>
+    </div>
+  </div>
+  <div class="region-bottom col-sm-12">
+    {{ content.top }}
+  </div>
+</div>
