@@ -5487,7 +5487,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/devel",
-                "reference": "3e835801545e4fd9d2e406e2b8292b428b77f9cf"
+                "reference": "e693a59168ec9ed10097f87f55c5d1924357e9da"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -5501,8 +5501,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1+2-dev",
-                    "datestamp": "1480861983"
+                    "version": "8.x-1.0-beta1+3-dev",
+                    "datestamp": "1481145482"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -5559,8 +5559,7 @@
                 "source": "http://cgit.drupalcode.org/devel",
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            },
-            "time": "2016-12-04 14:31:11"
+            }
         },
         {
             "name": "drupal/devel_debug_log",
@@ -7056,53 +7055,6 @@
             "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
             "time": "2016-11-03 07:52:58"
-        },
-        {
-            "name": "symfony/stopwatch",
-            "version": "v2.4.10",
-            "target-dir": "Symfony/Component/Stopwatch",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/Stopwatch.git",
-                "reference": "95a08e3cc2be672f16eb1602e3040141fdc00c7d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/Stopwatch/zipball/95a08e3cc2be672f16eb1602e3040141fdc00c7d",
-                "reference": "95a08e3cc2be672f16eb1602e3040141fdc00c7d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Symfony\\Component\\Stopwatch\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Symfony Community",
-                    "homepage": "http://symfony.com/contributors"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                }
-            ],
-            "description": "Symfony Stopwatch Component",
-            "homepage": "http://symfony.com",
-            "time": "2014-09-22 08:51:05"
         }
     ],
     "aliases": [],
