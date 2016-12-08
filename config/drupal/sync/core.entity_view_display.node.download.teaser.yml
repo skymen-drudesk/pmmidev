@@ -1,0 +1,26 @@
+uuid: 3a2d3da6-de25-485e-a8d4-6b06f6cf69f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.download.body
+    - node.type.download
+  module:
+    - text
+    - user
+id: node.download.teaser
+targetEntityType: node
+bundle: download
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden: {  }

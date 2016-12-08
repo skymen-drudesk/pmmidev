@@ -1,16 +1,16 @@
-uuid: 75899b70-ca1d-4b02-92f8-47f9047c3f34
+uuid: 151c3a38-fd30-451a-b1f7-135bee623659
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.basic_page
+    - node.type.certification_test
   module:
     - text
-id: node.basic_page.body
+id: node.certification_test.body
 field_name: body
 entity_type: node
-bundle: basic_page
+bundle: certification_test
 label: Body
 description: ''
 required: true
