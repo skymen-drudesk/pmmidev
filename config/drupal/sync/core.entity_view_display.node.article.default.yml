@@ -23,6 +23,7 @@ dependencies:
     - image
     - link
     - metatag
+    - telephone
     - text
     - user
 id: node.article.default
@@ -32,9 +33,10 @@ mode: default
 content:
   body:
     label: hidden
-    type: text_default
+    type: text_summary_or_trimmed
     weight: 101
-    settings: {  }
+    settings:
+      trim_length: 400
     third_party_settings: {  }
   field_author:
     weight: 106
@@ -61,8 +63,8 @@ content:
     weight: 103
     label: above
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: month_day_year
     third_party_settings: {  }
     type: datetime_default
   field_email:
@@ -122,9 +124,10 @@ content:
   field_phone:
     weight: 109
     label: above
-    settings: {  }
+    settings:
+      title: ''
     third_party_settings: {  }
-    type: basic_string
+    type: telephone_link
   field_tags:
     weight: 112
     label: above
@@ -134,4 +137,6 @@ content:
     type: entity_reference_label
   links:
     weight: 100
+    settings: {  }
+    third_party_settings: {  }
 hidden: {  }

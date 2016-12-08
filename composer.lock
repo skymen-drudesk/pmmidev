@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "639ce9ac9f634445a1a932f66d75e939",
-    "content-hash": "47b3e09918a9da8ed6c1bdf582b1e87f",
+    "hash": "f0be838d5cccb5e4812d6c8b9e1a53ff",
+    "content-hash": "4852fb85dcd12c46435771e772029735",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2066,6 +2066,68 @@
             }
         },
         {
+            "name": "drupal/inline_entity_form",
+            "version": "1.0.0-beta1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/inline_entity_form",
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/inline_entity_form-8.x-1.0-beta1.zip",
+                "reference": null,
+                "shasum": "185ffc28a7b68d19cce057855d1c111f1741a3ea"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "suggest": {
+                "drupal/entity_reference_revisions": "Required by drupal/inline_entity_form"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1477868343"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "bojanz",
+                    "homepage": "https://www.drupal.org/user/86106"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "rszrama",
+                    "homepage": "https://www.drupal.org/user/49344"
+                },
+                {
+                    "name": "slashrsm",
+                    "homepage": "https://www.drupal.org/user/744628"
+                },
+                {
+                    "name": "webflo",
+                    "homepage": "https://www.drupal.org/user/254778"
+                }
+            ],
+            "description": "Provides a widget for inline management (creation, modification, removal) of referenced entities.",
+            "homepage": "https://www.drupal.org/project/inline_entity_form",
+            "support": {
+                "source": "http://cgit.drupalcode.org/inline_entity_form"
+            }
+        },
+        {
             "name": "drupal/job_scheduler",
             "version": "dev-2.x",
             "source": {
@@ -2182,6 +2244,49 @@
             }
         },
         {
+            "name": "drupal/link_attributes",
+            "version": "1.0.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/link_attributes",
+                "reference": "8.x-1.0-alpha3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/link_attributes-8.x-1.0-alpha3.zip",
+                "reference": "8.x-1.0-alpha3",
+                "shasum": "a43682e3a317054f9a6311a05b34f32f0e154049"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha3",
+                    "datestamp": "1479245341"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "larowlan",
+                    "homepage": "https://www.drupal.org/user/395439"
+                }
+            ],
+            "description": "Provides a widget to allow settings of link attributes for menu links.",
+            "homepage": "https://www.drupal.org/project/link_attributes",
+            "support": {
+                "source": "http://cgit.drupalcode.org/link_attributes"
+            }
+        },
+        {
             "name": "drupal/metatag",
             "version": "1.0.0-beta11",
             "source": {
@@ -2192,7 +2297,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.0-beta11.zip",
-                "reference": null,
+                "reference": "8.x-1.0-beta11",
                 "shasum": "d73fb7ba41833bd8ccb9a661aafc47258b4c7e18"
             },
             "require": {
@@ -7832,6 +7937,8 @@
         "drupal/yamlform": 10,
         "drupal/entity_browser": 10,
         "drupal/metatag": 10,
+        "drupal/link_attributes": 15,
+        "drupal/inline_entity_form": 10,
         "drupal/config_devel": 5,
         "drupal/devel": 20,
         "drupal/devel_debug_log": 10,
