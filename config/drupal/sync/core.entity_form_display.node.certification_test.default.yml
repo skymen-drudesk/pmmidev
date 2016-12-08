@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.image_header
+    - entity_browser.browser.image
     - field.field.node.certification_test.body
     - field.field.node.certification_test.field_accordions
     - field.field.node.certification_test.field_cert_test_coming
@@ -104,7 +104,7 @@ content:
   field_image:
     weight: 28
     settings:
-      entity_browser: image_header
+      entity_browser: image
       field_widget_remove: true
       selection_mode: selection_append
       preview_image_style: thumbnail
