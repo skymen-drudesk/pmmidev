@@ -1,0 +1,44 @@
+<div class="cert-test">
+  <div class="content-left col-sm-3">
+    {% set info = [
+      'field_logo',
+      'field_school_contact',
+      'field_address',
+      'field_phone',
+      'field_email',
+      'field_website',
+    ] %}
+    <div class="school-info">
+      {% for field in info %}
+        {% set field_item %}
+          {{ content[field] }}
+        {% endset %}
+        {% if field_item|trim is not empty %}
+          <div class="{{ field|clean_class }}">{{ field_item }}</div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+  <div class="content-right col-sm-9">
+    <h2 class="node-title">
+      {{ content.title }}
+    </h2>
+    <div class="img">
+      {{ content.field_image }}
+    </div>
+    <div class="focus">
+      {{ content.field_progarms_focus }}
+    </div>
+    {% set body_text_rendered %}
+      {{ content.body }}
+    {% endset %}
+    {% if body_text_rendered|trim is not empty %}
+      <div class="node-body">
+        {{ body_text_rendered }}
+      </div>
+    {% endif %}
+    <div class="content-verified">
+      {{ content.field_content_verified }}
+    </div>
+  </div>
+</div>
