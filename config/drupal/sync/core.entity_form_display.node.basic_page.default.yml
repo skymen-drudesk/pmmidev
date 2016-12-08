@@ -4,8 +4,15 @@ status: true
 dependencies:
   config:
     - field.field.node.basic_page.body
+    - field.field.node.basic_page.field_image_header
+    - field.field.node.basic_page.field_meta_tags
+    - field.field.node.basic_page.field_page_name
+    - field.field.node.basic_page.field_tags
+    - image.style.thumbnail
     - node.type.basic_page
   module:
+    - image
+    - metatag
     - text
 id: node.basic_page.default
 targetEntityType: node
@@ -25,6 +32,33 @@ content:
     weight: 10
     settings: {  }
     third_party_settings: {  }
+  field_image_header:
+    weight: 28
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_meta_tags:
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
+  field_page_name:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_tags:
+    weight: 29
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
   promote:
     type: boolean_checkbox
     settings:
