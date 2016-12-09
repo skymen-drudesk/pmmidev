@@ -1,0 +1,68 @@
+uuid: c15bb41e-d629-4899-bb32-7a7f07434a9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.news
+    - field.field.block_content.news.body
+    - field.field.block_content.news.field_block_title
+    - field.field.block_content.news.field_button
+    - field.field.block_content.news.field_date
+    - field.field.block_content.news.field_head
+    - field.field.block_content.news.field_head_bkg_color_class
+  module:
+    - datetime
+    - link
+    - options
+    - text
+id: block_content.news.default
+targetEntityType: block_content
+bundle: news
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+  field_block_title:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_button:
+    weight: 4
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_date:
+    weight: 2
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+  field_head:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_head_bkg_color_class:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+hidden: {  }
