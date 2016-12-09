@@ -1,54 +1,38 @@
-<div class="cert-test">
+<div class="cert-test-node">
+  <div class="top-banner clearfix">
+    {{ field_render([content.image_header, 'img-header']) }}
+  </div>
   <div class="content-left col-sm-4">
     {% set info = [
-      'field_cert_test_who',
-      'field_cert_test_length',
-      'field_cert_test_time_to_take',
-      'field_cert_test_num_attempts',
+      'cert_test_who',
+      'cert_test_length',
+      'cert_test_time_to_take',
+      'cert_test_num_attempts',
     ] %}
     <ul class="cert-info">
       {% for field in info %}
-        {% set field_item %}
-          {{ content[field] }}
-        {% endset %}
-        {% if field_item|trim is not empty %}
-          <li class="{{ field|clean_class }}">{{ field_item }}</li>
-        {% endif %}
+        {{ field_render([content[field], field|clean_class, 'li']) }}
       {% endfor %}
     </ul>
-
   </div>
+
   <div class="content-right col-sm-8">
     <h2 class="node-title">
       {{ content.title }}
     </h2>
 
-    <div class="img">
-      {{ content.field_image }}
-    </div>
-    {% set body_text_rendered %}
-      {{ content.body }}
-    {% endset %}
-    {% if body_text_rendered|trim is not empty %}
-      <div class="node-body">
-        {{ body_text_rendered }}
-      </div>
-    {% endif %}
-    <div class="comming">
-      {{ content.field_cert_test_coming }}
-    </div>
-    <div class="price">
-      {{ content.field_cert_test_price }}
-    </div>
-    <div class="text-price">
-      {{ content.field_cert_test_text_price }}
-    </div>
-    <div class="register-link">
-      {{ content.field_link }}
-    </div>
-    <div class="accordion">
-      {{ content.field_accordions }}
-    </div>
-  </div>
+    {{ field_render([content.image, 'img']) }}
 
+    {{ field_render([content.body, 'node-body']) }}
+
+    {{ field_render([content.cert_test_coming, 'comming']) }}
+
+    {{ field_render([content.cert_test_price, 'price']) }}
+
+    {{ field_render([content.cert_test_text_price, 'text-price']) }}
+
+    {{ field_render([content.link, 'register-link']) }}
+
+    {{ field_render([content.accordions, 'accordion']) }}
+  </div>
 </div>

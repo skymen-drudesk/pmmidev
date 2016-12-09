@@ -1,0 +1,5 @@
+services:
+  pmmi.twig.field_render:
+    class: Drupal\pmmi\Twig\Extension\FieldRender
+    tags:
+      - { name: twig.extension }

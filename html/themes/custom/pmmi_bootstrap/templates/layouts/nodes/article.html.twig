@@ -1,66 +1,24 @@
-<div class="article">
-  <div class="img-header">
-    {{ content.field_image_header }}
+<div class="article-node">
+  <div class="top-banner clearfix">
+    {{ field_render([content.page_name, 'page-name']) }}
+    {{ field_render([content.image_header, 'img-header']) }}
   </div>
+
   <h2 class="node-title">
     {{ content.title }}
   </h2>
 
-  {% set release_rendered %}
-    {{ content.field_immediate_release }}
-  {% endset %}
-  {% if release_rendered|trim is not empty %}
-    <div class="article-release">
-      {{ release_rendered }}
-    </div>
-  {% endif %}
+  {{ field_render([content.date, 'date']) }}
 
-  {% set body_text_rendered %}
-    {{ content.body }}
-  {% endset %}
-  {% if body_text_rendered|trim is not empty %}
-    <div class="node-body">
-      {{ body_text_rendered }}
-    </div>
-  {% endif %}
+  {{ field_render([content.immediate_release, 'article-release']) }}
 
-  {% set author_name_rendered %}
-    {{ content.field_author }}
-  {% endset %}
+  {{ field_render([content.body, 'node-body']) }}
 
-  {% if author_name_rendered|trim is not empty %}
-    <div class="node-author">
-      {{ author_name_rendered }}
-    </div>
-  {% endif %}
+  {{ field_render([content.author, 'node-author']) }}
 
-  {% set author_title_rendered %}
-    {{ content.field_author_title }}
-  {% endset %}
+  {{ field_render([content.author_title, 'node-author-title']) }}
 
-  {% if author_title_rendered|trim is not empty %}
-    <div class="node-author-title">
-      {{ author_title_rendered }}
-    </div>
-  {% endif %}
+  {{ field_render([content.phone, 'node-author-phone']) }}
 
-  {% set author_phone_rendered %}
-    {{ content.field_phone }}
-  {% endset %}
-
-  {% if author_phone_rendered|trim is not empty %}
-    <div class="node-author-phone">
-      {{ author_phone_rendered }}
-    </div>
-  {% endif %}
-
-  {% set author_email_rendered %}
-    {{ content.field_email }}
-  {% endset %}
-
-  {% if author_email_rendered|trim is not empty %}
-    <div class="node-author-email">
-      {{ author_email_rendered }}
-    </div>
-  {% endif %}
+  {{ field_render([content.email, 'node-author-email']) }}
 </div>

@@ -9,24 +9,140 @@ sitewide:
 article:
   label: Article
   category: PMMI: Nodes
-  template: templates/layouts/nodes/artcile
+  template: templates/layouts/nodes/article
   regions:
-    main:
-      label: Main content
+    page_name:
+      label: Page Name
+    image_header:
+      label: Image Header
+    title:
+      label: Title
+    date:
+      label: Date
+    body:
+      label: Body
+    link:
+      label: Twitter Link
+    immediate_release:
+      label: For Immediate Release
+    author:
+      label: Author
+    author_title:
+      label: Author Title
+    company:
+      label: Company
+    phone:
+      label: Phone
+    email:
+      label: Email
+    news_category:
+      label: News Category
+    tags:
+      label: Tags
+    meta_tags:
+      label: Meta Tags
 cert_test:
   label: Certification Test
   category: PMMI: Nodes
   template: templates/layouts/nodes/cert-test
   regions:
-    main:
-      label: Main content
+    image_header:
+      label: Image Header
+    title:
+      label: Title
+    body:
+      label: Body
+    image:
+      label: Image
+    cert_test_coming:
+      label: Coming Soon
+    cert_test_price:
+      label: Price
+    cert_test_text_price:
+      label: Text Price
+    link:
+      label: Register Link
+    cert_test_who:
+      label: Cert test who
+    cert_test_length:
+      label: Cert test length
+    cert_test_time_to_take:
+      label: Cert test time
+    cert_test_num_attempts:
+      label: Cert test attempts
+    accordions:
+      label: Accordions
 download:
   label: Download
   category: PMMI: Nodes
   template: templates/layouts/nodes/download
   regions:
-    main:
-      label: Main content
+    image_header:
+      label: Image Header
+    title:
+      label: Title
+    body:
+      label: Body
+    image:
+      label: Image
+    links:
+      label: Links
+    member_price:
+      label: Member Price
+    non_member_price:
+      label: Non-Member Price
+    file_download_button:
+      label: File Download Button
+    disclaimer:
+      label: Disclaimer
+school:
+  label: School
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/school
+  regions:
+    image_header:
+      label: Image Header
+    title:
+      label: Title
+    body:
+      label: Body
+    image:
+      label: Image
+    progarm_focus:
+      label: Programs focus on
+    content_verified:
+      label: Content Verified as of
+    logo:
+      label: School Logo
+    school_contact:
+      label: School Contact
+    address:
+      label: Address
+    phone:
+      label: Phone
+    email:
+      label: Email
+    website:
+      label: Website
+video:
+  label: Video
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/video
+  regions:
+    image_header:
+      label: Image Header
+    title:
+      label: Title
+    body:
+      label: Body
+    video:
+      label: Video
+    date:
+      label: Date
+    featured_speaker:
+      label: Featured Speaker
+    link:
+      label: Register Link
 
 oneone:
   label: Column 1-up (1 row of 1 column)
@@ -125,3 +241,54 @@ onesix:
       label: 2nd row 3rd column
     bottom:
       label: Bottom content
+
+block_news:
+  label: News
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/news
+  regions: {}
+block_card:
+  label: Card
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/card
+  regions: {}
+block_text:
+  label: Text
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/text
+  regions: {}
+block_image_slide:
+  label: Image Slide
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/image-slide
+  regions: {}
+block_accordion:
+  label: Accordion
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/accordion
+  regions: {}
+block_event_default:
+  label: Event Default
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/event-default
+  regions: {}
+block_event_ribbon:
+  label: Event Ribbon
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/event-ribbon
+  regions: {}
+block_pack_expo_show:
+  label: Pack Expo Show
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/pack-expo-show
+  regions: {}
+block_brand:
+  label: Brand
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/brand
+  regions: {}
+block_brand:
+  label: Person
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/person
+  regions: {}
