@@ -1,16 +1,16 @@
-uuid: 75899b70-ca1d-4b02-92f8-47f9047c3f34
+uuid: e8970e3b-dc6a-4646-a91c-48301d2a1ed1
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.body
-    - node.type.basic_page
+    - node.type.school
   module:
     - text
-id: node.basic_page.body
+id: node.school.body
 field_name: body
 entity_type: node
-bundle: basic_page
+bundle: school
 label: Body
 description: ''
 required: true

@@ -1,4 +1,4 @@
-uuid: 39754f72-9b95-4fbf-8363-7878ec686613
+uuid: 139a1676-7e4e-4477-834f-5b7fadcc9564
 langcode: en
 status: true
 dependencies:
@@ -9,9 +9,9 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'Basic Page'
-type: basic_page
-description: "For basic static pages that don’t need advanced layouts with custom and varying blocks.\r\n"
+name: Article
+type: article
+description: 'For News (Press Releases, Chairperson’s Corner, and TechNotes).'
 help: ''
 new_revision: true
 preview_mode: 1
