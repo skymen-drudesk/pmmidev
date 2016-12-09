@@ -1,0 +1,22 @@
+uuid: f10998e9-c440-427d-ac37-d7e1cba0cc69
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.group_content.members-group_membership.group_roles
+    - group.content_type.members-group_membership
+id: group_content.members-group_membership.default
+targetEntityType: group_content
+bundle: members-group_membership
+mode: default
+content:
+  group_roles:
+    label: above
+    type: entity_reference_label
+    settings:
+      link: false
+    weight: -4
+    third_party_settings: {  }
+hidden:
+  entity_id: true
+  uid: true

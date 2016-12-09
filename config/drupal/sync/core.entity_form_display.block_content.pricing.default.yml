@@ -1,0 +1,36 @@
+uuid: 6b93a5b8-cfb7-4471-9ef8-4f98fae365ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.pricing
+    - field.field.block_content.pricing.field_head
+    - field.field.block_content.pricing.field_members
+id: block_content.pricing.default
+targetEntityType: block_content
+bundle: pricing
+mode: default
+content:
+  field_head:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_members:
+    weight: 4
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  info:
+    type: string_textfield
+    weight: -5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

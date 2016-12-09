@@ -1,0 +1,28 @@
+uuid: 6d82e1a6-0546-4b4a-be74-e36d6ebea321
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.pricing
+    - field.field.block_content.pricing.field_head
+    - field.field.block_content.pricing.field_members
+id: block_content.pricing.default
+targetEntityType: block_content
+bundle: pricing
+mode: default
+content:
+  field_head:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_members:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+hidden: {  }
