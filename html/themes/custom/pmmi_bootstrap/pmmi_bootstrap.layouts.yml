@@ -257,7 +257,6 @@ block_news:
       label: Body
     button:
       label: Button
-
 block_card:
   label: Card
   category: PMMI: Blocks
@@ -421,3 +420,16 @@ block_image_header:
       label: Head
     image:
       label: Image
+block_icon:
+  label: Icon
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/icon
+  regions:
+    image:
+      label: Image
+    head:
+      label: Head
+    body:
+      label: Body
+    link:
+      label: Link
