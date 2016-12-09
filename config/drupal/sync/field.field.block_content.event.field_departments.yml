@@ -1,16 +1,16 @@
-uuid: 9ceefbdf-8727-4f4d-a550-e19f4263389d
+uuid: d356f3c9-8913-4be6-8750-ccaa0dcbccf3
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.event
-    - field.storage.block_content.field_department
+    - field.storage.block_content.field_departments
     - taxonomy.vocabulary.department
-id: block_content.event.field_department
-field_name: field_department
+id: block_content.event.field_departments
+field_name: field_departments
 entity_type: block_content
 bundle: event
-label: Department
+label: Department(s)
 description: ''
 required: false
 translatable: false

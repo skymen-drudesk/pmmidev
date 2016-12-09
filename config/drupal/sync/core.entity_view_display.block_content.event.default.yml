@@ -6,10 +6,10 @@ dependencies:
     - block_content.type.event
     - field.field.block_content.event.field_button
     - field.field.block_content.event.field_dates
-    - field.field.block_content.event.field_department
+    - field.field.block_content.event.field_departments
     - field.field.block_content.event.field_head
     - field.field.block_content.event.field_hosted_by
-    - field.field.block_content.event.field_location
+    - field.field.block_content.event.field_locations
     - field.field.block_content.event.field_members_only
   module:
     - address
@@ -40,8 +40,8 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: daterange_default
-  field_department:
-    weight: 5
+  field_departments:
+    weight: 7
     label: above
     settings:
       link: true
@@ -61,8 +61,8 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-  field_location:
-    weight: 2
+  field_locations:
+    weight: 8
     label: above
     settings: {  }
     third_party_settings: {  }

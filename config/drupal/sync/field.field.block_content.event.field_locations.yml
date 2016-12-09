@@ -1,19 +1,19 @@
-uuid: d4fd84e4-2ca6-4e44-b375-bf45b165514e
+uuid: e0e2f4d6-41f9-4251-b90e-77b7333cb519
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.event
-    - field.storage.block_content.field_location
+    - field.storage.block_content.field_locations
   module:
     - address
-id: block_content.event.field_location
-field_name: field_location
+id: block_content.event.field_locations
+field_name: field_locations
 entity_type: block_content
 bundle: event
-label: Location
+label: Location(s)
 description: ''
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''

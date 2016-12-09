@@ -6,10 +6,10 @@ dependencies:
     - block_content.type.event
     - field.field.block_content.event.field_button
     - field.field.block_content.event.field_dates
-    - field.field.block_content.event.field_department
+    - field.field.block_content.event.field_departments
     - field.field.block_content.event.field_head
     - field.field.block_content.event.field_hosted_by
-    - field.field.block_content.event.field_location
+    - field.field.block_content.event.field_locations
     - field.field.block_content.event.field_members_only
   module:
     - address
@@ -32,8 +32,8 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: daterange_default
-  field_department:
-    weight: 8
+  field_departments:
+    weight: 10
     settings:
       match_operator: CONTAINS
       size: 60
@@ -54,8 +54,8 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_location:
-    weight: 5
+  field_locations:
+    weight: 11
     settings:
       default_country: null
     third_party_settings: {  }

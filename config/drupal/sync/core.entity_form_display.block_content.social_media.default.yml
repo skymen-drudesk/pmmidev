@@ -1,0 +1,69 @@
+uuid: b93e4c10-8681-413b-860b-e7c1ce351fd7
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.social_media
+    - field.field.block_content.social_media.field_facebook
+    - field.field.block_content.social_media.field_google
+    - field.field.block_content.social_media.field_head
+    - field.field.block_content.social_media.field_linkedin
+    - field.field.block_content.social_media.field_twitter
+    - field.field.block_content.social_media.field_youtube
+  module:
+    - link
+id: block_content.social_media.default
+targetEntityType: block_content
+bundle: social_media
+mode: default
+content:
+  field_facebook:
+    weight: 4
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_google:
+    weight: 7
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_head:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_linkedin:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_twitter:
+    weight: 5
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_youtube:
+    weight: 8
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  info:
+    type: string_textfield
+    weight: -5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }
