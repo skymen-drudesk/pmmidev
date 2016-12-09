@@ -5,6 +5,7 @@ dependencies:
   config:
     - block_content.type.pricing
     - field.storage.block_content.field_members
+    - group.type.members
 id: block_content.pricing.field_members
 field_name: field_members
 entity_type: block_content
@@ -17,5 +18,11 @@ default_value: {  }
 default_value_callback: ''
 settings:
   handler: 'default:group'
-  handler_settings: {  }
+  handler_settings:
+    target_bundles:
+      members: members
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
 field_type: entity_reference
