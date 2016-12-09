@@ -1,0 +1,26 @@
+uuid: 03c26dc6-eb8f-4d53-af85-2904913ad8c8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.certification_test.body
+    - node.type.certification_test
+  module:
+    - text
+    - user
+id: node.certification_test.teaser
+targetEntityType: node
+bundle: certification_test
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden: {  }
