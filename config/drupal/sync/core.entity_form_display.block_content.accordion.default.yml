@@ -1,0 +1,86 @@
+uuid: d6d1bd1d-b501-42e5-8d19-03e7c2bee097
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.accordion
+    - field.field.block_content.accordion.body
+    - field.field.block_content.accordion.field_accordions
+    - field.field.block_content.accordion.field_button
+    - field.field.block_content.accordion.field_head
+    - field.field.block_content.accordion.field_image
+    - field.field.block_content.accordion.field_link
+    - field.field.block_content.accordion.field_video
+    - image.style.thumbnail
+  module:
+    - image
+    - link
+    - text
+    - video
+id: block_content.accordion.default
+targetEntityType: block_content
+bundle: accordion
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 3
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_accordions:
+    weight: 9
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+  field_button:
+    weight: 7
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_head:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_image:
+    weight: 5
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  field_link:
+    weight: 8
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_video:
+    weight: 6
+    settings:
+      file_directory: 'video-thumbnails/[date:custom:Y]-[date:custom:m]'
+      uri_scheme: public
+      file_extensions: 'mp4 ogv webm'
+      max_filesize: ''
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: video_upload
+  info:
+    type: string_textfield
+    weight: -5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }
