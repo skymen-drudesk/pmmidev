@@ -1,0 +1,44 @@
+uuid: 716a2976-4c25-4b40-bc3b-5cbeb66dfdef
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.icons
+    - field.field.block_content.icons.field_icon_1
+    - field.field.block_content.icons.field_icon_2
+    - field.field.block_content.icons.field_icon_3
+    - field.field.block_content.icons.field_icon_4
+id: block_content.icons.default
+targetEntityType: block_content
+bundle: icons
+mode: default
+content:
+  field_icon_1:
+    weight: 0
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_icon_2:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_icon_3:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_icon_4:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+hidden: {  }
