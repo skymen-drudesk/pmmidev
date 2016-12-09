@@ -1,0 +1,51 @@
+uuid: a2e48f3e-ca9b-40a3-b593-86dc4eba5447
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.enticement
+    - field.field.block_content.enticement.field_button
+    - field.field.block_content.enticement.field_head
+    - field.field.block_content.enticement.field_image
+    - field.field.block_content.enticement.field_teaser
+  module:
+    - image
+    - link
+id: block_content.enticement.default
+targetEntityType: block_content
+bundle: enticement
+mode: default
+content:
+  field_button:
+    weight: 3
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_head:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_image:
+    weight: 1
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_teaser:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+hidden: {  }
