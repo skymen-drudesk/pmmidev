@@ -1,16 +1,16 @@
-uuid: bfea801f-a9b1-4306-9e5f-d751b491e1ee
+uuid: e9ac2573-2747-49c0-baed-46fcdb894294
 langcode: en
 status: true
 dependencies:
   module:
     - block_content
-    - group
-id: block_content.field_members
-field_name: field_members
+id: block_content.field_members_early
+field_name: field_members_early
 entity_type: block_content
-type: entity_reference
+type: decimal
 settings:
-  target_type: group
+  precision: 10
+  scale: 2
 module: core
 locked: false
 cardinality: 1

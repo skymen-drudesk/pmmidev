@@ -1,0 +1,20 @@
+uuid: b87d1876-bc14-4b24-9a88-51e2fa9c202e
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+id: block_content.field_members_standard
+field_name: field_members_standard
+entity_type: block_content
+type: decimal
+settings:
+  precision: 10
+  scale: 2
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

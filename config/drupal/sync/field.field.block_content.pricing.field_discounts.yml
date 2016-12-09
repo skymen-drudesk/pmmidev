@@ -1,0 +1,19 @@
+uuid: 5e27ffae-bd2b-4a40-a106-095d9795743a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.pricing
+    - field.storage.block_content.field_discounts
+id: block_content.pricing.field_discounts
+field_name: field_discounts
+entity_type: block_content
+bundle: pricing
+label: Discounts
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

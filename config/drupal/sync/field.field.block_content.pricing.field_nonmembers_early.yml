@@ -1,0 +1,23 @@
+uuid: 1cb9d35e-0caf-4088-b51e-c309b33331d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.pricing
+    - field.storage.block_content.field_nonmembers_early
+id: block_content.pricing.field_nonmembers_early
+field_name: field_nonmembers_early
+entity_type: block_content
+bundle: pricing
+label: 'Early Bird'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

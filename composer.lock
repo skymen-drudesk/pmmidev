@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a1bed5e099a06a6db5fb7ff30c8d3d1a",
-    "content-hash": "7d7db4b43c308794f83e65ae4903a9a3",
+    "hash": "2a862ac60ffc2b7e14895bffa9b398e9",
+    "content-hash": "23b1865d5343e1d988cb6d33946866ac",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2372,56 +2372,6 @@
             }
         },
         {
-            "name": "drupal/group",
-            "version": "1.0.0-beta4",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/group",
-                "reference": "8.x-1.0-beta4"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/group-8.x-1.0-beta4.zip",
-                "reference": null,
-                "shasum": "744a5b72d06ca3b70055aede39294470232c123e"
-            },
-            "require": {
-                "drupal/core": "*"
-            },
-            "suggest": {
-                "drupal/core": "Required by drupal/gnode"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0-beta4",
-                    "datestamp": "1474722239"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "kristiaanvandeneynde",
-                    "homepage": "https://www.drupal.org/user/1345130"
-                },
-                {
-                    "name": "oenie",
-                    "homepage": "https://www.drupal.org/user/1446068"
-                }
-            ],
-            "description": "This module allows you to group users, content and other entities",
-            "homepage": "https://www.drupal.org/project/group",
-            "support": {
-                "source": "http://cgit.drupalcode.org/group"
-            }
-        },
-        {
             "name": "drupal/inline_entity_form",
             "version": "1.0.0-beta1",
             "source": {
@@ -2702,7 +2652,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/page_manager",
-                "reference": "08597212d1e0363d5cbcf8e30d32bd19add0b07b"
+                "reference": "a4108a53ddf3b229152b2d1179d67d59a49a8c29"
             },
             "require": {
                 "drupal/core": "^8.0.5",
@@ -2714,8 +2664,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha24+2-dev",
-                    "datestamp": "1476303839"
+                    "version": "8.x-1.0-alpha24+3-dev",
+                    "datestamp": "1481152983"
                 },
                 "patches_applied": {
                     "Don't call getCacheTagsToInvalidate() when null": "https://www.drupal.org/files/issues/2696345-2.patch",
@@ -2752,7 +2702,7 @@
                 "issues": "https://www.drupal.org/project/issues/page_manager",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             },
-            "time": "2016-10-12 20:23:12"
+            "time": "2016-12-07 23:22:34"
         },
         {
             "name": "drupal/panels",
@@ -2760,7 +2710,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/panels",
-                "reference": "ddadd53d538b30a20e79ddc1ad9de394000b2c49"
+                "reference": "a7a6ebc77987abb2d6cac7f16f7fa45003ad70ea"
             },
             "require": {
                 "drupal/core": "~8.0",
@@ -2778,12 +2728,11 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.0-beta5+1-dev",
-                    "datestamp": "1478998440"
+                    "version": "8.x-3.0-beta5+2-dev",
+                    "datestamp": "1481218084"
                 },
                 "patches_applied": {
-                    "Cannot switch variant layout": "https://www.drupal.org/files/issues/patch-issue-2687483-cannot-switch-variant-layout.patch",
-                    "Block rendering errors on panels": "https://www.drupal.org/files/issues/followup_for_2781897-2812721-2.patch"
+                    "Cannot switch variant layout": "https://www.drupal.org/files/issues/patch-issue-2687483-cannot-switch-variant-layout.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2835,7 +2784,7 @@
                 "issues": "https://www.drupal.org/project/issues/panels",
                 "irc": "irc://irc.freenode.org/drupal-scotch"
             },
-            "time": "2016-11-13 00:53:07"
+            "time": "2016-12-08 17:23:10"
         },
         {
             "name": "drupal/pathauto",
@@ -3061,17 +3010,17 @@
         },
         {
             "name": "drupal/yamlform",
-            "version": "1.0.0-beta26",
+            "version": "1.0.0-beta27",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/yamlform",
-                "reference": "8.x-1.0-beta26"
+                "reference": "8.x-1.0-beta27"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/yamlform-8.x-1.0-beta26.zip",
-                "reference": "8.x-1.0-beta26",
-                "shasum": "001d0aab66eee3d25de0b3545c6c12c1be92e90b"
+                "url": "https://ftp.drupal.org/files/projects/yamlform-8.x-1.0-beta27.zip",
+                "reference": null,
+                "shasum": "6d343daf5eaab47c7df1cd30b8f60b721d12cf61"
             },
             "require": {
                 "drupal/core": "*"
@@ -3086,8 +3035,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta26",
-                    "datestamp": "1481141519"
+                    "version": "8.x-1.0-beta27",
+                    "datestamp": "1481192283"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -8346,7 +8295,6 @@
         "drupal/date": 20,
         "drupal/entity_browser": 10,
         "drupal/field_group": 5,
-        "drupal/group": 10,
         "drupal/inline_entity_form": 10,
         "drupal/job_scheduler": 20,
         "drupal/layout_plugin": 15,
