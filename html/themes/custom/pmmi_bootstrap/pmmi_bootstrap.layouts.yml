@@ -246,49 +246,178 @@ block_news:
   label: News
   category: PMMI: Blocks
   template: templates/layouts/blocks/news
-  regions: {}
+  regions:
+    block_title:
+      label: Block Title
+    date:
+      label: Date
+    head:
+      label: Head
+    body:
+      label: Body
+    button:
+      label: Button
+
 block_card:
   label: Card
   category: PMMI: Blocks
   template: templates/layouts/blocks/card
-  regions: {}
+  regions:
+    head:
+      label: Head
+    image:
+      label: Image
+    icon:
+      label: Icon
+    body:
+      label: Body
+    button:
+      label: Button
 block_text:
   label: Text
   category: PMMI: Blocks
   template: templates/layouts/blocks/text
-  regions: {}
+  regions:
+    head:
+      label: Head
+    body:
+      label: Body
+    image:
+      label: Image
+    button:
+      label: Button
+    link:
+      label: Link
 block_image_slide:
   label: Image Slide
   category: PMMI: Blocks
   template: templates/layouts/blocks/image-slide
-  regions: {}
+  regions:
+    head:
+      label: Head
+    subhead:
+      label: Subhead
+    image:
+      label: Image
+    body:
+      label: Body
+    button:
+      label: Button
 block_accordion:
   label: Accordion
   category: PMMI: Blocks
   template: templates/layouts/blocks/accordion
-  regions: {}
+  regions:
+    head:
+      label: Head
+    body:
+      label: Body
+    image:
+      label: Image
+    video:
+      label: Video
+    button:
+      label: Button
+    link:
+      label: Link
+    accordions:
+      label: Accordion(s)
 block_event_default:
   label: Event Default
   category: PMMI: Blocks
   template: templates/layouts/blocks/event-default
-  regions: {}
+  regions:
+    dates:
+      label: Date(s)
+    head:
+      label: Head
+    location:
+      label: Location
+    hosted_by:
+      label: Hosted By
+    button:
+      label: Button
 block_event_ribbon:
   label: Event Ribbon
   category: PMMI: Blocks
   template: templates/layouts/blocks/event-ribbon
-  regions: {}
+  regions:
+    dates:
+      label: Date(s)
+    head:
+      label: Head
+    location:
+      label: Location
+    department:
+      label: Department
+    members_only:
+      label: Member Only
+    button:
+      label: Button
 block_pack_expo_show:
   label: Pack Expo Show
   category: PMMI: Blocks
   template: templates/layouts/blocks/pack-expo-show
-  regions: {}
+  regions:
+    logo:
+      label: Logo
+    dates:
+      label: Date(s)
+    location:
+      label: Location
+    button:
+      label: Button
 block_brand:
   label: Brand
   category: PMMI: Blocks
   template: templates/layouts/blocks/brand
-  regions: {}
-block_brand:
+  regions:
+    logo:
+      label: Logo
+    body:
+      label: Body
+    button:
+      label: Button
+block_person:
   label: Person
   category: PMMI: Blocks
   template: templates/layouts/blocks/person
-  regions: {}
+  regions:
+    image:
+      label: Image
+    name:
+      label: Name
+    job_title:
+      label: Job Title
+    company:
+      label: Company
+block_pricing:
+  label: Pricing
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/pricing
+  regions:
+    head:
+      label: Head
+    members:
+      label: Members
+    members_early:
+      label: Early Bird
+    members_standard:
+      label: Standard
+    nonmembers:
+      label: Non-Members
+    nonmembers_early:
+      label: Non-Members Early Bird
+    nonmembers_standard:
+      label: Non-Members Standard
+    discounts:
+      label: Discounts
+block_image_header:
+  label: Image Header
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/image-header
+  regions:
+    head:
+      label: Head
+    image:
+      label: Image

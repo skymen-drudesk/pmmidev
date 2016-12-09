@@ -1,0 +1,20 @@
+<div class="block-card">
+  <div class="front-side">
+
+    {{ field_render([content.image, 'image']) }}
+
+    {{ field_render([content.head, 'title', 'h2']) }}
+
+  </div>
+  <div class="back-side">
+
+    {{ field_render([content.icon, 'card-icon']) }}
+
+    {{ field_render([content.head, 'title', 'h2']) }}
+
+    {{ field_render([content.body, 'block-body']) }}
+
+    {{ field_render([content.button, 'button']) }}
+
+  </div>
+</div>

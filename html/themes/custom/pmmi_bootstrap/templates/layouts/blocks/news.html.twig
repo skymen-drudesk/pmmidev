@@ -1,0 +1,15 @@
+{% set color = content.field_head_bkg_color_class[0]['#markup']|clean_class %}
+
+<div class="block-news color-{{ color }}">
+
+  {{ field_render([content.block_title, 'title', 'h2']) }}
+
+  {{ field_render([content.date, 'date']) }}
+
+  {{ field_render([content.head, 'head']) }}
+
+  {{ field_render([content.body, 'block-body']) }}
+
+  {{ field_render([content.button, 'button']) }}
+
+</div>
