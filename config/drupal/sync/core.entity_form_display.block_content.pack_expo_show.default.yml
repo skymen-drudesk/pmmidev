@@ -1,0 +1,54 @@
+uuid: 68c6d9d3-f3dc-4ac3-89a9-5d2c8d8a7aaa
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.pack_expo_show
+    - field.field.block_content.pack_expo_show.field_button
+    - field.field.block_content.pack_expo_show.field_dates
+    - field.field.block_content.pack_expo_show.field_location
+    - field.field.block_content.pack_expo_show.field_logo
+    - image.style.thumbnail
+  module:
+    - address
+    - datetime_range
+    - image
+    - link
+id: block_content.pack_expo_show.default
+targetEntityType: block_content
+bundle: pack_expo_show
+mode: default
+content:
+  field_button:
+    weight: 5
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+  field_dates:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: daterange_default
+  field_location:
+    weight: 4
+    settings:
+      default_country: null
+    third_party_settings: {  }
+    type: address_default
+  field_logo:
+    weight: 6
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+  info:
+    type: string_textfield
+    weight: -5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

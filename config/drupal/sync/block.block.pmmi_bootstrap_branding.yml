@@ -1,4 +1,4 @@
-uuid: 72403f27-e1b9-487d-82af-60a27c90b2d0
+uuid: e9e3667b-d369-4fa2-8134-a192bc965a8e
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ _core:
 id: pmmi_bootstrap_branding
 theme: pmmi_bootstrap
 region: navigation
-weight: -5
+weight: 0
 provider: null
 plugin: system_branding_block
 settings:
@@ -20,6 +20,6 @@ settings:
   provider: system
   label_display: '0'
   use_site_logo: true
-  use_site_name: false
+  use_site_name: true
   use_site_slogan: false
 visibility: {  }

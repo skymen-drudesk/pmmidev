@@ -1,0 +1,71 @@
+uuid: 6d82e1a6-0546-4b4a-be74-e36d6ebea321
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.pricing
+    - field.field.block_content.pricing.field_discounts
+    - field.field.block_content.pricing.field_head
+    - field.field.block_content.pricing.field_members_early
+    - field.field.block_content.pricing.field_members_standard
+    - field.field.block_content.pricing.field_nonmembers_early
+    - field.field.block_content.pricing.field_nonmembers_standard
+id: block_content.pricing.default
+targetEntityType: block_content
+bundle: pricing
+mode: default
+content:
+  field_discounts:
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_head:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_members_early:
+    weight: 1
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+  field_members_standard:
+    weight: 2
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+  field_nonmembers_early:
+    weight: 3
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+  field_nonmembers_standard:
+    weight: 4
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+hidden: {  }

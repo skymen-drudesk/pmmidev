@@ -1,0 +1,28 @@
+uuid: d356f3c9-8913-4be6-8750-ccaa0dcbccf3
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.event
+    - field.storage.block_content.field_departments
+    - taxonomy.vocabulary.department
+id: block_content.event.field_departments
+field_name: field_departments
+entity_type: block_content
+bundle: event
+label: Department(s)
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      department: department
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

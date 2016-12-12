@@ -1,0 +1,47 @@
+uuid: 298bb5b0-2933-4345-a662-dccc79884781
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.person
+    - field.field.block_content.person.field_company
+    - field.field.block_content.person.field_image
+    - field.field.block_content.person.field_job_title
+    - field.field.block_content.person.field_name
+  module:
+    - image
+id: block_content.person.default
+targetEntityType: block_content
+bundle: person
+mode: default
+content:
+  field_company:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_image:
+    weight: 0
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_job_title:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_name:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden: {  }
