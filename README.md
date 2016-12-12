@@ -83,6 +83,12 @@ container.
 [Direnv](http://direnv.net/) is used to include the wrapper scripts and
 the `vendor/bin` directory into the PATH.
 
+
+## Xdebug
+
+To ensure the host is configured, run 
+`sudo ifconfig en0 alias 10.254.254.254 255.255.255.0`
+
 ## The Build and Deployment Scripts
 
 You may have noticed that `build/party.sh` builds and links the 

@@ -433,3 +433,20 @@ block_icon:
       label: Body
     link:
       label: Link
+block_social_media:
+  label: Social Media
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/social-media
+  regions:
+    head:
+      label: Head
+    facebook:
+      label: Facebook
+    twitter:
+      label: Twitter
+    linkedin:
+      label: LinkedIn
+    google_plus:
+      label: Google+
+    youtube:
+      label: YouTube
