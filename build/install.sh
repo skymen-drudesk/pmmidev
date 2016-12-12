@@ -25,10 +25,6 @@ elif [ -e "$drupal_base/profiles/contrib/config_installer" ]; then
   echo "...from existing config with config installer profile.";
   $drush sql-drop --yes
   $drush si config_installer --yes \
-    --account-name=admin \
-    --account-pass=admin \
-    --site-name=profood_tech \
-    --db-url=mysql://root:rootpasswd@db/drupal \
     --notify
 else
   echo "...from scratch, with Drupal minimal profile.";

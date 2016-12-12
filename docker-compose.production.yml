@@ -36,7 +36,7 @@ services:
       DRUPAL_USER: admin
       DRUPAL_PASS: admin
       DRUPAL_DBURL: mysql://root:rootpasswd@mysql:3306/drupal
-      VIRTUAL_HOST: pmmi.org,www.pmmi.org
+      VIRTUAL_HOST: pmmi.org,www.pmmi.org,staging.pmmi.org
     volumes:
       - .:/var/www
       - ./config/cron:/etc/cron.d
