@@ -1,0 +1,27 @@
+{#
+/**
+ * @file
+ * Template for a 3-up (1 row of 3 columns) layout.
+ */
+#}
+<div class="layout-3up clearfix">
+  <div class="region-top col-sm-12">
+    {{ content.top }}
+  </div>
+  <div class="rows">
+    <div class="row-1">
+      <div class="col col-1 col-sm-4">
+        {{ content.oneone }}
+      </div>
+      <div class="col col-2 col-sm-4">
+        {{ content.onetwo }}
+      </div>
+      <div class="col col-3 col-sm-4">
+        {{ content.onethree }}
+      </div>
+    </div>
+  </div>
+  <div class="region-bottom col-sm-12">
+    {{ content.bottom }}
+  </div>
+</div>
