@@ -18,7 +18,10 @@ services:
 
   web:
     container_name: pmmi_dev_web
-    image: pmguser/drupal-php7.0-apache:latest
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
     depends_on:
       - db
     # Environment variables
@@ -30,10 +33,14 @@ services:
       DRUPAL_USER: admin
       DRUPAL_PASS: admin
       DRUPAL_DBURL: mysql://root:rootpasswd@mysql:3306/drupal
+      PHP_XDEBUG_ENABLED: 0
+      PHP_XDEBUG_REMOTE_CONNECT_BACK: 0         # This is needed to respect remote.host setting bellow
+      PHP_XDEBUG_REMOTE_HOST: "10.254.254.254"  # You will also need to 'sudo ifconfig en0 alias 10.254.254.254 255.255.255.0'
     ports:
       - "80:80"
     expose:
       - "80"
+      - "9000"
     volumes:
       - .:/var/www
     links:

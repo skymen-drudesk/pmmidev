@@ -1,0 +1,23 @@
+# from https://www.drupal.org/requirements/php#drupalversions
+FROM pmguser/drupal-php7.0-apache:latest
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN pwd
+
+# Install PHPUnit
+RUN curl -sSL https://phar.phpunit.de/phpunit.phar -o phpunit.phar && \
+  chmod +x phpunit.phar && \
+  mv phpunit.phar /usr/local/bin/phpunit
+
+# Install Xdebug support
+RUN pecl install xdebug \
+  && docker-php-ext-enable xdebug \
+  && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
+  && echo "xdebug.idekey = PHPSTORM" >> /usr/local/etc/php/conf.d/xdebug.ini \
+  && echo "xdebug.default_enable = 0" >> /usr/local/etc/php/conf.d/xdebug.ini \
+  && echo "xdebug.remote_enable = 1" >> /usr/local/etc/php/conf.d/xdebug.ini \
+  && echo "xdebug.remote_autostart = 0" >> /usr/local/etc/php/conf.d/xdebug.ini \
+  && echo "xdebug.remote_connect_back = 0" >> /usr/local/etc/php/conf.d/xdebug.ini \
+  && echo "xdebug.profiler_enable = 0" >> /usr/local/etc/php/conf.d/xdebug.ini \
+  && echo "xdebug.remote_host = 10.254.254.254" >> /usr/local/etc/php/conf.d/xdebug.ini \
+  && echo "xdebug.remote_log = /tmp/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini
