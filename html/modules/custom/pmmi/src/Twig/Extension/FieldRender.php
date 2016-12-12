@@ -43,7 +43,7 @@ class FieldRender extends \Twig_Extension {
       if (!empty($field)) {
         $rendered = render($field);
         if (!empty(trim($rendered))) {
-          $class = !empty($class) ? "class={$class}" : '';
+          $class = !empty($class) ? 'class="' . $class . '"' : '';
           $tag = !isset($tag) ? 'div' : $tag;
           if (!empty($tag)) {
             $output = "<{$tag} {$class}>" . $rendered . "</{$tag}>";
