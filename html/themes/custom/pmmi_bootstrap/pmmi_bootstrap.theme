@@ -1,0 +1,11 @@
+<?php
+/**
+ * @file
+ * The primary PHP file for this theme.
+ */
+
+/**
+ * Implements hook_bootstrap_preprocess_block().
+ */
+function pmmi_bootstrap_bootstrap_preprocess_block(&$variables) {
+}

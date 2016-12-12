@@ -1,0 +1,26 @@
+<div class="block-pricing">
+
+  {{ field_render([content.head, 'title', 'h2']) }}
+
+  <div class="members-sections">
+
+    {{ field_render([content.members, 'members title']) }}
+
+    {{ field_render([content.members_early, 'members-early']) }}
+
+    {{ field_render([content.members_standard, 'members-standard']) }}
+
+  </div>
+  <div class="non-members-sections">
+
+    {{ field_render([content.nonmembers, 'non-members title']) }}
+
+    {{ field_render([content.nonmembers_early, 'non-members-early']) }}
+
+    {{ field_render([content.nonmembers_standard, 'non-members-standard']) }}
+
+  </div>
+
+  {{ field_render([content.discounts, 'discounts']) }}
+
+</div>
