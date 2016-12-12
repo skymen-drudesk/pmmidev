@@ -1,6 +1,6 @@
 module:
   address: 0
-  audience_select: 0
+  aggregator: 0
   block: 0
   block_content: 0
   breakpoint: 0
@@ -20,14 +20,18 @@ module:
   filter: 0
   image: 0
   inline_entity_form: 0
+  libraries: 0
   link: 0
   link_attributes: 0
   menu_link_content: 0
   menu_ui: 0
   metatag: 0
   node: 0
+  oauth: 0
   options: 0
   page_cache: 0
+  page_manager: 0
+  page_manager_ui: 0
   pmmi: 0
   quickedit: 0
   serialization: 0
@@ -37,6 +41,8 @@ module:
   text: 0
   token: 0
   toolbar: 0
+  twitter: 0
+  twitter_block: 0
   update: 0
   user: 0
   video: 0
@@ -46,5 +52,6 @@ theme:
   classy: 0
   seven: 0
   bootstrap: 0
+  pmmi_bootstrap: 0
 _core:
   default_config_hash: m2GVq11UAOVuNgj8x0t5fMOPujpvQQ_zxLoaly1BMEU
