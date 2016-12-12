@@ -16,6 +16,9 @@
     "drupal/redirect": {
       "Update composer.json and namespace module dependencies": "https://www.drupal.org/files/issues/redirect-composer_json-2795709-13.patch"
     },
+    "drupal/twitter_block": {
+      "Refactor module to user username instead of widget ID": "https://www.drupal.org/files/issues/twitter_block-2783737-username_instead_widgetid-12.patch"
+    },
     "drupal/config_installer": {
       "config_installer_install_uninstalled_profile_dependencies() assumes too much": "https://www.drupal.org/files/issues/config_installer_2729243_2.patch"
     }

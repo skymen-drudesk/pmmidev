@@ -20,6 +20,10 @@
     {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
+    },
+    {
+      "type": "composer",
+      "url": "https://packagist.drupal-composer.org"
     }
   ],
   "minimum-stability": "dev",
@@ -51,6 +55,7 @@
     "drupal/panels": "3.x-dev",
     "drupal/pathauto": "~1.0@alpha",
     "drupal/redirect": "1.x-dev",
+    "drupal/tb_megamenu": "8.1.0-alpha1",
     "drupal/token": "~1.0@beta",
     "drupal/twitter": "1.x-dev",
     "drupal/twitter_block": "3.x-dev",

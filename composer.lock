@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "298ae36d8ae744e4d6cb9874a8951c17",
-    "content-hash": "c61514b1e8f09b120a3a13b1f2f9f637",
+    "hash": "4a7a3618131f7396b29aa93dba032065",
+    "content-hash": "9445f2137c4fde91c2f1b474a70b8e9d",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1840,16 +1840,16 @@
         },
         {
             "name": "drupal/console-en",
-            "version": "1.0.0-rc10",
+            "version": "1.0.0-rc11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hechoendrupal/drupal-console-en.git",
-                "reference": "6482b4e7102d91c6a3650ed3ed1f0081ceca5e99"
+                "reference": "694f46c5dfa69efc3f8a0bdc6eab4d63c306b1b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-en/zipball/6482b4e7102d91c6a3650ed3ed1f0081ceca5e99",
-                "reference": "6482b4e7102d91c6a3650ed3ed1f0081ceca5e99",
+                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-en/zipball/694f46c5dfa69efc3f8a0bdc6eab4d63c306b1b6",
+                "reference": "694f46c5dfa69efc3f8a0bdc6eab4d63c306b1b6",
                 "shasum": ""
             },
             "type": "drupal-console-language",
@@ -1890,7 +1890,7 @@
                 "drupal",
                 "symfony"
             ],
-            "time": "2016-12-12 00:56:06"
+            "time": "2016-12-12 17:16:39"
         },
         {
             "name": "drupal/core",
@@ -3078,6 +3078,37 @@
             "time": "2016-04-08 02:49:41"
         },
         {
+            "name": "drupal/tb_megamenu",
+            "version": "8.1.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/tb_megamenu",
+                "reference": "a22fa1231231ccdc33f9a8d490930d20ef308ce2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/tb_megamenu-8.x-1.0-alpha1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Megamenu solutions for Drupal",
+            "homepage": "https://www.drupal.org/project/tb_megamenu",
+            "time": "2015-08-14 09:10:20"
+        },
+        {
             "name": "drupal/token",
             "version": "1.0.0-beta2",
             "source": {
@@ -3220,6 +3251,9 @@
                 "drupal": {
                     "version": "8.x-3.x-dev",
                     "datestamp": "1472298239"
+                },
+                "patches_applied": {
+                    "Refactor module to user username instead of widget ID": "https://www.drupal.org/files/issues/twitter_block-2783737-username_instead_widgetid-12.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",

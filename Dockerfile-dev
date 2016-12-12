@@ -9,12 +9,6 @@ RUN curl -sSL https://phar.phpunit.de/phpunit.phar -o phpunit.phar && \
   chmod +x phpunit.phar && \
   mv phpunit.phar /usr/local/bin/phpunit
 
-# Install Oauth support
-
-RUN apt-get install gcc make autoconf libc-dev libpcre3-dev pkg-config -y
-RUN pecl install oauth \
-  && echo 'extension=oauth.so' >> /usr/local/etc/php/conf.d/oauth.ini
-
 # Install Xdebug support
 RUN pecl install xdebug \
   && docker-php-ext-enable xdebug \
