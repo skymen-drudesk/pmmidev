@@ -1,0 +1,61 @@
+.navbar {
+  padding: 0;
+  .navbar-header {
+    float: none;
+    padding-left: 136px;
+  }
+  a.logo {
+    width: 136px;
+    height: 133px;
+    margin: -10px 0 0 -136px;
+    padding: 0;
+  }
+  &.navbar-default {
+    background: none;
+    border: none;
+  }
+}
+#block-pmmi-bootstrap-main-menu {
+  padding: 36px 0 0;
+  .navbar-nav {
+    float: none;
+    background: $blue;
+    &:after {
+      clear: none;
+    }
+    > li {
+      float: none;
+      display: inline-block;
+      font-family: $trumpgothicpro;
+      font-weight: 700;
+      position: relative;
+      > a {
+        color: #fff;
+        padding: 6px 15px;
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        position: relative;
+        &:after {
+          position: absolute;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          content: "";
+          display: block;
+          width: 0;
+          height: 100%;
+          border-right: 1px solid #fff;
+          @include opacity(0.5);
+          z-index: 2;
+        }
+      }
+      &.active > a,
+      > a:hover,
+      > a.is-active {
+        background: $dkblue;
+      }
+    }
+  }
+}

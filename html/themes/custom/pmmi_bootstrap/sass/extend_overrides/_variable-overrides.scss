@@ -4,6 +4,21 @@
  * Modify this file to override the Bootstrap Framework variables. You can copy
  * these variables directly from ../bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss to this file.
  */
+@import "../variables/colors";
+@import "../variables/fonts";
 
 // Set the proper directory for the Bootstrap Glyphicon font.
 $icon-font-path: '../bootstrap-sass/assets/fonts/bootstrap/';
+
+// Default link color.
+$link-color: $ltblue;
+
+// Default link hover color.
+$link-hover-color: $blue;
+
+// Default text color.
+$text-color: #000;
+
+// Default font settings.
+$font-family-base: $lato;
+$font-size-base: 16px;

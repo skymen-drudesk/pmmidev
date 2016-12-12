@@ -1,0 +1,25 @@
+uuid: 72403f27-e1b9-487d-82af-60a27c90b2d0
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - pmmi_bootstrap
+_core:
+  default_config_hash: Cy3vkpYrD1O5JG-BeEnokF0bByHYDEa8CBfWivB4_SQ
+id: pmmi_bootstrap_branding
+theme: pmmi_bootstrap
+region: navigation
+weight: -5
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility: {  }

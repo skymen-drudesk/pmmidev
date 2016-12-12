@@ -1,0 +1,20 @@
+uuid: 9b378181-8a4a-436f-99de-a919eb88a92a
+langcode: en
+status: true
+dependencies:
+  theme:
+    - pmmi_bootstrap
+_core:
+  default_config_hash: 1TQP4b3ZnlzvIH9bj6cpCz_SyUHdJjLQkZnHpikjjhw
+id: pmmi_bootstrap_page_title
+theme: pmmi_bootstrap
+region: header
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }
