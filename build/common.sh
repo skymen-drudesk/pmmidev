@@ -85,5 +85,7 @@ fi
 if [[ -e "$theme_base/bower.json" ]] && which bower > /dev/null; then
   # Then run bower install
   echo "Installing packages for custom theme with bower.";
-  bower install --prefix $theme_base
+  cd $theme_base
+  bower install
+  cd $base
 fi

@@ -1,0 +1,30 @@
+a {
+  transition: .2s;
+}
+p {
+  @extend .paragraph1;
+}
+.content {
+  ul {
+    li {
+      list-style: none;
+      position: relative;
+      @extend .fa-circle;
+      &:before {
+        @extend .fa;
+        font-size: 0.4em;
+        margin: 1.5em 0 0 0;
+        vertical-align: top;
+        position: absolute;
+        left: -2.5em;
+        color: $blue;
+      }
+      li {
+        @extend .fa-square;
+        &:before {
+          color: $secondary-blue;
+        }
+      }
+    }
+  }
+}
