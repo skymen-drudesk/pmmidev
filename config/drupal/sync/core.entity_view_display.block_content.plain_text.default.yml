@@ -6,7 +6,20 @@ dependencies:
     - block_content.type.plain_text
     - field.field.block_content.plain_text.body
   module:
+    - ds
     - text
+third_party_settings:
+  ds:
+    layout:
+      id: block_default_single
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      main:
+        - body
 id: block_content.plain_text.default
 targetEntityType: block_content
 bundle: plain_text

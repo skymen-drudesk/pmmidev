@@ -8,6 +8,23 @@ dependencies:
     - field.field.block_content.icons.field_icon_2
     - field.field.block_content.icons.field_icon_3
     - field.field.block_content.icons.field_icon_4
+  module:
+    - ds
+third_party_settings:
+  ds:
+    layout:
+      id: block_default_single
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      main:
+        - field_icon_1
+        - field_icon_2
+        - field_icon_3
+        - field_icon_4
 id: block_content.icons.default
 targetEntityType: block_content
 bundle: icons
@@ -15,30 +32,34 @@ mode: default
 content:
   field_icon_1:
     weight: 0
-    label: above
+    label: hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
   field_icon_2:
     weight: 1
-    label: above
+    label: hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
   field_icon_3:
     weight: 2
-    label: above
+    label: hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
   field_icon_4:
     weight: 3
-    label: above
+    label: hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
 hidden: {  }

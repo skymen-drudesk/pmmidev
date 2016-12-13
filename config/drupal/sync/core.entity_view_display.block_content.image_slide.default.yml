@@ -10,9 +10,30 @@ dependencies:
     - field.field.block_content.image_slide.field_image
     - field.field.block_content.image_slide.field_subhead
   module:
+    - ds
     - image
     - link
     - text
+third_party_settings:
+  ds:
+    layout:
+      id: block_image_slide
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      body:
+        - body
+      head:
+        - field_head
+      subhead:
+        - field_subhead
+      image:
+        - field_image
+      button:
+        - field_button
 id: block_content.image_slide.default
 targetEntityType: block_content
 bundle: image_slide
@@ -26,7 +47,7 @@ content:
     third_party_settings: {  }
   field_button:
     weight: 4
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -37,14 +58,14 @@ content:
     type: link
   field_head:
     weight: 1
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_image:
     weight: 3
-    label: above
+    label: hidden
     settings:
       image_style: ''
       image_link: ''
@@ -52,7 +73,7 @@ content:
     type: image
   field_subhead:
     weight: 2
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }

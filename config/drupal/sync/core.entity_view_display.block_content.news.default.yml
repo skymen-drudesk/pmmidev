@@ -12,9 +12,32 @@ dependencies:
     - field.field.block_content.news.field_head_bkg_color_class
   module:
     - datetime
+    - ds
     - link
     - options
     - text
+third_party_settings:
+  ds:
+    layout:
+      id: block_news
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      color:
+        - field_head_bkg_color_class
+      body:
+        - body
+      block_title:
+        - field_block_title
+      date:
+        - field_date
+      head:
+        - field_head
+      button:
+        - field_button
 id: block_content.news.default
 targetEntityType: block_content
 bundle: news
@@ -28,14 +51,14 @@ content:
     third_party_settings: {  }
   field_block_title:
     weight: 1
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_button:
     weight: 4
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -46,7 +69,7 @@ content:
     type: link
   field_date:
     weight: 2
-    label: above
+    label: hidden
     settings:
       format_type: medium
       timezone_override: ''
@@ -54,15 +77,15 @@ content:
     type: datetime_default
   field_head:
     weight: 3
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_head_bkg_color_class:
-    weight: 5
+    type: list_key
+    weight: 0
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: list_default
 hidden: {  }

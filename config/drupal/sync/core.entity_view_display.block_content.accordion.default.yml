@@ -12,10 +12,35 @@ dependencies:
     - field.field.block_content.accordion.field_link
     - field.field.block_content.accordion.field_video
   module:
+    - ds
     - image
     - link
     - text
     - video
+third_party_settings:
+  ds:
+    layout:
+      id: block_accordion
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      body:
+        - body
+      head:
+        - field_head
+      image:
+        - field_image
+      video:
+        - field_video
+      button:
+        - field_button
+      link:
+        - field_link
+      accordions:
+        - field_accordions
 id: block_content.accordion.default
 targetEntityType: block_content
 bundle: accordion
@@ -29,14 +54,15 @@ content:
     third_party_settings: {  }
   field_accordions:
     weight: 6
-    label: above
+    label: hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
   field_button:
     weight: 4
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -47,14 +73,14 @@ content:
     type: link
   field_head:
     weight: 1
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_image:
     weight: 2
-    label: above
+    label: hidden
     settings:
       image_style: ''
       image_link: ''
@@ -62,7 +88,7 @@ content:
     type: image
   field_link:
     weight: 5
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -73,11 +99,15 @@ content:
     type: link
   field_video:
     weight: 3
-    label: above
+    label: hidden
     settings:
       width: '854'
       height: '480'
       autoplay: true
+      controls: true
+      loop: false
+      muted: false
+      preload: none
     third_party_settings: {  }
-    type: video_embed_player
+    type: video_player_list
 hidden: {  }
