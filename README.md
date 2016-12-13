@@ -86,8 +86,8 @@ the `vendor/bin` directory into the PATH.
 
 ## Xdebug
 
-To ensure the host is configured, run 
-`sudo ifconfig en0 alias 10.254.254.254 255.255.255.0`
+1. `sudo ifconfig lo0 alias 10.254.254.254`
+2. PhpStorm server settings: http://take.ms/avckT
 
 ## The Build and Deployment Scripts
 
