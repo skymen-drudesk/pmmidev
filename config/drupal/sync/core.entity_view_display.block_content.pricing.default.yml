@@ -10,6 +10,30 @@ dependencies:
     - field.field.block_content.pricing.field_members_standard
     - field.field.block_content.pricing.field_nonmembers_early
     - field.field.block_content.pricing.field_nonmembers_standard
+  module:
+    - ds
+third_party_settings:
+  ds:
+    layout:
+      id: block_pricing
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      head:
+        - field_head
+      members_early:
+        - field_members_early
+      members_standard:
+        - field_members_standard
+      nonmembers_early:
+        - field_nonmembers_early
+      nonmembers_standard:
+        - field_nonmembers_standard
+      discounts:
+        - field_discounts
 id: block_content.pricing.default
 targetEntityType: block_content
 bundle: pricing
@@ -23,14 +47,14 @@ content:
     type: basic_string
   field_head:
     weight: 0
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_members_early:
     weight: 1
-    label: above
+    label: inline
     settings:
       thousand_separator: ''
       decimal_separator: .
@@ -40,7 +64,7 @@ content:
     type: number_decimal
   field_members_standard:
     weight: 2
-    label: above
+    label: inline
     settings:
       thousand_separator: ''
       decimal_separator: .
@@ -50,7 +74,7 @@ content:
     type: number_decimal
   field_nonmembers_early:
     weight: 3
-    label: above
+    label: inline
     settings:
       thousand_separator: ''
       decimal_separator: .
@@ -60,7 +84,7 @@ content:
     type: number_decimal
   field_nonmembers_standard:
     weight: 4
-    label: above
+    label: inline
     settings:
       thousand_separator: ''
       decimal_separator: .

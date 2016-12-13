@@ -257,6 +257,8 @@ block_news:
       label: Body
     button:
       label: Button
+    color:
+      label: Color(hidden)
 block_card:
   label: Card
   category: PMMI: Blocks
@@ -397,14 +399,10 @@ block_pricing:
   regions:
     head:
       label: Head
-    members:
-      label: Members
     members_early:
       label: Early Bird
     members_standard:
       label: Standard
-    nonmembers:
-      label: Non-Members
     nonmembers_early:
       label: Non-Members Early Bird
     nonmembers_standard:
@@ -450,3 +448,12 @@ block_social_media:
       label: Google+
     youtube:
       label: YouTube
+block_default_single:
+  label: Default(with single column, i.e. for block containers)
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/default-single
+  regions:
+    head:
+        label: Head
+    main:
+      label: Main content
