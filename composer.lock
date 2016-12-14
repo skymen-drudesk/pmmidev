@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "b7c965501940243d77da5974742c7743",
-    "content-hash": "551c93851b7dc16ad1da3c8ee7fffd86",
+    "hash": "5bf46a0564c9b5edf803acf27e1daa56",
+    "content-hash": "26cd348e03a72a3f982c4f207d096ace",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2661,58 +2661,6 @@
             }
         },
         {
-            "name": "drupal/libraries",
-            "version": "dev-3.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/libraries",
-                "reference": "dcd717dc541293ae5c4003f304921cca9200728c"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-3.x-dev",
-                    "datestamp": "1481525886"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Pol",
-                    "homepage": "https://www.drupal.org/user/47194"
-                },
-                {
-                    "name": "rjacobs",
-                    "homepage": "https://www.drupal.org/user/422459"
-                },
-                {
-                    "name": "sun",
-                    "homepage": "https://www.drupal.org/user/54136"
-                },
-                {
-                    "name": "tstoeckler",
-                    "homepage": "https://www.drupal.org/user/107158"
-                }
-            ],
-            "description": "Allows version-dependent and shared usage of external libraries in Drupal.",
-            "homepage": "http://drupal.org/project/libraries",
-            "support": {
-                "source": "http://cgit.drupalcode.org/libraries",
-                "issues": "http://drupal.org/project/issues/libraries",
-                "irc": "irc://irc.freenode.org/drupal-contribute"
-            },
-            "time": "2016-12-12 06:56:46"
-        },
-        {
             "name": "drupal/link_attributes",
             "version": "1.0.0-alpha3",
             "source": {
@@ -2807,77 +2755,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/metatag",
                 "issues": "http://drupal.org/project/issues/metatag"
-            }
-        },
-        {
-            "name": "drupal/oauth",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/oauth",
-                "reference": "8.x-2.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/oauth-8.x-2.0.zip",
-                "reference": "8.x-2.0",
-                "shasum": "c9d9f69f418b514b7bff7a9d462221608c64262f"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-2.0",
-                    "datestamp": "1453717439"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Hugo Wetterberg",
-                    "homepage": "https://www.drupal.org/user/208601"
-                },
-                {
-                    "name": "SimmeLj",
-                    "homepage": "https://www.drupal.org/user/692532"
-                },
-                {
-                    "name": "Vikom",
-                    "homepage": "https://www.drupal.org/user/279158"
-                },
-                {
-                    "name": "heyrocker",
-                    "homepage": "https://www.drupal.org/user/128537"
-                },
-                {
-                    "name": "jobeirne",
-                    "homepage": "https://www.drupal.org/user/1458362"
-                },
-                {
-                    "name": "juampynr",
-                    "homepage": "https://www.drupal.org/user/682736"
-                },
-                {
-                    "name": "kylebrowning",
-                    "homepage": "https://www.drupal.org/user/211387"
-                },
-                {
-                    "name": "voxpelli",
-                    "homepage": "https://www.drupal.org/user/341713"
-                }
-            ],
-            "description": "Provides OAuth 1.0a server authentication",
-            "homepage": "https://www.drupal.org/project/oauth",
-            "support": {
-                "source": "http://cgit.drupalcode.org/oauth"
             }
         },
         {
@@ -3213,123 +3090,6 @@
                 "source": "http://cgit.drupalcode.org/token",
                 "issues": "https://www.drupal.org/project/issues/token"
             }
-        },
-        {
-            "name": "drupal/twitter",
-            "version": "dev-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/twitter",
-                "reference": "fba2285dc5c94ffa5701935894adc408ef842c88"
-            },
-            "require": {
-                "drupal/core": "*",
-                "drupal/libraries": "*",
-                "drupal/oauth": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1452344339"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "DamienMcKenna",
-                    "homepage": "https://www.drupal.org/user/108450"
-                },
-                {
-                    "name": "eaton",
-                    "homepage": "https://www.drupal.org/user/16496"
-                },
-                {
-                    "name": "juampynr",
-                    "homepage": "https://www.drupal.org/user/682736"
-                },
-                {
-                    "name": "michaek",
-                    "homepage": "https://www.drupal.org/user/251668"
-                },
-                {
-                    "name": "walkah",
-                    "homepage": "https://www.drupal.org/user/1531"
-                },
-                {
-                    "name": "xurizaemon",
-                    "homepage": "https://www.drupal.org/user/76026"
-                }
-            ],
-            "description": "Allows integration with the Twitter microblogging service.",
-            "homepage": "https://www.drupal.org/project/twitter",
-            "support": {
-                "source": "http://cgit.drupalcode.org/twitter"
-            },
-            "time": "2016-01-09 12:55:10"
-        },
-        {
-            "name": "drupal/twitter_block",
-            "version": "dev-3.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/twitter_block",
-                "reference": "2f29a92e2b03317ed34a78b46aa5b01c4a9ee4fb"
-            },
-            "require": {
-                "drupal/core": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-3.x-dev",
-                    "datestamp": "1472298239"
-                },
-                "patches_applied": {
-                    "Refactor module to user username instead of widget ID": "https://www.drupal.org/files/issues/twitter_block-2783737-username_instead_widgetid-12.patch"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Devin Carlson",
-                    "homepage": "https://www.drupal.org/user/290182"
-                },
-                {
-                    "name": "ZenDoodles",
-                    "homepage": "https://www.drupal.org/user/226976"
-                },
-                {
-                    "name": "cweagans",
-                    "homepage": "https://www.drupal.org/user/404732"
-                },
-                {
-                    "name": "naveenvalecha",
-                    "homepage": "https://www.drupal.org/user/2665733"
-                },
-                {
-                    "name": "subhojit777",
-                    "homepage": "https://www.drupal.org/user/1812492"
-                }
-            ],
-            "description": "Provides configurable blocks for a Twitter feed.",
-            "homepage": "http://drupal.org/project/twitter_block",
-            "support": {
-                "source": "http://cgit.drupalcode.org/twitter_block"
-            },
-            "time": "2016-05-19 07:50:16"
         },
         {
             "name": "drupal/video",
@@ -8760,8 +8520,6 @@
         "drupal/pathauto": 15,
         "drupal/redirect": 20,
         "drupal/token": 10,
-        "drupal/twitter": 20,
-        "drupal/twitter_block": 20,
         "drupal/yamlform": 10,
         "drupal/config_devel": 5,
         "drupal/devel": 20,
