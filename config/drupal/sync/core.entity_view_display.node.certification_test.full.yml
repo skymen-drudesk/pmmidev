@@ -1,0 +1,165 @@
+uuid: d24578f2-0789-4313-b286-009012330daa
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.certification_test.body
+    - field.field.node.certification_test.field_accordions
+    - field.field.node.certification_test.field_cert_test_coming
+    - field.field.node.certification_test.field_cert_test_length
+    - field.field.node.certification_test.field_cert_test_num_attempts
+    - field.field.node.certification_test.field_cert_test_price
+    - field.field.node.certification_test.field_cert_test_text_price
+    - field.field.node.certification_test.field_cert_test_time_to_take
+    - field.field.node.certification_test.field_cert_test_who
+    - field.field.node.certification_test.field_image
+    - field.field.node.certification_test.field_image_header
+    - field.field.node.certification_test.field_link
+    - node.type.certification_test
+  module:
+    - ds
+    - image
+    - link
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: cert_test
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      title:
+        - node_title
+      body:
+        - body
+      image_header:
+        - field_image_header
+      image:
+        - field_image
+      cert_test_coming:
+        - field_cert_test_coming
+      cert_test_price:
+        - field_cert_test_price
+      cert_test_text_price:
+        - field_cert_test_text_price
+      link:
+        - field_link
+      cert_test_who:
+        - field_cert_test_who
+      cert_test_length:
+        - field_cert_test_length
+      cert_test_time_to_take:
+        - field_cert_test_time_to_take
+      cert_test_num_attempts:
+        - field_cert_test_num_attempts
+      accordions:
+        - field_accordions
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+id: node.certification_test.full
+targetEntityType: node
+bundle: certification_test
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 400
+    third_party_settings: {  }
+  field_accordions:
+    weight: 112
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_cert_test_coming:
+    weight: 104
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_cert_test_length:
+    weight: 109
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_cert_test_num_attempts:
+    weight: 111
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_cert_test_price:
+    weight: 105
+    label: hidden
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+  field_cert_test_text_price:
+    weight: 106
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_cert_test_time_to_take:
+    weight: 110
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_cert_test_who:
+    weight: 108
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_image:
+    weight: 103
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_image_header:
+    weight: 102
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_link:
+    weight: 107
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+hidden:
+  links: true

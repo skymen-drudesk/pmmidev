@@ -1,5 +1,4 @@
-{% set color = content.field_head_bkg_color_class[0]['#markup']|clean_class %}
-
+{% set color = content.color[0][0]['#markup'] ? 'blue': 'red' %}
 <div class="block-news color-{{ color }}">
 
   {{ field_render([content.block_title, 'title', 'h2']) }}

@@ -11,8 +11,27 @@ dependencies:
   module:
     - address
     - datetime_range
+    - ds
     - image
     - link
+third_party_settings:
+  ds:
+    layout:
+      id: block_pack_expo_show
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      dates:
+        - field_dates
+      location:
+        - field_location
+      button:
+        - field_button
+      logo:
+        - field_logo
 id: block_content.pack_expo_show.default
 targetEntityType: block_content
 bundle: pack_expo_show
@@ -20,7 +39,7 @@ mode: default
 content:
   field_button:
     weight: 2
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -31,7 +50,7 @@ content:
     type: link
   field_dates:
     weight: 0
-    label: above
+    label: hidden
     settings:
       separator: '-'
       format_type: medium
@@ -40,13 +59,13 @@ content:
     type: daterange_default
   field_location:
     weight: 1
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: address_default
   field_logo:
     weight: 3
-    label: above
+    label: hidden
     settings:
       image_style: ''
       image_link: ''

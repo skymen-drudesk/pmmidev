@@ -1,0 +1,156 @@
+uuid: 2216a41a-360a-42f2-8b29-3ea9f2377ac1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.school.body
+    - field.field.node.school.field_address
+    - field.field.node.school.field_content_verified
+    - field.field.node.school.field_email
+    - field.field.node.school.field_image
+    - field.field.node.school.field_image_header
+    - field.field.node.school.field_logo
+    - field.field.node.school.field_phone
+    - field.field.node.school.field_programs_focus
+    - field.field.node.school.field_school_contact
+    - field.field.node.school.field_website
+    - node.type.school
+  module:
+    - address
+    - datetime
+    - ds
+    - image
+    - link
+    - telephone
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: school
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      title:
+        - node_title
+      body:
+        - body
+      image_header:
+        - field_image_header
+      image:
+        - field_image
+      progarm_focus:
+        - field_programs_focus
+      content_verified:
+        - field_content_verified
+      logo:
+        - field_logo
+      school_contact:
+        - field_school_contact
+      address:
+        - field_address
+      phone:
+        - field_phone
+      email:
+        - field_email
+      website:
+        - field_website
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+id: node.school.full
+targetEntityType: node
+bundle: school
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  field_address:
+    weight: 108
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: address_default
+  field_content_verified:
+    weight: 105
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    type: datetime_default
+  field_email:
+    weight: 110
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_image:
+    weight: 103
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_image_header:
+    weight: 102
+    label: above
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_logo:
+    weight: 106
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_phone:
+    weight: 109
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    type: telephone_link
+  field_programs_focus:
+    weight: 104
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_school_contact:
+    weight: 107
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_website:
+    weight: 111
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+hidden:
+  links: true

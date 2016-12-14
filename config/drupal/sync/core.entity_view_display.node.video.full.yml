@@ -1,0 +1,111 @@
+uuid: b60b4da3-aecd-4eba-9a82-ef737092df61
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.video.body
+    - field.field.node.video.field_date
+    - field.field.node.video.field_featured_speaker
+    - field.field.node.video.field_image_header
+    - field.field.node.video.field_link
+    - field.field.node.video.field_video
+    - node.type.video
+  module:
+    - datetime
+    - ds
+    - image
+    - link
+    - text
+    - user
+    - video
+third_party_settings:
+  ds:
+    layout:
+      id: video
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      title:
+        - node_title
+      body:
+        - body
+      image_header:
+        - field_image_header
+      date:
+        - field_date
+      link:
+        - field_link
+      featured_speaker:
+        - field_featured_speaker
+      video:
+        - field_video
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
+id: node.video.full
+targetEntityType: node
+bundle: video
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  field_date:
+    weight: 103
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: month_year
+    third_party_settings: {  }
+    type: datetime_default
+  field_featured_speaker:
+    weight: 105
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_image_header:
+    weight: 102
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_link:
+    weight: 104
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_video:
+    weight: 106
+    label: hidden
+    settings:
+      width: '854'
+      height: '480'
+      autoplay: true
+      controls: true
+      loop: false
+      muted: false
+      preload: none
+    third_party_settings: {  }
+    type: video_player_list
+hidden:
+  links: true

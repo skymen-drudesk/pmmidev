@@ -9,7 +9,26 @@ dependencies:
     - field.field.block_content.person.field_job_title
     - field.field.block_content.person.field_name
   module:
+    - ds
     - image
+third_party_settings:
+  ds:
+    layout:
+      id: block_person
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      image:
+        - field_image
+      name:
+        - field_name
+      job_title:
+        - field_job_title
+      company:
+        - field_company
 id: block_content.person.default
 targetEntityType: block_content
 bundle: person
@@ -17,14 +36,14 @@ mode: default
 content:
   field_company:
     weight: 3
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_image:
     weight: 0
-    label: above
+    label: hidden
     settings:
       image_style: ''
       image_link: ''
@@ -32,14 +51,14 @@ content:
     type: image
   field_job_title:
     weight: 2
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_name:
     weight: 1
-    label: above
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }

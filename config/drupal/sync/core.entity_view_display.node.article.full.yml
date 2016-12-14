@@ -1,0 +1,187 @@
+uuid: 6cee3533-e71e-4b92-8499-f7d36c4eea8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.article.body
+    - field.field.node.article.field_author
+    - field.field.node.article.field_author_title
+    - field.field.node.article.field_company
+    - field.field.node.article.field_date
+    - field.field.node.article.field_email
+    - field.field.node.article.field_image_header
+    - field.field.node.article.field_immediate_release
+    - field.field.node.article.field_link
+    - field.field.node.article.field_meta_tags
+    - field.field.node.article.field_news_category
+    - field.field.node.article.field_page_name
+    - field.field.node.article.field_phone
+    - field.field.node.article.field_tags
+    - node.type.article
+  module:
+    - datetime
+    - ds
+    - image
+    - link
+    - metatag
+    - telephone
+    - text
+    - user
+third_party_settings:
+  ds:
+    layout:
+      id: article
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      page_name:
+        - field_page_name
+      meta_tags:
+        - field_meta_tags
+      image_header:
+        - field_image_header
+      title:
+        - node_title
+      date:
+        - field_date
+      body:
+        - body
+      link:
+        - field_link
+      immediate_release:
+        - field_immediate_release
+      author:
+        - field_author
+      author_title:
+        - field_author_title
+      company:
+        - field_company
+      phone:
+        - field_phone
+      email:
+        - field_email
+      news_category:
+        - field_news_category
+      tags:
+        - field_tags
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 2
+        label: hidden
+        formatter: default
+id: node.article.full
+targetEntityType: node
+bundle: article
+mode: full
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 4
+    settings:
+      trim_length: 400
+    third_party_settings: {  }
+  field_author:
+    weight: 7
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_author_title:
+    weight: 8
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_company:
+    weight: 9
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_date:
+    weight: 3
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: month_day_year
+    third_party_settings: {  }
+    type: datetime_default
+  field_email:
+    weight: 11
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_image_header:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+  field_immediate_release:
+    weight: 6
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_link:
+    weight: 5
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_meta_tags:
+    type: metatag_empty_formatter
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_news_category:
+    weight: 12
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_page_name:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_phone:
+    weight: 10
+    label: hidden
+    settings:
+      title: ''
+    third_party_settings: {  }
+    type: telephone_link
+  field_tags:
+    weight: 13
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+hidden:
+  links: true

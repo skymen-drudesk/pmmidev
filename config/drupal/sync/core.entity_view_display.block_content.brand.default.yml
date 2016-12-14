@@ -8,9 +8,26 @@ dependencies:
     - field.field.block_content.brand.field_button
     - field.field.block_content.brand.field_logo
   module:
+    - ds
     - image
     - link
     - text
+third_party_settings:
+  ds:
+    layout:
+      id: block_brand
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      body:
+        - body
+      logo:
+        - field_logo
+      button:
+        - field_button
 id: block_content.brand.default
 targetEntityType: block_content
 bundle: brand
@@ -24,7 +41,7 @@ content:
     third_party_settings: {  }
   field_button:
     weight: 2
-    label: above
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -35,7 +52,7 @@ content:
     type: link
   field_logo:
     weight: 1
-    label: above
+    label: hidden
     settings:
       image_style: ''
       image_link: ''
