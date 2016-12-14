@@ -8,4 +8,12 @@
  * Implements hook_preprocess_block().
  */
 function pmmi_bootstrap_preprocess_block(&$variables) {
+  switch ($variables['base_plugin_id']) {
+    case 'system_menu_block':
+      // Add specific class to utility menus.
+      if (strpos($variables['plugin_id'], 'utility-navigation') !== FALSE) {
+        $variables['attributes']['class'][] = 'utility-navigation';
+      }
+      break;
+  }
 }

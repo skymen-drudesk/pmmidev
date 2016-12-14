@@ -1,6 +1,6 @@
 uuid: 372909d9-5097-48ba-9b4e-aae19359d75a
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.main
@@ -12,8 +12,8 @@ _core:
   default_config_hash: GT_zYl7I9VAILH8OxMRe-VDvFadCDHxRcnmBc5xEmf0
 id: pmmi_bootstrap_main_menu
 theme: pmmi_bootstrap
-region: navigation
-weight: -7
+region: '-1'
+weight: -9
 provider: null
 plugin: 'system_menu_block:main'
 settings:

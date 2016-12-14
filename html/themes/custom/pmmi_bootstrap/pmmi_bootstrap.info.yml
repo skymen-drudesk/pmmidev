@@ -11,6 +11,9 @@ libraries:
   - pmmi_bootstrap/bootstrap-scripts
   - pmmi_bootstrap/theme
 
+libraries-override:
+  tb_megamenu/theme.tb_megamenu: false
+
 regions:
   navigation: 'Navigation'
   header: 'Top Bar'
