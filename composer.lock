@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4a7a3618131f7396b29aa93dba032065",
-    "content-hash": "9445f2137c4fde91c2f1b474a70b8e9d",
+    "hash": "b7c965501940243d77da5974742c7743",
+    "content-hash": "551c93851b7dc16ad1da3c8ee7fffd86",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -271,16 +271,16 @@
         },
         {
             "name": "commerceguys/intl",
-            "version": "v0.7.3",
+            "version": "v0.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/commerceguys/intl.git",
-                "reference": "ebeeb62fb08fe5842f064acd8163d7c7a1534fe0"
+                "reference": "edfcfc26ed8505c4f6fcf862eb36dfda1af74b00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/commerceguys/intl/zipball/ebeeb62fb08fe5842f064acd8163d7c7a1534fe0",
-                "reference": "ebeeb62fb08fe5842f064acd8163d7c7a1534fe0",
+                "url": "https://api.github.com/repos/commerceguys/intl/zipball/edfcfc26ed8505c4f6fcf862eb36dfda1af74b00",
+                "reference": "edfcfc26ed8505c4f6fcf862eb36dfda1af74b00",
                 "shasum": ""
             },
             "require": {
@@ -311,7 +311,7 @@
                 }
             ],
             "description": "Internationalization library powered by CLDR data.",
-            "time": "2016-10-26 12:26:01"
+            "time": "2016-12-13 12:33:19"
         },
         {
             "name": "commerceguys/zone",
@@ -722,16 +722,16 @@
         },
         {
             "name": "dflydev/dot-access-configuration",
-            "version": "v1.0.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dflydev/dflydev-dot-access-configuration.git",
-                "reference": "9b65c83159c9003e00284ea1144ad96b69d9c8b9"
+                "reference": "ae6e7138b1d9063d343322cca63994ee1ac5161d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dflydev/dflydev-dot-access-configuration/zipball/9b65c83159c9003e00284ea1144ad96b69d9c8b9",
-                "reference": "9b65c83159c9003e00284ea1144ad96b69d9c8b9",
+                "url": "https://api.github.com/repos/dflydev/dflydev-dot-access-configuration/zipball/ae6e7138b1d9063d343322cca63994ee1ac5161d",
+                "reference": "ae6e7138b1d9063d343322cca63994ee1ac5161d",
                 "shasum": ""
             },
             "require": {
@@ -778,7 +778,7 @@
                 "config",
                 "configuration"
             ],
-            "time": "2014-11-14 03:26:12"
+            "time": "2016-12-12 17:43:40"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -885,6 +885,48 @@
                 "resolver"
             ],
             "time": "2012-10-28 21:08:28"
+        },
+        {
+            "name": "dg/twitter-php",
+            "version": "v3.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dg/twitter-php.git",
+                "reference": "dd872ad12121ff919b358989e61f7f08ba6cc7a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dg/twitter-php/zipball/dd872ad12121ff919b358989e61f7f08ba6cc7a8",
+                "reference": "dd872ad12121ff919b358989e61f7f08ba6cc7a8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                }
+            ],
+            "description": "Small and easy Twitter library for PHP",
+            "homepage": "https://github.com/dg/twitter-php",
+            "keywords": [
+                "oauth",
+                "twitter"
+            ],
+            "time": "2016-08-15 16:46:22"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1682,32 +1724,31 @@
         },
         {
             "name": "drupal/console",
-            "version": "1.0.0-rc10",
+            "version": "1.0.0-rc11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hechoendrupal/DrupalConsole.git",
-                "reference": "9ec28866068f902220a2ee0aeb36526488a3b0e1"
+                "reference": "7eb98a13458da1a63f87435ced4128cd15f34d9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/DrupalConsole/zipball/9ec28866068f902220a2ee0aeb36526488a3b0e1",
-                "reference": "9ec28866068f902220a2ee0aeb36526488a3b0e1",
+                "url": "https://api.github.com/repos/hechoendrupal/DrupalConsole/zipball/7eb98a13458da1a63f87435ced4128cd15f34d9e",
+                "reference": "7eb98a13458da1a63f87435ced4128cd15f34d9e",
                 "shasum": ""
             },
             "require": {
                 "alchemy/zippy": "0.3.5",
                 "composer/installers": "~1.0",
-                "dflydev/placeholder-resolver": "~1.0",
                 "doctrine/annotations": "1.2.*",
                 "drupal/console-core": "~1.0",
                 "gabordemooij/redbean": "~4.3",
                 "guzzlehttp/guzzle": "~6.1",
                 "php": "^5.5.9 || ^7.0",
-                "symfony/css-selector": "~2.7|~2.8",
-                "symfony/debug": "~2.6|~2.8",
-                "symfony/dom-crawler": "~2.7|~2.8",
-                "symfony/expression-language": "^2.8",
-                "symfony/http-foundation": "~2.8"
+                "symfony/cache": ">=2.7 <3.2",
+                "symfony/css-selector": ">=2.7 <3.2",
+                "symfony/dom-crawler": ">=2.7 <3.2",
+                "symfony/expression-language": ">=2.7 <3.2",
+                "symfony/http-foundation": ">=2.7 <3.2"
             },
             "bin": [
                 "bin/drupal"
@@ -1755,37 +1796,37 @@
                 "drupal",
                 "symfony"
             ],
-            "time": "2016-11-24 07:23:06"
+            "time": "2016-12-12 22:41:41"
         },
         {
             "name": "drupal/console-core",
-            "version": "1.0.0-rc10",
+            "version": "1.0.0-rc11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hechoendrupal/drupal-console-core.git",
-                "reference": "45cb9ef7777540de23fd727e9c76d21b8e82cc2b"
+                "reference": "b0b73776d6495d253ed1dfdda67a6e05bb5895f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-core/zipball/45cb9ef7777540de23fd727e9c76d21b8e82cc2b",
-                "reference": "45cb9ef7777540de23fd727e9c76d21b8e82cc2b",
+                "url": "https://api.github.com/repos/hechoendrupal/drupal-console-core/zipball/b0b73776d6495d253ed1dfdda67a6e05bb5895f6",
+                "reference": "b0b73776d6495d253ed1dfdda67a6e05bb5895f6",
                 "shasum": ""
             },
             "require": {
-                "dflydev/dot-access-configuration": "1.*",
+                "dflydev/dot-access-configuration": "dev-master#9dc52aeeab5ae99afcbb0d67bb5c1af8c87d03dc",
                 "drupal/console-en": "~1.0",
                 "php": "^5.5.9 || ^7.0",
-                "phpseclib/phpseclib": "2.*",
                 "stecman/symfony-console-completion": "~0.7",
-                "symfony/config": "~2.8",
-                "symfony/console": "~2.8",
-                "symfony/dependency-injection": "~2.8",
-                "symfony/event-dispatcher": "~2.8",
-                "symfony/filesystem": "~2.8",
-                "symfony/finder": "~2.8",
-                "symfony/process": "~2.8",
-                "symfony/translation": "~2.8",
-                "symfony/yaml": "~2.8",
+                "symfony/config": ">=2.7 <3.2",
+                "symfony/console": ">=2.7 <3.2",
+                "symfony/debug": ">=2.6 <3.2",
+                "symfony/dependency-injection": ">=2.7 <3.2",
+                "symfony/event-dispatcher": ">=2.7 <3.2",
+                "symfony/filesystem": ">=2.7 <3.2",
+                "symfony/finder": ">=2.7 <3.2",
+                "symfony/process": ">=2.7 <3.2",
+                "symfony/translation": ">=2.7 <3.2",
+                "symfony/yaml": ">=2.7 <3.2",
                 "twig/twig": "^1.23.1",
                 "webflo/drupal-finder": "0.*"
             },
@@ -1836,7 +1877,7 @@
                 "drupal",
                 "symfony"
             ],
-            "time": "2016-11-24 07:06:28"
+            "time": "2016-12-12 21:43:08"
         },
         {
             "name": "drupal/console-en",
@@ -2242,7 +2283,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/ds-8.x-2.6.zip",
-                "reference": null,
+                "reference": "8.x-2.6",
                 "shasum": "6cec63a526b31f90b57d8958348280fb05ff8bec"
             },
             "require": {
@@ -3042,10 +3083,10 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/redirect",
-                "reference": "f74dca8c98cb0f4a79195721f010f70cfab88a29"
+                "reference": "27fc852979771bd97321d10bcb6313f263f95591"
             },
             "require": {
-                "drupal/core": "*"
+                "drupal/core": "~8"
             },
             "type": "drupal-module",
             "extra": {
@@ -3053,11 +3094,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha1+2-dev",
-                    "datestamp": "1460083741"
-                },
-                "patches_applied": {
-                    "Update composer.json and namespace module dependencies": "https://www.drupal.org/files/issues/redirect-composer_json-2795709-13.patch"
+                    "version": "8.x-1.0-alpha1+8-dev",
+                    "datestamp": "1481576583"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3065,6 +3103,10 @@
                 "GPL-2.0+"
             ],
             "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
                 {
                     "name": "Dave Reid",
                     "homepage": "https://www.drupal.org/user/53892"
@@ -3075,7 +3117,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/redirect"
             },
-            "time": "2016-04-08 02:49:41"
+            "time": "2016-12-12 20:58:59"
         },
         {
             "name": "drupal/tb_megamenu",
@@ -3088,7 +3130,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/tb_megamenu-8.x-1.0-alpha1.zip",
-                "reference": null,
+                "reference": "a22fa1231231ccdc33f9a8d490930d20ef308ce2",
                 "shasum": null
             },
             "require": {
@@ -4498,41 +4540,31 @@
             "time": "2015-02-03 12:10:50"
         },
         {
-            "name": "phpseclib/phpseclib",
-            "version": "2.0.4",
+            "name": "psr/cache",
+            "version": "1.0.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "ab8028c93c03cc8d9c824efa75dc94f1db2369bf"
+                "url": "https://github.com/php-fig/cache.git",
+                "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/ab8028c93c03cc8d9c824efa75dc94f1db2369bf",
-                "reference": "ab8028c93c03cc8d9c824efa75dc94f1db2369bf",
+                "url": "https://api.github.com/repos/php-fig/cache/zipball/d11b50ad223250cf17b86e38383413f5a6764bf8",
+                "reference": "d11b50ad223250cf17b86e38383413f5a6764bf8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
-            },
-            "require-dev": {
-                "phing/phing": "~2.7",
-                "phpunit/phpunit": "~4.0",
-                "sami/sami": "~2.0",
-                "squizlabs/php_codesniffer": "~2.0"
-            },
-            "suggest": {
-                "ext-gmp": "Install the GMP (GNU Multiple Precision) extension in order to speed up arbitrary precision integer arithmetic operations.",
-                "ext-libsodium": "SSH2/SFTP can make use of some algorithms provided by the libsodium-php extension.",
-                "ext-mcrypt": "Install the Mcrypt extension in order to speed up a few other cryptographic operations.",
-                "ext-openssl": "Install the OpenSSL extension in order to speed up a wide variety of cryptographic operations."
+                "php": ">=5.3.0"
             },
             "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
             "autoload": {
-                "files": [
-                    "phpseclib/bootstrap.php"
-                ],
                 "psr-4": {
-                    "phpseclib\\": "phpseclib/"
+                    "Psr\\Cache\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4541,53 +4573,17 @@
             ],
             "authors": [
                 {
-                    "name": "Jim Wigginton",
-                    "email": "terrafrost@php.net",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Patrick Monnerat",
-                    "email": "pm@datasphere.ch",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Andreas Fischer",
-                    "email": "bantu@phpbb.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Hans-Jürgen Petrich",
-                    "email": "petrich@tronic-media.com",
-                    "role": "Developer"
-                },
-                {
-                    "name": "Graham Campbell",
-                    "email": "graham@alt-three.com",
-                    "role": "Developer"
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
                 }
             ],
-            "description": "PHP Secure Communications Library - Pure-PHP implementations of RSA, AES, SSH2, SFTP, X.509 etc.",
-            "homepage": "http://phpseclib.sourceforge.net",
+            "description": "Common interface for caching libraries",
             "keywords": [
-                "BigInteger",
-                "aes",
-                "asn.1",
-                "asn1",
-                "blowfish",
-                "crypto",
-                "cryptography",
-                "encryption",
-                "rsa",
-                "security",
-                "sftp",
-                "signature",
-                "signing",
-                "ssh",
-                "twofish",
-                "x.509",
-                "x509"
+                "cache",
+                "psr",
+                "psr-6"
             ],
-            "time": "2016-10-04 00:57:04"
+            "time": "2016-08-06 20:24:11"
         },
         {
             "name": "psr/http-message",
@@ -4913,17 +4909,83 @@
             "time": "2016-03-31 09:11:39"
         },
         {
-            "name": "symfony/class-loader",
-            "version": "v2.8.14",
+            "name": "symfony/cache",
+            "version": "v3.1.8",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/class-loader.git",
-                "reference": "db9c33f62d3cdfb19e3c8de477c8457eab0d3176"
+                "url": "https://github.com/symfony/cache.git",
+                "reference": "0f5881c9b8a03cef13fdee381f8ee623d0429cf4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/class-loader/zipball/db9c33f62d3cdfb19e3c8de477c8457eab0d3176",
-                "reference": "db9c33f62d3cdfb19e3c8de477c8457eab0d3176",
+                "url": "https://api.github.com/repos/symfony/cache/zipball/0f5881c9b8a03cef13fdee381f8ee623d0429cf4",
+                "reference": "0f5881c9b8a03cef13fdee381f8ee623d0429cf4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "psr/cache": "~1.0",
+                "psr/log": "~1.0"
+            },
+            "provide": {
+                "psr/cache-implementation": "1.0"
+            },
+            "require-dev": {
+                "cache/integration-tests": "dev-master",
+                "doctrine/cache": "~1.6",
+                "predis/predis": "~1.0"
+            },
+            "suggest": {
+                "symfony/polyfill-apcu": "For using ApcuAdapter on HHVM"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Cache\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony implementation of PSR-6",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "caching",
+                "psr6"
+            ],
+            "time": "2016-11-09 14:09:05"
+        },
+        {
+            "name": "symfony/class-loader",
+            "version": "v2.8.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/class-loader.git",
+                "reference": "f7fe9d14e194d0bf0ee476f051e3ffe20ee45032"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/class-loader/zipball/f7fe9d14e194d0bf0ee476f051e3ffe20ee45032",
+                "reference": "f7fe9d14e194d0bf0ee476f051e3ffe20ee45032",
                 "shasum": ""
             },
             "require": {
@@ -4963,25 +5025,28 @@
             ],
             "description": "Symfony ClassLoader Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-15 12:06:39"
+            "time": "2016-11-29 08:25:54"
         },
         {
             "name": "symfony/config",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
-                "reference": "1361bc4e66f97b6202ae83f4190e962c624b5e61"
+                "reference": "b522856007b258f46d5ee35d3b7b235c11e76e86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/config/zipball/1361bc4e66f97b6202ae83f4190e962c624b5e61",
-                "reference": "1361bc4e66f97b6202ae83f4190e962c624b5e61",
+                "url": "https://api.github.com/repos/symfony/config/zipball/b522856007b258f46d5ee35d3b7b235c11e76e86",
+                "reference": "b522856007b258f46d5ee35d3b7b235c11e76e86",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.9",
                 "symfony/filesystem": "~2.3|~3.0.0"
+            },
+            "require-dev": {
+                "symfony/yaml": "~2.7|~3.0.0"
             },
             "suggest": {
                 "symfony/yaml": "To use the yaml reference dumper"
@@ -5016,20 +5081,20 @@
             ],
             "description": "Symfony Config Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-03 07:52:58"
+            "time": "2016-12-10 08:21:45"
         },
         {
             "name": "symfony/console",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "a871ba00e0f604dceac64c56c27f99fbeaf4854e"
+                "reference": "d5643cd095e5e37d31e004bb2606b5dd7e96602f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/a871ba00e0f604dceac64c56c27f99fbeaf4854e",
-                "reference": "a871ba00e0f604dceac64c56c27f99fbeaf4854e",
+                "url": "https://api.github.com/repos/symfony/console/zipball/d5643cd095e5e37d31e004bb2606b5dd7e96602f",
+                "reference": "d5643cd095e5e37d31e004bb2606b5dd7e96602f",
                 "shasum": ""
             },
             "require": {
@@ -5077,11 +5142,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-15 23:02:12"
+            "time": "2016-12-06 11:59:35"
         },
         {
             "name": "symfony/css-selector",
-            "version": "v2.7.21",
+            "version": "v2.7.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/css-selector.git",
@@ -5134,7 +5199,7 @@
         },
         {
             "name": "symfony/debug",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
@@ -5191,16 +5256,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "9d2c5033ca70ceade8d7584f997a9d3943f0fe5f"
+                "reference": "51a7b5385fb0f42e5edbdb2cfbad1a011ecdaee7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/9d2c5033ca70ceade8d7584f997a9d3943f0fe5f",
-                "reference": "9d2c5033ca70ceade8d7584f997a9d3943f0fe5f",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/51a7b5385fb0f42e5edbdb2cfbad1a011ecdaee7",
+                "reference": "51a7b5385fb0f42e5edbdb2cfbad1a011ecdaee7",
                 "shasum": ""
             },
             "require": {
@@ -5250,20 +5315,20 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-18 21:10:01"
+            "time": "2016-12-08 14:41:31"
         },
         {
             "name": "symfony/dom-crawler",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "7f565fe00e580c1edf732234a6d26e9b796bd105"
+                "reference": "adb9f190b13884d6a70ec094a487363675575c1a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/7f565fe00e580c1edf732234a6d26e9b796bd105",
-                "reference": "7f565fe00e580c1edf732234a6d26e9b796bd105",
+                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/adb9f190b13884d6a70ec094a487363675575c1a",
+                "reference": "adb9f190b13884d6a70ec094a487363675575c1a",
                 "shasum": ""
             },
             "require": {
@@ -5306,11 +5371,11 @@
             ],
             "description": "Symfony DomCrawler Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-14 16:15:57"
+            "time": "2016-12-10 14:24:35"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
@@ -5370,25 +5435,25 @@
         },
         {
             "name": "symfony/expression-language",
-            "version": "v2.8.14",
+            "version": "v3.1.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/expression-language.git",
-                "reference": "2b667229749832a918e4b1d22e185f4ed98b63ac"
+                "reference": "b39826dc179f4d45c6c9a3bd4b51912726c344a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/expression-language/zipball/2b667229749832a918e4b1d22e185f4ed98b63ac",
-                "reference": "2b667229749832a918e4b1d22e185f4ed98b63ac",
+                "url": "https://api.github.com/repos/symfony/expression-language/zipball/b39826dc179f4d45c6c9a3bd4b51912726c344a3",
+                "reference": "b39826dc179f4d45c6c9a3bd4b51912726c344a3",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.9"
+                "php": ">=5.5.9"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.8-dev"
+                    "dev-master": "3.1-dev"
                 }
             },
             "autoload": {
@@ -5415,11 +5480,11 @@
             ],
             "description": "Symfony ExpressionLanguage Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-03 07:52:58"
+            "time": "2016-11-03 08:04:31"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -5468,16 +5533,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "0023b024363dfc0cd21262e556f25a291fe8d7fd"
+                "reference": "c0f10576335743b881ac1ed39d18c0fa66048775"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/0023b024363dfc0cd21262e556f25a291fe8d7fd",
-                "reference": "0023b024363dfc0cd21262e556f25a291fe8d7fd",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/c0f10576335743b881ac1ed39d18c0fa66048775",
+                "reference": "c0f10576335743b881ac1ed39d18c0fa66048775",
                 "shasum": ""
             },
             "require": {
@@ -5513,20 +5578,20 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-03 07:52:58"
+            "time": "2016-12-13 09:38:12"
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "4f8c167732bbf3ba4284c0915f57b332091f6b68"
+                "reference": "216c111ac427f5f773c6a8bfc0c15f0a7dd74876"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/4f8c167732bbf3ba4284c0915f57b332091f6b68",
-                "reference": "4f8c167732bbf3ba4284c0915f57b332091f6b68",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/216c111ac427f5f773c6a8bfc0c15f0a7dd74876",
+                "reference": "216c111ac427f5f773c6a8bfc0c15f0a7dd74876",
                 "shasum": ""
             },
             "require": {
@@ -5568,20 +5633,20 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-15 23:02:12"
+            "time": "2016-11-27 04:20:28"
         },
         {
             "name": "symfony/http-kernel",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-kernel.git",
-                "reference": "29d9bb59c6d895e65d8fea3859c96c3b6e9368ba"
+                "reference": "7c678be978b0b788cad4667b11f13df365d65e4d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/29d9bb59c6d895e65d8fea3859c96c3b6e9368ba",
-                "reference": "29d9bb59c6d895e65d8fea3859c96c3b6e9368ba",
+                "url": "https://api.github.com/repos/symfony/http-kernel/zipball/7c678be978b0b788cad4667b11f13df365d65e4d",
+                "reference": "7c678be978b0b788cad4667b11f13df365d65e4d",
                 "shasum": ""
             },
             "require": {
@@ -5650,7 +5715,7 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-21 02:24:42"
+            "time": "2016-12-13 12:16:15"
         },
         {
             "name": "symfony/polyfill-apcu",
@@ -5939,16 +6004,16 @@
         },
         {
             "name": "symfony/process",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
-                "reference": "024de37f8a6b9e5e8244d9eb3fcf3e467dd2a93f"
+                "reference": "1a1bd056395540d0bc549d39818316513565d278"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/024de37f8a6b9e5e8244d9eb3fcf3e467dd2a93f",
-                "reference": "024de37f8a6b9e5e8244d9eb3fcf3e467dd2a93f",
+                "url": "https://api.github.com/repos/symfony/process/zipball/1a1bd056395540d0bc549d39818316513565d278",
+                "reference": "1a1bd056395540d0bc549d39818316513565d278",
                 "shasum": ""
             },
             "require": {
@@ -5984,7 +6049,7 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-29 14:03:54"
+            "time": "2016-11-24 00:43:03"
         },
         {
             "name": "symfony/psr-http-message-bridge",
@@ -6042,16 +6107,16 @@
         },
         {
             "name": "symfony/routing",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/routing.git",
-                "reference": "6cee3ed22c778a7410119a3d51a20f60252a156c"
+                "reference": "ef15c9f105f43a0714fa96b9e718fa4f23bc27a6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/6cee3ed22c778a7410119a3d51a20f60252a156c",
-                "reference": "6cee3ed22c778a7410119a3d51a20f60252a156c",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/ef15c9f105f43a0714fa96b9e718fa4f23bc27a6",
+                "reference": "ef15c9f105f43a0714fa96b9e718fa4f23bc27a6",
                 "shasum": ""
             },
             "require": {
@@ -6113,11 +6178,11 @@
                 "uri",
                 "url"
             ],
-            "time": "2016-08-16 14:56:08"
+            "time": "2016-11-25 12:26:42"
         },
         {
             "name": "symfony/serializer",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/serializer.git",
@@ -6181,7 +6246,7 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
@@ -6245,16 +6310,16 @@
         },
         {
             "name": "symfony/validator",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
-                "reference": "c4ef882117461a4151064ad16c5d638dd1c70b9e"
+                "reference": "1a2bad8d4669f55dc4f9fcd26071b5e78fb37bce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/validator/zipball/c4ef882117461a4151064ad16c5d638dd1c70b9e",
-                "reference": "c4ef882117461a4151064ad16c5d638dd1c70b9e",
+                "url": "https://api.github.com/repos/symfony/validator/zipball/1a2bad8d4669f55dc4f9fcd26071b5e78fb37bce",
+                "reference": "1a2bad8d4669f55dc4f9fcd26071b5e78fb37bce",
                 "shasum": ""
             },
             "require": {
@@ -6314,20 +6379,20 @@
             ],
             "description": "Symfony Validator Component",
             "homepage": "https://symfony.com",
-            "time": "2016-11-18 21:10:01"
+            "time": "2016-12-08 15:59:39"
         },
         {
             "name": "symfony/var-dumper",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/var-dumper.git",
-                "reference": "195c6238ec319cde9204b2d7f271654ceb69b71b"
+                "reference": "873e692cdc3ed80ab3c1d6404b087ce396dd4acc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/195c6238ec319cde9204b2d7f271654ceb69b71b",
-                "reference": "195c6238ec319cde9204b2d7f271654ceb69b71b",
+                "url": "https://api.github.com/repos/symfony/var-dumper/zipball/873e692cdc3ed80ab3c1d6404b087ce396dd4acc",
+                "reference": "873e692cdc3ed80ab3c1d6404b087ce396dd4acc",
                 "shasum": ""
             },
             "require": {
@@ -6377,11 +6442,11 @@
                 "debug",
                 "dump"
             ],
-            "time": "2016-11-03 07:52:58"
+            "time": "2016-12-06 16:05:07"
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.14",
+            "version": "v2.8.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
@@ -6665,6 +6730,55 @@
             ],
             "description": "A robust cross-platform utility for normalizing, comparing and modifying file paths.",
             "time": "2015-12-17 08:42:14"
+        },
+        {
+            "name": "wikimedia/composer-merge-plugin",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wikimedia/composer-merge-plugin.git",
+                "reference": "0bdf8543d445ee067c9ba7d5d4a5dde70b9785f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wikimedia/composer-merge-plugin/zipball/0bdf8543d445ee067c9ba7d5d4a5dde70b9785f4",
+                "reference": "0bdf8543d445ee067c9ba7d5d4a5dde70b9785f4",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "jakub-onderka/php-parallel-lint": "~0.8",
+                "phpunit/phpunit": "~4.8|~5.0",
+                "squizlabs/php_codesniffer": "~2.1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                },
+                "class": "Wikimedia\\Composer\\MergePlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wikimedia\\Composer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bryan Davis",
+                    "email": "bd808@wikimedia.org"
+                }
+            ],
+            "description": "Composer plugin to merge multiple composer.json files",
+            "time": "2016-03-08 17:11:37"
         },
         {
             "name": "zendframework/zend-diactoros",
