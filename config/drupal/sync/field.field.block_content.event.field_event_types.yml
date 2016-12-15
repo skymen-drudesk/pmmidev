@@ -1,16 +1,16 @@
-uuid: d356f3c9-8913-4be6-8750-ccaa0dcbccf3
+uuid: 4344b25e-4cf4-42da-9a5f-8bc776bc94b8
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.event
-    - field.storage.block_content.field_departments
-    - taxonomy.vocabulary.department
-id: block_content.event.field_departments
-field_name: field_departments
+    - field.storage.block_content.field_event_types
+    - taxonomy.vocabulary.event_type
+id: block_content.event.field_event_types
+field_name: field_event_types
 entity_type: block_content
 bundle: event
-label: Department(s)
+label: 'Event Type(s)'
 description: ''
 required: false
 translatable: false
@@ -20,7 +20,7 @@ settings:
   handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      department: department
+      event_type: event_type
     sort:
       field: _none
     auto_create: false
