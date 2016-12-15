@@ -1,0 +1,45 @@
+uuid: 0d7202ab-9234-445d-902a-db42da91adb9
+langcode: en
+status: true
+dependencies: {  }
+id: editor
+label: Editor
+weight: 3
+is_admin: null
+permissions:
+  - 'access contextual links'
+  - 'access image entity browser pages'
+  - 'access image_header entity browser pages'
+  - 'access files overview'
+  - 'access content overview'
+  - 'view own unpublished content'
+  - 'create article content'
+  - 'edit any article content'
+  - 'edit own article content'
+  - 'revert article revisions'
+  - 'view article revisions'
+  - 'create basic_page content'
+  - 'edit any basic_page content'
+  - 'edit own basic_page content'
+  - 'revert basic_page revisions'
+  - 'view basic_page revisions'
+  - 'create certification_test content'
+  - 'edit any certification_test content'
+  - 'edit own certification_test content'
+  - 'revert certification_test revisions'
+  - 'view certification_test revisions'
+  - 'create download content'
+  - 'edit any download content'
+  - 'edit own download content'
+  - 'revert download revisions'
+  - 'view download revisions'
+  - 'create school content'
+  - 'edit any school content'
+  - 'edit own school content'
+  - 'revert school revisions'
+  - 'view school revisions'
+  - 'create video content'
+  - 'edit any video content'
+  - 'edit own video content'
+  - 'revert video revisions'
+  - 'view video revisions'
