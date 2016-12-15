@@ -7,7 +7,7 @@ dependencies:
     - core.entity_view_mode.block_content.ribbon
     - field.field.block_content.event.field_button
     - field.field.block_content.event.field_dates
-    - field.field.block_content.event.field_departments
+    - field.field.block_content.event.field_event_types
     - field.field.block_content.event.field_head
     - field.field.block_content.event.field_hosted_by
     - field.field.block_content.event.field_locations
@@ -27,6 +27,8 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
+      event_type:
+        - field_event_types
       head:
         - field_head
       dates:
@@ -35,8 +37,6 @@ third_party_settings:
         - field_button
       members_only:
         - field_members_only
-      department:
-        - field_departments
       location:
         - field_locations
 id: block_content.event.ribbon
@@ -64,13 +64,13 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: daterange_default
-  field_departments:
-    weight: 7
-    label: hidden
+  field_event_types:
+    type: entity_reference_label
+    weight: 0
+    label: above
     settings:
       link: true
     third_party_settings: {  }
-    type: entity_reference_label
   field_head:
     weight: 0
     label: hidden
