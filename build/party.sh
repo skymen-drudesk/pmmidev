@@ -1,5 +1,10 @@
 #!/bin/bash
 
+set -e
+path="$(dirname "$0")"
+pushd $path/..
+base="$(pwd)";
+
 # Set defaults
 build=
 install=
