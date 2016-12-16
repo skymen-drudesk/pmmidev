@@ -40,6 +40,18 @@
     {
       "type": "package",
       "package": {
+        "name": "evanjenkins/panels_everywhere",
+        "version": "dev-master",
+        "type": "drupal-module",
+        "dist": {
+          "url": "https://github.com/evanjenkins/panels_everywhere/archive/master.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
         "name": "desandro/masonry",
         "version": "3.3.1",
         "type": "drupal-library",
@@ -118,7 +130,8 @@
     "drupal/video": "^1.2",
     "drupal/yamlform": "~1.0@beta",
     "drush/drush": "~8.0",
-    "enyo/dropzone": "4.2.0"
+    "enyo/dropzone": "4.2.0",
+    "evanjenkins/panels_everywhere": "dev-master"
   },
   "require-dev": {
     "drupal/coder": "~2.7",

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eb361cf57280f01b12012d1fa23ef6da",
-    "content-hash": "94a5ede9fe09df007a62ddc076c20a13",
+    "hash": "e841043b85b11df98e8a4aec37346dd0",
+    "content-hash": "d4b037b1e77fbed08ae40a538a08e859",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2295,7 +2295,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/dropzonejs-8.x-1.0-alpha3.zip",
-                "reference": "8.x-1.0-alpha3",
+                "reference": null,
                 "shasum": "f1f099fa1a7d101f9f27c5a63615f49c30316d5f"
             },
             "require": {
@@ -2628,7 +2628,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/entity_embed-8.x-1.0-beta2.zip",
-                "reference": "8.x-1.0-beta2",
+                "reference": null,
                 "shasum": "21cdeb2b058efce461683aed9a8951053512dca7"
             },
             "require": {
@@ -3461,7 +3461,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/redirect",
-                "reference": "dbd3992c8d235f25f88d818d8528932da4032c33"
+                "reference": "d0f475946fd509e5067e9d1c30919567a9f66ce2"
             },
             "require": {
                 "drupal/core": "~8"
@@ -3475,8 +3475,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha1+10-dev",
-                    "datestamp": "1481898783"
+                    "version": "8.x-1.0-alpha2+1-dev",
+                    "datestamp": "1481914683"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3498,7 +3498,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/redirect"
             },
-            "time": "2016-12-16 14:30:21"
+            "time": "2016-12-16 18:55:05"
         },
         {
             "name": "drupal/tb_megamenu",
@@ -3783,7 +3783,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/views_field_formatter-8.x-1.4.zip",
-                "reference": "ec4d48fa5abc31365c424de07558dd1caaf74018",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -9126,6 +9126,7 @@
         "drupal/entity_browser": 10,
         "drupal/field_group": 5,
         "drupal/file_browser": 20,
+        "drupal/file_entity": 10,
         "drupal/inline_entity_form": 10,
         "drupal/job_scheduler": 20,
         "drupal/layout_plugin": 15,
@@ -9140,7 +9141,6 @@
         "drupal/twitter": 20,
         "drupal/twitter_block": 20,
         "drupal/yamlform": 10,
-        "drupal/file_entity": 10,
         "drupal/config_devel": 5,
         "drupal/devel": 20,
         "drupal/devel_debug_log": 10,
