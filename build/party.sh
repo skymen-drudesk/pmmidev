@@ -44,7 +44,6 @@ while [ "$1" != "" ]; do
   shift
 done
 
-
 # Set Docker Compose file based on environment.
 if [ "$SITE_ENVIRONMENT" = "test" ]; then
   dockercompose=docker-compose.staging.yml
