@@ -1,0 +1,70 @@
+uuid: 5726d852-2590-4eff-a018-c8dea9505bca
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.short
+    - field.field.node.video.body
+    - field.field.node.video.field_date
+    - field.field.node.video.field_featured_speaker
+    - field.field.node.video.field_image_header
+    - field.field.node.video.field_link
+    - field.field.node.video.field_video
+    - node.type.video
+  module:
+    - ds
+    - text
+    - user
+    - video
+third_party_settings:
+  ds:
+    layout:
+      id: default_mode
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      content:
+        - field_video
+        - node_title
+        - body
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+id: node.video.short
+targetEntityType: node
+bundle: video
+mode: short
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+  field_video:
+    weight: 0
+    label: hidden
+    settings:
+      image_style: thumbnail
+      link_image_to: content
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: video_embed_thumbnail
+hidden:
+  field_date: true
+  field_featured_speaker: true
+  field_image_header: true
+  field_link: true
+  links: true

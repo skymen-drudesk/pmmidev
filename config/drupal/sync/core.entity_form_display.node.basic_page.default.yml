@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.image_header
     - field.field.node.basic_page.body
     - field.field.node.basic_page.field_image_header
     - field.field.node.basic_page.field_meta_tags
@@ -11,7 +10,6 @@ dependencies:
     - field.field.node.basic_page.field_tags
     - node.type.basic_page
   module:
-    - entity_browser
     - metatag
     - text
 id: node.basic_page.default
@@ -33,17 +31,13 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_image_header:
-    weight: 28
+    weight: 31
     settings:
-      entity_browser: image_header
-      field_widget_remove: true
-      selection_mode: selection_append
-      preview_image_style: thumbnail
-      field_widget_edit: true
-      open: false
-      view_mode: default
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: entity_browser_file
+    type: entity_reference_autocomplete
   field_meta_tags:
     weight: 30
     settings: {  }
@@ -64,6 +58,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete_tags
+  path:
+    type: path
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:

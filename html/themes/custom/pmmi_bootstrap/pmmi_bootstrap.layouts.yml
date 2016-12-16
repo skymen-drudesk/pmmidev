@@ -6,25 +6,34 @@ sitewide:
     main:
       label: Main content
 
+default_mode:
+  label: Default (view mode)
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/default-mode
+  regions:
+    content:
+      label: Content
 article:
   label: Article
   category: PMMI: Nodes
   template: templates/layouts/nodes/article
   regions:
-    page_name:
-      label: Page Name
     image_header:
       label: Image Header
+    page_name:
+      label: Page Name
+    image:
+      label: Image
     title:
       label: Title
     date:
       label: Date
-    body:
-      label: Body
     link:
       label: Twitter Link
     immediate_release:
       label: For Immediate Release
+    body:
+      label: Body
     author:
       label: Author
     author_title:
@@ -34,13 +43,20 @@ article:
     phone:
       label: Phone
     email:
-      label: Email
-    news_category:
-      label: News Category
-    tags:
-      label: Tags
-    meta_tags:
-      label: Meta Tags
+      label:
+basic:
+  label: Basic
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/basic
+  regions:
+    image_header:
+      label: Image Header
+    page_name:
+      label: Page Name
+    title:
+      label: Title
+    body:
+      label: Body
 cert_test:
   label: Certification Test
   category: PMMI: Nodes
@@ -54,8 +70,6 @@ cert_test:
       label: Body
     image:
       label: Image
-    cert_test_coming:
-      label: Coming Soon
     cert_test_price:
       label: Price
     cert_test_text_price:
@@ -141,8 +155,10 @@ video:
       label: Date
     featured_speaker:
       label: Featured Speaker
-    link:
-      label: Register Link
+    left_block:
+      label: Left Block
+    view_region:
+      label: Videos View
 
 oneone:
   label: Column 1-up (1 row of 1 column)

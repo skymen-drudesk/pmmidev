@@ -1,12 +1,10 @@
-uuid: 9bac2b6f-cb4c-45b0-816c-b3b1ad87c15e
+uuid: c765db37-ffd2-4563-9fb5-5be46f87a744
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_file_download_button
     - node.type.download
-  module:
-    - file
 id: node.download.field_file_download_button
 field_name: field_file_download_button
 entity_type: node
@@ -18,10 +16,10 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: '[date:custom:Y]-[date:custom:m]'
-  file_extensions: 'txt pdf'
-  max_filesize: ''
-  description_field: false
   handler: 'default:file'
-  handler_settings: {  }
-field_type: file
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference
