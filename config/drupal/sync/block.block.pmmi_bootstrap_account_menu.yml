@@ -1,6 +1,6 @@
 uuid: d7ce4394-c577-41ca-92bf-d7265edbd63c
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - system.menu.account
@@ -12,8 +12,8 @@ _core:
   default_config_hash: R2K_qX0ZUMbUL6ie_-S9tZVjvqmlWKlscikgeRv9vhw
 id: pmmi_bootstrap_account_menu
 theme: pmmi_bootstrap
-region: navigation
-weight: -7
+region: '-1'
+weight: -8
 provider: null
 plugin: 'system_menu_block:account'
 settings:
