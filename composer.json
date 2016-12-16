@@ -130,7 +130,8 @@
     ],
     "merge-plugin": {
       "include": [
-        "html/modules/custom/pmmi/modules/pmmi_twitter/composer.json"
+        "html/modules/custom/pmmi/modules/pmmi_twitter/composer.json",
+        "html/modules/custom/pmmi/modules/pmmi_facebook/composer.json"
       ],
       "recurse": false,
       "replace": false,
