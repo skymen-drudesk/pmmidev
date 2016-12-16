@@ -81,8 +81,7 @@ class PMMITwitterSettings extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     parent::submitForm($form, $form_state);
-
-    $this->config('pmmi_twitter.settings')
+    $this->configFactory()->getEditable('pmmi_twitter.settings')
       ->set('consumer_key', $form_state->getValue('consumer_key'))
       ->set('consumer_secret', $form_state->getValue('consumer_secret'))
       ->set('access_token', $form_state->getValue('access_token'))

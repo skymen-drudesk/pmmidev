@@ -8,6 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Twitter;
+use TwitterException;
 
 /**
  * Provides a 'PMMITwitterBlock' block.
@@ -107,6 +108,7 @@ class PMMITwitterBlock extends BlockBase implements ContainerFactoryPluginInterf
    */
   public function build() {
     $build = [];
+    $connection = FALSE;
     $build['#theme'] = 'pmmi_twitter_block';
     /** @var \Drupal\Core\Config\ImmutableConfig $secret_config */
     $secret_config = \Drupal::config('pmmi_twitter.settings');
@@ -117,8 +119,13 @@ class PMMITwitterBlock extends BlockBase implements ContainerFactoryPluginInterf
     $block_config = $this->getConfiguration();
     /** @var \Twitter $twitter */
     $twitter = new Twitter($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
+    try {
+      $connection = $twitter->authenticate();
+    } catch (\Exception $e) {
+      drupal_set_message($this->t('Can not establish connection with Twitter'), 'error');
+    }
     // Retrieve the timeline
-    if ($twitter->authenticate()) {
+    if ($connection) {
       $statuses = $twitter->load($block_config['timeline'], $block_config['message_count']);
       foreach ($statuses as $key => $status) {
         $message = Twitter::clickable($status);
@@ -128,7 +135,7 @@ class PMMITwitterBlock extends BlockBase implements ContainerFactoryPluginInterf
       }
     }
     else {
-      $build['auth_messages']['#plain_text'] = $this->t('Authentication failed!!!');
+      $build['auth_messages']['#plain_text'] = $this->t('No data!!!');
     }
     return $build;
   }
