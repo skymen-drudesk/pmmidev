@@ -457,3 +457,70 @@ block_default_single:
         label: Head
     main:
       label: Main content
+
+panel_default:
+  label: Default panel layout
+  category: PMMI: Panels
+  template: templates/layouts/panels/panel-default
+  regions:
+    header_logo:
+      label: Header logo
+    header_utility_nav:
+      label: Header utility navigation
+    header_main_nav:
+      label: Header main navigation
+    topbar:
+      label: Top bar (tabs, breadcrumbs, page title, etc.)
+    main:
+      label: Main content
+    footer:
+      label: Footer content
+panel_microsite_exln:
+  label: Panel layout for Executive Leadership Network (Microsite)
+  category: PMMI: Panels
+  template: templates/layouts/panels/panel-microsite-exln
+  regions:
+    header_logo:
+      label: Header logo
+    header_microsite_info:
+      label: Header microsite info
+    header_main_nav:
+      label: Header main navigation
+    topbar:
+      label: Top bar (tabs, breadcrumbs, page title, etc.)
+    main:
+      label: Main content
+    footer:
+      label: Footer content
+panel_microsite_an:
+  label: Panel layout for Annual Meeting (Microsite)
+  category: PMMI: Panels
+  template: templates/layouts/panels/panel-microsite-an
+  regions:
+    header_logo:
+      label: Header logo
+    header_microsite_info:
+      label: Header microsite info
+    header_main_nav:
+      label: Header main navigation
+    topbar:
+      label: Top bar (tabs, breadcrumbs, page title, etc.)
+    main:
+      label: Main content
+    footer:
+      label: Footer content
+panel_microsite_eln:
+  label: Panel layout for Emerging Leaders Network (Microsite)
+  category: PMMI: Panels
+  template: templates/layouts/panels/panel-microsite-eln
+  regions:
+    header_logo:
+      label: Header logo
+    header_main_nav:
+      label: Header main navigation
+    topbar:
+      label: Top bar (tabs, breadcrumbs, page title, etc.)
+    main:
+      label: Main content
+    footer:
+      label: Footer content
