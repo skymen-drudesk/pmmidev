@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "33650f6cfec608d92af5812116052b0e",
-    "content-hash": "476b7fc2e0057430c070e4ae87aaf9d2",
+    "hash": "7950ef7a4685b10b7ca6d7fd10e06cf0",
+    "content-hash": "f1ffef8fef271532b52ad427cc3ebb71",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2273,6 +2273,38 @@
             "time": "2012-10-28 09:20:01"
         },
         {
+            "name": "drupal/default_content",
+            "version": "8.1.0-alpha3",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/default_content.git",
+                "reference": "10c07ee3eb29c3a4112209dfe842c048160efb46"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/default_content-8.x-1.0-alpha3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/hal": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Imports default content when a module is enabled",
+            "homepage": "https://www.drupal.org/project/default_content",
+            "time": "2016-09-15 21:41:18"
+        },
+        {
             "name": "drupal/ds",
             "version": "2.6.0",
             "source": {
@@ -2662,17 +2694,17 @@
         },
         {
             "name": "drupal/link_attributes",
-            "version": "1.0.0-alpha3",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/link_attributes",
-                "reference": "8.x-1.0-alpha3"
+                "reference": "8.x-1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/link_attributes-8.x-1.0-alpha3.zip",
-                "reference": "8.x-1.0-alpha3",
-                "shasum": "a43682e3a317054f9a6311a05b34f32f0e154049"
+                "url": "https://ftp.drupal.org/files/projects/link_attributes-8.x-1.0.zip",
+                "reference": null,
+                "shasum": "8a5851467f17c01b4dcb6e446f00cd7abe116475"
             },
             "require": {
                 "drupal/core": "*"
@@ -2683,8 +2715,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha3",
-                    "datestamp": "1479245341"
+                    "version": "8.x-1.0",
+                    "datestamp": "1481849583"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -8566,6 +8598,7 @@
         "drupal/config_split": 10,
         "drupal/ctools": 15,
         "drupal/date": 20,
+        "drupal/default_content": 20,
         "drupal/entity_browser": 10,
         "drupal/field_group": 5,
         "drupal/inline_entity_form": 10,
