@@ -7,10 +7,12 @@ dockercompose=docker-compose.yml
 webcontainer=pmmi_prod_web
 
 # Get environment variables.
-if [ -e .env ]; then
-  source .env
+if [[ -f "$base/.env" ]]; then
+  echo "Using Custom ENV file at $base/.env"
+  source "$base/.env"
 else
-  source env.dist
+  echo "Using Distributed ENV file at $base/env.dist"
+  source "$base/env.dist"
 fi
 
 # Usage info
