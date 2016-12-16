@@ -6,6 +6,13 @@ install=
 dockercompose=docker-compose.yml
 webcontainer=pmmi_prod_web
 
+# Get environment variables.
+if [ -e .env ]; then
+  source .env
+else
+  source env.dist
+fi
+
 # Usage info
 usage() {
 cat << EOF
@@ -36,6 +43,7 @@ while [ "$1" != "" ]; do
   esac
   shift
 done
+
 
 # Set Docker Compose file based on environment.
 if [ "$SITE_ENVIRONMENT" = "test" ]; then
