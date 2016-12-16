@@ -1,9 +1,9 @@
-uuid: c3747308-7c60-4978-9437-ecb26a84f000
+uuid: 5726d852-2590-4eff-a018-c8dea9505bca
 langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.teaser
+    - core.entity_view_mode.node.short
     - field.field.node.video.body
     - field.field.node.video.field_date
     - field.field.node.video.field_featured_speaker
@@ -13,7 +13,6 @@ dependencies:
     - node.type.video
   module:
     - ds
-    - link
     - text
     - user
     - video
@@ -31,75 +30,39 @@ third_party_settings:
         - field_video
         - node_title
         - body
-        - field_featured_speaker
-        - node_link
-        - field_link
     fields:
-      node_link:
-        plugin_id: node_link
-        weight: 4
-        label: hidden
-        formatter: default
-        settings:
-          'link text': 'Watch Video'
-          'link class': ''
-          wrapper: ''
-          class: ''
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
       node_title:
         plugin_id: node_title
         weight: 1
         label: hidden
         formatter: default
-id: node.video.teaser
+id: node.video.short
 targetEntityType: node
 bundle: video
-mode: teaser
+mode: short
 content:
   body:
     label: hidden
-    type: text_summary_or_trimmed
+    type: text_default
     weight: 2
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
-  field_featured_speaker:
-    type: string
-    weight: 3
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-  field_link:
-    type: link
-    weight: 5
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
+    settings: {  }
     third_party_settings: {  }
   field_video:
-    type: video_player_list
     weight: 0
     label: hidden
     settings:
       width: '854'
       height: '480'
+      autoplay: true
       controls: true
-      autoplay: false
       loop: false
       muted: false
       preload: none
     third_party_settings: {  }
+    type: video_player_list
 hidden:
   field_date: true
+  field_featured_speaker: true
   field_image_header: true
+  field_link: true
   links: true

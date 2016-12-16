@@ -1,10 +1,14 @@
 uuid: 92895e2d-29ff-4f7f-8fa0-be145d700835
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
     - field.field.node.basic_page.body
+    - field.field.node.basic_page.field_image_header
+    - field.field.node.basic_page.field_meta_tags
+    - field.field.node.basic_page.field_page_name
+    - field.field.node.basic_page.field_tags
     - node.type.basic_page
   module:
     - text
@@ -25,4 +29,8 @@ content:
     weight: 100
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_image_header: true
+  field_meta_tags: true
+  field_page_name: true
+  field_tags: true

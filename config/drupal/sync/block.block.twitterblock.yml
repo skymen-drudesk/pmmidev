@@ -1,6 +1,6 @@
 uuid: 59249631-a51a-4876-9b50-c82e6a6efed4
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - twitter_block
@@ -8,8 +8,8 @@ dependencies:
     - pmmi_bootstrap
 id: twitterblock
 theme: pmmi_bootstrap
-region: content
-weight: 0
+region: '-1'
+weight: -7
 provider: null
 plugin: twitter_block
 settings:

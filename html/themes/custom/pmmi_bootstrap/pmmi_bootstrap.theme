@@ -4,6 +4,8 @@
  * The primary PHP file for this theme.
  */
 
+use Drupal\Component\Utility\Html;
+
 /**
  * Implements hook_preprocess_block().
  */
@@ -16,4 +18,25 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
       }
       break;
   }
+}
+
+/**
+ * Implements hook_preprocess_ds_entity_view().
+ */
+function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
+  $classes = [
+    Html::cleanCssIdentifier($vars['content']['#bundle']),
+    'mode-' . $vars['content']['#view_mode'],
+  ];
+
+  switch ($vars['content']['#bundle']) {
+    case 'certification_test':
+      $coming = $vars['content']['#node']->get('field_cert_test_coming')->value;
+      if (!empty($coming)) {
+        $classes[] = 'comming-soon';
+      }
+      break;
+  }
+
+  $vars['content']['#classes'] = implode(' ', $classes);
 }

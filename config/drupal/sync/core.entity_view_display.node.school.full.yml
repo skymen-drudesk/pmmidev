@@ -35,12 +35,12 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
+      image_header:
+        - field_image_header
       title:
         - node_title
       body:
         - body
-      image_header:
-        - field_image_header
       image:
         - field_image
       progarm_focus:
@@ -98,20 +98,20 @@ content:
     type: basic_string
   field_image:
     weight: 103
-    label: above
+    label: hidden
     settings:
       image_style: ''
       image_link: ''
     third_party_settings: {  }
     type: image
   field_image_header:
-    weight: 102
+    type: entity_reference_entity_view
+    weight: 0
     label: above
     settings:
-      image_style: ''
-      image_link: ''
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    type: image
   field_logo:
     weight: 106
     label: hidden

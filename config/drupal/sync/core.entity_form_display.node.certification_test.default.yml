@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - entity_browser.browser.image
     - field.field.node.certification_test.body
     - field.field.node.certification_test.field_accordions
     - field.field.node.certification_test.field_cert_test_coming
@@ -19,7 +18,6 @@ dependencies:
     - image.style.thumbnail
     - node.type.certification_test
   module:
-    - entity_browser
     - image
     - inline_entity_form
     - link_attributes
@@ -104,22 +102,18 @@ content:
   field_image:
     weight: 28
     settings:
-      entity_browser: image
-      field_widget_remove: true
-      selection_mode: selection_append
       preview_image_style: thumbnail
-      field_widget_edit: true
-      open: false
-      view_mode: default
-    third_party_settings: {  }
-    type: entity_browser_file
-  field_image_header:
-    weight: 27
-    settings:
       progress_indicator: throbber
-      preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+  field_image_header:
+    weight: 38
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
   field_link:
     weight: 32
     settings:

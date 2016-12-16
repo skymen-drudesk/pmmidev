@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.download.body
+    - field.field.node.download.field_block_button_text
     - field.field.node.download.field_disclaimer
     - field.field.node.download.field_file_download_button
     - field.field.node.download.field_image
@@ -14,11 +15,45 @@ dependencies:
     - field.field.node.download.field_non_member_price
     - node.type.download
   module:
-    - file
+    - ds
     - image
     - link
     - text
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: download
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      image_header:
+        - field_image_header
+      title:
+        - node_title
+      body:
+        - body
+      image:
+        - field_image
+      links:
+        - field_links
+      member_price:
+        - field_member_price
+      non_member_price:
+        - field_non_member_price
+      file_download_button:
+        - field_file_download_button
+      disclaimer:
+        - field_disclaimer
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
 id: node.download.full
 targetEntityType: node
 bundle: download
@@ -27,40 +62,34 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 101
+    weight: 2
     settings: {  }
     third_party_settings: {  }
   field_disclaimer:
-    weight: 108
-    label: above
+    weight: 8
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-  field_file_download_button:
-    weight: 107
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: file_default
   field_image:
-    weight: 103
-    label: above
+    weight: 3
+    label: hidden
     settings:
       image_style: ''
       image_link: ''
     third_party_settings: {  }
     type: image
   field_image_header:
-    weight: 102
-    label: above
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
     settings:
-      image_style: ''
-      image_link: ''
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    type: image
   field_links:
-    weight: 104
-    label: above
+    weight: 4
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -70,8 +99,8 @@ content:
     third_party_settings: {  }
     type: link
   field_member_price:
-    weight: 105
-    label: above
+    weight: 5
+    label: hidden
     settings:
       thousand_separator: ''
       decimal_separator: .
@@ -80,8 +109,8 @@ content:
     third_party_settings: {  }
     type: number_decimal
   field_non_member_price:
-    weight: 106
-    label: above
+    weight: 6
+    label: hidden
     settings:
       thousand_separator: ''
       decimal_separator: .
@@ -89,8 +118,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
-  links:
-    weight: 100
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_block_button_text: true
+  field_file_download_button: true
+  links: true

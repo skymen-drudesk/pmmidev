@@ -14,7 +14,6 @@ dependencies:
   module:
     - datetime
     - ds
-    - image
     - link
     - text
     - user
@@ -29,12 +28,12 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
+      image_header:
+        - field_image_header
       title:
         - node_title
       body:
         - body
-      image_header:
-        - field_image_header
       date:
         - field_date
       link:
@@ -76,13 +75,13 @@ content:
     third_party_settings: {  }
     type: string
   field_image_header:
-    weight: 102
+    type: entity_reference_entity_view
+    weight: 0
     label: hidden
     settings:
-      image_style: ''
-      image_link: ''
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    type: image
   field_link:
     weight: 104
     label: hidden
