@@ -13,6 +13,7 @@ dependencies:
   module:
     - datetime
     - link
+    - path
     - text
     - video
 id: node.video.default
@@ -63,13 +64,22 @@ content:
   field_video:
     weight: 10
     settings:
-      file_extensions: 'mp4 ogv webm'
+      allowed_providers:
+        facebook: facebook
+        vimeo: vimeo
+        vine: vine
+        youtube: youtube
+        dailymotion: 0
+        instagram: 0
       file_directory: 'video-thumbnails/[date:custom:Y]-[date:custom:m]'
-      max_filesize: ''
       uri_scheme: public
-      progress_indicator: throbber
     third_party_settings: {  }
-    type: video_upload
+    type: video_embed
+  path:
+    type: path
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:

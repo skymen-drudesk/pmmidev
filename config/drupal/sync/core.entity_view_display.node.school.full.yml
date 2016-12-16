@@ -80,22 +80,43 @@ content:
     weight: 108
     label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: address_default
   field_content_verified:
     weight: 105
     label: inline
     settings:
       timezone_override: ''
-      format_type: medium
-    third_party_settings: {  }
+      format_type: custom_m_d_y
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: datetime_default
   field_email:
     weight: 110
-    label: hidden
+    label: inline
     settings: {  }
-    third_party_settings: {  }
-    type: basic_string
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: 'Email:'
+            lb-col: false
+            classes: {  }
+    type: email_mailto
   field_image:
     weight: 103
     label: hidden
@@ -107,7 +128,7 @@ content:
   field_image_header:
     type: entity_reference_entity_view
     weight: 0
-    label: above
+    label: hidden
     settings:
       view_mode: default
       link: false
@@ -132,7 +153,14 @@ content:
     label: inline
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: 'Programs focus on:'
+            lb-col: false
+            classes: {  }
     type: string
   field_school_contact:
     weight: 107
@@ -148,9 +176,16 @@ content:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: link
 hidden:
   links: true

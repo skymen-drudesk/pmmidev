@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.browse_files_modal
     - field.field.node.article.body
     - field.field.node.article.field_author
     - field.field.node.article.field_author_title
@@ -18,13 +19,13 @@ dependencies:
     - field.field.node.article.field_page_name
     - field.field.node.article.field_phone
     - field.field.node.article.field_tags
-    - image.style.thumbnail
     - node.type.article
   module:
     - datetime
-    - image
+    - entity_browser
     - link
     - metatag
+    - path
     - telephone
     - text
 id: node.article.default
@@ -81,10 +82,15 @@ content:
   field_image:
     weight: 6
     settings:
-      progress_indicator: throbber
+      entity_browser: browse_files_modal
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      view_mode: thumbnail
+      open: false
       preview_image_style: thumbnail
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_file
   field_image_header:
     weight: 5
     settings:
@@ -137,6 +143,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete_tags
+  path:
+    type: path
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:

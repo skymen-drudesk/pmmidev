@@ -14,12 +14,14 @@ dependencies:
     - field.field.node.download.field_member_price
     - field.field.node.download.field_non_member_price
     - node.type.download
+    - views.view.file_download_button
   module:
     - ds
     - image
     - link
     - text
     - user
+    - views_field_formatter
 third_party_settings:
   ds:
     layout:
@@ -71,6 +73,32 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+  field_file_download_button:
+    type: views_field_formatter
+    weight: 7
+    label: hidden
+    settings:
+      view: 'file_download_button::block_embed'
+      arguments:
+        field_value:
+          checked: '1'
+          weight: '0'
+        entity_id:
+          weight: '0'
+          checked: 0
+        delta:
+          weight: '0'
+          checked: 0
+      implode_character: ''
+      multiple: 0
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_image:
     weight: 3
     label: hidden
@@ -100,25 +128,38 @@ content:
     type: link
   field_member_price:
     weight: 5
-    label: hidden
+    label: inline
     settings:
       thousand_separator: ''
       decimal_separator: .
       scale: 2
       prefix_suffix: true
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: 'Member Price:'
+            lb-col: false
+            classes: {  }
     type: number_decimal
   field_non_member_price:
     weight: 6
-    label: hidden
+    label: inline
     settings:
       thousand_separator: ''
       decimal_separator: .
       scale: 2
       prefix_suffix: true
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: 'Non-Member Price:'
+            lb-col: false
+            classes: {  }
     type: number_decimal
 hidden:
   field_block_button_text: true
-  field_file_download_button: true
   links: true

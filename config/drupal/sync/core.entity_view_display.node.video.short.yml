@@ -51,15 +51,17 @@ content:
     weight: 0
     label: hidden
     settings:
-      width: '854'
-      height: '480'
-      autoplay: true
-      controls: true
-      loop: false
-      muted: false
-      preload: none
-    third_party_settings: {  }
-    type: video_player_list
+      image_style: thumbnail
+      link_image_to: content
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: video_embed_thumbnail
 hidden:
   field_date: true
   field_featured_speaker: true

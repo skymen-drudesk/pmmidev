@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c295ac6118b072e73a24d2246b0d89d1",
-    "content-hash": "4d11679bfaa7c1f92a5b9a29fa96a0f4",
+    "hash": "eb361cf57280f01b12012d1fa23ef6da",
+    "content-hash": "94a5ede9fe09df007a62ddc076c20a13",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -2784,6 +2784,41 @@
             "time": "2016-11-26 20:43:42"
         },
         {
+            "name": "drupal/file_entity",
+            "version": "8.2.0-beta2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/file_entity",
+                "reference": "1af9fe03f47e308c1118fd9e0e698da719a56b7c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/file_entity-8.x-2.0-beta2.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/file": "8.*",
+                "drupal/image": "8.*",
+                "drupal/text": "8.*",
+                "drupal/views": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-2.x": "8.2.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Extends Drupal file entities to be fieldable and viewable.",
+            "homepage": "https://www.drupal.org/project/file_entity",
+            "time": "2016-08-08 07:44:09"
+        },
+        {
             "name": "drupal/inline_entity_form",
             "version": "1.0.0-beta1",
             "source": {
@@ -3426,10 +3461,13 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/redirect",
-                "reference": "0500a856466eebc61b3f782520d34d710e2ecfec"
+                "reference": "dbd3992c8d235f25f88d818d8528932da4032c33"
             },
             "require": {
                 "drupal/core": "~8"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/redirect_404"
             },
             "type": "drupal-module",
             "extra": {
@@ -3437,8 +3475,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha1+9-dev",
-                    "datestamp": "1481668084"
+                    "version": "8.x-1.0-alpha1+10-dev",
+                    "datestamp": "1481898783"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3460,7 +3498,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/redirect"
             },
-            "time": "2016-12-13 22:24:22"
+            "time": "2016-12-16 14:30:21"
         },
         {
             "name": "drupal/tb_megamenu",
@@ -9102,6 +9140,7 @@
         "drupal/twitter": 20,
         "drupal/twitter_block": 20,
         "drupal/yamlform": 10,
+        "drupal/file_entity": 10,
         "drupal/config_devel": 5,
         "drupal/devel": 20,
         "drupal/devel_debug_log": 10,

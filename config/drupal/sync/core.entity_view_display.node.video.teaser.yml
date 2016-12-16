@@ -71,10 +71,17 @@ content:
   field_featured_speaker:
     type: string
     weight: 3
-    label: hidden
+    label: inline
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: 'Featured Speaker:'
+            lb-col: false
+            classes: {  }
   field_link:
     type: link
     weight: 5
@@ -83,22 +90,31 @@ content:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_video:
-    type: video_player_list
+    type: video_embed_thumbnail
     weight: 0
     label: hidden
     settings:
-      width: '854'
-      height: '480'
-      controls: true
-      autoplay: false
-      loop: false
-      muted: false
-      preload: none
-    third_party_settings: {  }
+      image_style: thumbnail
+      link_image_to: content
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 hidden:
   field_date: true
   field_image_header: true

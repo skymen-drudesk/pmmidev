@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.browse_files_modal
     - field.field.node.certification_test.body
     - field.field.node.certification_test.field_accordions
     - field.field.node.certification_test.field_cert_test_coming
@@ -15,12 +16,12 @@ dependencies:
     - field.field.node.certification_test.field_image
     - field.field.node.certification_test.field_image_header
     - field.field.node.certification_test.field_link
-    - image.style.thumbnail
     - node.type.certification_test
   module:
-    - image
+    - entity_browser
     - inline_entity_form
     - link_attributes
+    - path
     - text
 id: node.certification_test.default
 targetEntityType: node
@@ -102,10 +103,15 @@ content:
   field_image:
     weight: 28
     settings:
+      entity_browser: browse_files_modal
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      view_mode: thumbnail
+      open: false
       preview_image_style: thumbnail
-      progress_indicator: throbber
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_file
   field_image_header:
     weight: 38
     settings:
@@ -128,6 +134,11 @@ content:
         accesskey: false
     third_party_settings: {  }
     type: link_attributes
+  path:
+    type: path
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:

@@ -2,7 +2,11 @@ uuid: 25501827-9981-4c10-89ac-833023bc6da3
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.storage.node.field_block_button_text
   module:
+    - file
+    - file_entity
     - node
     - user
 id: file_download_button
@@ -60,43 +64,58 @@ display:
           separator: ''
           hide_empty: false
       fields:
-        title:
-          id: title
-          table: node_field_data
-          field: title
-          entity_type: node
-          entity_field: title
-          label: ''
-          alter:
-            alter_text: false
-            make_link: false
-            absolute: false
-            trim: false
-            word_boundary: false
-            ellipsis: false
-            strip_tags: false
-            html: false
-          hide_empty: false
-          empty_zero: false
-          settings:
-            link_to_entity: true
-          plugin_id: field
+        field_block_button_text:
+          id: field_block_button_text
+          table: node__field_block_button_text
+          field: field_block_button_text
           relationship: none
           group_type: group
           admin_label: ''
-          exclude: false
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
           element_type: ''
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
           empty: ''
+          hide_empty: false
+          empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
           type: string
+          settings:
+            link_to_entity: false
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -107,6 +126,57 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+          plugin_id: field
+        download:
+          id: download
+          table: file_managed
+          field: download
+          relationship: field_file_download_button
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: '{{ field_block_button_text }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          entity_type: file
+          plugin_id: file_entity_link_download
       filters:
         status:
           value: '1'
@@ -124,7 +194,16 @@ display:
       header: {  }
       footer: {  }
       empty: {  }
-      relationships: {  }
+      relationships:
+        field_file_download_button:
+          id: field_file_download_button
+          table: node__field_file_download_button
+          field: field_file_download_button
+          relationship: none
+          group_type: group
+          admin_label: File
+          required: false
+          plugin_id: standard
       arguments:
         field_file_download_button_target_id:
           id: field_file_download_button_target_id
@@ -170,10 +249,11 @@ display:
         - url
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
-  block_1:
+      tags:
+        - 'config:field.storage.node.field_block_button_text'
+  block_embed:
     display_plugin: block
-    id: block_1
+    id: block_embed
     display_title: Embed
     position: 1
     display_options:
@@ -187,4 +267,5 @@ display:
         - url
         - 'user.node_grants:view'
         - user.permissions
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_block_button_text'
