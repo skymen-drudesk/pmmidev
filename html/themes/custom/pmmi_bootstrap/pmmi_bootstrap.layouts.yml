@@ -297,14 +297,25 @@ block_text:
   regions:
     head:
       label: Head
-    body:
-      label: Body
     image:
       label: Image
+    body:
+      label: Body
     button:
       label: Button
     link:
       label: Link
+block_text_image:
+  label: Text+Image
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/text-image
+  regions:
+    head:
+      label: Head
+    body:
+      label: Body
+    image:
+      label: Image
 block_image_slide_default:
   label: Image Slide Default
   category: PMMI: Blocks
