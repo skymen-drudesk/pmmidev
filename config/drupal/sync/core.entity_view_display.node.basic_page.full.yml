@@ -1,6 +1,6 @@
 uuid: e7959096-7206-4772-aafa-b5c55300888b
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - core.entity_view_mode.node.full
@@ -12,7 +12,6 @@ dependencies:
     - node.type.basic_page
   module:
     - ds
-    - image
     - metatag
     - text
     - user
@@ -55,14 +54,6 @@ content:
     weight: 3
     settings: {  }
     third_party_settings: {  }
-  field_image_header:
-    weight: 1
-    label: hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
   field_meta_tags:
     weight: 5
     label: above
@@ -84,4 +75,5 @@ content:
     third_party_settings: {  }
     type: entity_reference_label
 hidden:
+  field_image_header: true
   links: true

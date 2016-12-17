@@ -1,12 +1,11 @@
-uuid: 9a46f9fc-2e51-4fee-8c0c-b5c7bdbb02d7
+uuid: 934a65dd-20cd-45b8-a137-b8e7aa51b064
 langcode: en
 status: true
 dependencies:
   config:
+    - block_content.type.image_header
     - field.storage.node.field_image_header
     - node.type.article
-  module:
-    - image
 id: node.article.field_image_header
 field_name: field_image_header
 entity_type: node
@@ -18,21 +17,12 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: '[date:custom:Y]-[date:custom:m]'
-  file_extensions: 'png gif jpg jpeg'
-  max_filesize: ''
-  max_resolution: ''
-  min_resolution: ''
-  alt_field: true
-  alt_field_required: true
-  title_field: false
-  title_field_required: false
-  default_image:
-    uuid: ''
-    alt: ''
-    title: ''
-    width: null
-    height: null
-  handler: 'default:file'
-  handler_settings: {  }
-field_type: image
+  handler: 'default:block_content'
+  handler_settings:
+    target_bundles:
+      image_header: image_header
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

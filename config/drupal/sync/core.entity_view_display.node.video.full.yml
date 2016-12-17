@@ -14,8 +14,6 @@ dependencies:
   module:
     - datetime
     - ds
-    - image
-    - link
     - text
     - user
     - video
@@ -29,24 +27,22 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
+      image_header:
+        - field_image_header
       title:
         - node_title
       body:
         - body
-      image_header:
-        - field_image_header
-      date:
-        - field_date
-      link:
-        - field_link
-      featured_speaker:
-        - field_featured_speaker
       video:
         - field_video
+      date:
+        - field_date
+      left_block:
+        - field_featured_speaker
     fields:
       node_title:
         plugin_id: node_title
-        weight: 0
+        weight: 1
         label: hidden
         formatter: default
 id: node.video.full
@@ -57,11 +53,11 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 101
+    weight: 2
     settings: {  }
     third_party_settings: {  }
   field_date:
-    weight: 103
+    weight: 4
     label: hidden
     settings:
       timezone_override: ''
@@ -69,43 +65,36 @@ content:
     third_party_settings: {  }
     type: datetime_default
   field_featured_speaker:
-    weight: 105
+    weight: 5
     label: inline
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: 'Featured Speaker:'
+            lb-col: false
+            classes: {  }
     type: string
   field_image_header:
-    weight: 102
+    type: entity_reference_entity_view
+    weight: 0
     label: hidden
     settings:
-      image_style: ''
-      image_link: ''
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    type: image
-  field_link:
-    weight: 104
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
   field_video:
-    weight: 106
+    weight: 3
     label: hidden
     settings:
       width: '854'
       height: '480'
       autoplay: true
-      controls: true
-      loop: false
-      muted: false
-      preload: none
     third_party_settings: {  }
-    type: video_player_list
+    type: video_embed_player
 hidden:
+  field_link: true
   links: true

@@ -1,4 +1,4 @@
-uuid: 1a2ed06b-4deb-42a3-9863-b8930fe5aa72
+uuid: 3336be94-cb06-42af-b2da-a7b72013e75c
 langcode: en
 status: true
 dependencies:
@@ -8,13 +8,10 @@ dependencies:
 id: node.field_file_download_button
 field_name: field_file_download_button
 entity_type: node
-type: file
+type: entity_reference
 settings:
-  display_field: false
-  display_default: false
-  uri_scheme: public
   target_type: file
-module: file
+module: core
 locked: false
 cardinality: 1
 translatable: true

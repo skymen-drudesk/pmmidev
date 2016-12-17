@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.article.field_company
     - field.field.node.article.field_date
     - field.field.node.article.field_email
+    - field.field.node.article.field_image
     - field.field.node.article.field_image_header
     - field.field.node.article.field_immediate_release
     - field.field.node.article.field_link
@@ -24,7 +25,6 @@ dependencies:
     - ds
     - image
     - link
-    - metatag
     - telephone
     - text
     - user
@@ -38,12 +38,12 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
-      page_name:
-        - field_page_name
-      meta_tags:
-        - field_meta_tags
       image_header:
         - field_image_header
+      page_name:
+        - field_page_name
+      image:
+        - field_image
       title:
         - node_title
       date:
@@ -64,10 +64,6 @@ third_party_settings:
         - field_phone
       email:
         - field_email
-      news_category:
-        - field_news_category
-      tags:
-        - field_tags
     fields:
       node_title:
         plugin_id: node_title
@@ -121,14 +117,22 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-  field_image_header:
-    weight: 1
+  field_image:
+    type: image
+    weight: 0
     label: hidden
     settings:
       image_style: ''
       image_link: ''
     third_party_settings: {  }
-    type: image
+  field_image_header:
+    type: entity_reference_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
   field_immediate_release:
     weight: 6
     label: hidden
@@ -149,19 +153,6 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-  field_meta_tags:
-    type: metatag_empty_formatter
-    weight: 0
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-  field_news_category:
-    weight: 12
-    label: hidden
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
   field_page_name:
     weight: 0
     label: hidden
@@ -176,12 +167,8 @@ content:
       title: ''
     third_party_settings: {  }
     type: telephone_link
-  field_tags:
-    weight: 13
-    label: hidden
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
 hidden:
+  field_meta_tags: true
+  field_news_category: true
+  field_tags: true
   links: true

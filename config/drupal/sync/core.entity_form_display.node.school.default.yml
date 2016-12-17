@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - entity_browser.browser.browse_files_modal
     - field.field.node.school.body
     - field.field.node.school.field_address
     - field.field.node.school.field_content_verified
@@ -19,9 +20,11 @@ dependencies:
   module:
     - address
     - datetime
+    - entity_browser
     - field_group
     - image
     - link
+    - path
     - telephone
     - text
 third_party_settings:
@@ -85,17 +88,23 @@ content:
   field_image:
     weight: 7
     settings:
-      progress_indicator: throbber
+      entity_browser: browse_files_modal
+      field_widget_edit: true
+      field_widget_remove: true
+      selection_mode: selection_append
+      view_mode: thumbnail
+      open: false
       preview_image_style: thumbnail
     third_party_settings: {  }
-    type: image_image
+    type: entity_browser_file
   field_image_header:
     weight: 6
     settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: image_image
+    type: entity_reference_autocomplete
   field_logo:
     weight: 11
     settings:
@@ -130,6 +139,11 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+  path:
+    type: path
+    weight: 30
+    settings: {  }
+    third_party_settings: {  }
   promote:
     type: boolean_checkbox
     settings:

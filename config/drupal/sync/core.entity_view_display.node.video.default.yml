@@ -11,66 +11,45 @@ dependencies:
     - field.field.node.video.field_video
     - node.type.video
   module:
-    - datetime
-    - image
-    - link
-    - text
+    - ds
     - user
     - video
+third_party_settings:
+  ds:
+    layout:
+      id: default_mode
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      content:
+        - field_video
 id: node.video.default
 targetEntityType: node
 bundle: video
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 101
-    settings: {  }
-    third_party_settings: {  }
-  field_date:
-    weight: 103
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-  field_featured_speaker:
-    weight: 105
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-  field_image_header:
-    weight: 102
-    label: above
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
-  field_link:
-    weight: 104
-    label: above
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
   field_video:
-    weight: 106
-    label: above
+    weight: 0
+    label: hidden
     settings:
-      width: '854'
-      height: '480'
-      autoplay: true
-    third_party_settings: {  }
-    type: video_embed_player
-  links:
-    weight: 100
-hidden: {  }
+      image_style: thumbnail
+      link_image_to: content
+    third_party_settings:
+      ds:
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: video_embed_thumbnail
+hidden:
+  body: true
+  field_date: true
+  field_featured_speaker: true
+  field_image_header: true
+  field_link: true
+  links: true

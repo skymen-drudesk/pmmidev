@@ -19,7 +19,6 @@ dependencies:
     - node.type.certification_test
   module:
     - ds
-    - image
     - link
     - text
     - user
@@ -33,16 +32,12 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
+      image_header:
+        - field_image_header
       title:
         - node_title
       body:
         - body
-      image_header:
-        - field_image_header
-      image:
-        - field_image
-      cert_test_coming:
-        - field_cert_test_coming
       cert_test_price:
         - field_cert_test_price
       cert_test_text_price:
@@ -82,17 +77,9 @@ content:
     label: hidden
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
-  field_cert_test_coming:
-    weight: 104
-    label: hidden
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
+    type: entity_reference_entity_view
   field_cert_test_length:
     weight: 109
     label: above
@@ -107,17 +94,24 @@ content:
     type: text_default
   field_cert_test_price:
     weight: 105
-    label: hidden
+    label: inline
     settings:
       thousand_separator: ''
       decimal_separator: .
       scale: 2
       prefix_suffix: true
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: number_decimal
   field_cert_test_text_price:
     weight: 106
-    label: hidden
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -134,22 +128,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
-  field_image:
-    weight: 103
-    label: hidden
-    settings:
-      image_style: ''
-      image_link: ''
-    third_party_settings: {  }
-    type: image
   field_image_header:
-    weight: 102
+    type: entity_reference_entity_view
+    weight: 0
     label: hidden
     settings:
-      image_style: ''
-      image_link: ''
+      view_mode: default
+      link: false
     third_party_settings: {  }
-    type: image
   field_link:
     weight: 107
     label: hidden
@@ -162,4 +148,6 @@ content:
     third_party_settings: {  }
     type: link
 hidden:
+  field_cert_test_coming: true
+  field_image: true
   links: true
