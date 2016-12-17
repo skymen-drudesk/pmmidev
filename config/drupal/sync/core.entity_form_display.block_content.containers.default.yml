@@ -10,7 +10,10 @@ dependencies:
     - field.field.block_content.containers.field_block_4
     - field.field.block_content.containers.field_block_5
     - field.field.block_content.containers.field_block_6
+    - field.field.block_content.containers.field_button
     - field.field.block_content.containers.field_head
+  module:
+    - link
 id: block_content.containers.default
 targetEntityType: block_content
 bundle: containers
@@ -64,6 +67,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_button:
+    weight: 10
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
   field_head:
     weight: 3
     settings:
