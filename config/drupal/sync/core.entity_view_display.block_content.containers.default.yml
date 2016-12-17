@@ -10,28 +10,27 @@ dependencies:
     - field.field.block_content.containers.field_block_4
     - field.field.block_content.containers.field_block_5
     - field.field.block_content.containers.field_block_6
+    - field.field.block_content.containers.field_button
     - field.field.block_content.containers.field_head
   module:
     - ds
+    - link
 third_party_settings:
   ds:
     layout:
-      id: block_default_single
+      id: oneone
       path: themes/custom/pmmi_bootstrap
       library: ''
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
-      head:
+      top:
         - field_head
-      main:
+      oneone:
         - field_block_1
-        - field_block_2
-        - field_block_3
-        - field_block_4
-        - field_block_5
-        - field_block_6
+      bottom:
+        - field_button
 id: block_content.containers.default
 targetEntityType: block_content
 bundle: containers
@@ -45,46 +44,17 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_reference_entity_view
-  field_block_2:
-    weight: 2
+  field_button:
+    weight: 7
     label: hidden
     settings:
-      link: true
-      view_mode: default
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
     third_party_settings: {  }
-    type: entity_reference_entity_view
-  field_block_3:
-    weight: 3
-    label: hidden
-    settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
-    type: entity_reference_entity_view
-  field_block_4:
-    weight: 4
-    label: hidden
-    settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
-    type: entity_reference_entity_view
-  field_block_5:
-    weight: 5
-    label: hidden
-    settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
-    type: entity_reference_entity_view
-  field_block_6:
-    weight: 6
-    label: hidden
-    settings:
-      view_mode: default
-      link: false
-    third_party_settings: {  }
-    type: entity_reference_entity_view
+    type: link
   field_head:
     weight: 0
     label: hidden
@@ -92,4 +62,9 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-hidden: {  }
+hidden:
+  field_block_2: true
+  field_block_3: true
+  field_block_4: true
+  field_block_5: true
+  field_block_6: true

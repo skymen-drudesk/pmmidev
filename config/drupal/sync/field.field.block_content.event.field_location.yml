@@ -1,20 +1,20 @@
-uuid: e0e2f4d6-41f9-4251-b90e-77b7333cb519
+uuid: 504c748b-3739-4a11-ae66-4b13a2a9be22
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.event
-    - field.storage.block_content.field_locations
+    - field.storage.block_content.field_location
   module:
     - address
-id: block_content.event.field_locations
-field_name: field_locations
+id: block_content.event.field_location
+field_name: field_location
 entity_type: block_content
 bundle: event
 label: Location(s)
 description: ''
-required: false
-translatable: false
+required: true
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -22,12 +22,12 @@ settings:
   fields:
     administrativeArea: administrativeArea
     locality: locality
-    dependentLocality: dependentLocality
-    postalCode: postalCode
-    sortingCode: sortingCode
-    addressLine1: addressLine1
-    addressLine2: addressLine2
-    organization: '0'
+    organization: organization
+    dependentLocality: '0'
+    postalCode: '0'
+    sortingCode: '0'
+    addressLine1: '0'
+    addressLine2: '0'
     givenName: '0'
     additionalName: '0'
     familyName: '0'

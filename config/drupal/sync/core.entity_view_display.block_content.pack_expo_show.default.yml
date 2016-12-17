@@ -52,10 +52,18 @@ content:
     weight: 0
     label: hidden
     settings:
-      separator: '-'
-      format_type: medium
       timezone_override: ''
-    third_party_settings: {  }
+      format_type: month_day_year
+      separator: '-'
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: daterange_default
   field_location:
     weight: 1

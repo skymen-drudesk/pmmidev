@@ -297,25 +297,47 @@ block_text:
   regions:
     head:
       label: Head
-    body:
-      label: Body
     image:
       label: Image
+    body:
+      label: Body
     button:
       label: Button
     link:
       label: Link
+block_text_image:
+  label: Text+Image
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/text-image
+  regions:
+    head:
+      label: Head
+    body:
+      label: Body
+    image:
+      label: Image
+block_image_slide_default:
+  label: Image Slide Default
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/image-slide-default
+  regions:
+    image:
+      label: Image
+    head:
+      label: Head
+    body:
+      label: Body
 block_image_slide:
   label: Image Slide
   category: PMMI: Blocks
   template: templates/layouts/blocks/image-slide
   regions:
+    image:
+      label: Image
     head:
       label: Head
     subhead:
       label: Subhead
-    image:
-      label: Image
     body:
       label: Body
     button:
@@ -327,12 +349,12 @@ block_accordion:
   regions:
     head:
       label: Head
-    body:
-      label: Body
-    image:
-      label: Image
     video:
       label: Video
+    image:
+      label: Image
+    body:
+      label: Body
     button:
       label: Button
     link:
@@ -354,6 +376,8 @@ block_event_default:
       label: Hosted By
     button:
       label: Button
+    link:
+      label: Link
 block_event_ribbon:
   label: Event Ribbon
   category: PMMI: Blocks
@@ -365,12 +389,10 @@ block_event_ribbon:
       label: Head
     location:
       label: Location
-    event_type:
-      label: Event type
-    members_only:
-      label: Member Only
-    button:
-      label: Button
+    hosted_by:
+      label: Hosted By
+    link:
+      label: Link
 block_pack_expo_show:
   label: Pack Expo Show
   category: PMMI: Blocks
@@ -464,6 +486,19 @@ block_social_media:
       label: Google+
     youtube:
       label: YouTube
+block_enticement:
+  label: Enticement
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/enticement
+  regions:
+    head:
+      label: Head
+    image:
+      label: Image
+    teaser:
+      label: Teaser
+    button:
+      label: Button
 block_default_single:
   label: Default(with single column, i.e. for block containers)
   category: PMMI: Blocks

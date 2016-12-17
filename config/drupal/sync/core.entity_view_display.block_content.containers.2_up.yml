@@ -1,0 +1,80 @@
+uuid: ba9920c9-6eb3-448f-ac5c-ca30bb4d9db1
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.containers
+    - core.entity_view_mode.block_content.2_up
+    - field.field.block_content.containers.field_block_1
+    - field.field.block_content.containers.field_block_2
+    - field.field.block_content.containers.field_block_3
+    - field.field.block_content.containers.field_block_4
+    - field.field.block_content.containers.field_block_5
+    - field.field.block_content.containers.field_block_6
+    - field.field.block_content.containers.field_button
+    - field.field.block_content.containers.field_head
+  module:
+    - ds
+    - link
+third_party_settings:
+  ds:
+    layout:
+      id: onetwo
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      top:
+        - field_head
+      bottom:
+        - field_button
+      oneone:
+        - field_block_1
+      onetwo:
+        - field_block_2
+id: block_content.containers.2_up
+targetEntityType: block_content
+bundle: containers
+mode: 2_up
+content:
+  field_block_1:
+    weight: 1
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+  field_block_2:
+    weight: 2
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+  field_button:
+    type: link
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_head:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden:
+  field_block_3: true
+  field_block_4: true
+  field_block_5: true
+  field_block_6: true

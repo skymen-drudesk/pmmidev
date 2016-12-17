@@ -15,7 +15,7 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: block_default_single
+      id: block_enticement
       path: themes/custom/pmmi_bootstrap
       library: ''
       disable_css: false
@@ -24,9 +24,11 @@ third_party_settings:
     regions:
       head:
         - field_head
-      main:
+      image:
         - field_image
+      teaser:
         - field_teaser
+      button:
         - field_button
 id: block_content.enticement.default
 targetEntityType: block_content

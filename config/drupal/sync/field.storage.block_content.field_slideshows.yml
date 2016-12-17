@@ -1,16 +1,17 @@
-uuid: 24b15885-b5f6-4183-b7ff-0ec8e3690a07
+uuid: b560a3a3-3f22-4302-93d1-777530f9924e
 langcode: en
 status: true
 dependencies:
   module:
-    - address
     - block_content
-id: block_content.field_locations
-field_name: field_locations
+    - taxonomy
+id: block_content.field_slideshows
+field_name: field_slideshows
 entity_type: block_content
-type: address
-settings: {  }
-module: address
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
 locked: false
 cardinality: -1
 translatable: true
