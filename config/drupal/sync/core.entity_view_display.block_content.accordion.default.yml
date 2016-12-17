@@ -10,13 +10,12 @@ dependencies:
     - field.field.block_content.accordion.field_head
     - field.field.block_content.accordion.field_image
     - field.field.block_content.accordion.field_link
-    - field.field.block_content.accordion.field_video
+    - field.field.block_content.accordion.field_video_node
   module:
     - ds
     - image
     - link
     - text
-    - video
 third_party_settings:
   ds:
     layout:
@@ -33,14 +32,14 @@ third_party_settings:
         - field_head
       image:
         - field_image
-      video:
-        - field_video
       button:
         - field_button
       link:
         - field_link
       accordions:
         - field_accordions
+      video:
+        - field_video_node
 id: block_content.accordion.default
 targetEntityType: block_content
 bundle: accordion
@@ -97,17 +96,19 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-  field_video:
-    weight: 3
+  field_video_node:
+    weight: 7
     label: hidden
     settings:
-      width: '854'
-      height: '480'
-      autoplay: true
-      controls: true
-      loop: false
-      muted: false
-      preload: none
-    third_party_settings: {  }
-    type: video_player_list
+      view_mode: default
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: entity_reference_entity_view
 hidden: {  }
