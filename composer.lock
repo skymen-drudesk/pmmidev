@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e841043b85b11df98e8a4aec37346dd0",
-    "content-hash": "d4b037b1e77fbed08ae40a538a08e859",
+    "hash": "25f95447e763ca15380b21a1947b4c67",
+    "content-hash": "4d17c477654c2b2ef988d01242ceab16",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -907,6 +907,48 @@
                 "resolver"
             ],
             "time": "2012-10-28 21:08:28"
+        },
+        {
+            "name": "dg/twitter-php",
+            "version": "v3.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dg/twitter-php.git",
+                "reference": "dd872ad12121ff919b358989e61f7f08ba6cc7a8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dg/twitter-php/zipball/dd872ad12121ff919b358989e61f7f08ba6cc7a8",
+                "reference": "dd872ad12121ff919b358989e61f7f08ba6cc7a8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                }
+            ],
+            "description": "Small and easy Twitter library for PHP",
+            "homepage": "https://github.com/dg/twitter-php",
+            "keywords": [
+                "oauth",
+                "twitter"
+            ],
+            "time": "2016-08-15 16:46:22"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2486,7 +2528,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/embed-8.x-1.0-rc3.zip",
-                "reference": "8.x-1.0-rc3",
+                "reference": null,
                 "shasum": "9138d016313a47a52c6c9805fb7d034ff5105f3a"
             },
             "require": {
@@ -2997,58 +3039,6 @@
             }
         },
         {
-            "name": "drupal/libraries",
-            "version": "dev-3.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/libraries",
-                "reference": "dcd717dc541293ae5c4003f304921cca9200728c"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-3.x-dev",
-                    "datestamp": "1481525886"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Pol",
-                    "homepage": "https://www.drupal.org/user/47194"
-                },
-                {
-                    "name": "rjacobs",
-                    "homepage": "https://www.drupal.org/user/422459"
-                },
-                {
-                    "name": "sun",
-                    "homepage": "https://www.drupal.org/user/54136"
-                },
-                {
-                    "name": "tstoeckler",
-                    "homepage": "https://www.drupal.org/user/107158"
-                }
-            ],
-            "description": "Allows version-dependent and shared usage of external libraries in Drupal.",
-            "homepage": "http://drupal.org/project/libraries",
-            "support": {
-                "source": "http://cgit.drupalcode.org/libraries",
-                "issues": "http://drupal.org/project/issues/libraries",
-                "irc": "irc://irc.freenode.org/drupal-contribute"
-            },
-            "time": "2016-12-12 06:56:46"
-        },
-        {
             "name": "drupal/link_attributes",
             "version": "1.0.0",
             "source": {
@@ -3185,77 +3175,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/metatag",
                 "issues": "http://drupal.org/project/issues/metatag"
-            }
-        },
-        {
-            "name": "drupal/oauth",
-            "version": "2.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/oauth",
-                "reference": "8.x-2.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/oauth-8.x-2.0.zip",
-                "reference": "8.x-2.0",
-                "shasum": "c9d9f69f418b514b7bff7a9d462221608c64262f"
-            },
-            "require": {
-                "drupal/core": "~8.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-2.x": "2.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-2.0",
-                    "datestamp": "1453717439"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Hugo Wetterberg",
-                    "homepage": "https://www.drupal.org/user/208601"
-                },
-                {
-                    "name": "SimmeLj",
-                    "homepage": "https://www.drupal.org/user/692532"
-                },
-                {
-                    "name": "Vikom",
-                    "homepage": "https://www.drupal.org/user/279158"
-                },
-                {
-                    "name": "heyrocker",
-                    "homepage": "https://www.drupal.org/user/128537"
-                },
-                {
-                    "name": "jobeirne",
-                    "homepage": "https://www.drupal.org/user/1458362"
-                },
-                {
-                    "name": "juampynr",
-                    "homepage": "https://www.drupal.org/user/682736"
-                },
-                {
-                    "name": "kylebrowning",
-                    "homepage": "https://www.drupal.org/user/211387"
-                },
-                {
-                    "name": "voxpelli",
-                    "homepage": "https://www.drupal.org/user/341713"
-                }
-            ],
-            "description": "Provides OAuth 1.0a server authentication",
-            "homepage": "https://www.drupal.org/project/oauth",
-            "support": {
-                "source": "http://cgit.drupalcode.org/oauth"
             }
         },
         {
@@ -3594,123 +3513,6 @@
                 "source": "http://cgit.drupalcode.org/token",
                 "issues": "https://www.drupal.org/project/issues/token"
             }
-        },
-        {
-            "name": "drupal/twitter",
-            "version": "dev-1.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/twitter",
-                "reference": "fba2285dc5c94ffa5701935894adc408ef842c88"
-            },
-            "require": {
-                "drupal/core": "*",
-                "drupal/libraries": "*",
-                "drupal/oauth": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.x-dev",
-                    "datestamp": "1452344339"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "DamienMcKenna",
-                    "homepage": "https://www.drupal.org/user/108450"
-                },
-                {
-                    "name": "eaton",
-                    "homepage": "https://www.drupal.org/user/16496"
-                },
-                {
-                    "name": "juampynr",
-                    "homepage": "https://www.drupal.org/user/682736"
-                },
-                {
-                    "name": "michaek",
-                    "homepage": "https://www.drupal.org/user/251668"
-                },
-                {
-                    "name": "walkah",
-                    "homepage": "https://www.drupal.org/user/1531"
-                },
-                {
-                    "name": "xurizaemon",
-                    "homepage": "https://www.drupal.org/user/76026"
-                }
-            ],
-            "description": "Allows integration with the Twitter microblogging service.",
-            "homepage": "https://www.drupal.org/project/twitter",
-            "support": {
-                "source": "http://cgit.drupalcode.org/twitter"
-            },
-            "time": "2016-01-09 12:55:10"
-        },
-        {
-            "name": "drupal/twitter_block",
-            "version": "dev-3.x",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/twitter_block",
-                "reference": "2f29a92e2b03317ed34a78b46aa5b01c4a9ee4fb"
-            },
-            "require": {
-                "drupal/core": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-3.x-dev",
-                    "datestamp": "1472298239"
-                },
-                "patches_applied": {
-                    "Refactor module to user username instead of widget ID": "https://www.drupal.org/files/issues/twitter_block-2783737-username_instead_widgetid-12.patch"
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Devin Carlson",
-                    "homepage": "https://www.drupal.org/user/290182"
-                },
-                {
-                    "name": "ZenDoodles",
-                    "homepage": "https://www.drupal.org/user/226976"
-                },
-                {
-                    "name": "cweagans",
-                    "homepage": "https://www.drupal.org/user/404732"
-                },
-                {
-                    "name": "naveenvalecha",
-                    "homepage": "https://www.drupal.org/user/2665733"
-                },
-                {
-                    "name": "subhojit777",
-                    "homepage": "https://www.drupal.org/user/1812492"
-                }
-            ],
-            "description": "Provides configurable blocks for a Twitter feed.",
-            "homepage": "http://drupal.org/project/twitter_block",
-            "support": {
-                "source": "http://cgit.drupalcode.org/twitter_block"
-            },
-            "time": "2016-05-19 07:50:16"
         },
         {
             "name": "drupal/video",
@@ -4081,6 +3883,75 @@
                 "reference": "origin/master"
             },
             "type": "drupal-library"
+        },
+        {
+            "name": "evanjenkins/panels_everywhere",
+            "version": "dev-master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/evanjenkins/panels_everywhere/archive/master.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-module"
+        },
+        {
+            "name": "facebook/graph-sdk",
+            "version": "5.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/facebook/php-graph-sdk.git",
+                "reference": "2839246e971aef150650196acbb46d47e5207370"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/facebook/php-graph-sdk/zipball/2839246e971aef150650196acbb46d47e5207370",
+                "reference": "2839246e971aef150650196acbb46d47e5207370",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4|^7.0"
+            },
+            "require-dev": {
+                "guzzlehttp/guzzle": "~5.0",
+                "mockery/mockery": "~0.8",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows for implementation of the Guzzle HTTP client",
+                "paragonie/random_compat": "Provides a better CSPRNG option in PHP 5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Facebook\\": "src/Facebook/"
+                },
+                "files": [
+                    "src/Facebook/polyfills.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Facebook Platform"
+            ],
+            "authors": [
+                {
+                    "name": "Facebook",
+                    "homepage": "https://github.com/facebook/php-graph-sdk/contributors"
+                }
+            ],
+            "description": "Facebook SDK for PHP",
+            "homepage": "https://github.com/facebook/php-graph-sdk",
+            "keywords": [
+                "facebook",
+                "sdk"
+            ],
+            "time": "2016-11-15 14:34:16"
         },
         {
             "name": "gabordemooij/redbean",
@@ -7155,6 +7026,55 @@
             "time": "2015-12-17 08:42:14"
         },
         {
+            "name": "wikimedia/composer-merge-plugin",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/wikimedia/composer-merge-plugin.git",
+                "reference": "0bdf8543d445ee067c9ba7d5d4a5dde70b9785f4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/wikimedia/composer-merge-plugin/zipball/0bdf8543d445ee067c9ba7d5d4a5dde70b9785f4",
+                "reference": "0bdf8543d445ee067c9ba7d5d4a5dde70b9785f4",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "jakub-onderka/php-parallel-lint": "~0.8",
+                "phpunit/phpunit": "~4.8|~5.0",
+                "squizlabs/php_codesniffer": "~2.1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                },
+                "class": "Wikimedia\\Composer\\MergePlugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Wikimedia\\Composer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bryan Davis",
+                    "email": "bd808@wikimedia.org"
+                }
+            ],
+            "description": "Composer plugin to merge multiple composer.json files",
+            "time": "2016-03-08 17:11:37"
+        },
+        {
             "name": "zendframework/zend-diactoros",
             "version": "1.3.7",
             "source": {
@@ -9138,9 +9058,8 @@
         "drupal/pathauto": 15,
         "drupal/redirect": 20,
         "drupal/token": 10,
-        "drupal/twitter": 20,
-        "drupal/twitter_block": 20,
         "drupal/yamlform": 10,
+        "evanjenkins/panels_everywhere": 20,
         "drupal/config_devel": 5,
         "drupal/devel": 20,
         "drupal/devel_debug_log": 10,

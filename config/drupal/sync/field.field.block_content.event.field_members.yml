@@ -1,15 +1,15 @@
-uuid: dec4f73d-bcb6-416f-8929-094e2082dae5
+uuid: 2743e7f7-5eeb-4c45-a080-a22216dde406
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.event
-    - field.storage.block_content.field_members_only
-id: block_content.event.field_members_only
-field_name: field_members_only
+    - field.storage.block_content.field_members
+id: block_content.event.field_members
+field_name: field_members
 entity_type: block_content
 bundle: event
-label: 'Members Only'
+label: Members
 description: ''
 required: false
 translatable: false

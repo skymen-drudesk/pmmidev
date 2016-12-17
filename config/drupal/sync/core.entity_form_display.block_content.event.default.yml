@@ -9,8 +9,9 @@ dependencies:
     - field.field.block_content.event.field_event_types
     - field.field.block_content.event.field_head
     - field.field.block_content.event.field_hosted_by
-    - field.field.block_content.event.field_locations
-    - field.field.block_content.event.field_members_only
+    - field.field.block_content.event.field_link
+    - field.field.block_content.event.field_location
+    - field.field.block_content.event.field_members
   module:
     - address
     - datetime_range
@@ -54,18 +55,24 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_locations:
+  field_link:
+    type: link_default
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_location:
+    type: address_default
     weight: 7
     settings:
       default_country: null
     third_party_settings: {  }
-    type: address_default
-  field_members_only:
-    weight: 6
-    settings:
-      display_label: true
+  field_members:
+    type: options_buttons
+    weight: 8
+    settings: {  }
     third_party_settings: {  }
-    type: boolean_checkbox
   info:
     type: string_textfield
     weight: 0

@@ -354,6 +354,8 @@ block_event_default:
       label: Hosted By
     button:
       label: Button
+    link:
+      label: Link
 block_event_ribbon:
   label: Event Ribbon
   category: PMMI: Blocks
@@ -365,12 +367,10 @@ block_event_ribbon:
       label: Head
     location:
       label: Location
-    event_type:
-      label: Event type
-    members_only:
-      label: Member Only
-    button:
-      label: Button
+    hosted_by:
+      label: Hosted By
+    link:
+      label: Link
 block_pack_expo_show:
   label: Pack Expo Show
   category: PMMI: Blocks
