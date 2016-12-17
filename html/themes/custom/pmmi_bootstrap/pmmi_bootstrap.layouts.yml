@@ -486,6 +486,19 @@ block_social_media:
       label: Google+
     youtube:
       label: YouTube
+block_enticement:
+  label: Enticement
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/enticement
+  regions:
+    head:
+      label: Head
+    image:
+      label: Image
+    teaser:
+      label: Teaser
+    button:
+      label: Button
 block_default_single:
   label: Default(with single column, i.e. for block containers)
   category: PMMI: Blocks
