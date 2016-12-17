@@ -18,17 +18,18 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: block_default_single
+      id: oneone
       path: themes/custom/pmmi_bootstrap
       library: ''
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
-      head:
+      top:
         - field_head
-      main:
+      oneone:
         - field_block_1
+      bottom:
         - field_button
 id: block_content.containers.default
 targetEntityType: block_content

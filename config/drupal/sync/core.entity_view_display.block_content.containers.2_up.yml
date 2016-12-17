@@ -19,20 +19,20 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: block_container_2_up
+      id: onetwo
       path: themes/custom/pmmi_bootstrap
       library: ''
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
-      head:
+      top:
         - field_head
-      button:
+      bottom:
         - field_button
-      block_1:
+      oneone:
         - field_block_1
-      block_2:
+      onetwo:
         - field_block_2
 id: block_content.containers.2_up
 targetEntityType: block_content
