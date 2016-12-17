@@ -305,17 +305,28 @@ block_text:
       label: Button
     link:
       label: Link
+block_image_slide_default:
+  label: Image Slide Default
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/image-slide-default
+  regions:
+    image:
+      label: Image
+    head:
+      label: Head
+    body:
+      label: Body
 block_image_slide:
   label: Image Slide
   category: PMMI: Blocks
   template: templates/layouts/blocks/image-slide
   regions:
+    image:
+      label: Image
     head:
       label: Head
     subhead:
       label: Subhead
-    image:
-      label: Image
     body:
       label: Body
     button:
