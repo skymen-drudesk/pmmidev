@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "25f95447e763ca15380b21a1947b4c67",
-    "content-hash": "4d17c477654c2b2ef988d01242ceab16",
+    "hash": "a15fce5d71afd5c0dd480cdf6ef6a6ad",
+    "content-hash": "06806e0fbaaf89ae6ae91537216fb8e2",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -111,6 +111,16 @@
                 "stack"
             ],
             "time": "2016-08-01 12:05:04"
+        },
+        {
+            "name": "briancherne/jquery.hoverIntent",
+            "version": "v1.8.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/briancherne/jquery-hoverIntent",
+                "reference": "origin/master"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "codegyre/robo",
@@ -1382,6 +1392,16 @@
             "time": "2014-09-09 13:34:57"
         },
         {
+            "name": "douglascrockford/json2",
+            "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/douglascrockford/JSON-js",
+                "reference": "origin/master"
+            },
+            "type": "drupal-library"
+        },
+        {
             "name": "drupal-composer/drupal-scaffold",
             "version": "1.3.2",
             "source": {
@@ -2337,7 +2357,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/dropzonejs-8.x-1.0-alpha3.zip",
-                "reference": null,
+                "reference": "8.x-1.0-alpha3",
                 "shasum": "f1f099fa1a7d101f9f27c5a63615f49c30316d5f"
             },
             "require": {
@@ -2528,7 +2548,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/embed-8.x-1.0-rc3.zip",
-                "reference": null,
+                "reference": "8.x-1.0-rc3",
                 "shasum": "9138d016313a47a52c6c9805fb7d034ff5105f3a"
             },
             "require": {
@@ -2670,7 +2690,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/entity_embed-8.x-1.0-beta2.zip",
-                "reference": null,
+                "reference": "8.x-1.0-beta2",
                 "shasum": "21cdeb2b058efce461683aed9a8951053512dca7"
             },
             "require": {
@@ -2836,7 +2856,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/file_entity-8.x-2.0-beta2.zip",
-                "reference": null,
+                "reference": "1af9fe03f47e308c1118fd9e0e698da719a56b7c",
                 "shasum": null
             },
             "require": {
@@ -3585,7 +3605,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/views_field_formatter-8.x-1.4.zip",
-                "reference": null,
+                "reference": "ec4d48fa5abc31365c424de07558dd1caaf74018",
                 "shasum": null
             },
             "require": {
@@ -3605,6 +3625,50 @@
             "description": "Use the result of a view to display a field.",
             "homepage": "https://www.drupal.org/project/views_field_formatter",
             "time": "2016-12-05 14:53:43"
+        },
+        {
+            "name": "drupal/views_slideshow",
+            "version": "8.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/views_slideshow",
+                "reference": "584d7b1185e91cb953035064e0b81e96148abfda"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/views_slideshow-8.x-4.1.zip",
+                "reference": "584d7b1185e91cb953035064e0b81e96148abfda",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/views": "8.*"
+            },
+            "replace": {
+                "drupal/views_slideshow_cycle": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/views_slideshow_cycle"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-4.x": "8.4.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "See contributors",
+                    "homepage": "https://www.drupal.org/node/160350/committers"
+                }
+            ],
+            "description": "Provides a View style that displays rows as a jQuery slideshow.  This is an API and requires Views Slideshow Cycle or another module that supports the API.",
+            "homepage": "https://www.drupal.org/project/views_slideshow",
+            "time": "2016-11-03 19:29:45"
         },
         {
             "name": "drupal/yamlform",
@@ -4352,6 +4416,16 @@
                 }
             ],
             "time": "2015-04-20 18:58:01"
+        },
+        {
+            "name": "malsup/jquery.cycle",
+            "version": "3.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/malsup/cycle",
+                "reference": "origin/master"
+            },
+            "type": "drupal-library"
         },
         {
             "name": "masterminds/html5",
@@ -6788,6 +6862,17 @@
             "time": "2016-11-14 16:15:57"
         },
         {
+            "name": "tobia/jquery.pause",
+            "version": "master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tobia/Pause",
+                "reference": "origin/master"
+            },
+            "type": "drupal-library",
+            "time": "2010-06-13 23:39:18"
+        },
+        {
             "name": "twig/twig",
             "version": "v1.29.0",
             "source": {
@@ -9050,8 +9135,8 @@
         "drupal/inline_entity_form": 10,
         "drupal/job_scheduler": 20,
         "drupal/layout_plugin": 15,
-        "drupal/linked_field": 20,
         "drupal/link_attributes": 15,
+        "drupal/linked_field": 20,
         "drupal/metatag": 10,
         "drupal/page_manager": 20,
         "drupal/panels": 20,
