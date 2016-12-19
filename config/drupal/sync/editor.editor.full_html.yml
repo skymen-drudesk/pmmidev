@@ -1,12 +1,12 @@
-uuid: 1ae2ffa0-fa76-42d0-b8d7-40ca3a0c4983
+uuid: a5a18d10-1b8d-485a-aa9d-785606632381
 langcode: en
 status: true
 dependencies:
   config:
-    - filter.format.filtered_html
+    - filter.format.full_html
   module:
     - ckeditor
-format: filtered_html
+format: full_html
 editor: ckeditor
 settings:
   toolbar:
@@ -25,6 +25,15 @@ settings:
             - Format
             - Styles
         -
+          name: Alignment
+          items:
+            - JustifyLeft
+            - JustifyCenter
+            - JustifyRight
+            - JustifyBlock
+            - Outdent
+            - Indent
+        -
           name: Links
           items:
             - DrupalLink
@@ -34,15 +43,21 @@ settings:
           items:
             - BulletedList
             - NumberedList
+      -
         -
           name: Media
           items:
+            - Table
             - Blockquote
             - DrupalImage
+            - SpecialChar
+            - HorizontalRule
         -
-          name: Editing
+          name: Tools
           items:
             - Source
+            - Undo
+            - Redo
             - Cut
             - Copy
             - Paste
