@@ -39,7 +39,20 @@ third_party_settings:
         - field_date
       left_block:
         - field_featured_speaker
+      view_region:
+        - 'dynamic_block_field:node-videos_view'
     fields:
+      'dynamic_block_field:node-videos_view':
+        plugin_id: 'dynamic_block_field:node-videos_view'
+        weight: 6
+        label: hidden
+        formatter: default
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
       node_title:
         plugin_id: node_title
         weight: 1

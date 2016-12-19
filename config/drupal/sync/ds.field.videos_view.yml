@@ -1,0 +1,17 @@
+id: videos_view
+label: 'Videos view'
+ui_limit: video|full
+properties:
+  block: 'views_block:features_videos-block_recent_secondary'
+  use_block_title: false
+  config:
+    id: 'views_block:features_videos-block_recent_secondary'
+    label: ''
+    provider: views
+    label_display: visible
+    views_label: ''
+    items_per_page: none
+type: block
+type_label: 'Block field'
+entities:
+  node: node
