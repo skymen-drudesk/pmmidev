@@ -12,8 +12,10 @@ dependencies:
     - field.field.node.download.field_links
     - field.field.node.download.field_member_price
     - field.field.node.download.field_non_member_price
+    - field.field.node.download.field_year
     - node.type.download
   module:
+    - datetime
     - ds
     - image
     - text
@@ -72,6 +74,14 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
+  field_year:
+    weight: 6
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
 hidden:
   field_disclaimer: true
   field_file_download_button: true
