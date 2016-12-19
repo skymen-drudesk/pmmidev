@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.video.field_image_header
     - field.field.node.video.field_link
     - field.field.node.video.field_video
+    - field.field.node.video.field_video_type
     - node.type.video
   module:
     - datetime
@@ -75,9 +76,14 @@ content:
       uri_scheme: public
     third_party_settings: {  }
     type: video_embed
+  field_video_type:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
   path:
     type: path
-    weight: 30
+    weight: 12
     settings: {  }
     third_party_settings: {  }
   promote:
