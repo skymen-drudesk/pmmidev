@@ -52,7 +52,7 @@ filters:
     status: true
     weight: -10
     settings:
-      allowed_html: '<a href hreflang> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol type start> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <u> <s> <sup> <sub> <hr> <img data-caption data-align data-entity-uuid data-entity-type alt src><drupal-entity data-entity-type data-entity-uuid data-view-mode data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button>'
+      allowed_html: '<a hreflang href class=""> <em> <strong> <cite> <blockquote cite> <code> <ul type> <ol start type> <li> <dl> <dt> <dd> <h2 id> <h3 id> <h4 id> <h5 id> <h6 id> <u> <s> <sup> <sub> <p> <img src alt data-entity-type data-entity-uuid data-align data-caption> <drupal-entity data-entity-type data-entity-uuid data-view-mode data-entity-embed-display data-entity-embed-display-settings data-align data-caption data-embed-button> <div class=" show-site-btn-primary show-site-btn col-lg-4 col-md-4 col-sm-4 col-xs-12 show-site-btn-secondary show-site-btn-one show-site-btn-two show-site-btn-three show-site-btn-four show-site-btn-five show-site-btn-six show-site-btn-seven">'
       filter_html_help: true
       filter_html_nofollow: false
   entity_embed:
