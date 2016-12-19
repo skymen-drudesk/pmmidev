@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.video.field_image_header
     - field.field.node.video.field_link
     - field.field.node.video.field_video
+    - field.field.node.video.field_video_type
     - node.type.video
   module:
     - ds
@@ -52,4 +53,5 @@ hidden:
   field_featured_speaker: true
   field_image_header: true
   field_link: true
+  field_video_type: true
   links: true
