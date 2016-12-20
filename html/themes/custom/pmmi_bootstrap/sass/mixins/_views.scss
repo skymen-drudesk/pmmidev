@@ -1,29 +1,45 @@
 .views-list-default {
+  clear: both;
   .views-row {
     margin-bottom: 40px;
     padding: 20px;
     border: 1px solid $mdgrey;
     border-radius: 6px;
   }
+  .field-name-node-title,
   .views-field-title {
     @extend .headline3;
     margin-bottom: 8px;
+    h2 {
+      font-size: inherit;
+      font-weight: inherit;
+      margin: inherit;
+    }
   }
-  .views-field-view-node a {
-    @extend .button-primary;
-    margin-right: 32px;
+  .field-name-field-link,
+  .views-field-view-node {
+    display: inline-block;
+    a {
+      @extend .button-primary;
+      margin-right: 32px;
+    }
   }
   .views-field-field-date {
     @extend .headline4;
   }
+  .field-name-body,
   .views-field-body {
     @extend .paragraph2;
     margin-bottom: 13px;
   }
+  .field-name-field-cert-test-price,
+  .field-name-field-cert-test-text-price,
   .views-field-field-featured-speaker {
     @extend .paragraph2;
     margin: 13px 0 20px;
+    .field-label-inline,
     .views-label {
+      display: inline;
       font-weight: 800;
     }
   }
