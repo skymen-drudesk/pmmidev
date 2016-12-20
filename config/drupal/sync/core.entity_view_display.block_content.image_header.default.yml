@@ -6,9 +6,10 @@ dependencies:
     - block_content.type.image_header
     - field.field.block_content.image_header.field_head
     - field.field.block_content.image_header.field_image
+    - responsive_image.styles.image_header_styles
   module:
     - ds
-    - image
+    - responsive_image
 third_party_settings:
   ds:
     layout:
@@ -39,8 +40,15 @@ content:
     weight: 1
     label: hidden
     settings:
-      image_style: ''
+      responsive_image_style: image_header_styles
       image_link: ''
-    third_party_settings: {  }
-    type: image
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: responsive_image
 hidden: {  }
