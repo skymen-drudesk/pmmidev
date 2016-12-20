@@ -1,0 +1,50 @@
+.block {
+  margin-bottom: 20px;
+  .block-title {
+    @extend .block-title-default;
+  }
+}
+.block-pmmi-twitter-block {
+  border: 1px solid $mdgrey;
+  .block-title {
+    @extend .block-title-big-bg;
+    position: relative;
+    padding: 17px 10px 17px 120px;
+    margin: 4px;
+    min-height: 97px;
+    background: $twitterblue;
+    &:before {
+      @extend .fa;
+      @extend .fa-twitter;
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      height: 97px;
+      width: 97px;
+      font-size: 50px;
+      line-height: 97px;
+      text-align: center;
+      border-right: 4px solid #fff;
+    }
+    .subtitle {
+      display: block;
+      @extend .paragraph2;
+    }
+  }
+  .message {
+    padding: 15px 20px;
+    border-bottom: 1px solid $mdgrey;
+    line-height: 17px;
+    .date {
+      font-size: 11px;
+    }
+    .text {
+      font-size: 13px;
+      font-weight: 700;
+    }
+    &.last {
+      border: none;
+    }
+  }
+}

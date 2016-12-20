@@ -17,6 +17,10 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
         $variables['attributes']['class'][] = 'utility-navigation';
       }
       break;
+
+    case 'pmmi_twitter_block':
+      $variables['subtitle'] = '@PMMIorg';
+      break;
   }
 }
 

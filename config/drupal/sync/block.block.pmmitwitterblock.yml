@@ -8,13 +8,13 @@ dependencies:
     - pmmi_bootstrap
 id: pmmitwitterblock
 theme: pmmi_bootstrap
-region: content
+region: '-1'
 weight: 0
 provider: null
 plugin: pmmi_twitter_block
 settings:
   id: pmmi_twitter_block
-  label: 'PMMI Twitter block'
+  label: PMMI
   provider: pmmi_twitter
   label_display: visible
   message_count: '2'

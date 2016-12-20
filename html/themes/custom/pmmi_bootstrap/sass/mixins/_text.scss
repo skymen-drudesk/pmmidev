@@ -1,16 +1,16 @@
 .paragraph1 {
-  font-size: 18px;
-  line-height: 23px;
+  font-size: $r18;
+  line-height: 1.27;
   font-weight: 500;
 }
 .paragraph2 {
-  font-size: 16px;
-  line-height: 21px;
+  font-size: 1rem;
+  line-height: 1.3125;
   font-weight: 500;
 }
 .paragraph3 {
-  font-size: 19px;
-  line-height: 21px;
+  font-size: $r19;
+  line-height: 1.105;
   font-weight: 500;
   text-align: center;
 }
@@ -31,4 +31,22 @@
   font-weight: 800;
   font-size: 14px;
   line-height: 23px;
+}
+
+// Titles.
+.block-title-default {
+  font-size: $r18;
+  line-height: 23px;
+  color: $dkblue;
+  font-weight: 800;
+  padding-bottom: 6px;
+  border-bottom: 1px solid $mdgrey;
+  margin-bottom: 10px;
+}
+.block-title-big-bg {
+  font-size: $r35;
+  line-height: 42px;
+  font-weight: 900;
+  border: none;
+  color: #fff;
 }
