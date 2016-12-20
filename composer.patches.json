@@ -7,7 +7,8 @@
     },
     "drupal/page_manager": {
       "Don't call getCacheTagsToInvalidate() when null": "https://www.drupal.org/files/issues/2696345-2.patch",
-      "Custom attributes in blocks": "https://www.drupal.org/files/issues/page_manager-block-css-attributes-9.patch"
+      "Custom attributes in blocks": "https://www.drupal.org/files/issues/page_manager-block-css-attributes-9.patch",
+      "Remove support for paths with %, provide validation and description for path": "https://www.drupal.org/files/issues/page_manager-provide-validation-and-description-for-path-2659948-13.patch"
     },
     "drupal/panels": {
       "Cannot switch variant layout": "https://www.drupal.org/files/issues/patch-issue-2687483-cannot-switch-variant-layout.patch"
