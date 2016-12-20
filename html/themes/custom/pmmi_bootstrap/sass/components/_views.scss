@@ -1,9 +1,18 @@
 .view-page-videos {
   @extend .views-list-default;
+  .views-row {
+    padding-left: 300px;
+    min-height: 140px;
+  }
   .views-field-field-link {
     margin-right: 35px;
     a {
       @extend .btn-primary-opacity;
     }
+  }
+  .views-field-field-video {
+    float: left;
+    width: 250px;
+    margin-left: - 280px;
   }
 }
