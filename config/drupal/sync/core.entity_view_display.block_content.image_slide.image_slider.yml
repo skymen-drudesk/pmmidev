@@ -12,10 +12,11 @@ dependencies:
     - field.field.block_content.image_slide.field_slideshows
     - field.field.block_content.image_slide.field_subhead
     - field.field.block_content.image_slide.field_weight
+    - responsive_image.styles.home_image_heade_style
   module:
     - ds
-    - image
     - link
+    - responsive_image
     - text
 third_party_settings:
   ds:
@@ -70,10 +71,17 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: ''
+      responsive_image_style: home_image_heade_style
       image_link: ''
-    third_party_settings: {  }
-    type: image
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: responsive_image
   field_subhead:
     weight: 2
     label: hidden
