@@ -1,0 +1,87 @@
+uuid: 51cd1aac-65ef-4231-9e62-dd038235b365
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.site_template_microsites
+    - system.menu.executive-leadership-nav
+    - system.menu.footer
+  module:
+    - panels_everywhere
+    - system
+id: site_template_microsites-panels_everywhere_variant-0
+label: 'Executive Leadership Network'
+variant: panels_everywhere_variant
+variant_settings:
+  blocks:
+    206caca2-e0aa-4ebc-82be-e49534e1224a:
+      id: 'system_menu_block:executive-leadership-nav'
+      label: 'Executive Leadership navigation'
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: header_main_nav
+      weight: '0'
+      uuid: 206caca2-e0aa-4ebc-82be-e49534e1224a
+      context_mapping: {  }
+    686c01c9-d461-4495-8165-a41eeeb60f3c:
+      id: local_tasks_block
+      label: Tabs
+      provider: core
+      label_display: 0
+      primary: 1
+      secondary: 1
+      region: topbar
+      weight: '0'
+      uuid: 686c01c9-d461-4495-8165-a41eeeb60f3c
+      context_mapping: {  }
+    63712df4-ff21-4c82-8888-5dc7a1cffa3d:
+      id: system_messages_block
+      label: Messages
+      provider: system
+      label_display: 0
+      region: topbar
+      weight: '0'
+      uuid: 63712df4-ff21-4c82-8888-5dc7a1cffa3d
+      context_mapping: {  }
+    3b8ab347-ee3f-4452-a9c1-c203f8823a94:
+      id: system_main_block
+      label: 'Main page content'
+      provider: system
+      label_display: 0
+      region: main
+      weight: '0'
+      uuid: 3b8ab347-ee3f-4452-a9c1-c203f8823a94
+      context_mapping: {  }
+    fbd0aec9-fe46-4e2f-8e1e-4bf23ef4cbbb:
+      id: 'system_menu_block:footer'
+      label: Footer
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: footer
+      weight: '0'
+      uuid: fbd0aec9-fe46-4e2f-8e1e-4bf23ef4cbbb
+      context_mapping: {  }
+  id: panels_everywhere_variant
+  uuid: 95ea25ff-fef3-43d1-9600-ed722e7acc6c
+  label: null
+  weight: 0
+  layout: panel_microsite_exln
+  layout_settings: {  }
+  page_title: ''
+  storage_type: ''
+  storage_id: ''
+  builder: standard
+page: site_template_microsites
+weight: 0
+selection_criteria:
+  -
+    id: request_path
+    pages: "/executive-leadership-network\n/executive-leadership-network/*"
+    negate: false
+    context_mapping: {  }
+selection_logic: and
+static_context: {  }

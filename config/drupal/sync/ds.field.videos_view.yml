@@ -1,0 +1,10 @@
+id: videos_view
+label: 'Videos view'
+ui_limit: video|full
+properties:
+  block: 'views_block:page_videos-block_category'
+  use_block_title: false
+type: block
+type_label: 'Block field'
+entities:
+  node: node

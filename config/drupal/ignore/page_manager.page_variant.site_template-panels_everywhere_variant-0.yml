@@ -1,0 +1,100 @@
+uuid: 829ef51b-9433-42ff-a442-98967cc085ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.site_template
+    - system.menu.footer
+    - system.menu.utility-navigation-end-user
+  module:
+    - panels_everywhere
+    - system
+    - tb_megamenu
+    - user
+id: site_template-panels_everywhere_variant-0
+label: 'End User'
+variant: panels_everywhere_variant
+variant_settings:
+  blocks:
+    e498fad8-bb1f-4ad6-8b87-a260036dc615:
+      id: 'system_menu_block:utility-navigation-end-user'
+      label: 'Utility navigation - End User'
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: header_utility_nav
+      weight: '0'
+      uuid: e498fad8-bb1f-4ad6-8b87-a260036dc615
+      context_mapping: {  }
+    ce0ef49a-e82f-41f3-af27-47b3a7ec4bc6:
+      id: local_tasks_block
+      label: Tabs
+      provider: core
+      label_display: 0
+      primary: 1
+      secondary: 1
+      region: topbar
+      weight: '0'
+      uuid: ce0ef49a-e82f-41f3-af27-47b3a7ec4bc6
+      context_mapping: {  }
+    b31b962a-681e-485c-be4a-4a65ecc08905:
+      id: system_messages_block
+      label: Messages
+      provider: system
+      label_display: 0
+      region: topbar
+      weight: '0'
+      uuid: b31b962a-681e-485c-be4a-4a65ecc08905
+      context_mapping: {  }
+    54843da1-7bb1-407d-b9d7-de1119c2de92:
+      id: system_main_block
+      label: 'Main page content'
+      provider: system
+      label_display: 0
+      region: main
+      weight: '0'
+      uuid: 54843da1-7bb1-407d-b9d7-de1119c2de92
+      context_mapping: {  }
+    1acf3082-453c-4df6-a582-3c38e4e7cd0d:
+      id: 'system_menu_block:footer'
+      label: Footer
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: footer
+      weight: '0'
+      uuid: 1acf3082-453c-4df6-a582-3c38e4e7cd0d
+      context_mapping: {  }
+    5e3cd20a-f36b-4e9f-982e-d0f3b219ef65:
+      id: 'tb_megamenu_menu_block:main-navigation-end-user'
+      label: 'Main navigation - End User'
+      provider: tb_megamenu
+      label_display: 0
+      region: header_main_nav
+      weight: '0'
+      uuid: 5e3cd20a-f36b-4e9f-982e-d0f3b219ef65
+      context_mapping: {  }
+  id: panels_everywhere_variant
+  uuid: e3e9f1a9-d6c5-4a5b-ab6c-bd57cd3b27f9
+  label: null
+  weight: 0
+  layout: panel_default
+  layout_settings: {  }
+  page_title: ''
+  storage_type: ''
+  storage_id: ''
+  builder: standard
+page: site_template
+weight: 0
+selection_criteria:
+  -
+    id: user_role
+    roles:
+      anonymous: anonymous
+    negate: false
+    context_mapping:
+      user: current_user
+selection_logic: and
+static_context: {  }
