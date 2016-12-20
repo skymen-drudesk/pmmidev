@@ -1,17 +1,17 @@
-uuid: 9f9cd187-a21a-40cc-b197-b1b4aeb63546
+uuid: 59191d97-0135-467b-a5b4-e7e9122d3ff1
 langcode: en
 status: true
 dependencies:
   module:
-    - datetime
     - node
-id: node.field_year
-field_name: field_year
+    - taxonomy
+id: node.field_report_type
+field_name: field_report_type
 entity_type: node
-type: datetime
+type: entity_reference
 settings:
-  datetime_type: date
-module: datetime
+  target_type: taxonomy_term
+module: core
 locked: false
 cardinality: 1
 translatable: true

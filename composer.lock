@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a15fce5d71afd5c0dd480cdf6ef6a6ad",
-    "content-hash": "06806e0fbaaf89ae6ae91537216fb8e2",
+    "hash": "f540e70b96e6612da641f2a8719959bf",
+    "content-hash": "70a9f5f040a82ea3cfbcdfbed21ffa99",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -7601,7 +7601,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/devel",
-                "reference": "fb432f128ac54979ec3f000082ae963ffa3e44dc"
+                "reference": "065551bf817bef832aabe4bec02b667a658e9841"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -7615,8 +7615,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1+7-dev",
-                    "datestamp": "1481456584"
+                    "version": "8.x-1.0-beta1+9-dev",
+                    "datestamp": "1481983688"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -7673,8 +7673,7 @@
                 "source": "http://cgit.drupalcode.org/devel",
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            },
-            "time": "2016-12-11 11:41:55"
+            }
         },
         {
             "name": "drupal/devel_debug_log",

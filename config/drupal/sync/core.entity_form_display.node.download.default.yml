@@ -13,13 +13,14 @@ dependencies:
     - field.field.node.download.field_links
     - field.field.node.download.field_member_price
     - field.field.node.download.field_non_member_price
+    - field.field.node.download.field_report_type
     - field.field.node.download.field_year
     - node.type.download
   module:
-    - datetime
     - entity_browser
     - link
     - path
+    - pmmi_fields
     - text
 id: node.download.default
 targetEntityType: node
@@ -104,11 +105,23 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: number
-  field_year:
-    weight: 31
-    settings: {  }
+  field_report_type:
+    weight: 32
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: datetime_default
+    type: entity_reference_autocomplete
+  field_year:
+    weight: 34
+    settings:
+      date_part: year
+      field_label: ''
+      time_type: none
+      increment: '1'
+    third_party_settings: {  }
+    type: pmmi_datetime_datelist
   path:
     type: path
     weight: 30

@@ -12,6 +12,7 @@ dependencies:
     - field.field.node.download.field_links
     - field.field.node.download.field_member_price
     - field.field.node.download.field_non_member_price
+    - field.field.node.download.field_report_type
     - field.field.node.download.field_year
     - node.type.download
   module:
@@ -74,8 +75,15 @@ content:
       image_link: ''
     third_party_settings: {  }
     type: image
-  field_year:
+  field_report_type:
     weight: 6
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_year:
+    weight: 8
     label: above
     settings:
       format_type: medium
