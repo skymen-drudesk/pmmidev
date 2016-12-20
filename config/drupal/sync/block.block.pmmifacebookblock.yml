@@ -8,13 +8,13 @@ dependencies:
     - pmmi_bootstrap
 id: pmmifacebookblock
 theme: pmmi_bootstrap
-region: content
-weight: 0
+region: '-1'
+weight: -8
 provider: null
 plugin: pmmi_facebook_block
 settings:
   id: pmmi_facebook_block
-  label: 'PMMI Facebook block'
+  label: PMMI
   provider: pmmi_facebook
   label_display: visible
   message_count: '2'

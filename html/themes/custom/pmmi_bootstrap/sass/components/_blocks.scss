@@ -30,6 +30,10 @@
     .subtitle {
       display: block;
       @extend .paragraph2;
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
     }
   }
   .message {
@@ -45,6 +49,15 @@
     }
     &.last {
       border: none;
+    }
+  }
+}
+.block-pmmi-facebook-block {
+  @extend .block-pmmi-twitter-block;
+  .block-title {
+    background: $facebookblue;
+    &:before {
+      @extend .fa-facebook;
     }
   }
 }
