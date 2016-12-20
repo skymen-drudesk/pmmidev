@@ -1,0 +1,9 @@
+.view-page-videos {
+  @extend .views-list-default;
+  .views-field-field-link {
+    margin-right: 35px;
+    a {
+      @extend .btn-primary-opacity;
+    }
+  }
+}
