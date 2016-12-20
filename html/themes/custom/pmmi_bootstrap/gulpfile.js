@@ -7,6 +7,7 @@ var sassGlob = require('gulp-sass-glob');
 var autoprefixer = require('autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var livereload = require('gulp-livereload');
+var pixrem = require('gulp-pixrem');
 
 // Define list of vendors.
 var _vendors = [
@@ -23,6 +24,7 @@ gulp.task('sass:build', function () {
       sourcemap: true,
       includePaths: _vendors
     }).on('error', sass.logError))
+    .pipe(pixrem())
     .pipe(postcss([
       autoprefixer({
         browsers: ['last 2 versions', '>5%']

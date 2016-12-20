@@ -15,14 +15,16 @@
  */
 #}
 <div{{ attributes.addClass('pmmi-facebook-block') }}>
-    {% if content %}
-        {% if content.messages %}
-            {% for message in content.messages %}
-                <div>{{ message.date }}</div>
-                <div>{{ message.text }}</div>
-            {% endfor %}
-        {% else %}
-            <div>{{ content.auth_messages }}</div>
-        {% endif %}
+  {% if content %}
+    {% if content.messages %}
+      {% for message in content.messages %}
+      <div class="message{{ (loop.last) ? ' last' : '' }}">
+        <div class="date">{{ message.date }}</div>
+        <div class="text">{{ message.text }}</div>
+      </div>
+      {% endfor %}
+    {% else %}
+      <div>{{ content.auth_messages }}</div>
     {% endif %}
+  {% endif %}
 </div>

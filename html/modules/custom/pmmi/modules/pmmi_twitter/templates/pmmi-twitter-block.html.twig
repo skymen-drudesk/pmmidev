@@ -18,8 +18,10 @@
     {% if content %}
         {% if content.messages %}
             {% for message in content.messages %}
-                <div>{{ message.date }}</div>
-                <div>{{ message.text }}</div>
+                <div class="message{{ (loop.last) ? ' last' : '' }}">
+                    <div class="date">{{ message.date }}</div>
+                    <div class="text">{{ message.text }}</div>
+                </div>
             {% endfor %}
         {% else %}
             <div>{{ content.auth_messages }}</div>
