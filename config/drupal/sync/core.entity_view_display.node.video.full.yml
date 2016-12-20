@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.video.field_image_header
     - field.field.node.video.field_link
     - field.field.node.video.field_video
+    - field.field.node.video.field_video_type
     - node.type.video
   module:
     - datetime
@@ -37,7 +38,7 @@ third_party_settings:
         - field_video
       date:
         - field_date
-      left_block:
+      featured_speaker:
         - field_featured_speaker
       view_region:
         - 'dynamic_block_field:node-videos_view'
@@ -110,4 +111,5 @@ content:
     type: video_embed_player
 hidden:
   field_link: true
+  field_video_type: true
   links: true

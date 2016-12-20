@@ -716,7 +716,7 @@ $settings['trusted_host_patterns'] = array(
   '^localhost$',
 );
 
-$settings['install_profile'] = 'minimal';
+$settings['install_profile'] = 'config_installer';
 
 /**
  * Load local development override configuration, if available.
