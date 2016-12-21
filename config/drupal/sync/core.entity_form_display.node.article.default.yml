@@ -23,6 +23,7 @@ dependencies:
   module:
     - datetime
     - entity_browser
+    - inline_entity_form
     - link
     - metatag
     - path
@@ -94,11 +95,15 @@ content:
   field_image_header:
     weight: 5
     settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      override_labels: false
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
   field_immediate_release:
     weight: 11
     settings:
