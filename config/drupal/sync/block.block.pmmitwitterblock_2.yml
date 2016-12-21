@@ -1,4 +1,4 @@
-uuid: c61dc19d-622d-41d2-9c11-78e1dd0ceeda
+uuid: 191cf542-4ddf-4e57-8037-3cf835c3610d
 langcode: en
 status: true
 dependencies:
@@ -6,18 +6,18 @@ dependencies:
     - pmmi_twitter
   theme:
     - pmmi_bootstrap
-id: pmmitwitterblock
+id: pmmitwitterblock_2
 theme: pmmi_bootstrap
-region: '-1'
-weight: -7
+region: content
+weight: 0
 provider: null
 plugin: pmmi_twitter_block
 settings:
   id: pmmi_twitter_block
-  label: PMMI
+  label: 'PMMI Twitter block'
   provider: pmmi_twitter
   label_display: visible
-  message_count: '2'
-  timeline: '2'
+  message_count: '3'
+  timeline: '1'
   max_age: '1800'
 visibility: {  }

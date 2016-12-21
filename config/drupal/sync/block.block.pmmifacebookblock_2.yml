@@ -1,4 +1,4 @@
-uuid: baf0c099-df66-442d-b7cc-9a118bebd84f
+uuid: 7dd781a7-986d-4686-8839-c5bacd5586ab
 langcode: en
 status: true
 dependencies:
@@ -6,18 +6,18 @@ dependencies:
     - pmmi_facebook
   theme:
     - pmmi_bootstrap
-id: pmmifacebookblock
+id: pmmifacebookblock_2
 theme: pmmi_bootstrap
-region: '-1'
-weight: -8
+region: content
+weight: 0
 provider: null
 plugin: pmmi_facebook_block
 settings:
   id: pmmi_facebook_block
-  label: PMMI
+  label: 'PMMI Facebook block'
   provider: pmmi_facebook
   label_display: visible
-  message_count: '2'
+  message_count: '3'
   page_id: PMMIorg
-  max_age: '3600'
+  max_age: '300'
 visibility: {  }
