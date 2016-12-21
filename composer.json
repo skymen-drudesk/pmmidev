@@ -85,16 +85,70 @@
           "reference": "origin/master"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "malsup/jquery.cycle",
+        "version": "3.0.3",
+        "type": "drupal-library",
+        "source": {
+          "url": "https://github.com/malsup/cycle",
+          "type": "git",
+          "reference": "origin/master"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "douglascrockford/json2",
+        "version": "2.0",
+        "type": "drupal-library",
+        "source": {
+          "url": "https://github.com/douglascrockford/JSON-js",
+          "type": "git",
+          "reference": "origin/master"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "briancherne/jquery.hoverIntent",
+        "version": "v1.8.1",
+        "type": "drupal-library",
+        "source": {
+          "url": "https://github.com/briancherne/jquery-hoverIntent",
+          "type": "git",
+          "reference": "origin/master"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "tobia/jquery.pause",
+        "version": "master",
+        "type": "drupal-library",
+        "source": {
+          "url": "https://github.com/tobia/Pause",
+          "type": "git",
+          "reference": "origin/master"
+        }
+      }
     }
   ],
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
+    "briancherne/jquery.hoverIntent": "^1.8",
     "composer/installers": "~1.0.20",
     "cweagans/composer-patches": "~1.0",
-    "desandro/masonry": "3.3.1",
-    "desandro/imagesloaded": "3.1.8",
     "derhasi/composer-preserve-paths": "~0.1.3",
+    "desandro/imagesloaded": "3.1.8",
+    "desandro/masonry": "3.3.1",
+    "douglascrockford/json2": "^2.0",
     "drupal-composer/drupal-scaffold": "~1.3.1",
     "drupal/address": "^1.0@RC",
     "drupal/bootstrap": "~3.0",
@@ -115,8 +169,8 @@
     "drupal/inline_entity_form": "^1.0@beta",
     "drupal/job_scheduler": "~2.0@dev",
     "drupal/layout_plugin": "~1.0@alpha",
-    "drupal/linked_field": "1.x-dev",
     "drupal/link_attributes": "^1.0@alpha",
+    "drupal/linked_field": "1.x-dev",
     "drupal/metatag": "^1.0@beta",
     "drupal/page_manager": "1.x-dev",
     "drupal/panels": "3.x-dev",
@@ -124,12 +178,15 @@
     "drupal/redirect": "1.x-dev",
     "drupal/tb_megamenu": "8.1.0-alpha1",
     "drupal/token": "~1.0@beta",
-    "drupal/views_field_formatter": "^8.1",
     "drupal/video": "^1.2",
+    "drupal/views_field_formatter": "^8.1",
+    "drupal/views_slideshow": "8.x",
     "drupal/yamlform": "~1.0@beta",
     "drush/drush": "~8.0",
     "enyo/dropzone": "4.2.0",
     "evanjenkins/panels_everywhere": "dev-master",
+    "malsup/jquery.cycle": "^3.0",
+    "tobia/jquery.pause": "master",
     "wikimedia/composer-merge-plugin": "^1.3"
   },
   "require-dev": {
@@ -200,8 +257,8 @@
     ],
     "merge-plugin": {
       "include": [
-        "html/modules/custom/pmmi/modules/pmmi_twitter/composer.json",
-        "html/modules/custom/pmmi/modules/pmmi_facebook/composer.json"
+        "html/modules/custom/pmmi_twitter/composer.json",
+        "html/modules/custom/pmmi_facebook/composer.json"
       ],
       "recurse": false,
       "replace": false,
