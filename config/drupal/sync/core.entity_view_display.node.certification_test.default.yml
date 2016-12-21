@@ -15,6 +15,7 @@ dependencies:
     - field.field.node.certification_test.field_image
     - field.field.node.certification_test.field_image_header
     - field.field.node.certification_test.field_link
+    - image.style.certification_tests_view_style
     - node.type.certification_test
   module:
     - ds
@@ -108,9 +109,16 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: ''
+      image_style: certification_tests_view_style
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: image
   field_link:
     type: link

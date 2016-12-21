@@ -1,0 +1,17 @@
+// Buttons.
+.button-primary-defaults {
+  @extend .btn;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  min-width: 166px;
+  text-transform: uppercase;
+}
+.button-primary {
+  @extend .button-primary-defaults;
+  @extend .btn-primary;
+}
+.btn-primary-opacity {
+  @extend .button-primary-defaults;
+  @include button-variant($btn-primary-color, $blueopacity, $blueopacity);
+}

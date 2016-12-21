@@ -5,6 +5,8 @@
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 /**
  * Implements hook_preprocess_block().
@@ -16,6 +18,25 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
       if (strpos($variables['plugin_id'], 'utility-navigation') !== FALSE) {
         $variables['attributes']['class'][] = 'utility-navigation';
       }
+      break;
+
+    case 'pmmi_twitter_block':
+      $url = Url::fromUri('https://www.twitter.com/@PMMIorg', [
+        'attributes' => [
+          'target' => '_blank',
+        ],
+      ]);
+      $variables['subtitle'] = Link::fromTextAndUrl('@PMMIorg', $url);
+      break;
+
+    case 'pmmi_facebook_block':
+      $page_id = $variables['configuration']['page_id'];
+      $url = Url::fromUri('https://www.facebook.com/' . $page_id, [
+        'attributes' => [
+          'target' => '_blank',
+        ],
+      ]);
+      $variables['subtitle'] = Link::fromTextAndUrl("facebook.com/{$page_id}", $url);
       break;
   }
 }
