@@ -14,7 +14,7 @@ function audience_select_help($route_name, RouteMatchInterface $route_match) {
         <h3>Instructions</h3>
         <p>Unpack in the <em>modules</em> folder (currently in the root of your Drupal 8 installation) and enable in <strong>/admin/modules</strong>.</p>
         <p>Then, visit <strong>/admin/config/custom/audience_select</strong> and enter your own set of audiences.</p>
-        <p>If you need, there\'s also a specific <em>set audiences</em > permission .</p >
+        <p>If you need, there\'s also a specific <em>administer audience select</em > permission .</p >
       ');
   }
 }
@@ -28,13 +28,13 @@ function audience_select_theme($existing, $type, $theme, $path) {
   $audiences = $audience_manager->getAllAudiences();
 
   return [
-    'page__gateway' => [
+    'audience_select_block' => [
       'variables' => ['audiences' => $audiences],
-      'template' => 'page--gateway',
+      'template' => 'block--audience-select--audience-select',
     ],
     'audience_switcher_block' => [
       'variables' => ['audiences' => $audiences],
-      'template' => 'audience-switcher-block',
+      'template' => 'block--audience-select--audience-switcher',
     ],
   ];
 }

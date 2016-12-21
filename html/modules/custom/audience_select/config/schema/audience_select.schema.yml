@@ -8,6 +8,10 @@ audience_select.settings:
       type: string
       label: 'Audiences:'
       translatable: true
+    gateway_page_url:
+      type: string
+      label: "Gateway page URL'
+      translatable: false
 
 condition.plugin.audience:
   type: condition.plugin

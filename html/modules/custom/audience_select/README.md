@@ -14,4 +14,5 @@ installation) and enable in `/admin/modules`.
 Then, visit `/admin/config/audience_select` and and enter your own set
 of audiences.
 
-If you need, there's also a specific *set audiences* permission.
+If you need, there's also a specific *administer audience select* 
+permission.

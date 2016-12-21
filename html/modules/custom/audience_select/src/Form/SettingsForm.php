@@ -33,7 +33,17 @@ class SettingsForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('audience_select.settings');
-    $form['audiences'] = array(
+    $form['gateway_page_url'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Gateway Page URL'),
+      '#description' => t('Enter the internal path to the gateway page.
+        Do not include the leading slash.
+      '),
+      '#required' => TRUE,
+      '#default_value' => $config->get('gateway_page_url'),
+    ];
+
+    $form['audiences'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Audiences'),
       '#description' => t('Enter each audience on its own line as: 
@@ -41,7 +51,7 @@ class SettingsForm extends ConfigFormBase {
         If no block value is specified, the gateway value will be used.'
       ),
       '#default_value' => $config->get('audiences'),
-    );
+    ];
     return parent::buildForm($form, $form_state);
   }
 
@@ -51,6 +61,15 @@ class SettingsForm extends ConfigFormBase {
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
 
+    $gateway_page_url = $form_state->getValue('gateway_page_url');
+
+    if (substr($gateway_page_url, 0, 1) === "/") {
+      $form_state->setErrorByName(
+        'gateway_page_url',
+        $this->t('URL cannot begin with <pre>/</pre>')
+      );
+    }
+
     $audiences = $form_state->getValue('audiences');
 
     if (strlen($audiences) < 3
@@ -59,8 +78,8 @@ class SettingsForm extends ConfigFormBase {
       $form_state->setErrorByName(
         'audiences',
         $this->t('Enter each audience on its own line as: 
-        <pre>key|Gateway Value|opt: Block Value</pre>
-        If no block value is specified, the gateway value will be used.')
+        <pre>key|Select Value|opt: Switcher Value</pre>
+        If no switcher value is specified, the select value will be used.')
       );
     }
   }
@@ -72,6 +91,10 @@ class SettingsForm extends ConfigFormBase {
     parent::submitForm($form, $form_state);
     $this->config('audience_select.settings')
       ->set(
+        'gateway_page_url',
+        $form_state->getValue('gateway_page_url')
+      )
+      ->set(
         'audiences',
         $form_state->getValue('audiences')
       )
@@ -80,7 +103,6 @@ class SettingsForm extends ConfigFormBase {
         $form_state->getValue('template')
       )
       ->save();
-
   }
 
 }

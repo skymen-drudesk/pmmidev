@@ -43,10 +43,14 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
       $audience = $request->query->get('audience');
     }
 
+    // Get gateway page URL.
+    $gateway_page_url = \Drupal::config('audience_select.settings')
+      ->get('gateway_page_url');
+
     // If audience_select_audience cookie is not set, redirect to gateway page.
     if (preg_match('/^\/\badmin/i', $request_uri) !== 1
       && preg_match('/^\/\buser/i', $request_uri) !== 1
-      && $request_uri != '/gateway'
+      && $request_uri != '/' . $gateway_page_url
       && !$request->cookies->has('audience_select_audience')
       && !isset($audience)
     ) {
@@ -59,7 +63,7 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     // If route is / with audience query parameter, set cookie.
     elseif (preg_match('/^\/\badmin/i', $request_uri) !== 1
       && preg_match('/^\/\buser/i', $request_uri) !== 1
-      && $request_uri != '/gateway'
+      && $request_uri != '/' . $gateway_page_url
       && isset($audience)
     ) {
       $response = new TrustedRedirectResponse('/');
@@ -71,11 +75,11 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
       $event->setResponse($response);
     }
 
-    // If audience_select_audience cookie is set and route is /gateway redirect
-    // to frontpage.
+    // If audience_select_audience cookie is set and route is
+    // /$gateway_page_url redirect to frontpage.
     elseif (preg_match('/^\/\badmin/i', $request_uri) !== 1
       && preg_match('/^\/\buser/i', $request_uri) !== 1
-      && $request_uri == '/gateway'
+      && $request_uri == '/' . $gateway_page_url
       && $request->cookies->has('audience_select_audience')
     ) {
       $response = new TrustedRedirectResponse('/');

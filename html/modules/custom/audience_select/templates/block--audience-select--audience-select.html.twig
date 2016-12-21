@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Teme implementation to display the audience switcher block.
+ *
+ * Available variables:
+ *
+ * Audience select variables:
+ * - audiences: The user specified audiences.
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="block audience-select" id="block--audience-select">
+
+  {% for key, item in audiences %}
+    <span class="audience-select-audience"><a href="/?audience={{ key }}" id="audience-select-{{ key }}">{{ item.block }}</a></span>
+  {% endfor %}
+
+</div>{# /.audience-select #}
