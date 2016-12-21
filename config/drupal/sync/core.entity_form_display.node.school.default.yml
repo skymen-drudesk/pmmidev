@@ -23,6 +23,7 @@ dependencies:
     - entity_browser
     - field_group
     - image
+    - inline_entity_form
     - link
     - path
     - telephone
@@ -100,11 +101,15 @@ content:
   field_image_header:
     weight: 6
     settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      override_labels: false
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
   field_logo:
     weight: 11
     settings:

@@ -18,6 +18,7 @@ dependencies:
     - node.type.download
   module:
     - entity_browser
+    - inline_entity_form
     - link
     - path
     - pmmi_fields
@@ -81,11 +82,15 @@ content:
   field_image_header:
     weight: 5
     settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      override_labels: false
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
   field_links:
     weight: 8
     settings:
