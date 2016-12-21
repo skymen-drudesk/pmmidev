@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f540e70b96e6612da641f2a8719959bf",
-    "content-hash": "70a9f5f040a82ea3cfbcdfbed21ffa99",
+    "hash": "34e35ed48f934b25eb548ad6f57924ad",
+    "content-hash": "9938f8c1c7c5ccdc85f4de52309ec360",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3220,7 +3220,8 @@
                 },
                 "patches_applied": {
                     "Don't call getCacheTagsToInvalidate() when null": "https://www.drupal.org/files/issues/2696345-2.patch",
-                    "Custom attributes in blocks": "https://www.drupal.org/files/issues/page_manager-block-css-attributes-9.patch"
+                    "Custom attributes in blocks": "https://www.drupal.org/files/issues/page_manager-block-css-attributes-9.patch",
+                    "Remove support for paths with %, provide validation and description for path": "https://www.drupal.org/files/issues/page_manager-provide-validation-and-description-for-path-2659948-13.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3947,17 +3948,6 @@
                 "reference": "origin/master"
             },
             "type": "drupal-library"
-        },
-        {
-            "name": "evanjenkins/panels_everywhere",
-            "version": "dev-master",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/evanjenkins/panels_everywhere/archive/master.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "drupal-module"
         },
         {
             "name": "facebook/graph-sdk",
@@ -5216,6 +5206,17 @@
             ],
             "description": "Automatic BASH completion for Symfony Console Component based applications.",
             "time": "2016-02-24 05:08:54"
+        },
+        {
+            "name": "summitmedia/panels_everywhere",
+            "version": "dev-master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/summitmedia/panels_everywhere/archive/master.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-module"
         },
         {
             "name": "symfony-cmf/routing",
@@ -7673,7 +7674,8 @@
                 "source": "http://cgit.drupalcode.org/devel",
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
+            },
+            "time": "2016-12-17 14:02:59"
         },
         {
             "name": "drupal/devel_debug_log",
@@ -7994,6 +7996,17 @@
                 "source": "http://cgit.drupalcode.org/xhprof"
             },
             "time": "2016-10-24 20:08:50"
+        },
+        {
+            "name": "evanjenkins/panels_everywhere",
+            "version": "dev-master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/evanjenkins/panels_everywhere/archive/master.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-module"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -9143,7 +9156,7 @@
         "drupal/redirect": 20,
         "drupal/token": 10,
         "drupal/yamlform": 10,
-        "evanjenkins/panels_everywhere": 20,
+        "summitmedia/panels_everywhere": 20,
         "drupal/config_devel": 5,
         "drupal/devel": 20,
         "drupal/devel_debug_log": 10,
