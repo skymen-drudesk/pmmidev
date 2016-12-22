@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.download
   module:
+    - ds
     - node
     - user
 id: features_downloads
@@ -250,12 +251,21 @@ display:
         type: default
         options: {  }
       row:
-        type: fields
+        type: 'ds_entity:node'
         options:
-          default_field_elements: true
-          inline: {  }
-          separator: ''
-          hide_empty: false
+          relationship: none
+          view_mode: default
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+            item_0: teaser
+          grouping_fieldset:
+            group: false
+            group_field: node_field_data|created
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
+      block_category: 'PMMI (Views)'
     cache_metadata:
       max-age: -1
       contexts:
@@ -397,6 +407,7 @@ display:
           inline: {  }
           separator: ''
           hide_empty: false
+      attachment_position: after
     cache_metadata:
       max-age: -1
       contexts:
@@ -422,13 +433,22 @@ display:
         row: false
         title: false
       row:
-        type: fields
+        type: 'ds_entity:node'
         options:
-          default_field_elements: true
-          inline: {  }
-          separator: ''
-          hide_empty: false
+          relationship: none
+          view_mode: default
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+            item_0: teaser
+          grouping_fieldset:
+            group: false
+            group_field: node_counter|totalcount
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
       title: 'Now Trending'
+      block_category: 'PMMI (Views)'
     cache_metadata:
       max-age: -1
       contexts:
