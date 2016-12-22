@@ -57,6 +57,16 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
         $classes[] = 'comming-soon';
       }
       break;
+
+    case 'image_slide':
+      if ($vars['content']['#view_mode'] == 'image_slider') {
+        $slide_type = $vars['content']['#block_content']->get('field_slide_type')->value;
+        $ds_config = $vars['content']['#ds_configuration'];
+        $hide_slide = ($slide_type == 'image') ? 'field_video' : 'field_image';
+        $key = array_search($hide_slide, $ds_config['regions']['image']);
+        unset($vars['content']['image'][$key]);
+      }
+      break;
   }
 
   $vars['content']['#classes'] = implode(' ', $classes);
