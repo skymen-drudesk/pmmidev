@@ -1,0 +1,39 @@
+.default-mode-node {
+  &.video {
+    @include views-list-default(
+      '.field-name-node-link',
+      '.field-name-field-link',
+      '.field-name-field-featured-speaker'
+    );
+
+    padding-left: 300px;
+    min-height: 140px;
+    .field-name-field-video {
+      float: left;
+      width: 250px;
+      margin-left: - 280px;
+    }
+  }
+  &.certification-test {
+    @include views-list-default(
+      '.field-name-field-link',
+      '.field-name-node-link',
+      '.field-name-field-cert-test-price, .field-name-field-cert-test-text-price'
+    );
+    padding: 20px 20px 20px 300px;
+    min-height: 228px;
+    border: 1px solid $mdgrey;
+    border-radius: 6px;
+    &.comming-soon {
+      background: $secondary-ltblue;
+    }
+    .field-name-body {
+      margin-bottom: 20px;
+    }
+    .field-name-field-image {
+      float: left;
+      width: 246px;
+      margin-left: - 280px;
+    }
+  }
+}
