@@ -6,6 +6,7 @@ dependencies:
     - block_content.type.text
     - field.field.block_content.text.body
     - field.field.block_content.text.field_button
+    - field.field.block_content.text.field_center_text
     - field.field.block_content.text.field_head
     - field.field.block_content.text.field_image
     - field.field.block_content.text.field_link
@@ -34,6 +35,12 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+  field_center_text:
+    weight: 8
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
   field_head:
     weight: 4
     settings:

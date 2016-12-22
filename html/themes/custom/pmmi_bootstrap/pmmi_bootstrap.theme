@@ -7,6 +7,7 @@
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
+use Drupal\Core\Template\Attribute;
 
 /**
  * Implements hook_preprocess_block().
@@ -47,7 +48,7 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
 function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
   $classes = [
     Html::cleanCssIdentifier($vars['content']['#bundle']),
-    'mode-' . $vars['content']['#view_mode'],
+    'mode-' . Html::cleanCssIdentifier($vars['content']['#view_mode']),
   ];
 
   switch ($vars['content']['#bundle']) {
@@ -55,6 +56,14 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
       $coming = $vars['content']['#node']->get('field_cert_test_coming')->value;
       if (!empty($coming)) {
         $classes[] = 'comming-soon';
+      }
+      break;
+
+    case 'text_image':
+    case 'text':
+      $center = $vars['content']['#block_content']->get('field_center_text')->value;
+      if ($center) {
+        $classes[] = 'centered';
       }
       break;
   }
