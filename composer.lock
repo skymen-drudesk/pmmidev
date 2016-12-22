@@ -2133,7 +2133,8 @@
                 "patches_applied": {
                     "Avoid illegal characters in database name": "https://www.drupal.org/files/issues/fix-dbname-validation-2443839-40.patch",
                     "Field Storage Does not validate if the class exists": "https://www.drupal.org/files/issues/2723707-field-storage-does-not-validate-5.patch",
-                    "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/minimal-install-profile-1170362-204.patch"
+                    "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/minimal-install-profile-1170362-204.patch",
+                    "SystemBrandingBlock causes fatal error if theme is not set when place it in Panels": "https://www.drupal.org/files/issues/systembrandingblock-causes-fatal-error-if-theme-is-not-set-when-place-it-in-panels-2838601-2.patch"
                 }
             },
             "autoload": {
@@ -3673,24 +3674,24 @@
         },
         {
             "name": "drupal/yamlform",
-            "version": "1.0.0-beta27",
+            "version": "1.0.0-beta28",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/yamlform",
-                "reference": "8.x-1.0-beta27"
+                "reference": "8.x-1.0-beta28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/yamlform-8.x-1.0-beta27.zip",
-                "reference": "8.x-1.0-beta27",
-                "shasum": "6d343daf5eaab47c7df1cd30b8f60b721d12cf61"
+                "url": "https://ftp.drupal.org/files/projects/yamlform-8.x-1.0-beta28.zip",
+                "reference": null,
+                "shasum": "8344865ca294583028544d056b9ebc82e31c9ebd"
             },
             "require": {
                 "drupal/core": "*"
             },
-            "suggest": {
-                "drupal/core": "Required by drupal/yamlform_node",
-                "drupal/devel": "Required by drupal/yamlform_devel"
+            "require-dev": {
+                "drupal/core": "*",
+                "drupal/devel": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -3698,8 +3699,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta27",
-                    "datestamp": "1481192283"
+                    "version": "8.x-1.0-beta28",
+                    "datestamp": "1482316383"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4112,28 +4113,28 @@
         },
         {
             "name": "guzzlehttp/promises",
-            "version": "1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/promises.git",
-                "reference": "2693c101803ca78b27972d84081d027fca790a1e"
+                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/promises/zipball/2693c101803ca78b27972d84081d027fca790a1e",
-                "reference": "2693c101803ca78b27972d84081d027fca790a1e",
+                "url": "https://api.github.com/repos/guzzle/promises/zipball/a59da6cf61d80060647ff4d3eb2c03a2bc694646",
+                "reference": "a59da6cf61d80060647ff4d3eb2c03a2bc694646",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.0"
+                "phpunit/phpunit": "^4.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -4159,7 +4160,7 @@
             "keywords": [
                 "promise"
             ],
-            "time": "2016-11-18 17:47:58"
+            "time": "2016-12-20 10:07:11"
         },
         {
             "name": "guzzlehttp/psr7",
@@ -7996,17 +7997,6 @@
                 "source": "http://cgit.drupalcode.org/xhprof"
             },
             "time": "2016-10-24 20:08:50"
-        },
-        {
-            "name": "evanjenkins/panels_everywhere",
-            "version": "dev-master",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/evanjenkins/panels_everywhere/archive/master.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "drupal-module"
         },
         {
             "name": "ezyang/htmlpurifier",

@@ -529,7 +529,7 @@ panel_default:
 panel_microsite_exln:
   label: Panel layout for Executive Leadership Network (Microsite)
   category: PMMI: Panels
-  template: templates/layouts/panels/panel-microsite-exln
+  template: templates/layouts/panels/panel-exln
   regions:
     header_logo:
       label: Header logo
@@ -546,7 +546,7 @@ panel_microsite_exln:
 panel_microsite_an:
   label: Panel layout for Annual Meeting (Microsite)
   category: PMMI: Panels
-  template: templates/layouts/panels/panel-microsite-an
+  template: templates/layouts/panels/panel-an
   regions:
     header_logo:
       label: Header logo
@@ -563,7 +563,7 @@ panel_microsite_an:
 panel_microsite_eln:
   label: Panel layout for Emerging Leaders Network (Microsite)
   category: PMMI: Panels
-  template: templates/layouts/panels/panel-microsite-eln
+  template: templates/layouts/panels/panel-eln
   regions:
     header_logo:
       label: Header logo
