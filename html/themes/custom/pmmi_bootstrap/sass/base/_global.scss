@@ -10,6 +10,7 @@ p {
 h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 0;
 }
+// Lists.
 .content {
   ul {
     li {
@@ -33,4 +34,7 @@ h1, .h1, h2, .h2, h3, .h3 {
       }
     }
   }
+}
+.field-label-inline {
+  display: inline;
 }

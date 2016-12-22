@@ -9,8 +9,10 @@ dependencies:
     - field.field.block_content.image_slide.field_button
     - field.field.block_content.image_slide.field_head
     - field.field.block_content.image_slide.field_image
+    - field.field.block_content.image_slide.field_slide_type
     - field.field.block_content.image_slide.field_slideshows
     - field.field.block_content.image_slide.field_subhead
+    - field.field.block_content.image_slide.field_video
     - field.field.block_content.image_slide.field_weight
     - responsive_image.styles.home_image_heade_style
   module:
@@ -18,6 +20,7 @@ dependencies:
     - link
     - responsive_image
     - text
+    - video
 third_party_settings:
   ds:
     layout:
@@ -30,6 +33,7 @@ third_party_settings:
     regions:
       image:
         - field_image
+        - field_video
       head:
         - field_head
       subhead:
@@ -46,11 +50,11 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 3
+    weight: 4
     settings: {  }
     third_party_settings: {  }
   field_button:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       trim_length: 80
@@ -61,7 +65,7 @@ content:
     third_party_settings: {  }
     type: link
   field_head:
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       link_to_entity: false
@@ -83,12 +87,22 @@ content:
             classes: {  }
     type: responsive_image
   field_subhead:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+  field_video:
+    type: video_embed_player
+    weight: 1
+    label: hidden
+    settings:
+      width: '854'
+      height: '480'
+      autoplay: true
+    third_party_settings: {  }
 hidden:
+  field_slide_type: true
   field_slideshows: true
   field_weight: true

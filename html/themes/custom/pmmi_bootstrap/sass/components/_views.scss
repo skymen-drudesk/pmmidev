@@ -1,54 +1,9 @@
 div.view {
   margin-bottom: 20px;
 }
-.view-page-videos {
-  @extend .views-list-default;
-  .views-row {
-    padding-left: 300px;
-    min-height: 140px;
-  }
-  .views-field-field-link {
-    a {
-      @extend .btn-primary-opacity;
-    }
-  }
-  .views-field-field-video {
-    float: left;
-    width: 250px;
-    margin-left: - 280px;
-  }
-}
+
 .view-certification-tests {
-  @extend .views-list-default;
   .grouping-title {
     display: none;
-  }
-  .views-row {
-    padding: 0;
-    border: none;
-    border-radius: 0;
-    .default-mode-node {
-      padding: 20px 20px 20px 300px;
-      min-height: 228px;
-      border: 1px solid $mdgrey;
-      border-radius: 6px;
-      &.comming-soon {
-        background: $secondary-ltblue;
-      }
-    }
-  }
-  .field-name-body {
-    margin-bottom: 20px;
-  }
-  .field-name-field-image {
-    float: left;
-    width: 246px;
-    margin-left: - 280px;
-  }
-  .field-name-node-link {
-    display: inline-block;
-    a {
-      @extend .btn-primary-opacity;
-    }
   }
 }
