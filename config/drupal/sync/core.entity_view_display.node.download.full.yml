@@ -13,12 +13,15 @@ dependencies:
     - field.field.node.download.field_links
     - field.field.node.download.field_member_price
     - field.field.node.download.field_non_member_price
+    - field.field.node.download.field_report_type
+    - field.field.node.download.field_year
     - node.type.download
+    - responsive_image.styles.block_style_4
     - views.view.file_download_button
   module:
     - ds
-    - image
     - link
+    - responsive_image
     - text
     - user
     - views_field_formatter
@@ -103,10 +106,17 @@ content:
     weight: 3
     label: hidden
     settings:
-      image_style: ''
+      responsive_image_style: block_style_4
       image_link: ''
-    third_party_settings: {  }
-    type: image
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: responsive_image
   field_image_header:
     type: entity_reference_entity_view
     weight: 0
@@ -162,4 +172,6 @@ content:
     type: number_decimal
 hidden:
   field_block_button_text: true
+  field_report_type: true
+  field_year: true
   links: true

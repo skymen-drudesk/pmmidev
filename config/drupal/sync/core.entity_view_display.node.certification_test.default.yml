@@ -15,12 +15,12 @@ dependencies:
     - field.field.node.certification_test.field_image
     - field.field.node.certification_test.field_image_header
     - field.field.node.certification_test.field_link
-    - image.style.certification_tests_view_style
     - node.type.certification_test
+    - responsive_image.styles.block_style_3
   module:
     - ds
-    - image
     - link
+    - responsive_image
     - text
     - user
 third_party_settings:
@@ -119,7 +119,7 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: certification_tests_view_style
+      responsive_image_style: block_style_3
       image_link: ''
     third_party_settings:
       ds:
@@ -129,7 +129,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: image
+    type: responsive_image
   field_link:
     type: link
     weight: 5
