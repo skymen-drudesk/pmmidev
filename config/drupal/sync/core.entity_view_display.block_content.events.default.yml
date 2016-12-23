@@ -1,11 +1,11 @@
-uuid: 2bec7145-ddde-4c52-96d0-8570e015d406
+uuid: f7f26046-63a0-4370-b781-592446fd01df
 langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.slideshow
-    - field.field.block_content.slideshow.field_slides
-    - views.view.slideshow
+    - block_content.type.events
+    - field.field.block_content.events.field_events
+    - views.view.events
   module:
     - ds
     - views_field_formatter
@@ -20,18 +20,17 @@ third_party_settings:
       settings: {  }
     regions:
       main:
-        - field_slides
-id: block_content.slideshow.default
+        - field_events
+id: block_content.events.default
 targetEntityType: block_content
-bundle: slideshow
+bundle: events
 mode: default
 content:
-  field_slides:
-    type: views_field_formatter
+  field_events:
     weight: 0
     label: hidden
     settings:
-      view: 'slideshow::block_default'
+      view: 'events::block_2'
       arguments:
         field_value:
           checked: '1'
@@ -53,4 +52,5 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    type: views_field_formatter
 hidden: {  }

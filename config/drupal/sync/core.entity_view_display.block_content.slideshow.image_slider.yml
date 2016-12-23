@@ -10,6 +10,18 @@ dependencies:
   module:
     - ds
     - views_field_formatter
+third_party_settings:
+  ds:
+    layout:
+      id: block_default_single
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      main:
+        - field_slides
 id: block_content.slideshow.image_slider
 targetEntityType: block_content
 bundle: slideshow
