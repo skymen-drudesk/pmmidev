@@ -10,8 +10,9 @@ html/libraries
 */sites/*/files
 */sites/*/private
 
-# Ignore Drupal's local settings file.
+# Ignore Drupal's local and default settings file.
 */sites/*/settings.local.php
+*/sites/*/default.settings.php
 
 # Ignore build/config files and directories.
 drush-backups
