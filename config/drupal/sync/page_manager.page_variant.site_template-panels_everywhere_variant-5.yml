@@ -1,20 +1,20 @@
-uuid: 51cd1aac-65ef-4231-9e62-dd038235b365
+uuid: c65e9045-971c-4c3e-9389-81ba7d8c46e5
 langcode: en
 status: true
 dependencies:
   config:
-    - page_manager.page.site_template_microsites
+    - page_manager.page.site_template
     - system.menu.executive-leadership-nav
     - system.menu.footer
   module:
     - panels_everywhere
     - system
-id: site_template_microsites-panels_everywhere_variant-0
+id: site_template-panels_everywhere_variant-5
 label: 'Executive Leadership Network'
 variant: panels_everywhere_variant
 variant_settings:
   blocks:
-    206caca2-e0aa-4ebc-82be-e49534e1224a:
+    5380b762-c784-43f1-89ba-b6bee3acfc90:
       id: 'system_menu_block:executive-leadership-nav'
       label: 'Executive Leadership navigation'
       provider: system
@@ -23,9 +23,18 @@ variant_settings:
       depth: '0'
       region: header_main_nav
       weight: '0'
-      uuid: 206caca2-e0aa-4ebc-82be-e49534e1224a
+      uuid: 5380b762-c784-43f1-89ba-b6bee3acfc90
       context_mapping: {  }
-    686c01c9-d461-4495-8165-a41eeeb60f3c:
+    4a76dad0-d8d7-4d93-9a4f-13d1db954f95:
+      id: system_messages_block
+      label: Messages
+      provider: system
+      label_display: 0
+      region: topbar
+      weight: '0'
+      uuid: 4a76dad0-d8d7-4d93-9a4f-13d1db954f95
+      context_mapping: {  }
+    d262ef6c-170a-4556-9320-75b4e9c1d417:
       id: local_tasks_block
       label: Tabs
       provider: core
@@ -34,27 +43,18 @@ variant_settings:
       secondary: 1
       region: topbar
       weight: '0'
-      uuid: 686c01c9-d461-4495-8165-a41eeeb60f3c
+      uuid: d262ef6c-170a-4556-9320-75b4e9c1d417
       context_mapping: {  }
-    63712df4-ff21-4c82-8888-5dc7a1cffa3d:
-      id: system_messages_block
-      label: Messages
-      provider: system
-      label_display: 0
-      region: topbar
-      weight: '0'
-      uuid: 63712df4-ff21-4c82-8888-5dc7a1cffa3d
-      context_mapping: {  }
-    3b8ab347-ee3f-4452-a9c1-c203f8823a94:
+    ca0d880f-b655-45f5-a260-373b75490efa:
       id: system_main_block
       label: 'Main page content'
       provider: system
       label_display: 0
       region: main
       weight: '0'
-      uuid: 3b8ab347-ee3f-4452-a9c1-c203f8823a94
+      uuid: ca0d880f-b655-45f5-a260-373b75490efa
       context_mapping: {  }
-    fbd0aec9-fe46-4e2f-8e1e-4bf23ef4cbbb:
+    84501042-f596-4f47-92fc-a48b5299bc22:
       id: 'system_menu_block:footer'
       label: Footer
       provider: system
@@ -63,20 +63,32 @@ variant_settings:
       depth: '0'
       region: footer
       weight: '0'
-      uuid: fbd0aec9-fe46-4e2f-8e1e-4bf23ef4cbbb
+      uuid: 84501042-f596-4f47-92fc-a48b5299bc22
+      context_mapping: {  }
+    5909fbbc-266f-4bbe-a1ce-c2ad973bbc9d:
+      id: system_branding_block
+      label: 'Site branding'
+      provider: system
+      label_display: 0
+      use_site_logo: 1
+      use_site_name: 0
+      use_site_slogan: 0
+      region: header_logo
+      weight: '0'
+      uuid: 5909fbbc-266f-4bbe-a1ce-c2ad973bbc9d
       context_mapping: {  }
   id: panels_everywhere_variant
-  uuid: 95ea25ff-fef3-43d1-9600-ed722e7acc6c
+  uuid: 1ef5137e-9b08-4ff4-abe7-6ad64f8dc770
   label: null
   weight: 0
   layout: panel_microsite_exln
   layout_settings: {  }
   page_title: ''
-  storage_type: ''
-  storage_id: ''
+  storage_type: page_manager
+  storage_id: site_template-panels_everywhere_variant-5
   builder: standard
-page: site_template_microsites
-weight: 0
+page: site_template
+weight: -8
 selection_criteria:
   -
     id: request_path

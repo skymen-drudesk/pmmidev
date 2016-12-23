@@ -1,20 +1,20 @@
-uuid: f2fb805b-2da5-49f4-8a09-a82928524f12
+uuid: d8fd48ff-ce78-4aed-b3a4-685a6d976101
 langcode: en
 status: true
 dependencies:
   config:
-    - page_manager.page.site_template_microsites
+    - page_manager.page.site_template
     - system.menu.annual-meeting-nav
     - system.menu.footer
   module:
     - panels_everywhere
     - system
-id: site_template_microsites-panels_everywhere_variant-1
+id: site_template-panels_everywhere_variant-3
 label: 'Annual Meeting'
 variant: panels_everywhere_variant
 variant_settings:
   blocks:
-    678e1571-5ee3-4bb8-b3c3-dd9a353213e1:
+    d8e1d4f1-2c5e-47c2-86b6-7f8abd465f56:
       id: 'system_menu_block:annual-meeting-nav'
       label: 'Annual Meeting navigation'
       provider: system
@@ -23,9 +23,18 @@ variant_settings:
       depth: '0'
       region: header_main_nav
       weight: '0'
-      uuid: 678e1571-5ee3-4bb8-b3c3-dd9a353213e1
+      uuid: d8e1d4f1-2c5e-47c2-86b6-7f8abd465f56
       context_mapping: {  }
-    af9f2938-cd5d-445b-ac1e-2989983a29fa:
+    86daf206-a70b-48d9-b051-931d40e5b2d6:
+      id: system_messages_block
+      label: Messages
+      provider: system
+      label_display: 0
+      region: topbar
+      weight: '0'
+      uuid: 86daf206-a70b-48d9-b051-931d40e5b2d6
+      context_mapping: {  }
+    0640deed-22ba-413a-9676-ab1c78e0c834:
       id: local_tasks_block
       label: Tabs
       provider: core
@@ -34,27 +43,18 @@ variant_settings:
       secondary: 1
       region: topbar
       weight: '0'
-      uuid: af9f2938-cd5d-445b-ac1e-2989983a29fa
+      uuid: 0640deed-22ba-413a-9676-ab1c78e0c834
       context_mapping: {  }
-    8c662b48-eac9-45ff-a91c-821a8253fdec:
-      id: system_messages_block
-      label: Messages
-      provider: system
-      label_display: 0
-      region: topbar
-      weight: '0'
-      uuid: 8c662b48-eac9-45ff-a91c-821a8253fdec
-      context_mapping: {  }
-    cd9a7843-6f11-483e-a204-20c902afa13e:
+    4243702c-73cd-4dc5-9499-85d553d1e86a:
       id: system_main_block
       label: 'Main page content'
       provider: system
       label_display: 0
       region: main
       weight: '0'
-      uuid: cd9a7843-6f11-483e-a204-20c902afa13e
+      uuid: 4243702c-73cd-4dc5-9499-85d553d1e86a
       context_mapping: {  }
-    5c6a682b-32a9-4b01-8f29-2cf3962aeb75:
+    8bc91466-5086-4e1b-9f4b-9ebbd1eb44ec:
       id: 'system_menu_block:footer'
       label: Footer
       provider: system
@@ -63,20 +63,32 @@ variant_settings:
       depth: '0'
       region: footer
       weight: '0'
-      uuid: 5c6a682b-32a9-4b01-8f29-2cf3962aeb75
+      uuid: 8bc91466-5086-4e1b-9f4b-9ebbd1eb44ec
+      context_mapping: {  }
+    715e80d2-6098-4bc3-b813-1377925de8d6:
+      id: system_branding_block
+      label: 'Site branding'
+      provider: system
+      label_display: 0
+      use_site_logo: 1
+      use_site_name: 0
+      use_site_slogan: 0
+      region: header_logo
+      weight: '0'
+      uuid: 715e80d2-6098-4bc3-b813-1377925de8d6
       context_mapping: {  }
   id: panels_everywhere_variant
-  uuid: 2bed2bbd-0226-46b8-b322-4712308c4db1
+  uuid: d36c9fa4-a8b2-43c6-8608-56cb1f139d1c
   label: null
   weight: 0
   layout: panel_microsite_an
   layout_settings: {  }
   page_title: ''
   storage_type: page_manager
-  storage_id: site_template_microsites-panels_everywhere_variant-1
+  storage_id: site_template-panels_everywhere_variant-3
   builder: standard
-page: site_template_microsites
-weight: 0
+page: site_template
+weight: -10
 selection_criteria:
   -
     id: request_path
