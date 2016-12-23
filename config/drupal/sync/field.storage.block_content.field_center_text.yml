@@ -1,17 +1,15 @@
-uuid: d5699b68-0e99-49a9-ad29-27742d4ea95e
+uuid: 15d39bfd-d4e5-4600-b81d-4dca3f31aa0b
 langcode: en
 status: true
 dependencies:
   module:
     - block_content
-    - datetime
-id: block_content.field_date
-field_name: field_date
+id: block_content.field_center_text
+field_name: field_center_text
 entity_type: block_content
-type: datetime
-settings:
-  datetime_type: date
-module: datetime
+type: boolean
+settings: {  }
+module: core
 locked: false
 cardinality: 1
 translatable: true
