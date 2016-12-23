@@ -9,7 +9,6 @@ dependencies:
     - field.field.block_content.image_slide.field_head
     - field.field.block_content.image_slide.field_image
     - field.field.block_content.image_slide.field_slide_type
-    - field.field.block_content.image_slide.field_slideshows
     - field.field.block_content.image_slide.field_subhead
     - field.field.block_content.image_slide.field_video
     - field.field.block_content.image_slide.field_weight
@@ -44,13 +43,27 @@ content:
     type: text_default
     weight: 2
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_head:
     weight: 1
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: string
   field_image:
     weight: 0
@@ -70,7 +83,6 @@ content:
 hidden:
   field_button: true
   field_slide_type: true
-  field_slideshows: true
   field_subhead: true
   field_video: true
   field_weight: true

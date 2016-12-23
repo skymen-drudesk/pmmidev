@@ -12,6 +12,7 @@ use Drupal\Core\Form\FormStateInterface;
  */
 function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
   switch ($form['#form_id']) {
+    case 'block_content_image_slide_form':
     case 'block_content_image_slide_edit_form':
       $form['field_image']['#states'] = array(
         'invisible' => array(
