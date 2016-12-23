@@ -5,6 +5,7 @@ dependencies:
   config:
     - node.type.school
   module:
+    - ds
     - node
     - user
 id: partner_schools
@@ -63,7 +64,19 @@ display:
           row_class_default: false
           row_class_custom: ''
       row:
-        type: fields
+        type: 'ds_entity:node'
+        options:
+          relationship: none
+          view_mode: default
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+          grouping_fieldset:
+            group: false
+            group_field: node_field_data|title
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
       fields:
         title:
           id: title
@@ -187,6 +200,7 @@ display:
     display_options:
       display_extenders: {  }
       display_description: ''
+      block_category: 'PMMI (Views)'
     cache_metadata:
       max-age: -1
       contexts:

@@ -11,6 +11,7 @@ dependencies:
     - node.type.video
   module:
     - datetime
+    - ds
     - link
     - node
     - text
@@ -64,12 +65,23 @@ display:
       style:
         type: default
       row:
-        type: fields
+        type: 'ds_entity:node'
         options:
-          default_field_elements: true
-          inline: {  }
-          separator: ''
-          hide_empty: false
+          relationship: none
+          view_mode: default
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+            item_0: teaser
+            item_1: teaser
+            item_2: teaser
+            item_3: teaser
+          grouping_fieldset:
+            group: false
+            group_field: node__field_date|field_date_value
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
       fields:
         title:
           id: title

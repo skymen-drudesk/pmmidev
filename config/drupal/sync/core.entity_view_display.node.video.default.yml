@@ -12,7 +12,10 @@ dependencies:
     - field.field.node.video.field_video_type
     - node.type.video
   module:
+    - datetime
     - ds
+    - link
+    - text
     - user
     - video
 third_party_settings:
@@ -27,31 +30,126 @@ third_party_settings:
     regions:
       content:
         - field_video
+        - node_title
+        - field_date
+        - body
+        - field_featured_speaker
+        - node_link
+        - field_link
+    fields:
+      node_link:
+        plugin_id: node_link
+        weight: 5
+        label: hidden
+        formatter: default
+        settings:
+          'link text': 'Watch Video'
+          'link class': ''
+          wrapper: ''
+          class: ''
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h2
+          class: ''
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.video.default
 targetEntityType: node
 bundle: video
 mode: default
 content:
+  body:
+    type: text_summary_or_trimmed
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 300
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_date:
+    type: datetime_default
+    weight: 2
+    label: hidden
+    settings:
+      timezone_override: ''
+      format_type: month_year
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_featured_speaker:
+    type: string
+    weight: 4
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: 'Featured Speaker'
+            lb-col: true
+            classes: {  }
+  field_link:
+    type: link
+    weight: 6
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_video:
     weight: 0
     label: hidden
     settings:
-      image_style: thumbnail
+      image_style: 3_up_cards_mobile
       link_image_to: content
     third_party_settings:
       ds:
         ft:
-          id: default
+          id: minimal
           settings:
             lb: ''
             lb-col: false
             classes: {  }
     type: video_embed_thumbnail
 hidden:
-  body: true
-  field_date: true
-  field_featured_speaker: true
   field_image_header: true
-  field_link: true
   field_video_type: true
   links: true

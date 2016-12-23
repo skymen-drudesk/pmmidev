@@ -63,6 +63,16 @@ third_party_settings:
         weight: 1
         label: hidden
         formatter: default
+        settings:
+          wrapper: h2
+          class: ''
+          link: false
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.certification_test.default
 targetEntityType: node
 bundle: certification_test
@@ -128,9 +138,16 @@ content:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 hidden:
   field_accordions: true
   field_cert_test_coming: true

@@ -6,6 +6,7 @@ dependencies:
     - block_content.type.text
     - field.field.block_content.text.body
     - field.field.block_content.text.field_button
+    - field.field.block_content.text.field_center_text
     - field.field.block_content.text.field_head
     - field.field.block_content.text.field_image
     - field.field.block_content.text.field_link
@@ -82,4 +83,5 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-hidden: {  }
+hidden:
+  field_center_text: true
