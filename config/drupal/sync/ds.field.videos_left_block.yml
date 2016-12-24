@@ -1,0 +1,18 @@
+id: videos_left_block
+label: 'Videos left block'
+ui_limit: video|full
+properties:
+  block: 'block_content:d628159a-0e7f-40c2-b8ef-9ceda19ad71d'
+  use_block_title: false
+  config:
+    id: 'block_content:d628159a-0e7f-40c2-b8ef-9ceda19ad71d'
+    label: ''
+    provider: block_content
+    label_display: visible
+    status: true
+    info: ''
+    view_mode: text_image
+type: block
+type_label: 'Block field'
+entities:
+  node: node
