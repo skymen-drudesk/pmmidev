@@ -10,7 +10,6 @@ dependencies:
     - field.field.block_content.image_slide.field_head
     - field.field.block_content.image_slide.field_image
     - field.field.block_content.image_slide.field_slide_type
-    - field.field.block_content.image_slide.field_slideshows
     - field.field.block_content.image_slide.field_subhead
     - field.field.block_content.image_slide.field_video
     - field.field.block_content.image_slide.field_weight
@@ -81,14 +80,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-  field_slideshows:
-    weight: 8
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
   field_subhead:
     weight: 5
     settings:
