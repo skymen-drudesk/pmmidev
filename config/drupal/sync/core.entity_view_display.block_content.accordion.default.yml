@@ -11,10 +11,11 @@ dependencies:
     - field.field.block_content.accordion.field_image
     - field.field.block_content.accordion.field_link
     - field.field.block_content.accordion.field_video_node
+    - responsive_image.styles.accordion_styles
   module:
     - ds
-    - image
     - link
+    - responsive_image
     - text
 third_party_settings:
   ds:
@@ -81,10 +82,17 @@ content:
     weight: 2
     label: hidden
     settings:
-      image_style: ''
+      responsive_image_style: accordion_styles
       image_link: ''
-    third_party_settings: {  }
-    type: image
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: responsive_image
   field_link:
     weight: 5
     label: hidden

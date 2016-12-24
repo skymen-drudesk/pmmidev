@@ -20,11 +20,12 @@ dependencies:
     - field.field.node.article.field_phone
     - field.field.node.article.field_tags
     - node.type.article
+    - responsive_image.styles.detail_page
   module:
     - datetime
     - ds
-    - image
     - link
+    - responsive_image
     - telephone
     - text
     - user
@@ -62,8 +63,6 @@ third_party_settings:
         - field_company
       phone:
         - field_phone
-      email:
-        - field_email
     fields:
       node_title:
         plugin_id: node_title
@@ -111,20 +110,21 @@ content:
       format_type: month_day_year
     third_party_settings: {  }
     type: datetime_default
-  field_email:
-    weight: 11
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
   field_image:
-    type: image
+    type: responsive_image
     weight: 0
     label: hidden
     settings:
-      image_style: ''
+      responsive_image_style: detail_page
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_image_header:
     type: entity_reference_entity_view
     weight: 0
@@ -168,6 +168,7 @@ content:
     third_party_settings: {  }
     type: telephone_link
 hidden:
+  field_email: true
   field_meta_tags: true
   field_news_category: true
   field_tags: true

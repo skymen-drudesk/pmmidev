@@ -15,10 +15,10 @@ dependencies:
     - field.field.node.download.field_report_type
     - field.field.node.download.field_year
     - node.type.download
+    - responsive_image.styles.block_style_4
   module:
-    - datetime
     - ds
-    - image
+    - responsive_image
     - text
     - user
 third_party_settings:
@@ -71,25 +71,17 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: ''
+      responsive_image_style: block_style_4
       image_link: ''
-    third_party_settings: {  }
-    type: image
-  field_report_type:
-    weight: 6
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-  field_year:
-    weight: 8
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: responsive_image
 hidden:
   field_disclaimer: true
   field_file_download_button: true
@@ -97,4 +89,6 @@ hidden:
   field_links: true
   field_member_price: true
   field_non_member_price: true
+  field_report_type: true
+  field_year: true
   links: true
