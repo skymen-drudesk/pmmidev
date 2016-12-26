@@ -10,7 +10,6 @@ dependencies:
     - field.field.block_content.image_slide.field_head
     - field.field.block_content.image_slide.field_image
     - field.field.block_content.image_slide.field_slide_type
-    - field.field.block_content.image_slide.field_slideshows
     - field.field.block_content.image_slide.field_subhead
     - field.field.block_content.image_slide.field_video
     - field.field.block_content.image_slide.field_weight
@@ -52,7 +51,14 @@ content:
     type: text_default
     weight: 4
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_button:
     weight: 5
     label: hidden
@@ -60,16 +66,30 @@ content:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: link
   field_head:
     weight: 2
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: string
   field_image:
     weight: 0
@@ -91,7 +111,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: string
   field_video:
     type: video_embed_player
@@ -104,5 +131,4 @@ content:
     third_party_settings: {  }
 hidden:
   field_slide_type: true
-  field_slideshows: true
   field_weight: true

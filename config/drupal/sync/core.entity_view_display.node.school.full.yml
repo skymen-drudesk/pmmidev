@@ -16,12 +16,14 @@ dependencies:
     - field.field.node.school.field_school_contact
     - field.field.node.school.field_website
     - node.type.school
+    - responsive_image.styles.detail_page
   module:
     - address
     - datetime
     - ds
     - image
     - link
+    - responsive_image
     - telephone
     - text
     - user
@@ -121,10 +123,17 @@ content:
     weight: 103
     label: hidden
     settings:
-      image_style: ''
+      responsive_image_style: detail_page
       image_link: ''
-    third_party_settings: {  }
-    type: image
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: responsive_image
   field_image_header:
     type: entity_reference_entity_view
     weight: 0

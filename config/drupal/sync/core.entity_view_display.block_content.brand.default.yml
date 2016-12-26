@@ -7,10 +7,11 @@ dependencies:
     - field.field.block_content.brand.body
     - field.field.block_content.brand.field_button
     - field.field.block_content.brand.field_logo
+    - responsive_image.styles.brand_block
   module:
     - ds
-    - image
     - link
+    - responsive_image
     - text
 third_party_settings:
   ds:
@@ -54,8 +55,15 @@ content:
     weight: 1
     label: hidden
     settings:
-      image_style: ''
+      responsive_image_style: brand_block
       image_link: ''
-    third_party_settings: {  }
-    type: image
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: responsive_image
 hidden: {  }
