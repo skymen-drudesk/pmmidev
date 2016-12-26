@@ -61,3 +61,47 @@
     }
   }
 }
+.block-image-header {
+  .top-banner {
+    position: relative;
+  }
+  .page-name {
+    background: rgba($dkblue, 0.8);
+    left: 40px;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    display: inline-block;
+    padding: 5px 40px 15px;
+    min-width: 370px;
+    max-width: 392px;
+    &:before {
+      display: inline-block;
+      content: "";
+      height: 100%;
+      vertical-align: middle;
+    }
+    .field-name-field-head {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: $r40;
+      line-height: $r40;
+      color: #fff;
+      font-weight: 300;
+    }
+  }
+  .img-header {
+    min-height: 100px;
+    background: $blue;
+    @include tablet {
+      min-height: 86px;
+    }
+    @include mobile {
+      min-height: 74px;
+    }
+  }
+  img {
+    width: auto;
+    min-width: 100%;
+  }
+}

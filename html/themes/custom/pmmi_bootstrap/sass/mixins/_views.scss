@@ -1,3 +1,12 @@
+.default-headline-3 {
+  @extend .headline3;
+  margin-bottom: 8px;
+  h2 {
+    font-size: inherit;
+    font-weight: inherit;
+    margin: inherit;
+  }
+}
 @mixin views-list-default($button, $button_op, $labeled_fields) {
   clear: both;
   margin-bottom: 40px;
@@ -5,13 +14,7 @@
   border: 1px solid $mdgrey;
   border-radius: 6px;
   .field-name-node-title {
-    @extend .headline3;
-    margin-bottom: 8px;
-    h2 {
-      font-size: inherit;
-      font-weight: inherit;
-      margin: inherit;
-    }
+    @extend .default-headline-3;
   }
   #{$button} {
     display: inline-block;
@@ -43,6 +46,70 @@
     margin: 13px 0 20px;
     .field-label-inline {
       font-weight: 800;
+    }
+  }
+}
+@mixin event_news() {
+  border: 1px solid $mdgrey;
+  border-radius: 6px;
+  padding: 16px 20px 50px;
+  margin: 0 0 30px;
+  position: relative;
+  min-height: 214px;
+  @media screen and (max-width: $screen-md-max) {
+    min-height: 246px;
+    margin-bottom: 20px;
+  }
+  @include mobile {
+    margin-bottom: 15px;
+  }
+  .date {
+    color: $textdark;
+    font-weight: 800;
+    line-height: $r21;
+    margin-bottom: 4px;
+  }
+  .title {
+    @extend .default-headline-3;
+    margin-bottom: 5px;
+  }
+  .location {
+    color: $textdark;
+    font-weight: 500;
+    line-height: $r21;
+    p {
+      line-height: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      margin: 0;
+    }
+    .country {
+      display: none;
+    }
+  }
+  .button {
+    a {
+      @extend .button-primary;
+    }
+  }
+  .link {
+    a {
+      @extend .btn-primary-opacity;
+    }
+  }
+  .hosted {
+    font-weight: 500;
+    margin: 10px 0;
+    .field-label-inline {
+      font-weight: 800;
+    }
+  }
+  .buttons {
+    position: absolute;
+    bottom: 20px;
+    > div {
+      display: inline-block;
+      margin: 0 20px 0 0;
     }
   }
 }

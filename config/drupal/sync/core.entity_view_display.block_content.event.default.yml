@@ -27,18 +27,18 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
+      dates:
+        - field_dates
       head:
         - field_head
       location:
         - field_location
-      link:
-        - field_link
-      dates:
-        - field_dates
       hosted_by:
         - field_hosted_by
       button:
         - field_button
+      link:
+        - field_link
 id: block_content.event.default
 targetEntityType: block_content
 bundle: event
@@ -51,12 +51,19 @@ content:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: link
   field_dates:
-    weight: 1
+    weight: 0
     label: hidden
     settings:
       timezone_override: ''
@@ -73,11 +80,18 @@ content:
             classes: {  }
     type: daterange_default
   field_head:
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: string
   field_hosted_by:
     weight: 3
@@ -95,21 +109,35 @@ content:
     type: string
   field_link:
     type: link
-    weight: 0
+    weight: 5
     label: hidden
     settings:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_location:
     type: address_default
-    weight: 0
+    weight: 2
     label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_locations:
     weight: 8
     label: hidden
