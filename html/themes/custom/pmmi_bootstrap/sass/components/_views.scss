@@ -7,3 +7,38 @@ div.view {
     display: none;
   }
 }
+.view-events {
+  .views-view-grid.cols-2 {
+    margin: 0 -15px;
+    .row {
+      font-size: 0;
+    }
+    .col {
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+      padding: 0 15px;
+      font-size: $r16;
+    }
+    @include desktop {
+      margin: 0 -10px;
+      .col {
+        padding: 0 10px;
+      }
+    }
+    @include tablet {
+      margin: 0 -5px;
+      .col {
+        padding: 0 5px;
+      }
+    }
+    @include mobile {
+      margin: 0;
+      .col {
+        display: block;
+        padding: 0;
+        width: auto;
+      }
+    }
+  }
+}

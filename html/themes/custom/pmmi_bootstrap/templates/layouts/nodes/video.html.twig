@@ -3,27 +3,30 @@
     {{ field_render([content.image_header, 'img-header']) }}
   </div>
 
-  {% set left_block = field_render([content.left_block, 'content-left col-sm-3']) %}
+  <div class="container">
 
-  {{ left_block|raw }}
+    {% set left_block = field_render([content.left_block, 'content-left col-sm-3']) %}
 
-  {% set classes = left_block ? 'content-right col-sm-9' : 'content-full' %}
+    {{ left_block|raw }}
 
-  <div class="{{ classes }}">
+    {% set classes = left_block ? 'content-right col-sm-9' : 'content-full' %}
 
-    <h2 class="node-title">
-      {{ content.title }}
-    </h2>
+    <div class="{{ classes }}">
 
-    {{ field_render([content.video, 'video']) }}
+      <h2 class="node-title">
+        {{ content.title }}
+      </h2>
 
-    {{ field_render([content.date, 'date']) }}
+      {{ field_render([content.video, 'video']) }}
 
-    {{ field_render([content.body, 'node-body']) }}
+      {{ field_render([content.date, 'date']) }}
 
-    {{ field_render([content.featured_speaker, 'featured-speaker']) }}
+      {{ field_render([content.body, 'node-body']) }}
 
-    {{ field_render([content.view_region, 'videos-view']) }}
+      {{ field_render([content.featured_speaker, 'featured-speaker']) }}
 
+      {{ field_render([content.view_region, 'videos-view']) }}
+
+    </div>
   </div>
 </div>

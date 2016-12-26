@@ -37,3 +37,6 @@
     }
   }
 }
+.block-event-default {
+  @include event_news;
+}

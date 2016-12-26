@@ -3,21 +3,24 @@
     {{ field_render([content.image_header, 'img-header']) }}
   </div>
 
-  <h2 class="node-title">
-    {{ content.title }}
-  </h2>
+  <div class="container">
+    <h2 class="node-title">
+      {{ content.title }}
+    </h2>
 
-  {{ field_render([content.image, 'img']) }}
+    {{ field_render([content.image, 'img']) }}
 
-  {{ field_render([content.body, 'node-body']) }}
+    {{ field_render([content.body, 'node-body']) }}
 
-  {{ field_render([content.links, 'links']) }}
+    {{ field_render([content.links, 'links']) }}
 
-  {{ field_render([content.member_price, 'member-price price']) }}
+    {{ field_render([content.member_price, 'member-price price']) }}
 
-  {{ field_render([content.non_member_price, 'non-member-price price']) }}
+    {{ field_render([content.non_member_price, 'non-member-price price']) }}
 
-  {{ field_render([content.file_download_button, 'download-link']) }}
+    {{ field_render([content.file_download_button, 'download-link']) }}
 
-  {{ field_render([content.disclaimer, 'disclaimer']) }}
+    {{ field_render([content.disclaimer, 'disclaimer']) }}
+
+  </div>
 </div>
