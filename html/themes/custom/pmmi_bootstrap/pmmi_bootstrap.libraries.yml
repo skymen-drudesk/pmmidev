@@ -2,6 +2,10 @@ theme:
   js:
     js/pmmi.theme.js: {}
   dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery.once
     - bootstrap/drupal.bootstrap
     - bootstrap/attributes
 

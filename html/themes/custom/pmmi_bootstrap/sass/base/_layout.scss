@@ -1,3 +1,17 @@
 .main-section {
   clear: both;
 }
+@include tablet-max {
+  @for $i from (1) through $grid-columns {
+    .col-md-#{$i},
+    .col-sm-#{$i} {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
+.container {
+  @media (max-width: $screen-sm-max) {
+    width: auto;
+  }
+}
