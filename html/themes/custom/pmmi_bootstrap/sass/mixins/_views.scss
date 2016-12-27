@@ -13,6 +13,12 @@
   padding: 20px;
   border: 1px solid $mdgrey;
   border-radius: 6px;
+  @include tablet-max {
+    margin-bottom: 20px;
+  }
+  @include mobile {
+    padding: 10px
+  }
   .field-name-node-title {
     @extend .default-headline-3;
   }
@@ -22,16 +28,28 @@
       @extend .button-primary;
       margin-right: 32px;
     }
+    @include mobile {
+      display: block;
+      a {
+        margin: 0 0 15px;
+      }
+    }
   }
   #{$button_op} {
     display: inline-block;
     a {
       @extend .btn-primary-opacity;
     }
+    @include mobile {
+      display: block;
+    }
   }
   .field-name-field-date {
     display: inline;
     @extend .headline4;
+    @include tablet-max {
+      display: block
+    }
   }
   .field-name-body {
     display: inline;
@@ -39,6 +57,12 @@
     margin-bottom: 13px;
     p {
       display: inline;
+    }
+    @include tablet-max {
+      display: block;
+      p {
+        display: block;
+      }
     }
   }
   #{$labeled_fields} {
@@ -56,7 +80,7 @@
   margin: 0 0 30px;
   position: relative;
   min-height: 214px;
-  @media screen and (max-width: $screen-md-max) {
+  @include desktop-max {
     min-height: 246px;
     margin-bottom: 20px;
   }

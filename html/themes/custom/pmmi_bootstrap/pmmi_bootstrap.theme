@@ -46,16 +46,28 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
  * Implements hook_preprocess_ds_entity_view().
  */
 function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
-  $classes = [
+  $attributes = new Attribute();
+  $attributes['class'] = [
     Html::cleanCssIdentifier($vars['content']['#bundle']),
     'mode-' . Html::cleanCssIdentifier($vars['content']['#view_mode']),
   ];
-
   switch ($vars['content']['#bundle']) {
     case 'certification_test':
       $coming = $vars['content']['#node']->get('field_cert_test_coming')->value;
       if (!empty($coming)) {
-        $classes[] = 'comming-soon';
+        $attributes['class'][] = 'comming-soon';
+      }
+      break;
+
+    case 'video':
+      if ($vars['content']['#view_mode'] == 'default') {
+        $node = &drupal_static(__FUNCTION__);
+        if (!isset($node)) {
+          $node = \Drupal::routeMatch()->getParameter('node');
+        }
+        if ($node) {
+          $attributes['data-item-id'] = $vars['content']['#node']->id();
+        }
       }
       break;
 
@@ -73,10 +85,10 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
     case 'text':
       $center = $vars['content']['#block_content']->get('field_center_text')->value;
       if ($center) {
-        $classes[] = 'centered';
+        $attributes['class'][] = 'centered';
       }
       break;
   }
 
-  $vars['content']['#classes'] = implode(' ', $classes);
+  $vars['content']['#attrs'] = $attributes;
 }

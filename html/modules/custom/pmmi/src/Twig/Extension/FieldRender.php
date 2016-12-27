@@ -38,15 +38,16 @@ class FieldRender extends \Twig_Extension {
   public function renderField(\Twig_Environment $env, array $context, array $args = []) {
     $output = '';
     if (!empty($args)) {
-      $args = $args + array(NULL, NULL, NULL);
-      list($field, $class, $tag) = $args;
+      $args = $args + array(NULL, NULL, NULL, NULL);
+      list($field, $class, $tag, $id) = $args;
       if (!empty($field)) {
         $rendered = render($field);
         if (!empty(trim($rendered))) {
           $class = !empty($class) ? 'class="' . $class . '"' : '';
+          $id = !empty($id) ? 'id="' . $id . '"' : '';
           $tag = !isset($tag) ? 'div' : $tag;
           if (!empty($tag)) {
-            $output = "<{$tag} {$class}>" . $rendered . "</{$tag}>";
+            $output = "<{$tag} {$class} {$id}>" . $rendered . "</{$tag}>";
           }
           else {
             $output = $rendered;

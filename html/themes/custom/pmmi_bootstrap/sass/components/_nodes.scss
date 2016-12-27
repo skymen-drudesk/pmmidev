@@ -1,0 +1,45 @@
+.top-banner {
+  margin-bottom: 30px;
+}
+.node-title {
+  @extend .headline2;
+  margin-bottom: 25px;
+}
+.node-body {
+  @extend .paragraph1;
+  margin-bottom: 20px;
+  p {
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+  }
+}
+.featured-speaker {
+  @extend .paragraph1;
+  margin: 15px 0 30px;
+  .field-label-inline {
+    font-weight: 800;
+  }
+}
+.node-layout {
+  .date {
+    @extend .headline4;
+    margin-bottom: 5px;
+  }
+  .content-left {
+    @include tablet-max {
+      background: $ltgrey;
+      padding: 15px;
+      margin: 0 -15px;
+    }
+  }
+}
+// Video node.
+.video-node {
+  .video-container {
+    margin-bottom: 20px;
+  }
+  .videos-view {
+    margin: 30px 0 0;
+  }
+}

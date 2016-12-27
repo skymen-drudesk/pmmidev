@@ -1,13 +1,9 @@
-<div class="block-text-image {{ content['#classes'] }}">
+<div class="block-layout block-text-image {{ content['#attrs'].class }}">
 
   {{ field_render([content.head, 'title', 'h2']) }}
 
-  {{ field_render([content.image, 'image']) }}
-
   {{ field_render([content.body, 'block-body']) }}
 
-  {{ field_render([content.button, 'button']) }}
-
-  {{ field_render([content.link, 'link']) }}
+  {{ field_render([content.image, 'image']) }}
 
 </div>
