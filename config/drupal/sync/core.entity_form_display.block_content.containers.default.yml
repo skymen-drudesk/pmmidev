@@ -20,6 +20,7 @@ dependencies:
     - field.field.block_content.containers.field_head
   module:
     - field_group
+    - inline_entity_form
     - link
 third_party_settings:
   field_group:
@@ -121,51 +122,75 @@ content:
   field_block_1:
     weight: 3
     settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      override_labels: false
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
   field_block_2:
     weight: 4
     settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      override_labels: false
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
   field_block_3:
     weight: 5
     settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      override_labels: false
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
   field_block_4:
     weight: 8
     settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      override_labels: false
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
   field_block_5:
     weight: 7
     settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      override_labels: false
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
   field_block_6:
     weight: 9
     settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
       match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      override_labels: false
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
   field_block_plugin_1:
     weight: 4
     settings:
