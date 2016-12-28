@@ -54,6 +54,7 @@ class PMMITwitterBlock extends BlockBase implements ContainerFactoryPluginInterf
    */
   public function defaultConfiguration() {
     return [
+      'block_title' => $this->t('PMMI'),
       'message_count' => 2,
       'timeline' => 1,
       'max_age' => 1800,
@@ -64,6 +65,14 @@ class PMMITwitterBlock extends BlockBase implements ContainerFactoryPluginInterf
     $timeline_options = [
       Twitter::ME => $this->t('My timeline'),
       Twitter::ME_AND_FRIENDS => $this->t('My and friends timeline'),
+    ];
+    $form['block_title'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Block title to display'),
+      '#required' => TRUE,
+      '#maxlength' => 80,
+      '#size' => 80,
+      '#default_value' => $this->configuration['block_title'],
     ];
     $form['message_count'] = array(
       '#type' => 'number',
@@ -91,9 +100,10 @@ class PMMITwitterBlock extends BlockBase implements ContainerFactoryPluginInterf
   }
 
   public function blockSubmit($form, FormStateInterface $form_state) {
-    $this->configuration['message_count'] = $form_state->getValue('message_count');
-    $this->configuration['timeline'] = $form_state->getValue('timeline');
-    $this->configuration['max_age'] = $form_state->getValue('max_age');
+    $fields = ['block_title', 'message_count', 'timeline', 'max_age'];
+    foreach ($fields as $field) {
+      $this->configuration[$field] = $form_state->getValue($field);
+    }
   }
 
   /**

@@ -316,6 +316,17 @@ block_text_image:
       label: Body
     image:
       label: Image
+block_image_text:
+  label: Image+Text
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/image-text
+  regions:
+    image:
+      label: Image
+    head:
+      label: Head
+    body:
+      label: Body
 block_image_slide_default:
   label: Image Slide Default
   category: PMMI: Blocks

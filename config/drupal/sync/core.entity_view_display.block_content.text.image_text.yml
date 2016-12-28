@@ -1,0 +1,71 @@
+uuid: 234de3ce-9f73-40b2-8dcd-a502a69674ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.text
+    - core.entity_view_mode.block_content.image_text
+    - field.field.block_content.text.body
+    - field.field.block_content.text.field_button
+    - field.field.block_content.text.field_center_text
+    - field.field.block_content.text.field_head
+    - field.field.block_content.text.field_image
+    - field.field.block_content.text.field_link
+    - image.style.brand_block_dhd
+  module:
+    - ds
+    - image
+    - text
+third_party_settings:
+  ds:
+    layout:
+      id: block_image_text
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      body:
+        - body
+      head:
+        - field_head
+      image:
+        - field_image
+id: block_content.text.image_text
+targetEntityType: block_content
+bundle: text
+mode: image_text
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+  field_head:
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_image:
+    weight: 2
+    label: hidden
+    settings:
+      image_style: brand_block_dhd
+      image_link: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: image
+hidden:
+  field_button: true
+  field_center_text: true
+  field_link: true

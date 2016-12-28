@@ -24,10 +24,11 @@ class PMMIFacebookBlock extends BlockBase {
    */
   public function defaultConfiguration() {
     return [
-        'message_count' => 1,
-        'page_id' => '',
-        'max_age' => 300,
-      ] + parent::defaultConfiguration();
+      'block_title' => $this->t('PMMI'),
+      'message_count' => 1,
+      'page_id' => '',
+      'max_age' => 300,
+    ] + parent::defaultConfiguration();
 
   }
 
@@ -35,10 +36,18 @@ class PMMIFacebookBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function blockForm($form, FormStateInterface $form_state) {
+    $form['block_title'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Block title to display'),
+      '#required' => TRUE,
+      '#maxlength' => 80,
+      '#size' => 80,
+      '#default_value' => $this->configuration['block_title'],
+    ];
     $form['message_count'] = [
       '#type' => 'number',
       '#title' => $this->t('Number of messages to display'),
-      '#description' => $this->t(''),
+      '#description' => '',
       '#min' => 1,
       '#max' => 100,
       '#required' => TRUE,
@@ -56,7 +65,7 @@ class PMMIFacebookBlock extends BlockBase {
     $form['max_age'] = [
       '#type' => 'number',
       '#title' => $this->t('Cache options - Max age in seconds'),
-      '#description' => $this->t(''),
+      '#description' => '',
       '#min' => 300,
       '#required' => TRUE,
       '#default_value' => $this->configuration['max_age'],
@@ -69,9 +78,10 @@ class PMMIFacebookBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
-    $this->configuration['message_count'] = $form_state->getValue('message_count');
-    $this->configuration['page_id'] = $form_state->getValue('page_id');
-    $this->configuration['max_age'] = $form_state->getValue('max_age');
+    $fields = ['block_title', 'message_count', 'page_id', 'max_age'];
+    foreach ($fields as $field) {
+      $this->configuration[$field] = $form_state->getValue($field);
+    }
   }
 
   /**
@@ -93,7 +103,7 @@ class PMMIFacebookBlock extends BlockBase {
     /** @var \Drupal\Core\Config\ImmutableConfig $secret_config */
     $secret_config = \Drupal::config('pmmi_facebook.settings');
     $access_token = $secret_config->get('app_secret_token');
-    //Get the JSON
+    // Get the JSON.
     $json_object = @file_get_contents('https://graph.facebook.com/' . $page_id .
       '/posts?access_token=' . $access_token . '&limit=' . $limit);
     if (!empty($json_object)) {
@@ -109,6 +119,10 @@ class PMMIFacebookBlock extends BlockBase {
     }
 
     return $build;
+  }
+
+  public function status() {
+    return TRUE;
   }
 
 }
