@@ -1769,12 +1769,12 @@
             "version": "1.0.0-rc12",
             "source": {
                 "type": "git",
-                "url": "https://github.com/hechoendrupal/DrupalConsole.git",
+                "url": "https://github.com/hechoendrupal/drupal-console.git",
                 "reference": "da0e61df3451d465334ee0f6750d557f37073165"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hechoendrupal/DrupalConsole/zipball/da0e61df3451d465334ee0f6750d557f37073165",
+                "url": "https://api.github.com/repos/hechoendrupal/drupal-console/zipball/da0e61df3451d465334ee0f6750d557f37073165",
                 "reference": "da0e61df3451d465334ee0f6750d557f37073165",
                 "shasum": ""
             },
@@ -2133,7 +2133,8 @@
                 "patches_applied": {
                     "Avoid illegal characters in database name": "https://www.drupal.org/files/issues/fix-dbname-validation-2443839-40.patch",
                     "Field Storage Does not validate if the class exists": "https://www.drupal.org/files/issues/2723707-field-storage-does-not-validate-5.patch",
-                    "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/minimal-install-profile-1170362-204.patch"
+                    "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/minimal-install-profile-1170362-204.patch",
+                    "SystemBrandingBlock causes fatal error if theme is not set when place it in Panels": "https://www.drupal.org/files/issues/systembrandingblock-causes-fatal-error-if-theme-is-not-set-when-place-it-in-panels-2838601-2.patch"
                 }
             },
             "autoload": {
@@ -7601,7 +7602,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/devel",
-                "reference": "feac050ae891a319a7f45ca5baa8e8cfa563f447"
+                "reference": "06b62644e2747d4892f493c594450ade9345793a"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -7615,8 +7616,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1+10-dev",
-                    "datestamp": "1482437883"
+                    "version": "8.x-1.0-beta1+11-dev",
+                    "datestamp": "1482919084"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -7673,8 +7674,7 @@
                 "source": "http://cgit.drupalcode.org/devel",
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            },
-            "time": "2016-12-22 20:14:08"
+            }
         },
         {
             "name": "drupal/devel_debug_log",
