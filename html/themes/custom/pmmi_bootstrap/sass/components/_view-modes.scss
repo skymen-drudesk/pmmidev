@@ -1,4 +1,4 @@
-.default-mode-node {
+.mode-default {
   &.video {
     @include views-list-default(
       '.field-name-node-link',
@@ -12,6 +12,15 @@
       float: left;
       width: 250px;
       margin-left: - 280px;
+    }
+    @include mobile {
+      padding-left: 10px;
+      min-height: 0;
+      .field-name-field-video {
+        float: none;
+        width: auto;
+        margin: 0 0 15px;
+      }
     }
   }
   &.certification-test {
@@ -36,4 +45,7 @@
       margin-left: - 280px;
     }
   }
+}
+.block-event-default {
+  @include event_news;
 }

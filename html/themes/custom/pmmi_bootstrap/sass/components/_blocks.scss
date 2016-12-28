@@ -1,9 +1,17 @@
+// Default block.
 .block {
   margin-bottom: 20px;
   .block-title {
     @extend .block-title-default;
   }
 }
+// DS block layout.
+.block-layout {
+  .title {
+    @extend .block-title-default;
+  }
+}
+// Twitter block.
 .block-pmmi-twitter-block {
   border: 1px solid $mdgrey;
   .block-title {
@@ -52,12 +60,93 @@
     }
   }
 }
+// Facebook block.
 .block-pmmi-facebook-block {
   @extend .block-pmmi-twitter-block;
   .block-title {
     background: $facebookblue;
     &:before {
       @extend .fa-facebook;
+    }
+  }
+}
+// Image header(top banner) block.
+.block-image-header {
+  .top-banner {
+    position: relative;
+  }
+  .page-name {
+    background: rgba($dkblue, 0.8);
+    left: 40px;
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    display: inline-block;
+    padding: 5px 40px 15px;
+    min-width: 370px;
+    max-width: 392px;
+    &:before {
+      display: inline-block;
+      content: "";
+      height: 100%;
+      vertical-align: middle;
+    }
+    .field-name-field-head {
+      display: inline-block;
+      vertical-align: middle;
+      font-size: $r40;
+      line-height: 0.03;
+      color: #fff;
+      font-weight: 300;
+    }
+    @include tablet {
+      min-width: 355px;
+      max-width: 355px;
+      .field-name-field-head {
+        font-size: $r30;
+      }
+    }
+    @include mobile {
+      min-width: 0;
+      max-width: 100%;
+      left: 20px;
+      right: 20px;
+      padding-left: 20px;
+      padding-right: 10px;
+      .field-name-field-head {
+        font-size: $r24;
+      }
+    }
+  }
+  .img-header {
+    min-height: 100px;
+    background: $blue;
+    @include tablet {
+      min-height: 86px;
+    }
+    @include mobile {
+      min-height: 74px;
+    }
+  }
+  img {
+    width: auto;
+    min-width: 100%;
+  }
+}
+
+// Block Text + Image.
+.block-text-image {
+  .block-body {
+    margin-bottom: 20px;
+    @extend .side-paragraph;
+  }
+  .image {
+    img {
+      max-height: 83px;
+      width: auto;
+      @include desktop-max {
+        max-height: 60px;
+      }
     }
   }
 }

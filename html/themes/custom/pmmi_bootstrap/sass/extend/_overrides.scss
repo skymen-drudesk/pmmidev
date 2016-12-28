@@ -5,10 +5,6 @@
 @wide:    ~"screen and (min-width: @{screen-lg-min})";
 */
 
-$tablet:  "screen and (min-width: 768px)";
-$normal:  "screen and (min-width: 992px)";
-$wide:    "screen and (min-width: 1200px)";
-
 // Drop shadows.
 @mixin box-shadow($shadow) {
   -webkit-box-shadow: $shadow;

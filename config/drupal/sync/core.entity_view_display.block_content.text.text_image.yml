@@ -7,9 +7,11 @@ dependencies:
     - core.entity_view_mode.block_content.text_image
     - field.field.block_content.text.body
     - field.field.block_content.text.field_button
+    - field.field.block_content.text.field_center_text
     - field.field.block_content.text.field_head
     - field.field.block_content.text.field_image
     - field.field.block_content.text.field_link
+    - image.style.brand_block_dhd
   module:
     - ds
     - image
@@ -40,22 +42,44 @@ content:
     type: text_default
     weight: 0
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_head:
     weight: 1
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: string
   field_image:
     weight: 2
     label: hidden
     settings:
-      image_style: ''
+      image_style: brand_block_dhd
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: image
 hidden:
   field_button: true
+  field_center_text: true
   field_link: true

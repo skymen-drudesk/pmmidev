@@ -2133,8 +2133,7 @@
                 "patches_applied": {
                     "Avoid illegal characters in database name": "https://www.drupal.org/files/issues/fix-dbname-validation-2443839-40.patch",
                     "Field Storage Does not validate if the class exists": "https://www.drupal.org/files/issues/2723707-field-storage-does-not-validate-5.patch",
-                    "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/minimal-install-profile-1170362-204.patch",
-                    "SystemBrandingBlock causes fatal error if theme is not set when place it in Panels": "https://www.drupal.org/files/issues/systembrandingblock-causes-fatal-error-if-theme-is-not-set-when-place-it-in-panels-2838601-2.patch"
+                    "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/minimal-install-profile-1170362-204.patch"
                 }
             },
             "autoload": {
@@ -3630,16 +3629,16 @@
         },
         {
             "name": "drupal/views_slideshow",
-            "version": "8.4.1",
+            "version": "8.4.2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/views_slideshow",
-                "reference": "584d7b1185e91cb953035064e0b81e96148abfda"
+                "reference": "fb4385d0f01041000012be02b4326fa722961235"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_slideshow-8.x-4.1.zip",
-                "reference": "584d7b1185e91cb953035064e0b81e96148abfda",
+                "url": "https://ftp.drupal.org/files/projects/views_slideshow-8.x-4.2.zip",
+                "reference": null,
                 "shasum": null
             },
             "require": {
@@ -3670,27 +3669,26 @@
             ],
             "description": "Provides a View style that displays rows as a jQuery slideshow.  This is an API and requires Views Slideshow Cycle or another module that supports the API.",
             "homepage": "https://www.drupal.org/project/views_slideshow",
-            "time": "2016-11-03 19:29:45"
+            "time": "2016-12-25 04:07:05"
         },
         {
             "name": "drupal/yamlform",
-            "version": "1.0.0-beta28",
+            "version": "1.0.0-beta29",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/yamlform",
-                "reference": "8.x-1.0-beta28"
+                "reference": "8.x-1.0-beta29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/yamlform-8.x-1.0-beta28.zip",
+                "url": "https://ftp.drupal.org/files/projects/yamlform-8.x-1.0-beta29.zip",
                 "reference": null,
-                "shasum": "8344865ca294583028544d056b9ebc82e31c9ebd"
+                "shasum": "02f31780340028b370b22233e8d3e1e97f54b9c7"
             },
             "require": {
                 "drupal/core": "*"
             },
             "require-dev": {
-                "drupal/core": "*",
                 "drupal/devel": "*"
             },
             "type": "drupal-module",
@@ -3699,8 +3697,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta28",
-                    "datestamp": "1482316383"
+                    "version": "8.x-1.0-beta29",
+                    "datestamp": "1482752282"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -6876,16 +6874,16 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.29.0",
+            "version": "v1.30.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "74f723e542368ca2080b252740be5f1113ebb898"
+                "reference": "c6ff71094fde15d12398eaba029434b013dc5e59"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/74f723e542368ca2080b252740be5f1113ebb898",
-                "reference": "74f723e542368ca2080b252740be5f1113ebb898",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/c6ff71094fde15d12398eaba029434b013dc5e59",
+                "reference": "c6ff71094fde15d12398eaba029434b013dc5e59",
                 "shasum": ""
             },
             "require": {
@@ -6898,7 +6896,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.29-dev"
+                    "dev-master": "1.30-dev"
                 }
             },
             "autoload": {
@@ -6933,7 +6931,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2016-12-13 17:28:18"
+            "time": "2016-12-23 11:06:22"
         },
         {
             "name": "victorjonsson/markdowndocs",

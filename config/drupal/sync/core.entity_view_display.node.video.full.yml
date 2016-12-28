@@ -76,14 +76,28 @@ content:
     type: text_default
     weight: 2
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_date:
     weight: 4
     label: hidden
     settings:
       timezone_override: ''
       format_type: month_year
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: datetime_default
   field_featured_speaker:
     weight: 5
@@ -106,15 +120,29 @@ content:
     settings:
       view_mode: default
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_video:
     weight: 3
     label: hidden
     settings:
-      width: '854'
-      height: '480'
       autoplay: true
-    third_party_settings: {  }
+      width: '670'
+      height: '370'
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: video_embed_player
 hidden:
   field_link: true
