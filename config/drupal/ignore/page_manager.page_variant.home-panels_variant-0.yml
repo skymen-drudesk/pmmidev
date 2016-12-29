@@ -4,27 +4,93 @@ status: true
 dependencies:
   config:
     - page_manager.page.home
+    - views.view.events
+  content:
+    - 'block_content:containers:39b3f6d2-93b6-4bcd-a7e5-b828db1a1166'
+    - 'block_content:containers:c049d78b-1b41-4e01-8c19-72898ff78073'
+    - 'block_content:slideshow:b4401518-ac4b-49e6-bb67-cd39fe361e5a'
+    - 'block_content:slideshow:c8612e33-74bd-4024-862b-88cb2e60161d'
+    - 'block_content:text:c0995ff6-8d63-4590-861c-de26e279038e'
   module:
+    - block_content
     - panels
-    - pmmi_twitter
+    - views
     - user
 id: home-panels_variant-0
 label: Member
 variant: panels_variant
 variant_settings:
   blocks:
-    f20414e3-5e7c-41f3-8993-271c290a5f5f:
-      id: pmmi_twitter_block
-      label: 'PMMI Twitter block'
-      provider: pmmi_twitter
-      label_display: visible
-      block_title: PMMI
-      message_count: '2'
-      timeline: '1'
-      max_age: '1800'
+    bb9b0d3c-3e24-451e-8aa6-c458a5dd049e:
+      id: 'block_content:c0995ff6-8d63-4590-861c-de26e279038e'
+      label: 'Home (Member) - Title Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: oneone
+      weight: -9
+      uuid: bb9b0d3c-3e24-451e-8aa6-c458a5dd049e
+      context_mapping: {  }
+    634cdbf8-be85-4ac3-9ea1-964e3d30daf1:
+      id: 'block_content:39b3f6d2-93b6-4bcd-a7e5-b828db1a1166'
+      label: 'Home - Cards - 3 Pillars'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: oneone
+      weight: -8
+      uuid: 634cdbf8-be85-4ac3-9ea1-964e3d30daf1
+      context_mapping: {  }
+    79c74c63-ba44-4227-8921-e6a3361183d4:
+      id: 'views_block:events-block_3'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: oneone
+      weight: -7
+      uuid: 79c74c63-ba44-4227-8921-e6a3361183d4
+      context_mapping: {  }
+    b6ea899b-7231-4c97-9c24-db0b2ce5110c:
+      id: 'block_content:c049d78b-1b41-4e01-8c19-72898ff78073'
+      label: 'Home (Member) - News+Twitter+Videos'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
       region: oneone
       weight: 0
-      uuid: f20414e3-5e7c-41f3-8993-271c290a5f5f
+      uuid: b6ea899b-7231-4c97-9c24-db0b2ce5110c
+      context_mapping: {  }
+    824d2906-ace4-422c-a6d9-d1e614498ffa:
+      id: 'block_content:b4401518-ac4b-49e6-bb67-cd39fe361e5a'
+      label: 'Home (Member) - Slideshow'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: image_slider
+      region: top
+      weight: -10
+      uuid: 824d2906-ace4-422c-a6d9-d1e614498ffa
+      context_mapping: {  }
+    b94c370f-ba09-4bbc-8420-1b7bf8097873:
+      id: 'block_content:c8612e33-74bd-4024-862b-88cb2e60161d'
+      label: 'Home (Member) - Slideshow bottom'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: bottom
+      weight: 0
+      uuid: b94c370f-ba09-4bbc-8420-1b7bf8097873
       context_mapping: {  }
   id: panels_variant
   uuid: 0d0a5f8a-11f6-443d-8a0a-5148fae1ac43
@@ -38,20 +104,6 @@ variant_settings:
   builder: ipe
 page: home
 weight: 0
-selection_criteria:
-  -
-    id: user_role
-    roles:
-      authenticated: authenticated
-    negate: false
-    context_mapping:
-      user: current_user
-  -
-    id: user_role
-    roles:
-      administrator: administrator
-    negate: true
-    context_mapping:
-      user: current_user
+selection_criteria: {  }
 selection_logic: and
 static_context: {  }

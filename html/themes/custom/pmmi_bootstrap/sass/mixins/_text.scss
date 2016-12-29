@@ -1,10 +1,14 @@
-// Paragraph styles.
-.inherited-p {
-  p {
+@mixin inhetit-text-style($selector) {
+  #{$selector} {
     font-size: inherit;
     line-height: inherit;
     font-weight: inherit;
   }
+}
+
+// Paragraph styles.
+.inherited-p {
+  @include inhetit-text-style('p');
 }
 .paragraph1 {
   font-size: $r18;
@@ -18,7 +22,7 @@
 }
 .paragraph2 {
   font-size: 1rem;
-  line-height: 1.3125;
+  line-height: $r21;
   font-weight: 500;
   @extend .inherited-p;
 }
@@ -44,6 +48,27 @@
 }
 
 // Headline styles.
+.headline1 {
+  font-size: $r60;
+  line-height: 1.15;
+  font-weight: 700;
+  font-family: $trumpgothicpro;
+  text-transform: uppercase;
+  color: $blue;
+  letter-spacing: 3px;
+  &:after {
+    display: block;
+    border-bottom: 3px solid $blue;
+    content: "";
+    margin: 7px 15px 0;
+  }
+  @include tablet {
+    font-size: $r40;
+  }
+  @include mobile {
+    font-size: $r35;
+  }
+}
 .headline2 {
   font-size: $r36;
   line-height: $r42;

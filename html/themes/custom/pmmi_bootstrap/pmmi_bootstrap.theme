@@ -51,7 +51,7 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
   $attributes = new Attribute();
   $attributes['class'] = [
     Html::cleanCssIdentifier($vars['content']['#bundle']),
-    'mode-' . Html::cleanCssIdentifier($vars['content']['#view_mode']),
+    Html::cleanCssIdentifier('mode-' . $vars['content']['#view_mode']),
   ];
   switch ($vars['content']['#bundle']) {
     case 'certification_test':

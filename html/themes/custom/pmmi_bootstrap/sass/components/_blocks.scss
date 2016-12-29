@@ -134,19 +134,3 @@
   }
 }
 
-// Block Text + Image.
-.block-text-image {
-  .block-body {
-    margin-bottom: 20px;
-    @extend .side-paragraph;
-  }
-  .image {
-    img {
-      max-height: 83px;
-      width: auto;
-      @include desktop-max {
-        max-height: 60px;
-      }
-    }
-  }
-}

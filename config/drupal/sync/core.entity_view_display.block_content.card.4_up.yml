@@ -1,15 +1,16 @@
-uuid: 0e49ac54-0156-432f-b75b-b68c62216d4f
+uuid: bfea59ad-234d-4059-89b9-968b6cd93983
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.card
+    - core.entity_view_mode.block_content.4_up
     - field.field.block_content.card.body
     - field.field.block_content.card.field_button
     - field.field.block_content.card.field_head
     - field.field.block_content.card.field_icon
     - field.field.block_content.card.field_image
-    - responsive_image.styles.3_up_cards
+    - responsive_image.styles.4_up_cards
   module:
     - ds
     - image
@@ -36,10 +37,10 @@ third_party_settings:
         - field_image
       icon:
         - field_icon
-id: block_content.card.default
+id: block_content.card.4_up
 targetEntityType: block_content
 bundle: card
-mode: default
+mode: 4_up
 content:
   body:
     weight: 0
@@ -77,7 +78,7 @@ content:
     weight: 3
     label: hidden
     settings:
-      responsive_image_style: 3_up_cards
+      responsive_image_style: 4_up_cards
       image_link: ''
     third_party_settings:
       ds:

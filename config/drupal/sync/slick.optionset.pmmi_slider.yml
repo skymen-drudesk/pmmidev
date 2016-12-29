@@ -1,0 +1,28 @@
+uuid: ea916a3f-c985-4a3d-b611-5478fd5c7bfc
+langcode: en
+status: false
+dependencies:
+  enforced:
+    module:
+      - slick
+_core:
+  default_config_hash: Zyx4BsKtbNFnRU7WTHAF0DGHMenI0b_Czn4dwl1bQTc
+id: pmmi_slider
+name: pmmi_slider
+label: 'PMMI Slider'
+weight: -10
+group: ''
+skin: default
+breakpoints: 0
+optimized: true
+options:
+  options__active_tab: edit-options-settings
+  settings:
+    adaptiveHeight: true
+    arrows: false
+    lazyLoad: ondemand
+    respondTo: slider
+    slidesToShow: 1
+    swipeToSlide: true
+    useCSS: false
+    easing: swing

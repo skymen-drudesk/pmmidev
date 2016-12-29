@@ -3,32 +3,34 @@
     {{ field_render([content.image_header, 'img-header']) }}
   </div>
   <div class="container">
-    <div class="content-left col-sm-3">
-      {% set info = [
-        'logo',
-        'school_contact',
-        'address',
-        'phone',
-        'email',
-        'website',
-      ] %}
-      <div class="school-info">
-        {% for field in info %}
-          {{ field_render([content[field], field|clean_class]) }}
-        {% endfor %}
+    <div class="row">
+      <div class="content-left col-sm-3">
+        {% set info = [
+          'logo',
+          'school_contact',
+          'address',
+          'phone',
+          'email',
+          'website',
+        ] %}
+        <div class="school-info">
+          {% for field in info %}
+            {{ field_render([content[field], field|clean_class]) }}
+          {% endfor %}
+        </div>
       </div>
-    </div>
-    <div class="content-right col-sm-9">
-      <h2 class="node-title">
-        {{ content.title }}
-      </h2>
-      {{ field_render([content.image, 'img']) }}
+      <div class="content-right col-sm-9">
+        <h2 class="node-title">
+          {{ content.title }}
+        </h2>
+        {{ field_render([content.image, 'img']) }}
 
-      {{ field_render([content.progarms_focus, 'focus']) }}
+        {{ field_render([content.progarms_focus, 'focus']) }}
 
-      {{ field_render([content.body, 'node-body']) }}
+        {{ field_render([content.body, 'node-body']) }}
 
-      {{ field_render([content.content_verified, 'content-verified']) }}
+        {{ field_render([content.content_verified, 'content-verified']) }}
+      </div>
     </div>
   </div>
 </div>

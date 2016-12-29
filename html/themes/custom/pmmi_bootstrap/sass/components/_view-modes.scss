@@ -1,3 +1,4 @@
+/* DEFAULT NODE VIEW MODES  */
 .mode-default {
   &.video {
     @include views-list-default(
@@ -45,7 +46,4 @@
       margin-left: - 280px;
     }
   }
-}
-.block-event-default {
-  @include event_news;
 }

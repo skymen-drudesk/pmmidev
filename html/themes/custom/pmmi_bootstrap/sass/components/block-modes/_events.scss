@@ -1,0 +1,5 @@
+/* EVENT VIEW MODES. */
+// Default event view.
+.block-event-default {
+  @include event_news;
+}

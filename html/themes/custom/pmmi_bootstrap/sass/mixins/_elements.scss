@@ -2,8 +2,8 @@
 .button-primary-defaults {
   @extend .btn;
   font-weight: 700;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: $r14;
+  line-height: $r18;
   min-width: 166px;
   text-transform: uppercase;
 }
@@ -14,4 +14,17 @@
 .btn-primary-opacity {
   @extend .button-primary-defaults;
   @include button-variant($btn-primary-color, $blueopacity, $blueopacity);
+}
+.button-secondary {
+  @extend .button-primary-defaults;
+  min-width: 130px;
+  background: none;
+  border-width: 2px;
+  border-color: #fff;
+  color: #fff;
+  &:focus,
+  &:hover {
+    border-color: $mdgrey;
+    color: $mdgrey;
+  }
 }
