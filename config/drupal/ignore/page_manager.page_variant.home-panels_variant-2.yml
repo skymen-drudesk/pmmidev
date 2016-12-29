@@ -6,40 +6,12 @@ dependencies:
     - page_manager.page.home
   module:
     - panels
-    - pmmi_facebook
-    - pmmi_twitter
     - user
 id: home-panels_variant-2
 label: Other
 variant: panels_variant
 variant_settings:
-  blocks:
-    9bb4618b-b894-4357-96e0-304163255756:
-      id: pmmi_twitter_block
-      label: 'PMMI Twitter block'
-      provider: pmmi_twitter
-      label_display: visible
-      block_title: PMMI
-      message_count: '2'
-      timeline: '1'
-      max_age: '1800'
-      region: oneone
-      weight: 0
-      uuid: 9bb4618b-b894-4357-96e0-304163255756
-      context_mapping: {  }
-    381046e8-bfe3-40b2-90c7-f56b2b9e6213:
-      id: pmmi_facebook_block
-      label: 'PMMI Facebook block'
-      provider: pmmi_facebook
-      label_display: visible
-      block_title: PMMI
-      message_count: '1'
-      page_id: PMMIorg
-      max_age: '300'
-      region: oneone
-      weight: 0
-      uuid: 381046e8-bfe3-40b2-90c7-f56b2b9e6213
-      context_mapping: {  }
+  blocks: {  }
   id: panels_variant
   uuid: fb448d8c-9d29-40e9-b0ab-76d5272d8423
   label: null
