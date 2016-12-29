@@ -5,7 +5,8 @@ dependencies: {  }
 id: ignore
 label: Ignore
 folder: ../config/drupal/ignore
-module: {  }
+module:
+  page_manager: 0
 theme: {  }
 blacklist: {  }
 graylist: {  }
