@@ -27,6 +27,7 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
           'target' => '_blank',
         ],
       ]);
+      $variables['label'] = $variables['configuration']['block_title'];
       $variables['subtitle'] = Link::fromTextAndUrl('@PMMIorg', $url);
       break;
 
@@ -37,6 +38,7 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
           'target' => '_blank',
         ],
       ]);
+      $variables['label'] = $variables['configuration']['block_title'];
       $variables['subtitle'] = Link::fromTextAndUrl("facebook.com/{$page_id}", $url);
       break;
   }
