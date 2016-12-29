@@ -28,8 +28,9 @@ selection_criteria:
   -
     id: user_role
     roles:
-      administrator: administrator
-    negate: false
+      anonymous: anonymous
+      authenticated: authenticated
+    negate: true
     context_mapping:
       user: current_user
 selection_logic: and

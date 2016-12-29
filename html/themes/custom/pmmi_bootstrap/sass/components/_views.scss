@@ -42,3 +42,44 @@ div.view {
     }
   }
 }
+.slick--view--slideshow--block-default {
+  .slick-dots {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 98px;
+    z-index: 2;
+    li {
+      display: inline-block;
+      margin: 0 8px;
+      button {
+        padding: 0;
+        margin: 0;
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        background: #d8d8d8;
+        border: 2px solid #979797;
+        font-size: 0;
+        color: transparent;
+      }
+      &.slick-active {
+        button {
+          background: #fff;
+        }
+      }
+    }
+    @include desktop {
+      bottom: 38px;
+    }
+    @include tablet {
+      bottom: 31px;
+    }
+    @include mobile {
+      bottom: 42px;
+    }
+  }
+}

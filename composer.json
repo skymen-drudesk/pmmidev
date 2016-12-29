@@ -89,19 +89,6 @@
     {
       "type": "package",
       "package": {
-        "name": "malsup/jquery.cycle",
-        "version": "3.0.3",
-        "type": "drupal-library",
-        "source": {
-          "url": "https://github.com/malsup/cycle",
-          "type": "git",
-          "reference": "origin/master"
-        }
-      }
-    },
-    {
-      "type": "package",
-      "package": {
         "name": "douglascrockford/json2",
         "version": "2.0",
         "type": "drupal-library",
@@ -133,6 +120,19 @@
         "type": "drupal-library",
         "source": {
           "url": "https://github.com/tobia/Pause",
+          "type": "git",
+          "reference": "origin/master"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "kenwheeler/slick",
+        "version": "1.6.0",
+        "type": "drupal-library",
+        "source": {
+          "url": "https://github.com/kenwheeler/slick",
           "type": "git",
           "reference": "origin/master"
         }
@@ -176,16 +176,16 @@
     "drupal/panels": "3.x-dev",
     "drupal/pathauto": "~1.0@alpha",
     "drupal/redirect": "1.x-dev",
+    "drupal/slick_views": "8.x",
     "drupal/tb_megamenu": "8.1.0-alpha1",
     "drupal/token": "~1.0@beta",
     "drupal/video": "^1.2",
     "drupal/views_field_formatter": "^8.1",
-    "drupal/views_slideshow": "8.x",
     "drupal/yamlform": "~1.0@beta",
     "drush/drush": "~8.0",
     "enyo/dropzone": "4.2.0",
+    "kenwheeler/slick": "~1.6.0",
     "summitmedia/panels_everywhere": "dev-master",
-    "malsup/jquery.cycle": "^3.0",
     "tobia/jquery.pause": "master",
     "wikimedia/composer-merge-plugin": "^1.3"
   },

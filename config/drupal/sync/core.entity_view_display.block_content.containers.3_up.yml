@@ -56,25 +56,46 @@ content:
     weight: 1
     label: hidden
     settings:
-      view_mode: default
+      view_mode: 3_up
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_block_2:
     type: entity_reference_entity_view
     weight: 3
     label: hidden
     settings:
-      view_mode: default
+      view_mode: 3_up
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_block_3:
     type: entity_reference_entity_view
     weight: 5
     label: hidden
     settings:
-      view_mode: default
+      view_mode: 3_up
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_block_plugin_1:
     type: entity_reference_rendered_block_plugin
     weight: 2
