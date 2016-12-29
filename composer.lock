@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "34e35ed48f934b25eb548ad6f57924ad",
-    "content-hash": "9938f8c1c7c5ccdc85f4de52309ec360",
+    "hash": "d71619e565ade7928d963b151207af87",
+    "content-hash": "0ccc3989b6d77e6b6ce011a9db9237cd",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -1499,6 +1499,61 @@
             "homepage": "http://drupal.org/project/address",
             "support": {
                 "source": "http://cgit.drupalcode.org/address"
+            }
+        },
+        {
+            "name": "drupal/blazy",
+            "version": "1.0.0-beta6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/blazy",
+                "reference": "8.x-1.0-beta6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/blazy-8.x-1.0-beta6.zip",
+                "reference": null,
+                "shasum": "c177901c32bd046c02df0094a20647602e8b031d"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta6",
+                    "datestamp": "1482818583"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Gaus Surahman",
+                    "homepage": "https://www.drupal.org/u/gausarts",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "https://www.drupal.org/node/2663268/committers",
+                    "role": "Contributor"
+                }
+            ],
+            "description": "Provides basic bLazy integration for lazy loading and multi-serving images.",
+            "homepage": "https://drupal.org/project/blazy",
+            "keywords": [
+                "Drupal",
+                "bLazy",
+                "lazyload"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/blazy",
+                "issues": "https://drupal.org/project/issues/blazy"
             }
         },
         {
@@ -3442,6 +3497,94 @@
             "time": "2016-12-16 18:55:05"
         },
         {
+            "name": "drupal/slick",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/slick",
+                "reference": "7808d710497e745026c93f8edb2e76ece5226dcb"
+            },
+            "require": {
+                "drupal/blazy": "*",
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta6+0-dev",
+                    "datestamp": "1482819183"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "arshadcn",
+                    "homepage": "https://www.drupal.org/user/571032"
+                },
+                {
+                    "name": "gausarts",
+                    "homepage": "https://www.drupal.org/user/159062"
+                }
+            ],
+            "description": "Slick carousel, the last carousel you'll ever need.",
+            "homepage": "https://drupal.org/project/slick",
+            "keywords": [
+                "Drupal",
+                "carousel",
+                "slideshow"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/slick",
+                "issues": "https://drupal.org/project/issues/slick"
+            },
+            "time": "2016-12-27 06:06:41"
+        },
+        {
+            "name": "drupal/slick_views",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/slick_views",
+                "reference": "f08d10237d2150a73929994d9c0ba05aaeab26ef"
+            },
+            "require": {
+                "drupal/core": "*",
+                "drupal/slick": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta5+1-dev",
+                    "datestamp": "1481076184"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "gausarts",
+                    "homepage": "https://www.drupal.org/user/159062"
+                }
+            ],
+            "description": "Provides Slick carousel integration with Views.",
+            "homepage": "https://www.drupal.org/project/slick_views",
+            "support": {
+                "source": "http://cgit.drupalcode.org/slick_views"
+            },
+            "time": "2016-12-07 01:58:02"
+        },
+        {
             "name": "drupal/tb_megamenu",
             "version": "8.1.0-alpha1",
             "source": {
@@ -3627,50 +3770,6 @@
             "description": "Use the result of a view to display a field.",
             "homepage": "https://www.drupal.org/project/views_field_formatter",
             "time": "2016-12-05 14:53:43"
-        },
-        {
-            "name": "drupal/views_slideshow",
-            "version": "8.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/views_slideshow",
-                "reference": "fb4385d0f01041000012be02b4326fa722961235"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/views_slideshow-8.x-4.2.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "drupal/core": "8.*",
-                "drupal/views": "8.*"
-            },
-            "replace": {
-                "drupal/views_slideshow_cycle": "self.version"
-            },
-            "suggest": {
-                "drupal/core": "Required by drupal/views_slideshow_cycle"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-8.x-4.x": "8.4.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "See contributors",
-                    "homepage": "https://www.drupal.org/node/160350/committers"
-                }
-            ],
-            "description": "Provides a View style that displays rows as a jQuery slideshow.  This is an API and requires Views Slideshow Cycle or another module that supports the API.",
-            "homepage": "https://www.drupal.org/project/views_slideshow",
-            "time": "2016-12-25 04:07:05"
         },
         {
             "name": "drupal/yamlform",
@@ -4408,11 +4507,11 @@
             "time": "2015-04-20 18:58:01"
         },
         {
-            "name": "malsup/jquery.cycle",
-            "version": "3.0.3",
+            "name": "kenwheeler/slick",
+            "version": "1.6.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/malsup/cycle",
+                "url": "https://github.com/kenwheeler/slick",
                 "reference": "origin/master"
             },
             "type": "drupal-library"
@@ -7674,7 +7773,8 @@
                 "source": "http://cgit.drupalcode.org/devel",
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
+            },
+            "time": "2016-12-28 09:56:42"
         },
         {
             "name": "drupal/devel_debug_log",
@@ -9122,6 +9222,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
+        "drupal/blazy": 10,
         "drupal/address": 5,
         "drupal/config_readonly": 10,
         "drupal/config_split": 10,
@@ -9142,6 +9243,8 @@
         "drupal/panels": 20,
         "drupal/pathauto": 15,
         "drupal/redirect": 20,
+        "drupal/slick": 20,
+        "drupal/slick_views": 20,
         "drupal/token": 10,
         "drupal/yamlform": 10,
         "summitmedia/panels_everywhere": 20,
