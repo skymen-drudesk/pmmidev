@@ -1,0 +1,107 @@
+uuid: 3fb3164d-b8b5-48d0-a313-51873ef5a6e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.site_template
+    - system.menu.footer
+    - system.menu.utility-navigation-member
+  module:
+    - panels_everywhere
+    - system
+    - tb_megamenu
+    - user
+id: site_template-panels_everywhere_variant-1
+label: Member
+variant: panels_everywhere_variant
+variant_settings:
+  blocks:
+    0f4fefb5-8287-4664-ad17-510d869008c4:
+      id: 'system_menu_block:utility-navigation-member'
+      label: 'Utility navigation - Member'
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: header_utility_nav
+      weight: '0'
+      uuid: 0f4fefb5-8287-4664-ad17-510d869008c4
+      context_mapping: {  }
+    ae87dc6b-5ec2-41a2-8bf9-e2eca1eb828c:
+      id: 'tb_megamenu_menu_block:main-navigation-member'
+      label: 'Main navigation - Member'
+      provider: tb_megamenu
+      label_display: 0
+      region: header_main_nav
+      weight: '0'
+      uuid: ae87dc6b-5ec2-41a2-8bf9-e2eca1eb828c
+      context_mapping: {  }
+    d1a4c8a7-96d5-4382-ab7b-5e68dcf48888:
+      id: local_tasks_block
+      label: Tabs
+      provider: core
+      label_display: 0
+      primary: 1
+      secondary: 1
+      region: topbar
+      weight: '0'
+      uuid: d1a4c8a7-96d5-4382-ab7b-5e68dcf48888
+      context_mapping: {  }
+    56dfe516-36ae-4461-b439-6043a14d5e92:
+      id: system_messages_block
+      label: Messages
+      provider: system
+      label_display: 0
+      region: topbar
+      weight: '0'
+      uuid: 56dfe516-36ae-4461-b439-6043a14d5e92
+      context_mapping: {  }
+    798d13ef-83c2-4928-b20c-cd1a9ffb27e5:
+      id: system_main_block
+      label: 'Main page content'
+      provider: system
+      label_display: 0
+      region: main
+      weight: '0'
+      uuid: 798d13ef-83c2-4928-b20c-cd1a9ffb27e5
+      context_mapping: {  }
+    00b8f32a-079b-4bd4-b6ec-afcca9a6befc:
+      id: 'system_menu_block:footer'
+      label: Footer
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: footer
+      weight: '0'
+      uuid: 00b8f32a-079b-4bd4-b6ec-afcca9a6befc
+      context_mapping: {  }
+  id: panels_everywhere_variant
+  uuid: cdb68bb8-520f-44f2-bd99-ead75a9f3553
+  label: null
+  weight: 0
+  layout: panel_default
+  layout_settings: {  }
+  page_title: ''
+  storage_type: page_manager
+  storage_id: site_template-panels_everywhere_variant-1
+  builder: standard
+page: site_template
+weight: -6
+selection_criteria:
+  -
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: current_user
+  -
+    id: user_role
+    roles:
+      administrator: administrator
+    negate: true
+    context_mapping:
+      user: current_user
+selection_logic: and
+static_context: {  }

@@ -15,6 +15,7 @@ dependencies:
     - block_content
     - panels
     - views
+    - user
 id: home-panels_variant-0
 label: Member
 variant: panels_variant
@@ -97,7 +98,7 @@ variant_settings:
   weight: 0
   layout: oneone
   layout_settings: {  }
-  page_title: 'PMMI | The Association for Packaging and Processing Technologies'
+  page_title: ''
   storage_type: page_manager
   storage_id: home-panels_variant-0
   builder: ipe
