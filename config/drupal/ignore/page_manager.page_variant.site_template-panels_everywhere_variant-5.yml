@@ -1,0 +1,99 @@
+uuid: c65e9045-971c-4c3e-9389-81ba7d8c46e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.site_template
+    - system.menu.executive-leadership-nav
+    - system.menu.footer
+  module:
+    - panels_everywhere
+    - system
+id: site_template-panels_everywhere_variant-5
+label: 'Executive Leadership Network'
+variant: panels_everywhere_variant
+variant_settings:
+  blocks:
+    5380b762-c784-43f1-89ba-b6bee3acfc90:
+      id: 'system_menu_block:executive-leadership-nav'
+      label: 'Executive Leadership navigation'
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: header_main_nav
+      weight: '0'
+      uuid: 5380b762-c784-43f1-89ba-b6bee3acfc90
+      context_mapping: {  }
+    4a76dad0-d8d7-4d93-9a4f-13d1db954f95:
+      id: system_messages_block
+      label: Messages
+      provider: system
+      label_display: 0
+      region: topbar
+      weight: '0'
+      uuid: 4a76dad0-d8d7-4d93-9a4f-13d1db954f95
+      context_mapping: {  }
+    d262ef6c-170a-4556-9320-75b4e9c1d417:
+      id: local_tasks_block
+      label: Tabs
+      provider: core
+      label_display: 0
+      primary: 1
+      secondary: 1
+      region: topbar
+      weight: '0'
+      uuid: d262ef6c-170a-4556-9320-75b4e9c1d417
+      context_mapping: {  }
+    ca0d880f-b655-45f5-a260-373b75490efa:
+      id: system_main_block
+      label: 'Main page content'
+      provider: system
+      label_display: 0
+      region: main
+      weight: '0'
+      uuid: ca0d880f-b655-45f5-a260-373b75490efa
+      context_mapping: {  }
+    84501042-f596-4f47-92fc-a48b5299bc22:
+      id: 'system_menu_block:footer'
+      label: Footer
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: footer
+      weight: '0'
+      uuid: 84501042-f596-4f47-92fc-a48b5299bc22
+      context_mapping: {  }
+    5909fbbc-266f-4bbe-a1ce-c2ad973bbc9d:
+      id: system_branding_block
+      label: 'Site branding'
+      provider: system
+      label_display: 0
+      use_site_logo: 1
+      use_site_name: 0
+      use_site_slogan: 0
+      region: header_logo
+      weight: '0'
+      uuid: 5909fbbc-266f-4bbe-a1ce-c2ad973bbc9d
+      context_mapping: {  }
+  id: panels_everywhere_variant
+  uuid: 1ef5137e-9b08-4ff4-abe7-6ad64f8dc770
+  label: null
+  weight: 0
+  layout: panel_microsite_exln
+  layout_settings: {  }
+  page_title: ''
+  storage_type: page_manager
+  storage_id: site_template-panels_everywhere_variant-5
+  builder: standard
+page: site_template
+weight: -8
+selection_criteria:
+  -
+    id: request_path
+    pages: "/executive-leadership-network\n/executive-leadership-network/*"
+    negate: false
+    context_mapping: {  }
+selection_logic: and
+static_context: {  }

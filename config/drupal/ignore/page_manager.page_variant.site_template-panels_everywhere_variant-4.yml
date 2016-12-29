@@ -1,0 +1,99 @@
+uuid: 5c97b043-53ea-4f97-940b-e6575501d58d
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.site_template
+    - system.menu.emerging-leaders-nav
+    - system.menu.footer
+  module:
+    - panels_everywhere
+    - system
+id: site_template-panels_everywhere_variant-4
+label: 'Emerging Leaders Network'
+variant: panels_everywhere_variant
+variant_settings:
+  blocks:
+    45802746-aeac-47c0-a401-af97bdd84436:
+      id: system_branding_block
+      label: 'Site branding'
+      provider: system
+      label_display: 0
+      use_site_logo: 1
+      use_site_name: 0
+      use_site_slogan: 0
+      region: header_logo
+      weight: '-10'
+      uuid: 45802746-aeac-47c0-a401-af97bdd84436
+      context_mapping: {  }
+    3356c638-56f5-46ce-9f70-3c54ef2f35eb:
+      id: 'system_menu_block:emerging-leaders-nav'
+      label: 'Emerging Leaders navigation'
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: header_main_nav
+      weight: '0'
+      uuid: 3356c638-56f5-46ce-9f70-3c54ef2f35eb
+      context_mapping: {  }
+    5cb2ef2c-ddef-4307-9006-7ccfcf25c127:
+      id: system_messages_block
+      label: Messages
+      provider: system
+      label_display: 0
+      region: topbar
+      weight: '0'
+      uuid: 5cb2ef2c-ddef-4307-9006-7ccfcf25c127
+      context_mapping: {  }
+    a4255987-5bdc-4554-8746-9156bbe5ef95:
+      id: local_tasks_block
+      label: Tabs
+      provider: core
+      label_display: 0
+      primary: 1
+      secondary: 1
+      region: topbar
+      weight: '0'
+      uuid: a4255987-5bdc-4554-8746-9156bbe5ef95
+      context_mapping: {  }
+    6d97685a-5541-44ac-8c57-1a67e3b224a6:
+      id: system_main_block
+      label: 'Main page content'
+      provider: system
+      label_display: 0
+      region: main
+      weight: '0'
+      uuid: 6d97685a-5541-44ac-8c57-1a67e3b224a6
+      context_mapping: {  }
+    cafd3158-bd58-4464-a406-f6675fc53663:
+      id: 'system_menu_block:footer'
+      label: Footer
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: footer
+      weight: '-2'
+      uuid: cafd3158-bd58-4464-a406-f6675fc53663
+      context_mapping: {  }
+  id: panels_everywhere_variant
+  uuid: d50f3796-4d4b-40b6-a48b-ea0d3a051c16
+  label: null
+  weight: 0
+  layout: panel_microsite_eln
+  layout_settings: {  }
+  page_title: ''
+  storage_type: page_manager
+  storage_id: site_template-panels_everywhere_variant-4
+  builder: standard
+page: site_template
+weight: -9
+selection_criteria:
+  -
+    id: request_path
+    pages: "/emerging-leaders-network\n/emerging-leaders-network/*"
+    negate: false
+    context_mapping: {  }
+selection_logic: and
+static_context: {  }

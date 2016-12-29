@@ -6,11 +6,26 @@ dependencies:
     - page_manager.page.home
   module:
     - panels
+    - pmmi_facebook
+    - user
 id: home-panels_variant-1
 label: 'End User'
 variant: panels_variant
 variant_settings:
-  blocks: {  }
+  blocks:
+    ec89072f-5a9f-441f-9a70-f98c51fa2f55:
+      id: pmmi_facebook_block
+      label: 'PMMI Facebook block'
+      provider: pmmi_facebook
+      label_display: visible
+      block_title: PMMI
+      message_count: '1'
+      page_id: PMMIorg
+      max_age: '300'
+      region: oneone
+      weight: 0
+      uuid: ec89072f-5a9f-441f-9a70-f98c51fa2f55
+      context_mapping: {  }
   id: panels_variant
   uuid: bf92f802-5fe4-4fac-9b5b-d5bff125f44a
   label: null
@@ -23,6 +38,13 @@ variant_settings:
   builder: ipe
 page: home
 weight: 0
-selection_criteria: {  }
+selection_criteria:
+  -
+    id: user_role
+    roles:
+      anonymous: anonymous
+    negate: false
+    context_mapping:
+      user: current_user
 selection_logic: and
 static_context: {  }

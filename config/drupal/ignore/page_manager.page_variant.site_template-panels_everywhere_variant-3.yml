@@ -1,0 +1,99 @@
+uuid: d8fd48ff-ce78-4aed-b3a4-685a6d976101
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.site_template
+    - system.menu.annual-meeting-nav
+    - system.menu.footer
+  module:
+    - panels_everywhere
+    - system
+id: site_template-panels_everywhere_variant-3
+label: 'Annual Meeting'
+variant: panels_everywhere_variant
+variant_settings:
+  blocks:
+    d8e1d4f1-2c5e-47c2-86b6-7f8abd465f56:
+      id: 'system_menu_block:annual-meeting-nav'
+      label: 'Annual Meeting navigation'
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: header_main_nav
+      weight: '0'
+      uuid: d8e1d4f1-2c5e-47c2-86b6-7f8abd465f56
+      context_mapping: {  }
+    86daf206-a70b-48d9-b051-931d40e5b2d6:
+      id: system_messages_block
+      label: Messages
+      provider: system
+      label_display: 0
+      region: topbar
+      weight: '0'
+      uuid: 86daf206-a70b-48d9-b051-931d40e5b2d6
+      context_mapping: {  }
+    0640deed-22ba-413a-9676-ab1c78e0c834:
+      id: local_tasks_block
+      label: Tabs
+      provider: core
+      label_display: 0
+      primary: 1
+      secondary: 1
+      region: topbar
+      weight: '0'
+      uuid: 0640deed-22ba-413a-9676-ab1c78e0c834
+      context_mapping: {  }
+    4243702c-73cd-4dc5-9499-85d553d1e86a:
+      id: system_main_block
+      label: 'Main page content'
+      provider: system
+      label_display: 0
+      region: main
+      weight: '0'
+      uuid: 4243702c-73cd-4dc5-9499-85d553d1e86a
+      context_mapping: {  }
+    8bc91466-5086-4e1b-9f4b-9ebbd1eb44ec:
+      id: 'system_menu_block:footer'
+      label: Footer
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: footer
+      weight: '0'
+      uuid: 8bc91466-5086-4e1b-9f4b-9ebbd1eb44ec
+      context_mapping: {  }
+    715e80d2-6098-4bc3-b813-1377925de8d6:
+      id: system_branding_block
+      label: 'Site branding'
+      provider: system
+      label_display: 0
+      use_site_logo: 1
+      use_site_name: 0
+      use_site_slogan: 0
+      region: header_logo
+      weight: '0'
+      uuid: 715e80d2-6098-4bc3-b813-1377925de8d6
+      context_mapping: {  }
+  id: panels_everywhere_variant
+  uuid: d36c9fa4-a8b2-43c6-8608-56cb1f139d1c
+  label: null
+  weight: 0
+  layout: panel_microsite_an
+  layout_settings: {  }
+  page_title: ''
+  storage_type: page_manager
+  storage_id: site_template-panels_everywhere_variant-3
+  builder: standard
+page: site_template
+weight: -10
+selection_criteria:
+  -
+    id: request_path
+    pages: "/annual-meeting\n/annual-meeting/*"
+    negate: false
+    context_mapping: {  }
+selection_logic: and
+static_context: {  }
