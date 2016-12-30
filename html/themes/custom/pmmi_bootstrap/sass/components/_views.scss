@@ -83,3 +83,22 @@ div.view {
     }
   }
 }
+.block-views-blockevents-block-3 {
+  text-align: center;
+  .block-title {
+    @extend .headline1;
+    @extend .white;
+    display: inline-block;
+    margin-bottom: 50px;
+  }
+  .view-content {
+    text-align: left;
+    @extend .row;
+  }
+  .view-content {
+    margin-bottom: 40px;
+  }
+  .views-row {
+    @extend .col-sm-3;
+  }
+}

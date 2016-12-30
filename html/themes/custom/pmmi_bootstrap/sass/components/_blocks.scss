@@ -1,9 +1,6 @@
 // Default block.
 .block {
   margin-bottom: 20px;
-  .block-title {
-    @extend .block-title-default;
-  }
 }
 // DS block layout.
 .block-layout {

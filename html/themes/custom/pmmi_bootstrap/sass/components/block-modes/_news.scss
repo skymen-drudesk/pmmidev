@@ -1,0 +1,22 @@
+.block-news {
+  border: 1px solid $mdgrey;
+  padding: 4px;
+  .title {
+    background: url(../i/news-bl-logo.jpg) 0 0 no-repeat $red;
+    background-size: 356px 194px;
+    padding: 0 10px 0 90px;
+    height: 97px;
+    overflow: hidden;
+    @extend .headline2;
+    color: #fff;
+    line-height: 97px;
+    text-align: right;
+  }
+  &.color-blue {
+    .title {
+      background-color: $blue;
+      background-position: 0 100%;
+    }
+  }
+}
+

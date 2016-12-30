@@ -1,14 +1,15 @@
-@mixin inhetit-text-style($selector) {
+@mixin inherit-text-style($selector) {
   #{$selector} {
     font-size: inherit;
     line-height: inherit;
     font-weight: inherit;
+    color: inherit;
   }
 }
 
 // Paragraph styles.
 .inherited-p {
-  @include inhetit-text-style('p');
+  @include inherit-text-style('p');
 }
 .paragraph1 {
   font-size: $r18;
@@ -67,6 +68,12 @@
   }
   @include mobile {
     font-size: $r35;
+  }
+  &.white {
+    color: #fff;
+    &:after {
+      border-color: #fff;
+    }
   }
 }
 .headline2 {
