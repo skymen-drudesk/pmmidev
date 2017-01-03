@@ -1,0 +1,43 @@
+.selector {
+  height: 30px;
+  position: relative;
+  font-weight: 900;
+  color: $blue;
+  &:before {
+    @extend .fa;
+    @extend .fa-caret-down;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    font-size: 30px;
+    line-height: 100%;
+    text-align: center;
+    background: #fff;
+  }
+  span {
+    padding: 6px 14px;
+    line-height: $r18;
+    display: block;
+    background: #fff;
+    margin-right: 33px;
+    box-sizing: content-box;
+    white-space: nowrap;
+    overflow: hidden;
+    width: auto !important;
+    text-overflow: ellipsis;
+  }
+  select.form-control {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 0;
+    border: none;
+    height: 100%;
+    width: 100%;
+  }
+}

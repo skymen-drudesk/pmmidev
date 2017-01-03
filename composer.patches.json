@@ -19,6 +19,9 @@
     },
     "drupal/config_installer": {
       "config_installer_install_uninstalled_profile_dependencies() assumes too much": "https://www.drupal.org/files/issues/config_installer_2729243_2.patch"
+    },
+    "drupal/views_block_filter_block": {
+      "Empty exposed forms appeared in each view after installin module": "https://www.drupal.org/files/issues/empty_exposed_forms-2790505-2.patch"
     }
   }
 }

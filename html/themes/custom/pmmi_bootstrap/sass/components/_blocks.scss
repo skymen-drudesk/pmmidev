@@ -126,6 +126,7 @@
 .block-image-header {
   .top-banner {
     position: relative;
+    margin: 0;
   }
   .page-name {
     background: rgba($dkblue, 0.8);
@@ -186,3 +187,61 @@
   }
 }
 
+/* Top exposed block. */
+.region-top .block.views-exposed-form {
+  background: $blue;
+  margin: 3px 0 0;
+  form {
+    @extend .container;
+    padding-top: 16px;
+    padding-bottom: 14px;
+    .form-group {
+      vertical-align: top;
+    }
+    label {
+      color: #fff;
+      line-height: $r30;
+      font-weight: 900;
+      margin-right: 5px;
+      vertical-align: top;
+      text-overflow: ellipsis;
+    }
+    .select-wrapper {
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 30px;
+      width: 370px;
+      .selector {
+        width: 100% !important;
+      }
+    }
+    button {
+      @extend .button-secondary;
+      min-width: 170px;
+      .glyphicon {
+        display: none;
+      }
+    }
+  }
+  @include tablet {
+    form {
+      .form--inline {
+        float: right;
+      }
+      .select-wrapper {
+        width: 338px;
+        margin-right: 20px;
+      }
+    }
+  }
+  @include mobile {
+    form {
+      label,
+      .select-wrapper,
+      button {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
