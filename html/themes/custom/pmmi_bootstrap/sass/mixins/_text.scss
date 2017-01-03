@@ -123,9 +123,11 @@
   margin-bottom: 10px;
 }
 .block-title-big-bg {
-  font-size: $r35;
-  line-height: 42px;
+  @extend .headline2;
   font-weight: 900;
   border: none;
   color: #fff;
+  @include desktop {
+    font-size: $r29;
+  }
 }

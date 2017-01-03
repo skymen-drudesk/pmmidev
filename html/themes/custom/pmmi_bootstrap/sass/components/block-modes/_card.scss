@@ -1,26 +1,29 @@
 /* CARD BLOCK. */
 .block-card {
   perspective: 1000;
-  position: relative;
-  margin-bottom: 30px;
+  margin: 0 0 20px;
   max-width: 370px;
   .flipper {
     transform-style: preserve-3d;
     transition: all 0.7s linear;
-    @include box-shadow(0 1px 6px #8c8888);
     height: 290px;
     text-align: center;
+    position: relative;
   }
   .side {
+    transform-style: preserve-3d;
+    transition: all 0.7s linear;
     background-color: white;
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
+    z-index: 1;
     padding: 10px;
     backface-visibility: hidden;
     overflow: hidden;
+    @include box-shadow(0 1px 6px #8c8888);
   }
   .image {
     margin-bottom: 19px;
@@ -57,7 +60,7 @@
     transform: rotateY(0deg);
   }
   .back-side {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
     &:before {
       display: inline-block;
       content: "";
@@ -77,8 +80,11 @@
     }
   }
   &:hover {
-    .flipper {
+    .front-side {
       transform: rotateY(180deg);
+    }
+    .back-side {
+      transform: rotateY(0deg);
     }
   }
   @include desktop {

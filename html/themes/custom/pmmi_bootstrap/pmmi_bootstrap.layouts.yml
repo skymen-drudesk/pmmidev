@@ -280,6 +280,8 @@ block_news:
   regions:
     block_title:
       label: Block Title
+    logo:
+      label: Logo
     date:
       label: Date
     head:
@@ -288,8 +290,6 @@ block_news:
       label: Body
     button:
       label: Button
-    color:
-      label: Color(hidden)
 block_card:
   label: Card
   category: PMMI: Blocks

@@ -24,6 +24,7 @@
   &.mode-default {
     &.centered {
       text-align: center;
+      margin-bottom: 40px;
       .title {
         display: inline-block;
         @extend .headline1;
