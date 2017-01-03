@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - block_content.type.event
+    - core.entity_view_mode.block_content.ribbon
   module:
     - block_content
+    - ds
 id: events
 label: Events
 module: views
@@ -237,8 +239,21 @@ display:
           default_row_class: true
           uses_fields: false
       row:
-        type: 'entity:block_content'
-        options: {  }
+        type: 'ds_entity:block_content'
+        options:
+          relationship: none
+          view_mode: ribbon
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+            item_0: default
+            item_1: default
+            item_2: default
+            item_3: default
+          grouping_fieldset:
+            group: false
+          advanced_fieldset:
+            advanced: false
       block_category: 'PMMI (Views)'
     cache_metadata:
       max-age: -1

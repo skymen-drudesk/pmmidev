@@ -13,6 +13,36 @@
     padding: 0;
     position: absolute;
   }
+  @include tablet {
+    .navbar-header {
+      padding-left: 65px;
+      min-height: 59px;
+    }
+    a.logo {
+      width: 55px;
+      height: 59px;
+      overflow: hidden;
+      margin: 0 0 0 -65px;
+      img {
+        margin: -5px -14px 0;
+      }
+    }
+  }
+  @include mobile {
+    .navbar-header {
+      padding-left: 60px;
+      min-height: 43px;
+    }
+    a.logo {
+      width: 41px;
+      height: 43px;
+      overflow: hidden;
+      margin: 0 0 0 -50px;
+      img {
+        margin: -4px -10px 0;
+      }
+    }
+  }
   &.navbar-default {
     background: none;
     border: none;

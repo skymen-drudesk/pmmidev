@@ -1,26 +1,32 @@
 /* CARD BLOCK. */
 .block-card {
   perspective: 1000;
-  position: relative;
-  margin-bottom: 30px;
+  margin: 0 0 20px;
   max-width: 370px;
   .flipper {
     transform-style: preserve-3d;
     transition: all 0.7s linear;
-    @include box-shadow(0 1px 6px #8c8888);
     height: 290px;
     text-align: center;
+    position: relative;
   }
-  .front-side,
-  .back-side {
+  .side {
+    transform-style: preserve-3d;
+    transition: all 0.7s linear;
     background-color: white;
     position: absolute;
-    left: 10px;
-    right: 10px;
-    top: 10px;
-    bottom: 10px;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    padding: 10px;
     backface-visibility: hidden;
     overflow: hidden;
+    @include box-shadow(0 1px 6px #8c8888);
+  }
+  .image {
+    margin-bottom: 19px;
   }
   .title {
     color: $blue;
@@ -28,7 +34,7 @@
     font-size: $r19;
     line-height: $r21;
     font-weight: 900;
-    @include tablet {
+    @include tablet-max {
       font-size: $r15;
       line-height: $r17;
     }
@@ -52,12 +58,9 @@
   }
   .front-side {
     transform: rotateY(0deg);
-    .image {
-      margin-bottom: 19px;
-    }
   }
   .back-side {
-    transform: rotateY(180deg);
+    transform: rotateY(-180deg);
     &:before {
       display: inline-block;
       content: "";
@@ -77,45 +80,75 @@
     }
   }
   &:hover {
-    .flipper {
+    .front-side {
       transform: rotateY(180deg);
+    }
+    .back-side {
+      transform: rotateY(0deg);
     }
   }
   @include desktop {
     max-width: 310px;
+    .side {
+      padding: 8px;
+    }
+    .image {
+      margin-bottom: 16px;
+    }
     .flipper {
       height: 244px;
     }
   }
   @include tablet {
     max-width: 230px;
+    .side {
+      padding: 6px;
+    }
+    .image {
+      margin-bottom: 11px;
+    }
     .flipper {
       height: 180px;
     }
   }
+  @include mobile {
+    max-width: 280px;
+    .flipper {
+      height: 218px;
+    }
+  }
+  // Mode 4-up.
   &.mode-4-up {
     .flipper {
       height: 230px;
     }
-    .block-body {
-      @include desktop {
-        font-size: $r12;
-        line-height: $r14;
-      }
-    }
+    // Desktop.
     @include desktop {
       max-width: 230px;
       .flipper {
         height: 205px;
       }
+      .block-body {
+        font-size: $r12;
+        line-height: $r14;
+      }
     }
+    // Tablet.
     @include tablet {
       max-width: 290px;
       .flipper {
         height: 255px;
       }
     }
+    // Mobile.
+    @include mobile {
+      max-width: 282px;
+      .flipper {
+        height: 240px;
+      }
+    }
   }
+  // Mode 5-up.
   &.mode-5-up {
     max-width: 170px;
     .flipper {
@@ -124,10 +157,6 @@
     .title {
       font-size: $r16;
       line-height: $r19;
-      @include desktop {
-        font-size: $r19;
-        line-height: $r21;
-      }
       @include tablet-max {
         font-size: $r15;
         line-height: $r17;
@@ -136,21 +165,34 @@
     .block-body {
       font-size: $r12;
       line-height: $r14;
-      @include desktop {
-        font-size: $r16;
-        line-height: $r21;
-      }
     }
+    // Desktop.
     @include desktop {
       max-width: 310px;
       .flipper {
         height: 244px;
       }
+      .title {
+        font-size: $r19;
+        line-height: $r21;
+      }
+      .block-body {
+        font-size: $r16;
+        line-height: $r21;
+      }
     }
+    // Tablet.
     @include tablet {
       max-width: 230px;
       .flipper {
         height: 180px;
+      }
+    }
+    // Mobile.
+    @include mobile {
+      max-width: 280px;
+      .flipper {
+        height: 218px;
       }
     }
   }

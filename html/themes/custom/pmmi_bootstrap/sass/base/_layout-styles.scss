@@ -1,0 +1,55 @@
+body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
+  width: 100%;
+}
+.main-section {
+  clear: both;
+}
+.container {
+  .container {
+    width: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+.block-region-top,
+.block-region-bottom {
+  div.view,
+  .block {
+    margin-bottom: 0;
+  }
+}
+.layout-homepage {
+  .grey-region {
+    background: $ltgrey;
+    border: 5px solid #fff;
+    padding: 30px 0 20px;
+    .block,
+    div.view {
+      margin-bottom: 0;
+    }
+  }
+  .blue-region {
+    background: $blue;
+    padding: 40px 0 30px;
+    .block,
+    div.view {
+      margin-bottom: 0;
+    }
+  }
+  .white-region {
+    padding: 50px 0 30px;
+    .block {
+      margin: 0;
+    }
+  }
+  @include tablet {
+    .white-region {
+      padding: 30px 0 10px;
+    }
+  }
+  @include mobile {
+    .white-region {
+      padding: 25px 0 15px;
+    }
+  }
+}

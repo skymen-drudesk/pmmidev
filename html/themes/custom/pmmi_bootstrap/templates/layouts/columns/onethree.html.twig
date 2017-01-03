@@ -4,7 +4,7 @@
  * Template for a 3-up (1 row of 3 columns) layout.
  */
 #}
-<div class="layout-3up clearfix">
+<div {{ content['#attrs'].addClass('layout-3up clearfix') }}>
   <div class="region-top">
     {{ content.top }}
   </div>

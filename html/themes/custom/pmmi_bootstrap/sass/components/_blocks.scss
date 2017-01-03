@@ -1,9 +1,6 @@
 // Default block.
 .block {
   margin-bottom: 20px;
-  .block-title {
-    @extend .block-title-default;
-  }
 }
 // DS block layout.
 .block-layout {
@@ -14,12 +11,13 @@
 // Twitter block.
 .block-pmmi-twitter-block {
   border: 1px solid $mdgrey;
+  overflow-x: hidden;
   .block-title {
     @extend .block-title-big-bg;
     position: relative;
     padding: 17px 10px 17px 120px;
     margin: 4px;
-    min-height: 97px;
+    height: 97px;
     background: $twitterblue;
     &:before {
       @extend .fa;
@@ -28,7 +26,7 @@
       left: 0;
       top: 0;
       bottom: 0;
-      height: 97px;
+      height: 100%;
       width: 97px;
       font-size: 50px;
       line-height: 97px;
@@ -44,10 +42,16 @@
       }
     }
   }
+  .social-block {
+    margin-right: -30px;
+    height: 198px;
+    overflow: auto;
+  }
   .message {
     padding: 15px 20px;
     border-bottom: 1px solid $mdgrey;
     line-height: 17px;
+    word-wrap: break-word;
     .date {
       font-size: 11px;
     }
@@ -57,6 +61,54 @@
     }
     &.last {
       border: none;
+    }
+  }
+  @include desktop {
+    .social-block {
+      height: 249px;
+    }
+    .block-title {
+      height: 81px;
+      padding-left: 101px;
+      padding-top: 14px;
+      &:before {
+        width: 81px;
+        line-height: 81px;
+      }
+    }
+    .social-block {
+      height: 251px;
+    }
+  }
+  @include tablet {
+    .social-block {
+      height: 233px;
+      margin-right: -25px;
+    }
+    .block-title {
+      height: 59px;
+      padding-left: 79px;
+      padding-top: 7px;
+      .subtitle {
+        font-size: $r13;
+      }
+      &:before {
+        line-height: 59px;
+        width: 59px;
+        font-size: 30px;
+      }
+    }
+  }
+  @include mobile {
+    .block-title {
+      height: 72px;
+      padding-top: 8px;
+      padding-left: 92px;
+      &:before {
+        line-height: 72px;
+        width: 72px;
+        font-size: 30px;
+      }
     }
   }
 }

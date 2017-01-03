@@ -90,6 +90,11 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
         $attributes['class'][] = 'centered';
       }
       break;
+
+    case 'news':
+      $bg_color = $vars['content']['#block_content']->get('field_head_bkg_color_class')->value;
+      $attributes['class'][] = !empty($bg_color) ? 'color-blue' : 'color-red';
+      break;
   }
 
   $vars['content']['#attrs'] = $attributes;

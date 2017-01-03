@@ -10,11 +10,13 @@ dependencies:
     - field.field.block_content.news.field_date
     - field.field.block_content.news.field_head
     - field.field.block_content.news.field_head_bkg_color_class
+    - field.field.block_content.news.field_logo
+    - image.style.news_block
   module:
     - datetime
     - ds
+    - image
     - link
-    - options
     - text
 third_party_settings:
   ds:
@@ -26,16 +28,16 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
-      color:
-        - field_head_bkg_color_class
-      body:
-        - body
       block_title:
         - field_block_title
+      logo:
+        - field_logo
       date:
         - field_date
       head:
         - field_head
+      body:
+        - body
       button:
         - field_button
 id: block_content.news.default
@@ -46,18 +48,18 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 0
+    weight: 4
     settings: {  }
     third_party_settings: {  }
   field_block_title:
-    weight: 1
+    weight: 0
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_button:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       trim_length: 80
@@ -71,9 +73,16 @@ content:
     weight: 2
     label: hidden
     settings:
-      format_type: medium
       timezone_override: ''
-    third_party_settings: {  }
+      format_type: month_day_year
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: datetime_default
   field_head:
     weight: 3
@@ -82,10 +91,20 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-  field_head_bkg_color_class:
-    type: list_key
-    weight: 0
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+  field_logo:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: news_block
+      image_link: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: image
+hidden:
+  field_head_bkg_color_class: true
