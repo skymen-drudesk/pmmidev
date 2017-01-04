@@ -1,0 +1,77 @@
+/* EVENT VIEW MODES. */
+// Default event view.
+.block-event-default {
+  @include event_news;
+}
+.block-event-ribbon {
+  padding-left: 76px;
+  color: #fff;
+  background: $blue;
+  @extend .clearfix;
+  .date {
+    float: left;
+    margin-left: -76px;
+  }
+  .start-date,
+  .end-date {
+    background: #fff;
+    width: 64px;
+    height: 119px;
+    text-align: center;
+    color: $blue;
+    padding: 6px 0 0;
+    position: relative;
+    overflow: hidden;
+    &:after {
+      content: "";
+      display: block;
+      border-right: 130px solid transparent;
+      border-bottom: 70px solid $blue;
+      border-left: 130px solid transparent;
+      position: absolute;
+      left: 50%;
+      margin-left: -130px;
+      bottom: -48px;
+    }
+    span {
+      display: block;
+    }
+    .month,
+    .year {
+      font-size: $r14;
+      line-height: $r17;
+      font-weight: 900;
+    }
+    .day {
+      font-family: $trumpgothicpro;
+      font-size: $r50;
+      line-height: 1;
+      font-weight: 700;
+    }
+  }
+  .title {
+    font-size: $r16;
+    line-height: 1;
+    color: #fff;
+    font-weight: 900;
+    margin-bottom: 6px;
+  }
+  .location {
+    font-size: $r13;
+    line-height: $r17;
+    margin-bottom: 10px;
+    @extend .inherited-p;
+  }
+  .link {
+    a {
+      font-size: $r14;
+      line-height: $r16;
+      color: #fff;
+      font-weight: 900;
+      &:after {
+        content: "»";
+        padding-left: 2px;
+      }
+    }
+  }
+}

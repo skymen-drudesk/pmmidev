@@ -14,9 +14,9 @@ dependencies:
     - field.field.block_content.event.field_members
   module:
     - address
-    - datetime_range
     - ds
     - link
+    - pmmi_fields
 third_party_settings:
   ds:
     layout:
@@ -67,8 +67,10 @@ content:
     label: hidden
     settings:
       timezone_override: ''
-      format_type: month_day_year
-      separator: '-'
+      date_format_month: 'F'
+      date_format_day: 'j'
+      date_format_year: 'Y'
+      show_end_date: '1'
     third_party_settings:
       ds:
         ds_limit: ''
@@ -78,7 +80,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: daterange_default
+    type: daterange_event_custom
   field_head:
     weight: 1
     label: hidden

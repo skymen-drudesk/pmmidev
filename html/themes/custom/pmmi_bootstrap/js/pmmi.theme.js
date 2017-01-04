@@ -58,4 +58,15 @@
     }
   };
 
+  /**
+   * Common JS for elements theming.
+   */
+  Drupal.behaviors.pmmiCommonTheme = {
+    attach: function (context, settings) {
+      $('select').once('uniform').each(function () {
+        $(this).uniform();
+      });
+    }
+  };
+
 })(jQuery, window, Drupal);

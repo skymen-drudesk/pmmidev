@@ -1,20 +1,22 @@
-<div class="block-card">
-  <div class="front-side">
+<div {{ content['#attrs'].addClass('block-card') }}>
+  <div class="flipper">
+    <div class="front-side side">
 
-    {{ field_render([content.image, 'image']) }}
+      {{ field_render([content.image, 'image']) }}
 
-    {{ field_render([content.head, 'title', 'h2']) }}
+      {{ field_render([content.head, 'title', 'h2']) }}
 
-  </div>
-  <div class="back-side">
+    </div>
+    <div class="back-side side">
+      <div class="align-center">
 
-    {{ field_render([content.icon, 'card-icon']) }}
+        {{ field_render([content.icon, 'card-icon']) }}
 
-    {{ field_render([content.head, 'title', 'h2']) }}
+        {{ field_render([content.body, 'block-body']) }}
 
-    {{ field_render([content.body, 'block-body']) }}
+        {{ field_render([content.button, 'button']) }}
 
-    {{ field_render([content.button, 'button']) }}
-
+      </div>
+    </div>
   </div>
 </div>
