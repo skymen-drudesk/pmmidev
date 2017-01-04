@@ -1,7 +1,12 @@
 div.view {
   margin-bottom: 20px;
 }
-
+.views-view-grid.cols-2 {
+  .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
 .view-certification-tests {
   .grouping-title {
     display: none;
@@ -9,7 +14,6 @@ div.view {
 }
 .view-events {
   .views-view-grid.cols-2 {
-    margin: 0 -15px;
     .row {
       font-size: 0;
     }

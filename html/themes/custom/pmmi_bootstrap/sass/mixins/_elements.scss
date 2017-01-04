@@ -3,8 +3,9 @@
   @extend .btn;
   font-weight: 700;
   font-size: $r14;
-  line-height: $r18;
+  line-height: $r16;
   min-width: 166px;
+  height: 30px;
   text-transform: uppercase;
 }
 .button-primary {
@@ -21,6 +22,7 @@
   background: none;
   border-width: 2px;
   border-color: #fff;
+  line-height: $r14;
   color: #fff;
   &:focus,
   &:hover {

@@ -4,44 +4,49 @@ namespace Drupal\pmmi_fields\Plugin\Field\FieldFormatter;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\datetime\Plugin\Field\FieldFormatter\DateTimeFormatterBase;
-use Drupal\Core\Datetime\DrupalDateTime;
+use Drupal\Core\Field\FieldDefinitionInterface;
 
 /**
- * Plugin implementation of the 'Event ribbon date' formatter for 'daterange' fields.
- *
- * This formatter renders the data range as plain text, with a fully
- * configurable date format using the PHP date syntax and separator.
+ * Plugin implementation of the 'daterange_event_custom' formatter.
  *
  * @FieldFormatter(
  *   id = "daterange_event_custom",
- *   label = @Translation("Event ribbon date"),
+ *   label = @Translation("Event range date"),
  *   field_types = {
  *     "daterange"
  *   }
  * )
  */
-class DateRangeEventFormatter extends DateTimeFormatterBase {
-
-  private $currentType;
+class DateRangeEventFormatter extends DateRangeEventRibbonFormatter {
 
   /**
    * {@inheritdoc}
    */
   public static function defaultSettings() {
     return [
-      'show_end_date' => FALSE,
-      'date_format_month' => 'M',
-      'date_format_day' => 'd',
-      'date_format_year' => 'o',
+      'show_end_date' => TRUE,
+      'date_format_month' => 'F',
+      'date_format_day' => 'j',
+      'date_format_year' => 'Y',
     ] + parent::defaultSettings();
   }
 
   /**
    * {@inheritdoc}
    */
+  public function settingsForm(array $form, FormStateInterface $form_state) {
+    return [
+      // Implement settings form.
+    ] + parent::settingsForm($form, $form_state);
+  }
+
+
+  /**
+   * {@inheritdoc}
+   */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
+
     $show_end_date = $this->getSetting('show_end_date');
 
     foreach ($items as $delta => $item) {
@@ -52,24 +57,17 @@ class DateRangeEventFormatter extends DateTimeFormatterBase {
         /** @var \Drupal\Core\Datetime\DrupalDateTime $end_date */
         $end_date = $item->end_date;
 
-        $elements[$delta][] = [
-          '#type' => 'html_tag',
-          '#tag' => 'div',
-          '#attributes' => [
-            'class' => ['start-date'],
-          ],
-          '#value' => $this->buildDate($start_date),
-        ];
-        if ($show_end_date) {
-          $elements[$delta][] = [
-            '#type' => 'html_tag',
-            '#tag' => 'div',
-            '#attributes' => [
-              'class' => ['end-date'],
-            ],
-            '#value' => $this->buildDate($end_date),
+        if (!$show_end_date) {
+          $elements[$delta] = [
+            '#markup' => $this->prettyDateFormat($start_date),
           ];
         }
+        else {
+          $elements[$delta] = [
+            '#markup' => $this->prettyDateFormat($start_date, $end_date),
+          ];
+        }
+
       }
     }
 
@@ -77,72 +75,56 @@ class DateRangeEventFormatter extends DateTimeFormatterBase {
   }
 
   /**
-   * Build date values.
-   *
-   * @param \Drupal\Core\Datetime\DrupalDateTime $date
-   *   A date object.
-   *
-   * @return string
-   *   A rendered value.
+   * {@inheritdoc}
    */
-  protected function buildDate(DrupalDateTime $date) {
-    $build = [];
-    foreach (['month', 'day', 'year'] as $type) {
-      $this->currentType = $this->getSetting('date_format_' . $type);
-      $build[] = [
-        '#type' => 'html_tag',
-        '#tag' => 'span',
-        '#attributes' => ['class' => [$type]],
-        '#value' => $this->formatDate($date),
-        '#cache' => [
-          'contexts' => [
-            'timezone',
-          ],
-        ],
-      ];
+  public function prettyDateFormat($start_date, $end_date = FALSE) {
+    $m = $this->getSetting('date_format_month');
+    $d = $this->getSetting('date_format_day');
+    $y = $this->getSetting('date_format_year');
+    $date_range = '';
+
+    // If only one date, or dates are the same set to FULL verbose date.
+    if (empty($start_date) || empty($end_date) || ($this->formatCustomDate($m . $d . $y, $start_date) == $this->formatCustomDate($m . $d . $y, $end_date))) {
+      $start_date_pretty = $this->formatCustomDate("{$m} {$d}, {$y}", $start_date);
+      $end_date_pretty = $this->formatCustomDate("{$m} {$d}, {$y}", $end_date);
     }
-    return render($build);
+    else {
+      // Setup basic dates.
+      $start_date_pretty = $this->formatCustomDate("{$m} {$d}", $start_date);
+      $end_date_pretty = $this->formatCustomDate("{$d}, {$y}", $end_date);
+      // If years differ add suffix and year to start_date.
+      if ($this->formatCustomDate($y, $start_date) != $this->formatCustomDate($y, $end_date)) {
+        $start_date_pretty .= $this->formatCustomDate(', ' . $y, $start_date);
+      }
+
+      // If months differ add suffix and year to end_date.
+      if ($this->formatCustomDate($m, $start_date) != $this->formatCustomDate($m, $end_date)) {
+        $end_date_pretty = $this->formatCustomDate($m . ' ', $end_date) . $end_date_pretty;
+      }
+    }
+
+    // Build date_range return string.
+    if (!empty($start_date)) {
+      $date_range .= $start_date_pretty;
+    }
+    // Check if there is an end date and append if not identical.
+    if (!empty($end_date)) {
+      if ($end_date_pretty != $start_date_pretty) {
+        $date_range .= ' - ' . $end_date_pretty;
+      }
+    }
+    return $date_range;
   }
 
   /**
    * {@inheritdoc}
    */
-  protected function formatDate($date) {
-    $format = $this->currentType;
+  protected function formatCustomDate($format, $date) {
+    if (empty($date)) {
+      return FALSE;
+    }
     $timezone = $this->getSetting('timezone_override');
     return $this->dateFormatter->format($date->getTimestamp(), 'custom', $format, $timezone != '' ? $timezone : NULL);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function settingsForm(array $form, FormStateInterface $form_state) {
-    $form = parent::settingsForm($form, $form_state);
-    unset($form['date_format']);
-
-    foreach (['month', 'day', 'year'] as $type) {
-      $form['date_format_' . $type] = array(
-        '#type' => 'textfield',
-        '#title' => $this->t('Date format @type', ['@type' => $type]),
-        '#description' => $this->t('See <a href="http://php.net/manual/function.date.php" target="_blank">the documentation for PHP date formats</a>.'),
-        '#default_value' => $this->getSetting('date_format_' . $type),
-      );
-    }
-    $form['show_end_date'] = [
-      '#type' => 'checkbox',
-      '#title' => $this->t('Show end date'),
-      '#default_value' => $this->getSetting('show_end_date'),
-    ];
-
-    return $form;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function settingsSummary() {
-    $summary = parent::settingsSummary();
-    return $summary;
   }
 
 }
