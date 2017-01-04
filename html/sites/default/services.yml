@@ -153,7 +153,3 @@ parameters:
     - sftp
     - webcal
     - rtsp
-services:
-  config.storage.sync:
-    class: Drupal\config_split\Config\StorageWrapper
-    factory: config_split.manager:getDefaultStorageWrapper
