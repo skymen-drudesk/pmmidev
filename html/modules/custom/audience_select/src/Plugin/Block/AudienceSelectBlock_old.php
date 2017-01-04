@@ -15,11 +15,11 @@ use Drupal\Core\Block;
  * Provides a 'Audience Select' block.
  *
  * @Block(
- *   id = "audience_select",
+ *   id = "audience_select_old",
  *   admin_label = @Translation("Audience Selector")
  * )
  */
-class AudienceSelectBlock extends BlockBase {
+class AudienceSelectBlock_old extends BlockBase {
 
   /**
    * {@inheritdoc}

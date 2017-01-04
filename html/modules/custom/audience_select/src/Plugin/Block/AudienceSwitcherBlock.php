@@ -27,6 +27,8 @@ class AudienceSwitcherBlock extends BlockBase {
   public function build() {
     $audience_manager = new AudienceManager();
     $audiences = $audience_manager->getUnselectedAudiences();
+    $context = $this->getCacheContexts();
+    $context = $this->getContexts();
     return array(
       '#theme' => 'audience_switcher_block',
       '#audiences' => $audiences,

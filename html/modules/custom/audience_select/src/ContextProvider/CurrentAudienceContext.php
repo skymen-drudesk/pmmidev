@@ -17,8 +17,6 @@ use Drupal\Core\Plugin\Context\ContextProviderInterface;
 
 /**
  * Sets the current audience as a context.
- *
- * @package Drupal\audience_select\ContextProvider
  */
 class CurrentAudienceContext implements ContextProviderInterface {
 
@@ -56,12 +54,13 @@ class CurrentAudienceContext implements ContextProviderInterface {
   public function getRuntimeContexts(array $unqualified_context_ids) {
     ddl('in CurrentAudienceContext getRuntimeContexts().');
 
-    $context = new Context(new ContextDefinition('audience',
-      $this->t('Current audience'),
-      FALSE
-    ),
-      $this->audience);
-
+    $context_definition = new ContextDefinition('any', $this->t('Audience'), TRUE, FALSE, $this->t('AAAA'), $this->audience);
+//    $context = new Context(new ContextDefinition('audience',
+//      $this->t('Current audience'),
+//      FALSE
+//    ),
+//      $this->audience);
+    $context = new Context($context_definition);
     $cacheability = new CacheableMetadata();
     $cacheability->setCacheContexts(['audience']);
     $context->addCacheableDependency($cacheability);

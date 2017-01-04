@@ -1,5 +1,6 @@
 <?php
 
+use Drupal\Core\Render\Element;
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\audience_select\Service\AudienceManager;
 
@@ -24,27 +25,28 @@ function audience_select_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_theme().
  */
 function audience_select_theme($existing, $type, $theme, $path) {
-  $audience_manager = new AudienceManager();
-  $audiences = $audience_manager->getAllAudiences();
-
   return [
     'audience_select_block' => [
-      'variables' => ['audiences' => $audiences],
+      'variables' => [
+        'audience_title' => '',
+        'audience_image' => '',
+        'audience_redirect_url' => '',
+      ],
       'template' => 'block--audience-select--audience-select',
     ],
     'audience_switcher_block' => [
-      'variables' => ['audiences' => $audiences],
+//      'variables' => ['audiences' => $audiences],
       'template' => 'block--audience-select--audience-switcher',
     ],
   ];
 }
 
-/**
- * Implements hook_preprocess_HOOK().
- */
-function audience_select_preprocess_page__gateway(&$variables) {
-  $audience_manager = new AudienceManager();
-  $audiences = $audience_manager->getAllAudiences();
-
-  $variables['audiences'] = $audiences;
-}
+///**
+// * Implements hook_preprocess_HOOK().
+// */
+//function audience_select_preprocess_page__gateway(&$variables) {
+//  $audience_manager = new AudienceManager();
+//  $audiences = $audience_manager->getAllAudiences();
+//
+//  $variables['audiences'] = $audiences;
+//}

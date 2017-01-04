@@ -6,18 +6,38 @@
 
 namespace Drupal\audience_select\EventSubscriber;
 
+use Drupal\audience_select\Service\AudienceManager;
+use Drupal\bootstrap\Plugin\Prerender\Link;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Url;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Drupal\Core\Routing\TrustedRedirectResponse;
+use Symfony\Component\Routing\Route;
 
 /**
  * Subscribe to KernelEvents::REQUEST events and redirect to /gateway if
  * audience_select_audience cookie is not set.
  */
 class AudienceSelectSubscriber implements EventSubscriberInterface {
+
+  /**
+   * The audience manager service.
+   *
+   * @var \Drupal\audience_select\Service\AudienceManager
+   */
+  protected $audience_manager;
+
+  /**
+   * Constructs a new CurrentUserContext.
+   *
+   *   The plugin implementation definition.
+   * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
+   */
+  public function __construct(AudienceManager $audience_manager) {
+    $this->audience_manager = $audience_manager;
+  }
 
   /**
    * Checks for audience_select_audience cookie and redirects to /gateway if not
@@ -44,26 +64,25 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     }
 
     // Get gateway page URL.
-    $gateway_page_url = \Drupal::config('audience_select.settings')
-      ->get('gateway_page_url');
+    $gateway_page_url = $this->audience_manager->getGateway();
 
     // If audience_select_audience cookie is not set, redirect to gateway page.
     if (preg_match('/^\/\badmin/i', $request_uri) !== 1
       && preg_match('/^\/\buser/i', $request_uri) !== 1
-      && $request_uri != '/' . $gateway_page_url
+      && $request_uri != $gateway_page_url
       && !$request->cookies->has('audience_select_audience')
       && !isset($audience)
     ) {
-      $path = Url::fromRoute('gateway')->toString();
+//      $path = Url::fromRoute($gateway_page_url)->toString();
 
-      $response = new TrustedRedirectResponse($path);
+      $response = new TrustedRedirectResponse($gateway_page_url);
       $event->setResponse($response);
     }
 
     // If route is / with audience query parameter, set cookie.
     elseif (preg_match('/^\/\badmin/i', $request_uri) !== 1
       && preg_match('/^\/\buser/i', $request_uri) !== 1
-      && $request_uri != '/' . $gateway_page_url
+      && $request_uri != $gateway_page_url
       && isset($audience)
     ) {
       $response = new TrustedRedirectResponse('/');
@@ -79,7 +98,7 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     // /$gateway_page_url redirect to frontpage.
     elseif (preg_match('/^\/\badmin/i', $request_uri) !== 1
       && preg_match('/^\/\buser/i', $request_uri) !== 1
-      && $request_uri == '/' . $gateway_page_url
+      && $request_uri == $gateway_page_url
       && $request->cookies->has('audience_select_audience')
     ) {
       $response = new TrustedRedirectResponse('/');
