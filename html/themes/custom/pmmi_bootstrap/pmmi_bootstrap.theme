@@ -63,13 +63,7 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
 
     case 'video':
       if ($vars['content']['#view_mode'] == 'default') {
-        $node = &drupal_static(__FUNCTION__);
-        if (!isset($node)) {
-          $node = \Drupal::routeMatch()->getParameter('node');
-        }
-        if ($node) {
-          $attributes['data-item-id'] = $vars['content']['#node']->id();
-        }
+        $attributes['data-item-id'] = $vars['content']['#node']->id();
       }
       break;
 

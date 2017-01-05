@@ -246,6 +246,7 @@ $databases = array();
  */
 $config_directories = array(
   CONFIG_SYNC_DIRECTORY => '../config/drupal/sync',
+  'ignore' => '../config/drupal/ignore',
   'test' => '../config/drupal/test',
   'dev' => '../config/drupal/dev',
 );
