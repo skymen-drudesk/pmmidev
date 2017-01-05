@@ -1,0 +1,72 @@
+uuid: 34e99f56-d515-4854-bae8-9ce1f406d576
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.taxonomy_term.text_image
+    - field.field.taxonomy_term.video_type.field_logo
+    - image.style.brand_block_dhd
+    - taxonomy.vocabulary.video_type
+  module:
+    - ds
+    - image
+    - text
+third_party_settings:
+  ds:
+    layout:
+      id: block_text_image
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      head:
+        - taxonomy_term_title
+      body:
+        - description
+      image:
+        - field_logo
+    fields:
+      taxonomy_term_title:
+        plugin_id: taxonomy_term_title
+        weight: 0
+        label: inline
+        formatter: default
+        settings:
+          wrapper: ''
+          class: ''
+          link: false
+        ft:
+          id: minimal
+          settings:
+            lb: 'About PMMI '
+            lb-col: false
+            classes: {  }
+id: taxonomy_term.video_type.text_image
+targetEntityType: taxonomy_term
+bundle: video_type
+mode: text_image
+content:
+  description:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  field_logo:
+    weight: 2
+    label: hidden
+    settings:
+      image_style: brand_block_dhd
+      image_link: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: image
+hidden: {  }

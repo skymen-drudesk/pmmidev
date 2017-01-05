@@ -2,8 +2,15 @@ id: videos_view
 label: 'Videos view'
 ui_limit: video|full
 properties:
-  block: 'views_block:page_videos-block_category'
+  block: 'views_block:page_videos-block_category_secondary'
   use_block_title: false
+  config:
+    id: 'views_block:page_videos-block_category_secondary'
+    label: ''
+    provider: views
+    label_display: visible
+    views_label: ''
+    items_per_page: none
 type: block
 type_label: 'Block field'
 entities:
