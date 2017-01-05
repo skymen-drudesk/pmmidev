@@ -51,6 +51,13 @@ while [ "$1" != "" ]; do
   shift
 done
 
+# Create default docker-compose.yml if it doesn't exist.
+if [[ ! -f docker-compose.yml ]]
+then
+  echo "Creating Default Docker Compose File"
+  cp cnf/docker-compose-default.yml docker-compose.yml
+fi
+
 # Set Docker Compose file based on environment.
 if [ "$SITE_ENVIRONMENT" = "test" ]; then
   dockercompose=docker-compose.staging.yml
