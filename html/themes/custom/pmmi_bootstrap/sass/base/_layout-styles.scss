@@ -4,15 +4,17 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
 .main-section {
   clear: both;
 }
+.region-content {
+  > article {
+    @extend .container;
+  }
+}
 .container {
   .container {
     width: auto;
     padding-left: 0;
     padding-right: 0;
   }
-}
-.region-top {
-  margin-bottom: 30px;
 }
 .block-region-top,
 .block-region-bottom {
