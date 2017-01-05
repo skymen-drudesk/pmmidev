@@ -7,14 +7,9 @@
 ** [Mac](https://docs.docker.com/mac/)
 ** [Windows](https://docs.docker.com/windows/)
 
-
-## Optional Requirements
-
 * [Direnv](http://direnv.net/)
+** Optional
 ** Used with wrapper scripts to add `dbash` and `ddrush` commands
-
-* [docker-sync](http://docker-sync.io/)
-** Used to increase performance on macOS.
 
 ## Getting Started Developing
 
@@ -88,24 +83,6 @@ container.
 [Direnv](http://direnv.net/) is used to include the wrapper scripts and
 the `vendor/bin` directory into the PATH.
 
-## Improving Performance on macOS
-
-Performance on Mac OS X can be improved by using 
-[docker-sync](http://docker-sync.io/). The unison sync method is used to
-provide 2-way syncing.
-
-To use:
-
-1. Run `gem install docker-sync`. Note: You may need to run this with 
-`sudo`.
-2. Run `brew install fswatch`.
-3. Run `brew install unison`.
-4. Uncomment the volumes lines at the end of `docker-compose.yml`.
-5. Replace the default web container volume with `pmmi-unison-sync` 
-(Comment out/remove `.:/var/www` and uncomment 
-`pmmi-unison-sync:/var/www:rw`) in `docker-compose.yml`.
-6. Run `docker-sync-stack start` to start sync services and 
-docker-compose at the same time.
 
 ## Xdebug
 
