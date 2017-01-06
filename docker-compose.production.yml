@@ -39,7 +39,6 @@ services:
       VIRTUAL_HOST: pmmi.org,www.pmmi.org,pmmistaging.pmmimediagroup.com
     volumes:
       - .:/var/www
-      - ./config/cron:/etc/cron.d
     links:
       - db
     ports:

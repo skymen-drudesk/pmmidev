@@ -89,6 +89,13 @@ class ScriptHandler {
       $fs->chgrp($root . '/private/.htaccess', 'www-data');
       $event->getIO()->write("Created .htaccess in private files directory");
     }
+
+    // Ensure correct permissions on files directories.
+    $fs->chmod($drupal_root . '/sites/default/files', 0770);
+    $fs->chgrp($drupal_root . '/sites/default/files', 'www-data', true);
+    $fs->chown($root . '/private', 'www-data', true);
+    $fs->chgrp($root . '/private', 'www-data', true);
+    $fs->chmod($root . '/private/.htaccess', 0644);
   }
 
 }
