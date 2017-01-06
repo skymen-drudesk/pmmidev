@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
 
 /**
  * Implements hook_form_alter().
@@ -26,6 +27,24 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       );
       array_unshift($form['#validate'], 'pmmi_forms_image_slide_validate');
       break;
+
+    case 'block_content_containers_form':
+    case 'block_content_containers_edit_form':
+      $fields = ['field_block_', 'field_block_plugin_', 'field_block_views_'];
+      for ($i = 1; $i < 7; $i++) {
+        foreach ($fields as $field) {
+          $form[$field . $i]['#states'] = array(
+            'visible' => array(
+              'select[name="field_block_select_' . $i . '"]' => [
+                'value' => $field . $i,
+              ],
+            ),
+          );
+        }
+      }
+      array_unshift($form['actions']['submit']['#submit'], 'block_content_containers_form_submit');
+      array_unshift($form['#submit'], 'block_content_containers_form_submit');
+      break;
   }
 }
 
@@ -42,5 +61,41 @@ function pmmi_forms_image_slide_validate(array &$form, FormStateInterface &$form
   if (($slide_type == 'image' && empty($slide_value['target_id']))
   || ($slide_type == 'video' && empty($slide_value[0]['value']))) {
     $form_state->setError($element, t('@name field is required.', array('@name' => $element['#title'])));
+  }
+}
+
+/**
+ * Containers block submit function.
+ */
+function block_content_containers_form_submit($form, FormStateInterface $form_state) {
+  $values = $form_state->getValues();
+  // Get all select fields.
+  $selects = array_filter($values, function($key) {
+    return strpos($key, 'field_block_select_') === 0;
+  }, ARRAY_FILTER_USE_KEY);
+
+  // Filter all fields values based on selected field in group.
+  foreach ($selects as $key => $select_field) {
+    // Current select field delta.
+    $delta = str_replace('field_block_select_', '', $key);
+    // Fields list.
+    $fields = [
+      'field_block_' . $delta,
+      'field_block_plugin_' . $delta,
+      'field_block_views_' . $delta,
+    ];
+    // Remove selected field from list.
+    $selected_field = $select_field[0]['value'];
+    $fields = array_diff($fields, [$selected_field]);
+
+    // Clean values from unselected fields.
+    foreach ($fields as $field) {
+      $form_state->setValue($field, []);
+      if ($field === 'field_block_' . $delta && isset($values['field_block_' . $delta]['entities'])) {
+        $inline_entity_form = &$form_state->get('inline_entity_form');
+        $keys = array_keys($inline_entity_form);
+        $inline_entity_form[$keys[(int) $delta - 1]]['entities'] = [];
+      }
+    }
   }
 }
