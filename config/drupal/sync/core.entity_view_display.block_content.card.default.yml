@@ -9,6 +9,7 @@ dependencies:
     - field.field.block_content.card.field_head
     - field.field.block_content.card.field_icon
     - field.field.block_content.card.field_image
+    - image.style.shows_block_desktop
     - responsive_image.styles.3_up_cards
   module:
     - ds
@@ -44,9 +45,17 @@ content:
   body:
     weight: 0
     label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
+    settings:
+      trim_length: 680
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: text_summary_or_trimmed
   field_button:
     weight: 2
     label: hidden
@@ -69,9 +78,16 @@ content:
     weight: 4
     label: hidden
     settings:
-      image_style: ''
+      image_style: shows_block_desktop
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: image
   field_image:
     weight: 3
