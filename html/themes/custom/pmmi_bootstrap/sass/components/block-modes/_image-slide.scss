@@ -2,6 +2,7 @@
 // Image slide default.
 .block-image-slide-default {
   position: relative;
+  height: 390px;
   .slide-info {
     position: absolute;
     left: 0;
@@ -28,6 +29,7 @@
     @extend .paragraph3;
   }
   @include desktop {
+    height: 277px;
     .img {
       max-height: 277px;
     }
@@ -37,6 +39,7 @@
     }
   }
   @include tablet {
+    height: 209px;
     .img {
       max-height: 209px;
     }
@@ -46,6 +49,7 @@
     }
   }
   @include mobile {
+    height: 328px;
     .img {
       max-height: 328px;
     }
@@ -59,6 +63,7 @@
 .block-image-slide {
   color: #fff;
   position: relative;
+  height: 420px;
   .img {
     max-height: 420px;
     overflow: hidden;
@@ -102,6 +107,7 @@
     }
   }
   @include desktop {
+    height: 299px;
     .img {
       max-height: 299px;
     }
@@ -115,6 +121,7 @@
     }
   }
   @include tablet {
+    height: 224px;
     .slide-info {
       right: 25px;
       width: 350px;
@@ -132,6 +139,7 @@
     }
   }
   @include mobile {
+    height: 223px;
     .slide-info {
       right: 20px;
       left: 20px;
