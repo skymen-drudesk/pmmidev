@@ -17,12 +17,19 @@ dependencies:
     - field.field.block_content.containers.field_block_plugin_4
     - field.field.block_content.containers.field_block_plugin_5
     - field.field.block_content.containers.field_block_plugin_6
+    - field.field.block_content.containers.field_block_views_1
+    - field.field.block_content.containers.field_block_views_2
+    - field.field.block_content.containers.field_block_views_3
+    - field.field.block_content.containers.field_block_views_4
+    - field.field.block_content.containers.field_block_views_5
+    - field.field.block_content.containers.field_block_views_6
     - field.field.block_content.containers.field_button
     - field.field.block_content.containers.field_head
   module:
     - ds
     - link
     - pmmi_fields
+    - viewfield
 third_party_settings:
   ds:
     layout:
@@ -38,15 +45,19 @@ third_party_settings:
       oneone:
         - field_block_1
         - field_block_plugin_1
+        - field_block_views_1
       onetwo:
         - field_block_2
         - field_block_plugin_2
+        - field_block_views_2
       onethree:
         - field_block_3
         - field_block_plugin_3
+        - field_block_views_3
       onefour:
         - field_block_4
         - field_block_plugin_4
+        - field_block_views_4
       bottom:
         - field_button
 id: block_content.containers.4_up
@@ -64,7 +75,7 @@ content:
     third_party_settings: {  }
   field_block_2:
     type: entity_reference_entity_view
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       view_mode: default
@@ -72,7 +83,7 @@ content:
     third_party_settings: {  }
   field_block_3:
     type: entity_reference_entity_view
-    weight: 5
+    weight: 7
     label: hidden
     settings:
       view_mode: default
@@ -80,7 +91,7 @@ content:
     third_party_settings: {  }
   field_block_4:
     type: entity_reference_entity_view
-    weight: 7
+    weight: 10
     label: hidden
     settings:
       view_mode: default
@@ -94,25 +105,49 @@ content:
     third_party_settings: {  }
   field_block_plugin_2:
     type: entity_reference_rendered_block_plugin
-    weight: 4
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_block_plugin_3:
     type: entity_reference_rendered_block_plugin
-    weight: 6
+    weight: 8
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_block_plugin_4:
     type: entity_reference_rendered_block_plugin
-    weight: 8
+    weight: 11
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_block_views_1:
+    type: viewfield_default
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_block_views_2:
+    type: viewfield_default
+    weight: 6
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_block_views_3:
+    type: viewfield_default
+    weight: 9
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_block_views_4:
+    type: viewfield_default
+    weight: 12
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_button:
     type: link
-    weight: 9
+    weight: 13
     label: hidden
     settings:
       trim_length: 80
@@ -133,3 +168,5 @@ hidden:
   field_block_6: true
   field_block_plugin_5: true
   field_block_plugin_6: true
+  field_block_views_5: true
+  field_block_views_6: true
