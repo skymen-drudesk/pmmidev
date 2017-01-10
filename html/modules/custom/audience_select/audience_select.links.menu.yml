@@ -1,6 +1,7 @@
-audience_select.settings_form:
-  title: 'Audience Select'
-  route_name: audience_select.settings_form
-  description: 'Configure Audience Select module.'
+audience_select.audience_settings_form:
+  title: 'Audience Settings Form'
+  route_name: audience_select.audience_settings_form
+  description: 'A description for the menu entry'
   parent: system.admin_config_system
   weight: 99
+

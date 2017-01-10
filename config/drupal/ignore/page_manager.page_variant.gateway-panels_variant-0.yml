@@ -8,6 +8,7 @@ dependencies:
   content:
     - 'block_content:text:b5086f23-1cc0-430e-9e43-e08447adbdfa'
   module:
+    - audience_select
     - block_content
     - panels
     - system
@@ -25,7 +26,7 @@ variant_settings:
       info: ''
       view_mode: text_image
       region: main
-      weight: 0
+      weight: -2
       uuid: 528ef45e-efd1-4daa-bd9c-fca46151fbfa
       context_mapping: {  }
     4fccfb27-c430-44d5-8e1c-50ec4c4a670e:
@@ -38,6 +39,42 @@ variant_settings:
       region: footer
       weight: 0
       uuid: 4fccfb27-c430-44d5-8e1c-50ec4c4a670e
+      context_mapping: {  }
+    ac8bbd74-9ea3-41c1-aa1e-60797c3e6e7b:
+      id: audience_block
+      label: 'Audience block 1'
+      provider: audience_select
+      label_display: visible
+      audience_id: audience_1
+      image_style: thumbnail
+      audience_overrides: {  }
+      region: main
+      weight: -1
+      uuid: ac8bbd74-9ea3-41c1-aa1e-60797c3e6e7b
+      context_mapping: {  }
+    8fced451-a2d1-4a2d-bc4d-c7cd3527902e:
+      id: audience_block
+      label: 'Audience block 2'
+      provider: audience_select
+      label_display: visible
+      audience_id: audience_2
+      image_style: thumbnail
+      audience_overrides: {  }
+      region: main
+      weight: 0
+      uuid: 8fced451-a2d1-4a2d-bc4d-c7cd3527902e
+      context_mapping: {  }
+    03133d8b-97ac-4480-bd06-8cf7534bc525:
+      id: audience_block
+      label: 'Audience block 3'
+      provider: audience_select
+      label_display: visible
+      audience_id: audience_3
+      image_style: thumbnail
+      audience_overrides: {  }
+      region: main
+      weight: 0
+      uuid: 03133d8b-97ac-4480-bd06-8cf7534bc525
       context_mapping: {  }
   id: panels_variant
   uuid: 57b31e18-37eb-4429-8ea3-a74c5f895466

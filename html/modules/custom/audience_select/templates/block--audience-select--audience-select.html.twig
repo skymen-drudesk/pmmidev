@@ -12,9 +12,10 @@
  */
 #}
 <div class="block audience-select" id="block--audience-select">
-
-  {% for key, item in audiences %}
-    <span class="audience-select-audience"><a href="/?audience={{ key }}" id="audience-select-{{ key }}">{{ item.block }}</a></span>
-  {% endfor %}
-
-</div>{# /.audience-select #}
+  <a href="{{ audience_redirect_url }}" class="audience-link">
+    {% if audience_image %}
+      <img src="{{ audience_image }}" class="audience-image img-responsive" />
+    {% endif %}
+  </a>
+  <a href="{{ audience_redirect_url }}" class="audience-link">{{ audience_title }}</a>
+</div>
