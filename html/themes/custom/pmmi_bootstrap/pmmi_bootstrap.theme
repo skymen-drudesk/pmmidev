@@ -93,3 +93,18 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
 
   $vars['content']['#attrs'] = $attributes;
 }
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function pmmi_bootstrap_page_attachments_alter(array &$page) {
+
+  $breakpoints = \Drupal::service('breakpoint.manager')->getBreakpointsByGroup('pmmi_bootstrap');
+  if (!empty($breakpoints)) {
+    $media_queries = array();
+    foreach ($breakpoints as $id => $breakpoint) {
+      $media_queries[str_replace('pmmi_bootstrap.', '', $id)] = $breakpoint->getMediaQuery();
+    }
+    $page['#attached']['drupalSettings']['responsive']['breakpoints'] = $media_queries;
+  }
+}
