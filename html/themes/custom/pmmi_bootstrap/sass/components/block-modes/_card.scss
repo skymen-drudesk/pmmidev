@@ -4,15 +4,13 @@
   margin: 0 0 20px;
   max-width: 370px;
   .flipper {
-    transform-style: preserve-3d;
-    transition: all 0.7s linear;
     height: 290px;
     text-align: center;
     position: relative;
   }
   .side {
     transform-style: preserve-3d;
-    transition: all 0.7s linear;
+    transition: transform 0.7s linear;
     background-color: white;
     position: absolute;
     left: 0;

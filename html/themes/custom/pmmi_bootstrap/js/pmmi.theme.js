@@ -77,21 +77,38 @@
    */
   Drupal.behaviors.pmmiCardsBlcok = {
     attach: function (context, settings) {
+      var _this = this;
       $('.block-card').closest('.row').once('equal-height').each(function () {
         var $row = $(this);
-        $row.imagesLoaded(function () {
-          $('.card-content', $row).each(function () {
-            var $cardContent = $(this);
-            var $cardParent = $cardContent.parent();
-            var parentHeight = $cardContent.parent().height();
-            var cardHeight = $cardContent.height();
-            var padding = $cardParent.outerHeight() - parentHeight;
-            if (cardHeight > parentHeight) {
-              $row.find('.flipper').height(cardHeight + padding);
-            }
-          });
+        $(window).on('breakpointActivated', function (e, breakpoint) {
+          if (breakpoint !== 'mobile') {
+            _this.alignCards($row, breakpoint);
+          }
+          else {
+            _this.alignCards($row, breakpoint);
+          }
         });
       });
+    },
+    alignCards: function ($row, breakpoint) {
+      _.delay(function () {
+        $row.find('.flipper').removeAttr('style');
+        $('.card-content', $row).each(function () {
+          var $cardContent = $(this);
+          var $cardParent = $cardContent.parent();
+          var parentHeight = $cardParent.height();
+          var cardHeight = $cardContent.height();
+          var padding = $cardParent.outerHeight() - parentHeight;
+          if (cardHeight > parentHeight) {
+            if (breakpoint === 'mobile') {
+              $cardContent.closest('.flipper').height(cardHeight + padding);
+            }
+            else {
+              $row.find('.flipper').height(cardHeight + padding);
+            }
+          }
+        });
+      }, 50);
     }
   };
 
