@@ -98,7 +98,7 @@ $settings['rebuild_access'] = TRUE;
 /**
  * Stage File Proxy settings.
  */
-$config['stage_file_proxy.settings']['origin'] = 'http://demo:demo@staging.pmmi.org'; // no trailing slash
+$config['stage_file_proxy.settings']['origin'] = 'http://demo:demo@pmmistaging.pmmimediagroup.com'; // no trailing slash
 $config['stage_file_proxy.settings']['use_imagecache_root'] = TRUE;
 $config['stage_file_proxy.settings']['hotlink'] = FALSE;
 $config['stage_file_proxy.settings']['origin_dir'] = 'sites/default/files';

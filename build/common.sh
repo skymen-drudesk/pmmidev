@@ -77,13 +77,10 @@ if [[ -e "$theme_base/package.json" ]] && which npm > /dev/null; then
   # Then run npm install
   echo "Installing packages for custom theme with npm.";
   npm install --prefix $theme_base
-fi
-
-# If bower.json for pmmi_bootstrap exists and the bower command exists.
-if [[ -e "$theme_base/bower.json" ]] && which bower > /dev/null; then
-  # Then run bower install
-  echo "Installing packages for custom theme with bower.";
-  cd $theme_base
-  bower install
-  cd $base
+  # If bower.json for pmmi_bootstrap exists and the bower command exists.
+  if [[ -e "$theme_base/bower.json" ]]; then
+    # Then run bower install
+    echo "Installing packages for custom theme with bower.";
+    npm run bower --prefix $theme_base
+  fi
 fi
