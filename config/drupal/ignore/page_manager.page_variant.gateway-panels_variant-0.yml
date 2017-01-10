@@ -64,6 +64,18 @@ variant_settings:
       weight: 0
       uuid: 8fced451-a2d1-4a2d-bc4d-c7cd3527902e
       context_mapping: {  }
+    03133d8b-97ac-4480-bd06-8cf7534bc525:
+      id: audience_block
+      label: 'Audience block 3'
+      provider: audience_select
+      label_display: visible
+      audience_id: audience_3
+      image_style: thumbnail
+      audience_overrides: {  }
+      region: main
+      weight: 0
+      uuid: 03133d8b-97ac-4480-bd06-8cf7534bc525
+      context_mapping: {  }
   id: panels_variant
   uuid: 57b31e18-37eb-4429-8ea3-a74c5f895466
   label: null

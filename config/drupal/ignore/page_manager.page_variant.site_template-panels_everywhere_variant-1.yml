@@ -7,10 +7,10 @@ dependencies:
     - system.menu.footer
     - system.menu.utility-navigation-member
   module:
+    - audience_select
     - panels_everywhere
     - system
     - tb_megamenu
-    - user
 id: site_template-panels_everywhere_variant-1
 label: Member
 variant: panels_everywhere_variant
@@ -76,6 +76,16 @@ variant_settings:
       weight: '0'
       uuid: 00b8f32a-079b-4bd4-b6ec-afcca9a6befc
       context_mapping: {  }
+    0906c53f-cdb5-4f3c-b452-ece1f3a6996c:
+      id: audience_switcher
+      label: 'Audience Switcher'
+      provider: audience_select
+      label_display: 0
+      excluded_audiences: {  }
+      region: footer
+      weight: '0'
+      uuid: 0906c53f-cdb5-4f3c-b452-ece1f3a6996c
+      context_mapping: {  }
   id: panels_everywhere_variant
   uuid: cdb68bb8-520f-44f2-bd99-ead75a9f3553
   label: null
@@ -89,19 +99,11 @@ variant_settings:
 page: site_template
 weight: -5
 selection_criteria:
-  1:
-    id: user_role
-    roles:
-      administrator: administrator
-    negate: true
-    context_mapping:
-      user: current_user
-  0:
-    id: user_role
-    roles:
-      authenticated: authenticated
+  -
+    id: audience
+    audiences:
+      audience_2: audience_2
     negate: false
-    context_mapping:
-      user: current_user
+    context_mapping: {  }
 selection_logic: and
 static_context: {  }
