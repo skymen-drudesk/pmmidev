@@ -1,0 +1,56 @@
+uuid: 270b7287-dc0a-4bdb-b6e3-ff01311c042b
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.gateway
+    - system.menu.footer
+  content:
+    - 'block_content:text:b5086f23-1cc0-430e-9e43-e08447adbdfa'
+  module:
+    - block_content
+    - panels
+    - system
+id: gateway-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    528ef45e-efd1-4daa-bd9c-fca46151fbfa:
+      id: 'block_content:b5086f23-1cc0-430e-9e43-e08447adbdfa'
+      label: 'Gateway - Intro'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: text_image
+      region: main
+      weight: 0
+      uuid: 528ef45e-efd1-4daa-bd9c-fca46151fbfa
+      context_mapping: {  }
+    4fccfb27-c430-44d5-8e1c-50ec4c4a670e:
+      id: 'system_menu_block:footer'
+      label: Footer
+      provider: system
+      label_display: '0'
+      level: 1
+      depth: 0
+      region: footer
+      weight: 0
+      uuid: 4fccfb27-c430-44d5-8e1c-50ec4c4a670e
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 57b31e18-37eb-4429-8ea3-a74c5f895466
+  label: null
+  weight: 0
+  layout: panel_default
+  layout_settings: {  }
+  page_title: ''
+  storage_type: page_manager
+  storage_id: gateway-panels_variant-0
+  builder: ipe
+page: gateway
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

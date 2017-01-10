@@ -1,0 +1,165 @@
+/* IMAGE SLIDE VIEW MODES. */
+// Image slide default.
+.block-image-slide-default {
+  position: relative;
+  height: 390px;
+  .slide-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 58px 135px;
+    background: rgba(#fff, 0.63);
+    padding: 34px 100px 60px;
+    text-align: center;
+  }
+  .img {
+    max-height: 390px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+  .title {
+    @extend .headline2;
+    margin-bottom: 15px;
+  }
+  .block-body {
+    @extend .paragraph3;
+  }
+  @include desktop {
+    height: 277px;
+    .img {
+      max-height: 277px;
+    }
+    .slide-info {
+      margin: 28px 28px 22px;
+      padding: 23px 80px 35px;
+    }
+  }
+  @include tablet {
+    height: 209px;
+    .img {
+      max-height: 209px;
+    }
+    .slide-info {
+      margin: 15px 25px;
+      padding: 15px 60px 35px;
+    }
+  }
+  @include mobile {
+    height: 328px;
+    .img {
+      max-height: 328px;
+    }
+    .slide-info {
+      padding: 15px 25px 35px;
+      margin: 15px 24px 18px;
+    }
+  }
+}
+// Image slide.
+.block-image-slide {
+  color: #fff;
+  position: relative;
+  height: 420px;
+  .img {
+    max-height: 420px;
+    overflow: hidden;
+    img {
+      width: 100%;
+    }
+  }
+  .slide-info {
+    width: 370px;
+    position: absolute;
+    right: 135px;
+    top: 0;
+    bottom: 0;
+    background: rgba($dkblue, 0.63);
+    padding: 70px 50px 20px 40px;
+  }
+  .title {
+    font-size: $r40;
+    line-height: $r40;
+    font-weight: 300;
+    margin-bottom: 10px;
+  }
+  .sub-title,
+  .block-body {
+    font-size: $r14;
+    line-height: $r18;
+    font-weight: 500;
+  }
+  .sub-title {
+    text-transform: uppercase;
+    margin-bottom: 13px;
+  }
+  .block-body {
+    margin-bottom: 31px;
+    font-weight: 400;
+    @extend .inherited-p;
+  }
+  .button {
+    a {
+      @extend .button-secondary;
+    }
+  }
+  @include desktop {
+    height: 299px;
+    .img {
+      max-height: 299px;
+    }
+    .slide-info {
+      right: 27px;
+      width: 393px;
+      padding: 24px 35px 20px 40px;
+    }
+    .block-body {
+      margin-bottom: 20px;
+    }
+  }
+  @include tablet {
+    height: 224px;
+    .slide-info {
+      right: 25px;
+      width: 350px;
+      padding: 10px 15px 20px 25px;
+    }
+    .img {
+      max-height: 224px;
+    }
+    .title {
+      font-size: $r30;
+      margin-bottom: 7px;
+    }
+    .block-body {
+      margin-bottom: 15px;
+    }
+  }
+  @include mobile {
+    height: 223px;
+    .slide-info {
+      right: 20px;
+      left: 20px;
+      width: auto;
+      padding: 10px 15px 20px 20px;
+    }
+    .img {
+      max-height: 223px;
+    }
+    .title {
+      font-size: $r24;
+      margin-bottom: 2px;
+    }
+    .sub-title,
+    .block-body {
+      font-size: $r13;
+      line-height: $r15;
+    }
+    .block-body {
+      margin-bottom: 20px;
+    }
+  }
+}

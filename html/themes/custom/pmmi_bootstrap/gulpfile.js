@@ -7,7 +7,7 @@ var sassGlob = require('gulp-sass-glob');
 var autoprefixer = require('autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var livereload = require('gulp-livereload');
-var pixrem = require('gulp-pixrem');
+var pixrem = require('pixrem');
 var eslint = require('gulp-eslint');
 
 // Define list of vendors.
@@ -25,8 +25,8 @@ gulp.task('sass:build', function () {
       sourcemap: true,
       includePaths: _vendors
     }).on('error', sass.logError))
-    .pipe(pixrem())
     .pipe(postcss([
+      pixrem,
       autoprefixer({
         browsers: ['last 2 versions', '>5%']
       })
@@ -40,7 +40,7 @@ gulp.task('watch', function () {
   livereload.listen();
   gulp.watch('./sass/**/*.scss', ['sass:build']);
   gulp.watch('./js/**/*.js', ['eslint']);
-  gulp.watch(['./templates/**/*.twig', './js/*.js'], function (files) {
+  gulp.watch(['./templates/**/*.twig', './js/*.js', './i/*'], function (files) {
     livereload.changed(files);
   });
 });

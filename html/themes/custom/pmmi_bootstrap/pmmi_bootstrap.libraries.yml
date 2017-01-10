@@ -8,6 +8,8 @@ theme:
     - core/jquery.once
     - bootstrap/drupal.bootstrap
     - bootstrap/attributes
+    - pmmi_bootstrap/imagesloaded
+    - pmmi_bootstrap/jquery-uniform
 
   css:
     theme:
@@ -32,3 +34,11 @@ bootstrap-scripts:
     bootstrap-sass/assets/javascripts/bootstrap/scrollspy.js: {}
     bootstrap-sass/assets/javascripts/bootstrap/tab.js: {}
     bootstrap-sass/assets/javascripts/bootstrap/transition.js: {}
+
+imagesloaded:
+  js:
+    libraries/imagesloaded/imagesloaded.pkgd.min.js: {}
+
+jquery-uniform:
+  js:
+    libraries/jquery.uniform/src/js/jquery.uniform.js: {}

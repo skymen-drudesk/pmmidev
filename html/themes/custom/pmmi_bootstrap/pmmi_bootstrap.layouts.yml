@@ -5,6 +5,21 @@ sitewide:
   regions:
     main:
       label: Main content
+panel_homepage:
+  label: Homepage screens (with fullwidth regions, i.e. events(blue), cards(grey), etc.)
+  category: PMMI: Layouts
+  template: templates/layouts/panels/homepage
+  regions:
+    top:
+      label: Top content
+    grey:
+      label: Grey row
+    blue:
+      label: Blue row
+    white:
+      label: White row
+    bottom:
+      label: Bottom content
 
 default_mode:
   label: Default (view mode)
@@ -265,6 +280,8 @@ block_news:
   regions:
     block_title:
       label: Block Title
+    logo:
+      label: Logo
     date:
       label: Date
     head:
@@ -273,8 +290,6 @@ block_news:
       label: Body
     button:
       label: Button
-    color:
-      label: Color(hidden)
 block_card:
   label: Card
   category: PMMI: Blocks

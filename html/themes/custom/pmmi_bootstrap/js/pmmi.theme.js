@@ -58,4 +58,41 @@
     }
   };
 
+  /**
+   * Common JS for elements theming.
+   */
+  Drupal.behaviors.pmmiCommonTheme = {
+    attach: function (context, settings) {
+      $('select').once('uniform').each(function () {
+        $(this).uniform();
+      });
+    }
+  };
+
+
+  /**
+   * Cards block js stuff.
+   *
+   * @todo Implement responsive update based on drupal breakpoints.
+   */
+  Drupal.behaviors.pmmiCardsBlcok = {
+    attach: function (context, settings) {
+      $('.block-card').closest('.row').once('equal-height').each(function () {
+        var $row = $(this);
+        $row.imagesLoaded(function () {
+          $('.card-content', $row).each(function () {
+            var $cardContent = $(this);
+            var $cardParent = $cardContent.parent();
+            var parentHeight = $cardContent.parent().height();
+            var cardHeight = $cardContent.height();
+            var padding = $cardParent.outerHeight() - parentHeight;
+            if (cardHeight > parentHeight) {
+              $row.find('.flipper').height(cardHeight + padding);
+            }
+          });
+        });
+      });
+    }
+  };
+
 })(jQuery, window, Drupal);

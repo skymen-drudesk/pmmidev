@@ -1,19 +1,22 @@
 {
   "name": "PMMI",
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "bower":  "bower install --allow-root"
   },
-  "dependencies": {},
+  "dependencies": {
+    "bower": "^1.8"
+  },
   "devDependencies": {
     "autoprefixer": "^6.5.1",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
     "gulp-livereload": "^3.8.1",
-    "gulp-pixrem": "^1.0.0",
     "gulp-postcss": "^6.2.0",
     "gulp-sass": "^2.3.2",
     "gulp-sass-glob": "^1.0.6",
     "gulp-sourcemaps": "^1.9.1",
-    "gulp-watch": "^4.3.10"
+    "gulp-watch": "^4.3.10",
+    "pixrem": "^3.0.2"
   }
 }

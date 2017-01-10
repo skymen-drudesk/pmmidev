@@ -1,6 +1,58 @@
 <?php
 /**
  * @file
- * Drupal needs this empty file.
+ * PMMI common stuff.
  */
 
+use Drupal\views\ViewExecutable;
+
+/**
+ * Implements hook_views_pre_build().
+ */
+function pmmi_views_pre_build(ViewExecutable $view) {
+  switch ($view->current_display) {
+    case 'block_category_secondary':
+      $contexts = _pmmi_get_video_type_contexts();
+      $view->args[0] = empty($view->args[0]) ? $contexts['tid'] : $view->args[0];
+      $view->args[1] = empty($view->args[1]) ? $contexts['nid'] : $view->args[1];
+      if ($contexts['current_context'] == 'page_manager_page_variant') {
+        $view->setOffset(1);
+      }
+      break;
+
+    case 'video_type_about':
+      $contexts = _pmmi_get_video_type_contexts();
+      $view->args[0] = $contexts['tid'];
+      break;
+  }
+}
+
+/**
+ * Help function to get video type contexts.
+ *
+ * @see pmmi_views_pre_build
+ */
+function _pmmi_get_video_type_contexts() {
+  $contexts = [
+    'nid' => NULL,
+    'tid' => NULL,
+    'term' => NULL,
+    'current_context' => 'node',
+  ];
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $contexts['nid'] = $node->id();
+    if ($video_term = $node->get('field_video_type')->referencedEntities()) {
+      $contexts['tid'] = $video_term[0]->id();
+    }
+  }
+  elseif ($panel = \Drupal::routeMatch()->getParameter('page_manager_page_variant')) {
+    $page_contexts = $panel->getContexts();
+    if (isset($page_contexts['term'])) {
+      $term = $page_contexts['term']->getContextValue();
+      $contexts['tid'] = $term->id();
+      $contexts['term'] = $term;
+      $contexts['current_context'] = 'page_manager_page_variant';
+    }
+  }
+  return $contexts;
+}

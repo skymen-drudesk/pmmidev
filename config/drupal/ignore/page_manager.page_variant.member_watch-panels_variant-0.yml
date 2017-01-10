@@ -1,0 +1,54 @@
+uuid: 5977c2e7-a760-4a49-b7d9-bcee29a92314
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.member_watch
+    - views.view.page_videos
+  module:
+    - panels
+    - views
+id: member_watch-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    77348872-c34c-422e-acf9-99da29f7126e:
+      id: 'views_block:page_videos-block_category'
+      label: ''
+      provider: views
+      label_display: visible
+      views_label: ''
+      items_per_page: none
+      region: main
+      weight: 0
+      uuid: 77348872-c34c-422e-acf9-99da29f7126e
+      context_mapping:
+        field_video_type_target_id: term
+      arguments:
+        nid:
+          type: node_nid
+          value: '1'
+        field_video_type_target_id:
+          type: numeric
+          value: '3'
+  id: panels_variant
+  uuid: ca0f80d1-22c5-46c9-be19-51eeeb2e5e61
+  label: null
+  weight: 0
+  layout: sitewide
+  layout_settings: {  }
+  page_title: ''
+  storage_type: page_manager
+  storage_id: member_watch-panels_variant-0
+  builder: standard
+page: member_watch
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context:
+  term:
+    label: Term
+    type: 'entity:taxonomy_term'
+    description: ''
+    value: 8d5df75b-ff6c-42d6-903e-dc4c5c6a3499

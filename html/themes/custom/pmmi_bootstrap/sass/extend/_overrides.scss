@@ -108,17 +108,6 @@ body {
 
 // Default navbar.
 .navbar {
-  &.container {
-    @media #{$tablet} {
-      max-width: (($container-sm - $grid-gutter-width));
-    }
-    @media #{$normal} {
-      max-width: (($container-md - $grid-gutter-width));
-    }
-    @media #{$wide} {
-      max-width: (($container-lg - $grid-gutter-width));
-    }
-  }
   &.container,
   &.container-fluid {
     margin-top: 20px;
@@ -173,13 +162,6 @@ ul.secondary {
 // Page header.
 .page-header {
   margin-top: 0;
-}
-
-// Blocks
-.block {
-  &:first-child h2.block-title {
-    margin-top: 0;
-  }
 }
 
 // Paragraphs.

@@ -89,18 +89,18 @@ variant_settings:
 page: site_template
 weight: -6
 selection_criteria:
-  -
-    id: user_role
-    roles:
-      authenticated: authenticated
-    negate: false
-    context_mapping:
-      user: current_user
-  -
+  1:
     id: user_role
     roles:
       administrator: administrator
     negate: true
+    context_mapping:
+      user: current_user
+  0:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
     context_mapping:
       user: current_user
 selection_logic: and

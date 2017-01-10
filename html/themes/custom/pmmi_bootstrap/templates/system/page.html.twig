@@ -118,7 +118,7 @@
         {# Highlighted #}
         {% if page.highlighted %}
           {% block highlighted %}
-            <div class="highlighted">{{ page.highlighted }}</div>
+            <div class="highlighted container">{{ page.highlighted }}</div>
           {% endblock %}
         {% endif %}
 
@@ -132,14 +132,18 @@
         {# Action Links #}
         {% if action_links %}
           {% block action_links %}
-            <ul class="action-links">{{ action_links }}</ul>
+            <div class="container">
+              <ul class="action-links">{{ action_links }}</ul>
+            </div>
           {% endblock %}
         {% endif %}
 
         {# Help #}
         {% if page.help %}
           {% block help %}
-            {{ page.help }}
+            <div class="container">
+              {{ page.help }}
+            </div>
           {% endblock %}
         {% endif %}
 

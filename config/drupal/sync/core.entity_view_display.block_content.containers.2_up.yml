@@ -17,12 +17,19 @@ dependencies:
     - field.field.block_content.containers.field_block_plugin_4
     - field.field.block_content.containers.field_block_plugin_5
     - field.field.block_content.containers.field_block_plugin_6
+    - field.field.block_content.containers.field_block_views_1
+    - field.field.block_content.containers.field_block_views_2
+    - field.field.block_content.containers.field_block_views_3
+    - field.field.block_content.containers.field_block_views_4
+    - field.field.block_content.containers.field_block_views_5
+    - field.field.block_content.containers.field_block_views_6
     - field.field.block_content.containers.field_button
     - field.field.block_content.containers.field_head
   module:
     - ds
     - link
     - pmmi_fields
+    - viewfield
 third_party_settings:
   ds:
     layout:
@@ -38,9 +45,11 @@ third_party_settings:
       oneone:
         - field_block_1
         - field_block_plugin_1
+        - field_block_views_1
       onetwo:
         - field_block_2
         - field_block_plugin_2
+        - field_block_views_2
       bottom:
         - field_button
 id: block_content.containers.2_up
@@ -57,7 +66,7 @@ content:
     third_party_settings: {  }
     type: entity_reference_entity_view
   field_block_2:
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       link: true
@@ -72,13 +81,25 @@ content:
     third_party_settings: {  }
   field_block_plugin_2:
     type: entity_reference_rendered_block_plugin
-    weight: 4
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_block_views_1:
+    type: viewfield_default
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+  field_block_views_2:
+    type: viewfield_default
+    weight: 6
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_button:
     type: link
-    weight: 5
+    weight: 7
     label: hidden
     settings:
       trim_length: 80
@@ -103,3 +124,7 @@ hidden:
   field_block_plugin_4: true
   field_block_plugin_5: true
   field_block_plugin_6: true
+  field_block_views_3: true
+  field_block_views_4: true
+  field_block_views_5: true
+  field_block_views_6: true

@@ -1,4 +1,4 @@
-uuid: 807565d9-8f3b-42aa-b8f7-96456f69c20d
+uuid: 0e49ac54-0156-432f-b75b-b68c62216d4f
 langcode: en
 status: true
 dependencies:
@@ -9,10 +9,13 @@ dependencies:
     - field.field.block_content.card.field_head
     - field.field.block_content.card.field_icon
     - field.field.block_content.card.field_image
+    - image.style.shows_block_desktop
+    - responsive_image.styles.3_up_cards
   module:
     - ds
     - image
     - link
+    - responsive_image
     - text
 third_party_settings:
   ds:
@@ -42,9 +45,17 @@ content:
   body:
     weight: 0
     label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: text_default
+    settings:
+      trim_length: 680
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: text_summary_or_trimmed
   field_button:
     weight: 2
     label: hidden
@@ -67,16 +78,30 @@ content:
     weight: 4
     label: hidden
     settings:
-      image_style: ''
+      image_style: shows_block_desktop
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: image
   field_image:
     weight: 3
     label: hidden
     settings:
-      image_style: ''
+      responsive_image_style: 3_up_cards
       image_link: ''
-    third_party_settings: {  }
-    type: image
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: responsive_image
 hidden: {  }

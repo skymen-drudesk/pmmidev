@@ -15,9 +15,9 @@ dependencies:
     - field.field.block_content.event.field_members
   module:
     - address
-    - datetime_range
     - ds
     - link
+    - pmmi_fields
 third_party_settings:
   ds:
     layout:
@@ -28,14 +28,14 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
+      link:
+        - field_link
       head:
         - field_head
       location:
         - field_location
       hosted_by:
         - field_hosted_by
-      link:
-        - field_link
       dates:
         - field_dates
 id: block_content.event.ribbon
@@ -48,8 +48,10 @@ content:
     label: hidden
     settings:
       timezone_override: ''
-      format_type: month_day_year
-      separator: '-'
+      show_end_date: false
+      date_format_month: M
+      date_format_day: d
+      date_format_year: o
     third_party_settings:
       ds:
         ds_limit: ''
@@ -59,7 +61,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: daterange_default
+    type: daterange_event_ribbon_custom
   field_head:
     weight: 0
     label: hidden
