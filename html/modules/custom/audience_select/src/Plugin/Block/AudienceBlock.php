@@ -204,14 +204,20 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
         $audience[$key] = $value;
       }
     }
-    $image = File::load($audience['audience_image'][0]);
-    $image_style_uri = $image_style->buildUri($image->getFileUri());
-    $status = TRUE;
-    if (!file_exists($image_style_uri)) {
-      $status = $image_style->createDerivative($image->getFileUri(), $image_style_uri);
+    $image_url = '';
+    if(array_key_exists('audience_image', $audience)){
+      if(!empty($audience['audience_image'])){
+        $image = File::load($audience['audience_image'][0]);
+        $image_style_uri = $image_style->buildUri($image->getFileUri());
+        $status = TRUE;
+        if (!file_exists($image_style_uri)) {
+          $status = $image_style->createDerivative($image->getFileUri(), $image_style_uri);
+        }
+        $image_uri = $status ? $image_style_uri : $image->getFileUri();
+        $image_url = file_url_transform_relative(file_create_url($image_uri));
+      }
     }
-    $image_uri = $status ? $image_style_uri : $image->getFileUri();
-    $image_url = file_url_transform_relative(file_create_url($image_uri));
+
     $options = array(
       'query' => array('audience' => $audience_id)
     );
@@ -220,33 +226,6 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     $build['#audience_title'] = $audience['audience_title'];
     $build['#audience_image'] = $image_url;
     $build['#audience_redirect_url'] = $url;
-//    $image = array(
-//      '#theme' => 'image',
-//      '#uri' => $image_uri,
-//    );
-//    $build['image_link'] = array(
-//      '#type' => 'link',
-//      '#title' => $image,
-//      '#url' => $url,
-//      '#options' => array(
-//        'attributes' => array(
-//          'class' => array('audience-image-link', 'audience_'.$audience_id),
-//        ),
-//      ),
-//    );
-//    $build['link'] = array(
-//      '#type' => 'link',
-//      '#title' => $audience['audience_title'],
-//      '#url' => $url,
-//      '#options' => array(
-//        'attributes' => array(
-//          'class' => array('audience-link', 'audience_'.$audience_id),
-//        ),
-//      ),
-//    );
-//    $build['open_weather_map_block']['#markup'] = 'Implement OpenWeatherMapBlock.';
-
-
 
     return $build;
   }

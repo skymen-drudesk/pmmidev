@@ -10,6 +10,10 @@ namespace Drupal\audience_select\Plugin\Block;
 use Drupal\audience_select\Service\AudienceManager;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Block;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Url;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a 'Audience Switcher' block.
@@ -19,19 +23,115 @@ use Drupal\Core\Block;
  *   admin_label = @Translation("Audience Switcher")
  * )
  */
-class AudienceSwitcherBlock extends BlockBase {
+class AudienceSwitcherBlock extends BlockBase implements ContainerFactoryPluginInterface {
+
+  /**
+   * Drupal\audience_select\Service\AudienceManager definition.
+   *
+   * @var \Drupal\audience_select\Service\AudienceManager
+   */
+  protected $AudienceManager;
+
+  /**
+   * Construct.
+   *
+   * @param array $configuration
+   *   A configuration array containing information about the plugin instance.
+   * @param string $plugin_id
+   *   The plugin_id for the plugin instance.
+   * @param string $plugin_definition
+   *   The plugin implementation definition.
+   */
+  public function __construct(
+    array $configuration,
+    $plugin_id,
+    $plugin_definition,
+    AudienceManager $audience_manager
+  ) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->AudienceManager = $audience_manager;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('audience_select.audience_manager')
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function defaultConfiguration() {
+    return [
+        'excluded_audiences' => array(),
+      ] + parent::defaultConfiguration();
+
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockForm($form, FormStateInterface $form_state) {
+
+    $form['excluded_audiences'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Exclude Auidiences'),
+      '#description' => $this->t('Please select the Auidience to exclude from block'),
+      '#default_value' => $this->configuration['excluded_audiences'],
+      '#options' => $this->AudienceManager->getOptionsList(),
+      '#weight' => '1',
+    ];
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function blockSubmit($form, FormStateInterface $form_state) {
+//    $this->configuration['excluded_audiences'] = $form_state->getValue('excluded_audiences');
+    $audience = $form_state->getValue('excluded_audiences');
+    $excluded_audiences = array_filter($audience);
+    if (!empty($excluded_audiences)) {
+      $this->setConfigurationValue('excluded_audiences', array_keys($excluded_audiences));
+    }
+    else {
+      $this->setConfigurationValue('excluded_audiences', array());
+    }
+  }
 
   /**
    * {@inheritdoc}
    */
   public function build() {
-    $audience_manager = new AudienceManager();
-    $audiences = $audience_manager->getUnselectedAudiences();
+
+//    $audience_manager = new AudienceManager();
+    $unselected_audiences = $this->AudienceManager->getUnselectedAudiences();
+    $excluded_audiences = $this->configuration['excluded_audiences'];
+    $excluded_audiences = array_flip($excluded_audiences);
+//    $result_audiences = array_intersect_assoc($unselected_audiences, $excluded_audiences);
     $context = $this->getCacheContexts();
     $context = $this->getContexts();
+    $result_audiences = [];
+    foreach ($unselected_audiences as $audience_id => $item){
+      if(!array_key_exists($audience_id, $excluded_audiences)){
+        $options = array(
+          'query' => array('audience' => $audience_id)
+        );
+//        $url = Url::fromUri($item['audience_redirect_url'], $options);
+        $result_audiences[$audience_id]['title'] = $item['audience_title'];
+        $result_audiences[$audience_id]['url'] = Url::fromUri($item['audience_redirect_url'], $options);
+
+      }
+    }
     return array(
       '#theme' => 'audience_switcher_block',
-      '#audiences' => $audiences,
+      '#audiences' => $result_audiences,
     );
   }
 

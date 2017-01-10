@@ -1,0 +1,55 @@
+uuid: d650c60c-8c46-45f2-817b-a371bba9eab1
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.site_template
+  module:
+    - panels_everywhere
+    - system
+id: site_template-panels_everywhere_variant-6
+label: 'Audience Gateway'
+variant: panels_everywhere_variant
+variant_settings:
+  blocks:
+    8475f14f-e3a8-4d34-8df3-4111e0c2621e:
+      id: system_branding_block
+      label: 'Site branding'
+      provider: system
+      label_display: 0
+      use_site_logo: 1
+      use_site_name: 0
+      use_site_slogan: 0
+      region: header_logo
+      weight: '0'
+      uuid: 8475f14f-e3a8-4d34-8df3-4111e0c2621e
+      context_mapping: {  }
+    b786d91a-a9fa-4899-a985-69c86e345a3b:
+      id: system_main_block
+      label: 'Main page content'
+      provider: system
+      label_display: 0
+      region: main
+      weight: '0'
+      uuid: b786d91a-a9fa-4899-a985-69c86e345a3b
+      context_mapping: {  }
+  id: panels_everywhere_variant
+  uuid: 463bc02a-59ad-4f41-9c4a-2354da6c0985
+  label: null
+  weight: 0
+  layout: panel_default
+  layout_settings: {  }
+  page_title: 'Audience Select'
+  storage_type: page_manager
+  storage_id: site_template-panels_everywhere_variant-6
+  builder: standard
+page: site_template
+weight: -10
+selection_criteria:
+  -
+    id: request_path
+    pages: "/gateway\n"
+    negate: false
+    context_mapping: {  }
+selection_logic: and
+static_context: {  }

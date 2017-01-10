@@ -24,7 +24,7 @@ class AudienceSettingsForm extends ConfigFormBase {
    *
    * @var \Drupal\audience_select\Service\AudienceManager
    */
-  protected $audience_manager;
+  protected $AudienceManager;
 
   /**
    * The configured audiences.
@@ -41,7 +41,7 @@ class AudienceSettingsForm extends ConfigFormBase {
    */
   public function __construct(ConfigFactoryInterface $config_factory, AudienceManager $audience_manager) {
     parent::__construct($config_factory);
-    $this->audience_manager = $audience_manager;
+    $this->AudienceManager = $audience_manager;
     $this->audiences = $audience_manager->getData();
   }
 
@@ -75,13 +75,11 @@ class AudienceSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-//    $config = $this->config('audience_select.settings');
-//    $gateway_url = $config->get('gateway_url');
     $form['gateway_url'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Gateway Url'),
       '#description' => $this->t('Paths should start with /, ? or #.'),
-      '#default_value' => $this->audience_manager->getGateway(),
+      '#default_value' => $this->AudienceManager->getGateway(),
       '#element_validate' => array(
         array(
           get_called_class(),
@@ -102,69 +100,70 @@ class AudienceSettingsForm extends ConfigFormBase {
       '#attributes' => ['id' => 'audience-table'],
       '#empty' => $this->t('No audiences available.'),
     ];
-    $audiences = $this->audiences;
-
+    if (!empty($this->audiences)){
+      $audiences = $this->audiences;
       foreach ($audiences as $audience_id => $audience) {
-      $form['audiences'][$audience_id] = array(
-        'audience_id' => array(
-          '#title' => $this->t('Audience ID'),
-          '#title_display' => 'invisible',
-          '#type' => 'textfield',
-          '#disabled' => TRUE,
-          '#default_value' => $audience_id,
-          '#size' => 20,
-          '#required' => TRUE,
-        ),
-        'audience_title' => array(
-          '#title' => $this->t('Audience Title'),
-          '#title_display' => 'invisible',
-          '#type' => 'textfield',
-          '#default_value' => $audience['audience_title'],
-          '#required' => TRUE,
-        ),
-        'audience_redirect_url' => array(
-          '#title' => $this->t('Audience Redirect Url'),
-          '#title_display' => 'invisible',
-          '#type' => 'entity_autocomplete',
-          '#target_type' => 'node',
-          '#size' => 20,
-          '#default_value' => $audience['audience_redirect_url'],
-          '#placeholder' => $this->t(''),
-          '#maxlength' => 200,
-          '#attributes' => array(
-            'data-autocomplete-first-character-blacklist' => '/#?'
+        $form['audiences'][$audience_id] = array(
+          'audience_id' => array(
+            '#title' => $this->t('Audience ID'),
+            '#title_display' => 'invisible',
+            '#type' => 'textfield',
+            '#disabled' => TRUE,
+            '#default_value' => $audience_id,
+            '#size' => 20,
+            '#required' => TRUE,
           ),
-          '#element_validate' => array(
-            array(
-              get_called_class(),
-              'validateUriElement'
-            )
+          'audience_title' => array(
+            '#title' => $this->t('Audience Title'),
+            '#title_display' => 'invisible',
+            '#type' => 'textfield',
+            '#default_value' => $audience['audience_title'],
+            '#required' => TRUE,
           ),
-          '#process_default_value' => FALSE,
-          '#field_prefix' => rtrim(Url::fromRoute('<front>', array(), array('absolute' => TRUE))
-            ->toString(), '/')
-        ),
-        'audience_image' => array(
-          '#type' => 'managed_file',
-          '#title' => $this->t('Image'),
-          '#title_display' => 'invisible',
-          '#required' => TRUE,
-          '#upload_location' => 'public://audience/image/',
-          '#default_value' => (!empty($audience['audience_image'])) ? $audience['audience_image'] : NULL,
-          '#upload_validators' => array(
-            'file_validate_extensions' => array('png jpg jpeg'),
+          'audience_redirect_url' => array(
+            '#title' => $this->t('Audience Redirect Url'),
+            '#title_display' => 'invisible',
+            '#type' => 'entity_autocomplete',
+            '#target_type' => 'node',
+            '#size' => 20,
+            '#default_value' => $audience['audience_redirect_url'],
+            '#placeholder' => $this->t(''),
+            '#maxlength' => 200,
+            '#attributes' => array(
+              'data-autocomplete-first-character-blacklist' => '/#?'
+            ),
+            '#element_validate' => array(
+              array(
+                get_called_class(),
+                'validateUriElement'
+              )
+            ),
+            '#process_default_value' => FALSE,
+            '#field_prefix' => rtrim(Url::fromRoute('<front>', array(), array('absolute' => TRUE))
+              ->toString(), '/')
           ),
-        ),
-      );
-      // Operations column.
-      $form['audiences'][$audience_id]['operations'] = [
-        '#type' => 'operations',
-        '#links' => [],
-      ];
-      $form['audiences'][$audience_id]['operations']['#links']['delete'] = [
-        'title' => $this->t('Delete'),
-        'url' => Url::fromRoute('audience_select.audience_settings_delete_form', ['audience_id' => $audience_id]),
-      ];
+          'audience_image' => array(
+            '#type' => 'managed_file',
+            '#title' => $this->t('Image'),
+            '#title_display' => 'invisible',
+//            '#required' => TRUE,
+            '#upload_location' => 'public://audience/image/',
+            '#default_value' => (!empty($audience['audience_image'])) ? $audience['audience_image'] : NULL,
+            '#upload_validators' => array(
+              'file_validate_extensions' => array('png jpg jpeg'),
+            ),
+          ),
+        );
+        // Operations column.
+        $form['audiences'][$audience_id]['operations'] = [
+          '#type' => 'operations',
+          '#links' => [],
+        ];
+        $form['audiences'][$audience_id]['operations']['#links']['delete'] = [
+          'title' => $this->t('Delete'),
+          'url' => Url::fromRoute('audience_select.audience_settings_delete_form', ['audience_id' => $audience_id]),
+        ];
+      }
     }
 
     // Add empty row.
@@ -204,7 +203,7 @@ class AudienceSettingsForm extends ConfigFormBase {
       '#description' => $this->t('Referenced to node. Manually entered paths should start with /, ? or #.'),
       '#size' => 30,
       '#placeholder' => $this->t(''),
-      '#maxlength' => 60,
+      '#maxlength' => 200,
       '#attributes' => array(
         'data-autocomplete-first-character-blacklist' => '/#?'
       ),
@@ -220,16 +219,17 @@ class AudienceSettingsForm extends ConfigFormBase {
     $form['new_audience']['audience_image'] = array(
       '#type' => 'managed_file',
       '#title' => $this->t('Audience Image'),
+      '#required' => FALSE,
       '#description' => $this->t('Default background image for Audience block'),
       '#upload_location' => 'public://audience/image/',
       '#upload_validators' => array(
         'file_validate_extensions' => array('png jpg jpeg'),
       ),
-      '#states' => array(
-        'required' => array(
-          ':input[name="new_audience[audience_title]"]' => array('filled' => TRUE),
-        ),
-      )
+//      '#states' => array(
+//        'required' => array(
+//          ':input[name="new_audience[audience_title]"]' => array('filled' => TRUE),
+//        ),
+//      )
     );
 
     return parent::buildForm($form, $form_state);
@@ -245,21 +245,24 @@ class AudienceSettingsForm extends ConfigFormBase {
     // Check all mappings.
     if ($form_state->hasValue('audiences')) {
       $audiences = $form_state->getValue('audiences');
-      foreach ($audiences as $key => $data) {
-        $unique_values[$data['audience_id']]['audience_title'] = $data['audience_title'];
-        $unique_values[$data['audience_id']]['audience_redirect_url'] = $data['audience_redirect_url'];
-        $unique_values[$data['audience_id']]['audience_image'] = $data['audience_image'];
+      if (!empty($audiences)){
+        foreach ($audiences as $key => $data) {
+          $unique_values[$data['audience_id']]['audience_title'] = $data['audience_title'];
+          $unique_values[$data['audience_id']]['audience_redirect_url'] = $data['audience_redirect_url'];
+          $unique_values[$data['audience_id']]['audience_image'] = $data['audience_image'];
+        }
       }
     }
 
     // Check new audience.
     $data = $form_state->getValue('new_audience');
     if (!empty($data['audience_id'])) {
+      $temp_value = [];
       foreach ($data as $key => $value) {
         if ($key == 'audience_id' && array_key_exists($value, $unique_values)) {
           $form_state->setErrorByName('audiences][' . $key . '][audience_id', $this->t('Audience ID must be unique.'));
         }
-        elseif (empty($value)) {
+        elseif (empty($value) && $key != 'audience_image') {
           $form_state->setErrorByName('new_audience][' . $key, $this->t('This field is required.'));
         }
         else {

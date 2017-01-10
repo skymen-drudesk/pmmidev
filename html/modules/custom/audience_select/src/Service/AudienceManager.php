@@ -17,34 +17,6 @@ use Drupal\Core\Entity\Element\EntityAutocomplete;
 class AudienceManager {
 
   /**
-   * Turns audiences settings string into keyed array.
-   *
-   * @return array
-   */
-  public function getAllAudiences() {
-    $config = \Drupal::config('audience_select.settings');
-    $audiences = $config->get('audiences');
-    $audiences = explode(PHP_EOL, $audiences);
-    $keyed_audiences = [];
-
-    foreach ($audiences as $audience) {
-      $audience = rtrim($audience, ' \t\n\r\0\x0B|');
-      $split = explode('|', $audience);
-      $keyed_audiences[$split[0]] = [
-        'gateway' => $split[1],
-      ];
-      if (isset($split[2]) && !empty($split[2])) {
-        $keyed_audiences[$split[0]]['block'] = $split[2];
-      }
-      else {
-        $keyed_audiences[$split[0]]['block'] = $split[1];
-      }
-    }
-
-    return ($keyed_audiences);
-  }
-
-  /**
    * Get Gateway Url.
    *
    * @return string
@@ -67,9 +39,22 @@ class AudienceManager {
   public function getData() {
     $config = \Drupal::config('audience_select.settings');
     $audiences = $config->get('map');
-    foreach ($audiences as &$audience) {
-      $audience['audience_redirect_url'] = !empty($audience['audience_redirect_url']) ? $this->getUriAsDisplayableString($audience['audience_redirect_url']) : NULL;
+    if(!empty($audiences)){
+      foreach ($audiences as &$audience) {
+        $audience['audience_redirect_url'] = !empty($audience['audience_redirect_url']) ? $this->getUriAsDisplayableString($audience['audience_redirect_url']) : '/';
+      }
     }
+    return $audiences;
+  }
+
+  /**
+   * Get all audiences raw data into keyed array.
+   *
+   * @return array
+   */
+  public function getRawData() {
+    $config = \Drupal::config('audience_select.settings');
+    $audiences = $config->get('map');
     return $audiences;
   }
 
@@ -90,18 +75,12 @@ class AudienceManager {
   public static function load($audience_id) {
     $config = \Drupal::config('audience_select.settings');
     $audiences = $config->get('map');
-    return array_key_exists($audience_id, $audiences) ? $audiences[$audience_id] : NULL;
-  }
-
-  public function getGatewayAudiences() {
-    $all_audiences = self::getAllAudiences();
-    $audiences = [];
-
-    foreach ($all_audiences as $key => $audience) {
-      $audiences[$key] = $audience;
+    if (!empty($audiences)){
+      return array_key_exists($audience_id, $audiences) ? $audiences[$audience_id] : NULL;
+    } else {
+      return NULL;
     }
 
-    return $audiences;
   }
 
   public function getCurrentAudience() {
@@ -116,7 +95,7 @@ class AudienceManager {
    * @return array
    */
   public function getUnselectedAudiences() {
-    $audiences = self::getAllAudiences();
+    $audiences = self::getRawData();
     $audience = self::getCurrentAudience();
 
     if ($audience !== NULL

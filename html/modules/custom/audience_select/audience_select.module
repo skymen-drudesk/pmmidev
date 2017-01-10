@@ -35,7 +35,9 @@ function audience_select_theme($existing, $type, $theme, $path) {
       'template' => 'block--audience-select--audience-select',
     ],
     'audience_switcher_block' => [
-//      'variables' => ['audiences' => $audiences],
+      'variables' => [
+        'audiences' => array(),
+      ],
       'template' => 'block--audience-select--audience-switcher',
     ],
   ];

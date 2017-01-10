@@ -1,82 +1,108 @@
 <?php
-
-/**
- * @TODO: Make this actually work! Does a context actually have to be an entity
- *   (e.g. a config entity)? Is a context necessary to have a condition plugin?
- *   Does it actually make sense to provide this context?
- */
-
-namespace Drupal\audience_select\ContextProvider;
-
-use Drupal\audience_select\Service\AudienceManager;
-use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Plugin\Context\Context;
-use Drupal\Core\Plugin\Context\ContextDefinition;
-use Drupal\Core\StringTranslation\StringTranslationTrait;
-use Drupal\Core\Plugin\Context\ContextProviderInterface;
-
-/**
- * Sets the current audience as a context.
- */
-class CurrentAudienceContext implements ContextProviderInterface {
-
-  use StringTranslationTrait;
-
-  /**
-   * The audience manager service.
-   *
-   * @var \Drupal\audience_select\Service\AudienceManager
-   */
-  protected $audience_manager;
-
-  /**
-   * The current audience.
-   *
-   * @var null
-   */
-  protected $audience;
-
-  /**
-   * Constructs a new CurrentAudienceContext.
-   *
-   * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
-   *   The audience manager.
-   */
-  public function __construct(AudienceManager $audience_manager) {
-    $this->audience_manager = $audience_manager;
-    $this->audience = $this->audience_manager->getCurrentAudience();
-  }
-
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getRuntimeContexts(array $unqualified_context_ids) {
-    ddl('in CurrentAudienceContext getRuntimeContexts().');
-
-    $context_definition = new ContextDefinition('any', $this->t('Audience'), TRUE, FALSE, $this->t('AAAA'), $this->audience);
-//    $context = new Context(new ContextDefinition('audience',
+//
+///**
+// * @TODO: Make this actually work! Does a context actually have to be an entity
+// *   (e.g. a config entity)? Is a context necessary to have a condition plugin?
+// *   Does it actually make sense to provide this context?
+// */
+//
+//namespace Drupal\audience_select\ContextProvider;
+//
+//use Drupal\audience_select\Cache\Context\AudienceCacheContext;
+//use Drupal\audience_select\Service\AudienceManager;
+//use Drupal\Core\Cache\CacheableMetadata;
+//use Drupal\Core\Plugin\Context\Context;
+//use Drupal\Core\Plugin\Context\ContextDefinition;
+//use Drupal\Core\StringTranslation\StringTranslationTrait;
+//use Drupal\Core\Plugin\Context\ContextProviderInterface;
+//
+///**
+// * Sets the current audience as a context.
+// */
+//class CurrentAudienceContext implements ContextProviderInterface {
+//
+//  use StringTranslationTrait;
+//
+//  /**
+//   * The audience manager service.
+//   *
+//   * @var \Drupal\audience_select\Service\AudienceManager
+//   */
+//  protected $AudienceManager;
+//
+//  /**
+//   * The current audience.
+//   *
+//   * @var null
+//   */
+//  protected $audience;
+//
+//  /**
+//   * Constructs a new CurrentAudienceContext.
+//   *
+//   * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
+//   *   The audience manager.
+//   */
+//  public function __construct(AudienceManager $audience_manager) {
+//    $this->AudienceManager = $audience_manager;
+//    $this->audience = $audience_manager->getCurrentAudience();
+//  }
+//
+//
+//  /**
+//   * {@inheritdoc}
+//   */
+//  public function getRuntimeContexts(array $unqualified_context_ids) {
+////    ddl('in CurrentAudienceContext getRuntimeContexts().');
+//
+////    $context_definition = new ContextDefinition('any', $this->t('Audience'), TRUE, FALSE, $this->t('AAAA'), $this->audience);
+////    $context = new Context(new ContextDefinition('audience',
+////      $this->t('Current audience'),
+////      FALSE
+////    ),
+////      $this->audience);
+////    $context_definition = new ContextDefinition(
+////      'audience',
+////      $this->t('Current audience'),
+////      FALSE
+////    );
+////    $context_definition = new ContextDefinition(
+////      'audience',
+////      $this->t('Current audience'),
+////      FALSE
+////    );
+//    $context_definition = new ContextDefinition(
+//      'audience',
 //      $this->t('Current audience'),
 //      FALSE
-//    ),
-//      $this->audience);
-    $context = new Context($context_definition);
-    $cacheability = new CacheableMetadata();
-    $cacheability->setCacheContexts(['audience']);
-    $context->addCacheableDependency($cacheability);
-
-    $result = [
-      'current_audience' => $context,
-    ];
-
-    return $result;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getAvailableContexts() {
-    return $this->getRuntimeContexts([]);
-  }
-
-}
+//    );
+////    $context = new Context($context_definition);
+//    $context = new Context($context_definition, $this->audience);
+////    $context = new Context(new ContextDefinition('entity:user', $this->t('Current user')), $this->audience);
+//    $cacheability = new CacheableMetadata();
+//    $cacheability->setCacheContexts(['audience']);
+//    $context->addCacheableDependency($cacheability);
+////    $context->setTypedDataManager();
+//    $result = [
+//      'current_audience' => $context,
+//    ];
+//
+//    return $result;
+//  }
+//
+//  /**
+//   * {@inheritdoc}
+//   */
+//  public function getAvailableContexts() {
+//    return $this->getRuntimeContexts([]);
+//  }
+//
+////  /**
+////   * {@inheritdoc}
+////   */
+////  public function getAvailableContexts() {
+////    $context = new Context(new ContextDefinition('audience', $this->t('Current audience')));
+////    return ['current_audience' => $context];
+////  }
+//
+//}
