@@ -1,0 +1,96 @@
+uuid: 3b49b5e2-aaed-43fb-bccf-0aff4dc9526f
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.my_pmmi
+  content:
+    - 'block_content:containers:9bb55b16-9e62-49b2-804e-a58c154c9ce9'
+    - 'block_content:containers:a3f9afee-2086-468e-8a7f-5cdeb8c71984'
+    - 'block_content:containers:a512129c-2311-43e5-a3de-cb5d39e82e5a'
+    - 'block_content:image_header:e8a0747c-df1f-4d0b-82a3-23e3c1abcb7d'
+    - 'block_content:text:9b0373c3-bf3e-4ac9-a06f-f2270701f69a'
+  module:
+    - block_content
+    - panels
+id: my_pmmi-http_status_code-0
+label: 'My PMMI Panels'
+variant: panels_variant
+variant_settings:
+  blocks:
+    063bddf1-4acb-4268-806a-33173ff9afa7:
+      id: 'block_content:e8a0747c-df1f-4d0b-82a3-23e3c1abcb7d'
+      label: 'My PMMI - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: -10
+      uuid: 063bddf1-4acb-4268-806a-33173ff9afa7
+      context_mapping: {  }
+    0a702001-11a5-4ff3-b4a9-9e21cf254f5f:
+      id: 'block_content:9b0373c3-bf3e-4ac9-a06f-f2270701f69a'
+      label: 'My PMMI - Title Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: grey
+      weight: -2
+      uuid: 0a702001-11a5-4ff3-b4a9-9e21cf254f5f
+      context_mapping: {  }
+    6669e1ad-3f97-4851-86f9-2d207834c948:
+      id: 'block_content:9bb55b16-9e62-49b2-804e-a58c154c9ce9'
+      label: 'MY PMMI - Cards 1-3'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: grey
+      weight: -1
+      uuid: 6669e1ad-3f97-4851-86f9-2d207834c948
+      context_mapping: {  }
+    64730f3b-d6d4-4156-8bf6-e5958332e684:
+      id: 'block_content:a512129c-2311-43e5-a3de-cb5d39e82e5a'
+      label: 'MY PMMI - Cards 4-6'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: grey
+      weight: 0
+      uuid: 64730f3b-d6d4-4156-8bf6-e5958332e684
+      context_mapping: {  }
+    4b4d5825-a4bc-425a-be66-d64685e56315:
+      id: 'block_content:a3f9afee-2086-468e-8a7f-5cdeb8c71984'
+      label: 'MY PMMI - Bottom Boxes'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: white
+      weight: -2
+      uuid: 4b4d5825-a4bc-425a-be66-d64685e56315
+      context_mapping: {  }
+  id: panels_variant
+  label: null
+  uuid: c44fa1ad-0fd9-4484-b213-2106e6219b3f
+  weight: 0
+  status_code: '404'
+  layout: panel_homepage
+  layout_settings: {  }
+  page_title: 'Get The Most Out of PMMI'
+  storage_type: page_manager
+  storage_id: my_pmmi-http_status_code-0
+  builder: standard
+page: my_pmmi
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

@@ -1,40 +1,40 @@
-uuid: 2afd893f-affd-422a-b790-71d73c4ffb05
+uuid: 229daafc-06e5-4267-a31a-f36e43888c3c
 langcode: en
 status: true
 dependencies:
   config:
-    - page_manager.page.member_watch
-    - views.view.page_videos
+    - page_manager.page.press_releases
+    - views.view.news
   module:
     - panels
     - views
-id: member_watch-panels_variant-0
-label: 'Member Watch Panels'
+id: press_releases-panels_variant-0
+label: 'Press Releases Panels'
 variant: panels_variant
 variant_settings:
   blocks:
-    316d7abf-22b0-4758-8e74-afed97bc53ad:
-      id: 'views_block:page_videos-block_category'
+    98647dfc-9445-4243-a315-a38aae24a80c:
+      id: 'views_block:news-block_paged'
       label: ''
       provider: views
       label_display: '0'
       views_label: ''
       items_per_page: none
-      region: oneone
+      region: top
       weight: 0
-      uuid: 316d7abf-22b0-4758-8e74-afed97bc53ad
+      uuid: 98647dfc-9445-4243-a315-a38aae24a80c
       context_mapping: {  }
   id: panels_variant
-  uuid: 870ebe36-36fc-4774-88e6-5c25cc590f37
+  uuid: 3df3ef8c-6705-4247-9e9f-3c6163fbe1e2
   label: null
   weight: 0
   layout: oneone
   layout_settings: {  }
-  page_title: ''
+  page_title: 'Press Releases | PMMI'
   storage_type: page_manager
-  storage_id: member_watch-panels_variant-0
+  storage_id: press_releases-panels_variant-0
   builder: standard
-page: member_watch
+page: press_releases
 weight: 0
 selection_criteria: {  }
 selection_logic: and

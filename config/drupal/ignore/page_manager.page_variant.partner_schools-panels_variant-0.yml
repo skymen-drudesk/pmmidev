@@ -1,0 +1,56 @@
+uuid: f02570a4-7519-4d32-ab0e-13d602a89081
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.partner_schools
+    - views.view.partner_schools
+  content:
+    - 'block_content:image_header:e9b33f9b-2b64-4d37-91b2-4ffef1be849f'
+  module:
+    - block_content
+    - panels
+    - views
+id: partner_schools-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    5222b243-67a6-42c9-9fe3-b89687b3af96:
+      id: 'views_block:partner_schools-block_all'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: oneone
+      weight: 0
+      uuid: 5222b243-67a6-42c9-9fe3-b89687b3af96
+      context_mapping: {  }
+    c23312e0-7abc-41f3-aa70-07fc2ea401d4:
+      id: 'block_content:e9b33f9b-2b64-4d37-91b2-4ffef1be849f'
+      label: 'Partner Schools - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: c23312e0-7abc-41f3-aa70-07fc2ea401d4
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 8f1ce360-392d-4d63-a2b6-ce3632c0f8a4
+  label: null
+  weight: 0
+  layout: oneone
+  layout_settings: {  }
+  page_title: 'Partner Schools | PMMI'
+  storage_type: page_manager
+  storage_id: partner_schools-panels_variant-0
+  builder: ipe
+page: partner_schools
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

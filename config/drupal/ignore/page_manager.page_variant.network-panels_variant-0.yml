@@ -1,0 +1,95 @@
+uuid: 6bc74449-c9fd-46fc-9db9-63055f33d67e
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.network
+    - views.view.events
+  content:
+    - 'block_content:containers:7d594677-5e5e-46e0-adb4-edcad45f6b3d'
+    - 'block_content:image_header:b520ac83-07d9-41b2-8328-b5b8c5d6bde7'
+    - 'block_content:text:44400924-535b-4354-a4e2-6e79ed7bf122'
+    - 'block_content:text:ec4a739a-3a31-48ac-a588-7e82444175dc'
+  module:
+    - block_content
+    - panels
+    - views
+id: network-panels_variant-0
+label: 'Network Panels'
+variant: panels_variant
+variant_settings:
+  blocks:
+    1fe08bcc-ee2d-4edf-b24c-6c1524fd0b02:
+      id: 'block_content:b520ac83-07d9-41b2-8328-b5b8c5d6bde7'
+      label: 'Network - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: -10
+      uuid: 1fe08bcc-ee2d-4edf-b24c-6c1524fd0b02
+      context_mapping: {  }
+    ea32ebf2-781c-45ed-91a2-8e0fe969f253:
+      id: 'block_content:ec4a739a-3a31-48ac-a588-7e82444175dc'
+      label: 'Network - Title Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: grey
+      weight: -2
+      uuid: ea32ebf2-781c-45ed-91a2-8e0fe969f253
+      context_mapping: {  }
+    3225bac3-3259-46d0-ae28-aaea0da554d6:
+      id: 'views_block:events-block_3'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: blue
+      weight: -2
+      uuid: 3225bac3-3259-46d0-ae28-aaea0da554d6
+      context_mapping: {  }
+    36a8252d-7566-4c78-9503-4b3b78c6f932:
+      id: 'block_content:44400924-535b-4354-a4e2-6e79ed7bf122'
+      label: 'Network - Text (Member Directory)'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: white
+      weight: -2
+      uuid: 36a8252d-7566-4c78-9503-4b3b78c6f932
+      context_mapping: {  }
+    5e93b006-4a01-4b87-8484-05d751335741:
+      id: 'block_content:7d594677-5e5e-46e0-adb4-edcad45f6b3d'
+      label: 'Network - Cards 1-5'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 5_up
+      region: grey
+      weight: 0
+      uuid: 5e93b006-4a01-4b87-8484-05d751335741
+      context_mapping: {  }
+  id: panels_variant
+  uuid: e749e9f9-f9a6-4955-bbc4-ba817ed81f53
+  label: null
+  weight: 0
+  layout: panel_homepage
+  layout_settings: {  }
+  page_title: 'Network | PMMI'
+  storage_type: page_manager
+  storage_id: network-panels_variant-0
+  builder: standard
+page: network
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

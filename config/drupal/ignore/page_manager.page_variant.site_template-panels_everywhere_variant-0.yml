@@ -7,10 +7,10 @@ dependencies:
     - system.menu.footer
     - system.menu.utility-navigation-end-user
   module:
-    - audience_select
     - panels_everywhere
     - system
     - tb_megamenu
+    - user
 id: site_template-panels_everywhere_variant-0
 label: 'End User'
 variant: panels_everywhere_variant
@@ -76,15 +76,17 @@ variant_settings:
       weight: '0'
       uuid: 5e3cd20a-f36b-4e9f-982e-d0f3b219ef65
       context_mapping: {  }
-    01fcfb69-8109-451e-8109-a34e2a0626fd:
-      id: audience_switcher
-      label: 'Audience Switcher'
-      provider: audience_select
+    03c483d4-71db-4a5f-8015-1c91be0172b9:
+      id: system_branding_block
+      label: 'Site branding'
+      provider: system
       label_display: 0
-      excluded_audiences: {  }
-      region: footer
+      use_site_logo: 1
+      use_site_name: 0
+      use_site_slogan: 0
+      region: header_logo
       weight: '0'
-      uuid: 01fcfb69-8109-451e-8109-a34e2a0626fd
+      uuid: 03c483d4-71db-4a5f-8015-1c91be0172b9
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: e3e9f1a9-d6c5-4a5b-ab6c-bd57cd3b27f9
@@ -97,13 +99,14 @@ variant_settings:
   storage_id: ''
   builder: standard
 page: site_template
-weight: -6
+weight: -7
 selection_criteria:
-  1:
-    id: audience
-    audiences:
-      audience_1: audience_1
+  -
+    id: user_role
+    roles:
+      anonymous: anonymous
     negate: false
-    context_mapping: {  }
+    context_mapping:
+      user: current_user
 selection_logic: and
 static_context: {  }

@@ -1,0 +1,69 @@
+uuid: ec4d8468-3aa0-4ebe-8a82-864ce49a628d
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.workforce_development
+  content:
+    - 'block_content:containers:a1100004-548f-4400-8a54-2801ce5334cd'
+    - 'block_content:image_header:5a3b2ea7-2c51-468b-a36e-55a23d7cdf8c'
+    - 'block_content:plain_text:919f1b1b-dc0c-4d21-adfe-b0896dd6879f'
+  module:
+    - block_content
+    - panels
+id: workforce_development-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    e8750c8b-6a27-40e0-a6b9-3146cd158f96:
+      id: 'block_content:5a3b2ea7-2c51-468b-a36e-55a23d7cdf8c'
+      label: 'Workforce Development - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: e8750c8b-6a27-40e0-a6b9-3146cd158f96
+      context_mapping: {  }
+    9199d4ff-bc46-4d94-9569-a5efdadc7851:
+      id: 'block_content:919f1b1b-dc0c-4d21-adfe-b0896dd6879f'
+      label: 'Workforce Development - Intro Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: 9199d4ff-bc46-4d94-9569-a5efdadc7851
+      context_mapping: {  }
+    c0e756e5-6535-40a3-9553-7fe34615be08:
+      id: 'block_content:a1100004-548f-4400-8a54-2801ce5334cd'
+      label: 'Workforce Development - Cards 1-4'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 4_up
+      region: oneone
+      weight: 0
+      uuid: c0e756e5-6535-40a3-9553-7fe34615be08
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 9df0706c-4111-4a37-8747-45a1b04e2a74
+  label: null
+  weight: 0
+  layout: oneone
+  layout_settings: {  }
+  page_title: 'Education & Workforce Development | PMMI'
+  storage_type: page_manager
+  storage_id: workforce_development-panels_variant-0
+  builder: ipe
+page: workforce_development
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

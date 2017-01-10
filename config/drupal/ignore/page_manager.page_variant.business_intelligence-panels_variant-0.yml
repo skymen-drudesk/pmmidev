@@ -1,0 +1,56 @@
+uuid: 60bc0a1e-3496-47c3-946e-0bad8ef3361e
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.business_intelligence
+  content:
+    - 'block_content:containers:b5e82a32-147d-4dcd-956f-65640759bc25'
+    - 'block_content:image_header:3b47a60b-33de-4687-a7c5-63a77c4dff7f'
+  module:
+    - block_content
+    - panels
+id: business_intelligence-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    6201463c-74fa-44e6-b661-bdd733769417:
+      id: 'block_content:3b47a60b-33de-4687-a7c5-63a77c4dff7f'
+      label: 'Business Intelligence - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: 6201463c-74fa-44e6-b661-bdd733769417
+      context_mapping: {  }
+    9454a9c5-1f7f-49f9-9293-7a7007b5e5e2:
+      id: 'block_content:b5e82a32-147d-4dcd-956f-65640759bc25'
+      label: 'Business Intelligence - Cards 1-5'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 5_up
+      region: top
+      weight: 1
+      uuid: 9454a9c5-1f7f-49f9-9293-7a7007b5e5e2
+      context_mapping: {  }
+  id: panels_variant
+  uuid: d5035203-c23b-4a0a-8c0b-7e7e5d662f85
+  label: null
+  weight: 0
+  layout: oneone
+  layout_settings: {  }
+  page_title: 'Business Intelligence Library | PMMI'
+  storage_type: page_manager
+  storage_id: business_intelligence-panels_variant-0
+  builder: standard
+page: business_intelligence
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

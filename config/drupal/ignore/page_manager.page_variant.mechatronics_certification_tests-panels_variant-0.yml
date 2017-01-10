@@ -1,0 +1,41 @@
+uuid: 75f79e1d-617b-40d2-9a75-9f4f798c52f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.mechatronics_certification_tests
+    - views.view.certification_tests
+  module:
+    - panels
+    - views
+id: mechatronics_certification_tests-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    bbc6d608-90ae-4c2a-8457-612b9d0eae4d:
+      id: 'views_block:certification_tests-block_all'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: top
+      weight: 0
+      uuid: bbc6d608-90ae-4c2a-8457-612b9d0eae4d
+      context_mapping: {  }
+  id: panels_variant
+  uuid: d795efa6-1b42-4695-9c4b-6021664d9224
+  label: null
+  weight: 0
+  layout: oneone
+  layout_settings: {  }
+  page_title: 'Mechatronics Certification Tests | PMMI'
+  storage_type: page_manager
+  storage_id: mechatronics_certification_tests-panels_variant-0
+  builder: ipe
+page: mechatronics_certification_tests
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

@@ -4,19 +4,72 @@ status: true
 dependencies:
   config:
     - page_manager.page.home
+    - views.view.events
+    - views.view.slideshow
+  content:
+    - 'block_content:containers:39b3f6d2-93b6-4bcd-a7e5-b828db1a1166'
+    - 'block_content:text:c0995ff6-8d63-4590-861c-de26e279038e'
   module:
+    - block_content
     - panels
     - user
+    - views
 id: home-panels_variant-2
 label: Other
 variant: panels_variant
 variant_settings:
-  blocks: {  }
+  blocks:
+    fcad8ba3-b3b4-41ec-b5b8-d95d2ad40ebe:
+      id: 'block_content:c0995ff6-8d63-4590-861c-de26e279038e'
+      label: 'Home - Title Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: grey
+      weight: -1
+      uuid: fcad8ba3-b3b4-41ec-b5b8-d95d2ad40ebe
+      context_mapping: {  }
+    7f607e4e-ef7b-4681-a3ee-931469585960:
+      id: 'block_content:39b3f6d2-93b6-4bcd-a7e5-b828db1a1166'
+      label: 'Home - Cards - 3 Pillars'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: grey
+      weight: 0
+      uuid: 7f607e4e-ef7b-4681-a3ee-931469585960
+      context_mapping: {  }
+    72369c15-85a4-4647-a63f-d0e7c2cf6adf:
+      id: 'views_block:events-block_3'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: '5'
+      region: blue
+      weight: 0
+      uuid: 72369c15-85a4-4647-a63f-d0e7c2cf6adf
+      context_mapping: {  }
+    544450ea-692a-4b75-90c0-032a4e3f3f32:
+      id: 'views_block:slideshow-block_default'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: bottom
+      weight: 0
+      uuid: 544450ea-692a-4b75-90c0-032a4e3f3f32
+      context_mapping: {  }
   id: panels_variant
   uuid: fb448d8c-9d29-40e9-b0ab-76d5272d8423
   label: null
   weight: 0
-  layout: oneone
+  layout: panel_homepage
   layout_settings: {  }
   page_title: ''
   storage_type: page_manager

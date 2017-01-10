@@ -4,19 +4,72 @@ status: true
 dependencies:
   config:
     - page_manager.page.home
+    - views.view.events
+    - views.view.slideshow
+  content:
+    - 'block_content:containers:39b3f6d2-93b6-4bcd-a7e5-b828db1a1166'
+    - 'block_content:text:c0995ff6-8d63-4590-861c-de26e279038e'
   module:
+    - block_content
     - panels
     - user
+    - views
 id: home-panels_variant-1
 label: 'End User'
 variant: panels_variant
 variant_settings:
-  blocks: {  }
+  blocks:
+    5ddd832d-54f9-42b6-ae17-094447ee9474:
+      id: 'block_content:c0995ff6-8d63-4590-861c-de26e279038e'
+      label: 'Home - Title Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: grey
+      weight: 0
+      uuid: 5ddd832d-54f9-42b6-ae17-094447ee9474
+      context_mapping: {  }
+    a6c2f595-2472-4a67-82bc-7914c66ccfd8:
+      id: 'block_content:39b3f6d2-93b6-4bcd-a7e5-b828db1a1166'
+      label: 'Home - Cards - 3 Pillars'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: grey
+      weight: 1
+      uuid: a6c2f595-2472-4a67-82bc-7914c66ccfd8
+      context_mapping: {  }
+    6308cf6a-808d-43e5-b534-644aa28ecb67:
+      id: 'views_block:events-block_3'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: '5'
+      region: blue
+      weight: -1
+      uuid: 6308cf6a-808d-43e5-b534-644aa28ecb67
+      context_mapping: {  }
+    58dd57f2-3e02-4a52-89b3-8dcc35ce5244:
+      id: 'views_block:slideshow-block_default'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: bottom
+      weight: 0
+      uuid: 58dd57f2-3e02-4a52-89b3-8dcc35ce5244
+      context_mapping: {  }
   id: panels_variant
   uuid: bf92f802-5fe4-4fac-9b5b-d5bff125f44a
   label: null
   weight: 0
-  layout: oneone
+  layout: panel_homepage
   layout_settings: {  }
   page_title: PMMI.org
   storage_type: page_manager

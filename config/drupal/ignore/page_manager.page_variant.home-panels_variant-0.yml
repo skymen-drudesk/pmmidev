@@ -5,11 +5,11 @@ dependencies:
   config:
     - page_manager.page.home
     - views.view.events
+    - views.view.slideshow
   content:
     - 'block_content:containers:39b3f6d2-93b6-4bcd-a7e5-b828db1a1166'
     - 'block_content:containers:c049d78b-1b41-4e01-8c19-72898ff78073'
-    - 'block_content:slideshow:b4401518-ac4b-49e6-bb67-cd39fe361e5a'
-    - 'block_content:slideshow:c8612e33-74bd-4024-862b-88cb2e60161d'
+    - 'block_content:slideshow:79e5e0a3-d43f-47a5-966a-fe36b5e3d1a8'
     - 'block_content:text:c0995ff6-8d63-4590-861c-de26e279038e'
   module:
     - block_content
@@ -20,18 +20,6 @@ label: Member
 variant: panels_variant
 variant_settings:
   blocks:
-    bb9b0d3c-3e24-451e-8aa6-c458a5dd049e:
-      id: 'block_content:c0995ff6-8d63-4590-861c-de26e279038e'
-      label: 'Home (Member) - Title Text'
-      provider: block_content
-      label_display: '0'
-      status: true
-      info: ''
-      view_mode: default
-      region: grey
-      weight: -2
-      uuid: bb9b0d3c-3e24-451e-8aa6-c458a5dd049e
-      context_mapping: {  }
     634cdbf8-be85-4ac3-9ea1-964e3d30daf1:
       id: 'block_content:39b3f6d2-93b6-4bcd-a7e5-b828db1a1166'
       label: 'Home - Cards - 3 Pillars'
@@ -48,12 +36,23 @@ variant_settings:
       id: 'views_block:events-block_3'
       label: ''
       provider: views
-      label_display: visible
+      label_display: '0'
       views_label: ''
       items_per_page: none
       region: blue
       weight: -2
       uuid: 79c74c63-ba44-4227-8921-e6a3361183d4
+      context_mapping: {  }
+    65ea8f8b-30c4-414d-88dd-056b2dfc3dc1:
+      id: 'views_block:slideshow-block_default'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: '5'
+      region: bottom
+      weight: 0
+      uuid: 65ea8f8b-30c4-414d-88dd-056b2dfc3dc1
       context_mapping: {  }
     b6ea899b-7231-4c97-9c24-db0b2ce5110c:
       id: 'block_content:c049d78b-1b41-4e01-8c19-72898ff78073'
@@ -64,32 +63,32 @@ variant_settings:
       info: ''
       view_mode: 3_up
       region: white
-      weight: -2
+      weight: -9
       uuid: b6ea899b-7231-4c97-9c24-db0b2ce5110c
       context_mapping: {  }
-    824d2906-ace4-422c-a6d9-d1e614498ffa:
-      id: 'block_content:b4401518-ac4b-49e6-bb67-cd39fe361e5a'
-      label: 'Home (Member) - Slideshow'
+    509e6860-8969-455b-8f5f-58b3567a2518:
+      id: 'block_content:c0995ff6-8d63-4590-861c-de26e279038e'
+      label: 'Home - Title Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: grey
+      weight: -2
+      uuid: 509e6860-8969-455b-8f5f-58b3567a2518
+      context_mapping: {  }
+    c6f8ac41-8ef5-4e8b-bd5e-20cfae219b66:
+      id: 'block_content:79e5e0a3-d43f-47a5-966a-fe36b5e3d1a8'
+      label: 'Home (Member) - Image Rotator'
       provider: block_content
       label_display: '0'
       status: true
       info: ''
       view_mode: image_slider
       region: top
-      weight: -10
-      uuid: 824d2906-ace4-422c-a6d9-d1e614498ffa
-      context_mapping: {  }
-    b94c370f-ba09-4bbc-8420-1b7bf8097873:
-      id: 'block_content:c8612e33-74bd-4024-862b-88cb2e60161d'
-      label: 'Home (Member) - Slideshow bottom'
-      provider: block_content
-      label_display: '0'
-      status: true
-      info: ''
-      view_mode: default
-      region: bottom
-      weight: 1
-      uuid: b94c370f-ba09-4bbc-8420-1b7bf8097873
+      weight: 0
+      uuid: c6f8ac41-8ef5-4e8b-bd5e-20cfae219b66
       context_mapping: {  }
   id: panels_variant
   uuid: 0d0a5f8a-11f6-443d-8a0a-5148fae1ac43

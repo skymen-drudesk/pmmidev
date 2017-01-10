@@ -10,7 +10,6 @@ dependencies:
     - audience_select
     - block_content
     - panels
-    - system
 id: gateway-panels_variant-0
 label: Panels
 variant: panels_variant
@@ -23,58 +22,46 @@ variant_settings:
       label_display: '0'
       status: true
       info: ''
-      view_mode: default
+      view_mode: text_image
       region: top
-      weight: -1
+      weight: 0
       uuid: 528ef45e-efd1-4daa-bd9c-fca46151fbfa
       context_mapping: {  }
-    ac8bbd74-9ea3-41c1-aa1e-60797c3e6e7b:
+    680f3bec-26d9-4324-9d72-61ec8fec8524:
       id: audience_block
-      label: 'Audience block 1'
+      label: 'Audience block'
       provider: audience_select
       label_display: '0'
       audience_id: audience_1
       image_style: gateway_style
       audience_overrides: {  }
       region: oneone
-      weight: -2
-      uuid: ac8bbd74-9ea3-41c1-aa1e-60797c3e6e7b
+      weight: 0
+      uuid: 680f3bec-26d9-4324-9d72-61ec8fec8524
       context_mapping: {  }
-    8fced451-a2d1-4a2d-bc4d-c7cd3527902e:
+    23c8ce74-4c6f-4ce1-b787-76f67f06fa60:
       id: audience_block
-      label: 'Audience block 2'
+      label: 'Audience block'
       provider: audience_select
       label_display: '0'
       audience_id: audience_2
       image_style: gateway_style
       audience_overrides: {  }
       region: onetwo
-      weight: -10
-      uuid: 8fced451-a2d1-4a2d-bc4d-c7cd3527902e
+      weight: 0
+      uuid: 23c8ce74-4c6f-4ce1-b787-76f67f06fa60
       context_mapping: {  }
-    03133d8b-97ac-4480-bd06-8cf7534bc525:
+    0aeeef47-25e5-4796-9420-462697667f4c:
       id: audience_block
-      label: 'Audience block 3'
+      label: 'Audience block'
       provider: audience_select
-      label_display: '0'
+      label_display: visible
       audience_id: audience_3
       image_style: gateway_style
       audience_overrides: {  }
       region: onethree
-      weight: -2
-      uuid: 03133d8b-97ac-4480-bd06-8cf7534bc525
-      context_mapping: {  }
-    79c177bc-cbca-4c9f-ac8e-47de57ee36be:
-      id: system_branding_block
-      label: 'Site branding'
-      provider: system
-      label_display: '0'
-      use_site_logo: true
-      use_site_name: false
-      use_site_slogan: false
-      region: top
-      weight: -2
-      uuid: 79c177bc-cbca-4c9f-ac8e-47de57ee36be
+      weight: 0
+      uuid: 0aeeef47-25e5-4796-9420-462697667f4c
       context_mapping: {  }
   id: panels_variant
   uuid: 57b31e18-37eb-4429-8ea3-a74c5f895466
