@@ -4,13 +4,11 @@ namespace Drupal\audience_select\Form;
 
 use Drupal\audience_select\Service\AudienceManager;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Entity\Element\EntityAutocomplete;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\link\Plugin\Field\FieldWidget\LinkWidget;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Unish\archiveDumpCase;
 
 /**
  * Class AudienceSettingsForm.
@@ -37,6 +35,7 @@ class AudienceSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    *
    *   The plugin implementation definition.
+   *
    * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
    */
   public function __construct(ConfigFactoryInterface $config_factory, AudienceManager $audience_manager) {
@@ -83,8 +82,8 @@ class AudienceSettingsForm extends ConfigFormBase {
       '#element_validate' => array(
         array(
           get_called_class(),
-          'validateUriElement'
-        )
+          'validateUriElement',
+        ),
       ),
     ];
 
@@ -100,7 +99,7 @@ class AudienceSettingsForm extends ConfigFormBase {
       '#attributes' => ['id' => 'audience-table'],
       '#empty' => $this->t('No audiences available.'),
     ];
-    if (!empty($this->audiences)){
+    if (!empty($this->audiences)) {
       $audiences = $this->audiences;
       foreach ($audiences as $audience_id => $audience) {
         $form['audiences'][$audience_id] = array(
@@ -127,26 +126,25 @@ class AudienceSettingsForm extends ConfigFormBase {
             '#target_type' => 'node',
             '#size' => 20,
             '#default_value' => $audience['audience_redirect_url'],
-            '#placeholder' => $this->t(''),
+            '#placeholder' => $this->t('Input URL'),
             '#maxlength' => 200,
             '#attributes' => array(
-              'data-autocomplete-first-character-blacklist' => '/#?'
+              'data-autocomplete-first-character-blacklist' => '/#?',
             ),
             '#element_validate' => array(
               array(
                 get_called_class(),
-                'validateUriElement'
-              )
+                'validateUriElement',
+              ),
             ),
             '#process_default_value' => FALSE,
             '#field_prefix' => rtrim(Url::fromRoute('<front>', array(), array('absolute' => TRUE))
-              ->toString(), '/')
+              ->toString(), '/'),
           ),
           'audience_image' => array(
             '#type' => 'managed_file',
             '#title' => $this->t('Image'),
             '#title_display' => 'invisible',
-//            '#required' => TRUE,
             '#upload_location' => 'public://audience/image/',
             '#default_value' => (!empty($audience['audience_image'])) ? $audience['audience_image'] : NULL,
             '#upload_validators' => array(
@@ -194,7 +192,7 @@ class AudienceSettingsForm extends ConfigFormBase {
         'required' => array(
           ':input[name="new_audience[audience_title]"]' => array('filled' => TRUE),
         ),
-      )
+      ),
     );
     $form['new_audience']['audience_redirect_url'] = array(
       '#title' => $this->t('Audience Redirect Url'),
@@ -202,19 +200,24 @@ class AudienceSettingsForm extends ConfigFormBase {
       '#target_type' => 'node',
       '#description' => $this->t('Referenced to node. Manually entered paths should start with /, ? or #.'),
       '#size' => 30,
-      '#placeholder' => $this->t(''),
+      '#placeholder' => $this->t('Input URL'),
       '#maxlength' => 200,
       '#attributes' => array(
-        'data-autocomplete-first-character-blacklist' => '/#?'
+        'data-autocomplete-first-character-blacklist' => '/#?',
       ),
-      '#element_validate' => array(array(get_called_class(), 'validateUriElement')),
+      '#element_validate' => array(
+        array(
+          get_called_class(),
+          'validateUriElement',
+        ),
+      ),
       '#process_default_value' => FALSE,
       '#states' => array(
         'required' => array(
           ':input[name="new_audience[audience_title]"]' => array('filled' => TRUE),
         ),
       ),
-      '#field_prefix' => rtrim(\Drupal::url('<front>', array(), array('absolute' => TRUE)), '/')
+      '#field_prefix' => rtrim(\Drupal::url('<front>', array(), array('absolute' => TRUE)), '/'),
     );
     $form['new_audience']['audience_image'] = array(
       '#type' => 'managed_file',
@@ -225,11 +228,6 @@ class AudienceSettingsForm extends ConfigFormBase {
       '#upload_validators' => array(
         'file_validate_extensions' => array('png jpg jpeg'),
       ),
-//      '#states' => array(
-//        'required' => array(
-//          ':input[name="new_audience[audience_title]"]' => array('filled' => TRUE),
-//        ),
-//      )
     );
 
     return parent::buildForm($form, $form_state);
@@ -245,7 +243,7 @@ class AudienceSettingsForm extends ConfigFormBase {
     // Check all mappings.
     if ($form_state->hasValue('audiences')) {
       $audiences = $form_state->getValue('audiences');
-      if (!empty($audiences)){
+      if (!empty($audiences)) {
         foreach ($audiences as $key => $data) {
           $unique_values[$data['audience_id']]['audience_title'] = $data['audience_title'];
           $unique_values[$data['audience_id']]['audience_redirect_url'] = $data['audience_redirect_url'];

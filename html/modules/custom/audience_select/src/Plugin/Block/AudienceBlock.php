@@ -2,7 +2,6 @@
 
 namespace Drupal\audience_select\Plugin\Block;
 
-use Drupal\Console\Bootstrap\Drupal;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -12,8 +11,7 @@ use Drupal\image\Entity\ImageStyle;
 use Drupal\link\Plugin\Field\FieldWidget\LinkWidget;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\audience_select\Service\AudienceManager;
-use Drupal\Core\Render\MetadataBubblingUrlGenerator;
-use Drupal\Core\Image\ImageFactory;
+
 
 /**
  * Provides a 'AudienceBlock' block.
@@ -92,8 +90,6 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
       '#default_value' => $this->configuration['audience_id'],
       '#options' => $this->AudienceManager->getOptionsList(),
       '#required' => TRUE,
-//      '#maxlength' => 64,
-//      '#size' => 64,
       '#weight' => '1',
     ];
     $form['image_style'] = [
@@ -103,8 +99,6 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
       '#default_value' => $this->configuration['image_style'],
       '#options' => $styleselect,
       '#required' => TRUE,
-//      '#maxlength' => 64,
-//      '#size' => 64,
       '#weight' => '2',
     ];
     // Overrides defaults.
@@ -137,13 +131,13 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
       '#description' => $this->t('Referenced to node. Manually entered paths should start with /, ? or #.'),
       '#default_value' => $default_url,
       '#attributes' => array(
-        'data-autocomplete-first-character-blacklist' => '/#?'
+        'data-autocomplete-first-character-blacklist' => '/#?',
       ),
       '#element_validate' => array(
         array(
           get_called_class(),
-          'validateUriElement'
-        )
+          'validateUriElement',
+        ),
       ),
       '#process_default_value' => FALSE,
       '#maxlength' => 200,
@@ -205,8 +199,8 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
       }
     }
     $image_url = '';
-    if(array_key_exists('audience_image', $audience)){
-      if(!empty($audience['audience_image'])){
+    if (array_key_exists('audience_image', $audience)) {
+      if (!empty($audience['audience_image'])) {
         $image = File::load($audience['audience_image'][0]);
         $image_style_uri = $image_style->buildUri($image->getFileUri());
         $status = TRUE;
@@ -219,7 +213,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     }
 
     $options = array(
-      'query' => array('audience' => $audience_id)
+      'query' => array('audience' => $audience_id),
     );
     $url = Url::fromUri($audience['audience_redirect_url'], $options);
     $build['#theme'] = 'audience_select_block';
@@ -229,6 +223,5 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
 
     return $build;
   }
-
 
 }

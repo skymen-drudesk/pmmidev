@@ -39,32 +39,20 @@ class AudienceCacheContext extends RequestStackCacheContextBase implements Cache
    */
   protected $audience;
 
-//  /**
-//   * {@inheritdoc}
-//   */
-//  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-//    return new static(
-//      $configuration,
-//      $plugin_id,
-//      $plugin_definition,
-//      $container->get('audience_select.audience_manager')
-//    );
-//  }
-
   /**
+   * The plugin implementation definition.
    *
-   *   The plugin implementation definition.
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   *
    *   The request stack.
+   *
    * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
    */
   public function __construct(RequestStack $request_stack, AudienceManager $audience_manager) {
     parent::__construct($request_stack);
-//    $this->requestStack = $request_stack;
     $this->AudienceManager = $audience_manager;
     $this->audience = $audience_manager->getCurrentAudience();
   }
-
 
   /**
    * {@inheritdoc}
@@ -72,7 +60,6 @@ class AudienceCacheContext extends RequestStackCacheContextBase implements Cache
   public static function getLabel() {
     return t('Audience');
   }
-
 
   /**
    * {@inheritdoc}

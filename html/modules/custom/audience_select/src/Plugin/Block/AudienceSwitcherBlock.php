@@ -1,15 +1,9 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\audience_select\Plugin\Block\AudienceSwitcherBlock.
- */
-
 namespace Drupal\audience_select\Plugin\Block;
 
 use Drupal\audience_select\Service\AudienceManager;
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Block;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
@@ -41,6 +35,7 @@ class AudienceSwitcherBlock extends BlockBase implements ContainerFactoryPluginI
    *   The plugin_id for the plugin instance.
    * @param string $plugin_definition
    *   The plugin implementation definition.
+   * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
    */
   public function __construct(
     array $configuration,
@@ -109,24 +104,17 @@ class AudienceSwitcherBlock extends BlockBase implements ContainerFactoryPluginI
    * {@inheritdoc}
    */
   public function build() {
-
-//    $audience_manager = new AudienceManager();
     $unselected_audiences = $this->AudienceManager->getUnselectedAudiences();
     $excluded_audiences = $this->configuration['excluded_audiences'];
     $excluded_audiences = array_flip($excluded_audiences);
-//    $result_audiences = array_intersect_assoc($unselected_audiences, $excluded_audiences);
-    $context = $this->getCacheContexts();
-    $context = $this->getContexts();
     $result_audiences = [];
-    foreach ($unselected_audiences as $audience_id => $item){
-      if(!array_key_exists($audience_id, $excluded_audiences)){
+    foreach ($unselected_audiences as $audience_id => $item) {
+      if (!array_key_exists($audience_id, $excluded_audiences)) {
         $options = array(
-          'query' => array('audience' => $audience_id)
+          'query' => array('audience' => $audience_id),
         );
-//        $url = Url::fromUri($item['audience_redirect_url'], $options);
         $result_audiences[$audience_id]['title'] = $item['audience_title'];
         $result_audiences[$audience_id]['url'] = Url::fromUri($item['audience_redirect_url'], $options);
-
       }
     }
     return array(
