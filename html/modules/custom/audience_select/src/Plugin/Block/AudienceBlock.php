@@ -70,7 +70,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
   public function defaultConfiguration() {
     return [
         'audience_id' => '',
-        'image_style' => 'thumbnail',
+        'image_style' => 'gateway_style',
         'audience_overrides' => array(),
       ] + parent::defaultConfiguration();
 

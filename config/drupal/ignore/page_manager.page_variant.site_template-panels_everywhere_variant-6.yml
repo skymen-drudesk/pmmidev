@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - page_manager.page.site_template
+    - system.menu.footer
   module:
     - panels_everywhere
     - system
@@ -12,18 +13,6 @@ label: 'Audience Gateway'
 variant: panels_everywhere_variant
 variant_settings:
   blocks:
-    8475f14f-e3a8-4d34-8df3-4111e0c2621e:
-      id: system_branding_block
-      label: 'Site branding'
-      provider: system
-      label_display: 0
-      use_site_logo: 1
-      use_site_name: 0
-      use_site_slogan: 0
-      region: header_logo
-      weight: '0'
-      uuid: 8475f14f-e3a8-4d34-8df3-4111e0c2621e
-      context_mapping: {  }
     b786d91a-a9fa-4899-a985-69c86e345a3b:
       id: system_main_block
       label: 'Main page content'
@@ -32,6 +21,17 @@ variant_settings:
       region: main
       weight: '0'
       uuid: b786d91a-a9fa-4899-a985-69c86e345a3b
+      context_mapping: {  }
+    b00a9e6d-7768-460e-b453-0b92aedd0f8e:
+      id: 'system_menu_block:footer'
+      label: Footer
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: footer
+      weight: '0'
+      uuid: b00a9e6d-7768-460e-b453-0b92aedd0f8e
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: 463bc02a-59ad-4f41-9c4a-2354da6c0985

@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - page_manager.page.gateway
-    - system.menu.footer
   content:
     - 'block_content:text:b5086f23-1cc0-430e-9e43-e08447adbdfa'
   module:
@@ -24,63 +23,64 @@ variant_settings:
       label_display: '0'
       status: true
       info: ''
-      view_mode: text_image
-      region: main
-      weight: -2
+      view_mode: default
+      region: top
+      weight: -1
       uuid: 528ef45e-efd1-4daa-bd9c-fca46151fbfa
-      context_mapping: {  }
-    4fccfb27-c430-44d5-8e1c-50ec4c4a670e:
-      id: 'system_menu_block:footer'
-      label: Footer
-      provider: system
-      label_display: '0'
-      level: 1
-      depth: 0
-      region: footer
-      weight: 0
-      uuid: 4fccfb27-c430-44d5-8e1c-50ec4c4a670e
       context_mapping: {  }
     ac8bbd74-9ea3-41c1-aa1e-60797c3e6e7b:
       id: audience_block
       label: 'Audience block 1'
       provider: audience_select
-      label_display: visible
+      label_display: '0'
       audience_id: audience_1
-      image_style: thumbnail
+      image_style: gateway_style
       audience_overrides: {  }
-      region: main
-      weight: -1
+      region: oneone
+      weight: -2
       uuid: ac8bbd74-9ea3-41c1-aa1e-60797c3e6e7b
       context_mapping: {  }
     8fced451-a2d1-4a2d-bc4d-c7cd3527902e:
       id: audience_block
       label: 'Audience block 2'
       provider: audience_select
-      label_display: visible
+      label_display: '0'
       audience_id: audience_2
-      image_style: thumbnail
+      image_style: gateway_style
       audience_overrides: {  }
-      region: main
-      weight: 0
+      region: onetwo
+      weight: -10
       uuid: 8fced451-a2d1-4a2d-bc4d-c7cd3527902e
       context_mapping: {  }
     03133d8b-97ac-4480-bd06-8cf7534bc525:
       id: audience_block
       label: 'Audience block 3'
       provider: audience_select
-      label_display: visible
+      label_display: '0'
       audience_id: audience_3
-      image_style: thumbnail
+      image_style: gateway_style
       audience_overrides: {  }
-      region: main
-      weight: 0
+      region: onethree
+      weight: -2
       uuid: 03133d8b-97ac-4480-bd06-8cf7534bc525
+      context_mapping: {  }
+    79c177bc-cbca-4c9f-ac8e-47de57ee36be:
+      id: system_branding_block
+      label: 'Site branding'
+      provider: system
+      label_display: '0'
+      use_site_logo: true
+      use_site_name: false
+      use_site_slogan: false
+      region: top
+      weight: -2
+      uuid: 79c177bc-cbca-4c9f-ac8e-47de57ee36be
       context_mapping: {  }
   id: panels_variant
   uuid: 57b31e18-37eb-4429-8ea3-a74c5f895466
   label: null
   weight: 0
-  layout: panel_default
+  layout: onethree
   layout_settings: {  }
   page_title: ''
   storage_type: page_manager
