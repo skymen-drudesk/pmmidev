@@ -1,18 +1,10 @@
 <?php
-/**
- * @file
- * Contains \Drupal\audience_select\EventSubscriber\AudienceSelectSubscriber
- */
 
 namespace Drupal\audience_select\EventSubscriber;
 
 use Drupal\audience_select\Service\AudienceManager;
-use Drupal\bootstrap\Plugin\Prerender\Link;
 use Drupal\Core\Cache\CacheableResponseInterface;
-use Drupal\Core\Cache\CacheableResponseTrait;
-use Drupal\Core\Datetime\DrupalDateTime;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Drupal\Core\Cache\CacheableMetadata;
@@ -26,8 +18,6 @@ use Symfony\Component\Routing\Route;
  * audience_select_audience cookie is not set.
  */
 class AudienceSelectSubscriber implements EventSubscriberInterface {
-
-//  use CacheableResponseTrait;
 
   /**
    * The audience manager service.
@@ -62,7 +52,6 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     // changes to the request will be propagated, while the change to the
     // path will be lost.
     $request = clone $event->getRequest();
-
     $request_uri = $request->getRequestUri();
 
     // Get audience if query parameter exists.
@@ -74,40 +63,32 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
 
     // Get gateway page URL.
     $gateway_page_url = $this->AudienceManager->getGateway();
-    $cacheability = new CacheableMetadata();
-//    $cacheability->addCacheContexts(['audience']);
-//    $cacheability->setCacheMaxAge(0);
-
-//    $cacheability->addCacheContexts(['cookies:audience_select_audience']);
-//    $cache = $request->isNoCache();
-
+    //    $cacheability = new CacheableMetadata();
+    //    $cacheability->addCacheContexts(['audience']);
+    //    $cacheability->setCacheMaxAge(0);
+    //    $cacheability->addCacheContexts(['cookies:audience_select_audience']);
+    //    $cache = $request->isNoCache();
 
     // If audience_select_audience cookie is not set, redirect to gateway page.
-    if (preg_match('/^\/\badmin/i', $request_uri) !== 1
-      && preg_match('/^\/\buser/i', $request_uri) !== 1
+    if (preg_match('/\/\badmin/i', $request_uri) !== 1
+      && preg_match('/\/\buser/i', $request_uri) !== 1
       && $request_uri != $gateway_page_url
       && !$request->cookies->has('audience_select_audience')
       && !isset($audience)
     ) {
-//      $path = Url::fromRoute($gateway_page_url)->toString();
-//      $path = Url::fromUserInput($gateway_page_url);
-
-//      $gateway_page_url = 'http://localhost/gateway';
 
       $response = new TrustedRedirectResponse($gateway_page_url);
 //      $response->addCacheableDependency($cacheability);
 //      $response->addCacheableDependency($cacheability->setCacheMaxAge(0));
 
       $response->setExpires($exp);
-//      $cache = $response->isCacheable();
-//      $cas = $response->getMaxAge();
 //      $response->setMaxAge(0);
       $event->setResponse($response);
     }
 
     // If route is / with audience query parameter, set cookie.
-    elseif (preg_match('/^\/\badmin/i', $request_uri) !== 1
-      && preg_match('/^\/\buser/i', $request_uri) !== 1
+    elseif (preg_match('/\/\badmin/i', $request_uri) !== 1
+      && preg_match('/\/\buser/i', $request_uri) !== 1
       && $request_uri != $gateway_page_url
       && isset($audience)
     ) {
@@ -116,8 +97,10 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
         ->toString();
       $response = new TrustedRedirectResponse($redirect_url);
       // Set cookie without httpOnly, so that JavaScript can delete it.
-//      setcookie('audience_select_audience', $audience, time() + (86400 * 365), NULL, NULL, FALSE, FALSE);
+      //      setcookie('audience_select_audience', $audience, time() + (86400 * 365), NULL, NULL, FALSE, FALSE);
       setcookie('audience_select_audience', $audience, time() + (86400 * 365), '/', NULL, FALSE, FALSE);
+//      $context = new RequestContext()
+//      $response->setRequestContext('ddd');
 //      $request->cookies->set('','');
 //      $response->addCacheableDependency($cacheability);
 //      $response->addCacheableDependency($cacheability->setCacheMaxAge(0));
@@ -137,13 +120,13 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
 
     // If audience_select_audience cookie is set and route is
     // /$gateway_page_url redirect to frontpage.
-    elseif (preg_match('/^\/\badmin/i', $request_uri) !== 1
-      && preg_match('/^\/\buser/i', $request_uri) !== 1
+    elseif (preg_match('/\/\badmin/i', $request_uri) !== 1
+      && preg_match('/\/\buser/i', $request_uri) !== 1
       && $request_uri == $gateway_page_url
       && $request->cookies->has('audience_select_audience')
     ) {
       $response = new TrustedRedirectResponse('/');
-      $response->setExpires($exp);
+//      $response->setExpires($exp);
 //      $response->addCacheableDependency($cacheability);
 //      $response->addCacheableDependency($cacheability->addCacheContexts(['audience']));
       $event->setResponse($response);
@@ -219,11 +202,11 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
       return;
     }
 //    if( $response->st)
-    $audience_cacheability = new CacheableMetadata();
-    $audience_cacheability->setCacheTags(['audience']);
+//    $audience_cacheability = new CacheableMetadata();
+//    $audience_cacheability->setCacheTags(['audience']);
 //
-    $response->addCacheableDependency($audience_cacheability);
-        $exp = new \DateTime();
+//    $response->addCacheableDependency($audience_cacheability);
+    $exp = new \DateTime();
     $exp->setTimestamp(REQUEST_TIME + 1);
     $response->setExpires($exp);
   }
@@ -235,18 +218,10 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     // This needs to run before RouterListener::onKernelRequest(), which has
     // a priority of 32. Otherwise, that aborts the request if no matching
     // route is found.
-//    $events[KernelEvents::REQUEST][] = array('checkForRedirection', 31);
     $events[KernelEvents::REQUEST][] = array('checkForRedirection', 33);
-
 //    $events[KernelEvents::RESPONSE][] = array('onRespond', 10);
     $events[KernelEvents::RESPONSE][] = array('onRespond');
     return $events;
   }
 
-//  /**
-//   * @return \Drupal\audience_select\Service\AudienceManager
-//   */
-//  public function getAudienceManager(): \Drupal\audience_select\Service\AudienceManager {
-//    return $this->AudienceManager;
-//  }
 }
