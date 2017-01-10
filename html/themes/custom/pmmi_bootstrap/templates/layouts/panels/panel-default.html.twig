@@ -1,26 +1,39 @@
-<div id="panel-default" class="pmmi-panel">
-  <header class="navbar navbar-default container" id="panel-header" role="banner">
-    <div class="navbar-header">
-      <div class="logo">
-        {{ content.header_logo }}
-      </div>
-      <div class="header-region">
-        <div class="utility-nav">
-          {{ content.header_utility_nav }}
+{% set classes = ['pmmi-panel'] %}
+{% if content['#attrs'] %}
+  {% set classes = classes|merge(content['#attrs'].class) %}
+{% endif %}
+
+<div{{ attributes.addClass(classes).setAttribute('id', 'panel-default') }}>
+  <div class="page-wrapper">
+    {% if content.header_logo or content.header_utility_nav or content.header_main_nav %}
+      <header class="navbar navbar-default container" id="panel-header" role="banner">
+        <div class="navbar-header">
+          {% if content.header_logo %}
+            <div class="logo">
+              {{ content.header_logo }}
+            </div>
+          {% endif %}
+          {% if content.header_utility_nav or content.header_main_nav %}
+            <div class="header-region">
+              <div class="utility-nav">
+                {{ content.header_utility_nav }}
+              </div>
+              <div class="main-nav">
+                {{ content.header_main_nav }}
+              </div>
+            </div>
+          {% endif %}
         </div>
-        <div class="main-nav">
-          {{ content.header_main_nav }}
-        </div>
+      </header>
+    {% endif %}
+    <div class="main-container" role="main">
+      <div class="container topbar" role="heading">
+        {{ content.topbar }}
       </div>
+      <section>
+        {{ content.main }}
+      </section>
     </div>
-  </header>
-  <div class="main-container" role="main">
-    <div class="container topbar" role="heading">
-      {{ content.topbar }}
-    </div>
-    <section>
-      {{ content.main }}
-    </section>
   </div>
   <footer class="footer" role="contentinfo">
     <div class="footer-inner container">

@@ -5,7 +5,8 @@
  */
 
 use Drupal\views\ViewExecutable;
-
+use Drupal\Core\Template\Attribute;
+use \Drupal\panels\Plugin\DisplayVariant\PanelsDisplayVariant;
 /**
  * Implements hook_views_pre_build().
  */
@@ -55,4 +56,20 @@ function _pmmi_get_video_type_contexts() {
     }
   }
   return $contexts;
+}
+
+
+/**
+ * Implements hook_panels_build_alter().
+ */
+function pmmi_panels_build_alter(array &$build, PanelsDisplayVariant $panels_display) {
+  if ($panel = \Drupal::routeMatch()->getParameter('page_manager_page_variant')) {
+    $attributes = new Attribute();
+    $class = 'panel-' . $panel->get('page');
+    if ($panels_display->getPluginId() == 'panels_everywhere_variant') {
+      $class = 'page-' . $panel->get('page');
+    }
+    $attributes['class'] = [$class];
+    $build['#attrs'] = $attributes;
+  }
 }

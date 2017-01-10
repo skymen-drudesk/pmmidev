@@ -245,3 +245,61 @@
     }
   }
 }
+
+// Audience select block.
+.audience-select {
+  margin: 0;
+  .audience-image-link {
+    display: block;
+    min-height: 240px;
+    margin-bottom: 7px;
+    @include tablet {
+      min-height: 230px;
+    }
+    @include desktop {
+      min-height: 200px;
+    }
+    @include mobile {
+      min-height: 180px;
+    }
+  }
+  .audience-link {
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    background: $blue;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 17px;
+    line-height: 19px;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 3px;
+    padding: 5px 30px 5px 10px;
+    position: relative;
+    &:before {
+      display: inline-block;
+      height: 40px;
+      content: "";
+      vertical-align: middle;
+    }
+    span {
+      vertical-align: middle;
+      line-height: 19px;
+    }
+    &:after {
+      @extend .fa;
+      font-size: 27px;
+      line-height: 50px;
+      position: absolute;
+      right: 12px;
+      top: 0;
+      bottom: 0;
+      content: "\f054";
+    }
+    &:hover {
+      text-decoration: none;
+      background: $dkblue;
+    }
+  }
+}
