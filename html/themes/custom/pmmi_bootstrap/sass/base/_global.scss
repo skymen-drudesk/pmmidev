@@ -48,11 +48,10 @@ html, body {
   height: 100%;
 }
 .pmmi-panel {
-  min-height: 100%;
+  height: 100%;
 }
 .page-wrapper {
   min-height: 100%;
-  margin-bottom: -60px;
   &:after {
     content: "";
     display: block;
