@@ -48,6 +48,12 @@ the following:
 * `build/ref/pmmi.sql`
 * `build/ref/pmmi.sql.gz`
 
+When done developing, run `docker-compose stop` to stop the project's 
+containers.
+
+To bring the project's containers back up (without updating), run 
+`docker-compose up -d`.
+
 ## Use
 
 **IMPORTANT**
