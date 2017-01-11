@@ -111,17 +111,29 @@
   font-size: $r14;
   line-height: $r23;
 }
-
-// Titles.
-.block-title-default {
+.sidehead1 {
   font-size: $r18;
-  line-height: 23px;
+  line-height: $r23;
   color: $dkblue;
   font-weight: 800;
   padding-bottom: 6px;
   border-bottom: 1px solid $mdgrey;
   margin-bottom: 10px;
 }
+.sidehead2 {
+  font-size: $r14;
+  line-height: $r18;
+  color: $grey;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+.sidehead3 {
+  font-size: $r14;
+  line-height: $r18;
+  font-weight: 800;
+}
+
+// Titles.
 .block-title-big-bg {
   @extend .headline2;
   font-weight: 900;

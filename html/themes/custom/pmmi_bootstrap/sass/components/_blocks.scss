@@ -5,7 +5,7 @@
 // DS block layout.
 .block-layout {
   .title {
-    @extend .block-title-default;
+    @extend .sidehead1;
   }
 }
 // Twitter block.
@@ -138,6 +138,7 @@
     padding: 5px 40px 15px;
     min-width: 370px;
     max-width: 392px;
+    font-size: 0;
     &:before {
       display: inline-block;
       content: "";
@@ -148,7 +149,7 @@
       display: inline-block;
       vertical-align: middle;
       font-size: $r40;
-      line-height: 0.03;
+      line-height: $r40;
       color: #fff;
       font-weight: 300;
     }
@@ -172,7 +173,7 @@
     }
   }
   .img-header {
-    min-height: 100px;
+    min-height: 90px;
     background: $blue;
     @include tablet {
       min-height: 86px;

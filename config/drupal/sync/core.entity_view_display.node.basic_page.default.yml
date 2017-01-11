@@ -1,4 +1,4 @@
-uuid: e9a94af1-8859-47aa-82d6-3eb0d3b0369d
+uuid: 56c0f04b-ba23-412c-bf82-0bda299a4790
 langcode: en
 status: true
 dependencies:
@@ -23,18 +23,16 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
-      title:
-        - node_title
       image_header:
         - field_image_header
-      page_name:
-        - field_page_name
+      node_title:
+        - node_title
       body:
         - body
     fields:
       node_title:
         plugin_id: node_title
-        weight: 0
+        weight: 1
         label: hidden
         formatter: default
 id: node.basic_page.default
@@ -56,14 +54,8 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-  field_page_name:
-    weight: 1
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
 hidden:
   field_meta_tags: true
+  field_page_name: true
   field_tags: true
   links: true

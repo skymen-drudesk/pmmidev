@@ -74,11 +74,40 @@ content:
     third_party_settings: {  }
   field_accordions:
     weight: 112
-    label: hidden
+    label: above
     settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
+      view_mode: accordion
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: expert
+          settings:
+            lb: 'Test Topics & Questions'
+            prefix: ''
+            lbw: true
+            lbw-el: div
+            lbw-cl: field-label
+            lbw-at: ''
+            ow-el: ''
+            ow-cl: ''
+            ow-at: ''
+            fis: true
+            fis-el: div
+            fis-cl: items
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lb-col: false
+            ow: false
+            ow-def-at: false
+            ow-def-cl: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
     type: entity_reference_entity_view
   field_cert_test_length:
     weight: 109
@@ -106,7 +135,7 @@ content:
           id: minimal
           settings:
             lb: ''
-            lb-col: false
+            lb-col: true
             classes: {  }
     type: number_decimal
   field_cert_test_text_price:
