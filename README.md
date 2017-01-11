@@ -19,7 +19,7 @@ using
 (https://getcomposer.org/) and [Docker](https://www.docker.com/):
 
 ```bash
-composer create-project summitmedia/pmmi your_project_name
+git clone summitmedia/pmmi your_project_name
 cd your_project_name
 cp cnf/settings.local.php html/sites/default
 cp cnf/.env.dist ./.env
