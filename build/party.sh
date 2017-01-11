@@ -8,7 +8,7 @@ base="$(pwd)";
 # Set defaults
 build=
 install=
-dockercompose=docker-compose.yml
+dockercompose=docker-compose.production.yml
 webcontainer=pmmi_prod_web
 
 # Get environment variables.
@@ -53,14 +53,11 @@ done
 
 # Set Docker Compose file based on environment.
 if [ "$SITE_ENVIRONMENT" = "test" ]; then
-  dockercompose=docker-compose.staging.yml
-  webcontainer=pmmi_staging_web
+  dockercompose=docker-compose.test.yml
+  webcontainer=pmmi_test_web
 elif [ "$SITE_ENVIRONMENT" = "dev" ]; then
   dockercompose=docker-compose.yml
   webcontainer=pmmi_dev_web
-else
-  dockercompose=docker-compose.production.yml
-  webcontainer=pmmi_prod_web
 fi
 
 echo "Running on the $SITE_ENVIRONMENT environment using the $dockercompose Docker Compose file."

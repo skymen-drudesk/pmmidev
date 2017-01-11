@@ -22,6 +22,7 @@ using
 composer create-project summitmedia/pmmi your_project_name
 cd your_project_name
 cp cnf/settings.local.php html/sites/default
+cp cnf/.env.dist ./.env
 ./build/party.sh -b -i
 ```
 
@@ -57,8 +58,16 @@ file will be used by default if .env does not exist. The production
 environment is assumed if a global environment variable is not set to 
 say otherwise.
 
+The .env file should also be used to set the site environment. 
+Available environments are:
+
+* prod
+* test
+* dev
+
 You can add you own custom modules to be built with your local install 
-by making your .env file look something like this:
+and set the site environment by making your .env file look something 
+like this:
 
 ```bash
 export SITE_ENVIRONMENT=dev
@@ -78,7 +87,7 @@ in addition to the `DROPSHIP_SEEDS` defined in the `env.dist` file.
 * `ddrupal` executes [drupal console]
 (https://github.com/hechoendrupal/DrupalConsole) inside the web 
 container.
-* `dbash` opens a bash shell inside the web container (as *www-data*)
+* `dbash` opens a bash shell inside the web container (as *root*)
 
 [Direnv](http://direnv.net/) is used to include the wrapper scripts and
 the `vendor/bin` directory into the PATH.
