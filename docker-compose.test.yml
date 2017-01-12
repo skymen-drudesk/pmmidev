@@ -2,7 +2,7 @@ version: '2'
 services:
 
   pmmi_db:
-    container_name: pmmi_staging_db
+    container_name: pmmi_test_db
     image: mysql:5.7
     networks:
       - back
@@ -19,7 +19,7 @@ services:
       - "3307:3306"
 
   pmmi_web:
-    container_name: pmmi_staging_web
+    container_name: pmmi_test_web
     image: pmguser/drupal-php7.0-apache:latest
     depends_on:
       - pmmi_db
