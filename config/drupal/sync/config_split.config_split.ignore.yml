@@ -7,6 +7,9 @@ label: Ignore
 folder: ../config/drupal/ignore
 module:
   audience_select: 0
+  migrate_plus: 0
+  migrate_source_csv: 0
+  migrate_tools: 0
   page_manager: 0
 theme: {  }
 blacklist: {  }
