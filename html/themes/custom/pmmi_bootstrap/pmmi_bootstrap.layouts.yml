@@ -68,7 +68,7 @@ basic:
       label: Image Header
     page_name:
       label: Page Name
-    title:
+    node_title:
       label: Title
     body:
       label: Body
@@ -601,3 +601,12 @@ panel_microsite_eln:
       label: Main content
     footer:
       label: Footer content
+accordion:
+  label: Accordion
+  category: PMMI: Other
+  template: templates/layouts/other/field-accordion
+  regions:
+    header:
+      label: Header
+    body:
+      label: Body

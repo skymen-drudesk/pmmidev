@@ -1,0 +1,10 @@
+<div{{ content['#attrs'].addClass('accordion-item') }}>
+  <div class="header">
+    <a class="collapsed" data-toggle="collapse" href="#tab-id-{{ content['#tab_id'] }}">
+      {{ content.header }}
+    </a>
+  </div>
+  <div class="body collapse" id="tab-id-{{ content['#tab_id'] }}">
+    {{ content.body }}
+  </div>
+</div>

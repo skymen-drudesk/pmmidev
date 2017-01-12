@@ -1,4 +1,4 @@
-<div class="basic-node">
+<div{{ content['#attrs'].addClass('basic-node') }}>
   <div class="top-banner clearfix">
     {{ field_render([content.image_header, 'img-header']) }}
   </div>
@@ -6,11 +6,10 @@
 
     {{ field_render([content.page_name, 'page-name', 'h2']) }}
 
-    <h2 class="node-title">
-      {{ content.title }}
-    </h2>
+    {{ field_render([content.node_title, 'node-title', 'h2']) }}
 
     {{ field_render([content.body, 'node-body']) }}
 
+    </div>
   </div>
 </div>

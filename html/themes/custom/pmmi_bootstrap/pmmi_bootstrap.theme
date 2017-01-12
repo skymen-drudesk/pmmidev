@@ -91,6 +91,14 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
       break;
   }
 
+  switch ($vars['content']['#view_mode']) {
+    case 'accordion':
+      if (isset($vars['content']['#node'])) {
+        $vars['content']['#tab_id'] = $vars['content']['#node']->id();
+      }
+      break;
+  }
+
   $vars['content']['#attrs'] = $attributes;
 }
 
