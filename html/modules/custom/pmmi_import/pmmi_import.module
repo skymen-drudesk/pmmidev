@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * @file
+ * Contains pmmi_import.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function pmmi_import_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the pmmi_import module.
+    case 'help.page.pmmi_import':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('PMMI Import') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_migration_plugins_alter().
+ */
+function pmmi_import_migration_plugins_alter(&$definitions) {
+  $definitions['migrate_csv']['source']['path'] = drupal_get_path('module', 'pmmi_import') . $definitions['migrate_csv']['source']['path'];
+}
