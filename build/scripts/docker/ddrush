@@ -11,4 +11,4 @@ if [[ "$drush" == "" ]]; then
   fi
 fi
 
-docker-compose exec --user www-data web bash -ci "$drush"
+docker-compose exec --user root web bash -ci "$drush"
