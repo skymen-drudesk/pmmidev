@@ -74,6 +74,7 @@ class AudienceSettingsForm extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
+    $config = $this->AudienceManager->getConfig();
     $form['gateway_url'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Gateway Url'),
@@ -86,7 +87,15 @@ class AudienceSettingsForm extends ConfigFormBase {
         ),
       ),
     ];
-
+    $form['excluded_pages'] = array(
+      '#type' => 'textarea',
+      '#title' => $this->t('Excluded Pages'),
+      '#default_value' => $config->get('excluded_pages'),
+      '#description' => $this->t("Specify pages by using their paths. Enter one path per line. The '*' character is a wildcard. An example path is %user-wildcard for every user page. %front is the front page.", array(
+        '%user-wildcard' => '/user/*',
+        '%front' => '<front>',
+      )),
+    );
     $form['audiences'] = [
       '#type' => 'table',
       '#header' => [
@@ -283,6 +292,7 @@ class AudienceSettingsForm extends ConfigFormBase {
       $config->setData(['map' => $mappings]);
     }
     $config->set('gateway_url', $form_state->getValue('gateway_url'));
+    $config->set('excluded_pages', $form_state->getValue('excluded_pages'));
     $config->save();
     parent::submitForm($form, $form_state);
   }

@@ -1,2 +1,4 @@
 map:
 gateway_url: 'internal:/gateway'
+excluded_pages: "/admin\r\n/admin/*\r\n/user\r\n/user/*\r\n/node/add\r\n/node/*/edit"
+
