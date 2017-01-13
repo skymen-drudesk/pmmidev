@@ -1,4 +1,4 @@
-uuid: 5c12fdab-6767-485e-933c-fd17ed554b27
+uuid: 64f6f92d-508c-4b5e-a946-df7c2da1f488
 langcode: en
 status: true
 dependencies:
@@ -6,15 +6,15 @@ dependencies:
     module:
       - pmmi_import
 _core:
-  default_config_hash: 2MvY-RlB36dYEfKd5EQdGY7CxK2SsEReqyYc4B_sS74
-id: migrate_csv
+  default_config_hash: CICsHYBOday5FFgifUQW0OmJlpLux6IX6YMpThFDEww
+id: chairp_corner
 migration_tags:
   - CSV
 migration_group: null
 label: 'CSV file migration'
 source:
   plugin: csv
-  path: /import_files/press-releases.csv
+  path: /import_files/chairpersons-corner.csv
   header_row_count: 1
   keys:
     - id
