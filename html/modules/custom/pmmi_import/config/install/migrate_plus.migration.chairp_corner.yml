@@ -1,4 +1,4 @@
-uuid: 5c12fdab-6767-485e-933c-fd17ed554b27
+uuid: 64f6f92d-508c-4b5e-a946-df7c2da1f488
 langcode: en
 status: true
 dependencies:
@@ -8,14 +8,14 @@ dependencies:
     module:
       - pmmi_import
 # The source data is in CSV files, so we use the 'csv' source plugin.
-id: migrate_csv
+id: chairp_corner
 label: CSV file migration
 migration_tags:
   - CSV
 source:
   plugin: csv
   # Full path to the file.
-  path: /import_files/press-releases.csv
+  path: /import_files/chairpersons-corner.csv
   # The number of rows at the beginning which are not data.
   header_row_count: 1
   # These are the field names from the source file representing the key
@@ -77,7 +77,7 @@ process:
     default_value: 0
   field_news_category:
     plugin: default_value
-    default_value: 16
+    default_value: 17
   field_author: contact_name
   field_phone: contact_phone
   field_author_title: contact_title

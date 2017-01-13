@@ -28,4 +28,6 @@ function pmmi_import_help($route_name, RouteMatchInterface $route_match) {
  */
 function pmmi_import_migration_plugins_alter(&$definitions) {
   $definitions['migrate_csv']['source']['path'] = drupal_get_path('module', 'pmmi_import') . $definitions['migrate_csv']['source']['path'];
+  $definitions['tech_notes']['source']['path'] = drupal_get_path('module', 'pmmi_import') . $definitions['tech_notes']['source']['path'];
+  $definitions['chairp_corner']['source']['path'] = drupal_get_path('module', 'pmmi_import') . $definitions['chairp_corner']['source']['path'];
 }

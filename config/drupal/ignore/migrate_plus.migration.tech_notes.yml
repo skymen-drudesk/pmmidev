@@ -1,4 +1,4 @@
-uuid: 5c12fdab-6767-485e-933c-fd17ed554b27
+uuid: 91d50aad-983c-458c-9d0a-e3636d67dcf6
 langcode: en
 status: true
 dependencies:
@@ -6,15 +6,15 @@ dependencies:
     module:
       - pmmi_import
 _core:
-  default_config_hash: 2MvY-RlB36dYEfKd5EQdGY7CxK2SsEReqyYc4B_sS74
-id: migrate_csv
+  default_config_hash: LjbeDOTc5tcH5rC95bj_yXhu7tA-SUMJRw7exbNquj8
+id: tech_notes
 migration_tags:
   - CSV
 migration_group: null
 label: 'CSV file migration'
 source:
   plugin: csv
-  path: /import_files/press-releases.csv
+  path: /import_files/tech-notes.csv
   header_row_count: 1
   keys:
     - id
