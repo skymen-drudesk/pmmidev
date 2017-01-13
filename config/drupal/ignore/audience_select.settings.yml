@@ -1,15 +1,15 @@
 map:
   audience_1:
-    audience_title: 'Audience 1'
+    audience_title: 'PMMI Member'
     audience_redirect_url: 'internal:/home'
     audience_image: {  }
   audience_2:
-    audience_title: 'Audience 2'
+    audience_title: 'User of Packaging or Processing Equipment'
     audience_redirect_url: 'internal:/home'
     audience_image: {  }
   audience_3:
-    audience_title: 'Audience 3'
-    audience_id: audience_3
+    audience_title: 'Another Interested Party'
     audience_redirect_url: 'internal:/home'
     audience_image: {  }
 gateway_url: 'internal:/gateway'
+excluded_pages: "/admin\r\n/admin/*\r\n/user\r\n/user/*\r\n/node/add\r\n/node/*/edit"

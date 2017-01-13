@@ -4,7 +4,7 @@ services:
 
   audience_select.audience_select_subscriber:
     class: Drupal\audience_select\EventSubscriber\AudienceSelectSubscriber
-    arguments: ['@audience_select.audience_manager']
+    arguments: ['@audience_select.audience_manager', '@path.alias_manager', '@path.matcher']
     tags:
       - { name: event_subscriber }
 

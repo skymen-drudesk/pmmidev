@@ -17,18 +17,40 @@ use Drupal\Core\Entity\Element\EntityAutocomplete;
 class AudienceManager {
 
   /**
+   * Get all config settings for Audience module.
+   *
+   * @return \Drupal\Core\Config\ImmutableConfig
+   *    Return all data from saved settings.
+   */
+  public function getConfig() {
+    return \Drupal::config('audience_select.settings');
+  }
+
+  /**
    * Get Gateway Url.
    *
-   * @return string
+   * @return string|null
    */
   public function getGateway() {
-    $gateway_url = \Drupal::config('audience_select.settings')->get('gateway_url');
-    if(!empty($gateway_url)){
+    $gateway_url = $this->getConfig()
+      ->get('gateway_url');
+    if (!empty($gateway_url)) {
       $gateway = $this->getUriAsDisplayableString($gateway_url);
-    } else {
+    }
+    else {
       $gateway = NULL;
     }
     return $gateway;
+  }
+
+  /**
+   * Get all Excluded Pages.
+   *
+   * @return string|null
+   *   Return string value or null.
+   */
+  public function getExcludedPages() {
+    return $this->getConfig()->get('excluded_pages');
   }
 
   /**
@@ -39,7 +61,7 @@ class AudienceManager {
   public function getData() {
     $config = \Drupal::config('audience_select.settings');
     $audiences = $config->get('map');
-    if(!empty($audiences)){
+    if (!empty($audiences)) {
       foreach ($audiences as &$audience) {
         $audience['audience_redirect_url'] = !empty($audience['audience_redirect_url']) ? $this->getUriAsDisplayableString($audience['audience_redirect_url']) : '/';
       }
@@ -72,17 +94,25 @@ class AudienceManager {
     return $options;
   }
 
+  /**
+   * @param $audience_id
+   * @return null|string
+   */
   public static function load($audience_id) {
     $config = \Drupal::config('audience_select.settings');
     $audiences = $config->get('map');
-    if (!empty($audiences)){
+    if (!empty($audiences)) {
       return array_key_exists($audience_id, $audiences) ? $audiences[$audience_id] : NULL;
-    } else {
+    }
+    else {
       return NULL;
     }
 
   }
 
+  /**
+   * @return null|string
+   */
   public function getCurrentAudience() {
     $audience = isset($_COOKIE['audience_select_audience']) ? $_COOKIE['audience_select_audience'] : NULL;
 
@@ -93,6 +123,7 @@ class AudienceManager {
    * Turns audiences settings string into keyed array.
    *
    * @return array
+   *   Return all unselected Audiences.
    */
   public function getUnselectedAudiences() {
     $audiences = self::getRawData();
@@ -145,7 +176,10 @@ class AudienceManager {
       list($entity_type, $entity_id) = explode('/', substr($uri, 7), 2);
       // Show the 'entity:' URI as the entity autocomplete would.
       $entity_manager = \Drupal::entityTypeManager();
-      if ($entity_manager->getDefinition($entity_type, FALSE) && $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($entity_id)) {
+      if ($entity_manager->getDefinition($entity_type, FALSE) && $entity = \Drupal::entityTypeManager()
+          ->getStorage($entity_type)
+          ->load($entity_id)
+      ) {
         $displayable_string = EntityAutocomplete::getEntityLabels(array($entity));
       }
     }

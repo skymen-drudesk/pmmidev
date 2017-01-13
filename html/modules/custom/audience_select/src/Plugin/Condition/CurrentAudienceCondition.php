@@ -74,7 +74,7 @@ class CurrentAudienceCondition extends ConditionPluginBase implements ContainerF
       '#type' => 'checkboxes',
       '#title' => $this->t('When the viewer has the following audience'),
       '#default_value' => $this->configuration['audiences'],
-      '#options' => array_map('\Drupal\Component\Utility\Html::escape', $this->AudienceManager->getOptionsList()),
+      '#options' => $this->AudienceManager->getOptionsList(),
       '#description' => $this->t('If you select no audience, the condition will
         evaluate to TRUE for all viewers.'),
     );
