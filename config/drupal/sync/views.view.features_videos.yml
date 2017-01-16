@@ -216,18 +216,7 @@ display:
         options:
           relationship: none
           view_mode: default
-      footer:
-        view:
-          id: view
-          table: views
-          field: view
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          view_to_insert: 'features_videos:block_recent_secondary'
-          inherit_arguments: true
-          plugin_id: view
+      footer: {  }
       filters:
         status:
           value: '1'

@@ -285,8 +285,11 @@
       vertical-align: middle;
     }
     span {
+      display: inline-block;
       vertical-align: middle;
-      line-height: 19px;
+      line-height: 20px;
+      max-height: 40px;
+      overflow: hidden;
     }
     &:after {
       @extend .fa;

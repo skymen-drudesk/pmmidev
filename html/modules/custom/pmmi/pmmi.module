@@ -7,6 +7,7 @@
 use Drupal\views\ViewExecutable;
 use Drupal\Core\Template\Attribute;
 use \Drupal\panels\Plugin\DisplayVariant\PanelsDisplayVariant;
+use Drupal\page_manager\Context\EntityLazyLoadContext;
 /**
  * Implements hook_views_pre_build().
  */
@@ -48,11 +49,17 @@ function _pmmi_get_video_type_contexts() {
   }
   elseif ($panel = \Drupal::routeMatch()->getParameter('page_manager_page_variant')) {
     $page_contexts = $panel->getContexts();
-    if (isset($page_contexts['term'])) {
-      $term = $page_contexts['term']->getContextValue();
-      $contexts['tid'] = $term->id();
-      $contexts['term'] = $term;
-      $contexts['current_context'] = 'page_manager_page_variant';
+    foreach ($page_contexts as $context) {
+      if ($context instanceof EntityLazyLoadContext) {
+        $term = $context->getContextValue();
+        $entity_type = $term->getEntityTypeId();
+        if (isset($entity_type) && $entity_type == 'taxonomy_term') {
+          $contexts['tid'] = $term->id();
+          $contexts['term'] = $term;
+          $contexts['current_context'] = 'page_manager_page_variant';
+          break;
+        }
+      }
     }
   }
   return $contexts;
