@@ -15,7 +15,7 @@ dependencies:
   module:
     - address
     - datetime_range
-    - link
+    - link_attributes
 id: block_content.event.default
 targetEntityType: block_content
 bundle: event
@@ -26,8 +26,15 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      enabled_attributes:
+        id: false
+        name: false
+        target: true
+        rel: true
+        class: true
+        accesskey: false
     third_party_settings: {  }
-    type: link_default
+    type: link_attributes
   field_dates:
     weight: 2
     settings: {  }
@@ -56,11 +63,18 @@ content:
     third_party_settings: {  }
     type: string_textfield
   field_link:
-    type: link_default
+    type: link_attributes
     weight: 6
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      enabled_attributes:
+        id: false
+        name: false
+        target: true
+        rel: true
+        class: true
+        accesskey: false
     third_party_settings: {  }
   field_location:
     type: address_default

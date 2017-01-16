@@ -33,7 +33,7 @@ dependencies:
   module:
     - field_group
     - inline_entity_form
-    - link
+    - link_attributes
     - viewfield
 third_party_settings:
   field_group:
@@ -329,8 +329,15 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      enabled_attributes:
+        id: false
+        name: false
+        target: true
+        rel: true
+        class: true
+        accesskey: false
     third_party_settings: {  }
-    type: link_default
+    type: link_attributes
   field_head:
     weight: 1
     settings:

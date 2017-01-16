@@ -12,7 +12,7 @@ dependencies:
     - field.field.block_content.card.field_image
   module:
     - entity_browser
-    - link
+    - link_attributes
     - text
 id: block_content.card.default
 targetEntityType: block_content
@@ -32,8 +32,15 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      enabled_attributes:
+        id: false
+        name: false
+        target: true
+        rel: true
+        class: true
+        accesskey: false
     third_party_settings: {  }
-    type: link_default
+    type: link_attributes
   field_head:
     weight: 4
     settings:

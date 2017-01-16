@@ -7,7 +7,7 @@ dependencies:
     - field.field.block_content.links.field_head
     - field.field.block_content.links.field_links
   module:
-    - link
+    - link_attributes
 id: block_content.links.default
 targetEntityType: block_content
 bundle: links
@@ -25,8 +25,15 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      enabled_attributes:
+        id: false
+        name: false
+        target: true
+        rel: true
+        class: true
+        accesskey: false
     third_party_settings: {  }
-    type: link_default
+    type: link_attributes
   info:
     type: string_textfield
     weight: -5

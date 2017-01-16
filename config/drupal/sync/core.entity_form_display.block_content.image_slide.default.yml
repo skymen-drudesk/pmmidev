@@ -16,7 +16,7 @@ dependencies:
   module:
     - entity_browser
     - field_group
-    - link
+    - link_attributes
     - text
     - video
 third_party_settings:
@@ -54,8 +54,15 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      enabled_attributes:
+        id: false
+        name: false
+        target: true
+        rel: true
+        class: true
+        accesskey: false
     third_party_settings: {  }
-    type: link_default
+    type: link_attributes
   field_head:
     weight: 4
     settings:
