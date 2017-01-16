@@ -65,3 +65,7 @@
     }
   }
 }
+.user-pass-reset,
+.user-login-form {
+  @extend .container;
+}
