@@ -20,15 +20,16 @@ variant_settings:
       label_display: '0'
       views_label: ''
       items_per_page: none
-      region: oneone
+      region: main
       weight: 0
       uuid: 316d7abf-22b0-4758-8e74-afed97bc53ad
-      context_mapping: {  }
+      context_mapping:
+        field_video_type_target_id: term_member_watch
   id: panels_variant
   uuid: 870ebe36-36fc-4774-88e6-5c25cc590f37
   label: null
   weight: 0
-  layout: oneone
+  layout: sitewide
   layout_settings: {  }
   page_title: ''
   storage_type: page_manager
@@ -38,4 +39,9 @@ page: member_watch
 weight: 0
 selection_criteria: {  }
 selection_logic: and
-static_context: {  }
+static_context:
+  term_member_watch:
+    label: 'Term - Member Watch'
+    type: 'entity:taxonomy_term'
+    description: ''
+    value: 8d5df75b-ff6c-42d6-903e-dc4c5c6a3499
