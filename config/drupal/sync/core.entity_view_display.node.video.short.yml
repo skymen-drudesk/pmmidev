@@ -37,16 +37,6 @@ third_party_settings:
         weight: 1
         label: hidden
         formatter: default
-        settings:
-          wrapper: h2
-          class: ''
-          link: false
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
 id: node.video.short
 targetEntityType: node
 bundle: video
@@ -54,23 +44,15 @@ mode: short
 content:
   body:
     label: hidden
-    type: text_summary_or_trimmed
+    type: text_default
     weight: 2
-    settings:
-      trim_length: 60
-    third_party_settings:
-      ds:
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
+    settings: {  }
+    third_party_settings: {  }
   field_video:
     weight: 0
     label: hidden
     settings:
-      image_style: video_feature_block
+      image_style: video_block_mobile
       link_image_to: content
     third_party_settings:
       ds:
