@@ -44,6 +44,7 @@ services:
       - "9000"
     volumes:
       - .:/var/www
+#      - d4d-unison-sync:/var/www:rw # Replace volume to this to use docker-sync for macOS users
     links:
       - db
 
@@ -57,3 +58,7 @@ services:
       - main
     ports:
       - "8003:8983"
+
+#volumes:
+#  d4d-unison-sync:
+#    external: true
