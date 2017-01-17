@@ -66,6 +66,22 @@
       $('select').once('uniform').each(function () {
         $(this).uniform();
       });
+      $('.containers .row').once('matchHeight').each(function () {
+        var $row = $(this);
+        var $socialBlock = $row.find('.social-block');
+        $row.imagesLoaded(function() {
+          $('.col > .field > *', $row).matchHeight();
+        });
+        $.fn.matchHeight._afterUpdate = function(event, groups) {
+          $socialBlock.each(function () {
+            var $block = $(this);
+            var $parent = $block.parent();
+            var $title = $parent.find('.block-title');
+            var newHeight = $parent.height() - $title.outerHeight(true);
+            $block.height(newHeight);
+          });
+        };
+      });
     }
   };
 
