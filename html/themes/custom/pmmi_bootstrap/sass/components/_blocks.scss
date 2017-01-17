@@ -307,3 +307,38 @@
     }
   }
 }
+.block-links {
+  .title {
+    @extend .sidehead1;
+    margin-bottom: 6px;
+  }
+  .field--name-field-links {
+    .field--item {
+      @extend .linked-list-item;
+    }
+  }
+}
+.block-social-media {
+  .title {
+    @extend .sidehead1;
+  }
+  .social-links {
+    span {
+      display: inline-block;
+      font-size: $r40;
+      color: $blue;
+      position: relative;
+      margin: 0 7px 0 0;
+      a {
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        display: block;
+        text-indent: -9999em;
+        overflow: hidden;
+      }
+    }
+  }
+}

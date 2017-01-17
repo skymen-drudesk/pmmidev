@@ -33,13 +33,6 @@
     @extend .headline4;
     margin-bottom: 5px;
   }
-  .content-left {
-    @include tablet-max {
-      background: $ltgrey;
-      padding: 15px;
-      margin: 0 -15px;
-    }
-  }
 }
 // Video node.
 .video-node {

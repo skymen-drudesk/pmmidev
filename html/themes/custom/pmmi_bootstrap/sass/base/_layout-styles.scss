@@ -25,6 +25,11 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
     margin-bottom: 0;
   }
 }
+.block-region-sidebar {
+  .block {
+    margin-bottom: 40px;
+  }
+}
 .layout-homepage {
   .grey-region {
     background: $ltgrey;
@@ -57,6 +62,26 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
   @include mobile {
     .white-region {
       padding: 25px 0 15px;
+    }
+  }
+}
+.node-layout,
+.landing-left-sidebar {
+  .content-left {
+    @include tablet-max {
+      background: $ltgrey;
+      padding: 15px;
+      margin: 0 -15px;
+      > .block-region-sidebar > .field,
+      > .block-region-sidebar > .block,
+      > .field,
+      > .block {
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 49.5%;
+        display: inline-block;
+      }
+
     }
   }
 }
