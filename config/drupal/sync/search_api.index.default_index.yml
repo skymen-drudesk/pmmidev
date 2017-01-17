@@ -1,0 +1,73 @@
+uuid: f9299671-c1e5-44ad-9790-7e27da66a240
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_report_type
+    - field.storage.node.field_year
+    - search_api.server.solr_server
+  module:
+    - taxonomy
+    - search_api
+    - node
+id: default_index
+name: 'Default Index'
+description: ''
+read_only: false
+field_settings:
+  title:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+  field_report_type:
+    label: 'Report Type'
+    datasource_id: 'entity:node'
+    property_path: field_report_type
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_report_type
+  field_year:
+    label: Year
+    datasource_id: 'entity:node'
+    property_path: field_year
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_year
+  name:
+    label: 'Report Type » Taxonomy term » Name'
+    datasource_id: 'entity:node'
+    property_path: 'field_report_type:entity:name'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_report_type
+      module:
+        - taxonomy
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+  'entity:taxonomy_term':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  add_url: {  }
+  rendered_item: {  }
+  aggregated_field: {  }
+tracker_settings:
+  default: {  }
+options:
+  index_directly: true
+  cron_limit: 50
+server: solr_server
