@@ -95,3 +95,5 @@ EXPOSE 9000
 USER www-data
 RUN composer global require hirak/prestissimo:^0.3 --optimize-autoloader && \
     rm -rf ~/.composer/.cache
+
+USER root

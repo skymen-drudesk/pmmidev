@@ -1,5 +1,5 @@
 syncs:
-  d4d-unison-sync:
+  unison-sync:
     src: './'
     dest: '/var/www'
     sync_args: '-prefer newer'
