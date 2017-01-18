@@ -95,3 +95,38 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
     }
   }
 }
+.col-sm-x5 {
+  padding-left: 15px;
+  padding-right: 15px;
+  float: left;
+  width: 20%;
+}
+.layout-5up {
+  .container {
+    max-width: 970px;
+    text-align: center;
+    @include desktop-max {
+      font-size: 0;
+      .col-sm-x5 {
+        font-size: $r16;
+        display: inline-block;
+        float: none;
+        width: 33.3%;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+    @include tablet {
+      .col-sm-x5 {
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+    }
+    @include mobile {
+      .col-sm-x5 {
+        display: block;
+        width: auto;
+      }
+    }
+  }
+}

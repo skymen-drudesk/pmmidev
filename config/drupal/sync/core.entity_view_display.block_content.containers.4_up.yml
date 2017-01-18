@@ -17,6 +17,12 @@ dependencies:
     - field.field.block_content.containers.field_block_plugin_4
     - field.field.block_content.containers.field_block_plugin_5
     - field.field.block_content.containers.field_block_plugin_6
+    - field.field.block_content.containers.field_block_select_1
+    - field.field.block_content.containers.field_block_select_2
+    - field.field.block_content.containers.field_block_select_3
+    - field.field.block_content.containers.field_block_select_4
+    - field.field.block_content.containers.field_block_select_5
+    - field.field.block_content.containers.field_block_select_6
     - field.field.block_content.containers.field_block_views_1
     - field.field.block_content.containers.field_block_views_2
     - field.field.block_content.containers.field_block_views_3
@@ -70,33 +76,61 @@ content:
     weight: 1
     label: hidden
     settings:
-      view_mode: default
+      view_mode: 4_up
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_block_2:
     type: entity_reference_entity_view
     weight: 4
     label: hidden
     settings:
-      view_mode: default
+      view_mode: 4_up
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_block_3:
     type: entity_reference_entity_view
     weight: 7
     label: hidden
     settings:
-      view_mode: default
+      view_mode: 4_up
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_block_4:
     type: entity_reference_entity_view
     weight: 10
     label: hidden
     settings:
-      view_mode: default
+      view_mode: 4_up
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_block_plugin_1:
     type: entity_reference_rendered_block_plugin
     weight: 2

@@ -52,6 +52,7 @@
   .button {
     a {
       @extend .button-primary;
+      max-width: 100%;
     }
   }
   .front-side {
@@ -59,6 +60,7 @@
   }
   .back-side {
     transform: rotateY(-180deg);
+    font-size: 0;
     &:before {
       display: inline-block;
       content: "";
@@ -68,7 +70,8 @@
     .align-center {
       display: inline-block;
       vertical-align: middle;
-      max-width: 95%;
+      width: 100%;
+      padding: 0 10px;
     }
     .card-icon {
       margin-bottom: 10px;
@@ -111,6 +114,9 @@
   }
   @include mobile {
     max-width: 280px;
+    .side {
+      padding: 6px;
+    }
     .flipper {
       height: 218px;
     }
@@ -148,21 +154,33 @@
   }
   // Mode 5-up.
   &.mode-5-up {
-    max-width: 170px;
-    .flipper {
-      height: 170px;
-    }
-    .title {
-      font-size: $r16;
-      line-height: $r19;
-      @include tablet-max {
-        font-size: $r15;
-        line-height: $r17;
+    @include dhd {
+      max-width: 170px;
+      .flipper {
+        height: 170px;
       }
-    }
-    .block-body {
-      font-size: $r12;
-      line-height: $r14;
+      .title {
+        font-size: $r16;
+        line-height: $r19;
+        @include tablet-max {
+          font-size: $r15;
+          line-height: $r17;
+        }
+      }
+      .block-body {
+        font-size: $r12;
+        line-height: $r14;
+        font-weight: 500;
+      }
+      .side {
+        padding: 4px;
+      }
+      .button {
+        a {
+          width: 100%;
+          min-width: 0;
+        }
+      }
     }
     // Desktop.
     @include desktop {
