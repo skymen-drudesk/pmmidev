@@ -77,11 +77,21 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
       > .field,
       > .block {
         padding-left: 15px;
-        padding-right: 15px;
+        padding-right: 8%;
         width: 49.5%;
         display: inline-block;
+        vertical-align: top;
       }
-
+    }
+    @include mobile {
+      > .block-region-sidebar > .field,
+      > .block-region-sidebar > .block,
+      > .field,
+      > .block {
+        display: block;
+        width: auto;
+        padding-right: 15px;
+      }
     }
   }
 }
