@@ -11,6 +11,8 @@ theme:
     - bootstrap/attributes
     - pmmi_bootstrap/jquery-uniform
     - pmmi_bootstrap/breakpoints
+    - pmmi_bootstrap/matchheight
+    - pmmi_bootstrap/imagesloaded
 
   css:
     theme:
@@ -45,3 +47,11 @@ breakpoints:
     js/breakpoints.js: {}
   dependencies:
     - core/underscore
+
+matchheight:
+  js:
+    libraries/matchHeight/jquery.matchHeight-min.js: {}
+
+imagesloaded:
+  js:
+    libraries/imagesloaded/imagesloaded.pkgd.min.js: {}
