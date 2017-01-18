@@ -11,7 +11,7 @@ dependencies:
     - field.field.block_content.text.field_head
     - field.field.block_content.text.field_image
     - field.field.block_content.text.field_link
-    - image.style.brand_block_dhd
+    - image.style.left_image_block
   module:
     - ds
     - image
@@ -68,7 +68,7 @@ content:
     weight: 2
     label: hidden
     settings:
-      image_style: brand_block_dhd
+      image_style: left_image_block
       image_link: ''
     third_party_settings:
       ds:

@@ -69,10 +69,10 @@
       $('.containers .row').once('matchHeight').each(function () {
         var $row = $(this);
         var $socialBlock = $row.find('.social-block');
-        $row.imagesLoaded(function() {
+        $row.imagesLoaded(function () {
           $('.col > .field > *', $row).matchHeight();
         });
-        $.fn.matchHeight._afterUpdate = function(event, groups) {
+        $.fn.matchHeight._afterUpdate = function (event, groups) {
           $socialBlock.each(function () {
             var $block = $(this);
             var $parent = $block.parent();

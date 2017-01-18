@@ -1,4 +1,6 @@
+.block-region-main > article,
 .user-pass-reset,
 .user-login-form {
   @extend .container;
+  margin-bottom: 40px;
 }
