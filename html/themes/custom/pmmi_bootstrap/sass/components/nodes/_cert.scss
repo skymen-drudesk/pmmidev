@@ -10,5 +10,17 @@
     .field--item {
       @extend .side-paragraph;
     }
+    @include tablet-max {
+      padding-left: 15px;
+      padding-right: 8%;
+      width: 49.5%;
+      display: inline-block;
+      vertical-align: top;
+    }
+    @include mobile {
+      display: block;
+      width: auto;
+      padding-left: 15px;
+    }
   }
 }

@@ -135,9 +135,9 @@
     bottom: 0;
     position: absolute;
     display: inline-block;
-    padding: 5px 40px 15px;
+    padding: 5px 10px 15px 40px;
     min-width: 370px;
-    max-width: 392px;
+    max-width: 460px;
     font-size: 0;
     &:before {
       display: inline-block;
@@ -149,7 +149,7 @@
       display: inline-block;
       vertical-align: middle;
       font-size: $r40;
-      line-height: $r40;
+      line-height: 1.06;
       color: #fff;
       font-weight: 300;
     }
@@ -304,6 +304,41 @@
     &:hover {
       text-decoration: none;
       background: $dkblue;
+    }
+  }
+}
+.block-links {
+  .title {
+    @extend .sidehead1;
+    margin-bottom: 6px;
+  }
+  .field--name-field-links {
+    .field--item {
+      @extend .linked-list-item;
+    }
+  }
+}
+.block-social-media {
+  .title {
+    @extend .sidehead1;
+  }
+  .social-links {
+    span {
+      display: inline-block;
+      font-size: $r40;
+      color: $blue;
+      position: relative;
+      margin: 0 7px 0 0;
+      a {
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        display: block;
+        text-indent: -9999em;
+        overflow: hidden;
+      }
     }
   }
 }

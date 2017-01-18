@@ -119,6 +119,9 @@
   padding-bottom: 6px;
   border-bottom: 1px solid $mdgrey;
   margin-bottom: 10px;
+  @include tablet-max {
+    font-size: $r16;
+  }
 }
 .sidehead2 {
   font-size: $r14;
