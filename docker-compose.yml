@@ -18,10 +18,9 @@ services:
 
   web:
     container_name: pmmi_dev_web
-    restart: always
     build:
       context: .
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile
     depends_on:
       - db
     # Environment variables

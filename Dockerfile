@@ -79,8 +79,13 @@ RUN touch /var/log/cron.log
 ENV TZ=America/Chicago
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# Set permissions.
-RUN chown -R www-data:www-data /var/www
+# Setup user www-data and group www-data
+RUN groupmod -g 82 www-data && \
+	usermod -u 82 -s /bin/bash -g www-data www-data
+
+# Create work dir
+RUN mkdir -p /var/www && \
+    chown -R www-data:www-data /var/www
 
 WORKDIR /var/www
 VOLUME /var/www
@@ -90,8 +95,3 @@ EXPOSE 9000
 USER www-data
 RUN composer global require hirak/prestissimo:^0.3 --optimize-autoloader && \
     rm -rf ~/.composer/.cache
-
-USER root
-COPY entrypoint.sh /usr/local/bin/
-RUN chmod 755 /usr/local/bin/entrypoint.sh
-#CMD entrypoint.sh
