@@ -6,8 +6,8 @@ dependencies:
     - field.storage.node.field_report_type
     - field.storage.node.field_year
     - search_api.server.solr_server
+    - core.entity_view_mode.node.full
   module:
-    - taxonomy
     - search_api
     - node
 id: default_index
@@ -15,10 +15,57 @@ name: 'Default Index'
 description: ''
 read_only: false
 field_settings:
+  rendered_item:
+    label: 'Rendered item'
+    property_path: rendered_item
+    type: text
+    configuration:
+      roles:
+        anonymous: anonymous
+      view_mode:
+        'entity:node':
+          article: ''
+          basic_page: ''
+          certification_test: ''
+          download: full
+          school: ''
+          video: ''
+        'entity:taxonomy_term':
+          video_type: ''
+          event_type: ''
+          news: ''
+          report_type: ''
+          tags: ''
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
   title:
     label: Title
     datasource_id: 'entity:node'
     property_path: title
+    type: string
+  status:
+    label: status
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+  uid:
+    label: uid
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
     type: string
   field_report_type:
     label: 'Report Type'
@@ -36,16 +83,6 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_year
-  name:
-    label: 'Report Type » Taxonomy term » Name'
-    datasource_id: 'entity:node'
-    property_path: 'field_report_type:entity:name'
-    type: string
-    dependencies:
-      config:
-        - field.storage.node.field_report_type
-      module:
-        - taxonomy
 datasource_settings:
   'entity:node':
     bundles:
@@ -54,17 +91,99 @@ datasource_settings:
     languages:
       default: true
       selected: {  }
-  'entity:taxonomy_term':
-    bundles:
-      default: true
-      selected: {  }
-    languages:
-      default: true
-      selected: {  }
 processor_settings:
+  highlight:
+    highlight: always
+    highlight_partial: false
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+  html_filter:
+    fields:
+      - rendered_item
+      - title
+    title: true
+    alt: true
+    tags:
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      b: 2
+      em: 1
+      u: 1
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  stopwords:
+    fields:
+      - rendered_item
+    stopwords:
+      - a
+      - an
+      - and
+      - are
+      - as
+      - at
+      - be
+      - but
+      - by
+      - for
+      - if
+      - in
+      - into
+      - is
+      - it
+      - 'no'
+      - not
+      - of
+      - 'on'
+      - or
+      - s
+      - such
+      - t
+      - that
+      - the
+      - their
+      - then
+      - there
+      - these
+      - they
+      - this
+      - to
+      - was
+      - will
+      - with
+    weights:
+      preprocess_index: -5
+      preprocess_query: -2
   add_url: {  }
+  ignorecase:
+    fields:
+      - rendered_item
+      - title
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  content_access:
+    weights:
+      preprocess_query: -10
   rendered_item: {  }
   aggregated_field: {  }
+  node_status: {  }
+  tokenizer:
+    fields:
+      - rendered_item
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
 tracker_settings:
   default: {  }
 options:
