@@ -307,6 +307,27 @@
     }
   }
 }
+.field--type-viewfield {
+  .viewfield-wrapper {
+    border: 1px solid $mdgrey;
+    padding: 4px;
+    @extend .clearfix;
+  }
+  .viewfield-title {
+    @extend .headline2;
+    background: $blue;
+    color: #fff;
+    padding: 10px 14px;
+    margin: 0 0 4px;
+  }
+  .viewfield {
+    padding: 16px 11px 11px;
+    border-top: 1px solid $mdgrey;
+    @include tablet-max {
+      padding: 4px 11px;
+    }
+  }
+}
 .block-links {
   .title {
     @extend .sidehead1;
