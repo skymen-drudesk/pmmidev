@@ -11,6 +11,10 @@
 ** Optional
 ** Used with wrapper scripts to add `dbash` and `ddrush` commands
 
+* [docker-sync](https://github.com/EugenMayer/docker-sync/)
+** Optional
+** Used to improve performance on macOS (OS X).
+
 ## Getting Started Developing
 
 You can most easily start your Drupal project with this baseline by 
@@ -98,6 +102,27 @@ container.
 [Direnv](http://direnv.net/) is used to include the wrapper scripts and
 the `vendor/bin` directory into the PATH.
 
+### Performance on macOS (OS X).
+
+To improve performance on macOS, use [docker-sync]
+(https://github.com/EugenMayer/docker-sync/).
+
+#### Installation
+
+1. `gem install docker-sync`
+2. `brew install fswatch`
+
+#### Use
+
+1. Make sure containers are stopped by running `docker-compose stop`.
+2. Uncomment d4d-unison-sync volume definition in `docker-compose.yml`.
+3. Replace volume for web container to d4d-unison-sync (uncomment and 
+comment/delete the current one)
+4. Start the synchronization with `docker-sync start` and let 
+docker-sync run in the background
+5. Bring up and build the containers with `./build/party.sh`. If you 
+do not want to revert to the state in code (have work in progress), run 
+`docker-compose up -d --build`.
 
 ## Xdebug
 
