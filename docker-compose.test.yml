@@ -20,7 +20,7 @@ services:
 
   pmmi_web:
     container_name: pmmi_test_web
-    image: pmguser/drupal-php7.0-apache:latest
+    image: pmguser/drupal-php7.0-apache:1.0.0
     depends_on:
       - pmmi_db
     networks:
