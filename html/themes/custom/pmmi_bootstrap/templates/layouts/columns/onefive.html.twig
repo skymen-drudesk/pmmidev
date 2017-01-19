@@ -4,12 +4,12 @@
  * Template for a 5-up (1 row of 5 columns) layout.
  */
 #}
-<div class="layout-5up clearfix">
+<div {{ content['#attrs'].addClass('layout-5up clearfix') }}>
   <div class="region-top">
     {{ content.top }}
   </div>
   <div class="rows container">
-    <div class="row-1">
+    <div class="row-1 row">
       <div class="col col-1 col-sm-x5">
         {{ content.oneone }}
       </div>

@@ -17,6 +17,12 @@ dependencies:
     - field.field.block_content.containers.field_block_plugin_4
     - field.field.block_content.containers.field_block_plugin_5
     - field.field.block_content.containers.field_block_plugin_6
+    - field.field.block_content.containers.field_block_select_1
+    - field.field.block_content.containers.field_block_select_2
+    - field.field.block_content.containers.field_block_select_3
+    - field.field.block_content.containers.field_block_select_4
+    - field.field.block_content.containers.field_block_select_5
+    - field.field.block_content.containers.field_block_select_6
     - field.field.block_content.containers.field_block_views_1
     - field.field.block_content.containers.field_block_views_2
     - field.field.block_content.containers.field_block_views_3
@@ -73,41 +79,76 @@ content:
     weight: 1
     label: hidden
     settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
+      view_mode: 5_up
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: entity_reference_entity_view
   field_block_2:
     weight: 4
     label: hidden
     settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
+      view_mode: 5_up
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: entity_reference_entity_view
   field_block_3:
     weight: 6
     label: hidden
     settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
+      view_mode: 5_up
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: entity_reference_entity_view
   field_block_4:
     weight: 8
     label: hidden
     settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
+      view_mode: 5_up
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: entity_reference_entity_view
   field_block_5:
     weight: 10
     label: hidden
     settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
+      view_mode: 5_up
+      link: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: entity_reference_entity_view
   field_block_plugin_1:
     type: entity_reference_rendered_block_plugin
