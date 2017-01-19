@@ -55,14 +55,14 @@ display:
       style:
         type: grid
         options:
-          grouping: {  }
+          uses_fields: false
           columns: 2
-          automatic_width: true
+          automatic_width: false
           alignment: vertical
           col_class_default: false
-          col_class_custom: ''
+          col_class_custom: col
           row_class_default: false
-          row_class_custom: ''
+          row_class_custom: views-row
       row:
         type: 'ds_entity:node'
         options:

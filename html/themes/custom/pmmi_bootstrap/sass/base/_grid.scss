@@ -1,6 +1,7 @@
-$gutter-width-tablet: 7px;
+$gutter-width-tablet: 25px;
+$gutter-width-tablet-deep: 7px;
 $gutter-width-desktop: 10px;
-$tablet_width: 720px;
+$tablet_width: 718px;
 $desktop_width: $container-md;
 
 @mixin prepare-layout($width, $gutter) {
@@ -30,4 +31,11 @@ $desktop_width: $container-md;
 }
 @include tablet {
   @include prepare-layout($tablet_width, $gutter-width-tablet);
+  .container {
+    .container {
+      padding-left: $gutter-width-tablet-deep;
+      padding-right: $gutter-width-tablet-deep;
+      @include prepare-layout($tablet_width, $gutter-width-tablet-deep);
+    }
+  }
 }

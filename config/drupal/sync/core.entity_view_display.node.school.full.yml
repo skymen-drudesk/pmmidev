@@ -22,7 +22,7 @@ dependencies:
     - datetime
     - ds
     - image
-    - link
+    - pmmi_fields
     - responsive_image
     - telephone
     - text
@@ -155,7 +155,14 @@ content:
     label: hidden
     settings:
       title: ''
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: telephone_link
   field_programs_focus:
     weight: 104
@@ -182,9 +189,10 @@ content:
     weight: 111
     label: hidden
     settings:
-      trim_length: 80
+      trim_length: '80'
       rel: nofollow
       target: _blank
+      link_label: 'Visit school’s website '
       url_only: false
       url_plain: false
     third_party_settings:
@@ -195,6 +203,6 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: link
+    type: link_as_label
 hidden:
   links: true
