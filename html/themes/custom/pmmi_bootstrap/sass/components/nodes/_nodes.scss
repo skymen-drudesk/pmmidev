@@ -29,6 +29,9 @@
   }
 }
 .node-layout {
+  .content-right {
+    margin-bottom: 30px;
+  }
   .date {
     @extend .headline4;
     margin-bottom: 5px;

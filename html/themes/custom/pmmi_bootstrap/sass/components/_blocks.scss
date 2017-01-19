@@ -11,7 +11,7 @@
 // Twitter block.
 .block-pmmi-twitter-block {
   border: 1px solid $mdgrey;
-  overflow-x: hidden;
+  overflow: hidden;
   .block-title {
     @extend .block-title-big-bg;
     position: relative;
@@ -43,9 +43,14 @@
     }
   }
   .social-block {
-    margin-right: -30px;
     height: 198px;
-    overflow: auto;
+    &.scroll {
+      margin-right: -30px;
+      overflow: auto;
+      .message {
+        padding-right: 30px;
+      }
+    }
   }
   .message {
     padding: 15px 20px;
@@ -83,7 +88,9 @@
   @include tablet {
     .social-block {
       height: 233px;
-      margin-right: -25px;
+      &.scroll {
+        margin-right: -25px;
+      }
     }
     .block-title {
       height: 59px;
@@ -156,6 +163,7 @@
     @include tablet {
       min-width: 355px;
       max-width: 355px;
+      left: 25px;
       .field-name-field-head {
         font-size: $r30;
       }
@@ -163,8 +171,8 @@
     @include mobile {
       min-width: 0;
       max-width: 100%;
-      left: 20px;
-      right: 20px;
+      left: 15px;
+      right: 15px;
       padding-left: 20px;
       padding-right: 10px;
       .field-name-field-head {

@@ -1,5 +1,8 @@
 .containers {
   @include mobile {
+    .col {
+      margin-bottom: 20px;
+    }
     .rows {
       max-width: 280px;
       margin: 0 auto;

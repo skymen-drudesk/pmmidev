@@ -70,27 +70,18 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
   .content-left {
     @include tablet-max {
       background: $ltgrey;
-      padding: 15px;
-      margin: 0 -15px;
+      padding-top: 15px ;
+      padding-bottom: 15px;
+    }
+    @include tablet {
       > .block-region-sidebar > .field,
       > .block-region-sidebar > .block,
       > .field,
       > .block {
-        padding-left: 15px;
-        padding-right: 8%;
+        padding-right: 5%;
         width: 49.5%;
         display: inline-block;
         vertical-align: top;
-      }
-    }
-    @include mobile {
-      > .block-region-sidebar > .field,
-      > .block-region-sidebar > .block,
-      > .field,
-      > .block {
-        display: block;
-        width: auto;
-        padding-right: 15px;
       }
     }
   }
