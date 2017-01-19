@@ -1,0 +1,1 @@
+*/30 * * * * /usr/bin/env PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin COLUMNS=72 /var/www/vendor/bin/drush --root=/var/www/html --quiet cron
