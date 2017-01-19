@@ -5,7 +5,14 @@ dependencies:
   config:
     - page_manager.page.mechatronics_certification_tests
     - views.view.certification_tests
+  content:
+    - 'block_content:image_header:5a3b2ea7-2c51-468b-a36e-55a23d7cdf8c'
+    - 'block_content:links:bbfd2f56-2192-4476-9fd1-1d20fb49c14d'
+    - 'block_content:social_media:6f9b12db-e338-44d9-ae2c-9175dc0f6baf'
+    - 'block_content:text:b121a89c-c8a7-4355-9769-1139dc0acacb'
+    - 'block_content:text:cd00015f-e884-4841-af25-f665511239b8'
   module:
+    - block_content
     - panels
     - views
 id: mechatronics_certification_tests-panels_variant-0
@@ -20,15 +27,75 @@ variant_settings:
       label_display: '0'
       views_label: ''
       items_per_page: none
-      region: oneone
-      weight: 0
+      region: main
+      weight: -1
       uuid: bbc6d608-90ae-4c2a-8457-612b9d0eae4d
+      context_mapping: {  }
+    8750a77a-c945-4f94-bdeb-e1498f5dbc6d:
+      id: 'block_content:bbfd2f56-2192-4476-9fd1-1d20fb49c14d'
+      label: 'Mechatronics - Links (Benefits)'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: sidebar
+      weight: 0
+      uuid: 8750a77a-c945-4f94-bdeb-e1498f5dbc6d
+      context_mapping: {  }
+    3895ba88-7355-443c-ba9a-f45c778c9f97:
+      id: 'block_content:5a3b2ea7-2c51-468b-a36e-55a23d7cdf8c'
+      label: 'Workforce Development - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: -10
+      uuid: 3895ba88-7355-443c-ba9a-f45c778c9f97
+      context_mapping: {  }
+    bca2c1d1-04ef-466f-9ddd-70afb26c59ea:
+      id: 'block_content:b121a89c-c8a7-4355-9769-1139dc0acacb'
+      label: 'Mechatronics - Test Levels Infographic'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: text_image
+      region: sidebar
+      weight: 0
+      uuid: bca2c1d1-04ef-466f-9ddd-70afb26c59ea
+      context_mapping: {  }
+    bcdc262d-b2f0-4190-b774-b730e3c31cce:
+      id: 'block_content:6f9b12db-e338-44d9-ae2c-9175dc0f6baf'
+      label: 'Workforce Development - Social Media'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: sidebar
+      weight: 0
+      uuid: bcdc262d-b2f0-4190-b774-b730e3c31cce
+      context_mapping: {  }
+    73c86b2e-58a0-4307-b558-b3f610aa9b44:
+      id: 'block_content:cd00015f-e884-4841-af25-f665511239b8'
+      label: 'Mechatronics - Intro Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: main
+      weight: -2
+      uuid: 73c86b2e-58a0-4307-b558-b3f610aa9b44
       context_mapping: {  }
   id: panels_variant
   uuid: d795efa6-1b42-4695-9c4b-6021664d9224
   label: null
   weight: 0
-  layout: oneone
+  layout: panel_landing_left_sidebar
   layout_settings: {  }
   page_title: 'Mechatronics Certification Tests | PMMI'
   storage_type: page_manager
