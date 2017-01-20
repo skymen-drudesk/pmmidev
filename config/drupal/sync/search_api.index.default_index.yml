@@ -5,8 +5,8 @@ dependencies:
   config:
     - field.storage.node.field_report_type
     - field.storage.node.field_year
+    - field.storage.node.body
     - search_api.server.solr_server
-    - core.entity_view_mode.node.full
   module:
     - search_api
     - node
@@ -15,27 +15,6 @@ name: 'Default Index'
 description: ''
 read_only: false
 field_settings:
-  rendered_item:
-    label: 'Rendered item'
-    property_path: rendered_item
-    type: text
-    configuration:
-      roles:
-        anonymous: anonymous
-      view_mode:
-        'entity:node':
-          article: ''
-          basic_page: ''
-          certification_test: ''
-          download: full
-          school: ''
-          video: ''
-        'entity:taxonomy_term':
-          video_type: ''
-          event_type: ''
-          news: ''
-          report_type: ''
-          tags: ''
   node_grants:
     label: 'Node access information'
     property_path: search_api_node_grants
@@ -44,7 +23,7 @@ field_settings:
     type_locked: true
     hidden: true
   title:
-    label: Title
+    label: 'Title String'
     datasource_id: 'entity:node'
     property_path: title
     type: string
@@ -83,6 +62,25 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_year
+  title_f:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: !!float 2
+  body_f:
+    label: Body
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  changed:
+    label: Changed
+    datasource_id: 'entity:node'
+    property_path: changed
+    type: date
 datasource_settings:
   'entity:node':
     bundles:
@@ -104,7 +102,6 @@ processor_settings:
       postprocess_query: 0
   html_filter:
     fields:
-      - rendered_item
       - title
     title: true
     alt: true
@@ -114,14 +111,11 @@ processor_settings:
       h3: 2
       strong: 2
       b: 2
-      em: 1
-      u: 1
     weights:
       preprocess_index: -10
       preprocess_query: -10
   stopwords:
-    fields:
-      - rendered_item
+    fields: {  }
     stopwords:
       - a
       - an
@@ -162,9 +156,18 @@ processor_settings:
       preprocess_index: -5
       preprocess_query: -2
   add_url: {  }
+  stemmer:
+    fields:
+      - title_f
+      - body_f
+    exceptions:
+      texan: texa
+      mexican: mexic
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
   ignorecase:
     fields:
-      - rendered_item
       - title
     weights:
       preprocess_index: -10
@@ -176,8 +179,7 @@ processor_settings:
   aggregated_field: {  }
   node_status: {  }
   tokenizer:
-    fields:
-      - rendered_item
+    fields: {  }
     spaces: ''
     overlap_cjk: 1
     minimum_word_size: '3'
