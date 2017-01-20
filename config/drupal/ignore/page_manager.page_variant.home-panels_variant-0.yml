@@ -12,6 +12,7 @@ dependencies:
     - 'block_content:slideshow:79e5e0a3-d43f-47a5-966a-fe36b5e3d1a8'
     - 'block_content:text:c0995ff6-8d63-4590-861c-de26e279038e'
   module:
+    - audience_select
     - block_content
     - panels
     - views
@@ -102,6 +103,12 @@ variant_settings:
   builder: ipe
 page: home
 weight: 0
-selection_criteria: {  }
+selection_criteria:
+  -
+    id: audience
+    audiences:
+      audience_1: audience_1
+    negate: 0
+    context_mapping: {  }
 selection_logic: and
 static_context: {  }

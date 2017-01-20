@@ -7,10 +7,10 @@ dependencies:
     - system.menu.footer
     - system.menu.utility-navigation-other
   module:
+    - audience_select
     - panels_everywhere
     - system
     - tb_megamenu
-    - user
 id: site_template-panels_everywhere_variant-2
 label: Other
 variant: panels_everywhere_variant
@@ -101,12 +101,11 @@ variant_settings:
 page: site_template
 weight: -5
 selection_criteria:
-  -
-    id: user_role
-    roles:
-      administrator: administrator
-    negate: false
-    context_mapping:
-      user: current_user
+  1:
+    id: audience
+    audiences:
+      audience_3: audience_3
+    negate: 0
+    context_mapping: {  }
 selection_logic: and
 static_context: {  }

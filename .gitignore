@@ -49,3 +49,6 @@ config/cron/sendmail
 
 # Ignore solr data.
 solr
+
+# Ignore temp files
+*.tmp

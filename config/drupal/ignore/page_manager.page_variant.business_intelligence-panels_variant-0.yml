@@ -24,7 +24,7 @@ variant_settings:
       info: ''
       view_mode: full
       region: top
-      weight: 0
+      weight: -10
       uuid: 6201463c-74fa-44e6-b661-bdd733769417
       context_mapping: {  }
     9454a9c5-1f7f-49f9-9293-7a7007b5e5e2:
@@ -35,15 +35,15 @@ variant_settings:
       status: true
       info: ''
       view_mode: 5_up
-      region: top
-      weight: 1
+      region: grey
+      weight: 0
       uuid: 9454a9c5-1f7f-49f9-9293-7a7007b5e5e2
       context_mapping: {  }
   id: panels_variant
   uuid: d5035203-c23b-4a0a-8c0b-7e7e5d662f85
   label: null
   weight: 0
-  layout: oneone
+  layout: panel_homepage
   layout_settings: {  }
   page_title: 'Business Intelligence Library | PMMI'
   storage_type: page_manager

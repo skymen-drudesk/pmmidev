@@ -10,9 +10,9 @@ dependencies:
     - 'block_content:containers:39b3f6d2-93b6-4bcd-a7e5-b828db1a1166'
     - 'block_content:text:c0995ff6-8d63-4590-861c-de26e279038e'
   module:
+    - audience_select
     - block_content
     - panels
-    - user
     - views
 id: home-panels_variant-2
 label: Other
@@ -49,7 +49,7 @@ variant_settings:
       provider: views
       label_display: '0'
       views_label: ''
-      items_per_page: '5'
+      items_per_page: none
       region: blue
       weight: 0
       uuid: 72369c15-85a4-4647-a63f-d0e7c2cf6adf
@@ -78,13 +78,11 @@ variant_settings:
 page: home
 weight: 0
 selection_criteria:
-  -
-    id: user_role
-    roles:
-      anonymous: anonymous
-      authenticated: authenticated
-    negate: true
-    context_mapping:
-      user: current_user
+  1:
+    id: audience
+    audiences:
+      audience_3: audience_3
+    negate: 0
+    context_mapping: {  }
 selection_logic: and
 static_context: {  }

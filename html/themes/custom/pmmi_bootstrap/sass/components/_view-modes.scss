@@ -73,4 +73,19 @@
       }
     }
   }
+  &.school {
+    font-size: $r14;
+    line-height: $r18;
+    color: $textdark;
+    font-weight: 500;
+    margin-bottom: 20px;
+    @extend .inherited-p;
+    .field-name-node-title {
+      &
+      h3 {
+        @extend .sidehead3;
+        margin: 0;
+      }
+    }
+  }
 }

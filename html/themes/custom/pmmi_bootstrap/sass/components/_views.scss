@@ -127,3 +127,30 @@ div.view {
     }
   }
 }
+.view-partner-schools {
+  .views-view-grid.cols-2 {
+    font-size: 0;
+    .views-row,
+    .col {
+      display: inline-block;
+      vertical-align: top;
+      width: 50%;
+      padding: 0 15px;
+      font-size: 0;
+      float: none;
+      &:nth-child(odd) {
+        padding-left: 0;
+      }
+      &:nth-child(even) {
+        padding-right: 0;
+      }
+    }
+    @include desktop-max {
+      .views-row {
+        padding: 0;
+        width: auto;
+        display: block;
+      }
+    }
+  }
+}

@@ -32,7 +32,6 @@ third_party_settings:
     regions:
       content:
         - node_title
-        - field_school_contact
         - field_address
         - field_phone
     fields:
@@ -41,31 +40,41 @@ third_party_settings:
         weight: 0
         label: hidden
         formatter: default
+        settings:
+          link: true
+          wrapper: h3
+          class: ''
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.school.default
 targetEntityType: node
 bundle: school
 mode: default
 content:
   field_address:
-    weight: 108
+    weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: address_default
   field_phone:
-    weight: 109
+    weight: 2
     label: hidden
     settings:
       title: ''
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: telephone_link
-  field_school_contact:
-    weight: 107
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
 hidden:
   body: true
   field_content_verified: true
@@ -74,5 +83,6 @@ hidden:
   field_image_header: true
   field_logo: true
   field_programs_focus: true
+  field_school_contact: true
   field_website: true
   links: true

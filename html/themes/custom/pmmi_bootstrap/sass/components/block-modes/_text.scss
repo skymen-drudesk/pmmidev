@@ -41,5 +41,17 @@
       }
       margin-bottom: 20px;
     }
+    .content-left & {
+      .title {
+        @extend .sidehead1;
+      }
+      .block-body {
+        margin-bottom: 10px;
+        @extend .side-paragraph;
+      }
+      .link a {
+        @extend .text-link;
+      }
+    }
   }
 }

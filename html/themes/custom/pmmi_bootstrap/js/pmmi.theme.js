@@ -66,6 +66,7 @@
       $('select').once('uniform').each(function () {
         $(this).uniform();
       });
+      // Equal heights for blocks inside containers.
       $('.containers .row').once('matchHeight').each(function () {
         var $row = $(this);
         var $socialBlock = $row.find('.social-block');
@@ -79,6 +80,16 @@
             var $title = $parent.find('.block-title');
             var newHeight = $parent.height() - $title.outerHeight(true);
             $block.height(newHeight);
+            var messagesHeight = 0;
+            $('.message', $block).each(function () {
+              messagesHeight += $(this).outerHeight();
+            });
+            if (messagesHeight > newHeight) {
+              $block.addClass('scroll');
+            }
+            else {
+              $block.removeClass('scroll');
+            }
           });
         };
       });

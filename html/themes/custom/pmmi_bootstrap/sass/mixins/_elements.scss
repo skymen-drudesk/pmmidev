@@ -30,23 +30,26 @@
     color: $mdgrey;
   }
 }
+.text-link {
+  font-size: $r14;
+  line-height: $r15;
+  font-weight: 500;
+  padding-left: 20px;
+  display: inline-block;
+  color: $ltblue;
+  @extend .fa-chevron-circle-right;
+  &:before {
+    float: left;
+    margin-left: -20px;
+    @extend .fa;
+    font-weight: 400;
+  }
+}
 .linked-list-item {
   border-bottom: 1px solid $mdgrey;
   padding-bottom: 6px;
   margin-bottom: 6px;
   a {
-    font-size: $r14;
-    line-height: $r15;
-    font-weight: 500;
-    padding-left: 20px;
-    display: inline-block;
-    color: $ltblue;
-    @extend .fa-chevron-circle-right;
-    &:before {
-      float: left;
-      margin-left: -20px;
-      @extend .fa;
-      font-weight: 400;
-    }
+    @extend .text-link;
   }
 }

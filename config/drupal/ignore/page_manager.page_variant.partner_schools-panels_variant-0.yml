@@ -7,6 +7,8 @@ dependencies:
     - views.view.partner_schools
   content:
     - 'block_content:image_header:e9b33f9b-2b64-4d37-91b2-4ffef1be849f'
+    - 'block_content:text:605a97ca-7986-4b7f-a48f-0dbe4e5643ec'
+    - 'block_content:text:e802e465-56b0-4085-ada5-64d5f04b39c7'
   module:
     - block_content
     - panels
@@ -23,7 +25,7 @@ variant_settings:
       label_display: '0'
       views_label: ''
       items_per_page: none
-      region: oneone
+      region: main
       weight: 0
       uuid: 5222b243-67a6-42c9-9fe3-b89687b3af96
       context_mapping: {  }
@@ -36,14 +38,38 @@ variant_settings:
       info: ''
       view_mode: full
       region: top
-      weight: 0
+      weight: -10
       uuid: c23312e0-7abc-41f3-aa70-07fc2ea401d4
+      context_mapping: {  }
+    cefb2ca3-59a4-4468-a4b4-68d9ffc68969:
+      id: 'block_content:e802e465-56b0-4085-ada5-64d5f04b39c7'
+      label: 'Partner Schools - Text (side)'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: sidebar
+      weight: 0
+      uuid: cefb2ca3-59a4-4468-a4b4-68d9ffc68969
+      context_mapping: {  }
+    d65e14e6-91f2-4bfa-8476-253fe2695497:
+      id: 'block_content:605a97ca-7986-4b7f-a48f-0dbe4e5643ec'
+      label: 'Partner School - Intro Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: main
+      weight: -1
+      uuid: d65e14e6-91f2-4bfa-8476-253fe2695497
       context_mapping: {  }
   id: panels_variant
   uuid: 8f1ce360-392d-4d63-a2b6-ce3632c0f8a4
   label: null
   weight: 0
-  layout: oneone
+  layout: panel_landing_left_sidebar
   layout_settings: {  }
   page_title: 'Partner Schools | PMMI'
   storage_type: page_manager
