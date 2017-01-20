@@ -124,6 +124,12 @@ docker-sync run in the background
 do not want to revert to the state in code (have work in progress), run 
 `docker-compose up -d --build`.
 
+OR run next command:
+
+```bash
+./build/osx-run.sh
+```
+
 ## Xdebug
 
 1. `sudo ifconfig lo0 alias 10.254.254.254`
