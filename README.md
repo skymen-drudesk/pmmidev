@@ -76,7 +76,7 @@ Available environments are:
 * dev
 
 You can add you own custom modules to be built with your local install 
-and set the site environment by making your .env file look something 
+and set the site environment by making your `.env` file look something 
 like this:
 
 ```bash
@@ -114,21 +114,20 @@ To improve performance on macOS, use [docker-sync]
 
 #### Use
 
-1. Make sure containers are stopped by running `docker-compose stop`.
-2. Uncomment d4d-unison-sync volume definition in `docker-compose.yml`.
-3. Replace volume for web container to d4d-unison-sync (uncomment and 
-comment/delete the current one)
-4. Start the synchronization with `docker-sync start` and let 
+1. Set `export SITE_ENVIRONMENT=dev-osx` in your `.env` file.
+2. Start the synchronization with `docker-sync start` and let 
 docker-sync run in the background
-5. Bring up and build the containers with `./build/party.sh`. If you 
+3. Bring up and build the containers with `./build/party.sh -b`. If you 
 do not want to revert to the state in code (have work in progress), run 
 `docker-compose up -d --build`.
 
-OR run next command:
+Instead of steps 2-3 above, you can run:
 
 ```bash
 ./build/osx-run.sh
 ```
+
+**Step 1 above must be done in order for `./build/party.sh` to work.**
 
 ## Xdebug
 

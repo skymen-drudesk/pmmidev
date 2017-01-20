@@ -44,7 +44,6 @@ services:
       - "9000"
     volumes:
       - .:/var/www
-#      - unison-sync:/var/www:rw # Replace volume to this to use docker-sync for macOS users
     links:
       - db
       - solr
@@ -61,7 +60,3 @@ services:
       - /solr-conf
     ports:
       - "8003:8983"
-
-#volumes:
-#  unison-sync:
-#    external: true

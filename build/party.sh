@@ -58,6 +58,9 @@ if [ "$SITE_ENVIRONMENT" = "test" ]; then
 elif [ "$SITE_ENVIRONMENT" = "dev" ]; then
   dockercompose=docker-compose.yml
   webcontainer=pmmi_dev_web
+elif [ "$SITE_ENVIRONMENT" = "dev-osx" ]; then
+  dockercompose=docker-compose-osx.yml
+  webcontainer=pmmi_dev_web_osx
 fi
 
 echo "Running on the $SITE_ENVIRONMENT environment using the $dockercompose Docker Compose file."
