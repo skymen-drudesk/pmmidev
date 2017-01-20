@@ -1,0 +1,108 @@
+uuid: bdaaf4df-306b-4c17-a278-d4f7074c251d
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.industry_services
+  content:
+    - 'block_content:containers:c3f99b4a-e61b-4d19-950c-cec131f80858'
+    - 'block_content:containers:eee3b096-f788-4426-8cc5-92af05f31d84'
+    - 'block_content:containers:f71b701b-951e-406b-a2bb-30638f835e83'
+    - 'block_content:image_header:d27ca527-ed10-4a0e-9d7f-12059a807b0e'
+    - 'block_content:text:56caeb0c-a479-4a2f-b57b-4c834b003339'
+    - 'block_content:text:b0ba677a-7085-4757-baac-f103c7c6ce61'
+  module:
+    - block_content
+    - panels
+id: industry_services-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    d6511d10-e7c1-412f-9236-7a61ba48d814:
+      id: 'block_content:d27ca527-ed10-4a0e-9d7f-12059a807b0e'
+      label: 'Industry Services - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: -10
+      uuid: d6511d10-e7c1-412f-9236-7a61ba48d814
+      context_mapping: {  }
+    651df45f-111a-41f2-aa34-04afb93c0001:
+      id: 'block_content:eee3b096-f788-4426-8cc5-92af05f31d84'
+      label: 'Industry Services - Cards 1-3'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: grey
+      weight: 0
+      uuid: 651df45f-111a-41f2-aa34-04afb93c0001
+      context_mapping: {  }
+    927d59b5-3d93-4cf4-83fa-eb02eab9a1c9:
+      id: 'block_content:f71b701b-951e-406b-a2bb-30638f835e83'
+      label: 'Industry Services - Cards 4-6'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: grey
+      weight: 1
+      uuid: 927d59b5-3d93-4cf4-83fa-eb02eab9a1c9
+      context_mapping: {  }
+    aa248601-f3da-4a98-b479-06687ef7a2d9:
+      id: 'block_content:56caeb0c-a479-4a2f-b57b-4c834b003339'
+      label: 'Industry Services - Intro Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: grey
+      weight: -1
+      uuid: aa248601-f3da-4a98-b479-06687ef7a2d9
+      context_mapping: {  }
+    6c1e74f5-3075-45c2-a805-ffe1e138be88:
+      id: 'block_content:b0ba677a-7085-4757-baac-f103c7c6ce61'
+      label: 'Industry Services - Text (Packaging Inquiry Form)'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: white
+      weight: 0
+      uuid: 6c1e74f5-3075-45c2-a805-ffe1e138be88
+      context_mapping: {  }
+    96592632-7813-4f93-b9f5-1a9b2a81868b:
+      id: 'block_content:c3f99b4a-e61b-4d19-950c-cec131f80858'
+      label: 'Industry Services - Upcoming Events'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: blue
+      weight: 0
+      uuid: 96592632-7813-4f93-b9f5-1a9b2a81868b
+      context_mapping: {  }
+  id: panels_variant
+  uuid: d4a5afde-6772-4d3a-9b1f-19781593b758
+  label: null
+  weight: 0
+  layout: panel_homepage
+  layout_settings: {  }
+  page_title: 'Industry Services | PMMI'
+  storage_type: page_manager
+  storage_id: industry_services-panels_variant-0
+  builder: ipe
+page: industry_services
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

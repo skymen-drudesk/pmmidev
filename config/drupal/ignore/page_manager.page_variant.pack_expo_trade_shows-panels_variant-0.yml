@@ -1,0 +1,43 @@
+uuid: 997bd13f-9396-4b02-9470-ec44f18cc1ed
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.pack_expo_trade_shows
+  content:
+    - 'block_content:image_header:9148191b-e099-44bd-a15b-cd00cdd65e34'
+  module:
+    - block_content
+    - panels
+id: pack_expo_trade_shows-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    3679714a-ad6d-4446-8110-58ac8c57274f:
+      id: 'block_content:9148191b-e099-44bd-a15b-cd00cdd65e34'
+      label: 'PACK EXPO - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: main
+      weight: 0
+      uuid: 3679714a-ad6d-4446-8110-58ac8c57274f
+      context_mapping: {  }
+  id: panels_variant
+  uuid: f52821d5-900c-498f-84ff-4de52a08b1d4
+  label: null
+  weight: 0
+  layout: sitewide
+  layout_settings: {  }
+  page_title: 'PACK EXPO Trade Shows | PMMI'
+  storage_type: page_manager
+  storage_id: pack_expo_trade_shows-panels_variant-0
+  builder: ipe
+page: pack_expo_trade_shows
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }
