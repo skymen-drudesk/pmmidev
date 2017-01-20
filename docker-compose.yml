@@ -23,6 +23,7 @@ services:
       dockerfile: Dockerfile-dev
     depends_on:
       - db
+      - solr
     # Environment variables
     environment:
       TERM: xterm
@@ -46,15 +47,18 @@ services:
 #      - unison-sync:/var/www:rw # Replace volume to this to use docker-sync for macOS users
     links:
       - db
+      - solr
 
   solr:
     image: solr:5.5-alpine
     volumes:
-      - ./solr:/opt/solr/server/solr/mycores
+      - ./solr:/opt/solr/server/solr/d8
+      - ./build/solr-conf/5.x:/solr-conf/conf
     entrypoint:
       - docker-entrypoint.sh
       - solr-precreate
-      - main
+      - d8
+      - /solr-conf
     ports:
       - "8003:8983"
 
