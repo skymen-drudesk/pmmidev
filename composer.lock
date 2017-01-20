@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3e4b1ac5353dbbcb196fa4b4db9b2a9d",
+    "content-hash": "4ec5ddaaf6393c78feb288ec54b25a61",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -3622,7 +3622,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/page_manager",
-                "reference": "292cddfeca17bea8b95fbcad2ba09b534a913d03"
+                "reference": "a4108a53ddf3b229152b2d1179d67d59a49a8c29"
             },
             "require": {
                 "drupal/core": "^8.0.5",
@@ -3639,7 +3639,8 @@
                 },
                 "patches_applied": {
                     "Don't call getCacheTagsToInvalidate() when null": "https://www.drupal.org/files/issues/2696345-2.patch",
-                    "Custom attributes in blocks": "https://www.drupal.org/files/issues/page_manager-block-css-attributes-9.patch"
+                    "Custom attributes in blocks": "https://www.drupal.org/files/issues/page_manager-block-css-attributes-9.patch",
+                    "Remove support for paths with %, provide validation and description for path": "https://www.drupal.org/files/issues/page_manager-provide-validation-and-description-for-path-2659948-13.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3672,7 +3673,7 @@
                 "issues": "https://www.drupal.org/project/issues/page_manager",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             },
-            "time": "2017-01-18T15:01:50+00:00"
+            "time": "2016-12-07 23:22:34"
         },
         {
             "name": "drupal/panels",
