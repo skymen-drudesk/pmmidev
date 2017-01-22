@@ -1,29 +1,12 @@
 version: '2'
 services:
-  db:
-    container_name: pmmi_dev_db
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpasswd
-      MYSQL_USER: drupal
-      MYSQL_PASSWORD: drupal
-      MYSQL_DATABASE: drupal
-    volumes:
-      - ./data:/var/lib/mysql
-      - ./config/mysql/config:/etc/mysql/conf.d
-    ports:
-      - "3306:3306"
-    expose:
-      - "3306"
-
   web:
-    container_name: pmmi_dev_web
+    container_name: pmmi_dev_web_osx
     build:
       context: .
       dockerfile: Dockerfile-dev
     depends_on:
       - db
-      - solr
     # Environment variables
     environment:
       TERM: xterm
@@ -43,20 +26,18 @@ services:
       - "80"
       - "9000"
     volumes:
-      - .:/var/www
+      - unison-sync:/var/www:rw # Replace volume to this to use docker-sync for macOS users
     links:
       - db
-      - solr
-
+  db:
+    extends:
+      file: docker-compose.yml
+      service: db
   solr:
-    image: solr:5.5-alpine
-    volumes:
-      - ./solr:/opt/solr/server/solr/d8
-      - ./build/solr-conf/5.x:/solr-conf/conf
-    entrypoint:
-      - docker-entrypoint.sh
-      - solr-precreate
-      - d8
-      - /solr-conf
-    ports:
-      - "8003:8983"
+    extends:
+      file: docker-compose.yml
+      service: solr
+
+volumes:
+  unison-sync:
+    external: true

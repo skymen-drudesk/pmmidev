@@ -139,4 +139,25 @@
     }
   };
 
+  /**
+   * Main menu theming.
+   */
+  Drupal.behaviors.pmmiMainMenu = {
+    attach: function () {
+      $('.main-nav').once('main-nav').each(function () {
+        $(window).on('breakpointActivated', function (e, breakpoint) {
+          if (breakpoint === 'mobile') {
+            $('a.dropdown-toggle').on('click.mobile-toggler', function (e) {
+              e.preventDefault();
+              $(this).toggleClass('opened').parent().toggleClass('opened');
+            });
+          }
+          else {
+            $('a.dropdown-toggle').off('click.mobile-toggler');
+          }
+        });
+      });
+    }
+  };
+
 })(jQuery, window, Drupal);

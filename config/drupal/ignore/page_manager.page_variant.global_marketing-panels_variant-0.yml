@@ -6,6 +6,7 @@ dependencies:
     - page_manager.page.global_marketing
   content:
     - 'block_content:containers:1868531b-243c-4b11-8b98-e078e33c1c12'
+    - 'block_content:containers:21f07b07-2b9c-4171-ac2a-561f071cfff0'
     - 'block_content:containers:c15114a7-d011-42f1-9339-0c8c5f454680'
     - 'block_content:containers:e62cf7e0-08d6-49cb-8f74-5bb45d098b0c'
     - 'block_content:image_header:678d9951-dc22-43d9-862c-609c9e10fea8'
@@ -90,6 +91,18 @@ variant_settings:
       region: white
       weight: -2
       uuid: e0006b92-4310-4c03-ab56-f5f50b9cd39c
+      context_mapping: {  }
+    2ef6344c-2bd9-4825-8e86-b114902f6de7:
+      id: 'block_content:21f07b07-2b9c-4171-ac2a-561f071cfff0'
+      label: 'Global Marketing - Upcoming Events'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: blue
+      weight: 0
+      uuid: 2ef6344c-2bd9-4825-8e86-b114902f6de7
       context_mapping: {  }
   id: panels_variant
   uuid: a413396f-79e1-4934-8fbc-809d055545fe
