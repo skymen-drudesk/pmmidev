@@ -202,13 +202,15 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     if (array_key_exists('audience_image', $audience)) {
       if (!empty($audience['audience_image'])) {
         $image = File::load($audience['audience_image'][0]);
-        $image_style_uri = $image_style->buildUri($image->getFileUri());
-        $status = TRUE;
-        if (!file_exists($image_style_uri)) {
-          $status = $image_style->createDerivative($image->getFileUri(), $image_style_uri);
+        if (!empty($image)) {
+          $image_style_uri = $image_style->buildUri($image->getFileUri());
+          $status = TRUE;
+          if (!file_exists($image_style_uri)) {
+            $status = $image_style->createDerivative($image->getFileUri(), $image_style_uri);
+          }
+          $image_uri = $status ? $image_style_uri : $image->getFileUri();
+          $image_url = file_url_transform_relative(file_create_url($image_uri));
         }
-        $image_uri = $status ? $image_style_uri : $image->getFileUri();
-        $image_url = file_url_transform_relative(file_create_url($image_uri));
       }
     }
 
