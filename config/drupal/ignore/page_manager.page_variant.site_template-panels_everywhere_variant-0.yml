@@ -6,11 +6,13 @@ dependencies:
     - page_manager.page.site_template
     - system.menu.footer
     - system.menu.utility-navigation-end-user
+    - views.view.search_page
   module:
     - audience_select
     - panels_everywhere
     - system
     - tb_megamenu
+    - views
 id: site_template-panels_everywhere_variant-0
 label: 'End User'
 variant: panels_everywhere_variant
@@ -73,7 +75,7 @@ variant_settings:
       provider: tb_megamenu
       label_display: 0
       region: header_main_nav
-      weight: '0'
+      weight: '-3'
       uuid: 5e3cd20a-f36b-4e9f-982e-d0f3b219ef65
       context_mapping: {  }
     03c483d4-71db-4a5f-8015-1c91be0172b9:
@@ -87,6 +89,16 @@ variant_settings:
       region: header_logo
       weight: '0'
       uuid: 03c483d4-71db-4a5f-8015-1c91be0172b9
+      context_mapping: {  }
+    5e2a25b2-294d-4201-bbd6-c7415ed96ec2:
+      id: 'views_exposed_filter_block:search_page-block_1'
+      label: ''
+      provider: views
+      label_display: 0
+      views_label: ''
+      region: header_main_nav
+      weight: '0'
+      uuid: 5e2a25b2-294d-4201-bbd6-c7415ed96ec2
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: e3e9f1a9-d6c5-4a5b-ab6c-bd57cd3b27f9
