@@ -3,28 +3,23 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.company.field_address_1
-    - field.field.node.company.field_address_2
+    - field.field.node.company.field_address
     - field.field.node.company.field_after_sales_service
     - field.field.node.company.field_businbess_lines
-    - field.field.node.company.field_city
     - field.field.node.company.field_company_description
-    - field.field.node.company.field_country
     - field.field.node.company.field_equipment_sold_type
     - field.field.node.company.field_fax_number
     - field.field.node.company.field_general_company_email
     - field.field.node.company.field_industries_served
     - field.field.node.company.field_main_phone_number
     - field.field.node.company.field_manufacturers_represented
-    - field.field.node.company.field_postal_code
     - field.field.node.company.field_primary_contact_email
     - field.field.node.company.field_primary_contact_first_name
     - field.field.node.company.field_primary_contact_last_name
-    - field.field.node.company.field_state
-    - field.field.node.company.field_territory_served
     - field.field.node.company.field_website_url
     - node.type.company
   module:
+    - address
     - link
     - telephone
 id: node.company.default
@@ -32,53 +27,31 @@ targetEntityType: node
 bundle: company
 mode: default
 content:
-  field_address_1:
+  field_address:
     weight: 5
     settings:
-      size: 60
-      placeholder: ''
+      default_country: null
     third_party_settings: {  }
-    type: string_textfield
-  field_address_2:
-    weight: 6
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
+    type: address_default
   field_after_sales_service:
-    weight: 20
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
-  field_businbess_lines:
     weight: 15
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
-  field_city:
-    weight: 7
-    settings:
-      size: 60
-      placeholder: ''
+  field_businbess_lines:
+    weight: 10
+    settings: {  }
     third_party_settings: {  }
-    type: string_textfield
+    type: options_buttons
   field_company_description:
-    weight: 11
+    weight: 6
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
-  field_country:
-    weight: 9
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
   field_equipment_sold_type:
-    weight: 18
+    weight: 13
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -96,7 +69,7 @@ content:
     third_party_settings: {  }
     type: email_default
   field_industries_served:
-    weight: 17
+    weight: 12
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -107,52 +80,33 @@ content:
     third_party_settings: {  }
     type: telephone_default
   field_manufacturers_represented:
-    weight: 19
+    weight: 14
     settings:
       rows: 5
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
-  field_postal_code:
-    weight: 10
-    settings:
-      placeholder: ''
-      size: 60
-    third_party_settings: {  }
-    type: string_textfield
   field_primary_contact_email:
-    weight: 14
+    weight: 9
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: email_default
   field_primary_contact_first_name:
-    weight: 12
+    weight: 7
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
   field_primary_contact_last_name:
-    weight: 13
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-  field_state:
     weight: 8
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_territory_served:
-    weight: 16
-    settings: {  }
-    third_party_settings: {  }
-    type: options_buttons
   field_website_url:
     weight: 3
     settings:

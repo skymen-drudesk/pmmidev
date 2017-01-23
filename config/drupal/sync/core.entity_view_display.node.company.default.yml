@@ -3,28 +3,23 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.company.field_address_1
-    - field.field.node.company.field_address_2
+    - field.field.node.company.field_address
     - field.field.node.company.field_after_sales_service
     - field.field.node.company.field_businbess_lines
-    - field.field.node.company.field_city
     - field.field.node.company.field_company_description
-    - field.field.node.company.field_country
     - field.field.node.company.field_equipment_sold_type
     - field.field.node.company.field_fax_number
     - field.field.node.company.field_general_company_email
     - field.field.node.company.field_industries_served
     - field.field.node.company.field_main_phone_number
     - field.field.node.company.field_manufacturers_represented
-    - field.field.node.company.field_postal_code
     - field.field.node.company.field_primary_contact_email
     - field.field.node.company.field_primary_contact_first_name
     - field.field.node.company.field_primary_contact_last_name
-    - field.field.node.company.field_state
-    - field.field.node.company.field_territory_served
     - field.field.node.company.field_website_url
     - node.type.company
   module:
+    - address
     - link
     - options
     - user
@@ -33,20 +28,12 @@ targetEntityType: node
 bundle: company
 mode: default
 content:
-  field_address_1:
-    weight: 106
+  field_address:
+    weight: 126
     label: above
-    settings:
-      link_to_entity: false
+    settings: {  }
     third_party_settings: {  }
-    type: string
-  field_address_2:
-    weight: 107
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
+    type: address_default
   field_after_sales_service:
     weight: 121
     label: above
@@ -62,26 +49,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
-  field_city:
-    weight: 110
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
   field_company_description:
     weight: 112
     label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-  field_country:
-    weight: 108
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
   field_equipment_sold_type:
     weight: 122
     label: above
@@ -120,13 +93,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-  field_postal_code:
-    weight: 125
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
   field_primary_contact_email:
     weight: 115
     label: above
@@ -147,20 +113,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-  field_state:
-    weight: 109
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-  field_territory_served:
-    weight: 124
-    label: above
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
   field_website_url:
     weight: 104
     label: above
