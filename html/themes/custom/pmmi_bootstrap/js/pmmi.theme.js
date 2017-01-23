@@ -145,15 +145,19 @@
   Drupal.behaviors.pmmiMainMenu = {
     attach: function () {
       $('.main-nav').once('main-nav').each(function () {
+        var $dropdownToggle = $('a.dropdown-toggle');
+        $dropdownToggle.each(function () {
+          $(this).parent().find('.mega-nav').prepend($('<li>').addClass('only-mobile').append($(this).clone().toggleClass('dropdown-toggle')));
+        });
         $(window).on('breakpointActivated', function (e, breakpoint) {
           if (breakpoint === 'mobile') {
-            $('a.dropdown-toggle').on('click.mobile-toggler', function (e) {
+            $dropdownToggle.on('click.mobile-toggler', function (e) {
               e.preventDefault();
               $(this).toggleClass('opened').parent().toggleClass('opened');
             });
           }
           else {
-            $('a.dropdown-toggle').off('click.mobile-toggler');
+            $dropdownToggle.off('click.mobile-toggler');
           }
         });
       });
