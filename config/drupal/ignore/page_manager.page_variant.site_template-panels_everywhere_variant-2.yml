@@ -6,11 +6,13 @@ dependencies:
     - page_manager.page.site_template
     - system.menu.footer
     - system.menu.utility-navigation-other
+    - views.view.search_page
   module:
     - audience_select
     - panels_everywhere
     - system
     - tb_megamenu
+    - views
 id: site_template-panels_everywhere_variant-2
 label: Other
 variant: panels_everywhere_variant
@@ -33,7 +35,7 @@ variant_settings:
       provider: tb_megamenu
       label_display: 0
       region: header_main_nav
-      weight: '0'
+      weight: '-3'
       uuid: 5a4f4982-0583-487b-b9ce-1c83ba0d4cab
       context_mapping: {  }
     1642ef28-36b7-4426-a421-2c8785807a57:
@@ -87,6 +89,16 @@ variant_settings:
       region: header_logo
       weight: '0'
       uuid: 148b658b-bf26-4de8-bae8-93b2932da87e
+      context_mapping: {  }
+    a40230c8-4b20-4866-b9ed-4bea9a3b0096:
+      id: 'views_exposed_filter_block:search_page-block_1'
+      label: ''
+      provider: views
+      label_display: 0
+      views_label: ''
+      region: header_main_nav
+      weight: '-2'
+      uuid: a40230c8-4b20-4866-b9ed-4bea9a3b0096
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: eb5855a2-bbfc-4ee6-baa1-e933c5bb9108
