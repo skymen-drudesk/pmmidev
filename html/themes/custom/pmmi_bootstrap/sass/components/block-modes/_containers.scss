@@ -9,3 +9,28 @@
     }
   }
 }
+.blue-region {
+  .containers {
+    .region-top {
+      text-align: center;
+      .field-name-field-head {
+        @extend .headline1;
+        @extend .white;
+        display: inline-block;
+        margin-bottom: 50px;
+      }
+    }
+  }
+}
+.grey-region {
+  .containers {
+    .region-top {
+      text-align: center;
+      .field-name-field-head {
+        @extend .headline1;
+        display: inline-block;
+        margin-bottom: 40px;
+      }
+    }
+  }
+}
