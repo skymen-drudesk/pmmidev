@@ -72,9 +72,9 @@ class AudienceDeleteForm extends ConfirmFormBase {
       '%audience_id' => $this->audience_id,
     );
 
-    $this->logger('Audience')->notice('The %audience_id browser language code has been deleted.', $args);
+    $this->logger('Audience')->notice('The %audience_id has been deleted.', $args);
 
-    drupal_set_message($this->t('The %audience_id browser language code has been deleted.', $args));
+    drupal_set_message($this->t('The %audience_id has been deleted.', $args));
 
     $form_state->setRedirect('audience_select.audience_settings_form');
   }

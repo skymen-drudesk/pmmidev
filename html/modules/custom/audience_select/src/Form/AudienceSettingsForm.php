@@ -75,7 +75,8 @@ class AudienceSettingsForm extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->AudienceManager->getConfig();
-    $form['gateway_url'] = [
+    $crawler_audience = $config->get('default_bot_audience');
+    $form['gateway_url'] = array(
       '#type' => 'textfield',
       '#title' => $this->t('Gateway Url'),
       '#description' => $this->t('Paths should start with /, ? or #.'),
@@ -86,7 +87,7 @@ class AudienceSettingsForm extends ConfigFormBase {
           'validateUriElement',
         ),
       ),
-    ];
+    );
     $form['excluded_pages'] = array(
       '#type' => 'textarea',
       '#title' => $this->t('Excluded Pages'),
@@ -96,8 +97,17 @@ class AudienceSettingsForm extends ConfigFormBase {
         '%front' => '<front>',
       )),
     );
+    $form['default_bot_audience'] = array(
+      '#type' => 'select',
+      '#title' => $this->t('Default Auidience'),
+      '#description' => $this->t('Default Auidience for Bot/Crawler'),
+      '#default_value' => $crawler_audience,
+      '#options' => $this->AudienceManager->getOptionsList(),
+      '#required' => TRUE,
+    );
     $form['audiences'] = [
       '#type' => 'table',
+      '#description' => $this->t('Default Auidience for Bot/Crawler'),
       '#header' => [
         $this->t('Audience ID'),
         $this->t('Audience Title'),
@@ -107,6 +117,7 @@ class AudienceSettingsForm extends ConfigFormBase {
       ],
       '#attributes' => ['id' => 'audience-table'],
       '#empty' => $this->t('No audiences available.'),
+      '#caption' => $this->t('You can`t delete Default Crawler Audience, until you remove selection from list.'),
     ];
     if (!empty($this->audiences)) {
       $audiences = $this->audiences;
@@ -161,10 +172,12 @@ class AudienceSettingsForm extends ConfigFormBase {
             ),
           ),
         );
+        $access = $crawler_audience != $audience_id ? TRUE : FALSE;
         // Operations column.
         $form['audiences'][$audience_id]['operations'] = [
           '#type' => 'operations',
           '#links' => [],
+          '#access' => $access,
         ];
         $form['audiences'][$audience_id]['operations']['#links']['delete'] = [
           'title' => $this->t('Delete'),
@@ -293,6 +306,7 @@ class AudienceSettingsForm extends ConfigFormBase {
     }
     $config->set('gateway_url', $form_state->getValue('gateway_url'));
     $config->set('excluded_pages', $form_state->getValue('excluded_pages'));
+    $config->set('default_bot_audience', $form_state->getValue('default_bot_audience'));
     $config->save();
     parent::submitForm($form, $form_state);
   }

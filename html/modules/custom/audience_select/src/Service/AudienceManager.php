@@ -17,6 +17,23 @@ use Drupal\Core\Entity\Element\EntityAutocomplete;
 class AudienceManager {
 
   /**
+   * The default web crawler detection object.
+   *
+   * @var \Drupal\audience_select\Service\CrawlerDetect
+   */
+  protected $CrawlerDetect;
+
+  /**
+   * Constructs the Audience manager.
+   *
+   * @param \Drupal\audience_select\Service\CrawlerDetect $crawler_detect
+   *   The default web crawler detection object.
+   */
+  public function __construct(CrawlerDetect $crawler_detect) {
+    $this->CrawlerDetect = $crawler_detect;
+  }
+
+  /**
    * Get all config settings for Audience module.
    *
    * @return \Drupal\Core\Config\ImmutableConfig
@@ -24,6 +41,19 @@ class AudienceManager {
    */
   public function getConfig() {
     return \Drupal::config('audience_select.settings');
+  }
+
+  /**
+   * Check user agent string against the regex.
+   *
+   * @param string $userAgent
+   *   The user agent.
+   *
+   * @return bool
+   *    Return all data from saved settings.
+   */
+  public function isCrawler($userAgent = NULL) {
+    return $this->CrawlerDetect->isCrawler($userAgent);
   }
 
   /**
@@ -111,12 +141,28 @@ class AudienceManager {
   }
 
   /**
+   * Return selected Audience string.
+   *
    * @return null|string
    */
   public function getCurrentAudience() {
-    $audience = isset($_COOKIE['audience_select_audience']) ? $_COOKIE['audience_select_audience'] : NULL;
+    if (!$this->isCrawler()) {
+      $audience = isset($_COOKIE['audience_select_audience']) ? $_COOKIE['audience_select_audience'] : NULL;
+    }
+    else {
+      $audience = $this->getCrawlerAudience();
+    }
 
     return $audience;
+  }
+
+  /**
+   * Return default Crawler Audience string.
+   *
+   * @return null|string
+   */
+  public function getCrawlerAudience() {
+    return $this->getConfig()->get('default_bot_audience');
   }
 
   /**

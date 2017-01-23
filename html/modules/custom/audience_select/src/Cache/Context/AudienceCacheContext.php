@@ -66,8 +66,8 @@ class AudienceCacheContext extends RequestStackCacheContextBase implements Cache
    */
   public function getContext() {
     $audience = $this->audience;
-//    return $audience;
-    return $this->requestStack->getCurrentRequest()->cookies->get('audience_select_audience');
+    return $audience;
+//    return $this->requestStack->getCurrentRequest()->cookies->get('audience_select_audience');
 //    if ($audience === NULL) {
 //      return $this->requestStack->getCurrentRequest()->cookies->all();
 //    }
