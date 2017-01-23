@@ -21,6 +21,24 @@ panel_homepage:
     bottom:
       label: Bottom content
 
+panel_landing_1:
+  label: Landing screen (with fullwidth regions, white, grey, blue, white 2, blue 2)
+  category: PMMI: Layouts
+  template: templates/layouts/panels/landing-1
+  regions:
+    top:
+      label: Top content
+    white:
+      label: White row
+    grey:
+      label: Grey row
+    blue:
+      label: Blue row
+    white_2:
+      label: White row 2
+    blue_2:
+      label: Blue row 2
+
 panel_landing_left_sidebar:
   label: Landing with left sidebar
   category: PMMI: Layouts

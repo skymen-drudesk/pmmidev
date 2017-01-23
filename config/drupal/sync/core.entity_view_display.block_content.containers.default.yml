@@ -33,7 +33,6 @@ dependencies:
   module:
     - ds
     - link
-    - options
     - pmmi_fields
     - viewfield
 third_party_settings:
@@ -80,42 +79,6 @@ content:
             lb-col: false
             classes: {  }
     type: entity_reference_rendered_block_plugin
-  field_block_select_1:
-    weight: 11
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-  field_block_select_2:
-    weight: 6
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-  field_block_select_3:
-    weight: 7
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-  field_block_select_4:
-    weight: 8
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-  field_block_select_5:
-    weight: 9
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-  field_block_select_6:
-    weight: 10
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
   field_block_views_1:
     weight: 3
     label: hidden
@@ -138,7 +101,14 @@ content:
     label: hidden
     settings:
       link_to_entity: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: string
 hidden:
   field_block_2: true
@@ -151,6 +121,12 @@ hidden:
   field_block_plugin_4: true
   field_block_plugin_5: true
   field_block_plugin_6: true
+  field_block_select_1: true
+  field_block_select_2: true
+  field_block_select_3: true
+  field_block_select_4: true
+  field_block_select_5: true
+  field_block_select_6: true
   field_block_views_2: true
   field_block_views_3: true
   field_block_views_4: true
