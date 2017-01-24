@@ -154,6 +154,17 @@
           "reference": "origin/8.x-2.x"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "phpoffice/phpspreadsheet",
+        "version": "0.0",
+        "dist": {
+          "url": "https://github.com/PHPOffice/PhpSpreadsheet/archive/develop.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
   "minimum-stability": "dev",
@@ -196,6 +207,7 @@
     "drupal/metatag": "^1.0@beta",
     "drupal/migrate_plus": "^3.0@beta",
     "drupal/migrate_source_csv": "^2.0",
+    "drupal/migrate_spreadsheet": "8.1.0-alpha4",
     "drupal/migrate_tools": "3.0-beta1",
     "drupal/page_manager": "1.x-dev",
     "drupal/panels": "3.x-dev",
@@ -213,6 +225,7 @@
     "enyo/dropzone": "4.2.0",
     "kenwheeler/slick": "~1.6.0",
     "mikey179/vfsStream": "~1",
+    "phpoffice/phpspreadsheet": "~0.0",
     "psr/log": "dev-master",
     "summitmedia/panels_everywhere": "dev-master",
     "tobia/jquery.pause": "master",
@@ -238,7 +251,10 @@
   "autoload": {
     "classmap": [
       "build/scripts/composer/ScriptHandler.php"
-    ]
+    ],
+    "psr-4": {
+      "PhpOffice\\PhpSpreadsheet\\": "vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet"
+    }
   },
   "scripts": {
     "drupal-scaffold": "DrupalComposer\\DrupalScaffold\\Plugin::scaffold",
