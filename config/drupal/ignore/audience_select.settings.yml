@@ -12,4 +12,5 @@ map:
     audience_redirect_url: 'internal:/home'
     audience_image: {  }
 gateway_url: 'internal:/gateway'
-excluded_pages: "/admin\r\n/admin/*\r\n/user\r\n/user/*\r\n/node/add\r\n/node/*/edit\r\n/block\r\n/block/*"
+excluded_pages: "/admin\r\n/admin/*\r\n/user\r\n/user/*\r\n/node/add\r\n/node/*/edit\r\n/block\r\n/block/*\r\n/file\r\n/file/*\r\n/batch\r\n/batch/*"
+default_bot_audience: audience_1

@@ -43,18 +43,3 @@ h1, .h1, h2, .h2, h3, .h3 {
     @extend .visually-hidden;
   }
 }
-// Sticky footer.
-html, body {
-  height: 100%;
-}
-.pmmi-panel {
-  height: 100%;
-}
-.page-wrapper {
-  min-height: 100%;
-  &:after {
-    content: "";
-    display: block;
-    height: 60px;
-  }
-}
