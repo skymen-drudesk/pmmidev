@@ -87,6 +87,7 @@ class AudienceManager {
    * Get all audiences data into keyed array.
    *
    * @return array
+   *   The array with all Audiences.
    */
   public function getData() {
     $config = \Drupal::config('audience_select.settings');
@@ -152,7 +153,6 @@ class AudienceManager {
     else {
       $audience = $this->getCrawlerAudience();
     }
-
     return $audience;
   }
 
@@ -160,6 +160,7 @@ class AudienceManager {
    * Return default Crawler Audience string.
    *
    * @return null|string
+   *   The selected Audience for Bot/Crawler.
    */
   public function getCrawlerAudience() {
     return $this->getConfig()->get('default_bot_audience');
@@ -232,4 +233,5 @@ class AudienceManager {
 
     return $displayable_string;
   }
+
 }

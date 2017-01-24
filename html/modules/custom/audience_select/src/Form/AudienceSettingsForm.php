@@ -7,6 +7,7 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\file\Entity\File;
 use Drupal\link\Plugin\Field\FieldWidget\LinkWidget;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -37,6 +38,7 @@ class AudienceSettingsForm extends ConfigFormBase {
    *   The plugin implementation definition.
    *
    * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
+   *   The Audience manager.
    */
   public function __construct(ConfigFactoryInterface $config_factory, AudienceManager $audience_manager) {
     parent::__construct($config_factory);
@@ -303,11 +305,24 @@ class AudienceSettingsForm extends ConfigFormBase {
     $config = $this->config('audience_select.settings');
     if (!empty($mappings)) {
       $config->setData(['map' => $mappings]);
+      foreach ($mappings as $audience) {
+        if (!empty($audience['audience_image'])) {
+          $image = File::load($audience['audience_image'][0]);
+          if ($image->isTemporary()) {
+            $image->setPermanent();
+            $image->save();
+            /** @var \Drupal\file\FileUsage\DatabaseFileUsageBackend $file_usage */
+            $file_usage = \Drupal::service('file.usage');
+            $file_usage->add($image, 'audience_select', 'user', 1);
+          }
+        }
+      }
     }
     $config->set('gateway_url', $form_state->getValue('gateway_url'));
     $config->set('excluded_pages', $form_state->getValue('excluded_pages'));
     $config->set('default_bot_audience', $form_state->getValue('default_bot_audience'));
     $config->save();
+
     parent::submitForm($form, $form_state);
   }
 

@@ -4,11 +4,8 @@ namespace Drupal\audience_select\Cache\Context;
 
 use Drupal\audience_select\Service\AudienceManager;
 use Drupal\Core\Cache\CacheableMetadata;
-use Drupal\Core\Cache\CacheTagsInvalidator;
 use Drupal\Core\Cache\Context\CacheContextInterface;
-use Drupal\Core\Cache\Context\CalculatedCacheContextInterface;
 use Drupal\Core\Cache\Context\RequestStackCacheContextBase;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
@@ -43,10 +40,9 @@ class AudienceCacheContext extends RequestStackCacheContextBase implements Cache
    * The plugin implementation definition.
    *
    * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
-   *
    *   The request stack.
-   *
    * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
+   *   The Audience manager service.
    */
   public function __construct(RequestStack $request_stack, AudienceManager $audience_manager) {
     parent::__construct($request_stack);
@@ -65,15 +61,7 @@ class AudienceCacheContext extends RequestStackCacheContextBase implements Cache
    * {@inheritdoc}
    */
   public function getContext() {
-    $audience = $this->audience;
-    return $audience;
-//    return $this->requestStack->getCurrentRequest()->cookies->get('audience_select_audience');
-//    if ($audience === NULL) {
-//      return $this->requestStack->getCurrentRequest()->cookies->all();
-//    }
-//    else {
-//      return $this->requestStack->getCurrentRequest()->cookies->get($audience);
-//    }
+    return $this->audience;
   }
 
   /**
