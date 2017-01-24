@@ -542,6 +542,21 @@ block_social_media:
       label: Google+
     youtube:
       label: YouTube
+block_social_footer:
+  label: Social Media Footer
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/social-media-footer
+  regions:
+    facebook:
+      label: Facebook
+    twitter:
+      label: Twitter
+    linkedin:
+      label: LinkedIn
+    google_plus:
+      label: Google+
+    youtube:
+      label: YouTube
 block_enticement:
   label: Enticement
   category: PMMI: Blocks

@@ -6,6 +6,7 @@ use Drupal\Core\Form\ConfigFormBaseTrait;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\file\Entity\File;
 
 /**
  * Defines a confirmation form for deleting a Audience.
@@ -18,7 +19,7 @@ class AudienceDeleteForm extends ConfirmFormBase {
    *
    * @var string
    */
-  protected $audience_id;
+  protected $audienceId;
 
   /**
    * {@inheritdoc}
@@ -32,7 +33,7 @@ class AudienceDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to delete %audience_id?', array('%audience_id' => $this->audience_id));
+    return $this->t('Are you sure you want to delete %audience_id?', array('%audience_id' => $this->audienceId));
   }
 
   /**
@@ -53,7 +54,7 @@ class AudienceDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $audience_id = NULL) {
-    $this->audience_id = $audience_id;
+    $this->audienceId = $audience_id;
 
     $form = parent::buildForm($form, $form_state);
 
@@ -64,17 +65,29 @@ class AudienceDeleteForm extends ConfirmFormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $this->config('audience_select.settings')
-      ->clear('map.' . $this->audience_id)
-      ->save();
-
+    $config = $this->config('audience_select.settings');
+    $deleted_audience = $config->get('map.' . $this->audienceId);
+    $config->clear('map.' . $this->audienceId);
+    $config->save();
+    if (!empty($deleted_audience['audience_image'])) {
+      $image = File::load($deleted_audience['audience_image'][0]);
+      if (!empty($image)) {
+        /** @var \Drupal\file\FileUsage\DatabaseFileUsageBackend $file_usage */
+        $file_usage = \Drupal::service('file.usage');
+        $usages = $file_usage->listUsage($image);
+        if (count($usages) == 1 && array_key_exists('audience_select', $usages)) {
+          $image->delete();
+        }
+      }
+    }
     $args = array(
-      '%audience_id' => $this->audience_id,
+      '%audience_id' => $this->audienceId,
     );
 
-    $this->logger('Audience')->notice('The %audience_id browser language code has been deleted.', $args);
+    $this->logger('Audience')
+      ->notice('The %audience_id has been deleted.', $args);
 
-    drupal_set_message($this->t('The %audience_id browser language code has been deleted.', $args));
+    drupal_set_message($this->t('The %audience_id has been deleted.', $args));
 
     $form_state->setRedirect('audience_select.audience_settings_form');
   }

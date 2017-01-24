@@ -6,8 +6,12 @@ dependencies:
     - page_manager.page.site_template
     - system.menu.footer
     - system.menu.utility-navigation-member
+    - views.view.search_page
+  content:
+    - 'block_content:social_media:6f9b12db-e338-44d9-ae2c-9175dc0f6baf'
   module:
     - audience_select
+    - block_content
     - panels_everywhere
     - system
     - tb_megamenu
@@ -87,6 +91,38 @@ variant_settings:
       region: header_logo
       weight: '0'
       uuid: 1f9cc58f-f55d-47e5-ae95-dc7e125aa3a9
+      context_mapping: {  }
+    ebb11696-0144-4a00-a9b7-02130f502801:
+      id: 'views_exposed_filter_block:search_page-block_1'
+      label: ''
+      provider: views
+      label_display: 0
+      views_label: ''
+      region: header_main_nav
+      weight: '0'
+      uuid: ebb11696-0144-4a00-a9b7-02130f502801
+      context_mapping: {  }
+    d2df90fd-30a6-413c-b43c-17fe38fcc80d:
+      id: audience_switcher
+      label: 'Other Versions:'
+      provider: audience_select
+      label_display: visible
+      excluded_audiences: {  }
+      region: footer
+      weight: '0'
+      uuid: d2df90fd-30a6-413c-b43c-17fe38fcc80d
+      context_mapping: {  }
+    2a509e16-595a-4879-a465-81eda4c0f166:
+      id: 'block_content:6f9b12db-e338-44d9-ae2c-9175dc0f6baf'
+      label: 'Workforce Development - Social Media'
+      provider: block_content
+      label_display: 0
+      status: true
+      info: ''
+      view_mode: footer_social
+      region: footer
+      weight: '0'
+      uuid: 2a509e16-595a-4879-a465-81eda4c0f166
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: cdb68bb8-520f-44f2-bd99-ead75a9f3553

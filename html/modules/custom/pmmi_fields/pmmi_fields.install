@@ -9,7 +9,7 @@
  * Implements hook_install().
  */
 function pmmi_fields_install() {
-  pmmi_fields_update_8001();
+  pmmi_fields_update_8002();
 }
 
 /**
@@ -18,4 +18,12 @@ function pmmi_fields_install() {
 function pmmi_fields_update_8001() {
   \Drupal::entityTypeManager()->clearCachedDefinitions();
   \Drupal::service('entity.definition_update_manager')->applyUpdates();
+}
+/**
+ * Create "submenu_background" field definition.
+ *
+ * Previous update 8001 doesn't work for that field.
+ */
+function pmmi_fields_update_8002() {
+  \Drupal::entityDefinitionUpdateManager()->applyUpdates();
 }
