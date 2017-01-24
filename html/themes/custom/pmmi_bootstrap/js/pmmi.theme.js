@@ -51,7 +51,7 @@
         $(this).find('.default-mode-node').once('ajax').each(function () {
           var $item = $(this);
           var nodeID = $item.data('item-id');
-          $item.find('a').prop('href', Drupal.url('pmmi-fields/replace-video/' + nodeID)).addClass('use-ajax');
+          $item.find('.field-name-node-link a').prop('href', Drupal.url('pmmi-fields/replace-video/nojs/' + nodeID)).addClass('use-ajax');
         });
         Drupal.behaviors.AJAX.attach(context, settings);
       });

@@ -6,13 +6,11 @@ dependencies:
     - page_manager.page.site_template
     - system.menu.footer
     - system.menu.utility-navigation-end-user
-    - views.view.search_page
   module:
     - audience_select
     - panels_everywhere
     - system
     - tb_megamenu
-    - views
 id: site_template-panels_everywhere_variant-0
 label: 'End User'
 variant: panels_everywhere_variant

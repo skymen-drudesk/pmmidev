@@ -6,13 +6,11 @@ dependencies:
     - page_manager.page.site_template
     - system.menu.footer
     - system.menu.utility-navigation-other
-    - views.view.search_page
   module:
     - audience_select
     - panels_everywhere
     - system
     - tb_megamenu
-    - views
 id: site_template-panels_everywhere_variant-2
 label: Other
 variant: panels_everywhere_variant
@@ -35,7 +33,7 @@ variant_settings:
       provider: tb_megamenu
       label_display: 0
       region: header_main_nav
-      weight: '-3'
+      weight: '0'
       uuid: 5a4f4982-0583-487b-b9ce-1c83ba0d4cab
       context_mapping: {  }
     1642ef28-36b7-4426-a421-2c8785807a57:
