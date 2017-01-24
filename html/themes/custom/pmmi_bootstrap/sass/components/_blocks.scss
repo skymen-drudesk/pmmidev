@@ -320,7 +320,7 @@
     display: none;
   }
   .features-videos {
-    .viewfield-wrapper {
+    &.viewfield-wrapper {
       border: 1px solid $mdgrey;
       padding: 4px;
       @extend .clearfix;
@@ -353,6 +353,7 @@
     }
   }
 }
+.block-social-media-footer,
 .block-social-media {
   .title {
     @extend .sidehead1;
@@ -373,6 +374,20 @@
         display: block;
         text-indent: -9999em;
         overflow: hidden;
+      }
+    }
+  }
+}
+.block-social-media-footer {
+  .social-links {
+    span {
+      font-weight: 400;
+      font-size: $r25;
+      line-height: 1;
+      color: #fff;
+      margin: 0 15px 0 0;
+      &:last-child {
+        margin: 0;
       }
     }
   }
