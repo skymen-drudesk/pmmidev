@@ -8,6 +8,7 @@ dependencies:
     - field.field.block_content.icon.field_head
     - field.field.block_content.icon.field_image
     - field.field.block_content.icon.field_link
+    - image.style.shows_block_tablet
   module:
     - ds
     - image
@@ -53,9 +54,16 @@ content:
     weight: 2
     label: hidden
     settings:
-      image_style: ''
+      image_style: shows_block_tablet
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: image
   field_link:
     weight: 3
