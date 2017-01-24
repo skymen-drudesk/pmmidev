@@ -5,7 +5,7 @@ dependencies:
   config:
     - field.field.node.company.field_address
     - field.field.node.company.field_after_sales_service
-    - field.field.node.company.field_businbess_lines
+    - field.field.node.company.field_business_lines
     - field.field.node.company.field_company_description
     - field.field.node.company.field_equipment_sold_type
     - field.field.node.company.field_fax_number
@@ -43,8 +43,8 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
-  field_businbess_lines:
-    weight: 119
+  field_business_lines:
+    weight: 127
     label: above
     settings: {  }
     third_party_settings: {  }

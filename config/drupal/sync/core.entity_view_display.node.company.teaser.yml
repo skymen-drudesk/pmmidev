@@ -6,7 +6,6 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.company.field_address
     - field.field.node.company.field_after_sales_service
-    - field.field.node.company.field_businbess_lines
     - field.field.node.company.field_company_description
     - field.field.node.company.field_equipment_sold_type
     - field.field.node.company.field_fax_number
@@ -31,7 +30,6 @@ content:
 hidden:
   field_address: true
   field_after_sales_service: true
-  field_businbess_lines: true
   field_company_description: true
   field_equipment_sold_type: true
   field_fax_number: true
