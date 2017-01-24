@@ -126,6 +126,9 @@ div.view {
         min-width: 233px;
       }
     }
+    .containers .field--type-viewfield & {
+      display: none;
+    }
   }
 }
 .view-partner-schools {

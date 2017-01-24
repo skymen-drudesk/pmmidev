@@ -108,12 +108,7 @@
       $('.block-card').closest('.row').once('equal-height').each(function () {
         var $row = $(this);
         $(window).on('breakpointActivated', function (e, breakpoint) {
-          if (breakpoint !== 'mobile') {
-            _this.alignCards($row, breakpoint);
-          }
-          else {
-            _this.alignCards($row, breakpoint);
-          }
+          _this.alignCards($row, breakpoint);
         });
       });
     },
