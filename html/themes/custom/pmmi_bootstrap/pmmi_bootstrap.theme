@@ -80,6 +80,7 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
 
     case 'text_image':
     case 'text':
+    case 'containers':
       $center = $vars['content']['#block_content']->get('field_center_text')->value;
       if ($center) {
         $attributes['class'][] = 'centered';
