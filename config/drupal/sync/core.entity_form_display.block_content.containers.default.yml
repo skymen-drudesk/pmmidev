@@ -29,6 +29,7 @@ dependencies:
     - field.field.block_content.containers.field_block_views_5
     - field.field.block_content.containers.field_block_views_6
     - field.field.block_content.containers.field_button
+    - field.field.block_content.containers.field_center_text
     - field.field.block_content.containers.field_head
   module:
     - field_group
@@ -338,6 +339,12 @@ content:
         accesskey: false
     third_party_settings: {  }
     type: link_attributes
+  field_center_text:
+    weight: 25
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
   field_head:
     weight: 1
     settings:
