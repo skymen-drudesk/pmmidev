@@ -130,6 +130,7 @@
             background: none;
           }
         }
+        &:hover > a,
         > a:hover,
         &.open > a {
           background: $dkblue;
@@ -258,10 +259,12 @@
       right: 0;
     }
     .dropdown-menu {
+      background-position: 100% 100%;
+      background-repeat: no-repeat;
+      background-color: #fff;
       float: none;
       transition: 200ms ease;
       border: 4px solid $dkblue;
-      background: #fff;
       box-shadow: none;
       border-radius: 0;
       margin: 0;
@@ -299,6 +302,34 @@
         }
       }
     }
+    @include tablet {
+      .dropdown-menu {
+        background-image: none !important;
+        padding: 0;
+        min-width: 165px;
+        white-space: nowrap;
+        .mega-nav li {
+          margin: 0;
+          font-size: $r12;
+          line-height: $r15;
+          &:after {
+            display: none;
+          }
+          a {
+            text-decoration: none;
+            display: block;
+            font-weight: 800;
+            color: $ltblue;
+            padding: 10px;
+            border-bottom: 1px solid $mdgrey;
+            &:hover {
+              background: $dkblue;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
     @include mobile {
       .nav > li {
         &:hover {
@@ -313,6 +344,7 @@
         }
       }
       .dropdown-menu {
+        background-image: none !important;
         position: static;
         padding: 0;
         min-width: 0;
@@ -372,6 +404,10 @@
           }
         }
       }
+    }
+    @include tablet {
+      padding: 0;
+      margin-bottom: 5px;
     }
   }
 }

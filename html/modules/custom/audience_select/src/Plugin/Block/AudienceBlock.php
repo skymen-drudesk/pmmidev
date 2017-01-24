@@ -68,7 +68,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
   public function defaultConfiguration() {
     return [
         'audience_id' => '',
-        'image_style' => 'gateway_style',
+        'image_style' => '',
         'audience_overrides' => array(),
       ] + parent::defaultConfiguration();
 
@@ -161,6 +161,21 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
   /**
    * {@inheritdoc}
    */
+  public function calculateDependencies() {
+    $dependencies = parent::calculateDependencies();
+    $style_id = $this->configuration['image_style'];
+    /** @var \Drupal\image\ImageStyleInterface $style */
+    if ($style_id && $style = ImageStyle::load($style_id)) {
+      // If this formatter uses a valid image style to display the image, add
+      // the image style configuration entity as dependency of this formatter.
+      $dependencies[$style->getConfigDependencyKey()][] = $style->getConfigDependencyName();
+    }
+    return $dependencies;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function blockSubmit($form, FormStateInterface $form_state) {
     $this->configuration['audience_id'] = $form_state->getValue('audience_id');
     $this->configuration['image_style'] = $form_state->getValue('image_style');
@@ -168,6 +183,16 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     $result_overrides = array_filter($overrides);
     if (!empty($result_overrides)) {
       $this->setConfigurationValue('audience_overrides', $result_overrides);
+      if (array_key_exists('audience_image', $result_overrides)) {
+        $image = File::load($result_overrides['audience_image'][0]);
+        if ($image->isTemporary()) {
+          $image->setPermanent();
+          $image->save();
+          /** @var \Drupal\file\FileUsage\DatabaseFileUsageBackend $file_usage */
+          $file_usage = \Drupal::service('file.usage');
+          $file_usage->add($image, 'audience_select', 'user', 1);
+        }
+      }
     }
     else {
       $this->setConfigurationValue('audience_overrides', array());
