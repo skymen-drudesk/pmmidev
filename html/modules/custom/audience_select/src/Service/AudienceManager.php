@@ -163,7 +163,11 @@ class AudienceManager {
    *   The selected Audience for Bot/Crawler.
    */
   public function getCrawlerAudience() {
-    return $this->getConfig()->get('default_bot_audience');
+    $crawler_audience = $this->getConfig()->get('default_bot_audience');
+    if (empty($crawler_audience)) {
+      $crawler_audience = key($this->getData());
+    }
+    return $crawler_audience;
   }
 
   /**

@@ -103,9 +103,10 @@ class AudienceSettingsForm extends ConfigFormBase {
       '#type' => 'select',
       '#title' => $this->t('Default Auidience'),
       '#description' => $this->t('Default Auidience for Bot/Crawler'),
-      '#default_value' => $crawler_audience,
-      '#options' => $this->AudienceManager->getOptionsList(),
       '#required' => TRUE,
+      '#default_value' => $crawler_audience,
+      '#empty_option' => $this->t('Select Audience'),
+      '#options' => $this->AudienceManager->getOptionsList(),
     );
     $form['audiences'] = [
       '#type' => 'table',
