@@ -114,8 +114,8 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
       '#title' => $this->t('Audience Title Override'),
       '#description' => $this->t('Override default Audience Title'),
       '#default_value' => array_key_exists('audience_title', $overrides) ? $overrides['audience_title'] : NULL,
-      '#maxlength' => 40,
-      '#size' => 40,
+      '#maxlength' => 48,
+      '#size' => 48,
       '#weight' => '0',
     ];
     if (array_key_exists('audience_redirect_url', $overrides)) {
@@ -141,7 +141,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
       ),
       '#process_default_value' => FALSE,
       '#maxlength' => 200,
-      '#size' => 40,
+      '#size' => 48,
       '#weight' => '1',
     ];
     $form['overrides']['audience_image'] = [
