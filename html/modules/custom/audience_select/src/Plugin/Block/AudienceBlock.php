@@ -68,7 +68,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
   public function defaultConfiguration() {
     return [
         'audience_id' => '',
-        'image_style' => 'gateway_style',
+        'image_style' => '',
         'audience_overrides' => array(),
       ] + parent::defaultConfiguration();
 
@@ -114,8 +114,8 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
       '#title' => $this->t('Audience Title Override'),
       '#description' => $this->t('Override default Audience Title'),
       '#default_value' => array_key_exists('audience_title', $overrides) ? $overrides['audience_title'] : NULL,
-      '#maxlength' => 40,
-      '#size' => 40,
+      '#maxlength' => 48,
+      '#size' => 48,
       '#weight' => '0',
     ];
     if (array_key_exists('audience_redirect_url', $overrides)) {
@@ -141,7 +141,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
       ),
       '#process_default_value' => FALSE,
       '#maxlength' => 200,
-      '#size' => 40,
+      '#size' => 48,
       '#weight' => '1',
     ];
     $form['overrides']['audience_image'] = [
@@ -161,6 +161,21 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
   /**
    * {@inheritdoc}
    */
+  public function calculateDependencies() {
+    $dependencies = parent::calculateDependencies();
+    $style_id = $this->configuration['image_style'];
+    /** @var \Drupal\image\ImageStyleInterface $style */
+    if ($style_id && $style = ImageStyle::load($style_id)) {
+      // If this formatter uses a valid image style to display the image, add
+      // the image style configuration entity as dependency of this formatter.
+      $dependencies[$style->getConfigDependencyKey()][] = $style->getConfigDependencyName();
+    }
+    return $dependencies;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function blockSubmit($form, FormStateInterface $form_state) {
     $this->configuration['audience_id'] = $form_state->getValue('audience_id');
     $this->configuration['image_style'] = $form_state->getValue('image_style');
@@ -168,6 +183,16 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     $result_overrides = array_filter($overrides);
     if (!empty($result_overrides)) {
       $this->setConfigurationValue('audience_overrides', $result_overrides);
+      if (array_key_exists('audience_image', $result_overrides)) {
+        $image = File::load($result_overrides['audience_image'][0]);
+        if ($image->isTemporary()) {
+          $image->setPermanent();
+          $image->save();
+          /** @var \Drupal\file\FileUsage\DatabaseFileUsageBackend $file_usage */
+          $file_usage = \Drupal::service('file.usage');
+          $file_usage->add($image, 'audience_select', 'user', 1);
+        }
+      }
     }
     else {
       $this->setConfigurationValue('audience_overrides', array());
@@ -202,13 +227,15 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     if (array_key_exists('audience_image', $audience)) {
       if (!empty($audience['audience_image'])) {
         $image = File::load($audience['audience_image'][0]);
-        $image_style_uri = $image_style->buildUri($image->getFileUri());
-        $status = TRUE;
-        if (!file_exists($image_style_uri)) {
-          $status = $image_style->createDerivative($image->getFileUri(), $image_style_uri);
+        if (!empty($image)) {
+          $image_style_uri = $image_style->buildUri($image->getFileUri());
+          $status = TRUE;
+          if (!file_exists($image_style_uri)) {
+            $status = $image_style->createDerivative($image->getFileUri(), $image_style_uri);
+          }
+          $image_uri = $status ? $image_style_uri : $image->getFileUri();
+          $image_url = file_url_transform_relative(file_create_url($image_uri));
         }
-        $image_uri = $status ? $image_style_uri : $image->getFileUri();
-        $image_url = file_url_transform_relative(file_create_url($image_uri));
       }
     }
 

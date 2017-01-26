@@ -87,6 +87,21 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     // Get gateway page URL.
     $gateway_page_url = $this->AudienceManager->getGateway();
     $gateway_page = $request_uri == $gateway_page_url ? TRUE : FALSE;
+
+    // Check if User Agent is bot or Crawler.
+    if ($this->AudienceManager->isCrawler() && $gateway_page) {
+      $audience_data = AudienceManager::load($this->AudienceManager->getCrawlerAudience());
+      $redirect_url = Url::fromUri($audience_data['audience_redirect_url'])
+        ->toString();
+      $response = new TrustedRedirectResponse($redirect_url);
+      $response->setExpires($exp);
+      $event->setResponse($response);
+      return;
+    }
+    elseif ($this->AudienceManager->isCrawler() && !$gateway_page) {
+      return;
+    }
+
     $has_cookie = $request->cookies->has('audience_select_audience');
     $excluded = $this->excludedPages($request);
 

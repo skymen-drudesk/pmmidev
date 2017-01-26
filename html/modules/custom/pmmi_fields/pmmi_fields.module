@@ -6,6 +6,8 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Entity\EntityTypeInterface;
 
 /**
  * Implements hook_help().
@@ -20,5 +22,33 @@ function pmmi_fields_help($route_name, RouteMatchInterface $route_match) {
       return $output;
 
     default:
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
+ */
+function pmmi_fields_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+  if ($entity_type->id() === 'menu_link_content') {
+    $fields['submenu_background'] = BaseFieldDefinition::create('image')
+      ->setLabel(t('Submenu background'))
+      ->setDescription(t('Submenu background for megaMenu.'))
+      ->setSettings([
+        'file_directory' => 'menu_image',
+        'alt_field_required' => FALSE,
+        'file_extensions' => 'png jpg jpeg',
+      ])
+      ->setDisplayOptions('form', array(
+        'type' => 'hidden',
+      ))
+      ->setDisplayOptions('form', array(
+        'label' => 'hidden',
+        'type' => 'image_image',
+        'weight' => 0,
+      ))
+      ->setDisplayConfigurable('form', TRUE);
+
+    return $fields;
   }
 }

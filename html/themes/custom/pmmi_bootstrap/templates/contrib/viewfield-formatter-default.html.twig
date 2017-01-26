@@ -12,7 +12,14 @@
  */
 #}
 {% spaceless %}
-  <div class="viewfield-wrapper">
+  {%
+    set clasess = [
+      'viewfield-wrapper',
+      element['#view_name']|clean_class ~ '-' ~element['#view_display']|clean_class,
+      element['#view_name']|clean_class,
+    ]
+  %}
+  <div class="{{ clasess|join(' ') }}">
     {% if title %}
       <h2 class="viewfield-title">{{ title }}</h2>
     {% endif %}

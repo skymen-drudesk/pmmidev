@@ -8,6 +8,7 @@
 
     padding-left: 300px;
     min-height: 140px;
+    @extend .clearfix;
     .field-name-field-video {
       float: left;
       width: 250px;

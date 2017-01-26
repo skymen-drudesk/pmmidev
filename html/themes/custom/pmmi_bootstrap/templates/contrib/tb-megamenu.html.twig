@@ -5,7 +5,13 @@
   }
 </style>
 {% endif %}
-<div {{ attributes }}>
+<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#{{ menu_name }}">
+  <span class="sr-only">{{ 'Toggle navigation'|t }}</span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+  <span class="icon-bar"></span>
+</button>
+<div {{ attributes.setAttribute('id', menu_name).addClass('collapse') }}>
   {% if section == 'frontend' %}
     <div class="nav-wrapper {{ block_config['always-show-submenu'] ? ' always-show' : '' }}">
   {% endif %}

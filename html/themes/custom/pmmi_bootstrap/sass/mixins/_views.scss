@@ -46,13 +46,19 @@
   }
   .field-name-field-date {
     display: inline;
+    float: left;
+    margin-right: 3px;
     @extend .headline4;
+    line-height: $r21;
+    position: relative;
+    top: 1px;
     @include tablet-max {
-      display: block
+      float: none;
+      display: block;
+      margin-right: 0;
     }
   }
   .field-name-body {
-    display: inline;
     @extend .paragraph2;
     margin-bottom: 13px;
     p {

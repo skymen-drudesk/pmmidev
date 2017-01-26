@@ -51,7 +51,7 @@
         $(this).find('.default-mode-node').once('ajax').each(function () {
           var $item = $(this);
           var nodeID = $item.data('item-id');
-          $item.find('a').prop('href', Drupal.url('pmmi-fields/replace-video/' + nodeID)).addClass('use-ajax');
+          $item.find('.field-name-node-link a').prop('href', Drupal.url('pmmi-fields/replace-video/nojs/' + nodeID)).addClass('use-ajax');
         });
         Drupal.behaviors.AJAX.attach(context, settings);
       });
@@ -108,12 +108,7 @@
       $('.block-card').closest('.row').once('equal-height').each(function () {
         var $row = $(this);
         $(window).on('breakpointActivated', function (e, breakpoint) {
-          if (breakpoint !== 'mobile') {
-            _this.alignCards($row, breakpoint);
-          }
-          else {
-            _this.alignCards($row, breakpoint);
-          }
+          _this.alignCards($row, breakpoint);
         });
       });
     },
@@ -136,6 +131,31 @@
           }
         });
       }, 50);
+    }
+  };
+
+  /**
+   * Main menu theming.
+   */
+  Drupal.behaviors.pmmiMainMenu = {
+    attach: function () {
+      $('.main-nav').once('main-nav').each(function () {
+        var $dropdownToggle = $('a.dropdown-toggle');
+        $dropdownToggle.each(function () {
+          $(this).parent().find('.mega-nav').prepend($('<li>').addClass('only-mobile').append($(this).clone().toggleClass('dropdown-toggle')));
+        });
+        $(window).on('breakpointActivated', function (e, breakpoint) {
+          if (breakpoint === 'mobile') {
+            $dropdownToggle.on('click.mobile-toggler', function (e) {
+              e.preventDefault();
+              $(this).toggleClass('opened').parent().toggleClass('opened');
+            });
+          }
+          else {
+            $dropdownToggle.off('click.mobile-toggler');
+          }
+        });
+      });
     }
   };
 

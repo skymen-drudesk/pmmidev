@@ -4,7 +4,7 @@
  * Template for a 4-up (1 row of 4 columns) layout.
  */
 #}
-<div class="layout-4up clearfix">
+<div {{ content['#attrs'].addClass('layout-4up clearfix') }} >
   <div class="region-top">
     {{ content.top }}
   </div>

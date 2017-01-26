@@ -6,6 +6,7 @@ use Drupal\Core\Controller\ControllerBase;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\ReplaceCommand;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Class VideoFieldAjax.
@@ -17,7 +18,11 @@ class VideoFieldAjax extends ControllerBase {
   /**
    * Replace main video on Video CT.
    */
-  public function replaceVideo($node) {
+  public function replaceVideo($node, $js = 'nojs') {
+    if ($js == 'nojs') {
+      return new RedirectResponse('/node/' . $node);
+    }
+
     $response = new AjaxResponse();
     $entity = Node::load($node);
 

@@ -1,0 +1,59 @@
+.block-icons {
+  text-align: center;
+  .column {
+    @extend .row;
+    > .field {
+      @extend .col-md-3;
+    }
+  }
+  > .title {
+    @extend .headline1;
+    display: inline-block;
+    margin-bottom: 50px;
+    .blue-region & {
+      @extend .white;
+    }
+  }
+  .blue-region & {
+    color: #fff;
+    a {
+      color: #fff;
+    }
+  }
+}
+.block-icon {
+  .icon {
+    min-height: 80px;
+    margin-bottom: 10px;
+  }
+  img {
+    margin: 0 auto;
+  }
+  .title {
+    font-size: $r16;
+    line-height: $r16;
+    font-weight: 900;
+    margin-bottom: 5px;
+  }
+  .block-body {
+    font-size: $r13;
+    line-height: $r17;
+    font-weight: 400;
+    margin-bottom: 10px;
+    @extend .inherited-p;
+    p {
+      margin-bottom: 2px;
+    }
+  }
+  .link {
+    font-size: $r14;
+    line-height: $r16;
+    font-weight: 900;
+    a {
+      &:after {
+        content: "»";
+        padding-left: 2px;
+      }
+    }
+  }
+}

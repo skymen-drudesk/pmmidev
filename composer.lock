@@ -4,8 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "296eab5061f565a7d7c237bae929f24b",
-    "content-hash": "e1cffd287da7f44e123559f6c52ce19a",
+    "content-hash": "2115e07a1b26605583032924bbb601bf",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -631,7 +630,7 @@
                 }
             ],
             "description": "Initialize Symfony Console commands from annotated command class methods.",
-            "time": "2017-01-21 06:15:21"
+            "time": "2017-01-21T06:15:21+00:00"
         },
         {
             "name": "consolidation/output-formatters",
@@ -680,7 +679,7 @@
                 }
             ],
             "description": "Format text by applying transformations provided by plug-in formatters.",
-            "time": "2017-01-21 06:26:40"
+            "time": "2017-01-21T06:26:40+00:00"
         },
         {
             "name": "cweagans/composer-patches",
@@ -873,7 +872,7 @@
                 "config",
                 "configuration"
             ],
-            "time": "2014-11-14 03:26:12"
+            "time": "2014-11-14T03:26:12+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -932,7 +931,7 @@
                 "dot",
                 "notation"
             ],
-            "time": "2017-01-20 21:14:22"
+            "time": "2017-01-20T21:14:22+00:00"
         },
         {
             "name": "dflydev/placeholder-resolver",
@@ -2058,7 +2057,7 @@
                 "drupal",
                 "symfony"
             ],
-            "time": "2017-01-23 19:34:20"
+            "time": "2017-01-23T19:34:20+00:00"
         },
         {
             "name": "drupal/console-core",
@@ -2139,7 +2138,7 @@
                 "drupal",
                 "symfony"
             ],
-            "time": "2017-01-23 18:02:51"
+            "time": "2017-01-23T18:02:51+00:00"
         },
         {
             "name": "drupal/console-en",
@@ -2193,7 +2192,7 @@
                 "drupal",
                 "symfony"
             ],
-            "time": "2017-01-23 14:59:05"
+            "time": "2017-01-23T14:59:05+00:00"
         },
         {
             "name": "drupal/core",
@@ -2968,6 +2967,45 @@
             }
         },
         {
+            "name": "drupal/facets",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/facets.git",
+                "reference": "ed31ddef4fb0456bd5781e3238d14fba251a7ccd"
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "replace": {
+                "drupal/core_search_facets": "self.version",
+                "drupal/facets_summary": "self.version",
+                "drupal/rest_facets": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/core_search_facets, drupal/facets_summary, drupal/rest_facets"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "See all contributors",
+                    "homepage": "https://www.drupal.org/node/2348769/committers"
+                }
+            ],
+            "description": "Faceted search interfaces that can be used on Search API searchers.",
+            "homepage": "https://www.drupal.org/project/facets",
+            "time": "2016-12-24 10:23:55"
+        },
+        {
             "name": "drupal/field_group",
             "version": "1.0.0-rc6",
             "source": {
@@ -3070,38 +3108,94 @@
         },
         {
             "name": "drupal/file_entity",
-            "version": "8.2.0-beta2",
+            "version": "2.0.0-beta3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/file_entity",
-                "reference": "1af9fe03f47e308c1118fd9e0e698da719a56b7c"
+                "reference": "8.x-2.0-beta3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/file_entity-8.x-2.0-beta2.zip",
-                "reference": "1af9fe03f47e308c1118fd9e0e698da719a56b7c",
-                "shasum": null
+                "url": "https://ftp.drupal.org/files/projects/file_entity-8.x-2.0-beta3.zip",
+                "reference": null,
+                "shasum": "999624a08aeb23e759b2b4a682c5086eb6d87707"
             },
             "require": {
-                "drupal/core": "8.*",
-                "drupal/file": "8.*",
-                "drupal/image": "8.*",
-                "drupal/text": "8.*",
-                "drupal/views": "8.*"
+                "drupal/core": "*",
+                "drupal/token": "*"
+            },
+            "require-dev": {
+                "drupal/pathauto": "*"
             },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-8.x-2.x": "8.2.x-dev"
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.0-beta3",
+                    "datestamp": "1477564141"
                 }
             },
-            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
                 "GPL-2.0+"
             ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "Dave Reid",
+                    "homepage": "https://www.drupal.org/user/53892"
+                },
+                {
+                    "name": "Devin Carlson",
+                    "homepage": "https://www.drupal.org/user/290182"
+                },
+                {
+                    "name": "Drupal Media Team",
+                    "homepage": "https://www.drupal.org/user/3260690"
+                },
+                {
+                    "name": "Drupal media CI",
+                    "homepage": "https://www.drupal.org/user/3057985"
+                },
+                {
+                    "name": "JacobSingh",
+                    "homepage": "https://www.drupal.org/user/68912"
+                },
+                {
+                    "name": "ParisLiakos",
+                    "homepage": "https://www.drupal.org/user/1011436"
+                },
+                {
+                    "name": "aaron",
+                    "homepage": "https://www.drupal.org/user/33420"
+                },
+                {
+                    "name": "arthurf",
+                    "homepage": "https://www.drupal.org/user/27259"
+                },
+                {
+                    "name": "effulgentsia",
+                    "homepage": "https://www.drupal.org/user/78040"
+                },
+                {
+                    "name": "robeano",
+                    "homepage": "https://www.drupal.org/user/67660"
+                },
+                {
+                    "name": "slashrsm",
+                    "homepage": "https://www.drupal.org/user/744628"
+                }
+            ],
             "description": "Extends Drupal file entities to be fieldable and viewable.",
             "homepage": "https://www.drupal.org/project/file_entity",
-            "time": "2016-08-08 07:44:09"
+            "support": {
+                "source": "http://cgit.drupalcode.org/file_entity"
+            }
         },
         {
             "name": "drupal/inline_entity_form",
@@ -3692,10 +3786,9 @@
                 "drupal/ctools": ">=3.0.0-alpha26",
                 "drupal/layout_plugin": ">=1.0.0-alpha22"
             },
-            "suggest": {
-                "drupal/core": "Required by drupal/panels_ipe",
-                "drupal/page_manager": "Required by drupal/panels",
-                "drupal/panelizer": "Required by drupal/panels"
+            "require-dev": {
+                "drupal/page_manager": "*",
+                "drupal/panelizer": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -3862,6 +3955,113 @@
                 "source": "http://cgit.drupalcode.org/redirect"
             },
             "time": "2016-12-16 18:55:05"
+        },
+        {
+            "name": "drupal/search_api",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/search_api",
+                "reference": "dad7b95029298187d23b9f2f7c5650ac263b241c"
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/system": ">=8.2.0"
+            },
+            "replace": {
+                "drupal/search_api_db": "self.version",
+                "drupal/search_api_db_defaults": "self.version",
+                "drupal/search_api_views_taxonomy": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/search_api_db, drupal/search_api_db_defaults, drupal/search_api_views_taxonomy"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Thomas Seidl",
+                    "homepage": "https://www.drupal.org/u/drunken-monkey"
+                },
+                {
+                    "name": "Nick Veenhof",
+                    "homepage": "https://www.drupal.org/u/nick_vh"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/790418/committers"
+                }
+            ],
+            "description": "Provides a generic framework for modules offering search capabilities.",
+            "homepage": "https://www.drupal.org/project/search_api",
+            "time": "2017-01-22 18:39:05"
+        },
+        {
+            "name": "drupal/search_api_page",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/search_api_page",
+                "reference": "27dea84effd98a9f1b759708f595b980294a0512"
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/search_api": "8.*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Create search pages using Search API indexes.",
+            "homepage": "https://www.drupal.org/project/search_api_page",
+            "time": "2016-11-24 16:18:12"
+        },
+        {
+            "name": "drupal/search_api_solr",
+            "version": "dev-8.x-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/search_api_solr",
+                "reference": "3a2f695353971a8db79e5aa083180f31acb67940"
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/search_api": "8.*",
+                "solarium/solarium": "3.7.*"
+            },
+            "replace": {
+                "drupal/search_api_solr_defaults": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/search_api_solr_defaults"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Offers an implementation of the Search API that uses an Apache Solr server for indexing content.",
+            "homepage": "https://www.drupal.org/project/search_api_solr",
+            "time": "2016-12-24 00:45:38"
         },
         {
             "name": "drupal/slick",
@@ -4516,7 +4716,7 @@
                 "facebook",
                 "sdk"
             ],
-            "time": "2017-01-19 15:42:20"
+            "time": "2017-01-19T15:42:20+00:00"
         },
         {
             "name": "gabordemooij/redbean",
@@ -4917,6 +5117,54 @@
                 }
             ],
             "time": "2015-04-20 18:58:01"
+        },
+        {
+            "name": "jaybizzle/crawler-detect",
+            "version": "v1.2.30",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JayBizzle/Crawler-Detect.git",
+                "reference": "a7909ee330669d5fc13ab4f6c6b43cc2e5f22542"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/a7909ee330669d5fc13ab4f6c6b43cc2e5f22542",
+                "reference": "a7909ee330669d5fc13ab4f6c6b43cc2e5f22542",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Jaybizzle\\CrawlerDetect\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Beech",
+                    "email": "m@rkbee.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "CrawlerDetect is a PHP class for detecting bots/crawlers/spiders via the user agent",
+            "homepage": "https://github.com/JayBizzle/Crawler-Detect/",
+            "keywords": [
+                "crawler",
+                "crawler detect",
+                "crawler detector",
+                "crawlerdetect",
+                "php crawler detect"
+            ],
+            "time": "2017-01-17T21:57:49+00:00"
         },
         {
             "name": "kenwheeler/slick",
@@ -5455,17 +5703,6 @@
             "time": "2015-02-03 12:10:50"
         },
         {
-            "name": "phpoffice/phpspreadsheet",
-            "version": "0.0",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/PHPOffice/PhpSpreadsheet/archive/develop.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "library"
-        },
-        {
             "name": "psr/http-message",
             "version": "1.0.1",
             "source": {
@@ -5636,6 +5873,63 @@
             "time": "2016-12-07 17:15:07"
         },
         {
+            "name": "solarium/solarium",
+            "version": "3.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/solariumphp/solarium.git",
+                "reference": "0acdb2838ae551fe87e4e334e449a468973839f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/solariumphp/solarium/zipball/0acdb2838ae551fe87e4e334e449a468973839f2",
+                "reference": "0acdb2838ae551fe87e4e334e449a468973839f2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/event-dispatcher": "~2.3|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~3.7",
+                "satooshi/php-coveralls": "~1.0",
+                "squizlabs/php_codesniffer": "~1.4",
+                "zendframework/zendframework1": "~1.12"
+            },
+            "suggest": {
+                "minimalcode/search": "Query builder compatible with Solarium, allows simplified solr-query handling"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-develop": "3.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Solarium\\": "library/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "See GitHub contributors",
+                    "homepage": "https://github.com/basdenooijer/solarium/contributors"
+                }
+            ],
+            "description": "PHP Solr client",
+            "homepage": "http://www.solarium-project.org",
+            "keywords": [
+                "php",
+                "search",
+                "solr"
+            ],
+            "time": "2016-10-28T08:50:36+00:00"
+        },
+        {
             "name": "stack/builder",
             "version": "v1.0.4",
             "source": {
@@ -5797,7 +6091,7 @@
                 "database",
                 "routing"
             ],
-            "time": "2016-03-31 09:11:39"
+            "time": "2016-03-31T09:11:39+00:00"
         },
         {
             "name": "symfony/class-loader",
@@ -6305,7 +6599,7 @@
             ],
             "description": "Symfony ExpressionLanguage Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-02 20:30:24"
+            "time": "2017-01-02T20:30:24+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -7620,7 +7914,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2017-01-23 04:53:24"
+            "time": "2017-01-23T04:53:24+00:00"
         },
         {
             "name": "zendframework/zend-escaper",
@@ -8148,7 +8442,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/diff-8.x-1.0-rc1.zip",
-                "reference": null,
+                "reference": "8.x-1.0-rc1",
                 "shasum": "4945154c2c07444195a7ae07011a3b3db941c72a"
             },
             "require": {
@@ -8458,7 +8752,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2017-01-13 12:31:37"
+            "time": "2017-01-13T12:31:37+00:00"
         },
         {
             "name": "mkalkbrenner/php-htmldiff-advanced",
@@ -9552,6 +9846,7 @@
         "drupal/date": 20,
         "drupal/default_content": 20,
         "drupal/entity_browser": 10,
+        "drupal/facets": 20,
         "drupal/field_group": 5,
         "drupal/file_browser": 20,
         "drupal/file_entity": 10,
@@ -9566,6 +9861,9 @@
         "drupal/panels": 20,
         "drupal/pathauto": 15,
         "drupal/redirect": 20,
+        "drupal/search_api": 20,
+        "drupal/search_api_page": 20,
+        "drupal/search_api_solr": 20,
         "drupal/slick": 20,
         "drupal/slick_views": 20,
         "drupal/token": 10,

@@ -1,0 +1,28 @@
+uuid: b0fe3e37-b211-45d1-b24f-129699fbef65
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.bi_video_webinars
+  module:
+    - panels
+id: bi_video_webinars-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks: {  }
+  id: panels_variant
+  uuid: 46bd17b3-43e5-44f3-9681-2fa5df56c83d
+  label: null
+  weight: 0
+  layout: sitewide
+  layout_settings: {  }
+  page_title: 'Business Intelligence Webinars | PMMI'
+  storage_type: page_manager
+  storage_id: bi_video_webinars-panels_variant-0
+  builder: ipe
+page: bi_video_webinars
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

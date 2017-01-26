@@ -1,0 +1,43 @@
+version: '2'
+services:
+  web:
+    container_name: pmmi_dev_web_osx
+    build:
+      context: .
+      dockerfile: Dockerfile-dev
+    depends_on:
+      - db
+    # Environment variables
+    environment:
+      TERM: xterm
+      # Drupal settings
+      DRUPAL_PROFILE: config_installer
+      DRUPAL_SITE_NAME: PMMI
+      DRUPAL_USER: admin
+      DRUPAL_PASS: admin
+      DRUPAL_DBURL: mysql://root:rootpasswd@mysql:3306/drupal
+      PHP_XDEBUG_ENABLED: 1
+      PHP_XDEBUG_AUTOSTART: 1
+      PHP_XDEBUG_REMOTE_CONNECT_BACK: 1         # This is needed to respect remote.host setting bellow
+      PHP_XDEBUG_REMOTE_HOST: "10.254.254.254"
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+      - "9000"
+    volumes:
+      - unison-sync:/var/www:rw # Replace volume to this to use docker-sync for macOS users
+    links:
+      - db
+  db:
+    extends:
+      file: docker-compose.yml
+      service: db
+  solr:
+    extends:
+      file: docker-compose.yml
+      service: solr
+
+volumes:
+  unison-sync:
+    external: true
