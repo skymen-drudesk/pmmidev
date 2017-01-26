@@ -1,0 +1,82 @@
+uuid: fccfdc43-2210-47d5-997d-3caf75350da6
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.resources
+  content:
+    - 'block_content:containers:119a8867-56ee-41f1-8a9c-bb5e5186e943'
+    - 'block_content:icons:94790e95-99ac-45ca-a5e6-b1620421756f'
+    - 'block_content:image_header:8a1ce710-22c0-452d-b70f-ae94eb855e6a'
+    - 'block_content:text:25e2e42a-8ce2-4923-a2b8-2c835ef62499'
+  module:
+    - block_content
+    - panels
+id: resources-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    c978467e-b760-4e71-8898-796bd31952d4:
+      id: 'block_content:8a1ce710-22c0-452d-b70f-ae94eb855e6a'
+      label: 'Resources - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: c978467e-b760-4e71-8898-796bd31952d4
+      context_mapping: {  }
+    f01dc271-e850-4492-be35-afdde7c918c1:
+      id: 'block_content:119a8867-56ee-41f1-8a9c-bb5e5186e943'
+      label: 'Resources - Cards 1-3'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: grey
+      weight: 0
+      uuid: f01dc271-e850-4492-be35-afdde7c918c1
+      context_mapping: {  }
+    9c5b7db7-daa1-4d67-9911-e39925f56721:
+      id: 'block_content:25e2e42a-8ce2-4923-a2b8-2c835ef62499'
+      label: 'Resources - Intro Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: grey
+      weight: -1
+      uuid: 9c5b7db7-daa1-4d67-9911-e39925f56721
+      context_mapping: {  }
+    fd694d7c-e2bb-4969-92e6-a1879b2c0099:
+      id: 'block_content:94790e95-99ac-45ca-a5e6-b1620421756f'
+      label: 'Resources - Icons 4-up'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: blue
+      weight: 0
+      uuid: fd694d7c-e2bb-4969-92e6-a1879b2c0099
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 86628d4d-4831-4e4d-911a-4f04690eea12
+  label: null
+  weight: 0
+  layout: panel_homepage
+  layout_settings: {  }
+  page_title: 'Resources | PMMI'
+  storage_type: page_manager
+  storage_id: resources-panels_variant-0
+  builder: ipe
+page: resources
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

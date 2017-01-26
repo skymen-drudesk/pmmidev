@@ -5,7 +5,6 @@
     padding-left: 136px;
     position: relative;
     min-height: 133px;
-    padding-right: 15px;
   }
   a.logo {
     width: 136px;
@@ -13,6 +12,10 @@
     margin: -10px 0 0 -136px;
     padding: 0;
     position: absolute;
+  }
+  @include dhd {
+    width: auto;
+    max-width: 1360px;
   }
   @include tablet {
     .navbar-header {
@@ -48,10 +51,35 @@
     background: none;
     border: none;
   }
-  .nav-wrapper {
+  .main-nav {
     background: $blue;
+    .navbar-toggle {
+      border: none;
+      margin: 0;
+      padding: 6px;
+      background: $dkblue;
+      width: 31px;
+      height: 31px;
+      border-radius: 0;
+      &.collapsed {
+        background: $blue;
+        &:hover {
+          background: $dkblue;
+        }
+      }
+      .icon-bar {
+        width: auto;
+        background: #fff;
+      }
+    }
+    .collapse {
+      display: block;
+      height: auto !important;
+    }
+    /* START First level theming in ALL modes. */
     .nav {
       float: none;
+      font-size: 0;
       &:after {
         clear: none;
       }
@@ -63,12 +91,15 @@
         position: relative;
         > a {
           color: #fff;
-          padding: 6px 15px;
-          font-size: 20px;
+          padding: 6px 7px;
+          font-size: 15px;
           line-height: 24px;
-          letter-spacing: 1.5px;
+          letter-spacing: 1px;
           text-transform: uppercase;
           position: relative;
+          .caret {
+            display: none;
+          }
           &:after {
             position: absolute;
             right: 0;
@@ -82,15 +113,204 @@
             @include opacity(0.5);
             z-index: 2;
           }
+          &:focus {
+            background: none;
+          }
         }
-        &.active > a,
-        > a:hover,
-        > a:focus,
-        > a.is-active {
+        &.open > a,
+        > a:hover {
           background: $dkblue;
+          color: #fff;
+        }
+        &:hover {
+          .dropdown-menu {
+            display: block;
+          }
+        }
+        // Screen with min width of 1360px.
+        @media screen and (min-width: 1360px) {
+          > a {
+            font-size: $r20;
+            padding: 6px 15px;
+            letter-spacing: 1.5px;
+          }
+        }
+        @include desktop {
+          > a {
+            padding: 6px 7px;
+            letter-spacing: 1px;
+          }
+        }
+        @include tablet {
+          > a {
+            font-size: $r13;
+            line-height: 18px;
+            padding: 6px 5px;
+          }
         }
       }
     }
+    @include mobile {
+      background: none;
+      .tb-megamenu {
+        clear: both;
+      }
+      .collapse {
+        display: none;
+        &.in {
+          display: block;
+        }
+      }
+      .nav {
+        float: none;
+        font-size: 0;
+        background: #fff;
+        border: 4px solid $dkblue;
+        li {
+          display: block;
+          font-family: $lato;
+          a {
+            display: block;
+            color: $ltblue;
+            font-size: $r12;
+            line-height: $r15;
+            text-transform: none;
+            font-weight: 500;
+            padding: 10px 12px;
+            border-bottom: 1px solid $ltgrey;
+            &:after {
+              display: none;
+            }
+            &.opened,
+            &:hover {
+              background: $dkblue;
+              color: #fff;
+              text-decoration: none;
+            }
+            &.dropdown-toggle {
+              padding-right: 35px;
+              &:after {
+                width: auto;
+                border: none;
+                opacity: 1;
+                display: block;
+                position: absolute;
+                right: 16px;
+                top: 50%;
+                margin-top: -8px;
+                font-family: "FontAwesome";
+                content: "\f055";
+                font-weight: 400;
+                color: $ltblue;
+              }
+              &:hover {
+                &:after {
+                  color: #fff;
+                }
+              }
+              &.opened {
+                &:after {
+                  content: "\f056";
+                  color: #fff;
+                }
+              }
+            }
+          }
+          & > a {
+            font-weight: 800;
+          }
+        }
+      }
+    }
+    /* END First level theming in ALL modes. */
+
+    /* START Dropdown theming in ALL modes. */
+    .mega-align-center > .dropdown-menu {
+      left: 50%;
+      transform: translate(-50%);
+    }
+    .mega-align-right > .dropdown-menu {
+      left: auto;
+      right: 0;
+    }
+    .dropdown-menu {
+      float: none;
+      transition: 200ms ease;
+      border: 4px solid $dkblue;
+      background: #fff;
+      box-shadow: none;
+      border-radius: 0;
+      margin: 0;
+      min-width: 624px;
+      padding: 25px 30px;
+      .mega-nav {
+        font-family: $lato;
+        list-style: none;
+        padding: 0;
+        li {
+          font-size: $r13;
+          line-height: $r15;
+          margin-bottom: 10px;
+          a {
+            font-weight: 800;
+            color: $dkgrey;
+          }
+          &:after {
+            display: block;
+            content: "";
+            height: 0;
+            max-width: 200px;
+            margin: 7px 0 0;
+            border-bottom: 1px solid $ltgrey;
+          }
+          &:last-child {
+            margin-bottom: 0;
+            &:after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    @include mobile {
+      .nav > li {
+        &:hover {
+          .dropdown-menu {
+            display: none;
+          }
+        }
+        &.opened {
+          .dropdown-menu {
+            display: block;
+          }
+        }
+      }
+      .dropdown-menu {
+        position: static;
+        padding: 0;
+        min-width: 0;
+        border: none;
+        .mega-nav {
+          li {
+            margin-bottom: 0;
+            a {
+              color: $ltblue;
+              font-size: $r12;
+              line-height: $r15;
+              font-weight: 500;
+              padding-left: 40px;
+              &:hover {
+                color: #fff;
+              }
+            }
+            &:after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+    /* END Dropdown theming in ALL modes. */
   }
   .utility-navigation {
     padding-top: 6px;

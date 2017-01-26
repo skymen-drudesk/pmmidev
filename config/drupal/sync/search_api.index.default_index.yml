@@ -1,0 +1,194 @@
+uuid: f9299671-c1e5-44ad-9790-7e27da66a240
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_report_type
+    - field.storage.node.field_year
+    - field.storage.node.body
+    - search_api.server.solr_server
+  module:
+    - search_api
+    - node
+id: default_index
+name: 'Default Index'
+description: ''
+read_only: false
+field_settings:
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
+  title:
+    label: 'Title String'
+    datasource_id: 'entity:node'
+    property_path: title
+    type: string
+  status:
+    label: status
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    indexed_locked: true
+    type_locked: true
+  uid:
+    label: uid
+    datasource_id: 'entity:node'
+    property_path: uid
+    type: integer
+    indexed_locked: true
+    type_locked: true
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
+  field_report_type:
+    label: 'Report Type'
+    datasource_id: 'entity:node'
+    property_path: field_report_type
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_report_type
+  field_year:
+    label: Year
+    datasource_id: 'entity:node'
+    property_path: field_year
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_year
+  title_f:
+    label: Title
+    datasource_id: 'entity:node'
+    property_path: title
+    type: text
+    boost: !!float 2
+  body_f:
+    label: Body
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  changed:
+    label: Changed
+    datasource_id: 'entity:node'
+    property_path: changed
+    type: date
+datasource_settings:
+  'entity:node':
+    bundles:
+      default: true
+      selected: {  }
+    languages:
+      default: true
+      selected: {  }
+processor_settings:
+  highlight:
+    highlight: always
+    highlight_partial: false
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+  html_filter:
+    fields:
+      - title
+    title: true
+    alt: true
+    tags:
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      b: 2
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  stopwords:
+    fields: {  }
+    stopwords:
+      - a
+      - an
+      - and
+      - are
+      - as
+      - at
+      - be
+      - but
+      - by
+      - for
+      - if
+      - in
+      - into
+      - is
+      - it
+      - 'no'
+      - not
+      - of
+      - 'on'
+      - or
+      - s
+      - such
+      - t
+      - that
+      - the
+      - their
+      - then
+      - there
+      - these
+      - they
+      - this
+      - to
+      - was
+      - will
+      - with
+    weights:
+      preprocess_index: -5
+      preprocess_query: -2
+  add_url: {  }
+  stemmer:
+    fields:
+      - title_f
+      - body_f
+    exceptions:
+      texan: texa
+      mexican: mexic
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
+  ignorecase:
+    fields:
+      - title
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  content_access:
+    weights:
+      preprocess_query: -10
+  rendered_item: {  }
+  aggregated_field: {  }
+  node_status: {  }
+  tokenizer:
+    fields: {  }
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
+tracker_settings:
+  default: {  }
+options:
+  index_directly: true
+  cron_limit: 50
+server: solr_server

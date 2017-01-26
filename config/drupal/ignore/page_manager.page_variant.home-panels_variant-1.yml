@@ -5,9 +5,10 @@ dependencies:
   config:
     - page_manager.page.home
     - views.view.events
-    - views.view.slideshow
   content:
+    - 'block_content:containers:15c7ef8b-4188-459f-8538-ff85def27f5f'
     - 'block_content:containers:39b3f6d2-93b6-4bcd-a7e5-b828db1a1166'
+    - 'block_content:slideshow:57ae5d80-3a07-4268-9609-0448117b967a'
     - 'block_content:text:c0995ff6-8d63-4590-861c-de26e279038e'
   module:
     - audience_select
@@ -45,25 +46,38 @@ variant_settings:
       context_mapping: {  }
     6308cf6a-808d-43e5-b534-644aa28ecb67:
       id: 'views_block:events-block_3'
-      label: ''
+      label: 'Upcoming Events'
       provider: views
-      label_display: '0'
-      views_label: ''
+      label_display: visible
+      views_label: 'Upcoming Events'
       items_per_page: none
       region: blue
       weight: -1
       uuid: 6308cf6a-808d-43e5-b534-644aa28ecb67
       context_mapping: {  }
-    58dd57f2-3e02-4a52-89b3-8dcc35ce5244:
-      id: 'views_block:slideshow-block_default'
-      label: ''
-      provider: views
+    ff611ba1-7cbf-4c07-a439-b5b1f51d7e10:
+      id: 'block_content:57ae5d80-3a07-4268-9609-0448117b967a'
+      label: 'Home - Bottom Slider'
+      provider: block_content
       label_display: '0'
-      views_label: ''
-      items_per_page: none
+      status: true
+      info: ''
+      view_mode: default
       region: bottom
       weight: 0
-      uuid: 58dd57f2-3e02-4a52-89b3-8dcc35ce5244
+      uuid: ff611ba1-7cbf-4c07-a439-b5b1f51d7e10
+      context_mapping: {  }
+    b8d1e16f-2c17-43b4-a15e-4ea11a252ffc:
+      id: 'block_content:15c7ef8b-4188-459f-8538-ff85def27f5f'
+      label: 'Home (End-User) - News+Twitter+??'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: white
+      weight: 0
+      uuid: b8d1e16f-2c17-43b4-a15e-4ea11a252ffc
       context_mapping: {  }
   id: panels_variant
   uuid: bf92f802-5fe4-4fac-9b5b-d5bff125f44a
