@@ -16,12 +16,15 @@ dependencies:
     - field.field.node.company.field_primary_contact_email
     - field.field.node.company.field_primary_contact_first_name
     - field.field.node.company.field_primary_contact_last_name
+    - field.field.node.company.field_territory_served
     - field.field.node.company.field_website_url
     - node.type.company
   module:
     - address
     - link
     - options
+    - pmmi_address
+    - telephone
     - user
 id: node.company.default
 targetEntityType: node
@@ -65,9 +68,10 @@ content:
   field_fax_number:
     weight: 103
     label: above
-    settings: {  }
+    settings:
+      title: ''
     third_party_settings: {  }
-    type: basic_string
+    type: telephone_link
   field_general_company_email:
     weight: 105
     label: above
@@ -84,9 +88,10 @@ content:
   field_main_phone_number:
     weight: 102
     label: above
-    settings: {  }
+    settings:
+      title: ''
     third_party_settings: {  }
-    type: basic_string
+    type: telephone_link
   field_manufacturers_represented:
     weight: 120
     label: above
@@ -113,6 +118,12 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+  field_territory_served:
+    weight: 128
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: country_area_plain
   field_website_url:
     weight: 104
     label: above
@@ -126,4 +137,6 @@ content:
     type: link
   links:
     weight: 100
+    settings: {  }
+    third_party_settings: {  }
 hidden: {  }
