@@ -4,10 +4,13 @@ status: true
 dependencies:
   config:
     - block_content.type.pack_expo_show
+    - field.field.block_content.pack_expo_show.body
     - field.field.block_content.pack_expo_show.field_button
+    - field.field.block_content.pack_expo_show.field_buttons
     - field.field.block_content.pack_expo_show.field_dates
     - field.field.block_content.pack_expo_show.field_location
     - field.field.block_content.pack_expo_show.field_logo
+    - field.field.block_content.pack_expo_show.field_show_dates
     - responsive_image.styles.shows_block
   module:
     - address
@@ -15,6 +18,7 @@ dependencies:
     - ds
     - link
     - responsive_image
+    - text
 third_party_settings:
   ds:
     layout:
@@ -25,21 +29,28 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
-      dates:
-        - field_dates
-      location:
-        - field_location
-      button:
-        - field_button
       logo:
         - field_logo
+      dates:
+        - field_show_dates
+      location:
+        - field_location
+        - body
+      button:
+        - field_buttons
 id: block_content.pack_expo_show.default
 targetEntityType: block_content
 bundle: pack_expo_show
 mode: default
 content:
-  field_button:
-    weight: 2
+  body:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+  field_buttons:
+    weight: 4
     label: hidden
     settings:
       trim_length: 80
@@ -49,31 +60,14 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-  field_dates:
-    weight: 0
-    label: hidden
-    settings:
-      timezone_override: ''
-      format_type: month_day_year
-      separator: '-'
-    third_party_settings:
-      ds:
-        ds_limit: ''
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
-    type: daterange_default
   field_location:
-    weight: 1
+    weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: address_default
   field_logo:
-    weight: 3
+    weight: 0
     label: hidden
     settings:
       responsive_image_style: shows_block
@@ -87,4 +81,15 @@ content:
             lb-col: false
             classes: {  }
     type: responsive_image
-hidden: {  }
+  field_show_dates:
+    weight: 1
+    label: hidden
+    settings:
+      separator: '-'
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: daterange_default
+hidden:
+  field_button: true
+  field_dates: true

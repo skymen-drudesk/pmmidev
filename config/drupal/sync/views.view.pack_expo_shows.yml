@@ -170,10 +170,10 @@ display:
           entity_field: type
           plugin_id: bundle
       sorts:
-        field_dates_value:
-          id: field_dates_value
-          table: block_content__field_dates
-          field: field_dates_value
+        field_show_dates_value:
+          id: field_show_dates_value
+          table: block_content__field_show_dates
+          field: field_show_dates_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -181,7 +181,7 @@ display:
           exposed: false
           expose:
             label: ''
-          granularity: hour
+          granularity: day
           plugin_id: datetime
       title: ''
       header: {  }
