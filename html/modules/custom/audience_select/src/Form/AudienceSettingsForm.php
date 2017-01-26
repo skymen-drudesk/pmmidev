@@ -199,7 +199,7 @@ class AudienceSettingsForm extends ConfigFormBase {
     $form['new_audience']['audience_title'] = array(
       '#type' => 'textfield',
       '#title' => $this->t('Audience Title'),
-      '#size' => 40,
+      '#size' => 48,
     );
     $form['new_audience']['audience_id'] = array(
       '#type' => 'machine_name',
