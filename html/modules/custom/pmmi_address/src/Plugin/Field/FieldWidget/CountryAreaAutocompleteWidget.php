@@ -247,9 +247,11 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
     foreach ($items as $item) {
       $division = explode('::', $item->{$this->column});
 
-      $selected_options['countries'][$division[0]] = $division[0];
-      if (!empty($division[1])) {
-        $selected_options['areas'][$division[1]] = $division[1];
+      if (!empty($division[0])) {
+        $selected_options['countries'][$division[0]] = $division[0];
+        if (!empty($division[1])) {
+          $selected_options['areas'][$division[1]] = $division[1];
+        }
       }
     }
 
