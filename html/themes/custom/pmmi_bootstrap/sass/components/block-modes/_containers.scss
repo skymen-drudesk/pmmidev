@@ -8,4 +8,64 @@
       margin: 0 auto;
     }
   }
+  .region-bottom {
+    .field-name-field-button {
+      text-align: center;
+      a {
+        @extend .button-primary;
+      }
+    }
+  }
+}
+.blue-region {
+  .containers {
+    .region-top {
+      text-align: center;
+      .field-name-field-head {
+        @extend .headline1;
+        @extend .white;
+        display: inline-block;
+        margin-bottom: 50px;
+      }
+    }
+    .region-bottom {
+      .field-name-field-button {
+        a {
+          @extend .button-secondary;
+        }
+      }
+    }
+  }
+}
+.grey-region {
+  .containers {
+    .region-top {
+      text-align: center;
+      .field-name-field-head {
+        @extend .headline1;
+        display: inline-block;
+        margin-bottom: 40px;
+      }
+    }
+  }
+}
+.block .containers {
+  .region-bottom {
+    .field-name-field-button {
+      a {
+        @include dhd {
+          min-width: 370px;
+        }
+        @include desktop {
+          min-width: 310px;
+        }
+        @include tablet {
+          min-width: 230px;
+        }
+        @include mobile {
+          min-width: 233px;
+        }
+      }
+    }
+  }
 }

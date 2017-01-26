@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - block_content.type.icons
+    - field.field.block_content.icons.field_head
     - field.field.block_content.icons.field_icon_1
     - field.field.block_content.icons.field_icon_2
     - field.field.block_content.icons.field_icon_3
@@ -20,6 +21,8 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
+      head:
+        - field_head
       main:
         - field_icon_1
         - field_icon_2
@@ -30,15 +33,21 @@ targetEntityType: block_content
 bundle: icons
 mode: default
 content:
-  field_icon_1:
+  field_head:
     weight: 0
     label: hidden
     settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
-    type: entity_reference_entity_view
-  field_icon_2:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: string
+  field_icon_1:
     weight: 1
     label: hidden
     settings:
@@ -46,7 +55,7 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_reference_entity_view
-  field_icon_3:
+  field_icon_2:
     weight: 2
     label: hidden
     settings:
@@ -54,8 +63,16 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_reference_entity_view
-  field_icon_4:
+  field_icon_3:
     weight: 3
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+  field_icon_4:
+    weight: 4
     label: hidden
     settings:
       link: true

@@ -1,14 +1,14 @@
-uuid: 7d114270-26e6-45ca-aeed-dc1a788f3aa2
+uuid: e1a9135e-c26b-4f24-8850-16490ae45c64
 langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.text
+    - block_content.type.icons
     - field.storage.block_content.field_head
-id: block_content.text.field_head
+id: block_content.icons.field_head
 field_name: field_head
 entity_type: block_content
-bundle: text
+bundle: icons
 label: Head
 description: ''
 required: false

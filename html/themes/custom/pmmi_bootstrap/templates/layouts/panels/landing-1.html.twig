@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Template for a homepage layout.
+ */
+#}
+<div class="layout-landing layout-landing-1 clearfix">
+  <div class="region-top">
+    {{ content.top }}
+  </div>
+  {% if content.white %}
+    <div class="white-region">
+      <div class="container">
+        {{ content.white }}
+      </div>
+    </div>
+  {% endif %}
+  {% if content.grey %}
+    <div class="grey-region">
+      <div class="container">
+        {{ content.grey }}
+      </div>
+    </div>
+  {% endif %}
+  {% if content.blue %}
+    <div class="blue-region">
+      <div class="container">
+        {{ content.blue }}
+      </div>
+    </div>
+  {% endif %}
+  {% if content.white_2 %}
+    <div class="white-region">
+      <div class="container">
+        {{ content.white_2 }}
+      </div>
+    </div>
+  {% endif %}
+  {% if content.blue_2 %}
+    <div class="blue-region">
+      <div class="container">
+        {{ content.blue_2 }}
+      </div>
+    </div>
+  {% endif %}
+</div>

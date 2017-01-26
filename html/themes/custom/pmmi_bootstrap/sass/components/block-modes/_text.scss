@@ -36,6 +36,7 @@
       }
     }
     .block-body {
+      .layout-landing &,
       .layout-homepage & {
         @extend .paragraph3;
       }
