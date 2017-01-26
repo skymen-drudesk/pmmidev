@@ -4,7 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2115e07a1b26605583032924bbb601bf",
+    "hash": "90bab6acfe9f9422fdccd24638c28423",
+    "content-hash": "7cb1be1044a8f2696becb9488769c544",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -630,7 +631,7 @@
                 }
             ],
             "description": "Initialize Symfony Console commands from annotated command class methods.",
-            "time": "2017-01-21T06:15:21+00:00"
+            "time": "2017-01-21 06:15:21"
         },
         {
             "name": "consolidation/output-formatters",
@@ -679,7 +680,7 @@
                 }
             ],
             "description": "Format text by applying transformations provided by plug-in formatters.",
-            "time": "2017-01-21T06:26:40+00:00"
+            "time": "2017-01-21 06:26:40"
         },
         {
             "name": "cweagans/composer-patches",
@@ -872,7 +873,7 @@
                 "config",
                 "configuration"
             ],
-            "time": "2014-11-14T03:26:12+00:00"
+            "time": "2014-11-14 03:26:12"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -931,7 +932,7 @@
                 "dot",
                 "notation"
             ],
-            "time": "2017-01-20T21:14:22+00:00"
+            "time": "2017-01-20 21:14:22"
         },
         {
             "name": "dflydev/placeholder-resolver",
@@ -2057,7 +2058,7 @@
                 "drupal",
                 "symfony"
             ],
-            "time": "2017-01-23T19:34:20+00:00"
+            "time": "2017-01-23 19:34:20"
         },
         {
             "name": "drupal/console-core",
@@ -2138,7 +2139,7 @@
                 "drupal",
                 "symfony"
             ],
-            "time": "2017-01-23T18:02:51+00:00"
+            "time": "2017-01-23 18:02:51"
         },
         {
             "name": "drupal/console-en",
@@ -2192,7 +2193,7 @@
                 "drupal",
                 "symfony"
             ],
-            "time": "2017-01-23T14:59:05+00:00"
+            "time": "2017-01-23 14:59:05"
         },
         {
             "name": "drupal/core",
@@ -3786,9 +3787,10 @@
                 "drupal/ctools": ">=3.0.0-alpha26",
                 "drupal/layout_plugin": ">=1.0.0-alpha22"
             },
-            "require-dev": {
-                "drupal/page_manager": "*",
-                "drupal/panelizer": "*"
+            "suggest": {
+                "drupal/core": "Required by drupal/panels_ipe",
+                "drupal/page_manager": "Required by drupal/panels",
+                "drupal/panelizer": "Required by drupal/panels"
             },
             "type": "drupal-module",
             "extra": {
@@ -3962,7 +3964,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/search_api",
-                "reference": "dad7b95029298187d23b9f2f7c5650ac263b241c"
+                "reference": "aee2b9d81fb625c6862663e47aee765f4bcf96ae"
             },
             "require": {
                 "drupal/core": "8.*",
@@ -4002,7 +4004,7 @@
             ],
             "description": "Provides a generic framework for modules offering search capabilities.",
             "homepage": "https://www.drupal.org/project/search_api",
-            "time": "2017-01-22 18:39:05"
+            "time": "2017-01-25 15:20:06"
         },
         {
             "name": "drupal/search_api_page",
@@ -4716,7 +4718,7 @@
                 "facebook",
                 "sdk"
             ],
-            "time": "2017-01-19T15:42:20+00:00"
+            "time": "2017-01-19 15:42:20"
         },
         {
             "name": "gabordemooij/redbean",
@@ -5120,16 +5122,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.30",
+            "version": "v1.2.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "a7909ee330669d5fc13ab4f6c6b43cc2e5f22542"
+                "reference": "be0d602fdf9a1a6b3c9a1eea6fdb04b1654ae71a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/a7909ee330669d5fc13ab4f6c6b43cc2e5f22542",
-                "reference": "a7909ee330669d5fc13ab4f6c6b43cc2e5f22542",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/be0d602fdf9a1a6b3c9a1eea6fdb04b1654ae71a",
+                "reference": "be0d602fdf9a1a6b3c9a1eea6fdb04b1654ae71a",
                 "shasum": ""
             },
             "require": {
@@ -5164,7 +5166,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2017-01-17T21:57:49+00:00"
+            "time": "2017-01-26 10:29:48"
         },
         {
             "name": "kenwheeler/slick",
@@ -5703,6 +5705,17 @@
             "time": "2015-02-03 12:10:50"
         },
         {
+            "name": "phpoffice/phpspreadsheet",
+            "version": "0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/PHPOffice/PhpSpreadsheet/archive/develop.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library"
+        },
+        {
             "name": "psr/http-message",
             "version": "1.0.1",
             "source": {
@@ -5927,7 +5940,7 @@
                 "search",
                 "solr"
             ],
-            "time": "2016-10-28T08:50:36+00:00"
+            "time": "2016-10-28 08:50:36"
         },
         {
             "name": "stack/builder",
@@ -6091,7 +6104,7 @@
                 "database",
                 "routing"
             ],
-            "time": "2016-03-31T09:11:39+00:00"
+            "time": "2016-03-31 09:11:39"
         },
         {
             "name": "symfony/class-loader",
@@ -6599,7 +6612,7 @@
             ],
             "description": "Symfony ExpressionLanguage Component",
             "homepage": "https://symfony.com",
-            "time": "2017-01-02T20:30:24+00:00"
+            "time": "2017-01-02 20:30:24"
         },
         {
             "name": "symfony/filesystem",
@@ -7914,7 +7927,7 @@
                 "psr",
                 "psr-7"
             ],
-            "time": "2017-01-23T04:53:24+00:00"
+            "time": "2017-01-23 04:53:24"
         },
         {
             "name": "zendframework/zend-escaper",
@@ -8442,7 +8455,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/diff-8.x-1.0-rc1.zip",
-                "reference": "8.x-1.0-rc1",
+                "reference": null,
                 "shasum": "4945154c2c07444195a7ae07011a3b3db941c72a"
             },
             "require": {
@@ -8752,7 +8765,7 @@
             "keywords": [
                 "html"
             ],
-            "time": "2017-01-13T12:31:37+00:00"
+            "time": "2017-01-13 12:31:37"
         },
         {
             "name": "mkalkbrenner/php-htmldiff-advanced",
