@@ -79,8 +79,9 @@ class PMMIAddressField extends ProcessPluginBase implements ContainerFactoryPlug
           return $country_code;
         }
         else {
-          throw new MigrateException($this->t('Country "@country" isn\'t correct.', array(
+          throw new MigrateException($this->t('The next country "@country" hasn\'t passed the validation. Please check values for the "@source" source.', array(
             '@country' => $value,
+            '@source' => $this->configuration['source'],
           )));
         }
         break;
@@ -89,29 +90,45 @@ class PMMIAddressField extends ProcessPluginBase implements ContainerFactoryPlug
         $source = $row->getSource();
         $country = $source[$this->configuration['parent']];
 
-        // Just to be sure that all was imported correctly.
-        if ($value && $country_code = $this->getCountryCodeByName($country)) {
-          $areas = $this->subdivision_repository->getList(array($country_code));
+        $country_code = $this->getCountryCodeByName($country);
+        if ($value && $country_code) {
+          if ($areas = $this->subdivision_repository->getList(array($country_code))) {
+            $area_codes = array_flip($areas);
 
-          if (isset($areas[$value])) {
-            return $value;
-          }
-          else {
-            throw new MigrateException($this->t('Administrative area "@area" isn\'t correct for "@country".', array(
-              '@area' => $value,
-              '@country' => $country,
-            )));
+            // Try find necessary area by its name (case is ignored).
+            if ($by_name = array_search(strtolower($value), array_map('strtolower', $area_codes))) {
+              return $area_codes[$by_name];
+            }
+            // Try find necessary area by its code (case is ignored).
+            elseif ($by_code = array_search(strtolower($value), array_map('strtolower', $areas))) {
+              return $by_code;
+            }
+            else {
+              throw new MigrateException($this->t('The next state/region "@area" hasn\'t passed the validation. Please check values for the "@source" source.', array(
+                '@area' => $value,
+                '@source' => $this->configuration['source'],
+              )));
+            }
           }
         }
+        elseif ($value && !$country_code) {
+          throw new MigrateException($this->t('The next country "@country" hasn\'t passed the validation. Please check values for the "@source" source.', array(
+            '@country' => $country,
+            '@source' => $this->configuration['parent'],
+          )));
+        }
         break;
-
-      default:
-        return $value;
     }
   }
 
   /**
-   * Get country code by its name.
+   * Get country code by its name (case is ignored).
+   *
+   * @param $country string
+   *   The country name.
+   *
+   * @return
+   *   The country code if country was found, otherwise - FALSE.
    */
   protected function getCountryCodeByName($country) {
     $countries = $this->country_repository->getList();

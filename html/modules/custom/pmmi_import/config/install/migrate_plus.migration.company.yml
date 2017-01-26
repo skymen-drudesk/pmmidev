@@ -125,6 +125,11 @@ process:
       Systems Integrator: Integrators
       Processing Equipment: Process
       Automation Equipment & Components: Automation and Components
+  field_territory_served:
+    plugin: pmmi_territory_served
+    source:
+      countries: Countries Covered
+      areas: States Covered
 
 #  field_industries_served:
 #  field_equipment_sold_type:
