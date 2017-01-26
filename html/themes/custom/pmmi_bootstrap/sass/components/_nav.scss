@@ -33,6 +33,15 @@
     }
   }
   @include mobile {
+    padding-left:  floor(($grid-gutter-width / 2));
+    padding-right: ceil(($grid-gutter-width / 2));
+    .utility-nav {
+      display: none;
+    }
+    > .navbar-header {
+      margin-left: 0;
+      margin-right: 0;
+    }
     .navbar-header {
       padding-left: 60px;
       min-height: 43px;
@@ -57,10 +66,10 @@
       border: none;
       margin: 0;
       padding: 6px;
-      background: $dkblue;
-      width: 31px;
-      height: 31px;
+      width: 30px;
+      height: 30px;
       border-radius: 0;
+      background: $dkblue;
       &.collapsed {
         background: $blue;
         &:hover {
@@ -72,7 +81,11 @@
         background: #fff;
       }
     }
-    .collapse {
+    .block-tb-megamenu {
+      display: inline-block;
+      margin: 0;
+    }
+    .tb-megamenu.collapse {
       display: block;
       height: auto !important;
     }
@@ -117,8 +130,9 @@
             background: none;
           }
         }
-        &.open > a,
-        > a:hover {
+        &:hover > a,
+        > a:hover,
+        &.open > a {
           background: $dkblue;
           color: #fff;
         }
@@ -151,14 +165,25 @@
       }
     }
     @include mobile {
-      background: none;
+      margin: 4px 0 0;
+      .block-tb-megamenu {
+        float: right;
+        position: relative;
+        display: block;
+        margin: 0;
+      }
       .tb-megamenu {
         clear: both;
-      }
-      .collapse {
-        display: none;
-        &.in {
-          display: block;
+        position: absolute;
+        right: 0;
+        top: 100%;
+        z-index: 3;
+        min-width: 230px;
+        &.collapse {
+          display: none;
+          &.in {
+            display: block;
+          }
         }
       }
       .nav {
@@ -234,10 +259,12 @@
       right: 0;
     }
     .dropdown-menu {
+      background-position: 100% 100%;
+      background-repeat: no-repeat;
+      background-color: #fff;
       float: none;
       transition: 200ms ease;
       border: 4px solid $dkblue;
-      background: #fff;
       box-shadow: none;
       border-radius: 0;
       margin: 0;
@@ -251,6 +278,9 @@
           font-size: $r13;
           line-height: $r15;
           margin-bottom: 10px;
+          &.only-mobile {
+            display: none;
+          }
           a {
             font-weight: 800;
             color: $dkgrey;
@@ -272,6 +302,34 @@
         }
       }
     }
+    @include tablet {
+      .dropdown-menu {
+        background-image: none !important;
+        padding: 0;
+        min-width: 165px;
+        white-space: nowrap;
+        .mega-nav li {
+          margin: 0;
+          font-size: $r12;
+          line-height: $r15;
+          &:after {
+            display: none;
+          }
+          a {
+            text-decoration: none;
+            display: block;
+            font-weight: 800;
+            color: $ltblue;
+            padding: 10px;
+            border-bottom: 1px solid $mdgrey;
+            &:hover {
+              background: $dkblue;
+              color: #fff;
+            }
+          }
+        }
+      }
+    }
     @include mobile {
       .nav > li {
         &:hover {
@@ -286,6 +344,7 @@
         }
       }
       .dropdown-menu {
+        background-image: none !important;
         position: static;
         padding: 0;
         min-width: 0;
@@ -293,6 +352,9 @@
         .mega-nav {
           li {
             margin-bottom: 0;
+            &.only-mobile {
+              display: block;
+            }
             a {
               color: $ltblue;
               font-size: $r12;
@@ -343,13 +405,9 @@
         }
       }
     }
-  }
-  @include mobile {
-    padding-left:  floor(($grid-gutter-width / 2));
-    padding-right: ceil(($grid-gutter-width / 2));
-    > .navbar-header {
-      margin-left: 0;
-      margin-right: 0;
+    @include tablet {
+      padding: 0;
+      margin-bottom: 5px;
     }
   }
 }

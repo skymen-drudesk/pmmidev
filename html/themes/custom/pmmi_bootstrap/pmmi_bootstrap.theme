@@ -8,6 +8,7 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
 use Drupal\Core\Template\Attribute;
+use Drupal\image\Entity\ImageStyle;
 
 /**
  * Implements hook_preprocess_block().
@@ -79,6 +80,7 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
 
     case 'text_image':
     case 'text':
+    case 'containers':
       $center = $vars['content']['#block_content']->get('field_center_text')->value;
       if ($center) {
         $attributes['class'][] = 'centered';
@@ -124,4 +126,25 @@ function pmmi_bootstrap_page_attachments_alter(array &$page) {
 function pmmi_bootstrap_preprocess_viewfield_formatter_default(&$variables) {
   $element = $variables['element'];
   $variables['title'] = $element['#view']->getTitle();
+}
+
+
+/**
+ * Prepare variables for tb_megamenu_submenu.
+ */
+function pmmi_bootstrap_preprocess_tb_megamenu_submenu(&$vars) {
+  $parent = $vars['parent'];
+  $metadata = $parent->link->getMetaData();
+  $entity = \Drupal::entityTypeManager()->getStorage('menu_link_content')->load($metadata['entity_id']);
+  if ($entity && $submenu_background = $entity->submenu_background->entity) {
+    $background_uri = $submenu_background->getFileUri();
+    $styled_image_url = file_url_transform_relative(file_create_url($background_uri));
+    $style = "background-image: url(" . $styled_image_url . ");";
+    if (!empty($vars['attributes']['style'])) {
+      $vars['attributes']['style'] .= ' ' . $style;
+    }
+    else {
+      $vars['attributes']['style'] = $style;
+    }
+  }
 }
