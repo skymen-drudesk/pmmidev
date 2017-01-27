@@ -20,8 +20,6 @@ else
   source "$base/env.dist"
 fi
 
-echo "Using osx? $OSX"
-
 # Usage info
 usage() {
 cat << EOF
