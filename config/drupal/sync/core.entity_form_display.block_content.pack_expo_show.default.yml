@@ -14,7 +14,7 @@ dependencies:
     - address
     - datetime_range
     - image
-    - link
+    - link_attributes
     - text
 id: block_content.pack_expo_show.default
 targetEntityType: block_content
@@ -34,8 +34,15 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      enabled_attributes:
+        id: false
+        name: false
+        target: true
+        rel: true
+        class: true
+        accesskey: false
     third_party_settings: {  }
-    type: link_default
+    type: link_attributes
   field_location:
     weight: 1
     settings:
