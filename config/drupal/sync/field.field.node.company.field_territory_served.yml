@@ -1,11 +1,12 @@
-uuid: 508c6e4d-68c7-408c-9452-707973b1cd14
+uuid: 16c41c0a-df3f-4a7a-a3e0-5620d962b009
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.node.field_territory_served
     - node.type.company
-    - taxonomy.vocabulary.territory_served
+  module:
+    - pmmi_address
 id: node.company.field_territory_served
 field_name: field_territory_served
 entity_type: node
@@ -16,13 +17,5 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings:
-  handler: 'default:taxonomy_term'
-  handler_settings:
-    target_bundles:
-      territory_served: territory_served
-    sort:
-      field: _none
-    auto_create: false
-    auto_create_bundle: ''
-field_type: entity_reference
+settings: {  }
+field_type: country_area

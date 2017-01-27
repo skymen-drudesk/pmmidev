@@ -1,16 +1,19 @@
 map:
   audience_1:
-    audience_title: 'PMMI Member'
+    audience_title: 'For members'
     audience_redirect_url: 'internal:/home'
-    audience_image: {  }
+    audience_image:
+      - '243'
   audience_2:
-    audience_title: 'User of Packaging or Processing Equipment'
+    audience_title: 'For other interested parties'
     audience_redirect_url: 'internal:/home'
-    audience_image: {  }
+    audience_image:
+      - '244'
   audience_3:
-    audience_title: 'Another Interested Party'
+    audience_title: 'For other interested parties'
     audience_redirect_url: 'internal:/home'
-    audience_image: {  }
+    audience_image:
+      - '245'
 gateway_url: 'internal:/gateway'
 excluded_pages: "/admin\r\n/admin/*\r\n/user\r\n/user/*\r\n/node/add\r\n/node/*/edit\r\n/block\r\n/block/*\r\n/file\r\n/file/*\r\n/batch\r\n/batch/*"
 default_bot_audience: audience_1

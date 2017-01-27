@@ -1,0 +1,82 @@
+uuid: 1874e5da-9aae-4340-a78a-56b30724c6b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.news
+    - views.view.news
+  content:
+    - 'block_content:containers:2b4f544a-3510-4cf5-8e65-02e30f3e1163'
+    - 'block_content:image_header:e8248d24-25f9-4f66-9aeb-f2f2ef484bd7'
+    - 'block_content:text:0c94e030-08ea-4414-98d9-f25eac3bbf85'
+  module:
+    - block_content
+    - panels
+    - views
+id: news-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    cba6b3a4-4c18-454a-80fe-68ace82aa4db:
+      id: 'block_content:e8248d24-25f9-4f66-9aeb-f2f2ef484bd7'
+      label: 'News - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: -10
+      uuid: cba6b3a4-4c18-454a-80fe-68ace82aa4db
+      context_mapping: {  }
+    c8088216-0e75-4b19-9de3-9e2cf116a09d:
+      id: 'block_content:2b4f544a-3510-4cf5-8e65-02e30f3e1163'
+      label: 'News - Cards 1-3'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: grey
+      weight: 0
+      uuid: c8088216-0e75-4b19-9de3-9e2cf116a09d
+      context_mapping: {  }
+    3945426f-b6cc-42b4-b9f5-8bf38c2c3475:
+      id: 'block_content:0c94e030-08ea-4414-98d9-f25eac3bbf85'
+      label: 'News - Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: grey
+      weight: -1
+      uuid: 3945426f-b6cc-42b4-b9f5-8bf38c2c3475
+      context_mapping: {  }
+    5a962a42-626f-40ad-a794-b3f9fdd354f3:
+      id: 'views_block:news-block_most_recent'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: white
+      weight: 0
+      uuid: 5a962a42-626f-40ad-a794-b3f9fdd354f3
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 25408d18-68b1-4cd5-9f12-ee263c95b42a
+  label: null
+  weight: 0
+  layout: panel_homepage
+  layout_settings: {  }
+  page_title: 'News | PMMI'
+  storage_type: page_manager
+  storage_id: news-panels_variant-0
+  builder: ipe
+page: news
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

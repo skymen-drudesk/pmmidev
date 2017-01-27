@@ -6,8 +6,13 @@ dependencies:
     - page_manager.page.site_template
     - system.menu.emerging-leaders-nav
     - system.menu.footer
+  content:
+    - 'block_content:social_media:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
   module:
+    - audience_select
+    - block_content
     - panels_everywhere
+    - pmmi
     - system
 id: site_template-panels_everywhere_variant-4
 label: 'Emerging Leaders Network'
@@ -74,8 +79,39 @@ variant_settings:
       level: '1'
       depth: '0'
       region: footer
-      weight: '-2'
+      weight: '-3'
       uuid: cafd3158-bd58-4464-a406-f6675fc53663
+      context_mapping: {  }
+    563c1d9b-1ae3-457f-ae89-0e216a25fedc:
+      id: audience_switcher
+      label: 'Audience Switcher'
+      provider: audience_select
+      label_display: 0
+      excluded_audiences: {  }
+      region: footer
+      weight: '-2'
+      uuid: 563c1d9b-1ae3-457f-ae89-0e216a25fedc
+      context_mapping: {  }
+    4b0e47ab-44ce-498f-bfa8-7a0880602edf:
+      id: 'block_content:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
+      label: 'PMMI - Social Media'
+      provider: block_content
+      label_display: 0
+      status: true
+      info: ''
+      view_mode: footer_social
+      region: footer
+      weight: '-1'
+      uuid: 4b0e47ab-44ce-498f-bfa8-7a0880602edf
+      context_mapping: {  }
+    ee3b6d98-bc70-4ed5-a832-1b2e37d67082:
+      id: copyright_block
+      label: 'Copyright block'
+      provider: pmmi
+      label_display: 0
+      region: footer
+      weight: '-4'
+      uuid: ee3b6d98-bc70-4ed5-a832-1b2e37d67082
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: d50f3796-4d4b-40b6-a48b-ea0d3a051c16

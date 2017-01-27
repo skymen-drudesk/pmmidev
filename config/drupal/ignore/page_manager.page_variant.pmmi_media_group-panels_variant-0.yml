@@ -1,0 +1,95 @@
+uuid: bf2fd666-0e51-4952-a21e-dba3ffa717c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.pmmi_media_group
+  content:
+    - 'block_content:containers:3b685b79-19dc-4bb7-8793-341e1bf0f8f1'
+    - 'block_content:containers:759ba94b-9298-4173-88c7-f1fe9b72947a'
+    - 'block_content:containers:c75b6b08-9693-4a5f-99a0-5cad81034013'
+    - 'block_content:image_header:bbbdf024-1ac8-453d-866d-2bf9a4f6e962'
+    - 'block_content:plain_text:9ad17789-fbce-483d-8620-ee998d411c50'
+  module:
+    - block_content
+    - panels
+id: pmmi_media_group-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    bb58ceee-df78-4422-a101-d5c53e52a4e8:
+      id: 'block_content:bbbdf024-1ac8-453d-866d-2bf9a4f6e962'
+      label: 'PMG - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: bb58ceee-df78-4422-a101-d5c53e52a4e8
+      context_mapping: {  }
+    12d5b98d-0565-4c39-9396-a3d80c65e002:
+      id: 'block_content:9ad17789-fbce-483d-8620-ee998d411c50'
+      label: 'PMG - Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: oneone
+      weight: 0
+      uuid: 12d5b98d-0565-4c39-9396-a3d80c65e002
+      context_mapping: {  }
+    8823dcb1-e2e8-41ce-8cf0-e1166103fb2f:
+      id: 'block_content:c75b6b08-9693-4a5f-99a0-5cad81034013'
+      label: 'PMG - Row 1'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 2_up
+      region: bottom
+      weight: 0
+      uuid: 8823dcb1-e2e8-41ce-8cf0-e1166103fb2f
+      context_mapping: {  }
+    8df8f7e7-ffb7-40b6-b26f-9bd3729324e3:
+      id: 'block_content:3b685b79-19dc-4bb7-8793-341e1bf0f8f1'
+      label: 'PMG - Row 2'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 2_up
+      region: bottom
+      weight: 0
+      uuid: 8df8f7e7-ffb7-40b6-b26f-9bd3729324e3
+      context_mapping: {  }
+    ae3081fc-9d39-45b3-a37e-432ea1a368a2:
+      id: 'block_content:759ba94b-9298-4173-88c7-f1fe9b72947a'
+      label: 'PMG - Row 3'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 2_up
+      region: bottom
+      weight: 0
+      uuid: ae3081fc-9d39-45b3-a37e-432ea1a368a2
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 69ef0769-61fd-4271-a76f-109a9c40ab8d
+  label: null
+  weight: 0
+  layout: oneone
+  layout_settings: {  }
+  page_title: 'PMMI Media Group | PMMI'
+  storage_type: page_manager
+  storage_id: pmmi_media_group-panels_variant-0
+  builder: ipe
+page: pmmi_media_group
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

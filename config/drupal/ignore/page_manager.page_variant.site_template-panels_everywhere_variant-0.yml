@@ -6,11 +6,17 @@ dependencies:
     - page_manager.page.site_template
     - system.menu.footer
     - system.menu.utility-navigation-end-user
+    - views.view.search_page
+  content:
+    - 'block_content:social_media:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
   module:
     - audience_select
+    - block_content
     - panels_everywhere
+    - pmmi
     - system
     - tb_megamenu
+    - views
 id: site_template-panels_everywhere_variant-0
 label: 'End User'
 variant: panels_everywhere_variant
@@ -64,7 +70,7 @@ variant_settings:
       level: '1'
       depth: '0'
       region: footer
-      weight: '0'
+      weight: '-4'
       uuid: 1acf3082-453c-4df6-a582-3c38e4e7cd0d
       context_mapping: {  }
     5e3cd20a-f36b-4e9f-982e-d0f3b219ef65:
@@ -98,6 +104,37 @@ variant_settings:
       weight: '0'
       uuid: 641736d6-6790-46bd-9bd2-9c4541206c0d
       context_mapping: {  }
+    3877ea9f-6a60-415e-b150-cdfe4081c40e:
+      id: audience_switcher
+      label: 'Audience Switcher'
+      provider: audience_select
+      label_display: 0
+      excluded_audiences: {  }
+      region: footer
+      weight: '-3'
+      uuid: 3877ea9f-6a60-415e-b150-cdfe4081c40e
+      context_mapping: {  }
+    efc80ed2-24df-485f-9424-692ec0ad0adb:
+      id: 'block_content:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
+      label: 'PMMI - Social Media'
+      provider: block_content
+      label_display: 0
+      status: true
+      info: ''
+      view_mode: footer_social
+      region: footer
+      weight: '-2'
+      uuid: efc80ed2-24df-485f-9424-692ec0ad0adb
+      context_mapping: {  }
+    ef4c7f2b-b38e-4d59-939c-fd48bade414b:
+      id: copyright_block
+      label: 'Copyright block'
+      provider: pmmi
+      label_display: 0
+      region: footer
+      weight: '-5'
+      uuid: ef4c7f2b-b38e-4d59-939c-fd48bade414b
+      context_mapping: {  }
   id: panels_everywhere_variant
   uuid: e3e9f1a9-d6c5-4a5b-ab6c-bd57cd3b27f9
   label: null
@@ -115,7 +152,7 @@ selection_criteria:
     id: audience
     audiences:
       audience_2: audience_2
-    negate: 0
+    negate: false
     context_mapping: {  }
 selection_logic: and
 static_context: {  }
