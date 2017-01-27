@@ -20,6 +20,8 @@ else
   source "$base/env.dist"
 fi
 
+echo "Using osx? $OSX"
+
 # Usage info
 usage() {
 cat << EOF
@@ -58,7 +60,9 @@ if [ "$SITE_ENVIRONMENT" = "test" ]; then
 elif [ "$SITE_ENVIRONMENT" = "dev" ]; then
   dockercompose=docker-compose.yml
   webcontainer=pmmi_dev_web
-elif [ "$SITE_ENVIRONMENT" = "dev-osx" ]; then
+fi
+
+if [ "$OSX" = 1 ]; then
   dockercompose=docker-compose-osx.yml
   webcontainer=pmmi_dev_web_osx
 fi

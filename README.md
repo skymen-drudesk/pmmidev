@@ -114,7 +114,7 @@ To improve performance on macOS, use [docker-sync]
 
 #### Use
 
-1. Set `export SITE_ENVIRONMENT=dev-osx` in your `.env` file.
+1. Set `export OSX=1` in your `.env` file after `source env.dist`.
 2. Start the synchronization with `docker-sync start` and let 
 docker-sync run in the background
 3. Bring up and build the containers with `./build/party.sh -b`. If you 
