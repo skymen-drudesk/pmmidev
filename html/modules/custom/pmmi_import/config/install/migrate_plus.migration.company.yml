@@ -142,11 +142,16 @@ process:
   field_after_sales_service:
     source: Provide After Sales Service
     plugin: static_map
+    default_value: null
     map:
+      'YES, LIMITED': 1
       'YES': 1
+      'YEs': 1
       'Yes': 1
+      'yes': 1
       'NO': 0
       'No': 0
+      'no': 0
 
 destination:
   plugin: entity:node
