@@ -6,6 +6,7 @@ id: test_environment
 label: 'Test environment'
 folder: ../config/drupal/test
 module:
+  config_readonly: 0
   dblog: 0
   stage_file_proxy: 0
 theme: {  }
