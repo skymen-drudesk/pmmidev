@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - image.style.gateway_style
     - page_manager.page.gateway
   content:
     - 'block_content:text:b5086f23-1cc0-430e-9e43-e08447adbdfa'
@@ -36,8 +37,9 @@ variant_settings:
       audience_id: audience_1
       image_style: gateway_style
       audience_overrides:
+        audience_title: 'PMMI Member'
         audience_image:
-          - '70'
+          - '246'
       region: oneone
       weight: 0
       uuid: cc5690c5-f581-46f1-9047-2cd71667a5bb
@@ -50,8 +52,9 @@ variant_settings:
       audience_id: audience_2
       image_style: gateway_style
       audience_overrides:
+        audience_title: 'User of Packaging or Processing Equipment'
         audience_image:
-          - '71'
+          - '247'
       region: onetwo
       weight: 0
       uuid: bfbf3aec-ceb6-4a80-8c09-4afe01bf5da9
@@ -64,8 +67,9 @@ variant_settings:
       audience_id: audience_3
       image_style: gateway_style
       audience_overrides:
+        audience_title: 'Another Interested Party'
         audience_image:
-          - '73'
+          - '248'
       region: onethree
       weight: 0
       uuid: 972530b4-74f7-499b-89fc-3251c19d9a13

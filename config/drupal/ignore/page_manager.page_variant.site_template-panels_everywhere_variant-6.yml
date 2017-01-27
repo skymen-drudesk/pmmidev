@@ -5,8 +5,13 @@ dependencies:
   config:
     - page_manager.page.site_template
     - system.menu.footer
+  content:
+    - 'block_content:social_media:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
   module:
+    - audience_select
+    - block_content
     - panels_everywhere
+    - pmmi
     - system
 id: site_template-panels_everywhere_variant-6
 label: 'Audience Gateway'
@@ -30,8 +35,39 @@ variant_settings:
       level: '1'
       depth: '0'
       region: footer
-      weight: '0'
+      weight: '-1'
       uuid: b00a9e6d-7768-460e-b453-0b92aedd0f8e
+      context_mapping: {  }
+    00bd9f92-3389-4c42-b367-939ac313f506:
+      id: audience_switcher
+      label: 'Audience Switcher'
+      provider: audience_select
+      label_display: 0
+      excluded_audiences: {  }
+      region: footer
+      weight: '0'
+      uuid: 00bd9f92-3389-4c42-b367-939ac313f506
+      context_mapping: {  }
+    55787082-24c3-41d4-afe5-00ab04308233:
+      id: 'block_content:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
+      label: 'PMMI - Social Media'
+      provider: block_content
+      label_display: 0
+      status: true
+      info: ''
+      view_mode: footer_social
+      region: footer
+      weight: '1'
+      uuid: 55787082-24c3-41d4-afe5-00ab04308233
+      context_mapping: {  }
+    c1fe6226-10ee-4700-8ff4-e8a1889c3399:
+      id: copyright_block
+      label: 'Copyright block'
+      provider: pmmi
+      label_display: 0
+      region: footer
+      weight: '-2'
+      uuid: c1fe6226-10ee-4700-8ff4-e8a1889c3399
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: 463bc02a-59ad-4f41-9c4a-2354da6c0985

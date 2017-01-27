@@ -8,13 +8,15 @@ dependencies:
     - system.menu.utility-navigation-member
     - views.view.search_page
   content:
-    - 'block_content:social_media:6f9b12db-e338-44d9-ae2c-9175dc0f6baf'
+    - 'block_content:social_media:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
   module:
     - audience_select
     - block_content
     - panels_everywhere
+    - pmmi
     - system
     - tb_megamenu
+    - views
 id: site_template-panels_everywhere_variant-1
 label: Member
 variant: panels_everywhere_variant
@@ -112,9 +114,9 @@ variant_settings:
       weight: '0'
       uuid: d2df90fd-30a6-413c-b43c-17fe38fcc80d
       context_mapping: {  }
-    2a509e16-595a-4879-a465-81eda4c0f166:
-      id: 'block_content:6f9b12db-e338-44d9-ae2c-9175dc0f6baf'
-      label: 'Workforce Development - Social Media'
+    14a93462-7ced-4419-a3d4-eb0f105d936f:
+      id: 'block_content:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
+      label: 'PMMI - Social Media'
       provider: block_content
       label_display: 0
       status: true
@@ -122,7 +124,16 @@ variant_settings:
       view_mode: footer_social
       region: footer
       weight: '0'
-      uuid: 2a509e16-595a-4879-a465-81eda4c0f166
+      uuid: 14a93462-7ced-4419-a3d4-eb0f105d936f
+      context_mapping: {  }
+    3908cb21-8e25-4add-a910-7c7f8c54c8b4:
+      id: copyright_block
+      label: 'Copyright block'
+      provider: pmmi
+      label_display: 0
+      region: footer
+      weight: '0'
+      uuid: 3908cb21-8e25-4add-a910-7c7f8c54c8b4
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: cdb68bb8-520f-44f2-bd99-ead75a9f3553
@@ -141,7 +152,7 @@ selection_criteria:
     id: audience
     audiences:
       audience_1: audience_1
-    negate: 0
+    negate: false
     context_mapping: {  }
 selection_logic: and
 static_context: {  }

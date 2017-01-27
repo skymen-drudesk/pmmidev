@@ -28,18 +28,6 @@ variant_settings:
       weight: -10
       uuid: 6201463c-74fa-44e6-b661-bdd733769417
       context_mapping: {  }
-    9454a9c5-1f7f-49f9-9293-7a7007b5e5e2:
-      id: 'block_content:b5e82a32-147d-4dcd-956f-65640759bc25'
-      label: 'Business Intelligence - Cards 1-5'
-      provider: block_content
-      label_display: '0'
-      status: true
-      info: ''
-      view_mode: 5_up
-      region: grey
-      weight: 0
-      uuid: 9454a9c5-1f7f-49f9-9293-7a7007b5e5e2
-      context_mapping: {  }
     62441972-bed8-49df-8b2c-f5af36d35c36:
       id: 'block_content:b9b48f18-fce9-43d5-bba8-5113882b8df6'
       label: 'Business Intelligence - Video Webinars'
@@ -51,6 +39,18 @@ variant_settings:
       region: white
       weight: 0
       uuid: 62441972-bed8-49df-8b2c-f5af36d35c36
+      context_mapping: {  }
+    8c6be9d3-b9ca-4fa6-b81f-d71240d9df2a:
+      id: 'block_content:b5e82a32-147d-4dcd-956f-65640759bc25'
+      label: 'Business Intelligence - Cards 1-4'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 4_up
+      region: grey
+      weight: 0
+      uuid: 8c6be9d3-b9ca-4fa6-b81f-d71240d9df2a
       context_mapping: {  }
   id: panels_variant
   uuid: d5035203-c23b-4a0a-8c0b-7e7e5d662f85

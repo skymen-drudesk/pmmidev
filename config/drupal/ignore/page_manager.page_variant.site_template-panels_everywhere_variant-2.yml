@@ -6,11 +6,17 @@ dependencies:
     - page_manager.page.site_template
     - system.menu.footer
     - system.menu.utility-navigation-other
+    - views.view.search_page
+  content:
+    - 'block_content:social_media:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
   module:
     - audience_select
+    - block_content
     - panels_everywhere
+    - pmmi
     - system
     - tb_megamenu
+    - views
 id: site_template-panels_everywhere_variant-2
 label: Other
 variant: panels_everywhere_variant
@@ -73,7 +79,7 @@ variant_settings:
       level: '1'
       depth: '0'
       region: footer
-      weight: '0'
+      weight: '-4'
       uuid: e9fd9d8b-6846-4bcf-9e67-e0279fbac388
       context_mapping: {  }
     148b658b-bf26-4de8-bae8-93b2932da87e:
@@ -98,6 +104,37 @@ variant_settings:
       weight: '-2'
       uuid: eb5c4988-ac1d-477b-a4c7-39ddbc7a2483
       context_mapping: {  }
+    73f26a2e-a3e3-43db-8608-3dc9dc82940b:
+      id: audience_switcher
+      label: 'Audience Switcher'
+      provider: audience_select
+      label_display: 0
+      excluded_audiences: {  }
+      region: footer
+      weight: '-3'
+      uuid: 73f26a2e-a3e3-43db-8608-3dc9dc82940b
+      context_mapping: {  }
+    81d5c335-fd32-49d5-910e-768e259ae6f5:
+      id: 'block_content:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
+      label: 'PMMI - Social Media'
+      provider: block_content
+      label_display: 0
+      status: true
+      info: ''
+      view_mode: footer_social
+      region: footer
+      weight: '-2'
+      uuid: 81d5c335-fd32-49d5-910e-768e259ae6f5
+      context_mapping: {  }
+    63a8326a-c9e0-4a2b-adde-cbe92702b85c:
+      id: copyright_block
+      label: 'Copyright block'
+      provider: pmmi
+      label_display: 0
+      region: footer
+      weight: '-5'
+      uuid: 63a8326a-c9e0-4a2b-adde-cbe92702b85c
+      context_mapping: {  }
   id: panels_everywhere_variant
   uuid: eb5855a2-bbfc-4ee6-baa1-e933c5bb9108
   label: null
@@ -115,7 +152,7 @@ selection_criteria:
     id: audience
     audiences:
       audience_3: audience_3
-    negate: 0
+    negate: false
     context_mapping: {  }
 selection_logic: and
 static_context: {  }

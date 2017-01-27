@@ -1,0 +1,82 @@
+uuid: e798e863-5372-41e9-8395-223a6ca7bb02
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.about
+  content:
+    - 'block_content:containers:e3751b1d-4684-4606-aeeb-eb6dbb14b5d3'
+    - 'block_content:image_header:17dab886-8ff4-49b8-87f2-64e888446ade'
+    - 'block_content:text:85cba2c8-715a-459b-8c0a-237330af01bc'
+    - 'block_content:text:e59cf06d-d514-46ab-aa45-e2760bde19de'
+  module:
+    - block_content
+    - panels
+id: about-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    39b27716-cd71-48ff-8172-03a59bb3cc3b:
+      id: 'block_content:e3751b1d-4684-4606-aeeb-eb6dbb14b5d3'
+      label: 'About - Cards 3-up'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: grey
+      weight: 0
+      uuid: 39b27716-cd71-48ff-8172-03a59bb3cc3b
+      context_mapping: {  }
+    333703a4-6755-4bc4-bbdc-d74df56aa23f:
+      id: 'block_content:85cba2c8-715a-459b-8c0a-237330af01bc'
+      label: 'About - Member Directory'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: white
+      weight: -1
+      uuid: 333703a4-6755-4bc4-bbdc-d74df56aa23f
+      context_mapping: {  }
+    e77daf5d-d7c5-4e55-acdc-41375b54b618:
+      id: 'block_content:e59cf06d-d514-46ab-aa45-e2760bde19de'
+      label: 'About - Intro Text 2'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: grey
+      weight: -1
+      uuid: e77daf5d-d7c5-4e55-acdc-41375b54b618
+      context_mapping: {  }
+    36e0ba33-f0f4-454b-a3c2-74912ba4e2de:
+      id: 'block_content:17dab886-8ff4-49b8-87f2-64e888446ade'
+      label: 'About - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: 36e0ba33-f0f4-454b-a3c2-74912ba4e2de
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 710ec401-41b9-4171-88b0-56a78abdd68c
+  label: null
+  weight: 0
+  layout: panel_homepage
+  layout_settings: {  }
+  page_title: 'About | PMMI'
+  storage_type: page_manager
+  storage_id: about-panels_variant-0
+  builder: ipe
+page: about
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }
