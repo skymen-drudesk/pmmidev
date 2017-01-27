@@ -130,16 +130,23 @@ process:
     source:
       countries: Countries Covered
       areas: States Covered
-
-#  field_industries_served:
-#  field_equipment_sold_type:
+  field_industries_served:
+    plugin: pmmi_term_by_key
+    source: Customer Industries
+    other_field: field_industries_served_other
+  field_equipment_sold_type:
+    plugin: pmmi_term_by_key
+    source: Type of Equiptment Sold
+    other_field: field_equipment_sold_type_other
   field_manufacturers_represented: Companies Represented
   field_after_sales_service:
     source: Provide After Sales Service
     plugin: static_map
     map:
       'YES': 1
+      'Yes': 1
       'NO': 0
+      'No': 0
 
 destination:
   plugin: entity:node
