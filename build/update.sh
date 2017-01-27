@@ -20,6 +20,8 @@ echo "Clearing Drush cache."
 $drush cc drush
 echo "Reverting configuration."
 $drush cim sync --partial -y
+echo "Enabling modules again to ensure environment specific modules are enabled.";
+$drush en $(echo $DROPSHIP_SEEDS | tr ':' ' ') -y
 if [ "$SITE_ENVIRONMENT" = "test" ]; then
   echo "Importing test configuration."
   $drush cim test --partial -y
