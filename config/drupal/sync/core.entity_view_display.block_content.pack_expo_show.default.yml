@@ -14,9 +14,9 @@ dependencies:
     - responsive_image.styles.shows_block
   module:
     - address
-    - datetime_range
     - ds
     - link
+    - pmmi_fields
     - responsive_image
     - text
 third_party_settings:
@@ -85,11 +85,13 @@ content:
     weight: 1
     label: hidden
     settings:
-      separator: '-'
-      format_type: medium
       timezone_override: ''
+      show_end_date: true
+      date_format_month: F
+      date_format_day: j
+      date_format_year: 'Y'
     third_party_settings: {  }
-    type: daterange_default
+    type: daterange_event_custom
 hidden:
   field_button: true
   field_dates: true
