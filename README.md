@@ -1,5 +1,8 @@
 # PMMI
 
+**Make sure to read and follow the 
+[PMMI.org Technical Architecture Guide](./ARCHITECTUREGUIDE.md)**
+
 ## Requirements
 
 * Docker
