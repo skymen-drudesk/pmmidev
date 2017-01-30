@@ -7,6 +7,7 @@
 use Drupal\Core\Database\Database;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\field\Entity\FieldConfig;
 use Drupal\field\Entity\FieldStorageConfig;
 
 /**
@@ -133,6 +134,133 @@ function pmmi_fields_update_8003() {
         $insert_query->values(array_values($row));
       }
       $insert_query->execute();
+    }
+  }
+
+}
+
+/**
+ * Update Container Block.
+ *
+ * Update fields (block_1 - 6) in the Container Block type.
+ */
+function pmmi_fields_update_8004() {
+  \Drupal::entityTypeManager()->clearCachedDefinitions();
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $db = \Drupal::database();
+
+  for ($i = 1; $i < 7; $i++) {
+    $field_definition = [];
+    $field_update = [];
+    $field_id = 'field_block_' . $i;
+    // Get existing storage definitions.
+    /** @var \Drupal\field\Entity\FieldStorageConfig $field_definition */
+    $field_definition = $manager->getFieldStorageDefinition($field_id, 'block_content');
+    $field_update = $field_definition->toArray();
+    $field_update['type'] = 'pmmi_entity_reference';
+    $field_update = FieldStorageConfig::create($field_update);
+    $field_update->original = $field_update;
+    $field_update->enforceIsNew(FALSE);
+    $tables = [
+      'base' => "block_content__{$field_id}",
+      'revision' => "block_content_revision__{$field_id}",
+    ];
+    $fields = [
+      'bundle',
+      'deleted',
+      'entity_id',
+      'revision_id',
+      'langcode',
+      'delta',
+      $field_id . '_target_id',
+      $field_id . '_view_mode',
+    ];
+    $data = [];
+
+    foreach ($tables as $table_id => $table) {
+      // Retrieve existing field data.
+      $data[$table_id] = $db->select($table)
+        ->fields($table)
+        ->execute()
+        ->fetchAll(PDO::FETCH_NUM);
+      // Truncate table.
+      $db->truncate($table)->execute();
+    }
+    $manager->updateFieldStorageDefinition($field_update);
+    $field_update->save();
+    // Insert existing field data.
+    foreach ($tables as $table_id => $table) {
+      $insert_query = $db
+        ->insert($table)
+        ->fields($fields);
+      foreach ($data[$table_id] as $row) {
+        $row[] = 'default';
+        $insert_query->values(array_values($row));
+      }
+      $insert_query->execute();
+    }
+    $etm = \Drupal::entityTypeManager();
+
+    // Updating field config items.
+    if (!$entity_fields = $etm->getStorage('field_config')
+      ->loadByProperties(array('field_name' => $field_id))
+    ) {
+      continue;
+    }
+    foreach ($entity_fields as $field) {
+      $new_field = $field->toArray();
+      $new_field['field_type'] = 'pmmi_entity_reference';
+
+      $new_field = FieldConfig::create($new_field);
+      $new_field->original = $field;
+      $new_field->enforceIsNew(FALSE);
+      $new_field->save();
+    }
+    // Updating entity view display configs.
+    $properties = array(
+      'targetEntityType' => $field_update->getTargetEntityTypeId(),
+      'bundle' => 'containers',
+    );
+    if ($view_displays = $etm
+      ->getStorage('entity_view_display')
+      ->loadByProperties($properties)
+    ) {
+      foreach ($view_displays as $view_display) {
+        if ($component = $view_display->getComponent($field_id)) {
+          // Map field reference formatters to pmmi entity reference ones.
+          if ($component['type'] == 'entity_reference_entity_view') {
+            $result_component = array(
+                'type' => 'pmmi_entity_reference_entity_view',
+                'settings' => $component['settings'],
+              ) + $component;
+            $view_display->setComponent($field_id, $result_component)->save();
+          }
+        }
+      }
+    }
+
+    // Updating entity form configs.
+    if ($form_displays = $etm->getStorage('entity_form_display')
+      ->loadByProperties($properties)
+    ) {
+      foreach ($form_displays as $form_display) {
+        if ($component = $form_display->getComponent($field_id)) {
+          switch ($component['type']) {
+            case 'entity_reference_autocomplete':
+              $type = 'pmmi_entity_reference_autocomplete';
+              break;
+
+            case 'inline_entity_form_complex':
+              $type = 'pmmi_inline_entity_form_complex';
+              break;
+          }
+
+          $form_display->setComponent($field_id, array(
+              'type' => $type,
+              'settings' => $component['settings'],
+            ) + $component)->save();
+        }
+      }
     }
   }
 

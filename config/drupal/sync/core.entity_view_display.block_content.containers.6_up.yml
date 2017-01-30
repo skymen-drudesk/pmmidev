@@ -30,6 +30,7 @@ dependencies:
     - field.field.block_content.containers.field_block_views_5
     - field.field.block_content.containers.field_block_views_6
     - field.field.block_content.containers.field_button
+    - field.field.block_content.containers.field_center_text
     - field.field.block_content.containers.field_head
   module:
     - ds
@@ -80,52 +81,52 @@ bundle: containers
 mode: 6_up
 content:
   field_block_1:
-    type: entity_reference_entity_view
+    type: pmmi_entity_reference_entity_view
+    settings:
+      view_mode: default
+      link: false
     weight: 1
     label: hidden
-    settings:
-      view_mode: default
-      link: false
     third_party_settings: {  }
   field_block_2:
-    type: entity_reference_entity_view
+    type: pmmi_entity_reference_entity_view
+    settings:
+      view_mode: default
+      link: false
     weight: 4
     label: hidden
-    settings:
-      view_mode: default
-      link: false
     third_party_settings: {  }
   field_block_3:
-    type: entity_reference_entity_view
+    type: pmmi_entity_reference_entity_view
+    settings:
+      view_mode: default
+      link: false
     weight: 7
     label: hidden
-    settings:
-      view_mode: default
-      link: false
     third_party_settings: {  }
   field_block_4:
-    type: entity_reference_entity_view
+    type: pmmi_entity_reference_entity_view
+    settings:
+      view_mode: default
+      link: false
     weight: 10
     label: hidden
-    settings:
-      view_mode: default
-      link: false
     third_party_settings: {  }
   field_block_5:
-    type: entity_reference_entity_view
+    type: pmmi_entity_reference_entity_view
+    settings:
+      view_mode: default
+      link: false
     weight: 13
     label: hidden
-    settings:
-      view_mode: default
-      link: false
     third_party_settings: {  }
   field_block_6:
-    type: entity_reference_entity_view
-    weight: 16
-    label: hidden
+    type: pmmi_entity_reference_entity_view
     settings:
       view_mode: default
       link: false
+    weight: 16
+    label: hidden
     third_party_settings: {  }
   field_block_plugin_1:
     type: entity_reference_rendered_block_plugin
@@ -231,3 +232,4 @@ hidden:
   field_block_select_4: true
   field_block_select_5: true
   field_block_select_6: true
+  field_center_text: true

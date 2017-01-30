@@ -30,6 +30,7 @@ dependencies:
     - field.field.block_content.containers.field_block_views_5
     - field.field.block_content.containers.field_block_views_6
     - field.field.block_content.containers.field_button
+    - field.field.block_content.containers.field_center_text
     - field.field.block_content.containers.field_head
   module:
     - ds
@@ -64,21 +65,21 @@ bundle: containers
 mode: 2_up
 content:
   field_block_1:
+    type: pmmi_entity_reference_entity_view
+    settings:
+      link: true
+      view_mode: default
     weight: 1
     label: hidden
+    third_party_settings: {  }
+  field_block_2:
+    type: pmmi_entity_reference_entity_view
     settings:
       link: true
       view_mode: default
-    third_party_settings: {  }
-    type: entity_reference_entity_view
-  field_block_2:
     weight: 4
     label: hidden
-    settings:
-      link: true
-      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_entity_view
   field_block_plugin_1:
     type: entity_reference_rendered_block_plugin
     weight: 2
@@ -147,3 +148,4 @@ hidden:
   field_block_views_4: true
   field_block_views_5: true
   field_block_views_6: true
+  field_center_text: true
