@@ -148,7 +148,6 @@ function pmmi_fields_update_8004() {
   \Drupal::entityTypeManager()->clearCachedDefinitions();
   $manager = \Drupal::entityDefinitionUpdateManager();
   $db = \Drupal::database();
-  $config_factory = \Drupal::configFactory();
 
   for ($i = 1; $i < 7; $i++) {
     $field_definition = [];
@@ -263,8 +262,6 @@ function pmmi_fields_update_8004() {
         }
       }
     }
-
-
   }
 
 }
