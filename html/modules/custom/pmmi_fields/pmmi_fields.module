@@ -55,19 +55,6 @@ function pmmi_fields_entity_base_field_info(EntityTypeInterface $entity_type) {
 }
 
 /**
- * Implements hook_entity_base_field_info_alter().
- */
-function pmmi_fields_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
-  if ($entity_type->id() === 'block_content') {
-    $ee = "";
-//    $fields['link']->setDisplayOptions('form', [
-//      'type' => 'link_attributes',
-//      'weight' => -2,
-//    ]);
-  }
-}
-
-/**
  * Implements hook_theme().
  */
 function pmmi_fields_theme() {
@@ -145,15 +132,8 @@ function theme_pmmi_fields_entity_table($variables) {
         $data = $entity->get($field_name)->view($display_options);
       }
       elseif ($field['type'] == 'view_mode') {
+        // Add the column belonging to the "View_mode" column.
         $data = $renderer->render($form[$key]['view_mode']);
-        // Add the buttons belonging to the "View_mode" column.
-//        $cells[] = $renderer->render($form[$key]['view_mode']);
-////      elseif ($field['type'] == 'view_mode' && $entity->hasField($field_name)) {
-////        $data = [
-////          '#type' => 'select',
-////          '#options' => ['one', 'two'],
-////          '#weight' => 99,
-////        ];
       }
       elseif ($field['type'] == 'callback') {
         $arguments = [
