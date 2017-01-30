@@ -1,0 +1,58 @@
+uuid: 5d00b8dc-527a-49f5-b17c-04407b6725f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.pmmi_company_contact.pmmi_company_contact.field_company
+    - field.field.pmmi_company_contact.pmmi_company_contact.field_email
+    - field.field.pmmi_company_contact.pmmi_company_contact.field_name
+    - field.field.pmmi_company_contact.pmmi_company_contact.field_title
+  module:
+    - pmmi_company_contact
+    - user
+id: pmmi_company_contact.pmmi_company_contact.default
+targetEntityType: pmmi_company_contact
+bundle: pmmi_company_contact
+mode: default
+content:
+  field_company:
+    weight: 4
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_email:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+  field_name:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_title:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  name:
+    label: above
+    type: string
+    weight: -4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

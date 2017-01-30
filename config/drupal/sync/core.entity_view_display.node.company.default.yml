@@ -17,6 +17,7 @@ dependencies:
     - field.field.node.company.field_primary_contact_first_name
     - field.field.node.company.field_primary_contact_last_name
     - field.field.node.company.field_territory_served
+    - field.field.node.company.field_trade_shows
     - field.field.node.company.field_website_url
     - node.type.company
   module:
@@ -124,6 +125,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: country_area_plain
+  field_trade_shows:
+    weight: 129
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
   field_website_url:
     weight: 104
     label: above
