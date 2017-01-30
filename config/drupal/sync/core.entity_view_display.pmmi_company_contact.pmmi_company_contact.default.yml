@@ -7,6 +7,7 @@ dependencies:
     - field.field.pmmi_company_contact.pmmi_company_contact.field_email
     - field.field.pmmi_company_contact.pmmi_company_contact.field_name
     - field.field.pmmi_company_contact.pmmi_company_contact.field_title
+    - field.field.pmmi_company_contact.pmmi_company_contact.field_trade_show
   module:
     - pmmi_company_contact
     - user
@@ -42,6 +43,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+  field_trade_show:
+    weight: 5
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
   name:
     label: above
     type: string
