@@ -8,9 +8,11 @@ dependencies:
     - field.field.node.company.field_business_lines
     - field.field.node.company.field_company_description
     - field.field.node.company.field_equipment_sold_type
+    - field.field.node.company.field_equipment_sold_type_other
     - field.field.node.company.field_fax_number
     - field.field.node.company.field_general_company_email
     - field.field.node.company.field_industries_served
+    - field.field.node.company.field_industries_served_other
     - field.field.node.company.field_main_phone_number
     - field.field.node.company.field_manufacturers_represented
     - field.field.node.company.field_primary_contact_email
@@ -65,6 +67,12 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+  field_equipment_sold_type_other:
+    weight: 130
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
   field_fax_number:
     weight: 103
     label: above
@@ -85,6 +93,12 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+  field_industries_served_other:
+    weight: 129
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
   field_main_phone_number:
     weight: 102
     label: above
