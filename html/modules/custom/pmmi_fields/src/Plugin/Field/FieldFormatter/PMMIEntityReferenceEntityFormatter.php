@@ -2,12 +2,8 @@
 
 namespace Drupal\pmmi_fields\Plugin\Field\FieldFormatter;
 
-use Drupal\Component\Utility\Html;
-use Drupal\Core\Field\FieldItemInterface;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\FormatterBase;
 use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceEntityFormatter;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 
 /**
@@ -26,42 +22,7 @@ class PMMIEntityReferenceEntityFormatter extends EntityReferenceEntityFormatter 
   /**
    * {@inheritdoc}
    */
-  public static function defaultSettings() {
-    return [
-        // Implement default settings.
-      ] + parent::defaultSettings();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function settingsForm(array $form, FormStateInterface $form_state) {
-    return [
-        // Implement settings form.
-      ] + parent::settingsForm($form, $form_state);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function settingsSummary() {
-    $summary = parent::settingsSummary();
-    // $summary = [];
-    // Implement settings summary.
-
-    return $summary;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-//    $saved_view_mode = 'image_text';
-////    $saved_view_mode = 'text_image';
-//    $view_mode = $this->getSetting('view_mode');
-//    if ($items->getName() == 'field_block_2') {
-//      $view_mode = $saved_view_mode;
-//    }
 
     $elements = array();
 
@@ -114,20 +75,5 @@ class PMMIEntityReferenceEntityFormatter extends EntityReferenceEntityFormatter 
 
     return $elements;
   }
-
-//  /**
-//   * Generate the output appropriate for one field item.
-//   *
-//   * @param \Drupal\Core\Field\FieldItemInterface $item
-//   *   One field item.
-//   *
-//   * @return string
-//   *   The textual output generated.
-//   */
-//  protected function viewValue(FieldItemInterface $item) {
-//    // The text value has no text format assigned to it, so the user input
-//    // should equal the output, including newlines.
-//    return nl2br(Html::escape($item->value));
-//  }
 
 }

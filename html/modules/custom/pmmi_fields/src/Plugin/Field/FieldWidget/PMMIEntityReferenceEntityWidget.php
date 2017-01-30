@@ -4,10 +4,8 @@ namespace Drupal\pmmi_fields\Plugin\Field\FieldWidget;
 
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Field\WidgetBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\inline_entity_form\Plugin\Field\FieldWidget\InlineEntityFormComplex;
-use Drupal\inline_entity_form\TranslationHelper;
 
 /**
  * Plugin implementation of the 'pmmi_inline_entity_form_complex' widget.
