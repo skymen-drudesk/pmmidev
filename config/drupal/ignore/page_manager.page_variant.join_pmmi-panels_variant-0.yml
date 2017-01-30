@@ -1,0 +1,69 @@
+uuid: 7624ca68-e7cd-4535-a39f-1ba0022c27f5
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.join_pmmi
+  content:
+    - 'block_content:accordion:c0a63e76-3f76-4d98-ac36-1451be0dfa8d'
+    - 'block_content:enticement:e9a38cd2-37f7-4e69-837e-afe40f1587ef'
+    - 'block_content:text:cf8470c8-8440-400c-a41c-1597c7db237b'
+  module:
+    - block_content
+    - panels
+id: join_pmmi-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    395c65b1-5819-40fb-a9ac-a2a7ca7f7c44:
+      id: 'block_content:c0a63e76-3f76-4d98-ac36-1451be0dfa8d'
+      label: 'Why Join - Accordion '
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: main
+      weight: 0
+      uuid: 395c65b1-5819-40fb-a9ac-a2a7ca7f7c44
+      context_mapping: {  }
+    ab02b548-e6d6-4e7b-8414-af682fd5e654:
+      id: 'block_content:e9a38cd2-37f7-4e69-837e-afe40f1587ef'
+      label: 'Join - Enticement (Brochure)'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: main
+      weight: 0
+      uuid: ab02b548-e6d6-4e7b-8414-af682fd5e654
+      context_mapping: {  }
+    30e84124-a396-4b6e-b87f-a289b42c427d:
+      id: 'block_content:cf8470c8-8440-400c-a41c-1597c7db237b'
+      label: 'Join - Text (Application Process)'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: main
+      weight: 0
+      uuid: 30e84124-a396-4b6e-b87f-a289b42c427d
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 0cd0e210-d7a6-42a6-b39c-1e2c8292286d
+  label: null
+  weight: 0
+  layout: panel_landing_left_sidebar
+  layout_settings: {  }
+  page_title: 'Join PMMI'
+  storage_type: page_manager
+  storage_id: join_pmmi-panels_variant-0
+  builder: ipe
+page: join_pmmi
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }
