@@ -131,6 +131,27 @@ cert_test:
       label: Cert test attempts
     accordions:
       label: Accordions
+company:
+  label: Company
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/company
+  regions:
+    title:
+      label: Title
+    general_line_1:
+      label: General line 1
+    general_line_2:
+      label: General line 2
+    content_row_blue:
+      label: Content row blue
+    content_row_1:
+      label: Content row 1
+    content_row_2:
+      label: Content row 2
+    trade_shows:
+      label: Trade shows
+    updated:
+      label: Updated
 download:
   label: Download
   category: PMMI: Nodes

@@ -29,6 +29,48 @@ dependencies:
     - pmmi_address
     - telephone
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: company
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      title:
+        - node_title
+        - links
+        - field_fax_number
+        - field_industries_served_other
+        - field_trade_shows
+        - field_equipment_sold_type_other
+      content_row_1:
+        - field_primary_contact_email
+        - field_primary_contact_first_name
+        - field_primary_contact_last_name
+        - field_address
+        - field_company_description
+      content_row_2:
+        - field_after_sales_service
+        - field_equipment_sold_type
+        - field_industries_served
+      general_line_1:
+        - field_main_phone_number
+      general_line_2:
+        - field_website_url
+        - field_general_company_email
+      content_row_blue:
+        - field_territory_served
+        - field_business_lines
+        - field_manufacturers_represented
+    fields:
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
 id: node.company.default
 targetEntityType: node
 bundle: company
@@ -161,4 +203,11 @@ content:
     weight: 100
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_address_1: true
+  field_address_2: true
+  field_businbess_lines: true
+  field_city: true
+  field_country: true
+  field_postal_code: true
+  field_state: true

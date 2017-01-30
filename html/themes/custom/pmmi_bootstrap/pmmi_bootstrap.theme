@@ -9,6 +9,7 @@ use Drupal\Core\Url;
 use Drupal\Core\Link;
 use Drupal\Core\Template\Attribute;
 use Drupal\image\Entity\ImageStyle;
+use Drupal\views\Views;
 
 /**
  * Implements hook_preprocess_block().
@@ -90,6 +91,26 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
     case 'news':
       $bg_color = $vars['content']['#block_content']->get('field_head_bkg_color_class')->value;
       $attributes['class'][] = !empty($bg_color) ? 'color-blue' : 'color-red';
+      break;
+
+    case 'company':
+      // Add "PMMI company show trades (contacts)" view to the display.
+      $view = Views::getView('pmmi_company_show_trades_contacts');
+      $view->setDisplay('block_1');
+      $view->setArguments([$vars['content']['#node']->id()]);
+      $view->preExecute();
+      $view->execute();
+
+      if ($content = $view->render()) {
+        $the_title_render_array = [
+          '#markup' => t('Attending upcoming trade shows'),
+          '#prefix' => '<div class="view-label">',
+          '#suffix' => '</div>',
+        ];
+
+        $vars['content']['trade_shows']['view_title'] = $the_title_render_array;
+        $vars['content']['trade_shows']['view_output'] = $content;
+      }
       break;
   }
 
