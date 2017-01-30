@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Contains pmmi_company_contact.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function pmmi_company_contact_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the pmmi_company_contact module.
+    case 'help.page.pmmi_company_contact':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides contacts functionality for the &#039;Company&#039; content type.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function pmmi_company_contact_theme() {
+  $theme = [];
+
+  return $theme;
+}
