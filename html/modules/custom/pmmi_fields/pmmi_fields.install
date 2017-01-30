@@ -4,6 +4,10 @@
  * @file
  * Update hooks for the pmmi fields module.
  */
+use Drupal\Core\Database\Database;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Field\FieldStorageDefinitionInterface;
+use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Implements hook_install().
@@ -19,6 +23,7 @@ function pmmi_fields_update_8001() {
   \Drupal::entityTypeManager()->clearCachedDefinitions();
   \Drupal::service('entity.definition_update_manager')->applyUpdates();
 }
+
 /**
  * Create "submenu_background" field definition.
  *
@@ -26,4 +31,109 @@ function pmmi_fields_update_8001() {
  */
 function pmmi_fields_update_8002() {
   \Drupal::entityDefinitionUpdateManager()->applyUpdates();
+}
+
+/**
+ * Update PackExpoShow Block.
+ *
+ * Update fields in the PackExpoShow Block type.
+ */
+function pmmi_fields_update_8003() {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $db = \Drupal::database();
+  // Get existing storage definitions.
+  $field_dates = $manager->getFieldStorageDefinition('field_dates', 'block_content');
+  $field_button = $manager->getFieldStorageDefinition('field_button', 'block_content');
+  // Create new field_shows_dates.
+  $field_shows_dates = $field_dates->toArray();
+  $field_shows_dates['uuid'] = '5b4aa174-15a5-4590-8438-45f6ed8480b7';
+  $field_shows_dates['id'] = 'block_content.field_show_dates';
+  $field_shows_dates['field_name'] = 'field_show_dates';
+  $field_shows_dates['settings']['datetime_type'] = 'date';
+  $field_shows_dates = FieldStorageConfig::create($field_shows_dates);
+  $field_shows_dates->enforceIsNew(TRUE);
+  $field_shows_dates->save();
+  // Create new field_shows_dates.
+  $field_buttons = $field_button->toArray();
+  $field_buttons['uuid'] = 'bc313d99-66e3-4a09-8b89-2bc7af20483a';
+  $field_buttons['id'] = 'block_content.field_buttons';
+  $field_buttons['field_name'] = 'field_buttons';
+  $field_buttons = FieldStorageConfig::create($field_buttons);
+  $field_buttons->setCardinality(FieldStorageConfig::CARDINALITY_UNLIMITED);
+  $field_buttons->enforceIsNew(TRUE);
+  $field_buttons->save();
+
+  // Migrate existing field data.
+  $entity_type = 'block_content';
+
+  $data_field = [
+    [
+      'old' => 'field_dates',
+      'new' => 'field_show_dates',
+      'fields' => [
+        'bundle',
+        'deleted',
+        'entity_id',
+        'revision_id',
+        'langcode',
+        'delta',
+        'field_show_dates_value',
+        'field_show_dates_end_value',
+      ],
+    ],
+    [
+      'old' => 'field_button',
+      'new' => 'field_buttons',
+      'fields' => [
+        'bundle',
+        'deleted',
+        'entity_id',
+        'revision_id',
+        'langcode',
+        'delta',
+        'field_buttons_uri',
+        'field_buttons_title',
+        'field_buttons_options',
+      ],
+    ],
+  ];
+
+  foreach ($data_field as $key => $row) {
+    $tables_old[$key] = [
+      "{$entity_type}__{$row['old']}",
+      "{$entity_type}_revision__{$row['old']}",
+    ];
+    $tables_new[$key] = [
+      "{$entity_type}__{$row['new']}",
+      "{$entity_type}_revision__{$row['new']}",
+    ];
+    $tables_fields[$key] = $row['fields'];
+  }
+
+  $existing_data = [];
+  foreach ($tables_old as $main => $tables) {
+    // Get the old data.
+    foreach ($tables as $secondary => $table) {
+      // Retrieve existing field data.
+      $existing_data = $db->select($table)
+        ->fields($table)
+        ->condition('bundle', 'pack_expo_show')
+        ->execute()
+        ->fetchAll(PDO::FETCH_NUM);
+      // Insert existing field data.
+      $insert_query = $db
+        ->insert($tables_new[$main][$secondary])
+        ->fields($tables_fields[$main]);
+
+      foreach ($existing_data as $row) {
+        if ($main == 0) {
+          $row[6] = date_create($row[6])->format('Y-m-d');
+          $row[7] = date_create($row[7])->format('Y-m-d');
+        }
+        $insert_query->values(array_values($row));
+      }
+      $insert_query->execute();
+    }
+  }
+
 }
