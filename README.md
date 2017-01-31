@@ -1,5 +1,12 @@
 # PMMI
 
+**Make sure to read and follow the 
+[PMMI.org Technical Architecture Guide](./ARCHITECTUREGUIDE.md)**
+
+The 
+[Redmine project wiki](http://redmine.pmmimediagroup.com/projects/pmmi-org-d8-buildout/wiki)
+also provides important information on project contacts, documents, and workflow.
+
 ## Requirements
 
 * Docker

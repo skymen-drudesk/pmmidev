@@ -33,8 +33,8 @@ dependencies:
     - field.field.block_content.containers.field_head
   module:
     - field_group
-    - inline_entity_form
     - link_attributes
+    - pmmi_fields
     - viewfield
 third_party_settings:
   field_group:
@@ -146,67 +146,67 @@ bundle: containers
 mode: default
 content:
   field_block_1:
+    type: pmmi_inline_entity_form_complex
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
     weight: 22
-    settings:
-      form_mode: default
-      label_singular: ''
-      label_plural: ''
-      allow_new: true
-      allow_existing: true
-      match_operator: CONTAINS
-      override_labels: false
     third_party_settings: {  }
-    type: inline_entity_form_complex
   field_block_2:
+    type: pmmi_inline_entity_form_complex
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
     weight: 14
-    settings:
-      form_mode: default
-      label_singular: ''
-      label_plural: ''
-      allow_new: true
-      allow_existing: true
-      match_operator: CONTAINS
-      override_labels: false
     third_party_settings: {  }
-    type: inline_entity_form_complex
   field_block_3:
+    type: pmmi_inline_entity_form_complex
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
     weight: 15
-    settings:
-      form_mode: default
-      label_singular: ''
-      label_plural: ''
-      allow_new: true
-      allow_existing: true
-      match_operator: CONTAINS
-      override_labels: false
     third_party_settings: {  }
-    type: inline_entity_form_complex
   field_block_4:
+    type: pmmi_inline_entity_form_complex
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
     weight: 16
-    settings:
-      form_mode: default
-      label_singular: ''
-      label_plural: ''
-      allow_new: true
-      allow_existing: true
-      match_operator: CONTAINS
-      override_labels: false
     third_party_settings: {  }
-    type: inline_entity_form_complex
   field_block_5:
+    type: pmmi_inline_entity_form_complex
+    settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
+      allow_existing: true
+      match_operator: CONTAINS
+      override_labels: false
     weight: 17
-    settings:
-      form_mode: default
-      label_singular: ''
-      label_plural: ''
-      allow_new: true
-      allow_existing: true
-      match_operator: CONTAINS
-      override_labels: false
     third_party_settings: {  }
-    type: inline_entity_form_complex
   field_block_6:
-    weight: 18
+    type: pmmi_inline_entity_form_complex
     settings:
       form_mode: default
       label_singular: ''
@@ -215,8 +215,8 @@ content:
       allow_existing: true
       match_operator: CONTAINS
       override_labels: false
+    weight: 18
     third_party_settings: {  }
-    type: inline_entity_form_complex
   field_block_plugin_1:
     weight: 23
     settings:

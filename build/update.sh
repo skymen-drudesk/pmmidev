@@ -6,6 +6,10 @@ source "$path/common.sh"
 # Change to the Drupal Directory Just In Case
 pushd "$drupal_base"
 
+# Rebuild cache so recently added modules are found.
+echo "Clearing cache.";
+$drush cr
+
 # This was added because of upgrades like Rules 2.8 to 2.9 and Feeds alpha-9 to beta-1 where
 # new code and database tables are added and running other code will cause white screen until
 # the updates are run.
