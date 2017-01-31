@@ -34,4 +34,6 @@ function pmmi_import_migration_plugins_alter(&$definitions) {
   $definitions['chairp_corner']['source']['path'] = $pmmi_import_path . $definitions['chairp_corner']['source']['path'];
 
   $definitions['company_migrate']['source']['file'] = $pmmi_import_path . $definitions['company_migrate']['source']['file'];
+  $definitions['industry_migrate']['source']['file'] = $pmmi_import_path . $definitions['industry_migrate']['source']['file'];
+  $definitions['equipment_migrate']['source']['file'] = $pmmi_import_path . $definitions['equipment_migrate']['source']['file'];
 }
