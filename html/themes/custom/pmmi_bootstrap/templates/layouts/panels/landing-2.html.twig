@@ -1,26 +1,26 @@
 {#
 /**
  * @file
- * Template for a landing layout 1.
+ * Template for a landing layout 2.
  *  Regions:
  *    - Top
- *    - White
- *    - Grey
  *    - Blue
- *    - White 2
- *    - Grey 2
+ *    - Grey
+ *    - White
  *    - Blue 2
+ *    - Grey 2
+ *    - White 2
  *    - Bottom
  */
 #}
-<div class="layout-landing layout-landing-1 clearfix">
+<div class="layout-landing layout-landing-2 clearfix">
   <div class="region-top">
     {{ content.top }}
   </div>
-  {% if content.white %}
-    <div class="white-region">
+  {% if content.blue %}
+    <div class="blue-region">
       <div class="container">
-        {{ content.white }}
+        {{ content.blue }}
       </div>
     </div>
   {% endif %}
@@ -31,17 +31,17 @@
       </div>
     </div>
   {% endif %}
-  {% if content.blue %}
-    <div class="blue-region">
+  {% if content.white %}
+    <div class="white-region">
       <div class="container">
-        {{ content.blue }}
+        {{ content.white }}
       </div>
     </div>
   {% endif %}
-  {% if content.white_2 %}
-    <div class="white-region">
+  {% if content.blue_2 %}
+    <div class="blue-region">
       <div class="container">
-        {{ content.white_2 }}
+        {{ content.blue_2 }}
       </div>
     </div>
   {% endif %}
@@ -52,10 +52,10 @@
       </div>
     </div>
   {% endif %}
-  {% if content.blue_2 %}
-    <div class="blue-region">
+  {% if content.white_2 %}
+    <div class="white-region">
       <div class="container">
-        {{ content.blue_2 }}
+        {{ content.white_2 }}
       </div>
     </div>
   {% endif %}
