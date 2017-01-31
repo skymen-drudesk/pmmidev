@@ -33,8 +33,6 @@ class PMMISearchBlockForm extends FormBase {
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory.
-   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
-   *   The request stack.
    * @param \Drupal\Core\Render\RendererInterface $renderer
    *   The renderer.
    */

@@ -22,7 +22,6 @@ use Drupal\datetime\Plugin\Field\FieldWidget\DateTimeWidgetBase;
  */
 class PMMIDateTimeDatelistWidget extends DateTimeWidgetBase {
 
-
   /**
    * {@inheritdoc}
    */
@@ -42,7 +41,7 @@ class PMMIDateTimeDatelistWidget extends DateTimeWidgetBase {
     $element = parent::formElement($items, $delta, $element, $form, $form_state);
     $settings = $this->getSettings();
     $date_part = $settings['date_part'];
-    // Change field label if overriden
+    // Change field label if overriden.
     if (!empty($settings['field_label'])) {
       $element['#title'] = $settings['field_label'];
     }
@@ -86,7 +85,7 @@ class PMMIDateTimeDatelistWidget extends DateTimeWidgetBase {
   /**
    * {@inheritdoc}
    */
-  function settingsForm(array $form, FormStateInterface $form_state) {
+  public function settingsForm(array $form, FormStateInterface $form_state) {
     $element = parent::settingsForm($form, $form_state);
 
     $element['date_part'] = array(
@@ -96,7 +95,7 @@ class PMMIDateTimeDatelistWidget extends DateTimeWidgetBase {
       '#options' => array(
         'year' => t('Year'),
         'month' => t('Month'),
-        'day' => t('Day')
+        'day' => t('Day'),
       ),
     );
     $element['field_label'] = array(
@@ -169,7 +168,7 @@ class PMMIDateTimeDatelistWidget extends DateTimeWidgetBase {
     $summary = array();
 
     $summary[] = t('Date part: @part', array('@part' => $this->getSetting('date_part')));
-    if($this->getSetting('field_label')){
+    if ($this->getSetting('field_label')) {
       $summary[] = t('Field label: @label', array('@label' => $this->getSetting('field_label')));
     }
 
