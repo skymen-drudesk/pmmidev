@@ -10,10 +10,23 @@
     </div>
 
     {{ field_render([content.content_row_blue, 'content-row-blue']) }}
-    {{ field_render([content.content_row_1, 'content-row-1']) }}
-    {{ field_render([content.content_row_2, 'content-row-2']) }}
-    {{ field_render([content.trade_shows, 'trade-shows']) }}
-    {{ field_render([content.updated, 'updated']) }}
+
+    <div class="contacts">
+      <div class="primary">
+        <div class="block-label">{{ 'Primary contact'|trans }}</div>
+        {{ field_render([content.primary_contacts, 'primary-contacts']) }}
+      </div>
+      <div class="company">
+        <div class="block-label">{{ 'Company address'|trans }}</div>
+        {{ field_render([content.company_contacts, 'company-contacts']) }}
+      </div>
+
+      {{ field_render([content.company_description, 'company-description']) }}
+    </div>
+
+    {{ field_render([content.content_row, 'content-row']) }}
+
+    {{ field_render([content.footer, 'footer-reg']) }}
 
   </div>
 </div>

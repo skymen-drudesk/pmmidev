@@ -11,6 +11,8 @@ use Drupal\Core\Template\Attribute;
 use Drupal\image\Entity\ImageStyle;
 use Drupal\views\Views;
 
+use CommerceGuys\Addressing\Country\CountryRepository;
+
 /**
  * Implements hook_preprocess_block().
  */
@@ -94,23 +96,50 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
       break;
 
     case 'company':
-      // Add "PMMI company show trades (contacts)" view to the display.
-      $view = Views::getView('pmmi_company_show_trades_contacts');
-      $view->setDisplay('block_1');
-      $view->setArguments([$vars['content']['#node']->id()]);
-      $view->preExecute();
-      $view->execute();
+      $node = $vars['content']['#node'];
 
-      if ($content = $view->render()) {
-        $the_title_render_array = [
-          '#markup' => t('Attending upcoming trade shows'),
-          '#prefix' => '<div class="view-label">',
+      // Attach some address info to the "General line 1" region.
+      if ($address = $node->get('field_address')->getValue()) {
+        $country_repository = new CountryRepository();
+        $countries = $country_repository->getList();
+
+        $state = !empty($address[0]['administrative_area']) ? $address[0]['administrative_area'] : '';
+        $country = $countries[$address[0]['country_code']];
+
+        $new_element = array(
+          '#markup' => $state ? implode(', ', array($state, $country)) : $country,
+          '#prefix' => '<div class="address-simple">',
           '#suffix' => '</div>',
-        ];
-
-        $vars['content']['trade_shows']['view_title'] = $the_title_render_array;
-        $vars['content']['trade_shows']['view_output'] = $content;
+        );
+        array_unshift($vars['content']['general_line_1'], $new_element);
       }
+
+      // Attach "Trade shows" view to the "Footer" region.
+      if ($view = Views::getView('company_trade_shows_contacts')) {
+        $view->setDisplay('block_1');
+        $view->setArguments([$node->id()]);
+        $view->preExecute();
+        $view->execute();
+
+        if ($content = $view->render()) {
+          $the_title_render_array = [
+            '#markup' => t('Attending upcoming trade shows'),
+            '#prefix' => '<div class="block-label">',
+            '#suffix' => '</div>',
+          ];
+
+          $vars['content']['footer'][] = $the_title_render_array;
+          $vars['content']['footer'][] = $content;
+        }
+      }
+
+      // 'Profile updated' section.
+      $changed = $node->getChangedTime();
+      $vars['content']['footer'][] = array(
+        '#markup' => t('Profile last updated @date', array('@date' => date('M. n, Y', $changed))),
+        '#prefix' => '<div class="profile-updated">',
+        '#suffix' => '</div>',
+      );
       break;
   }
 
