@@ -138,6 +138,7 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
       '#title' => $this->t('State/Region'),
       '#multiple' => TRUE,
       '#chosen' => TRUE,
+      '#access' => FALSE,
     ];
 
     // Default values.
@@ -152,7 +153,7 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
 
     // Override values after country has been changed!
     $triggering_element = $form_state->getTriggeringElement();
-    if ($triggering_element) {
+    if ($triggering_element && $triggering_element['#name'] == 'field_territory_served[country_code]') {
       $countries = $triggering_element['#value'];
     }
 
@@ -174,7 +175,6 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
     }
     else {
       $element['administrative_area']['#options'] = array();
-      $element['administrative_area']['#access'] = FALSE;
     }
 
     $element['#element_validate'][] = array(get_class($this), 'validateElement');

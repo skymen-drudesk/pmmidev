@@ -30,6 +30,7 @@ dependencies:
     - field.field.block_content.containers.field_block_views_5
     - field.field.block_content.containers.field_block_views_6
     - field.field.block_content.containers.field_button
+    - field.field.block_content.containers.field_center_text
     - field.field.block_content.containers.field_head
   module:
     - ds
@@ -72,12 +73,12 @@ bundle: containers
 mode: 4_up
 content:
   field_block_1:
-    type: entity_reference_entity_view
-    weight: 1
-    label: hidden
+    type: pmmi_entity_reference_entity_view
     settings:
       view_mode: 4_up
       link: false
+    weight: 1
+    label: hidden
     third_party_settings:
       ds:
         ft:
@@ -87,12 +88,12 @@ content:
             lb-col: false
             classes: {  }
   field_block_2:
-    type: entity_reference_entity_view
-    weight: 4
-    label: hidden
+    type: pmmi_entity_reference_entity_view
     settings:
       view_mode: 4_up
       link: false
+    weight: 4
+    label: hidden
     third_party_settings:
       ds:
         ft:
@@ -102,12 +103,12 @@ content:
             lb-col: false
             classes: {  }
   field_block_3:
-    type: entity_reference_entity_view
-    weight: 7
-    label: hidden
+    type: pmmi_entity_reference_entity_view
     settings:
       view_mode: 4_up
       link: false
+    weight: 7
+    label: hidden
     third_party_settings:
       ds:
         ft:
@@ -117,12 +118,12 @@ content:
             lb-col: false
             classes: {  }
   field_block_4:
-    type: entity_reference_entity_view
-    weight: 10
-    label: hidden
+    type: pmmi_entity_reference_entity_view
     settings:
       view_mode: 4_up
       link: false
+    weight: 10
+    label: hidden
     third_party_settings:
       ds:
         ft:
@@ -224,3 +225,4 @@ hidden:
   field_block_select_6: true
   field_block_views_5: true
   field_block_views_6: true
+  field_center_text: true

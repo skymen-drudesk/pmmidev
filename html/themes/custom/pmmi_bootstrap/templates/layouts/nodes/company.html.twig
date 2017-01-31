@@ -1,0 +1,32 @@
+<div class="company-node">
+  <div class="container">
+    <h2 class="node-title">
+      {{ content.title }}
+    </h2>
+
+    <div class="general">
+      {{ field_render([content.general_line_1, 'line-1']) }}
+      {{ field_render([content.general_line_2, 'line-2']) }}
+    </div>
+
+    {{ field_render([content.content_row_blue, 'content-row-blue']) }}
+
+    <div class="contacts">
+      <div class="primary">
+        <div class="block-label">{{ 'Primary contact'|trans }}</div>
+        {{ field_render([content.primary_contacts, 'primary-contacts']) }}
+      </div>
+      <div class="company">
+        <div class="block-label">{{ 'Company address'|trans }}</div>
+        {{ field_render([content.company_contacts, 'company-contacts']) }}
+      </div>
+
+      {{ field_render([content.company_description, 'company-description']) }}
+    </div>
+
+    {{ field_render([content.content_row, 'content-row']) }}
+
+    {{ field_render([content.footer, 'footer-reg']) }}
+
+  </div>
+</div>

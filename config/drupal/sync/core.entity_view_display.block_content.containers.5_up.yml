@@ -30,6 +30,7 @@ dependencies:
     - field.field.block_content.containers.field_block_views_5
     - field.field.block_content.containers.field_block_views_6
     - field.field.block_content.containers.field_button
+    - field.field.block_content.containers.field_center_text
     - field.field.block_content.containers.field_head
   module:
     - ds
@@ -76,11 +77,12 @@ bundle: containers
 mode: 5_up
 content:
   field_block_1:
+    type: pmmi_entity_reference_entity_view
+    settings:
+      view_mode: 5_up
+      link: false
     weight: 1
     label: hidden
-    settings:
-      view_mode: 5_up
-      link: false
     third_party_settings:
       ds:
         ft:
@@ -89,13 +91,13 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: entity_reference_entity_view
   field_block_2:
+    type: pmmi_entity_reference_entity_view
+    settings:
+      view_mode: 5_up
+      link: false
     weight: 4
     label: hidden
-    settings:
-      view_mode: 5_up
-      link: false
     third_party_settings:
       ds:
         ft:
@@ -104,13 +106,13 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: entity_reference_entity_view
   field_block_3:
+    type: pmmi_entity_reference_entity_view
+    settings:
+      view_mode: 5_up
+      link: false
     weight: 6
     label: hidden
-    settings:
-      view_mode: 5_up
-      link: false
     third_party_settings:
       ds:
         ft:
@@ -119,13 +121,13 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: entity_reference_entity_view
   field_block_4:
+    type: pmmi_entity_reference_entity_view
+    settings:
+      view_mode: 5_up
+      link: false
     weight: 8
     label: hidden
-    settings:
-      view_mode: 5_up
-      link: false
     third_party_settings:
       ds:
         ft:
@@ -134,13 +136,13 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: entity_reference_entity_view
   field_block_5:
+    type: pmmi_entity_reference_entity_view
+    settings:
+      view_mode: 5_up
+      link: false
     weight: 10
     label: hidden
-    settings:
-      view_mode: 5_up
-      link: false
     third_party_settings:
       ds:
         ft:
@@ -149,7 +151,6 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: entity_reference_entity_view
   field_block_plugin_1:
     type: entity_reference_rendered_block_plugin
     weight: 2
@@ -245,3 +246,4 @@ hidden:
   field_block_select_5: true
   field_block_select_6: true
   field_block_views_6: true
+  field_center_text: true

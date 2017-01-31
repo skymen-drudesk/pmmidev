@@ -2,33 +2,48 @@
   padding: 0;
   .navbar-header {
     float: none;
-    padding-left: 136px;
     position: relative;
-    min-height: 133px;
+    min-height: 78px;
+    padding-left: 90px;
+    .front & {
+      padding-left: 136px;
+      min-height: 133px;
+    }
   }
   a.logo {
-    width: 136px;
-    height: 133px;
-    margin: -10px 0 0 -136px;
+    width: 73px;
     padding: 0;
     position: absolute;
+    margin: 0 0 0 -90px;
+    .front & {
+      width: 136px;
+      height: 133px;
+      margin: -10px 0 0 -136px;
+    }
   }
   @include dhd {
     width: auto;
     max-width: 1360px;
   }
   @include tablet {
-    .navbar-header {
-      padding-left: 65px;
-      min-height: 59px;
+    max-width: 720px;
+    .front &,
+    .not-front & {
+      .navbar-header {
+        padding-left: 65px;
+        min-height: 59px;
+      }
+      a.logo {
+        width: 55px;
+        height: 59px;
+        overflow: hidden;
+        margin: 0 0 0 -65px;
+      }
     }
-    a.logo {
-      width: 55px;
-      height: 59px;
-      overflow: hidden;
-      margin: 0 0 0 -65px;
-      img {
-        margin: -5px -14px 0;
+    .front & {
+      a.logo img {
+        margin: 0px -10px 0;
+        width: 75px;
       }
     }
   }
@@ -42,17 +57,23 @@
       margin-left: 0;
       margin-right: 0;
     }
-    .navbar-header {
-      padding-left: 60px;
-      min-height: 43px;
+    .front &,
+    .not-front & {
+      .navbar-header {
+        padding-left: 50px;
+        min-height: 43px;
+      }
+      a.logo {
+        width: 41px;
+        height: 45px;
+        overflow: hidden;
+        margin: 0 0 0 -50px;
+      }
     }
-    a.logo {
-      width: 41px;
-      height: 43px;
-      overflow: hidden;
-      margin: 0 0 0 -50px;
-      img {
-        margin: -4px -10px 0;
+    .front & {
+      a.logo img {
+        margin: 0 -7px 0;
+        width: 54px;
       }
     }
   }
@@ -408,6 +429,12 @@
     @include tablet {
       padding: 0;
       margin-bottom: 5px;
+      .menu li {
+        line-height: $r15;
+        a {
+          font-size: $r12;
+        }
+      }
     }
   }
 }
