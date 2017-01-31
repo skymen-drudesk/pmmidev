@@ -265,3 +265,63 @@ function pmmi_fields_update_8004() {
   }
 
 }
+
+/**
+ * Update Download Content Type.
+ *
+ * Delete fields (Member Price, Non-Member Price, Disclaimer, Report Type, Year).
+ */
+function pmmi_fields_update_8005() {
+  \Drupal::entityTypeManager()->clearCachedDefinitions();
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $etm = \Drupal::entityTypeManager();
+
+  $fields = [
+    'field_member_price',
+    'field_non_member_price',
+    'field_disclaimer',
+    'field_report_type',
+    'field_year',
+  ];
+  // Get existing storage definitions.
+  foreach ($fields as $field) {
+    /** @var \Drupal\field\Entity\FieldStorageConfig $field_definition */
+    $field_definition = $manager->getFieldStorageDefinition($field, 'node');
+    $field_definition->delete();
+    // Updating field config items.
+    if (!$entity_fields = $etm->getStorage('field_config')
+      ->loadByProperties(array('field_name' => $field))
+    ) {
+      continue;
+    }
+    foreach ($entity_fields as $field_id) {
+      $field_id->delete();
+    }
+    // Updating entity view display configs.
+    $properties = array(
+      'targetEntityType' => 'node',
+      'bundle' => 'download',
+    );
+    if ($view_displays = $etm
+      ->getStorage('entity_view_display')
+      ->loadByProperties($properties)
+    ) {
+      foreach ($view_displays as $view_display) {
+        if ($component = $view_display->getComponent($field)) {
+          // Delete field reference formatters.
+          $view_display->removeComponent($field)->save();
+        }
+      }
+    }
+    // Updating entity form configs.
+    if ($form_displays = $etm->getStorage('entity_form_display')
+      ->loadByProperties($properties)
+    ) {
+      foreach ($form_displays as $form_display) {
+        if ($component = $form_display->getComponent($field)) {
+          $form_display->removeComponent($field)->save();
+        }
+      }
+    }
+  }
+}
