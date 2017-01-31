@@ -3,3 +3,7 @@ services:
     class: Drupal\pmmi\Twig\Extension\FieldRender
     tags:
       - { name: twig.extension }
+  theme.negotiator.pmmi:
+    class: Drupal\pmmi\Theme\PMMINegotiator
+    tags:
+      - { name: theme_negotiator, priority: 0 }
