@@ -3,6 +3,7 @@
 namespace Drupal\pmmi_search\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
@@ -27,10 +28,11 @@ class PMMISearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
    * @var \Drupal\Core\Path\CurrentPathStack
    */
   protected $pathCurrent;
+
   /**
    * Drupal\Core\Form\FormBuilder definition.
    *
-   * @var \Drupal\Core\Form\FormBuilder
+   * @var \Drupal\Core\Form\FormBuilderInterface
    */
   protected $formBuilder;
 
@@ -43,13 +45,17 @@ class PMMISearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
    *   The plugin_id for the plugin instance.
    * @param string $plugin_definition
    *   The plugin implementation definition.
+   * @param \Drupal\Core\Path\CurrentPathStack $path_current
+   *   The current path.
+   * @param \Drupal\Core\Form\FormBuilderInterface $form_builder
+   *   The form builder.
    */
   public function __construct(
     array $configuration,
     $plugin_id,
     $plugin_definition,
     CurrentPathStack $path_current,
-    FormBuilder $form_builder
+    FormBuilderInterface $form_builder
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->pathCurrent = $path_current;
@@ -74,9 +80,9 @@ class PMMISearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
    */
   public function defaultConfiguration() {
     return [
-      'search_path' => '',
-      'search_identifier' => '',
-    ] + parent::defaultConfiguration();
+        'search_path' => '',
+        'search_identifier' => '',
+      ] + parent::defaultConfiguration();
 
   }
 
