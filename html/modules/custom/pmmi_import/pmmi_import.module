@@ -6,6 +6,9 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\migrate\Plugin\MigrateSourceInterface;
+use Drupal\migrate\Row;
 
 /**
  * Implements hook_help().
@@ -36,4 +39,28 @@ function pmmi_import_migration_plugins_alter(&$definitions) {
   $definitions['company_migrate']['source']['file'] = $pmmi_import_path . $definitions['company_migrate']['source']['file'];
   $definitions['industry_migrate']['source']['file'] = $pmmi_import_path . $definitions['industry_migrate']['source']['file'];
   $definitions['equipment_migrate']['source']['file'] = $pmmi_import_path . $definitions['equipment_migrate']['source']['file'];
+}
+
+/**
+ * Implements hook_migrate_prepare_row().
+ */
+function pmmi_import_migrate_prepare_row(Row $row, MigrateSourceInterface $source, MigrationInterface $migration) {
+  switch ($migration->id()) {
+    case 'company_migrate':
+      $source = $row->getSource();
+
+      // Convert some data to lower case.
+      $fields_to_lower = array(
+        'Companies Represented',
+        'Company Description',
+        'Type of Equiptment Sold',
+        'Customer Industries',
+      );
+      foreach ($fields_to_lower as $field) {
+        if (!empty($source[$field])) {
+          $row->setSourceProperty($field, strtolower($source[$field]));
+        }
+      }
+      break;
+  }
 }
