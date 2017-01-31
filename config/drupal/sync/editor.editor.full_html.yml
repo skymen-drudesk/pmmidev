@@ -52,6 +52,7 @@ settings:
             - DrupalImage
             - SpecialChar
             - HorizontalRule
+            - file_browser
         -
           name: Tools
           items:
@@ -64,10 +65,10 @@ settings:
             - PasteText
             - PasteFromWord
   plugins:
-    language:
-      language_list: un
     stylescombo:
       styles: ''
+    language:
+      language_list: un
 image_upload:
   status: false
   scheme: public
