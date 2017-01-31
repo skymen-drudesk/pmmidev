@@ -325,3 +325,56 @@ function pmmi_fields_update_8005() {
     }
   }
 }
+
+/**
+ * Update Event Block Type.
+ *
+ * Delete field (Members).
+ */
+function pmmi_fields_update_8006() {
+  \Drupal::entityTypeManager()->clearCachedDefinitions();
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $config_factory = \Drupal::configFactory();
+  $etm = \Drupal::entityTypeManager();
+
+  $field = 'field_members';
+  $properties = array(
+    'targetEntityType' => 'block_content',
+    'bundle' => 'event',
+  );
+  /** @var \Drupal\field\Entity\FieldStorageConfig $field_definition */
+  $field_definition = $manager->getFieldStorageDefinition($field, 'block_content');
+  // Updating entity view display configs.
+  if ($view_displays = $etm
+    ->getStorage('entity_view_display')
+    ->loadByProperties($properties)
+  ) {
+    foreach ($view_displays as $view_display) {
+      if ($component = $view_display->getComponent($field)) {
+        // Delete field reference formatters.
+        $view_display->removeComponent($field)->save();
+      }
+    }
+  }
+  // Updating entity form configs.
+  if ($form_displays = $etm->getStorage('entity_form_display')
+    ->loadByProperties($properties)
+  ) {
+    foreach ($form_displays as $form_display) {
+      if ($component = $form_display->getComponent($field)) {
+        $form_display->removeComponent($field)->save();
+      }
+    }
+  }
+
+  $field_definition->delete();
+  // Updating field config items.
+  if ($entity_fields = $etm->getStorage('field_config')
+    ->loadByProperties(array('field_name' => $field))
+  ) {
+    foreach ($entity_fields as $field_id) {
+      $field_id->delete();
+    }
+  }
+
+}

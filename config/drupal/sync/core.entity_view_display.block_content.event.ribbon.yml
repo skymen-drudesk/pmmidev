@@ -12,7 +12,6 @@ dependencies:
     - field.field.block_content.event.field_hosted_by
     - field.field.block_content.event.field_link
     - field.field.block_content.event.field_location
-    - field.field.block_content.event.field_members
   module:
     - address
     - ds
@@ -103,4 +102,3 @@ content:
 hidden:
   field_button: true
   field_event_types: true
-  field_members: true

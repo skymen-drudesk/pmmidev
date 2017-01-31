@@ -11,7 +11,6 @@ dependencies:
     - field.field.block_content.event.field_hosted_by
     - field.field.block_content.event.field_link
     - field.field.block_content.event.field_location
-    - field.field.block_content.event.field_members
   module:
     - address
     - datetime_range
@@ -81,11 +80,6 @@ content:
     weight: 7
     settings:
       default_country: null
-    third_party_settings: {  }
-  field_members:
-    type: options_buttons
-    weight: 8
-    settings: {  }
     third_party_settings: {  }
   info:
     type: string_textfield
