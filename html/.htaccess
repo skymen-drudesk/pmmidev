@@ -111,7 +111,7 @@ AddEncoding gzip svgz
   RewriteCond %{HTTP_HOST} !^pmmi\.dev
   RewriteCond %{HTTP_HOST} !=pmmistaging.pmmimediagroup.com
   RewriteCond %{HTTP_HOST} !^pmmistaging\.pmmimediagroup.com
-  RewriteCond %{HTTP_HOST} !^(dev|staging|pmmistaging|www)\. [NC]
+  RewriteCond %{HTTP_HOST} !^(dev|staging|pmmistaging|pmmitest|www)\. [NC]
   RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # To redirect all users to access the site WITHOUT the 'www.' prefix,
