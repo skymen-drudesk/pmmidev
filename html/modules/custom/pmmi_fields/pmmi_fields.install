@@ -266,15 +266,6 @@ function pmmi_fields_update_8004() {
 }
 
 /**
- * Remove 'Trade shows' field as it no longer needed.
- */
-function pmmi_fields_update_8005() {
-  $field = \Drupal::entityManager()->getStorage('field_config')->load('node.company.field_trade_shows');
-  $field->delete();
-  field_purge_field($field);
-}
-
-/**
  * Update Download Content Type.
  *
  * Delete fields (Member Price, Non-Member Price, Disclaimer, Report Type, Year).
@@ -385,4 +376,13 @@ function pmmi_fields_update_8006() {
     }
   }
 
+}
+
+/**
+ * Remove 'Trade shows' field as it no longer needed.
+ */
+function pmmi_fields_update_8006() {
+  $field = \Drupal::entityManager()->getStorage('field_config')->load('node.company.field_trade_shows');
+  $field->delete();
+  field_purge_field($field);
 }
