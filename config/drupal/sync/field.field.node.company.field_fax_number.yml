@@ -13,7 +13,7 @@ entity_type: node
 bundle: company
 label: 'Fax Number'
 description: 'Must include country code, area code and phone number, in that order'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

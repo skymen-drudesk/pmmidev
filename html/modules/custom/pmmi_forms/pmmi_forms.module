@@ -45,6 +45,23 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       array_unshift($form['actions']['submit']['#submit'], 'block_content_containers_form_submit');
       array_unshift($form['#submit'], 'block_content_containers_form_submit');
       break;
+
+    case 'node_company_form':
+    case 'node_company_edit_form':
+      // Hide unnecessary data from the display.
+      $form['advanced']['#access'] = FALSE;
+      $form['revision_information']['#access'] = FALSE;
+      $form['menu']['#access'] = FALSE;
+
+      // Only 'Register' submit is needed for the "Company" content type.
+      $form['actions']['submit']['#access'] = TRUE;
+      $form['actions']['submit']['#value'] = t('Register');
+      foreach (array('publish', 'unpublish', 'preview', 'delete') as $button) {
+        if (isset($form['actions'][$button])) {
+          $form['actions'][$button]['#access'] = FALSE;
+        }
+      }
+      break;
   }
 }
 

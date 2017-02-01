@@ -11,7 +11,7 @@ entity_type: node
 bundle: company
 label: 'Manufacturers represented'
 description: 'IMPORTANT! READ THIS: <b>Only list manufacturers with whom you have an ongoing or exclusive relationship in your territory.</b> Please do NOT list manufacturers from whom you sold a single machine two years ago! <i>Listing too many companies will limit potential inquiries from new manufacturers who will think you''re carrying a competitive product line.'
-required: false
+required: true
 translatable: false
 default_value: {  }
 default_value_callback: ''

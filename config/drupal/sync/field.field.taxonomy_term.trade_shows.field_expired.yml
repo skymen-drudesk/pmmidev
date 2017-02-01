@@ -1,0 +1,23 @@
+uuid: 14b7464a-021f-4280-99ac-360fb3c77cab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.taxonomy_term.field_expired
+    - taxonomy.vocabulary.trade_shows
+id: taxonomy_term.trade_shows.field_expired
+field_name: field_expired
+entity_type: taxonomy_term
+bundle: trade_shows
+label: Expired
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

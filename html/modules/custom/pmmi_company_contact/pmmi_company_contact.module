@@ -5,7 +5,11 @@
  * Contains pmmi_company_contact.module..
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+
+// Define trade shows vocabulary.
+define('PMMI_COMPANY_CONTACT_TRADE_SHOWS_VOC', 'trade_shows');
 
 /**
  * Implements hook_help().
@@ -24,10 +28,210 @@ function pmmi_company_contact_help($route_name, RouteMatchInterface $route_match
 }
 
 /**
- * Implements hook_theme().
+ * Implements hook_form_alter().
  */
-function pmmi_company_contact_theme() {
-  $theme = [];
+function pmmi_company_contact_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  switch ($form_id) {
+    case 'node_company_form':
+    case 'node_company_edit_form':
+      $node = $form_state->getFormObject()->getEntity();
 
-  return $theme;
+      $show_trades = pmmi_company_contact_get_active_trade_shows();
+      if ($show_trades && ($contacts = pmmi_company_contact_build_form($node->id()))) {
+        $form['trade_shows'] = $contacts['trade_shows'];
+
+        // Display contacts form before actions.
+        $form['trade_shows']['#weight'] = 100;
+        $form['actions']['#weight'] = $form['trade_shows']['#weight'] + 1;
+
+        // Add custom submit to handle contacts.
+        $form['actions']['submit']['#submit'][] = 'pmmi_company_contact_contacts_submit_handler';
+      }
+      break;
+  }
+}
+
+/**
+ * Submit to handle contacts information.
+ *
+ * @see pmmi_company_contact_form_node_company_edit_form_alter()
+ */
+function pmmi_company_contact_contacts_submit_handler($form, FormStateInterface $form_state) {
+  $company_id = $form_state->getValue('nid');
+
+  if ($trade_shows = $form_state->getValue('trade_shows')) {
+    $checkboxes = preg_grep('/^term_\d+$/', array_keys($trade_shows));
+
+    // Bypass all trade shows and do necessary manipulations.
+    foreach ($checkboxes as $checkbox) {
+      $tid = str_replace('term_', '', $checkbox);
+      $contact = pmmi_company_contact_get_contacts($company_id, $tid);
+
+      // Remove contact entity if it exists.
+      if (!$trade_shows[$checkbox] && $contact) {
+        $contact->delete();
+      }
+      // Create contact entity of it doesn't exist.
+      elseif ($trade_shows[$checkbox] && !$contact) {
+        $data = array(
+          'name' => pmmi_company_contact_name_generate($company_id, $tid),
+          'field_name' => array('value' => $trade_shows['contacts_' . $tid]['name']),
+          'field_title' => array('value' => $trade_shows['contacts_' . $tid]['title']),
+          'field_email' => array('value' => $trade_shows['contacts_' . $tid]['email']),
+          'field_company' => array('target_id' => $company_id),
+          'field_trade_show' => array('target_id' => $tid),
+        );
+
+        $contact = Drupal::entityManager()
+          ->getStorage('pmmi_company_contact')
+          ->create($data)
+          ->save();
+      }
+      // Update contact entity if it exists.
+      elseif ($trade_shows[$checkbox] && $contact) {
+        $contact->set('field_name', $trade_shows['contacts_' . $tid]['name']);
+        $contact->set('field_title', $trade_shows['contacts_' . $tid]['title']);
+        $contact->set('field_email', $trade_shows['contacts_' . $tid]['email']);
+        $contact->save();
+      }
+    }
+  }
+}
+
+/**
+ * Helper function to get contacts form in accordance with company.
+ *
+ * @param $nid integer
+ *   The company ID.
+ *
+ * @return
+ *   The renderable array with contacts form.
+ */
+function pmmi_company_contact_build_form($nid) {
+  $form['trade_shows'] = array(
+    '#tree' => TRUE,
+    '#type' => 'details',
+    '#collapsible' => TRUE,
+    '#open' => TRUE,
+    '#title' => t('Are you sending anyone to these upcoming PMMI trade shows?'),
+  );
+
+  foreach (pmmi_company_contact_get_active_trade_shows() as $show_trade) {
+    $tid = $show_trade->id();
+    $contact = pmmi_company_contact_get_contacts($tid, $nid);
+
+    $form['trade_shows']['term_' . $tid] = array(
+      '#type' => 'checkbox',
+      '#title' => $show_trade->getName(),
+      '#default_value' => $contact ? TRUE : FALSE,
+    );
+
+    $form['trade_shows']['contacts_' . $tid] = array(
+      '#type' => 'container',
+      '#states' => array(
+        'visible' => array(
+          ':input[name="trade_shows[term_' . $tid . ']"]' => array('checked' => TRUE),
+        ),
+      ),
+    );
+
+    $contact_fields = array(
+      'name' => t('Name'),
+      'title' => t('Title'),
+      'email' => t('Email'),
+    );
+
+    // Add contact fields.
+    foreach ($contact_fields as $key => $field_name) {
+      $form['trade_shows']['contacts_' . $tid][$key] = array(
+        '#type' => $key == 'email' ? 'email' : 'textfield',
+        '#title' => $field_name,
+      );
+
+      // Add default field value.
+      if ($contact && ($field_value = $contact->get('field_' . $key)->getValue())) {
+        $form['trade_shows']['contacts_' . $tid][$key]['#default_value'] = $field_value[0]['value'];
+      }
+    }
+  }
+
+  return $form;
+}
+
+/**
+ * Helper function to get all active trade shows.
+ *
+ * @return array
+ *   The active trade shows if they are exist, otherwise - empty array.
+ */
+function pmmi_company_contact_get_active_trade_shows() {
+  $show_trades = &drupal_static(__FUNCTION__, array());
+
+  if (!$show_trades) {
+    $query = \Drupal::entityQuery('taxonomy_term');
+    $group = $query->orConditionGroup()
+      ->condition('field_expired', 0)
+      ->condition('field_expired', NULL, 'IS NULL');
+
+    $tids = $query->condition('vid', PMMI_COMPANY_CONTACT_TRADE_SHOWS_VOC)
+      ->condition($group)
+      ->execute();
+
+    if ($tids) {
+      $show_trades = \Drupal::service('entity_type.manager')
+        ->getStorage('taxonomy_term')
+        ->loadMultiple($tids);
+    }
+  }
+
+  return $show_trades;
+}
+
+/**
+ * Helper function to get contacts for submitted show trade.
+ *
+ * @param $tid integer
+ *   The trade show ID.
+ * @param $nid integer
+ *   The company ID.
+ *
+ * @return
+ *   Contact entity if exists, otherwise - NULL.
+ */
+function pmmi_company_contact_get_contacts($tid, $nid = NULL) {
+  $contact_entity = NULL;
+
+  $query = \Drupal::entityQuery('pmmi_company_contact')
+    ->condition('field_company', $nid)
+    ->condition('field_trade_show', $tid);
+
+  if ($result = $query->execute()) {
+    $contact_entity = \Drupal::entityTypeManager()->getStorage('pmmi_company_contact')->load(key($result));
+  }
+
+  return $contact_entity;
+}
+
+/**
+ * Helper function to generate contact name.
+ *
+ * @param $nid integer
+ *   The company ID.
+ * @param $tid integer
+ *   The trade show ID.
+ *
+ * @return string
+ *   The title of contact entity.
+ */
+function pmmi_company_contact_name_generate($nid, $tid) {
+  $name = '';
+
+  $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
+  $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($tid);
+
+  if ($node && $term) {
+    $name = implode(' | ', array($node->getTitle(), $term->getName()));
+  }
+
+  return $name;
 }
