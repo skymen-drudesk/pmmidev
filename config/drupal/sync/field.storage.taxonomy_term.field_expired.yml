@@ -1,0 +1,18 @@
+uuid: e520e517-34f5-437f-b310-39925402da14
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: taxonomy_term.field_expired
+field_name: field_expired
+entity_type: taxonomy_term
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
