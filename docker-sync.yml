@@ -1,5 +1,5 @@
 syncs:
-  unison-sync:
+  pmmi-unison-sync:
     src: './'
     dest: '/var/www'
     sync_args: '-prefer newer'

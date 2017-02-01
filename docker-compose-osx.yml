@@ -26,7 +26,7 @@ services:
       - "80"
       - "9000"
     volumes:
-      - unison-sync:/var/www:rw # Replace volume to this to use docker-sync for macOS users
+      - pmmi-unison-sync:/var/www:rw # Replace volume to this to use docker-sync for macOS users
     links:
       - db
   db:
@@ -39,5 +39,5 @@ services:
       service: solr
 
 volumes:
-  unison-sync:
+  pmmi-unison-sync:
     external: true
