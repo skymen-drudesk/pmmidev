@@ -28,9 +28,9 @@ function pmmi_company_contact_help($route_name, RouteMatchInterface $route_match
 }
 
 /**
- * Implements hook_form_FORM_ID_alter().
+ * Implements hook_form_alter().
  */
-function pmmi_company_contact_form_node_company_edit_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+function pmmi_company_contact_form_alter(array &$form, FormStateInterface $form_state) {
   $node = $form_state->getFormObject()->getEntity();
 
   $show_trades = pmmi_company_contact_get_active_trade_shows();
@@ -42,7 +42,7 @@ function pmmi_company_contact_form_node_company_edit_form_alter(&$form, FormStat
     $form['actions']['#weight'] = $form['trade_shows']['#weight'] + 1;
 
     // Add custom submit to handle contacts.
-    $form['actions']['publish']['#submit'][] = 'pmmi_company_contact_contacts_submit_handler';
+    $form['actions']['submit']['#submit'][] = 'pmmi_company_contact_contacts_submit_handler';
   }
 }
 
@@ -103,11 +103,17 @@ function pmmi_company_contact_contacts_submit_handler($form, FormStateInterface 
  *   The renderable array with contacts form.
  */
 function pmmi_company_contact_build_form($nid) {
-  $form['trade_shows']['#tree'] = TRUE;
+  $form['trade_shows'] = array(
+    '#tree' => TRUE,
+    '#type' => 'details',
+    '#collapsible' => TRUE,
+    '#open' => TRUE,
+    '#title' => t('Are you sending anyone to these upcoming PMMI trade shows?'),
+  );
 
   foreach (pmmi_company_contact_get_active_trade_shows() as $show_trade) {
     $tid = $show_trade->id();
-    $contact = pmmi_company_contact_get_contacts($nid, $tid);
+    $contact = pmmi_company_contact_get_contacts($tid, $nid);
 
     $form['trade_shows']['term_' . $tid] = array(
       '#type' => 'checkbox',
@@ -179,15 +185,15 @@ function pmmi_company_contact_get_active_trade_shows() {
 /**
  * Helper function to get contacts for submitted show trade.
  *
- * @param $nid integer
- *   The company ID.
  * @param $tid integer
  *   The trade show ID.
+ * @param $nid integer
+ *   The company ID.
  *
  * @return
  *   Contact entity if exists, otherwise - NULL.
  */
-function pmmi_company_contact_get_contacts($nid, $tid) {
+function pmmi_company_contact_get_contacts($tid, $nid = NULL) {
   $contact_entity = NULL;
 
   $query = \Drupal::entityQuery('pmmi_company_contact')

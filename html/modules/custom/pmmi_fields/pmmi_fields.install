@@ -263,5 +263,13 @@ function pmmi_fields_update_8004() {
       }
     }
   }
+}
 
+/**
+ * Remove 'Trade shows' field as it no longer needed.
+ */
+function pmmi_fields_update_8005() {
+  $field = \Drupal::entityManager()->getStorage('field_config')->load('node.company.field_trade_shows');
+  $field->delete();
+  field_purge_field($field);
 }
