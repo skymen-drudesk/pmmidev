@@ -14,7 +14,7 @@ class PMMINegotiator implements ThemeNegotiatorInterface {
     $status = FALSE;
 
     // Use 'PMMI' theme for the company create/edit pages.
-    if ($route_match->getRouteName() == 'node.add') {
+    if ($route_match->getRouteName() == 'node.add' && $route_match->getParameter('node_type')->id() == 'company') {
       $status = TRUE;
     }
     elseif ($route_match->getRouteName() == 'entity.node.edit_form') {
