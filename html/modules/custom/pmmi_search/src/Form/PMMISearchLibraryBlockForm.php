@@ -2,8 +2,12 @@
 
 namespace Drupal\pmmi_search\Form;
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\TrustedRedirectResponse;
 use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 /**
  * Builds the PMMI search form for the search block.
@@ -32,10 +36,11 @@ class PMMISearchLibraryBlockForm extends PMMISearchBlockForm {
       '#name' => $data['search_identifier'],
       '#attributes' => array(
         'class' => array('search-field'),
-        ),
+      ),
     );
     /** @var \Drupal\taxonomy\TermStorageInterface $taxonomy_storage */
-    $taxonomy_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+    $taxonomy_storage = \Drupal::entityTypeManager()
+      ->getStorage('taxonomy_term');
     $tree = $taxonomy_storage->loadTree($data['vid']);
     foreach ($tree as $item) {
       $options[$item->tid] = $item->name;
@@ -73,18 +78,33 @@ class PMMISearchLibraryBlockForm extends PMMISearchBlockForm {
     $search_identifier = $data['search_identifier'];
     $term_identifier = $data['term_identifier'];
     $url = Url::fromUri($data['search_path']);
+    if ($url->isExternal()) {
+      $parse_url = UrlHelper::parse($data['search_path']);
+      $url = Url::fromUri($parse_url['path'], ['fragment' => $parse_url['fragment']]);
+      $default_query = $parse_url['query'];
+    }
+    else {
+      $default_query = $url->getOption('query');
+    }
     // Saved default path query param.
-    $default_query = $url->getOption('query');
     $query[$search_identifier] = $form_state->getUserInput()[$search_identifier];
     $query[$term_identifier] = $form_state->getUserInput()[$term_identifier];
     if (!empty($default_query) && is_array($default_query)) {
-      if (array_key_exists($search_identifier, $default_query)) {
-        unset($default_query[$search_identifier]);
+      foreach ($query as $key => $value) {
+        if (array_key_exists($key, $default_query)) {
+          unset($default_query[$key]);
+        }
       }
       $query += $default_query;
     }
     $url->setOption('query', $query);
-    $form_state->setRedirectUrl($url);
+    if ($url->isExternal()) {
+      $response = new TrustedRedirectResponse($url->toString());
+      $form_state->setResponse($response);
+    }
+    else {
+      $form_state->setRedirectUrl($url);
+    }
 
   }
 

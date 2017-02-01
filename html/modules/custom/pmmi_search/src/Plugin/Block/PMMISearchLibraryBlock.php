@@ -5,6 +5,7 @@ namespace Drupal\pmmi_search\Plugin\Block;
 use Drupal\Core\Form\FormBuilderInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Drupal\Core\Url;
 use Drupal\taxonomy\VocabularyStorageInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\Core\Path\CurrentPathStack;
@@ -88,6 +89,30 @@ class PMMISearchLibraryBlock extends PMMISearchBlock implements ContainerFactory
     foreach ($vocabularies as $voc) {
       $options[$voc->id()] = $voc->label();
     }
+    $search_path = '';
+    if (!empty($this->configuration['search_path'])) {
+      $search_path = Url::fromUri($this->configuration['search_path'])
+        ->toString();
+    }
+    $form['search_path'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Search Path'),
+      '#description' => $this->t('Start typing the title of a piece of content to select it. You can also enter an internal path such as %add-node or an external URL such as %url. Enter %front to link to the front page.', array(
+        '%front' => '<front>',
+        '%add-node' => '/node/add',
+        '%url' => 'http://example.com'
+      )),
+      '#default_value' => $search_path,
+      '#required' => TRUE,
+      '#maxlength' => 2048,
+      '#weight' => '1',
+      '#element_validate' => array(
+        array(
+          get_called_class(),
+          'validateUriElement',
+        ),
+      ),
+    ];
     $form['vid'] = [
       '#type' => 'radios',
       '#title' => t('Select vocabulary for filter'),
@@ -141,6 +166,67 @@ class PMMISearchLibraryBlock extends PMMISearchBlock implements ContainerFactory
       $dependencies[$vocab->getConfigDependencyKey()][] = $vocab->getConfigDependencyName();
     }
     return $dependencies;
+  }
+
+  /**
+   * Form element validation handler for the 'uri' element.
+   *
+   * Disallows saving inaccessible or untrusted URLs.
+   */
+  public static function validateUriElement($element, FormStateInterface $form_state) {
+    $uri = static::getUserEnteredStringAsUri($element['#value']);
+    $form_state->setValueForElement($element, $uri);
+
+    // URI , ensure the raw value begins with '/'.
+    // @todo '<front>' is valid input for BC reasons, may be removed by
+    //   https://www.drupal.org/node/2421941
+    if (parse_url($uri, PHP_URL_SCHEME) === 'internal' && !in_array($element['#value'][0], ['/'], TRUE)
+      && substr($element['#value'], 0, 7) !== '<front>'
+    ) {
+      $form_state->setError($element, t('Entered paths should start with /'));
+      return;
+    }
+    $search_path = Url::fromUri($uri);
+    if (!$search_path->isRouted() && !$search_path->isExternal()) {
+      $form_state->setError($element, t('No route exist'));
+      return;
+    }
+  }
+
+  /**
+   * Gets the user-entered string as a URI.
+   *
+   * The following two forms of input are mapped to URIs:
+   * - entity autocomplete ("label (entity id)") strings: to 'entity:' URIs;
+   * - strings without a detectable scheme: to 'internal:' URIs.
+   *
+   * This method is the inverse of ::getUriAsDisplayableString().
+   *
+   * @param string $string
+   *   The user-entered string.
+   *
+   * @return string
+   *   The URI, if a non-empty $uri was passed.
+   *
+   * @see static::getUriAsDisplayableString()
+   */
+  protected static function getUserEnteredStringAsUri($string) {
+    // By default, assume the entered string is an URI.
+    $uri = $string;
+
+    // Detect a schemeless string, map to 'internal:' URI.
+    if (!empty($string) && parse_url($string, PHP_URL_SCHEME) === NULL) {
+      // @todo '<front>' is valid input for BC reasons, may be removed by
+      //   https://www.drupal.org/node/2421941
+      // - '<front>' -> '/'
+      // - '<front>#foo' -> '/#foo'
+      if (strpos($string, '<front>') === 0) {
+        $string = '/' . substr($string, strlen('<front>'));
+      }
+      $uri = 'internal:' . $string;
+    }
+
+    return $uri;
   }
 
 }
