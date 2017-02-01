@@ -51,6 +51,7 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       // Hide unnecessary data from the display.
       $form['advanced']['#access'] = FALSE;
       $form['revision_information']['#access'] = FALSE;
+      $form['menu']['#access'] = FALSE;
 
       // Only 'Register' submit is needed for the "Company" content type.
       $form['actions']['submit']['#access'] = TRUE;
