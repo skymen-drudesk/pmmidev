@@ -15,6 +15,7 @@ dependencies:
   module:
     - ds
     - image
+    - link
     - text
 third_party_settings:
   ds:
@@ -26,12 +27,16 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
-      body:
-        - body
-      head:
-        - field_head
       image:
         - field_image
+      head:
+        - field_head
+      body:
+        - body
+      button:
+        - field_button
+      link:
+        - field_link
 id: block_content.text.image_text
 targetEntityType: block_content
 bundle: text
@@ -40,8 +45,19 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 0
+    weight: 2
     settings: {  }
+    third_party_settings: {  }
+  field_button:
+    type: link
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
     third_party_settings: {  }
   field_head:
     weight: 1
@@ -51,7 +67,7 @@ content:
     third_party_settings: {  }
     type: string
   field_image:
-    weight: 2
+    weight: 0
     label: hidden
     settings:
       image_style: brand_block_dhd
@@ -65,7 +81,16 @@ content:
             lb-col: false
             classes: {  }
     type: image
+  field_link:
+    type: link
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
 hidden:
-  field_button: true
   field_center_text: true
-  field_link: true
