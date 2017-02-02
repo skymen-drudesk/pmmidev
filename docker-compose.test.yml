@@ -41,7 +41,7 @@ services:
       - .:/var/www
       - ./config/cron:/etc/cron.d
     links:
-      - pmmi_db
+      - pmmidb
     ports:
       - "8080:80"
 
