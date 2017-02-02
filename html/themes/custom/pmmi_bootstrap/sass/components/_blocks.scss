@@ -198,61 +198,7 @@
 
 /* Top exposed block. */
 .region-top .block.views-exposed-form {
-  background: $blue;
-  margin: 3px 0 30px;
-  form {
-    @extend .container;
-    padding-top: 16px;
-    padding-bottom: 14px;
-    .form-group {
-      vertical-align: top;
-    }
-    label {
-      color: #fff;
-      line-height: $r30;
-      font-weight: 900;
-      margin-right: 5px;
-      vertical-align: top;
-      text-overflow: ellipsis;
-    }
-    .select-wrapper {
-      display: inline-block;
-      vertical-align: top;
-      margin-right: 30px;
-      width: 370px;
-      .selector {
-        width: 100% !important;
-      }
-    }
-    button {
-      @extend .button-secondary;
-      min-width: 170px;
-      .glyphicon {
-        display: none;
-      }
-    }
-  }
-  @include tablet {
-    form {
-      .form--inline {
-        float: right;
-      }
-      .select-wrapper {
-        width: 338px;
-        margin-right: 20px;
-      }
-    }
-  }
-  @include mobile {
-    form {
-      label,
-      .select-wrapper,
-      button {
-        display: block;
-        width: 100%;
-      }
-    }
-  }
+  @extend .default-exposed-form;
 }
 
 // Audience select block.
@@ -518,6 +464,65 @@
         height: 30px;
         line-height: 30px;
         width: 30px;
+      }
+    }
+  }
+}
+
+// Pmmi search library block.
+.block-pmmi-search-library-block {
+  @extend .default-exposed-form;
+  margin: 0;
+  form {
+    padding: 0;
+    text-align: center;
+    font-size: 0;
+    div {
+      font-size: 1rem;
+    }
+    .select-wrapper {
+      display: block;
+    }
+    .form-actions {
+      margin-top: 35px;
+    }
+    button {
+      &:focus,
+      &:active,
+      &:hover {
+        background: none;
+      }
+    }
+    input,
+    .select-wrapper,
+    label {
+      display: block;
+      text-align: left;
+    }
+    @include desktop {
+      .form-search,
+      .select-wrapper {
+        width: 310px;
+        margin-right: 20px;
+      }
+      button {
+        min-width: 144px;
+      }
+    }
+    @include tablet {
+      .form-search,
+      .select-wrapper {
+        width: 290px;
+        margin-right: 10px;
+      }
+      button {
+        min-width: 110px;
+      }
+    }
+    @include mobile {
+      .form-actions {
+        width: 162px;
+        margin-top: 20px;
       }
     }
   }

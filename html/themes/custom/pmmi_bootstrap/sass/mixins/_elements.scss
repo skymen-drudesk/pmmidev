@@ -53,3 +53,76 @@
     @extend .text-link;
   }
 }
+.default-exposed-form {
+  background: $blue;
+  margin: 3px 0 30px;
+  form {
+    @extend .container;
+    padding-top: 16px;
+    padding-bottom: 14px;
+    .form-group {
+      vertical-align: top;
+    }
+    label {
+      color: #fff;
+      line-height: $r30;
+      font-weight: 900;
+      margin-right: 5px;
+      vertical-align: top;
+      text-overflow: ellipsis;
+    }
+    .form-search {
+      width: 370px;
+      margin-right: 30px;
+    }
+    .select-wrapper {
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 30px;
+      width: 370px;
+      .selector {
+        width: 100% !important;
+      }
+    }
+    button {
+      @extend .button-secondary;
+      min-width: 170px;
+      .glyphicon {
+        display: none;
+      }
+    }
+    .form-actions,
+    .form-type-search,
+    .form-type-select {
+      display: inline-block;
+    }
+  }
+  @include tablet {
+    form {
+      .form--inline {
+        float: right;
+      }
+      .form-search,
+      .select-wrapper {
+        width: 338px;
+        margin-right: 20px;
+      }
+    }
+  }
+  @include mobile {
+    form {
+      label,
+      .form-search,
+      .select-wrapper,
+      button {
+        display: block;
+        width: 100%;
+      }
+      .form-actions,
+      .form-type-search,
+      .form-type-select {
+        display: block;
+      }
+    }
+  }
+}
