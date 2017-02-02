@@ -104,7 +104,8 @@ class PMMIAddressField extends ProcessPluginBase implements ContainerFactoryPlug
               return $by_code;
             }
             else {
-              throw new MigrateException($this->t('The next state/region "@area" hasn\'t passed the validation. Please check values for the "@source" source.', array(
+              throw new MigrateException($this->t('ID @id: the next state/region "@area" hasn\'t passed the validation. Please check values for the "@source" source.', array(
+                '@id' => $source['ID'],
                 '@area' => $value,
                 '@source' => $this->configuration['source'],
               )));
@@ -112,7 +113,8 @@ class PMMIAddressField extends ProcessPluginBase implements ContainerFactoryPlug
           }
         }
         elseif ($value && !$country_code) {
-          throw new MigrateException($this->t('The next country "@country" hasn\'t passed the validation. Please check values for the "@source" source.', array(
+          throw new MigrateException($this->t('ID @id: the next country "@country" hasn\'t passed the validation. Please check values for the "@source" source.', array(
+            '@id' => $source['ID'],
             '@country' => $country,
             '@source' => $this->configuration['parent'],
           )));
