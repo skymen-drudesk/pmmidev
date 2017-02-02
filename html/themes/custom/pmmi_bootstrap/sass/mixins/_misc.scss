@@ -6,3 +6,11 @@
   width: 1px;
   word-wrap: normal;
 }
+.clear-after {
+  &:after {
+    content: "";
+    display: block;
+    height: 0;
+    clear: both;
+  }
+}

@@ -1,0 +1,14 @@
+.block-accordion {
+  > .title {
+    @extend .headline3;
+    margin-bottom: 15px;
+    @include tablet-max {
+      font-size: $r22;
+    }
+  }
+  > .accordion {
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    border-color: $mdgrey;
+  }
+}
