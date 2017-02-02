@@ -46,7 +46,7 @@ class ViewfieldWidgetWithMore extends ViewfieldWidget {
     $field_name = $this->fieldDefinition->getName();
     $id_prefix = implode('-', array_merge($element['#field_parents'], [$field_name]));
     $wrapper_id = Crypt::hashBase64($id_prefix . '-ajax-wrapper');
-
+    unset($element['settings_wrapper']);
     $element += [
       '#type' => 'container',
       '#prefix' => '<div id="' . $wrapper_id . '">',
@@ -67,6 +67,24 @@ class ViewfieldWidgetWithMore extends ViewfieldWidget {
     if (isset($view_name)) {
       $view = explode('|', $view_name);
       $view_instance = $this->getView($view[0], $view[1])->preview();
+      $saved_settings = $this->getSavedSettings();
+
+      $element['view_override_title'] = array(
+        '#type' => 'checkbox',
+        '#title' => t('Override title'),
+        '#default_value' => isset($saved_settings['view_override_title']) ? $saved_settings['view_override_title'] : FALSE,
+      );
+      $element['view_title'] = array(
+        '#type' => 'textfield',
+        '#title' => t('View title'),
+        '#default_value' => isset($saved_settings['view_title']) ? $saved_settings['view_title'] : '',
+        '#states' => array(
+          'visible' => array(
+            'input[name="' . $field_name . '[' . $delta . '][view_override_title]"]' => array('checked' => TRUE),
+          ),
+        ),
+      );
+
       $element['more'] = array(
         '#type' => 'container',
       );
@@ -85,13 +103,21 @@ class ViewfieldWidgetWithMore extends ViewfieldWidget {
   }
 
   /**
-   * {@inheritdoc}
+   * Get saved settings.
    */
-  protected function getViewOptions($handler, $option, $display) {
+  protected function getSavedSettings() {
     $settings = array();
     if ($values = $this->items[$this->delta]->settings) {
       $settings = unserialize($values);
     }
+    return $settings;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getViewOptions($handler, $option, $display) {
+    $settings = $this->getSavedSettings();
     return isset($settings['more']) && isset($settings['more'][$display]) ? $settings['more'][$display][$option] : $handler->options[$option];
   }
 
@@ -101,10 +127,11 @@ class ViewfieldWidgetWithMore extends ViewfieldWidget {
   public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
     foreach ($values as $key => $value) {
       $settings_array = array();
-      foreach (['more', 'attachment_after_more', 'attachment_before_more'] as $more) {
+      // Save more link settings.
+      foreach (['more', 'view_title', 'view_override_title'] as $setting) {
         $values[$key]['settings'] = isset($values[$key]['settings']) ? $values[$key]['settings'] : '';
-        if (!empty($value[$more])) {
-          $settings_array += array($more => $value[$more]);
+        if (!empty($value[$setting])) {
+          $settings_array += array($setting => $value[$setting]);
         }
       }
       $values[$key]['settings'] .= serialize($settings_array);

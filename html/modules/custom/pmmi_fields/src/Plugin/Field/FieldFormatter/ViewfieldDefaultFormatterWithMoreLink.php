@@ -31,21 +31,28 @@ class ViewfieldDefaultFormatterWithMoreLink extends ViewfieldDefaultFormatter {
 
     foreach ($elements as &$element) {
       $view_display = $element['#view_display'];
-      if (!empty($element['#exposed_settings']) && !empty($element['#exposed_settings']['more'])) {
-        if (!empty($element['#exposed_settings']['more'][$view_display])) {
-          $element['#view']->display_handler->options = array_merge($element['#view']->display_handler->options, $element['#exposed_settings']['more'][$view_display]);
-        }
-        foreach ($element['#exposed_settings']['more'] as $display_name => $more_settings) {
-          $more_settings['link_display'] = 'custom_url';
-          if ($display_name == $view_display) {
-            $element['#view']->display_handler->options = array_merge($element['#view']->display_handler->options, $more_settings);
+      if (!empty($element['#exposed_settings'])) {
+        // More link settings.
+        if (!empty($element['#exposed_settings']['more'])) {
+          if (!empty($element['#exposed_settings']['more'][$view_display])) {
+            $element['#view']->display_handler->options = array_merge($element['#view']->display_handler->options, $element['#exposed_settings']['more'][$view_display]);
           }
-          else {
-            $handler = $element['#view']->displayHandlers->get($display_name);
-            if (!empty($handler)) {
-              $handler->display['display_options'] = array_merge($handler->display['display_options'], $more_settings);
+          foreach ($element['#exposed_settings']['more'] as $display_name => $more_settings) {
+            $more_settings['link_display'] = 'custom_url';
+            if ($display_name == $view_display) {
+              $element['#view']->display_handler->options = array_merge($element['#view']->display_handler->options, $more_settings);
+            }
+            else {
+              $handler = $element['#view']->displayHandlers->get($display_name);
+              if (!empty($handler)) {
+                $handler->display['display_options'] = array_merge($handler->display['display_options'], $more_settings);
+              }
             }
           }
+        }
+        // Title settings.
+        if (!empty($element['#exposed_settings']['view_override_title']) && isset($element['#exposed_settings']['view_title'])) {
+          $element['#view']->display_handler->options['title'] = $element['#exposed_settings']['view_title'];
         }
       }
     }
