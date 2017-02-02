@@ -33,6 +33,15 @@
       .title {
         display: inline-block;
         @extend .headline1;
+        .blue-region & {
+          @extend .white;
+        }
+      }
+      @include tablet {
+        margin-bottom: 25px;
+      }
+      @include mobile {
+        margin-bottom: 15px;
       }
     }
     .block-body {
