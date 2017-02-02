@@ -10,12 +10,8 @@
   </div>
   <div class="rows container">
     <div class="row-1">
-      <div class="col col-1 col-sm-6">
-        {{ content.oneone }}
-      </div>
-      <div class="col col-2 col-sm-6">
-        {{ content.onetwo }}
-      </div>
+      {{ field_render([content.oneone, 'col col-1 col-sm-6']) }}
+      {{ field_render([content.onetwo, 'col col-2 col-sm-6']) }}
     </div>
   </div>
   <div class="region-bottom">
