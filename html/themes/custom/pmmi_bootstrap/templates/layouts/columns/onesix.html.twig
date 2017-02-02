@@ -10,26 +10,14 @@
   </div>
   <div class="rows container">
     <div class="row-1 clearfix">
-      <div class="col col-1 col-sm-4">
-        {{ content.oneone }}
-      </div>
-      <div class="col col-2 col-sm-4">
-        {{ content.onetwo }}
-      </div>
-      <div class="col col-3 col-sm-4">
-        {{ content.onethree }}
-      </div>
+      {{ field_render([content.oneone, 'col col-1 col-sm-4']) }}
+      {{ field_render([content.onetwo, 'col col-2 col-sm-4']) }}
+      {{ field_render([content.onethree, 'col col-3 col-sm-4']) }}
     </div>
     <div class="row-2 clearfix">
-      <div class="col col-1 col-sm-4">
-        {{ content.twoone }}
-      </div>
-      <div class="col col-2 col-sm-4">
-        {{ content.twotwo }}
-      </div>
-      <div class="col col-3 col-sm-4">
-        {{ content.twothree }}
-      </div>
+      {{ field_render([content.twoone, 'col col-1 col-sm-4']) }}
+      {{ field_render([content.twotwo, 'col col-2 col-sm-4']) }}
+      {{ field_render([content.twothree, 'col col-3 col-sm-4']) }}
     </div>
   </div>
   <div class="region-bottom">
