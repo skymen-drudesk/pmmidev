@@ -84,16 +84,14 @@ class PMMITerritoryServed extends ProcessPluginBase implements ContainerFactoryP
       $areas_status = TRUE;
     }
 
-    //
     $territory_served = array();
+    $source = $row->getSource();
     foreach (explode(',', $value[0]) as $country) {
       $country = trim($country);
 
-      //
       if ($ccode = $this->getCountryCodeByName($country)) {
         $sub = FALSE;
 
-        //
         if ($areas && ($subdivisions = $this->subdivision_repository->getList(array($ccode)))) {
           $csubdivisions = array_flip($subdivisions);
 
@@ -119,7 +117,8 @@ class PMMITerritoryServed extends ProcessPluginBase implements ContainerFactoryP
         }
       }
       else {
-        throw new MigrateException($this->t('The next country "@country" has not passed the validation. Please check values for the "@source" source.', array(
+        throw new MigrateException($this->t('ID @id: the next country "@country" has not passed the validation. Please check values for the "@source" source.', array(
+          '@id' => $source['ID'],
           '@country' => $country,
           '@source' => $this->configuration['source']['countries'],
         )));
@@ -129,7 +128,8 @@ class PMMITerritoryServed extends ProcessPluginBase implements ContainerFactoryP
     // Notify about wrong administrative areas if they aren't related to any
     // country.
     if ($areas_status && $areas) {
-      throw new MigrateException($this->t('The next administrative areas "@areas" have not passed the validation. They are not related to any country. Please check values for the "@source" source.', array(
+      throw new MigrateException($this->t('ID @id: the next administrative areas "@areas" have not passed the validation. They are not related to any country. Please check values for the "@source" source.', array(
+        '@id' => $source['ID'],
         '@areas' => implode(', ', $areas),
         '@source' => $this->configuration['source']['areas'],
       )));
