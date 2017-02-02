@@ -34,6 +34,7 @@ class PMMISearchLibraryBlockForm extends PMMISearchBlockForm {
       '#size' => 15,
       '#default_value' => '',
       '#name' => $data['search_identifier'],
+      '#bootstrap_ignore_process' => TRUE,
       '#attributes' => array(
         'class' => array('search-field'),
       ),
