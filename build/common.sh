@@ -69,7 +69,7 @@ fi
 if [[ -e "$base/composer.json" ]] && which composer > /dev/null; then
   # Then run Composer Install
   echo "Installing dependencies with Composer.";
-  composer install
+  composer install --optimize-autoloader
 fi
 
 # If package.json for pmmi_bootstrap exists and the npm command exists.
