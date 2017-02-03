@@ -65,7 +65,7 @@ function pmmi_company_contact_contacts_submit_handler($form, FormStateInterface 
     // Bypass all trade shows and do necessary manipulations.
     foreach ($checkboxes as $checkbox) {
       $tid = str_replace('term_', '', $checkbox);
-      $contact = pmmi_company_contact_get_contacts($company_id, $tid);
+      $contact = pmmi_company_contact_get_contacts($tid, $company_id);
 
       // Remove contact entity if it exists.
       if (!$trade_shows[$checkbox] && $contact) {
@@ -82,7 +82,7 @@ function pmmi_company_contact_contacts_submit_handler($form, FormStateInterface 
           'field_trade_show' => array('target_id' => $tid),
         );
 
-        $contact = Drupal::entityManager()
+        \Drupal::entityManager()
           ->getStorage('pmmi_company_contact')
           ->create($data)
           ->save();
