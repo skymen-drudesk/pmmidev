@@ -120,11 +120,17 @@
     .flipper {
       height: 218px;
     }
+    img {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
   // Mode 4-up.
   &.mode-4-up {
-    .flipper {
-      height: 230px;
+    @include dhd {
+      .flipper {
+        height: 230px;
+      }
     }
     // Desktop.
     @include desktop {
@@ -140,16 +146,27 @@
     // Tablet.
     @include tablet {
       max-width: 290px;
+      margin-bottom: 16px;
+      .side {
+        padding: 10px;
+      }
+      .button a {
+        min-width: 140px;
+      }
       .flipper {
         height: 255px;
+      }
+      .image {
+        margin-bottom: 15px;
+      }
+      .title {
+        font-size: $r17;
+        line-height: $r21;
       }
     }
     // Mobile.
     @include mobile {
       max-width: 282px;
-      .flipper {
-        height: 240px;
-      }
     }
   }
   // Mode 5-up.
