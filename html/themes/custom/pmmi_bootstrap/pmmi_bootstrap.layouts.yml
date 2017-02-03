@@ -3,8 +3,12 @@ sitewide:
   category: PMMI: Layouts
   template: templates/layouts/sitewide
   regions:
+    top:
+      label: Top content
     main:
       label: Main content
+    bottom:
+      label: Bottom content
 panel_homepage:
   label: Homepage screens (with fullwidth regions, i.e. events(blue), cards(grey), etc.)
   category: PMMI: Layouts
@@ -517,6 +521,8 @@ block_pack_expo_show:
       label: Date(s)
     location:
       label: Location
+    body:
+      label: Body
     button:
       label: Button
 block_brand:

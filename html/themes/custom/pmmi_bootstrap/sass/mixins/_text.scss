@@ -115,6 +115,14 @@
   font-size: $r14;
   line-height: $r23;
 }
+.headline-date {
+  font-weight: 800;
+  font-size: $r16;
+  line-height: $r21;
+  @include tablet-max {
+    font-size: $r15;
+  }
+}
 .sidehead1 {
   font-size: $r18;
   line-height: $r23;
