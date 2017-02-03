@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - block_content.type.social_media
+    - field.field.block_content.social_media.body
     - field.field.block_content.social_media.field_facebook
     - field.field.block_content.social_media.field_google
     - field.field.block_content.social_media.field_head
@@ -41,7 +42,7 @@ bundle: social_media
 mode: default
 content:
   field_facebook:
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       trim_length: 80
@@ -57,7 +58,7 @@ content:
             lb: ''
     type: link
   field_google:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       trim_length: 80
@@ -80,7 +81,7 @@ content:
     third_party_settings: {  }
     type: string
   field_linkedin:
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       trim_length: 80
@@ -96,7 +97,7 @@ content:
             lb: ''
     type: link
   field_twitter:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       trim_length: 80
@@ -112,7 +113,7 @@ content:
             lb: ''
     type: link
   field_youtube:
-    weight: 5
+    weight: 6
     label: hidden
     settings:
       trim_length: 80
@@ -127,4 +128,5 @@ content:
           settings:
             lb: ''
     type: link
-hidden: {  }
+hidden:
+  body: true

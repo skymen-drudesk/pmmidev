@@ -5,19 +5,32 @@
       @extend .button-primary;
     }
   }
-  // Block Text + Image.
+  // Blocks with images and links.
   &.mode-image-text,
   &.mode-text-image {
-    .block-body {
-      margin-bottom: 20px;
-      @extend .side-paragraph;
-    }
     .image {
       margin-bottom: 10px;
     }
     .button,
     .link {
       margin: 10px 0;
+    }
+  }
+  // Block Text + Image.
+  &.mode-text-image {
+    .block-body {
+      margin-bottom: 20px;
+      @extend .side-paragraph;
+    }
+  }
+  // Block Image + Text.
+  &.mode-image-text {
+    .title {
+      @extend .headline3;
+    }
+    .block-body {
+      @extend .paragraph2;
+      margin-bottom: 15px;
     }
   }
   &.video-type {
