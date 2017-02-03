@@ -4,10 +4,13 @@ namespace Drupal\audience_select\EventSubscriber;
 
 use Drupal\audience_select\Service\AudienceManager;
 use Drupal\Component\Utility\Unicode;
+use Drupal\Core\Cache\Cache;
+use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Cache\CacheableResponseInterface;
 use Drupal\Core\Path\AliasManagerInterface;
 use Drupal\Core\Path\PathMatcherInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -16,8 +19,10 @@ use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Drupal\Core\Routing\TrustedRedirectResponse;
 
 /**
- * Subscribe to KernelEvents::REQUEST events and redirect to /gateway if
- * audience_select_audience cookie is not set.
+ * Audience request - response subscriber.
+ *
+ * Subscribe to KernelEvents::REQUEST and RESPONSE events and redirect to
+ * gateway page if audience_select_audience cookie is not set.
  */
 class AudienceSelectSubscriber implements EventSubscriberInterface {
 
@@ -46,7 +51,9 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
    * Constructs a new CurrentUserContext.
    *
    *   The plugin implementation definition.
+   *
    * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
+   *   The Audience Manager.
    * @param \Drupal\Core\Path\AliasManagerInterface $alias_manager
    *   An alias manager to find the alias for the current system path.
    * @param \Drupal\Core\Path\PathMatcherInterface $path_matcher
@@ -60,6 +67,8 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
   }
 
   /**
+   * Checks for audience_select_audience cookie and redirects to gateway page.
+   *
    * Checks for audience_select_audience cookie and redirects to /gateway if not
    * set when the KernelEvents::REQUEST event is dispatched. If audience query
    * parameter exists, sets audience_select_audience cookie.
@@ -81,20 +90,24 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     if ($request->query->has('audience')) {
       $audience = $request->query->get('audience');
     }
-    $exp = new \DateTime();
-    $exp->setTimestamp(REQUEST_TIME - 10);
 
     // Get gateway page URL.
     $gateway_page_url = $this->AudienceManager->getGateway();
     $gateway_page = $request_uri == $gateway_page_url ? TRUE : FALSE;
 
+    $audience_cache = new CacheableMetadata();
+
     // Check if User Agent is bot or Crawler.
     if ($this->AudienceManager->isCrawler() && $gateway_page) {
-      $audience_data = AudienceManager::load($this->AudienceManager->getCrawlerAudience());
+      $crawler_audience = $this->AudienceManager->getCrawlerAudience();
+      $audience_data = AudienceManager::load($crawler_audience);
       $redirect_url = Url::fromUri($audience_data['audience_redirect_url'])
         ->toString();
       $response = new TrustedRedirectResponse($redirect_url);
-      $response->setExpires($exp);
+      $audience_cache->setCacheMaxAge(Cache::PERMANENT);
+      $audience_cache->setCacheContexts(['audience']);
+      $audience_cache->setCacheTags(['audience:' . $crawler_audience]);
+      $response->addCacheableDependency($audience_cache);
       $event->setResponse($response);
       return;
     }
@@ -109,18 +122,22 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     // If audience_select_audience cookie is not set, redirect to gateway page.
     if (!$excluded && !$gateway_page && !$has_cookie && !isset($audience)) {
       $response = new TrustedRedirectResponse($gateway_page_url);
-      $response->setExpires($exp);
+      $audience_cache->setCacheMaxAge(0);
+      $response->addCacheableDependency($audience_cache);
       $event->setResponse($response);
     }
-    // If route is / with audience query parameter, set cookie.
+    // If route is not gateway and have audience query parameter, set cookie.
     elseif (!$excluded && !$gateway_page && isset($audience)
     ) {
       $audience_data = AudienceManager::load($audience);
       $redirect_url = Url::fromUri($audience_data['audience_redirect_url'])
         ->toString();
       $response = new TrustedRedirectResponse($redirect_url);
+      $audience_cache->setCacheMaxAge(0);
+      $response->addCacheableDependency($audience_cache);
       // Set cookie without httpOnly, so that JavaScript can delete it.
-      setcookie('audience_select_audience', $audience, time() + (86400 * 365), '/', NULL, FALSE, FALSE);
+      $cookie = new Cookie('audience_select_audience', $audience, time() + (86400 * 365), '/', NULL, FALSE, FALSE);
+      $response->headers->setCookie($cookie);
       $event->setResponse($response);
     }
 
@@ -128,6 +145,10 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     // /$gateway_page_url redirect to frontpage.
     elseif (!$excluded && $gateway_page && $has_cookie) {
       $response = new TrustedRedirectResponse('/');
+      $exist_audience = $request->cookies->get('audience_select_audience');
+      $audience_cache->setCacheContexts(['audience']);
+      $audience_cache->setCacheTags(['audience:' . $exist_audience]);
+      $response->addCacheableDependency($audience_cache);
       $event->setResponse($response);
     }
 
@@ -145,7 +166,7 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
   protected function excludedPages(Request $request) {
     $excluded_pages = (string) $this->AudienceManager->getConfig()
       ->get('excluded_pages');
-    $path = $request->getRequestUri();
+    $path = $request->getPathInfo();
     $path = $path === '/' ? $path : rtrim($path, '/');
     $path_alias = Unicode::strtolower($this->aliasManager->getAliasByPath($path));
     if ($path != $path_alias) {
@@ -173,9 +194,17 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     if (!$response instanceof CacheableResponseInterface) {
       return;
     }
-    $exp = new \DateTime();
-    $exp->setTimestamp(REQUEST_TIME + 1);
-    $response->setExpires($exp);
+
+    $request = $event->getRequest();
+    if ($request->query->has('audience')) {
+      return;
+    }
+
+    $audience_cache = new CacheableMetadata();
+    $audience_cache->addCacheContexts(['audience']);
+    $audience_cache->setCacheTags(['audience:' . $this->AudienceManager->getCurrentAudience()]);
+    $response->addCacheableDependency($audience_cache);
+
   }
 
   /**
@@ -186,7 +215,10 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     // a priority of 32. Otherwise, that aborts the request if no matching
     // route is found.
     $events[KernelEvents::REQUEST][] = array('checkForRedirection', 33);
-    $events[KernelEvents::RESPONSE][] = array('onRespond');
+    // Priority 6, so that it runs before AnonymousUserResponseSubscriber, but
+    // after event subscribers that add the associated cacheability metadata
+    // (which have priority 10). This one is conditional, so must run after those.
+    $events[KernelEvents::RESPONSE][] = array('onRespond', 6);
     return $events;
   }
 
