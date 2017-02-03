@@ -1,4 +1,13 @@
 .containers {
+  @include tablet {
+    &.mode-4-up {
+      max-width: 594px;
+      margin: 0 auto;
+      .col-sm-3 {
+        width: 50%;
+      }
+    }
+  }
   @include mobile {
     .col {
       margin-bottom: 20px;
@@ -25,6 +34,11 @@
       float: none;
       display: inline-block;
       font-size: 1rem;
+    }
+    @include mobile {
+      .col {
+        display: block;
+      }
     }
   }
 }
