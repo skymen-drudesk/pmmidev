@@ -299,45 +299,6 @@
     }
   }
 }
-.block-social-media-footer,
-.block-social-media {
-  .title {
-    @extend .sidehead1;
-  }
-  .social-links {
-    span {
-      display: inline-block;
-      font-size: $r40;
-      color: $blue;
-      position: relative;
-      margin: 0 7px 0 0;
-      a {
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        position: absolute;
-        display: block;
-        text-indent: -9999em;
-        overflow: hidden;
-      }
-    }
-  }
-}
-.block-social-media-footer {
-  .social-links {
-    span {
-      font-weight: 400;
-      font-size: $r25;
-      line-height: 1;
-      color: #fff;
-      margin: 0 15px 0 0;
-      &:last-child {
-        margin: 0;
-      }
-    }
-  }
-}
 // Header search block.
 .main-nav {
   position: relative;

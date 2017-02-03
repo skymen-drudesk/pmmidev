@@ -67,8 +67,10 @@ class AudienceCacheContext extends RequestStackCacheContextBase implements Cache
   /**
    * {@inheritdoc}
    */
-  public function getCacheableMetadata() {
-    return new CacheableMetadata();
+  public function getCacheableMetadata($audience = NULL) {
+    $cacheable_metadata = new CacheableMetadata();
+    $tags = ['audience:' . $this->audience];
+    return $cacheable_metadata->setCacheTags($tags);
   }
 
 }

@@ -6,9 +6,13 @@
       font-size: $r22;
     }
   }
+  .nested-accordion,
   > .accordion {
     border-width: 1px 1px 0 0;
     border-style: solid;
     border-color: $mdgrey;
+  }
+  .nested-accordion {
+    margin-bottom: 20px;
   }
 }

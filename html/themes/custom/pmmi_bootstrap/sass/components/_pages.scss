@@ -3,3 +3,35 @@
   @extend .container;
   margin-bottom: 40px;
 }
+.path-workforce-development {
+  .containers.mode-2-up {
+    .col {
+      margin-bottom: 40px;
+    }
+    .col-1 {
+      border-right: 1px solid $mdgrey;
+      padding-right: 25px;
+    }
+    .col-2 {
+      border-left: 1px solid $mdgrey;
+      padding-left: 25px;
+      margin-left: -1px;
+    }
+    @include tablet {
+      .col-1 {
+        padding-right: 10px;
+      }
+      .col-2 {
+        padding-left: 10px;
+      }
+    }
+    @include mobile {
+      .col {
+        padding-left: 15px;
+        padding-right: 15px;
+        border: none;
+        margin-left: 0;
+      }
+    }
+  }
+}

@@ -177,7 +177,7 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
         $vars['content']['#tab_id'] = $vars['content']['#node']->id();
       }
       elseif (isset($vars['content']['#block_content'])) {
-        $vars['content']['#tab_id'] = $vars['content']['#block_content']->id();
+        $vars['content']['#tab_id'] = Html::getUniqueId($vars['content']['#block_content']->id());
       }
       break;
   }
