@@ -1,0 +1,49 @@
+/* TEXT VIEW MODES */
+.block-enticement {
+  @extend .clear-after;
+  .button {
+    margin: 10px 0;
+    a {
+      @extend .button-primary;
+      min-width: 270px;
+    }
+  }
+  .image {
+    margin-bottom: 10px;
+    float: left;
+    margin-right: 32px;
+  }
+  .title {
+    @extend .headline3;
+  }
+  .block-body {
+    @extend .paragraph2;
+    margin-bottom: 15px;
+  }
+  .right {
+    overflow: hidden;
+  }
+  @include tablet {
+    .image {
+      margin-right: 10px;
+    }
+    .button {
+      a {
+        min-width: 210px;
+      }
+    }
+  }
+  @include mobile {
+    text-align: center;
+    .image {
+      float: none;
+      display: inline-block;
+      margin: 0 0 15px;
+    }
+    .button {
+      a {
+        min-width: 210px;
+      }
+    }
+  }
+}

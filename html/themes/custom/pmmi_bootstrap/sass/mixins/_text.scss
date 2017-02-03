@@ -25,6 +25,10 @@
   font-size: 1rem;
   line-height: $r21;
   font-weight: 500;
+  @include tablet-max {
+    font-size: $r15;
+    line-height: $r19;
+  }
   @extend .inherited-p;
 }
 .paragraph3 {
