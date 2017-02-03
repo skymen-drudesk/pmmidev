@@ -159,6 +159,16 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
         '#suffix' => '</div>',
       );
       break;
+
+    case 'icons':
+      $cols = 0;
+      foreach ($vars['content']['main'] as $block) {
+        if (!empty($block[0])) {
+          $cols++;
+        }
+      }
+      $attributes['class'][] = 'cols-' . $cols;
+      break;
   }
 
   switch ($vars['content']['#view_mode']) {
