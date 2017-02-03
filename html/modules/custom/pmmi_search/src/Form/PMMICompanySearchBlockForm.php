@@ -164,7 +164,7 @@ class PMMICompanySearchBlockForm extends FormBase {
     ];
 
     // Describe "Keyword" filter.
-    $form['keyword'] = [
+    $form['keywords'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Keyword'),
       '#placeholder' => $this->t('Enter keyword'),
@@ -210,6 +210,11 @@ class PMMICompanySearchBlockForm extends FormBase {
           $query["{$filter}[$key]"] = $item;
         }
       }
+    }
+
+    // Fulltext filter.
+    if (!empty($values['keywords'])) {
+      $query['keywords'] =  str_replace(' ', '+', $values['keywords']);
     }
 
     $url = Url::fromUri('internal:/sales-agent-directory/search/results');

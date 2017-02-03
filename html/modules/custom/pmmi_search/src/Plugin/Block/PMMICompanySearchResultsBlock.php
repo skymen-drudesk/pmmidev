@@ -56,9 +56,9 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
    *   The string translation service.
    * @param \CommerceGuys\Addressing\Country\CountryRepositoryInterface $country_repository
    *   The country repository.
-   * @param \CommerceGuys\Addressing\Subdivision\SubdivisionRepositoryInterface;
+   * @param \CommerceGuys\Addressing\Subdivision\SubdivisionRepositoryInterface
    *   The subdivision repository.
-   * @param \Drupal\Core\Entity\EntityTypeManagerInterface;
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface
    *   The entity type manager service.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, TranslationInterface $string_translation, CountryRepositoryInterface $country_repository, SubdivisionRepositoryInterface $subdivision_repository, EntityTypeManagerInterface $entity_type_manager) {
@@ -185,6 +185,11 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
         }
         break;
 
+      case 'keywords':
+        $value = reset($values);
+        $items[] = str_replace('+', ' ', $value);
+        break;
+
     }
 
     return !$items ? [] : ['#theme' => 'item_list', '#title' => $this->filterGetName($filter), '#items' => $items];
@@ -212,6 +217,9 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
 
       case 'pmmi_shows':
         return $this->t('PMMI Show');
+
+      case 'keywords':
+        return $this->t('Keyword');
     }
   }
 
