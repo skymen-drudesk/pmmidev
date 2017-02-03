@@ -16,6 +16,17 @@
       }
     }
   }
+  &.centered {
+    .row {
+      font-size: 0;
+      text-align: center;
+    }
+    .col {
+      float: none;
+      display: inline-block;
+      font-size: 1rem;
+    }
+  }
 }
 .blue-region {
   .containers {

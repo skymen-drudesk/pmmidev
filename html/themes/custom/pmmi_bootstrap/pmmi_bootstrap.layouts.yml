@@ -410,6 +410,10 @@ block_text_image:
       label: Body
     image:
       label: Image
+    button:
+      label: Button
+    link:
+      label: Link
 block_image_text:
   label: Image+Text
   category: PMMI: Blocks
@@ -421,6 +425,10 @@ block_image_text:
       label: Head
     body:
       label: Body
+    button:
+      label: Button
+    link:
+      label: Link
 block_image_slide_default:
   label: Image Slide Default
   category: PMMI: Blocks
@@ -702,5 +710,7 @@ accordion:
   regions:
     header:
       label: Header
+    left_side:
+      label: Left side(video, image)
     body:
       label: Body

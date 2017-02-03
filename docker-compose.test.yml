@@ -22,7 +22,7 @@ services:
     container_name: pmmi_test_web
     image: pmguser/drupal-php7.0-apache:1.0.2
     depends_on:
-      - pmmi_db
+      - pmmidb
     networks:
       - front
       - back
@@ -41,7 +41,7 @@ services:
       - .:/var/www
       - ./config/cron:/etc/cron.d
     links:
-      - pmmi_db
+      - pmmidb
     ports:
       - "8080:80"
 

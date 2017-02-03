@@ -121,4 +121,54 @@
       }
     }
   }
+  .field-name-field-button {
+    margin: 15px 0 0;
+    a {
+      @extend .button-primary;
+    }
+  }
+  .field-name-field-link {
+    margin-top: 10px;
+    a {
+      @extend .text-link;
+    }
+  }
+  &.accordion {
+    .body-content {
+      padding-bottom: 20px;
+    }
+    .body {
+      @extend .clear-after;
+      .field {
+        padding: 0;
+      }
+    }
+    .left {
+      float: left;
+      padding-bottom: 10px;
+      width: 269px;
+      img {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+      & + .body-content {
+        padding-left: 32px;
+        overflow: hidden;
+      }
+      @include desktop {
+        width: 269px;
+      }
+      @include tablet {
+        width: 273px;
+      }
+      @include mobile {
+        width: 220px;
+        float: none;
+        & + .body-content {
+          padding-left: 0;
+          overflow: visible;
+        }
+      }
+    }
+  }
 }

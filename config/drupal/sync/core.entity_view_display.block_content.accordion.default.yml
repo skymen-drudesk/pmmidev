@@ -56,9 +56,17 @@ content:
     weight: 6
     label: hidden
     settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
+      view_mode: accordion
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: entity_reference_entity_view
   field_button:
     weight: 4
@@ -108,7 +116,7 @@ content:
     weight: 7
     label: hidden
     settings:
-      view_mode: default
+      view_mode: video_thumbnail
       link: false
     third_party_settings:
       ds:
