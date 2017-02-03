@@ -767,25 +767,27 @@
         },
         {
             "name": "derhasi/composer-preserve-paths",
-            "version": "0.1.3",
+            "version": "0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/derhasi/composer-preserve-paths.git",
-                "reference": "e10d7acbc84df0d58faf2470049f53c97a4a1503"
+                "reference": "d557250928235fe23e11c86329bd7cef05397648"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/derhasi/composer-preserve-paths/zipball/e10d7acbc84df0d58faf2470049f53c97a4a1503",
-                "reference": "e10d7acbc84df0d58faf2470049f53c97a4a1503",
+                "url": "https://api.github.com/repos/derhasi/composer-preserve-paths/zipball/d557250928235fe23e11c86329bd7cef05397648",
+                "reference": "d557250928235fe23e11c86329bd7cef05397648",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0"
             },
             "require-dev": {
-                "composer/composer": "1.0.*@dev",
+                "composer/composer": "1.*",
                 "derhasi/tempdirectory": "0.1.*",
-                "phpunit/phpunit": "4.4.*"
+                "escapestudios/symfony2-coding-standard": "2.*",
+                "phpunit/phpunit": "4.*",
+                "squizlabs/php_codesniffer": "2.*"
             },
             "type": "composer-plugin",
             "extra": {
@@ -815,7 +817,7 @@
                 "installer",
                 "nested package"
             ],
-            "time": "2015-10-20T13:44:48+00:00"
+            "time": "2017-02-03T11:32:31+00:00"
         },
         {
             "name": "derhasi/viewfield",
@@ -2447,16 +2449,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.2.5",
+            "version": "8.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-composer/drupal-core.git",
-                "reference": "fbf10f63dba6b312e1d1b67bac521db1648384f3"
+                "reference": "6cd5d296125a4584d470d75d8e5218ff17c39c22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/fbf10f63dba6b312e1d1b67bac521db1648384f3",
-                "reference": "fbf10f63dba6b312e1d1b67bac521db1648384f3",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/6cd5d296125a4584d470d75d8e5218ff17c39c22",
+                "reference": "6cd5d296125a4584d470d75d8e5218ff17c39c22",
                 "shasum": ""
             },
             "require": {
@@ -2602,12 +2604,8 @@
             "extra": {
                 "patches_applied": {
                     "Avoid illegal characters in database name": "https://www.drupal.org/files/issues/fix-dbname-validation-2443839-40.patch",
-                    "Field Storage Does not validate if the class exists": "https://www.drupal.org/files/issues/2723707-field-storage-does-not-validate-5.patch",
                     "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/minimal-install-profile-1170362-204.patch",
-                    "SystemBrandingBlock causes fatal error if theme is not set when place it in Panels": "https://www.drupal.org/files/issues/systembrandingblock-causes-fatal-error-if-theme-is-not-set-when-place-it-in-panels-2838601-2.patch",
-                    "Expose contextual filters of views blocks as context": "https://www.drupal.org/files/issues/2287073-109.patch",
-                    "Datetime Views plugins don't support timezones": "https://www.drupal.org/files/issues/2627512-139_0.patch",
-                    "Improve the views integration for daterange fields": "https://www.drupal.org/files/issues/improve_the_views-2786577-71.patch"
+                    "SystemBrandingBlock causes fatal error if theme is not set when place it in Panels": "https://www.drupal.org/files/issues/systembrandingblock-causes-fatal-error-if-theme-is-not-set-when-place-it-in-panels-2838601-2.patch"
                 }
             },
             "autoload": {
@@ -2631,7 +2629,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2017-01-04T11:31:35+00:00"
+            "time": "2017-02-01T17:03:36+00:00"
         },
         {
             "name": "drupal/ctools",
@@ -4169,13 +4167,10 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/redirect",
-                "reference": "d0f475946fd509e5067e9d1c30919567a9f66ce2"
+                "reference": "d1eaf7c7a9d12fdd496e7c4ded094daf3e2ac552"
             },
             "require": {
                 "drupal/core": "~8"
-            },
-            "suggest": {
-                "drupal/core": "Required by drupal/redirect_404"
             },
             "type": "drupal-module",
             "extra": {
@@ -4183,8 +4178,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha2+1-dev",
-                    "datestamp": "1481914683"
+                    "version": "8.x-1.0-alpha2+2-dev",
+                    "datestamp": "1486072383"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4206,7 +4201,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/redirect"
             },
-            "time": "2016-12-16 18:55:05"
+            "time": "2017-02-02 21:49:09"
         },
         {
             "name": "drupal/search_api",
@@ -4214,7 +4209,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/search_api",
-                "reference": "97db3226d0e7dd6fce259caa2b32bd0b93d1a6ac"
+                "reference": "81869f5904ef9b102d69d9a7e330b91aae93025d"
             },
             "require": {
                 "drupal/core": "8.*",
@@ -4254,7 +4249,7 @@
             ],
             "description": "Provides a generic framework for modules offering search capabilities.",
             "homepage": "https://www.drupal.org/project/search_api",
-            "time": "2017-01-29 11:40:23"
+            "time": "2017-02-03 15:29:08"
         },
         {
             "name": "drupal/search_api_page",
@@ -4288,7 +4283,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/search_api_solr",
-                "reference": "3a2f695353971a8db79e5aa083180f31acb67940"
+                "reference": "7cb30ed5ecbe76171438c668abf1d3e9045cfa81"
             },
             "require": {
                 "drupal/core": "8.*",
@@ -4313,7 +4308,7 @@
             ],
             "description": "Offers an implementation of the Search API that uses an Apache Solr server for indexing content.",
             "homepage": "https://www.drupal.org/project/search_api_solr",
-            "time": "2016-12-24 00:45:38"
+            "time": "2017-01-30 17:52:46"
         },
         {
             "name": "drupal/slick",
@@ -4646,7 +4641,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.0-beta5.zip",
-                "reference": "8.x-5.0-beta5",
+                "reference": null,
                 "shasum": "91cd6651923310974fa01aa12b9811c7811e3969"
             },
             "require": {
@@ -5415,16 +5410,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.33",
+            "version": "v1.2.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "67a6b308cde8474944752607794e6aaa2994748a"
+                "reference": "5ff059a3f2e0badfddce2ef64c18d6bf2bfba867"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/67a6b308cde8474944752607794e6aaa2994748a",
-                "reference": "67a6b308cde8474944752607794e6aaa2994748a",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/5ff059a3f2e0badfddce2ef64c18d6bf2bfba867",
+                "reference": "5ff059a3f2e0badfddce2ef64c18d6bf2bfba867",
                 "shasum": ""
             },
             "require": {
@@ -5459,7 +5454,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2017-01-30T23:25:25+00:00"
+            "time": "2017-02-03T09:30:35+00:00"
         },
         {
             "name": "kenwheeler/slick",
