@@ -3,8 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_report_type
-    - field.storage.node.field_year
     - field.storage.node.body
     - field.storage.node.field_address
     - field.storage.node.field_equipment_sold_type
@@ -63,22 +61,6 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: type
     type: string
-  field_report_type:
-    label: 'Report Type'
-    datasource_id: 'entity:node'
-    property_path: field_report_type
-    type: integer
-    dependencies:
-      config:
-        - field.storage.node.field_report_type
-  field_year:
-    label: Year
-    datasource_id: 'entity:node'
-    property_path: field_year
-    type: date
-    dependencies:
-      config:
-        - field.storage.node.field_year
   title_f:
     label: Title
     datasource_id: 'entity:node'
