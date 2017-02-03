@@ -32,5 +32,8 @@ function pmmi_search_theme() {
       'template' => 'pmmi_search',
       'render element' => 'children',
     ],
+    'pmmi_company_search_results' => [
+      'variables' => ['title' => '', 'filters' => []]
+    ],
   ];
 }
