@@ -86,7 +86,7 @@ class PMMICountry extends ProcessorPluginBase {
   public function addFieldValues(ItemInterface $item) {
     // Get the node object.
     $node = $this->getNode($item->getOriginalObject());
-    if (!$node) {
+    if (!$node || !$node->hasField('field_address')) {
       // Apparently we were active for a wrong item.
       return;
     }
