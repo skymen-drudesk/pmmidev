@@ -122,3 +122,16 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
     }
   }
 }
+.sitewide {
+  .region-top {
+    margin-bottom: 35px;
+  }
+}
+.node-layout,
+.sitewide {
+  .container {
+    @include desktop {
+      max-width: 830px;
+    }
+  }
+}

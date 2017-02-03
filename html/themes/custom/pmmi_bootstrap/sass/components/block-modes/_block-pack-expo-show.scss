@@ -1,0 +1,49 @@
+.block-pack-expo-show {
+  text-align: center;
+  border: 1px solid $mdgrey;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  .logo {
+    margin-bottom: 8px;
+    img {
+      margin: 0 auto;
+    }
+  }
+  .location,
+  .date {
+    @extend .headline-date;
+    &,
+    * {
+      display: inline;
+    }
+    @extend .inherited-p;
+  }
+  .location {
+    &:before {
+      content: '\2022';
+    }
+    br {
+      display: none;
+    }
+    .administrative-area {
+      &:after {
+        content: ',';
+      }
+    }
+  }
+  .body {
+    margin-bottom: 15px;
+    @extend .paragraph2;
+    @include tablet-max {
+      font-size: $r15;
+      line-height: $r19;
+    }
+  }
+  .button {
+    .field--item {
+      display: inline-block;
+      margin: 0 15px 15px;
+    }
+  }
+}
