@@ -636,6 +636,15 @@ block_default_single:
         label: Head
     main:
       label: Main content
+block_icons:
+  label: Icons
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/icons
+  regions:
+    head:
+        label: Head
+    main:
+      label: Main content
 
 panel_default:
   label: Default panel layout
