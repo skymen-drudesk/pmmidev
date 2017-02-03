@@ -166,7 +166,7 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
   protected function excludedPages(Request $request) {
     $excluded_pages = (string) $this->AudienceManager->getConfig()
       ->get('excluded_pages');
-    $path = $request->getRequestUri();
+    $path = $request->getPathInfo();
     $path = $path === '/' ? $path : rtrim($path, '/');
     $path_alias = Unicode::strtolower($this->aliasManager->getAliasByPath($path));
     if ($path != $path_alias) {
