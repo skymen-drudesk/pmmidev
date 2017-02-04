@@ -23,6 +23,7 @@ services:
     image: pmguser/drupal-php7.0-apache:1.0.2
     depends_on:
       - pmmidb
+      - solr
     networks:
       - front
       - back
@@ -42,17 +43,20 @@ services:
       - ./config/cron:/etc/cron.d
     links:
       - pmmidb
+      - solr
     ports:
       - "8080:80"
 
   solr:
     image: solr:5.5-alpine
     volumes:
-      - ./solr:/opt/solr/server/solr/mycores
+      - ./solr:/opt/solr/server/solr/d8
+      - ./build/solr-conf/5.x:/solr-conf/conf
     entrypoint:
       - docker-entrypoint.sh
       - solr-precreate
-      - main
+      - d8
+      - /solr-conf
     ports:
       - "8003:8983"
 
