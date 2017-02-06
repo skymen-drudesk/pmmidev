@@ -123,6 +123,19 @@ article:
       label: Phone
     email:
       label:
+article_news_default:
+  label: Article news(default)
+  category: PMMI: Nodes
+  template: templates/layouts/blocks/article-news-default
+  regions:
+    press_date:
+      label: Press Release and date
+    title:
+      label: Title
+    body:
+      label: Body
+    button:
+      label: Button
 basic:
   label: Basic
   category: PMMI: Nodes
