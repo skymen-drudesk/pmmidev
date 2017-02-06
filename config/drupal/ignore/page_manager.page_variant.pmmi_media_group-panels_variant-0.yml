@@ -9,7 +9,7 @@ dependencies:
     - 'block_content:containers:759ba94b-9298-4173-88c7-f1fe9b72947a'
     - 'block_content:containers:c75b6b08-9693-4a5f-99a0-5cad81034013'
     - 'block_content:image_header:bbbdf024-1ac8-453d-866d-2bf9a4f6e962'
-    - 'block_content:plain_text:9ad17789-fbce-483d-8620-ee998d411c50'
+    - 'block_content:text:df323b3a-f4f7-44d5-83e6-b9bb50110cfd'
   module:
     - block_content
     - panels
@@ -29,18 +29,6 @@ variant_settings:
       region: top
       weight: 0
       uuid: bb58ceee-df78-4422-a101-d5c53e52a4e8
-      context_mapping: {  }
-    12d5b98d-0565-4c39-9396-a3d80c65e002:
-      id: 'block_content:9ad17789-fbce-483d-8620-ee998d411c50'
-      label: 'PMG - Text'
-      provider: block_content
-      label_display: '0'
-      status: true
-      info: ''
-      view_mode: full
-      region: oneone
-      weight: 0
-      uuid: 12d5b98d-0565-4c39-9396-a3d80c65e002
       context_mapping: {  }
     8823dcb1-e2e8-41ce-8cf0-e1166103fb2f:
       id: 'block_content:c75b6b08-9693-4a5f-99a0-5cad81034013'
@@ -77,6 +65,18 @@ variant_settings:
       region: bottom
       weight: 0
       uuid: ae3081fc-9d39-45b3-a37e-432ea1a368a2
+      context_mapping: {  }
+    88c733ac-53f5-4973-aacc-bdebaec1d6f7:
+      id: 'block_content:df323b3a-f4f7-44d5-83e6-b9bb50110cfd'
+      label: 'PMG - Text'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: oneone
+      weight: 0
+      uuid: 88c733ac-53f5-4973-aacc-bdebaec1d6f7
       context_mapping: {  }
   id: panels_variant
   uuid: 69ef0769-61fd-4271-a76f-109a9c40ab8d

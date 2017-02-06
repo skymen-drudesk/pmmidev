@@ -8,6 +8,7 @@ dependencies:
   content:
     - 'block_content:containers:15c7ef8b-4188-459f-8538-ff85def27f5f'
     - 'block_content:containers:39b3f6d2-93b6-4bcd-a7e5-b828db1a1166'
+    - 'block_content:slideshow:45651bfd-08a0-46f6-bee5-c896a8ca2679'
     - 'block_content:slideshow:57ae5d80-3a07-4268-9609-0448117b967a'
     - 'block_content:text:c0995ff6-8d63-4590-861c-de26e279038e'
   module:
@@ -79,6 +80,18 @@ variant_settings:
       weight: 0
       uuid: b8d1e16f-2c17-43b4-a15e-4ea11a252ffc
       context_mapping: {  }
+    8f21fa89-db17-490e-88e3-bd358079fd2c:
+      id: 'block_content:45651bfd-08a0-46f6-bee5-c896a8ca2679'
+      label: 'Home (End-User) - Image Rotator'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: image_slider
+      region: top
+      weight: 0
+      uuid: 8f21fa89-db17-490e-88e3-bd358079fd2c
+      context_mapping: {  }
   id: panels_variant
   uuid: bf92f802-5fe4-4fac-9b5b-d5bff125f44a
   label: null
@@ -96,7 +109,7 @@ selection_criteria:
     id: audience
     audiences:
       audience_2: audience_2
-    negate: 0
+    negate: false
     context_mapping: {  }
 selection_logic: and
 static_context: {  }

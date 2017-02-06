@@ -6,6 +6,7 @@ dependencies:
     - page_manager.page.pack_expo_trade_shows
     - views.view.pack_expo_shows
   content:
+    - 'block_content:enticement:f7ce3bc6-969a-4488-867d-1d07c6a8fed6'
     - 'block_content:image_header:9148191b-e099-44bd-a15b-cd00cdd65e34'
     - 'block_content:text:f653caf3-9ea8-4c44-b69d-f34cc4610f8f'
   module:
@@ -25,7 +26,7 @@ variant_settings:
       status: true
       info: ''
       view_mode: full
-      region: top
+      region: main
       weight: -1
       uuid: 3679714a-ad6d-4446-8110-58ac8c57274f
       context_mapping: {  }
@@ -37,7 +38,7 @@ variant_settings:
       views_label: ''
       items_per_page: none
       region: main
-      weight: -8
+      weight: 2
       uuid: 8d72391c-8eb9-480f-b7b2-ecfe2e631d84
       context_mapping: {  }
     5d74e59c-0809-42a3-9a90-a61cb177f2bd:
@@ -49,8 +50,20 @@ variant_settings:
       info: ''
       view_mode: default
       region: main
-      weight: -9
+      weight: 0
       uuid: 5d74e59c-0809-42a3-9a90-a61cb177f2bd
+      context_mapping: {  }
+    a6fdf0ea-d959-417b-91ee-993f4f216dee:
+      id: 'block_content:f7ce3bc6-969a-4488-867d-1d07c6a8fed6'
+      label: 'Trade Shows - Enticement (InTheKnow)'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: main
+      weight: 1
+      uuid: a6fdf0ea-d959-417b-91ee-993f4f216dee
       context_mapping: {  }
   id: panels_variant
   uuid: f52821d5-900c-498f-84ff-4de52a08b1d4

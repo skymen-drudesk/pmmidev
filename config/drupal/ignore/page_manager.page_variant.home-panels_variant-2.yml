@@ -5,9 +5,11 @@ dependencies:
   config:
     - page_manager.page.home
     - views.view.events
-    - views.view.slideshow
   content:
+    - 'block_content:containers:2b8561b2-a483-4958-8edc-6e0d95a61593'
     - 'block_content:containers:39b3f6d2-93b6-4bcd-a7e5-b828db1a1166'
+    - 'block_content:slideshow:45651bfd-08a0-46f6-bee5-c896a8ca2679'
+    - 'block_content:slideshow:57ae5d80-3a07-4268-9609-0448117b967a'
     - 'block_content:text:c0995ff6-8d63-4590-861c-de26e279038e'
   module:
     - audience_select
@@ -45,25 +47,50 @@ variant_settings:
       context_mapping: {  }
     72369c15-85a4-4647-a63f-d0e7c2cf6adf:
       id: 'views_block:events-block_3'
-      label: ''
+      label: 'Upcoming Events'
       provider: views
-      label_display: '0'
-      views_label: ''
+      label_display: visible
+      views_label: 'Upcoming Events'
       items_per_page: none
       region: blue
       weight: 0
       uuid: 72369c15-85a4-4647-a63f-d0e7c2cf6adf
       context_mapping: {  }
-    544450ea-692a-4b75-90c0-032a4e3f3f32:
-      id: 'views_block:slideshow-block_default'
-      label: ''
-      provider: views
+    9433f299-372c-4e0f-a2b4-df30625f75cc:
+      id: 'block_content:45651bfd-08a0-46f6-bee5-c896a8ca2679'
+      label: 'Home (End-User) - Image Rotator'
+      provider: block_content
       label_display: '0'
-      views_label: ''
-      items_per_page: none
+      status: true
+      info: ''
+      view_mode: image_slider
+      region: top
+      weight: 0
+      uuid: 9433f299-372c-4e0f-a2b4-df30625f75cc
+      context_mapping: {  }
+    b8acac52-4939-413c-a5e8-cdfd7d58bb3d:
+      id: 'block_content:57ae5d80-3a07-4268-9609-0448117b967a'
+      label: 'Home - Bottom Slider'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
       region: bottom
       weight: 0
-      uuid: 544450ea-692a-4b75-90c0-032a4e3f3f32
+      uuid: b8acac52-4939-413c-a5e8-cdfd7d58bb3d
+      context_mapping: {  }
+    8530c03e-88a8-42ae-bba6-1caaf02d377c:
+      id: 'block_content:2b8561b2-a483-4958-8edc-6e0d95a61593'
+      label: 'Home (Other) - News + Twitter + Webinars'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: 3_up
+      region: white
+      weight: 0
+      uuid: 8530c03e-88a8-42ae-bba6-1caaf02d377c
       context_mapping: {  }
   id: panels_variant
   uuid: fb448d8c-9d29-40e9-b0ab-76d5272d8423
@@ -82,7 +109,7 @@ selection_criteria:
     id: audience
     audiences:
       audience_3: audience_3
-    negate: 0
+    negate: false
     context_mapping: {  }
 selection_logic: and
 static_context: {  }

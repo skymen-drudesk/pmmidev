@@ -4,18 +4,72 @@ status: true
 dependencies:
   config:
     - page_manager.page.bi_video_webinars
+  content:
+    - 'block_content:containers:2a3652cd-0264-47a0-97a2-835355433d0f'
+    - 'block_content:containers:7de9cc60-00ce-412e-bf8a-303013963b31'
+    - 'block_content:containers:e433dd5e-7a22-4a38-88d9-697a0ee73e74'
+    - 'block_content:image_header:3b47a60b-33de-4687-a7c5-63a77c4dff7f'
   module:
+    - block_content
     - panels
 id: bi_video_webinars-panels_variant-0
 label: Panels
 variant: panels_variant
 variant_settings:
-  blocks: {  }
+  blocks:
+    c7e8643e-9621-4c96-b7da-df9a0b51383a:
+      id: 'block_content:3b47a60b-33de-4687-a7c5-63a77c4dff7f'
+      label: 'Business Intelligence - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: c7e8643e-9621-4c96-b7da-df9a0b51383a
+      context_mapping: {  }
+    818122f3-201e-4163-8acd-645756e06165:
+      id: 'block_content:2a3652cd-0264-47a0-97a2-835355433d0f'
+      label: 'Business Intelligence Webinars - About'
+      provider: block_content
+      label_display: visible
+      status: true
+      info: ''
+      view_mode: default
+      region: sidebar
+      weight: 0
+      uuid: 818122f3-201e-4163-8acd-645756e06165
+      context_mapping: {  }
+    61bbecb3-3e16-48ba-b00d-9f79620a6254:
+      id: 'block_content:e433dd5e-7a22-4a38-88d9-697a0ee73e74'
+      label: 'Business Intelligence Webinars - Primary Video'
+      provider: block_content
+      label_display: visible
+      status: true
+      info: ''
+      view_mode: default
+      region: main
+      weight: 0
+      uuid: 61bbecb3-3e16-48ba-b00d-9f79620a6254
+      context_mapping: {  }
+    8ff39522-33f1-4b35-815c-c0ccd29346c9:
+      id: 'block_content:7de9cc60-00ce-412e-bf8a-303013963b31'
+      label: 'Business Intelligence Webinars - Secondary Videos'
+      provider: block_content
+      label_display: visible
+      status: true
+      info: ''
+      view_mode: default
+      region: main
+      weight: 0
+      uuid: 8ff39522-33f1-4b35-815c-c0ccd29346c9
+      context_mapping: {  }
   id: panels_variant
   uuid: 46bd17b3-43e5-44f3-9681-2fa5df56c83d
   label: null
   weight: 0
-  layout: sitewide
+  layout: panel_landing_left_sidebar
   layout_settings: {  }
   page_title: 'Business Intelligence Webinars | PMMI'
   storage_type: page_manager
