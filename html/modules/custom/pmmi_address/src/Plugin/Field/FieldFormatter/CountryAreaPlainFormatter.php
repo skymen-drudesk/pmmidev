@@ -71,7 +71,6 @@ class CountryAreaPlainFormatter extends  FormatterBase implements ContainerFacto
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $pluginId, $pluginDefinition) {
-    // @see \Drupal\Core\Field\FormatterPluginManager::createInstance().
     return new static(
       $pluginId,
       $pluginDefinition,
@@ -83,6 +82,7 @@ class CountryAreaPlainFormatter extends  FormatterBase implements ContainerFacto
       $container->get('address.country_repository'),
       $container->get('address.subdivision_repository')
     );
+    // @see \Drupal\Core\Field\FormatterPluginManager::createInstance().
   }
 
   /**
@@ -90,30 +90,30 @@ class CountryAreaPlainFormatter extends  FormatterBase implements ContainerFacto
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
-    foreach ($items as $delta => $item) {
-      $elements[$delta] = $this->viewElement($item->value, $langcode);
+    $divisions = $country = [];
+
+    foreach ($items as $item) {
+      $division = $item->value;
+      $division = explode('::', $division);
+      $country = $this->countryRepository->getList();
+      if (empty($division[1])) {
+        $elements[]['#markup'] = $country[$division[0]];
+      } else {
+        $divisions[$division[0]][] = $division[1];
+      }
+    }
+
+    foreach ($divisions as $div => $subdiv) {
+      $country_name = $country[$div];
+      $subdivisionsList = $this->subdivisionRepository->getList(array($div));
+      $title = [];
+      foreach ($subdiv as $key) {
+        $title[] = $subdivisionsList[$key];
+      }
+      $elements[]['#markup'] = '<strong>' . $country_name . '</strong>' . ': ' . implode(', ', $title);
+      unset($title);
     }
 
     return $elements;
-  }
-
-  /**
-   * Builds a renderable array for a single country_area item.
-   *
-   * @todo: do we need some another format?
-   */
-  protected function viewElement($item, $langcode) {
-    $division = explode('::', $item);
-    $country = $this->countryRepository->getList();
-
-    $element = [
-      '#markup' => $country[$division[0]],
-    ];
-
-    if (!empty($division[1]) && ($subdivisions = $this->subdivisionRepository->getList(array($division[0])))) {
-      $element['#markup'] = implode(', ', array($element['#markup'], $subdivisions[$division[1]]));
-    }
-
-    return $element;
   }
 }
