@@ -38,7 +38,7 @@ services:
       PHP_XDEBUG_REMOTE_CONNECT_BACK: 1         # This is needed to respect remote.host setting bellow
       PHP_XDEBUG_REMOTE_HOST: "10.254.254.254"
     ports:
-      - "80:80"
+      - "80:80" # If we use Varnish we can comment this line or delete.
     expose:
       - "80"
       - "9000"
@@ -60,3 +60,19 @@ services:
       - /solr-conf
     ports:
       - "8003:8983"
+
+  varnish:
+    image: blackiceua/drupal-varnish
+    depends_on:
+      - web
+    volumes:
+      - ./config/varnish:/etc/varnish/
+    environment:
+      VARNISH_SECRET: secret
+      VARNISH_BACKEND_HOST: web
+      VARNISH_BACKEND_PORT: 80
+      VARNISH_MEMORY_SIZE: 256M
+      VARNISH_STORAGE_SIZE: 1024M
+    ports:
+      - "8004:6081" # HTTP Proxy for testing purposes. On production we need to change this line to 80:6081
+      - "8005:6082" # Control terminal
