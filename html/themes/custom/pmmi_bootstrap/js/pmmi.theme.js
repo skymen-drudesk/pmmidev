@@ -70,11 +70,16 @@
       $('.containers .row').once('matchHeight').each(function () {
         var $row = $(this);
         var $socialBlock = $row.find('.social-block');
-        $row.imagesLoaded(function () {
-          if ($socialBlock.length) {
-            $('.col > .field > *', $row).matchHeight();
-          }
-        });
+        $row.imagesLoaded()
+          .always(function () {
+            if ($socialBlock.length) {
+              $('.col > .field > *', $row).matchHeight();
+            }
+            var $matchHeightBlock = $('.match-height', $row);
+            if ($matchHeightBlock.length) {
+              $matchHeightBlock.matchHeight();
+            }
+          });
         $.fn.matchHeight._afterUpdate = function (event, groups) {
           $socialBlock.each(function () {
             var $block = $(this);

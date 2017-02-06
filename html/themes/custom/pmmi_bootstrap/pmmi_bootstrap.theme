@@ -63,6 +63,10 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
         $variables['site_logo'] = $front_logo_uri;
       }
       break;
+
+    case 'block_content':
+      $variables['attributes']['class'][] = Html::cleanCssIdentifier($variables['content']['#bundle']);
+      break;
   }
 }
 

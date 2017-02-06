@@ -18,6 +18,10 @@
       margin-left: -1px;
     }
     @include tablet {
+      .col {
+        width: 50%;
+        float: left;
+      }
       .col-1 {
         padding-right: 10px;
       }
