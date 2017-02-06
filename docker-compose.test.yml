@@ -46,6 +46,7 @@ services:
       - pmmisolr
 
   pmmisolr:
+    container_name: pmmi_test_solr
     image: solr:5.5-alpine
     networks:
       - back
@@ -59,6 +60,7 @@ services:
       - /solr-conf
 
   pmmivarnish:
+    container_name: pmmi_test_varnish
     image: pmguser/drupal-varnish:1.0.0
     depends_on:
       - pmmiweb
