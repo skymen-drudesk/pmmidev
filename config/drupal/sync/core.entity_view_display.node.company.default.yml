@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.company.field_equipment_sold_type_other
     - field.field.node.company.field_fax_number
     - field.field.node.company.field_general_company_email
+    - field.field.node.company.field_image_header
     - field.field.node.company.field_industries_served
     - field.field.node.company.field_industries_served_other
     - field.field.node.company.field_main_phone_number
@@ -27,7 +28,6 @@ dependencies:
     - link
     - options
     - pmmi_address
-    - telephone
     - user
 third_party_settings:
   ds:
@@ -39,6 +39,14 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
+      industries_served:
+        - field_industries_served_other
+        - field_industries_served
+      after_sales:
+        - field_after_sales_service
+      equipment_sold:
+        - field_equipment_sold_type_other
+        - field_equipment_sold_type
       title:
         - node_title
       general_line_1:
@@ -46,9 +54,11 @@ third_party_settings:
       general_line_2:
         - field_website_url
         - field_general_company_email
-      content_row_blue:
+      territory_covered:
         - field_territory_served
+      business:
         - field_business_lines
+      manufactures:
         - field_manufacturers_represented
       primary_contacts:
         - field_primary_contact_first_name
@@ -59,6 +69,8 @@ third_party_settings:
         - field_fax_number
       company_description:
         - field_company_description
+      image_header:
+        - field_image_header
     fields:
       node_title:
         plugin_id: node_title
@@ -76,23 +88,53 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: address_default
+  field_after_sales_service:
+    type: boolean
+    weight: 0
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
   field_business_lines:
     weight: 5
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
   field_company_description:
     weight: 12
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+  field_equipment_sold_type:
+    type: entity_reference_label
+    weight: 0
+    label: hidden
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_equipment_sold_type_other:
+    type: basic_string
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   field_fax_number:
     weight: 11
     label: inline
     settings:
-      title: ''
+      link_to_entity: false
     third_party_settings:
       ds:
         ft:
@@ -101,23 +143,52 @@ content:
             lb: Fax
             lb-col: true
             classes: {  }
-    type: telephone_link
+    type: string
   field_general_company_email:
     weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    type: email_mailto
+  field_image_header:
+    weight: 15
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+  field_industries_served:
+    type: entity_reference_label
+    weight: 0
+    label: hidden
+    settings:
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: default
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_industries_served_other:
     type: basic_string
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   field_main_phone_number:
     weight: 1
     label: hidden
     settings:
-      title: ''
+      link_to_entity: false
     third_party_settings: {  }
-    type: telephone_link
+    type: string
   field_manufacturers_represented:
     weight: 6
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
@@ -126,7 +197,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    type: email_mailto
   field_primary_contact_first_name:
     weight: 7
     label: hidden
@@ -143,7 +214,7 @@ content:
     type: string
   field_territory_served:
     weight: 4
-    label: above
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: country_area_plain
@@ -161,14 +232,9 @@ content:
 hidden:
   field_address_1: true
   field_address_2: true
-  field_after_sales_service: true
   field_businbess_lines: true
   field_city: true
   field_country: true
-  field_equipment_sold_type: true
-  field_equipment_sold_type_other: true
-  field_industries_served: true
-  field_industries_served_other: true
   field_postal_code: true
   field_state: true
   field_trade_shows: true

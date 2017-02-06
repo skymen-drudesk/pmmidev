@@ -1,0 +1,158 @@
+.company-node {
+  .block-image-header .page-name {
+    max-width: 370px;
+  }
+  .container-wrapper {
+    max-width: 870px;
+  }
+  .node-title {
+    margin-bottom: 0;
+  }
+  .general {
+    font-size: $r20;
+    margin-bottom: 20px;
+    .address-simple, .field--name-field-website-url {
+      float: left;
+      &:after {
+        content: ' \2022 \A0';
+        color: $blue;
+      }
+    }
+  }
+  .row-wrapper, .contacts, .services{
+    margin: 20px 0;
+    padding-bottom: 20px;
+  }
+  .row-wrapper {
+    background-color: $ltgrey;
+    border-radius: 6px;
+    margin: 0;
+    padding-top: 15px;
+    .block-label {
+      color: $blue;
+      font-size: $r20;
+    }
+  }
+  .contacts, .services {
+    :first-child {
+      padding-left: 0;
+    }
+  }
+  .contacts {
+    border-bottom: solid 2px $ltgrey;
+    .primary {
+      border-radius: 6px;
+      border: 2px solid $ltblue;
+      padding: 16px;
+      max-width: 249px;
+      word-wrap: break-word;
+    }
+    .address {
+      margin-bottom: 0px;
+      font-size: $r16;
+    }
+  }
+  .services {
+    border-bottom: solid 2px $ltgrey;
+  }
+  .block-label, .field--label {
+    font-weight: 800;
+    font-size: $r18;
+    margin-bottom: 4px;
+  }
+  .col-md-4 {
+    margin: 10px 0;
+  }
+  .footer-reg {
+    .block-label {
+      margin-bottom: 10px;
+    }
+    .views-row {
+      width: 50%;
+      float: left;
+      margin: 0 0 20px 0;
+      .field-content {
+        display: inline;
+      }
+      .views-field-name {
+        color: $blue;
+        font-weight: bold;
+      }
+      .views-field-field-name, .views-field-field-title, .views-field-field-email {
+        span {
+          color: $grey;
+          text-transform: uppercase;
+          font-size: $r14;
+          font-weight: bold;
+          margin-right: 10px;
+        }
+      }
+      .views-field-field-name {
+        margin-left: 14px;
+      }
+      .views-field-field-title {
+        margin-left: 19px;
+        .field-content {
+          font-style: italic;
+        }
+      }
+      .views-field-field-email {
+        margin-left: 13px;
+      }
+    }
+  }
+  .profile-updated {
+    border-top: solid 1px $mdgrey;
+    margin-top: 10px;
+    padding: 8px 0 40px 0;
+    font-size: $r14;
+    clear: both;
+  }
+
+  @include mobile {
+    .node-title {
+      margin-bottom: 0;
+      font-size: $r35;
+    }
+    .general {
+      .address-simple, .field--name-field-website-url {
+        float: none;
+        &:after {
+          display: none;
+        }
+      }
+    }
+    .row-wrapper {
+      margin: 0 -15px;
+      border-radius: 0;
+    }
+    .contacts, .services {
+      > .col-md-4 {
+        padding-left: 0;
+      }
+    }
+    .footer-reg {
+      .views-row {
+        width: 100%;
+        float: none;
+      }
+    }
+  }
+
+  @include tablet {
+    .contacts, .services {
+      > .col-md-4 {
+        padding-left: 0;
+      }
+    }
+  }
+
+  @include tablet-max {
+    .contacts, .services {
+      > .col-md-4 {
+        padding-left: 0;
+      }
+    }
+  }
+
+}
