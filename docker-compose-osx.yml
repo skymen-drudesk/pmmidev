@@ -1,5 +1,6 @@
 version: '2'
 services:
+
   web:
     container_name: pmmi_dev_web_osx
     build:
@@ -7,6 +8,7 @@ services:
       dockerfile: Dockerfile-dev
     depends_on:
       - db
+      - solr
     # Environment variables
     environment:
       TERM: xterm
@@ -20,23 +22,37 @@ services:
       PHP_XDEBUG_AUTOSTART: 1
       PHP_XDEBUG_REMOTE_CONNECT_BACK: 1         # This is needed to respect remote.host setting bellow
       PHP_XDEBUG_REMOTE_HOST: "10.254.254.254"
-    ports:
-      - "80:80"
-    expose:
-      - "80"
-      - "9000"
     volumes:
       - pmmi-unison-sync:/var/www:rw # Replace volume to this to use docker-sync for macOS users
     links:
       - db
+      - solr
+
   db:
     extends:
       file: docker-compose.yml
       service: db
+
   solr:
     extends:
       file: docker-compose.yml
       service: solr
+
+  varnish:
+    image: blackiceua/drupal-varnish
+    depends_on:
+      - web
+    volumes:
+      - ./config/varnish:/etc/varnish/
+    environment:
+      VARNISH_SECRET: secret
+      VARNISH_BACKEND_HOST: web
+      VARNISH_BACKEND_PORT: 80
+      VARNISH_MEMORY_SIZE: 256M
+      VARNISH_STORAGE_SIZE: 1024M
+    ports:
+      - "8004:6081" # HTTP Proxy for testing purposes. On production we need to change this line to 80:6081
+      - "8005:6082" # Control terminal
 
 volumes:
   pmmi-unison-sync:

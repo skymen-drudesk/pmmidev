@@ -37,11 +37,6 @@ services:
       PHP_XDEBUG_AUTOSTART: 1
       PHP_XDEBUG_REMOTE_CONNECT_BACK: 1         # This is needed to respect remote.host setting bellow
       PHP_XDEBUG_REMOTE_HOST: "10.254.254.254"
-    ports:
-      - "80:80" # If we use Varnish we can comment this line or delete.
-    expose:
-      - "80"
-      - "9000"
     volumes:
       - .:/var/www
     links:
