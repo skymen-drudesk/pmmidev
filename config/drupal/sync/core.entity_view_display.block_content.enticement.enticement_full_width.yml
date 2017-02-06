@@ -1,0 +1,79 @@
+uuid: 6b58bd93-dff1-4aea-b234-f7b824f080e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.enticement
+    - core.entity_view_mode.block_content.enticement_full_width
+    - field.field.block_content.enticement.field_button
+    - field.field.block_content.enticement.field_head
+    - field.field.block_content.enticement.field_image
+    - field.field.block_content.enticement.field_teaser
+    - image.style.block_style_1
+  module:
+    - ds
+    - image
+    - link
+third_party_settings:
+  ds:
+    layout:
+      id: block_enticement_full_width
+      path: themes/custom/pmmi_bootstrap
+      library: ''
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      head:
+        - field_head
+      image:
+        - field_image
+      teaser:
+        - field_teaser
+      button:
+        - field_button
+id: block_content.enticement.enticement_full_width
+targetEntityType: block_content
+bundle: enticement
+mode: enticement_full_width
+content:
+  field_button:
+    weight: 3
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+  field_head:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_image:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: block_style_1
+      image_link: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: image
+  field_teaser:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+hidden: {  }

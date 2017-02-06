@@ -20184,6 +20184,83 @@ div.view {
   }
 }
 
+.block-enticement.mode-enticement-full-width {
+  background: #e8eded;
+  margin: 35px 0 50px;
+}
+
+.block-enticement.mode-enticement-full-width .image {
+  max-width: 204px;
+  margin-top: -27px;
+  margin-bottom: -27px;
+}
+
+.block-enticement.mode-enticement-full-width .button {
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  margin-top: -15px;
+}
+
+.block-enticement.mode-enticement-full-width .title-body {
+  margin-right: 305px;
+  padding: 30px 0;
+}
+
+.block-enticement.mode-enticement-full-width .right {
+  position: relative;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .block-enticement.mode-enticement-full-width .image {
+    max-width: 170px;
+    margin: -10px 10px -10px 0;
+  }
+  .block-enticement.mode-enticement-full-width .button {
+    right: 0;
+  }
+  .block-enticement.mode-enticement-full-width .button a {
+    min-width: 225px;
+  }
+  .block-enticement.mode-enticement-full-width .title-body {
+    padding: 20px 0;
+    margin-right: 230px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .block-enticement.mode-enticement-full-width {
+    margin: 30px 0 40px;
+    padding: 15px 0 20px;
+  }
+  .block-enticement.mode-enticement-full-width .button {
+    position: static;
+    margin: 25px 0 0;
+  }
+  .block-enticement.mode-enticement-full-width .image {
+    margin: 0 15px 0 0;
+  }
+  .block-enticement.mode-enticement-full-width .title-body {
+    margin: 0;
+    padding: 30px 0 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .block-enticement.mode-enticement-full-width {
+    margin: 6px 0 20px;
+  }
+  .block-enticement.mode-enticement-full-width .image {
+    margin: 0 0 10px;
+  }
+  .block-enticement.mode-enticement-full-width .right {
+    text-align: left;
+  }
+  .block-enticement.mode-enticement-full-width .title-body {
+    padding: 0;
+  }
+}
+
 /* EVENT VIEW MODES. */
 .block-event-default {
   border: 1px solid #c2c2c2;
