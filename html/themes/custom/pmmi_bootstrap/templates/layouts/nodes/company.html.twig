@@ -1,9 +1,5 @@
 <div class="company-node">
-  <div class="top-banner clearfix">
-      {{ field_render([content.image_header, 'img-header']) }}
-  </div>
   <div class="container">
-    <div class="container-wrapper">
     <h2 class="node-title">
       {{ content.title }}
     </h2>
@@ -14,55 +10,23 @@
     </div>
 
     {{ field_render([content.content_row_blue, 'content-row-blue']) }}
-    <div class="row-wrapper row">
-        <div class="territory-served col-md-4">
-          <div class="block-label">{{ 'Territory covered'|trans }}</div>
-          {{ field_render([content.territory_covered, 'territory-covered']) }}
-        </div>
-        <div class="lines-of-business col-md-4">
-          <div class="block-label">{{ 'Lines of business'|trans }}</div>
-          {{ field_render([content.business, 'lines-of-business']) }}
-        </div>
-        <div class="manufactures col-md-4">
-          <div class="block-label">{{ 'Manufacturers represented'|trans }}</div>
-          {{ field_render([content.manufactures, 'manufactures']) }}
-        </div>
-    </div>
-    <div class="contacts row">
-      <div class="primary-wrapper col-md-4">
-        <div class="primary">
-          <div class="block-label">{{ 'Primary contact'|trans }}</div>
-            {{ field_render([content.primary_contacts, 'primary-contacts']) }}</div>
-        </div>
-      <div class="company col-md-4">
+
+    <div class="contacts">
+      <div class="primary">
+        <div class="block-label">{{ 'Primary contact'|trans }}</div>
+        {{ field_render([content.primary_contacts, 'primary-contacts']) }}
+      </div>
+      <div class="company">
         <div class="block-label">{{ 'Company address'|trans }}</div>
         {{ field_render([content.company_contacts, 'company-contacts']) }}
       </div>
-      <div class="description col-md-4">
-        <div class="block-label">{{ 'Company description'|trans }}</div>
-        {{ field_render([content.company_description, 'company-description']) }}
-      </div>
-    </div>
 
-    <div class="services row">
-      <div class="industries col-md-4">
-        <div class="block-label">{{ 'Industries served'|trans }}</div>
-        {{ field_render([content.industries_served, 'indusrties-served']) }}
-      </div>
-      <div class="equipment col-md-4">
-        <div class="block-label">{{ 'Type of equipment sold'|trans }}</div>
-        {{ field_render([content.equipment_sold, 'equipment-sold']) }}
-      </div>
-      <div class="service col-md-4">
-        <div class="block-label">{{ 'Provide after sales service'|trans }}</div>
-        {{ field_render([content.after_sales, 'after-sales-service']) }}
-      </div>
+      {{ field_render([content.company_description, 'company-description']) }}
     </div>
 
     {{ field_render([content.content_row, 'content-row']) }}
 
     {{ field_render([content.footer, 'footer-reg']) }}
 
-  </div>
   </div>
 </div>
