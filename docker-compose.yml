@@ -45,6 +45,7 @@ services:
       - pmmisolr
 
   pmmisolr:
+    container_name: pmmi_dev_solr
     image: solr:5.5-alpine
     volumes:
       - ./solr:/opt/solr/server/solr/d8
@@ -58,6 +59,7 @@ services:
       - "8003:8983"
 
   pmmivarnish:
+    container_name: pmmi_dev_varnish
     image: pmguser/drupal-varnish:latest
     depends_on:
       - pmmiweb

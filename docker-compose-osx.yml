@@ -39,6 +39,7 @@ services:
       service: pmmisolr
 
   pmmivarnish:
+    container_name: pmmi_dev_varnish
     image: pmguser/drupal-varnish:latest
     depends_on:
       - pmmiweb

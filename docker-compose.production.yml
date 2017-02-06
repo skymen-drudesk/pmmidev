@@ -48,6 +48,7 @@ services:
     working_dir: /var/www
 
   pmmisolr:
+    container_name: pmmi_prod_solr
     image: solr:5.5-alpine
     networks:
       - back
