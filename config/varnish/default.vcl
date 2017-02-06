@@ -8,7 +8,7 @@ vcl 4.0;
 import cookie;
 
 backend default {
-    .host = "web";
+    .host = "pmmiweb";
     .port = "80";
     .first_byte_timeout     = 300s;   # How long to wait before we receive a first byte from our backend?
     .connect_timeout        = 5s;     # How long to wait for a backend connection?

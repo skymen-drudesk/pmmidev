@@ -37,7 +37,7 @@ services:
       DRUPAL_USER: admin
       DRUPAL_PASS: admin
       DRUPAL_DBURL: mysql://root:rootpasswd@mysql:3306/drupal
-      VIRTUAL_HOST: staging.pmmi.org,pmmitest.pmmimediagroup.com
+      #VIRTUAL_HOST: staging.pmmi.org,pmmitest.pmmimediagroup.com
     volumes:
       - .:/var/www
       - ./config/cron:/etc/cron.d
@@ -59,7 +59,7 @@ services:
       - /solr-conf
 
   pmmivarnish:
-    image: blackiceua/drupal-varnish
+    image: pmguser/drupal-varnish:1.0.0
     depends_on:
       - pmmiweb
     networks:
@@ -68,13 +68,15 @@ services:
       - ./config/varnish:/etc/varnish/
     environment:
       VARNISH_SECRET: secret
-      VARNISH_BACKEND_HOST: web
+      VARNISH_BACKEND_HOST: pmmiweb
       VARNISH_BACKEND_PORT: 80
       VARNISH_MEMORY_SIZE: 256M
       VARNISH_STORAGE_SIZE: 1024M
-    ports:
-      - "80:6081" # HTTP Proxy for testing purposes. On production we need to change this line to 80:6081
-      - "8005:6082" # Control terminal
+      VIRTUAL_HOST: staging.pmmi.org,pmmitest.pmmimediagroup.com
+    #ports:
+      #- "8005:6082" # Control terminal
+    links:
+      - pmmiweb
 
 networks:
   back:

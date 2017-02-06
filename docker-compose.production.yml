@@ -1,7 +1,7 @@
 version: '2'
 services:
 
-  db:
+  pmmidb:
     container_name: pmmi_prod_db
     image: mysql:5.7
     networks:
@@ -18,7 +18,7 @@ services:
     ports:
       - "3307:3306"
 
-  web:
+  pmmiweb:
     container_name: pmmi_prod_web
     image: pmguser/drupal-php7.0-apache:1.0.2
     depends_on:
@@ -47,7 +47,7 @@ services:
       - "8080:80"
     working_dir: /var/www
 
-  solr:
+  pmmisolr:
     image: solr:5.5-alpine
     networks:
       - back

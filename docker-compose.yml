@@ -1,6 +1,7 @@
 version: '2'
 services:
-  db:
+
+  pmmidb:
     container_name: pmmi_dev_db
     image: mysql:5.7
     environment:
@@ -16,14 +17,14 @@ services:
     expose:
       - "3306"
 
-  web:
+  pmmiweb:
     container_name: pmmi_dev_web
     build:
       context: .
       dockerfile: Dockerfile-dev
     depends_on:
-      - db
-      - solr
+      - pmmidb
+      - pmmisolr
     # Environment variables
     environment:
       TERM: xterm
@@ -40,10 +41,10 @@ services:
     volumes:
       - .:/var/www
     links:
-      - db
-      - solr
+      - pmmidb
+      - pmmisolr
 
-  solr:
+  pmmisolr:
     image: solr:5.5-alpine
     volumes:
       - ./solr:/opt/solr/server/solr/d8
@@ -56,15 +57,15 @@ services:
     ports:
       - "8003:8983"
 
-  varnish:
-    image: blackiceua/drupal-varnish
+  pmmivarnish:
+    image: pmguser/drupal-varnish:latest
     depends_on:
-      - web
+      - pmmiweb
     volumes:
       - ./config/varnish:/etc/varnish/
     environment:
       VARNISH_SECRET: secret
-      VARNISH_BACKEND_HOST: web
+      VARNISH_BACKEND_HOST: pmmiweb
       VARNISH_BACKEND_PORT: 80
       VARNISH_MEMORY_SIZE: 256M
       VARNISH_STORAGE_SIZE: 1024M
