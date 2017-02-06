@@ -45,13 +45,12 @@ services:
       - solr
     ports:
       - "8080:80"
-    expose:
-        - "80"
-        - "9000"
     working_dir: /var/www
 
   solr:
     image: solr:5.5-alpine
+    networks:
+      - back
     volumes:
       - ./solr:/opt/solr/server/solr/d8
       - ./build/solr-conf/5.x:/solr-conf/conf
@@ -60,8 +59,6 @@ services:
       - solr-precreate
       - d8
       - /solr-conf
-    ports:
-      - "8003:8983"
 
 networks:
   back:
