@@ -43,3 +43,44 @@ h1, .h1, h2, .h2, h3, .h3 {
     @extend .visually-hidden;
   }
 }
+.field--type-text-with-summary {
+  .align-right {
+    margin: 0 0 20px 30px;
+    @include desktop {
+      margin: 0 0 15px 20px;
+    }
+    @include tablet {
+      margin: 0 0 10px 15px;
+    }
+  }
+  .align-left {
+    margin: 0 30px 20px 0;
+    @include desktop {
+      margin: 0 20px 15px 0;
+    }
+    @include tablet {
+      margin: 0 15px 10px 0;
+    }
+  }
+  .align-left,
+  .align-right {
+    @include mobile {
+      margin: 25px 0;
+      float: none;
+      text-align: center;
+      img {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+table.responsive {
+  @include mobile {
+    td, th {
+      display: block;
+    }
+    td[style*="width"] {
+      width: auto !important;
+    }
+  }
+}

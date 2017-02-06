@@ -13736,9 +13736,9 @@ fieldset[disabled] a.focus {
 }
 
 .inherited-p p, .paragraph1 p, p p, .node-body p, .node-bold-label p,
-.featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-pack-expo-show .body p, .block-enticement .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
-.layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .cert-info li .field--item p, .mode-default.school p, .block-pack-expo-show .location p,
-.block-pack-expo-show .date p, .block-card .block-body p, .block-event-ribbon .location p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
+.featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
+.layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .cert-info li .field--item p, .mode-default.school p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
+.block-pack-expo-show .date p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
   font-size: inherit;
   line-height: inherit;
   font-weight: inherit;
@@ -13762,7 +13762,7 @@ fieldset[disabled] a.focus {
   }
 }
 
-.paragraph2, .block-pmmi-twitter-block .block-title .subtitle, .block-pmmi-facebook-block .block-title .subtitle, .mode-default.video .field-name-body, .mode-default.video .field-name-field-featured-speaker, .mode-default.certification-test .field-name-body, .mode-default.certification-test .field-name-field-cert-test-price, .mode-default.certification-test .field-name-field-cert-test-text-price, .block-pack-expo-show .body, .block-enticement .block-body, .block-social-media.mode-media-social-with-text .block-body, .block-text.mode-image-text .block-body, .accordion-item .body {
+.paragraph2, .block-pmmi-twitter-block .block-title .subtitle, .block-pmmi-facebook-block .block-title .subtitle, .mode-default.video .field-name-body, .mode-default.video .field-name-field-featured-speaker, .mode-default.certification-test .field-name-body, .mode-default.certification-test .field-name-field-cert-test-price, .mode-default.certification-test .field-name-field-cert-test-text-price, .block-enticement .block-body, .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand .block-body, .block-social-media.mode-media-social-with-text .block-body, .block-text.mode-image-text .block-body, .accordion-item .body {
   font-size: 16px;
   font-size: 1rem;
   line-height: 21px;
@@ -13771,7 +13771,7 @@ fieldset[disabled] a.focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .paragraph2, .block-pmmi-twitter-block .block-title .subtitle, .block-pmmi-facebook-block .block-title .subtitle, .mode-default.video .field-name-body, .mode-default.video .field-name-field-featured-speaker, .mode-default.certification-test .field-name-body, .mode-default.certification-test .field-name-field-cert-test-price, .mode-default.certification-test .field-name-field-cert-test-text-price, .block-pack-expo-show .body, .block-enticement .block-body, .block-social-media.mode-media-social-with-text .block-body, .block-text.mode-image-text .block-body, .accordion-item .body {
+  .paragraph2, .block-pmmi-twitter-block .block-title .subtitle, .block-pmmi-facebook-block .block-title .subtitle, .mode-default.video .field-name-body, .mode-default.video .field-name-field-featured-speaker, .mode-default.certification-test .field-name-body, .mode-default.certification-test .field-name-field-cert-test-price, .mode-default.certification-test .field-name-field-cert-test-text-price, .block-enticement .block-body, .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand .block-body, .block-social-media.mode-media-social-with-text .block-body, .block-text.mode-image-text .block-body, .accordion-item .body {
     font-size: 0.9375rem;
     line-height: 1.1875rem;
   }
@@ -14077,6 +14077,60 @@ h1, .h1, h2, .h2, h3, .h3 {
 
 .field-label-inline {
   display: inline;
+}
+
+.field--type-text-with-summary .align-right {
+  margin: 0 0 20px 30px;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .field--type-text-with-summary .align-right {
+    margin: 0 0 15px 20px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .field--type-text-with-summary .align-right {
+    margin: 0 0 10px 15px;
+  }
+}
+
+.field--type-text-with-summary .align-left {
+  margin: 0 30px 20px 0;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .field--type-text-with-summary .align-left {
+    margin: 0 20px 15px 0;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .field--type-text-with-summary .align-left {
+    margin: 0 15px 10px 0;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .field--type-text-with-summary .align-left,
+  .field--type-text-with-summary .align-right {
+    margin: 25px 0;
+    float: none;
+    text-align: center;
+  }
+  .field--type-text-with-summary .align-left img,
+  .field--type-text-with-summary .align-right img {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  table.responsive td, table.responsive th {
+    display: block;
+  }
+  table.responsive td[style*="width"] {
+    width: auto !important;
+  }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
@@ -17954,7 +18008,7 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
   }
 }
 
-.sitewide .region-top {
+.sitewide > .region-top {
   margin-bottom: 35px;
 }
 
@@ -17982,6 +18036,10 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
 
 .block {
   margin-bottom: 20px;
+}
+
+.block-block-content.containers {
+  margin-bottom: 0;
 }
 
 .block-pmmi-twitter-block, .block-pmmi-facebook-block {
@@ -19204,6 +19262,10 @@ html, body {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
+  .path-workforce-development .containers.mode-2-up .col {
+    width: 50%;
+    float: left;
+  }
   .path-workforce-development .containers.mode-2-up .col-1 {
     padding-right: 10px;
   }
@@ -19713,57 +19775,6 @@ div.view {
 
 .block-accordion .nested-accordion {
   margin-bottom: 20px;
-}
-
-.block-pack-expo-show {
-  text-align: center;
-  border: 1px solid #c2c2c2;
-  padding: 15px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-}
-
-.block-pack-expo-show .logo {
-  margin-bottom: 8px;
-}
-
-.block-pack-expo-show .logo img {
-  margin: 0 auto;
-}
-
-.block-pack-expo-show .location,
-.block-pack-expo-show .location *,
-.block-pack-expo-show .date,
-.block-pack-expo-show .date * {
-  display: inline;
-}
-
-.block-pack-expo-show .location:before {
-  content: '\2022';
-}
-
-.block-pack-expo-show .location br {
-  display: none;
-}
-
-.block-pack-expo-show .location .administrative-area:after {
-  content: ',';
-}
-
-.block-pack-expo-show .body {
-  margin-bottom: 15px;
-}
-
-@media screen and (max-width: 1023px) {
-  .block-pack-expo-show .body {
-    font-size: 0.9375rem;
-    line-height: 1.1875rem;
-  }
-}
-
-.block-pack-expo-show .button .field--item {
-  display: inline-block;
-  margin: 0 15px 15px;
 }
 
 /* CARD BLOCK. */
@@ -20423,6 +20434,63 @@ div.view {
 .block-event-ribbon .link a:after {
   content: "»";
   padding-left: 2px;
+}
+
+.brand-and-expo-show, .block-pack-expo-show, .block-brand {
+  text-align: center;
+  border: 1px solid #c2c2c2;
+  padding: 15px;
+  border-radius: 6px;
+  margin-bottom: 40px;
+}
+
+.brand-and-expo-show .logo, .block-pack-expo-show .logo, .block-brand .logo {
+  margin-bottom: 8px;
+}
+
+.brand-and-expo-show .logo img, .block-pack-expo-show .logo img, .block-brand .logo img {
+  margin: 0 auto;
+}
+
+.brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand .block-body {
+  margin-bottom: 15px;
+}
+
+@media screen and (max-width: 1023px) {
+  .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand .block-body {
+    font-size: 0.9375rem;
+    line-height: 1.1875rem;
+  }
+}
+
+.brand-and-expo-show .button .field--item, .block-pack-expo-show .button .field--item, .block-brand .button .field--item {
+  display: inline-block;
+  margin: 0 15px 15px;
+}
+
+@media screen and (max-width: 1199px) {
+  .brand-and-expo-show, .block-pack-expo-show, .block-brand {
+    margin-bottom: 20px;
+  }
+}
+
+.block-pack-expo-show .location,
+.block-pack-expo-show .location *,
+.block-pack-expo-show .date,
+.block-pack-expo-show .date * {
+  display: inline;
+}
+
+.block-pack-expo-show .location:before {
+  content: '\2022';
+}
+
+.block-pack-expo-show .location br {
+  display: none;
+}
+
+.block-pack-expo-show .location .administrative-area:after {
+  content: ',';
 }
 
 .viewfield .feature-block {
