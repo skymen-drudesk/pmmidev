@@ -75,8 +75,6 @@ services:
     ports:
       - "80:6081"
       - "8005:6082" # Control terminal
-    links:
-      - pmmiweb
 
 networks:
   back:
