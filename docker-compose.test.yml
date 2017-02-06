@@ -44,8 +44,6 @@ services:
     links:
       - pmmidb
       - solr
-    ports:
-      - "8080:80"
 
   solr:
     image: solr:5.5-alpine
@@ -59,6 +57,24 @@ services:
       - solr-precreate
       - d8
       - /solr-conf
+
+  varnish:
+    image: blackiceua/drupal-varnish
+    depends_on:
+      - web
+    networks:
+      - back
+    volumes:
+      - ./config/varnish:/etc/varnish/
+    environment:
+      VARNISH_SECRET: secret
+      VARNISH_BACKEND_HOST: web
+      VARNISH_BACKEND_PORT: 80
+      VARNISH_MEMORY_SIZE: 256M
+      VARNISH_STORAGE_SIZE: 1024M
+    ports:
+      - "80:6081" # HTTP Proxy for testing purposes. On production we need to change this line to 80:6081
+      - "8005:6082" # Control terminal
 
 networks:
   back:
