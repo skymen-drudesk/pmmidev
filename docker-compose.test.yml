@@ -43,7 +43,7 @@ services:
       - ./config/cron:/etc/cron.d
     links:
       - pmmidb
-      - solr
+      - pmmisolr
 
   pmmisolr:
     image: solr:5.5-alpine
