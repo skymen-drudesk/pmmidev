@@ -45,7 +45,7 @@ services:
       - pmmidb
       - solr
 
-  solr:
+  pmmisolr:
     image: solr:5.5-alpine
     networks:
       - back
@@ -58,10 +58,10 @@ services:
       - d8
       - /solr-conf
 
-  varnish:
+  pmmivarnish:
     image: blackiceua/drupal-varnish
     depends_on:
-      - web
+      - pmmiweb
     networks:
       - back
     volumes:
