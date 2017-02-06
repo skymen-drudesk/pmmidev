@@ -90,15 +90,16 @@ class PMMICountry extends ProcessorPluginBase {
       // Apparently we were active for a wrong item.
       return;
     }
-
     $fields = $item->getFields();
     $fields = $this->getFieldsHelper()
       ->filterForPropertyPath($fields, 'entity:node', 'country');
-    foreach ($fields as $field) {
-      $address = $node->get('field_address')->getValue();
-      $countries = $this->countryRepository->getList();
-      if (!empty($address[0]['country_code']) && isset($countries[$address[0]['country_code']])) {
-        $field->addValue($countries[$address[0]['country_code']]);
+    if ($node->hasField('field_address')) {
+      foreach ($fields as $field) {
+        $address = $node->get('field_address')->getValue();
+        $countries = $this->countryRepository->getList();
+        if (!empty($address[0]['country_code']) && isset($countries[$address[0]['country_code']])) {
+          $field->addValue($countries[$address[0]['country_code']]);
+        }
       }
     }
   }

@@ -4,9 +4,12 @@ status: true
 dependencies:
   config:
     - node.type.article
+    - taxonomy.vocabulary.news
   module:
     - datetime
+    - ds
     - node
+    - taxonomy
     - user
 id: news
 label: News
@@ -41,11 +44,11 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
+          submit_button: Search
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
+          expose_sort_order: false
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
@@ -206,7 +209,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          default_action: 'not found'
+          default_action: ignore
           exception:
             value: all
             title_enable: false
@@ -238,6 +241,10 @@ display:
         arguments: false
         pager: false
         title: false
+        filters: false
+        filter_groups: false
+        style: false
+        row: false
       pager:
         type: full
         options:
@@ -260,6 +267,110 @@ display:
             offset_label: Offset
           quantity: 3
       title: ''
+      filters:
+        status:
+          value: '1'
+          table: node_field_data
+          field: status
+          plugin_id: boolean
+          entity_type: node
+          entity_field: status
+          id: status
+          expose:
+            operator: ''
+          group: 1
+        type:
+          id: type
+          table: node_field_data
+          field: type
+          value:
+            article: article
+          entity_type: node
+          entity_field: type
+          plugin_id: bundle
+        field_news_category_target_id:
+          id: field_news_category_target_id
+          table: node__field_news_category
+          field: field_news_category_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_news_category_target_id_op
+            label: 'Filter by News Category'
+            description: ''
+            use_operator: false
+            operator: field_news_category_target_id_op
+            identifier: field_news_category_target_id
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              manager: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: news
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      exposed_block: true
+      block_category: 'PMMI (Views)'
+      style:
+        type: default
+        options:
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      row:
+        type: 'ds_entity:node'
+        options:
+          relationship: none
+          view_mode: default
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+            item_0: teaser
+            item_1: teaser
+            item_2: teaser
+            item_3: teaser
+            item_4: teaser
+            item_5: teaser
+            item_6: teaser
+            item_7: teaser
+            item_8: teaser
+            item_9: teaser
+          grouping_fieldset:
+            group: false
+            group_field: node__field_date|field_date_value
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -267,6 +378,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
