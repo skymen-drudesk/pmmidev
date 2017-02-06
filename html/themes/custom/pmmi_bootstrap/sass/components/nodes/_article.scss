@@ -1,0 +1,40 @@
+.article {
+  &.mode-default {
+    border: 1px solid $mdgrey;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 40px;
+    .press-date {
+      @extend .headline-date;
+      margin-bottom: 5px;
+      * {
+        display: inline;
+      }
+    }
+    .field-name-field-news-category {
+      &:after {
+        content: '|';
+        margin: 0 3px;
+      }
+    }
+    .title {
+      @extend .headline3;
+    }
+    .body {
+      margin-bottom: 20px;
+      @extend .paragraph2;
+      @include tablet-max {
+        font-size: $r15;
+        line-height: $r19;
+      }
+    }
+    .button {
+      a {
+        min-width: 250px;
+      }
+    }
+    @include desktop-max {
+      margin-bottom: 20px;
+    }
+  }
+}

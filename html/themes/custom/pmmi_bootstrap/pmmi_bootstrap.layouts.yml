@@ -123,6 +123,19 @@ article:
       label: Phone
     email:
       label:
+article_news_default:
+  label: Article news(default)
+  category: PMMI: Nodes
+  template: templates/layouts/blocks/article-news-default
+  regions:
+    press_date:
+      label: Press Release and date
+    title:
+      label: Title
+    body:
+      label: Body
+    button:
+      label: Button
 basic:
   label: Basic
   category: PMMI: Nodes
@@ -170,8 +183,6 @@ company:
   category: PMMI: Nodes
   template: templates/layouts/nodes/company
   regions:
-    image_header:
-      label: Image Header
     title:
       label: Title
     general_line_1:
@@ -180,24 +191,12 @@ company:
       label: General line 2
     content_row_blue:
       label: Content row blue
-    territory_covered:
-      label: Territory covered
-    business:
-      label: Lines of business
-    manufactures:
-      label: Manufacturers represented
     primary_contacts:
       label: Primary contacts
     company_contacts:
       label: Company contacts
     company_description:
       label: Company description
-    industries_served:
-      label: Industries served
-    equipment_sold:
-      label: Type of equipment sold
-    after_sales:
-      label: Provide after sales service
     content_row:
       label: Content row
     footer_reg:

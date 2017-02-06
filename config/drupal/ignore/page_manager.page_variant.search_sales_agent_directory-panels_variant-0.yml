@@ -4,10 +4,7 @@ status: true
 dependencies:
   config:
     - page_manager.page.search_sales_agent_directory
-  content:
-    - 'block_content:image_header:4d1a941d-d175-4f0d-ba4a-39482db454a6'
   module:
-    - block_content
     - panels
     - pmmi_search
 id: search_sales_agent_directory-panels_variant-0
@@ -17,24 +14,12 @@ variant_settings:
   blocks:
     baadf054-b39b-4802-b4ab-36868df685a0:
       id: pmmi_company_search_block
-      label: 'Search Sales Agent Directory'
+      label: 'PMMI Company Search block'
       provider: pmmi_search
-      label_display: visible
-      region: middle
-      weight: 1
-      uuid: baadf054-b39b-4802-b4ab-36868df685a0
-      context_mapping: {  }
-    fb4ff642-0cdf-40d4-9258-ed330a62def4:
-      id: 'block_content:4d1a941d-d175-4f0d-ba4a-39482db454a6'
-      label: 'Sales Agent Directory - image header'
-      provider: block_content
       label_display: '0'
-      status: true
-      info: ''
-      view_mode: full
       region: middle
       weight: 0
-      uuid: fb4ff642-0cdf-40d4-9258-ed330a62def4
+      uuid: baadf054-b39b-4802-b4ab-36868df685a0
       context_mapping: {  }
   id: panels_variant
   uuid: b7698ee2-54aa-4247-b422-d2d74f262fd1
