@@ -23,7 +23,7 @@ services:
     image: pmguser/drupal-php7.0-apache:1.0.2
     depends_on:
       - pmmidb
-      - solr
+      - pmmisolr
     networks:
       - front
       - back
