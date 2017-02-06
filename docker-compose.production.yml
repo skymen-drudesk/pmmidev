@@ -22,8 +22,8 @@ services:
     container_name: pmmi_prod_web
     image: pmguser/drupal-php7.0-apache:1.0.2
     depends_on:
-      - db
-      - solr
+      - pmmidb
+      - pmmisolr
     networks:
       - front
       - back
@@ -41,8 +41,8 @@ services:
     volumes:
       - .:/var/www
     links:
-      - db
-      - solr
+      - pmmidb
+      - pmmisolr
     ports:
       - "8080:80"
     working_dir: /var/www
