@@ -38,6 +38,8 @@ panel_landing_1:
       label: Grey row
     blue:
       label: Blue row
+    enticement:
+      label: Enticement row
     white_2:
       label: White row 2
     grey_2:
@@ -62,6 +64,8 @@ panel_landing_2:
       label: White row
     blue_2:
       label: Blue row 2
+    enticement:
+      label: Enticement row
     grey_2:
       label: Grey row 2
     white_2:
@@ -643,6 +647,19 @@ block_enticement:
   label: Enticement
   category: PMMI: Blocks
   template: templates/layouts/blocks/enticement
+  regions:
+    image:
+      label: Image
+    head:
+      label: Head
+    teaser:
+      label: Teaser
+    button:
+      label: Button
+block_enticement_full_width:
+  label: Enticement full width
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/enticement-full-width
   regions:
     image:
       label: Image

@@ -22,7 +22,6 @@ gulp.task('sass:build', function () {
     .pipe(sassGlob())
     .pipe(sass({
       outputStyle: 'expanded',
-      sourcemap: true,
       includePaths: _vendors
     }).on('error', sass.logError))
     .pipe(postcss([
@@ -31,7 +30,7 @@ gulp.task('sass:build', function () {
         browsers: ['last 2 versions', '>5%']
       })
     ]))
-    .pipe(sourcemaps.write())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./css'))
     .pipe(livereload());
 });
