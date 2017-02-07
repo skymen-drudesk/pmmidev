@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.trade_shows.field_expired
+    - field.field.taxonomy_term.trade_shows.field_date
     - taxonomy.vocabulary.trade_shows
   module:
     - path
@@ -14,28 +14,27 @@ bundle: trade_shows
 mode: default
 content:
   description:
-    type: text_textfield
-    weight: 0
+    type: text_textarea
+    weight: 1
     settings:
-      size: 60
       placeholder: ''
+      rows: 5
     third_party_settings: {  }
-  field_expired:
-    weight: 31
-    settings:
-      display_label: true
+  field_date:
+    type: datetime_timestamp
+    weight: 4
+    settings: {  }
     third_party_settings: {  }
-    type: boolean_checkbox
   name:
     type: string_textfield
-    weight: -5
+    weight: 0
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
   path:
     type: path
-    weight: 30
+    weight: 2
     settings: {  }
     third_party_settings: {  }
 hidden: {  }
