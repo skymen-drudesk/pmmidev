@@ -100,11 +100,13 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
     $view->preExecute();
     $view->execute();
 
-    $results = $view->query->getSearchApiResults();
-    $result_count = $results->getResultCount();
+    if ($results = $view->query->getSearchApiResults()) {
+      // Add filters to the search API query.
+      $result_count = $results->getResultCount();
 
-    $output['header'] = $this->buildHeader($result_count);
-    $output['view'] = $view->render();
+      $output['header'] = $this->buildHeader($result_count);
+      $output['view'] = $view->render();
+    }
 
     return $output;
   }
