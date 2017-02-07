@@ -27,6 +27,11 @@ services:
     links:
       - pmmidb
       - pmmisolr
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+      - "9000"
 
   pmmidb:
     extends:

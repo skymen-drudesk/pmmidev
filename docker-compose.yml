@@ -43,6 +43,11 @@ services:
     links:
       - pmmidb
       - pmmisolr
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+      - "9000"
 
   pmmisolr:
     container_name: pmmi_dev_solr
