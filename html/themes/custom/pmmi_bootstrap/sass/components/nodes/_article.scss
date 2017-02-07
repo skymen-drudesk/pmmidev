@@ -30,11 +30,19 @@
     }
     .button {
       a {
-        min-width: 250px;
+        min-width: 246px;
       }
     }
     @include desktop-max {
       margin-bottom: 20px;
+    }
+    @include mobile {
+      .button {
+        a {
+          min-width: 0;
+          width: 100%;
+        }
+      }
     }
   }
 }
