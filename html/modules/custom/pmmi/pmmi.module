@@ -23,8 +23,10 @@ function pmmi_views_pre_build(ViewExecutable $view) {
       break;
 
     case 'video_type_about':
-      $contexts = _pmmi_get_video_type_contexts();
-      $view->args[0] = $contexts['tid'];
+      if (empty($view->args) || (!empty($view->args) && empty($view->args[0]))) {
+        $contexts = _pmmi_get_video_type_contexts();
+        $view->args[0] = $contexts['tid'];
+      }
       break;
   }
 }
