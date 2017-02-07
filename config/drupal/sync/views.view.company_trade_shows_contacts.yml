@@ -141,7 +141,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Name
+          label: Contact
           exclude: false
           alter:
             alter_text: false
@@ -324,7 +324,20 @@ display:
           plugin_id: field
       filters: {  }
       sorts: {  }
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content:
+            value: 'Attending upcoming trade shows'
+            format: filtered_html
+          plugin_id: text
       footer: {  }
       empty: {  }
       relationships:
@@ -384,7 +397,7 @@ display:
           entity_field: nid
           plugin_id: node_nid
       display_extenders: {  }
-      title: 'Attending upcoming trade shows'
+      title: ''
     cache_metadata:
       max-age: -1
       contexts:

@@ -136,31 +136,13 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
         array_unshift($vars['content']['general_line_1'], $new_element);
       }
 
-      // Attach "Trade shows" view to the "Footer" region.
-      if ($view = Views::getView('company_trade_shows_contacts')) {
-        $view->setDisplay('block_1');
-        $view->setArguments([$node->id()]);
-        $view->preExecute();
-        $view->execute();
-
-        if ($content = $view->render()) {
-          $the_title_render_array = [
-            '#markup' => t('Attending upcoming trade shows'),
-            '#prefix' => '<div class="block-label">',
-            '#suffix' => '</div>',
-          ];
-
-          $vars['content']['footer'][] = $the_title_render_array;
-          $vars['content']['footer'][] = $content;
-        }
-      }
-
       // 'Profile updated' section.
       $changed = $node->getChangedTime();
-      $vars['content']['footer'][] = array(
+      $vars['content']['footer_reg'][] = array(
         '#markup' => t('Profile last updated @date', array('@date' => date('M. n, Y', $changed))),
         '#prefix' => '<div class="profile-updated">',
         '#suffix' => '</div>',
+        '#weight' => 100,
       );
       break;
 
