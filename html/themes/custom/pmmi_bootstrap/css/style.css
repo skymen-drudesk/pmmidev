@@ -23470,13 +23470,20 @@ div.view {
   margin-bottom: 20px;
 }
 
-.company-node .general .address-simple, .company-node .general .field--name-field-website-url {
+.company-node .general .address-simple,
+.company-node .general .field--name-field-website-url {
   float: left;
 }
 
-.company-node .general .address-simple:after, .company-node .general .field--name-field-website-url:after {
+.company-node .general .field--name-field-main-phone-number:before,
+.company-node .general .field--name-field-general-company-email:before {
   content: ' \2022 \A0';
   color: #004e75;
+  margin-left: 5px;
+}
+
+.company-node .general .line-2 {
+  clear: left;
 }
 
 .company-node .row-wrapper, .company-node .contacts, .company-node .services {
@@ -23513,6 +23520,11 @@ div.view {
   word-wrap: break-word;
 }
 
+.company-node .contacts .primary .field--name-field-primary-contact-first-name,
+.company-node .contacts .primary .field--name-field-primary-contact-last-name {
+  display: inline-block;
+}
+
 .company-node .contacts .address {
   margin-bottom: 0px;
   font-size: 16px;
@@ -23534,8 +23546,11 @@ div.view {
   margin: 10px 0;
 }
 
-.company-node .footer-reg .block-label {
+.company-node .footer-reg .view-header p {
   margin-bottom: 10px;
+  font-weight: 800;
+  font-size: 18px;
+  font-size: 1.125rem;
 }
 
 .company-node .footer-reg .views-row {
@@ -23559,23 +23574,13 @@ div.view {
   font-size: 14px;
   font-size: 0.875rem;
   font-weight: bold;
-  margin-right: 10px;
-}
-
-.company-node .footer-reg .views-row .views-field-field-name {
-  margin-left: 14px;
-}
-
-.company-node .footer-reg .views-row .views-field-field-title {
-  margin-left: 19px;
+  width: 80px;
+  display: inline-block;
+  text-align: right;
 }
 
 .company-node .footer-reg .views-row .views-field-field-title .field-content {
   font-style: italic;
-}
-
-.company-node .footer-reg .views-row .views-field-field-email {
-  margin-left: 13px;
 }
 
 .company-node .profile-updated {
