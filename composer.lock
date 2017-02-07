@@ -2639,7 +2639,7 @@
                     "Avoid illegal characters in database name": "https://www.drupal.org/files/issues/fix-dbname-validation-2443839-40.patch",
                     "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/minimal-install-profile-1170362-204.patch",
                     "SystemBrandingBlock causes fatal error if theme is not set when place it in Panels": "https://www.drupal.org/files/issues/systembrandingblock-causes-fatal-error-if-theme-is-not-set-when-place-it-in-panels-2838601-2.patch",
-                    "Expose contextual filters of views blocks as context": "https://www.drupal.org/files/issues/2287073-109.patch",
+                    "Expose contextual filters of views blocks as context": "https://www.drupal.org/files/issues/2287073-148.patch",
                     "Datetime Views plugins don't support timezones": "https://www.drupal.org/files/issues/2627512-139_0.patch",
                     "Improve the views integration for daterange fields": "https://www.drupal.org/files/issues/improve_the_views-2786577-71.patch"
                 }
@@ -3138,7 +3138,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-beta4",
-                    "datestamp": "1484816284"
+                    "datestamp": "1486242784"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4677,7 +4677,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.0-beta5.zip",
-                "reference": null,
+                "reference": "8.x-5.0-beta5",
                 "shasum": "91cd6651923310974fa01aa12b9811c7811e3969"
             },
             "require": {

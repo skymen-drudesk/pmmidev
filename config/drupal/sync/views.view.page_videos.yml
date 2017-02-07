@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - core.entity_view_mode.node.full
     - core.entity_view_mode.node.landing
     - field.storage.node.body
     - field.storage.node.field_date
@@ -11,6 +10,7 @@ dependencies:
     - field.storage.node.field_link
     - field.storage.node.field_video
     - node.type.video
+    - taxonomy.vocabulary.video_type
   module:
     - datetime
     - ds
@@ -70,14 +70,11 @@ display:
         type: 'ds_entity:node'
         options:
           relationship: none
-          view_mode: full
+          view_mode: landing
           alternating_fieldset:
             alternating: false
             allpages: false
             item_0: teaser
-            item_1: teaser
-            item_2: teaser
-            item_3: teaser
           grouping_fieldset:
             group: false
             group_field: node__field_date|field_date_value
@@ -862,11 +859,16 @@ display:
             sort_order: asc
             number_of_records: 0
             format: default_summary
-          specify_validation: false
+          specify_validation: true
           validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
+            type: 'entity:taxonomy_term'
+            fail: ignore
+          validate_options:
+            bundles:
+              video_type: video_type
+            operation: view
+            multiple: 0
+            access: false
           break_phrase: false
           not: false
           plugin_id: numeric
