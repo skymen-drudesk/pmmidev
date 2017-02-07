@@ -84,7 +84,7 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     // changes to the request will be propagated, while the change to the
     // path will be lost.
     $request = clone $event->getRequest();
-    $request_uri = $request->getRequestUri();
+    $request_uri = $request->getPathInfo();
 
     // Get audience if query parameter exists.
     if ($request->query->has('audience')) {
@@ -121,7 +121,11 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
 
     // If audience_select_audience cookie is not set, redirect to gateway page.
     if (!$excluded && !$gateway_page && !$has_cookie && !isset($audience)) {
+      if ($request_uri != '/' && !$request->query->has('dest')) {
+        $gateway_page_url = $gateway_page_url . '?dest=' . $request_uri;
+      }
       $response = new TrustedRedirectResponse($gateway_page_url);
+
       $audience_cache->setCacheMaxAge(0);
       $response->addCacheableDependency($audience_cache);
       $event->setResponse($response);
