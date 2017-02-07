@@ -84,3 +84,96 @@ table.responsive {
     }
   }
 }
+.pmmi-pager {
+  display: block;
+  color: $mdgrey;
+  padding: 0;
+  margin: 20px 0;
+  .pager-first,
+  .pager-last {
+    display: none;
+  }
+  > li {
+    display: inline;
+    > a {
+      float: none;
+      padding: 0;
+      border: none;
+      margin: 0;
+      color: $mdgrey;
+      font-weight: 600;
+      font-size: $r16;
+      line-height: $r21;
+      &:hover {
+        color: $blue;
+      }
+    }
+    &.active > a {
+      color: $blue;
+      font-weight: 900;
+    }
+    &.pager-btn {
+      width: 83px;
+      > a {
+        color: $blue;
+        font-weight: 900;
+      }
+      > span {
+        font-weight: 900;
+      }
+    }
+  }
+  .pager-item {
+    &:after {
+      content: '/';
+      margin: 0 4px;
+    }
+    &.last {
+      &:after {
+        display: none;
+      }
+    }
+  }
+  .pager-previous {
+    float: left;
+    text-align: left;
+    &.disabled,
+    a {
+      &:before {
+        @extend .fa;
+        content: "\f060";
+      }
+    }
+  }
+  .pager-next {
+    float: right;
+    text-align: right;
+    &.disabled,
+    a {
+      &:after {
+        @extend .fa;
+        content: "\f061";
+      }
+    }
+  }
+  @include mobile {
+    > li.pager-btn {
+      width: auto;
+      overflow: hidden;
+      height: 21px;
+      &.disabled,
+      a {
+        text-decoration: none !important;
+        &:before,
+        &:after {
+          width: 30px;
+        }
+      }
+      span {
+        font-size: 0;
+        color: transparent;
+        visibility: hidden;
+      }
+    }
+  }
+}

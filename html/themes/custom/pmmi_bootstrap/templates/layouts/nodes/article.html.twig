@@ -5,13 +5,11 @@
 
   <div class="container">
 
-    {{ field_render([content.page_name, 'page-name', 'h2']) }}
-
-    {{ field_render([content.image, 'image']) }}
-
     <h2 class="node-title">
       {{ content.title }}
     </h2>
+
+    {{ field_render([content.image, 'image']) }}
 
     {{ field_render([content.date, 'date']) }}
 
@@ -21,15 +19,19 @@
 
     {{ field_render([content.body, 'node-body']) }}
 
-    {{ field_render([content.author, 'node-author']) }}
 
-    {{ field_render([content.author_title, 'node-author-title']) }}
+    <div class="author-info">
 
-    {{ field_render([content.company, 'node-author-company']) }}
+      {{ field_render([content.author, 'node-author']) }}
 
-    {{ field_render([content.phone, 'node-author-phone']) }}
+      {{ field_render([content.author_title, 'node-author-title']) }}
 
-    {{ field_render([content.email, 'node-author-email']) }}
+      {{ field_render([content.company, 'node-author-company']) }}
 
+      {{ field_render([content.phone, 'node-author-phone']) }}
+
+      {{ field_render([content.email, 'node-author-email']) }}
+
+    </div>
   </div>
 </div>
