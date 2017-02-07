@@ -2,6 +2,7 @@
 
 namespace Drupal\audience_select\Plugin\Block;
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -238,10 +239,13 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
         }
       }
     }
-
     $options = array(
       'query' => array('audience' => $audience_id),
     );
+    $request = \Drupal::request();
+    if ($request->query->has('dest') && !UrlHelper::isExternal($request->query->get('dest'))) {
+      $options['query']['destination'] = $request->query->get('dest');
+    }
     $url = Url::fromUri($audience['audience_redirect_url'], $options);
     $build['#theme'] = 'audience_select_block';
     $build['#audience_title'] = $audience['audience_title'];
