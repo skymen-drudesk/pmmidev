@@ -44,7 +44,7 @@ services:
       - pmmidb
       - pmmisolr
     ports:
-      - "8080:80"
+      - "80:80"
     expose:
       - "80"
       - "9000"
