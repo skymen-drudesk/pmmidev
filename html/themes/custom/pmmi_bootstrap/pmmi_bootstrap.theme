@@ -63,6 +63,10 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
         $variables['site_logo'] = $front_logo_uri;
       }
       break;
+
+    case 'block_content':
+      $variables['attributes']['class'][] = Html::cleanCssIdentifier($variables['content']['#bundle']);
+      break;
   }
 }
 
@@ -159,6 +163,16 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
         '#suffix' => '</div>',
       );
       break;
+
+    case 'icons':
+      $cols = 0;
+      foreach ($vars['content']['main'] as $block) {
+        if (!empty($block[0])) {
+          $cols++;
+        }
+      }
+      $attributes['class'][] = 'cols-' . $cols;
+      break;
   }
 
   switch ($vars['content']['#view_mode']) {
@@ -167,7 +181,7 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
         $vars['content']['#tab_id'] = $vars['content']['#node']->id();
       }
       elseif (isset($vars['content']['#block_content'])) {
-        $vars['content']['#tab_id'] = $vars['content']['#block_content']->id();
+        $vars['content']['#tab_id'] = Html::getUniqueId($vars['content']['#block_content']->id());
       }
       break;
   }

@@ -1,6 +1,8 @@
-<div class="block-social-media">
+<div {{ content['#attrs'].addClass('block-social-media') }}>
 
   {{ field_render([content.head, 'title', 'h2']) }}
+
+  {{ field_render([content.body, 'block-body']) }}
 
   <div class="social-links">
 

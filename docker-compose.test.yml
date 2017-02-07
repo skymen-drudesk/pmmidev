@@ -23,6 +23,7 @@ services:
     image: pmguser/drupal-php7.0-apache:1.0.2
     depends_on:
       - pmmidb
+      - pmmisolr
     networks:
       - front
       - back
@@ -42,19 +43,38 @@ services:
       - ./config/cron:/etc/cron.d
     links:
       - pmmidb
-    ports:
-      - "8080:80"
+      - pmmisolr
 
-  solr:
+  pmmisolr:
+    container_name: pmmi_test_solr
     image: solr:5.5-alpine
+    networks:
+      - back
     volumes:
-      - ./solr:/opt/solr/server/solr/mycores
+      - ./solr:/opt/solr/server/solr/d8
+      - ./build/solr-conf/5.x:/solr-conf/conf
     entrypoint:
       - docker-entrypoint.sh
       - solr-precreate
-      - main
+      - d8
+      - /solr-conf
+
+  pmmivarnish:
+    container_name: pmmi_test_varnish
+    image: pmguser/drupal-varnish:1.0.0
+    networks:
+      - back
+    volumes:
+      - ./config/varnish:/etc/varnish/
+    environment:
+      VARNISH_SECRET: secret
+      VARNISH_BACKEND_HOST: pmmiweb
+      VARNISH_BACKEND_PORT: 80
+      VARNISH_MEMORY_SIZE: 256M
+      VARNISH_STORAGE_SIZE: 1024M
     ports:
-      - "8003:8983"
+      - "80:6081"
+      - "8005:6082" # Control terminal
 
 networks:
   back:

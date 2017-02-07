@@ -3,8 +3,12 @@ sitewide:
   category: PMMI: Layouts
   template: templates/layouts/sitewide
   regions:
+    top:
+      label: Top content
     main:
       label: Main content
+    bottom:
+      label: Bottom content
 panel_homepage:
   label: Homepage screens (with fullwidth regions, i.e. events(blue), cards(grey), etc.)
   category: PMMI: Layouts
@@ -34,6 +38,8 @@ panel_landing_1:
       label: Grey row
     blue:
       label: Blue row
+    enticement:
+      label: Enticement row
     white_2:
       label: White row 2
     grey_2:
@@ -58,6 +64,8 @@ panel_landing_2:
       label: White row
     blue_2:
       label: Blue row 2
+    enticement:
+      label: Enticement row
     grey_2:
       label: Grey row 2
     white_2:
@@ -115,6 +123,19 @@ article:
       label: Phone
     email:
       label:
+article_news_default:
+  label: Article news(default)
+  category: PMMI: Nodes
+  template: templates/layouts/blocks/article-news-default
+  regions:
+    press_date:
+      label: Press Release and date
+    title:
+      label: Title
+    body:
+      label: Body
+    button:
+      label: Button
 basic:
   label: Basic
   category: PMMI: Nodes
@@ -162,6 +183,8 @@ company:
   category: PMMI: Nodes
   template: templates/layouts/nodes/company
   regions:
+    image_header:
+      label: Image Header
     title:
       label: Title
     general_line_1:
@@ -170,12 +193,24 @@ company:
       label: General line 2
     content_row_blue:
       label: Content row blue
+    territory_covered:
+      label: Territory covered
+    business:
+      label: Lines of business
+    manufactures:
+      label: Manufacturers represented
     primary_contacts:
       label: Primary contacts
     company_contacts:
       label: Company contacts
     company_description:
       label: Company description
+    industries_served:
+      label: Industries served
+    equipment_sold:
+      label: Type of equipment sold
+    after_sales:
+      label: Provide after sales service
     content_row:
       label: Content row
     footer_reg:
@@ -517,6 +552,8 @@ block_pack_expo_show:
       label: Date(s)
     location:
       label: Location
+    body:
+      label: Body
     button:
       label: Button
 block_brand:
@@ -599,6 +636,25 @@ block_social_media:
       label: Google+
     youtube:
       label: YouTube
+block_social_media_text:
+  label: Social Media with text
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/social-media
+  regions:
+    head:
+      label: Head
+    body:
+      label: Body
+    facebook:
+      label: Facebook
+    twitter:
+      label: Twitter
+    linkedin:
+      label: LinkedIn
+    google_plus:
+      label: Google+
+    youtube:
+      label: YouTube
 block_social_footer:
   label: Social Media Footer
   category: PMMI: Blocks
@@ -619,10 +675,23 @@ block_enticement:
   category: PMMI: Blocks
   template: templates/layouts/blocks/enticement
   regions:
-    head:
-      label: Head
     image:
       label: Image
+    head:
+      label: Head
+    teaser:
+      label: Teaser
+    button:
+      label: Button
+block_enticement_full_width:
+  label: Enticement full width
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/enticement-full-width
+  regions:
+    image:
+      label: Image
+    head:
+      label: Head
     teaser:
       label: Teaser
     button:
@@ -631,6 +700,15 @@ block_default_single:
   label: Default(with single column, i.e. for block containers)
   category: PMMI: Blocks
   template: templates/layouts/blocks/default-single
+  regions:
+    head:
+        label: Head
+    main:
+      label: Main content
+block_icons:
+  label: Icons
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/icons
   regions:
     head:
         label: Head
@@ -714,3 +792,5 @@ accordion:
       label: Left side(video, image)
     body:
       label: Body
+    nested_accordion:
+      label: Nested accordion

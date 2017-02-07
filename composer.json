@@ -177,6 +177,126 @@
           "type": "zip"
         }
       }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "ckeditor/ckeditor",
+        "version": "4.6.2",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/ckeditor/ckeditor-releases/archive/standard/4.6.2.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "codemirror/codemirror",
+        "version": "5.17.0",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/codemirror/CodeMirror/archive/5.17.0.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "ubilabs/geocomplete",
+        "version": "1.7.0",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/ubilabs/geocomplete/archive/1.7.0.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "RobinHerbots/jquery.inputmask",
+        "version": "3.3.4",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/RobinHerbots/Inputmask/archive/3.3.4.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "jonthornton/jquery.timepicker",
+        "version": "1.11.9",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/jonthornton/jquery-timepicker/archive/1.11.9.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "simontabor/jquery.toggles",
+        "version": "4.0.0",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/simontabor/jquery-toggles/archive/v4.0.0.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "qwertypants/word-and-character-counter",
+        "version": "2.3.5",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/qwertypants/jQuery-Word-and-Character-Counter-Plugin/archive/2.3.5.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "gjunge/jquery.rateit",
+        "version": "1.1.1",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/gjunge/rateit.js/archive/1.1.1.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "select2/select2",
+        "version": "4.0.3",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/select2/select2/archive/4.0.3.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
+        "name": "szimek/signature_pad",
+        "version": "1.5.3",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/szimek/signature_pad/archive/v1.5.3.zip",
+          "type": "zip"
+        }
+      }
     }
   ],
   "minimum-stability": "dev",
@@ -184,6 +304,8 @@
   "require": {
     "backupmigrate/core": "dev-master",
     "briancherne/jquery.hoverIntent": "^1.8",
+    "ckeditor/ckeditor": "^4.6.2",
+    "codemirror/codemirror": "^5.17.0",
     "composer/installers": "~1.0.20",
     "cweagans/composer-patches": "~1.0",
     "derhasi/composer-preserve-paths": "~0.1.3",
@@ -241,12 +363,20 @@
     "drupal/webform": "~5.0@beta",
     "drush/drush": "~8.0",
     "enyo/dropzone": "4.2.0",
+    "gjunge/jquery.rateit": "^1.1.1",
+    "jonthornton/jquery.timepicker": "^1.11.9",
     "kenwheeler/slick": "~1.6.0",
     "mikey179/vfsStream": "~1",
     "phpoffice/phpspreadsheet": "~0.0",
     "psr/log": "dev-master",
+    "qwertypants/word-and-character-counter": "^2.3.5",
+    "RobinHerbots/jquery.inputmask": "^3.3.4",
+    "select2/select2": "^4.0.3",
+    "simontabor/jquery.toggles": "^4.0.0",
     "summitmedia/panels_everywhere": "dev-master",
+    "szimek/signature_pad": "^1.5.3",
     "tobia/jquery.pause": "master",
+    "ubilabs/geocomplete": "^1.7.0",
     "wikimedia/composer-merge-plugin": "^1.3"
   },
   "require-dev": {

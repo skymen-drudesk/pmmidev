@@ -126,3 +126,8 @@
     }
   }
 }
+.btn-prm-wrap {
+  a {
+    @extend .button-primary;
+  }
+}

@@ -4,8 +4,19 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e0fc6ff29028faeeb918748c1a7e015b",
+    "content-hash": "77f898232dbbba4f25ade8e511910c98",
     "packages": [
+        {
+            "name": "RobinHerbots/jquery.inputmask",
+            "version": "3.3.4",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/RobinHerbots/Inputmask/archive/3.3.4.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library"
+        },
         {
             "name": "alchemy/zippy",
             "version": "0.4.3",
@@ -170,6 +181,17 @@
             "type": "drupal-library"
         },
         {
+            "name": "ckeditor/ckeditor",
+            "version": "4.6.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/ckeditor/ckeditor-releases/archive/standard/4.6.2.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library"
+        },
+        {
             "name": "codegyre/robo",
             "version": "0.7.2",
             "source": {
@@ -224,6 +246,17 @@
             "description": "Modern task runner",
             "abandoned": "consolidation/robo",
             "time": "2016-04-13T20:14:17+00:00"
+        },
+        {
+            "name": "codemirror/codemirror",
+            "version": "5.17.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/codemirror/CodeMirror/archive/5.17.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library"
         },
         {
             "name": "commerceguys/addressing",
@@ -767,25 +800,27 @@
         },
         {
             "name": "derhasi/composer-preserve-paths",
-            "version": "0.1.3",
+            "version": "0.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/derhasi/composer-preserve-paths.git",
-                "reference": "e10d7acbc84df0d58faf2470049f53c97a4a1503"
+                "reference": "d557250928235fe23e11c86329bd7cef05397648"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/derhasi/composer-preserve-paths/zipball/e10d7acbc84df0d58faf2470049f53c97a4a1503",
-                "reference": "e10d7acbc84df0d58faf2470049f53c97a4a1503",
+                "url": "https://api.github.com/repos/derhasi/composer-preserve-paths/zipball/d557250928235fe23e11c86329bd7cef05397648",
+                "reference": "d557250928235fe23e11c86329bd7cef05397648",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0"
             },
             "require-dev": {
-                "composer/composer": "1.0.*@dev",
+                "composer/composer": "1.*",
                 "derhasi/tempdirectory": "0.1.*",
-                "phpunit/phpunit": "4.4.*"
+                "escapestudios/symfony2-coding-standard": "2.*",
+                "phpunit/phpunit": "4.*",
+                "squizlabs/php_codesniffer": "2.*"
             },
             "type": "composer-plugin",
             "extra": {
@@ -815,7 +850,7 @@
                 "installer",
                 "nested package"
             ],
-            "time": "2015-10-20T13:44:48+00:00"
+            "time": "2017-02-03T11:32:31+00:00"
         },
         {
             "name": "derhasi/viewfield",
@@ -2447,16 +2482,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.2.5",
+            "version": "8.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal-composer/drupal-core.git",
-                "reference": "fbf10f63dba6b312e1d1b67bac521db1648384f3"
+                "reference": "6cd5d296125a4584d470d75d8e5218ff17c39c22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/fbf10f63dba6b312e1d1b67bac521db1648384f3",
-                "reference": "fbf10f63dba6b312e1d1b67bac521db1648384f3",
+                "url": "https://api.github.com/repos/drupal-composer/drupal-core/zipball/6cd5d296125a4584d470d75d8e5218ff17c39c22",
+                "reference": "6cd5d296125a4584d470d75d8e5218ff17c39c22",
                 "shasum": ""
             },
             "require": {
@@ -2602,7 +2637,6 @@
             "extra": {
                 "patches_applied": {
                     "Avoid illegal characters in database name": "https://www.drupal.org/files/issues/fix-dbname-validation-2443839-40.patch",
-                    "Field Storage Does not validate if the class exists": "https://www.drupal.org/files/issues/2723707-field-storage-does-not-validate-5.patch",
                     "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/minimal-install-profile-1170362-204.patch",
                     "SystemBrandingBlock causes fatal error if theme is not set when place it in Panels": "https://www.drupal.org/files/issues/systembrandingblock-causes-fatal-error-if-theme-is-not-set-when-place-it-in-panels-2838601-2.patch",
                     "Expose contextual filters of views blocks as context": "https://www.drupal.org/files/issues/2287073-109.patch",
@@ -2631,7 +2665,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2017-01-04T11:31:35+00:00"
+            "time": "2017-02-01T17:03:36+00:00"
         },
         {
             "name": "drupal/ctools",
@@ -4169,13 +4203,10 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/redirect",
-                "reference": "d0f475946fd509e5067e9d1c30919567a9f66ce2"
+                "reference": "d1eaf7c7a9d12fdd496e7c4ded094daf3e2ac552"
             },
             "require": {
                 "drupal/core": "~8"
-            },
-            "suggest": {
-                "drupal/core": "Required by drupal/redirect_404"
             },
             "type": "drupal-module",
             "extra": {
@@ -4183,8 +4214,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha2+1-dev",
-                    "datestamp": "1481914683"
+                    "version": "8.x-1.0-alpha2+2-dev",
+                    "datestamp": "1486072383"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4206,7 +4237,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/redirect"
             },
-            "time": "2016-12-16 18:55:05"
+            "time": "2017-02-02 21:49:09"
         },
         {
             "name": "drupal/search_api",
@@ -4214,7 +4245,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/search_api",
-                "reference": "97db3226d0e7dd6fce259caa2b32bd0b93d1a6ac"
+                "reference": "81869f5904ef9b102d69d9a7e330b91aae93025d"
             },
             "require": {
                 "drupal/core": "8.*",
@@ -4254,7 +4285,7 @@
             ],
             "description": "Provides a generic framework for modules offering search capabilities.",
             "homepage": "https://www.drupal.org/project/search_api",
-            "time": "2017-01-29 11:40:23"
+            "time": "2017-02-03 15:29:08"
         },
         {
             "name": "drupal/search_api_page",
@@ -4288,7 +4319,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/search_api_solr",
-                "reference": "3a2f695353971a8db79e5aa083180f31acb67940"
+                "reference": "7cb30ed5ecbe76171438c668abf1d3e9045cfa81"
             },
             "require": {
                 "drupal/core": "8.*",
@@ -4313,7 +4344,7 @@
             ],
             "description": "Offers an implementation of the Search API that uses an Apache Solr server for indexing content.",
             "homepage": "https://www.drupal.org/project/search_api_solr",
-            "time": "2016-12-24 00:45:38"
+            "time": "2017-01-30 17:52:46"
         },
         {
             "name": "drupal/slick",
@@ -4646,7 +4677,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/webform-8.x-5.0-beta5.zip",
-                "reference": "8.x-5.0-beta5",
+                "reference": null,
                 "shasum": "91cd6651923310974fa01aa12b9811c7811e3969"
             },
             "require": {
@@ -4884,16 +4915,16 @@
         },
         {
             "name": "egulias/email-validator",
-            "version": "1.2.13",
+            "version": "1.2.14",
             "source": {
                 "type": "git",
                 "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "b8bb147f46cc9790326ce2440a13be06cc5a63bb"
+                "reference": "5642614492f0ca2064c01d60cc33284cc2f731a9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/b8bb147f46cc9790326ce2440a13be06cc5a63bb",
-                "reference": "b8bb147f46cc9790326ce2440a13be06cc5a63bb",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/5642614492f0ca2064c01d60cc33284cc2f731a9",
+                "reference": "5642614492f0ca2064c01d60cc33284cc2f731a9",
                 "shasum": ""
             },
             "require": {
@@ -4932,7 +4963,7 @@
                 "validation",
                 "validator"
             ],
-            "time": "2016-07-03T21:52:18+00:00"
+            "time": "2017-02-03T22:48:59+00:00"
         },
         {
             "name": "enyo/dropzone",
@@ -5042,6 +5073,17 @@
                 "orm"
             ],
             "time": "2016-10-03T21:25:17+00:00"
+        },
+        {
+            "name": "gjunge/jquery.rateit",
+            "version": "1.1.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/gjunge/rateit.js/archive/1.1.1.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -5415,16 +5457,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.33",
+            "version": "v1.2.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "67a6b308cde8474944752607794e6aaa2994748a"
+                "reference": "5ff059a3f2e0badfddce2ef64c18d6bf2bfba867"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/67a6b308cde8474944752607794e6aaa2994748a",
-                "reference": "67a6b308cde8474944752607794e6aaa2994748a",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/5ff059a3f2e0badfddce2ef64c18d6bf2bfba867",
+                "reference": "5ff059a3f2e0badfddce2ef64c18d6bf2bfba867",
                 "shasum": ""
             },
             "require": {
@@ -5459,7 +5501,18 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2017-01-30T23:25:25+00:00"
+            "time": "2017-02-03T09:30:35+00:00"
+        },
+        {
+            "name": "jonthornton/jquery.timepicker",
+            "version": "1.11.9",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/jonthornton/jquery-timepicker/archive/1.11.9.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library"
         },
         {
             "name": "kenwheeler/slick",
@@ -5661,16 +5714,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v3.0.2",
+            "version": "v3.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "adf44419c0fc014a0f191db6f89d3e55d4211744"
+                "reference": "5b8182cc0abb4b0ff290ba9df6c0e1323286013a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/adf44419c0fc014a0f191db6f89d3e55d4211744",
-                "reference": "adf44419c0fc014a0f191db6f89d3e55d4211744",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/5b8182cc0abb4b0ff290ba9df6c0e1323286013a",
+                "reference": "5b8182cc0abb4b0ff290ba9df6c0e1323286013a",
                 "shasum": ""
             },
             "require": {
@@ -5708,7 +5761,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2016-12-06T11:30:35+00:00"
+            "time": "2017-02-03T21:57:31+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -6256,6 +6309,17 @@
             "time": "2016-12-07T17:15:07+00:00"
         },
         {
+            "name": "qwertypants/word-and-character-counter",
+            "version": "2.3.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/qwertypants/jQuery-Word-and-Character-Counter-Plugin/archive/2.3.5.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library"
+        },
+        {
             "name": "robloach/component-installer",
             "version": "0.2.3",
             "source": {
@@ -6302,6 +6366,28 @@
             ],
             "description": "Allows installation of Components via Composer.",
             "time": "2015-08-10T12:35:38+00:00"
+        },
+        {
+            "name": "select2/select2",
+            "version": "4.0.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/select2/select2/archive/4.0.3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library"
+        },
+        {
+            "name": "simontabor/jquery.toggles",
+            "version": "4.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/simontabor/jquery-toggles/archive/v4.0.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library"
         },
         {
             "name": "solarium/solarium",
@@ -8044,6 +8130,17 @@
             "time": "2017-01-03T13:49:52+00:00"
         },
         {
+            "name": "szimek/signature_pad",
+            "version": "1.5.3",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/szimek/signature_pad/archive/v1.5.3.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library"
+        },
+        {
             "name": "tobia/jquery.pause",
             "version": "master",
             "source": {
@@ -8114,6 +8211,17 @@
                 "templating"
             ],
             "time": "2017-01-11T19:36:15+00:00"
+        },
+        {
+            "name": "ubilabs/geocomplete",
+            "version": "1.7.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/ubilabs/geocomplete/archive/1.7.0.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library"
         },
         {
             "name": "webflo/drupal-finder",

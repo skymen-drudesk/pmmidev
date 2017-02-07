@@ -46,7 +46,7 @@ display:
       pager:
         type: mini
         options:
-          items_per_page: 20
+          items_per_page: 100
           offset: 0
           id: 0
           total_pages: null
@@ -256,7 +256,7 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: N/A
+          empty: ''
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
@@ -363,7 +363,31 @@ display:
           fields:
             keywords: keywords
           plugin_id: search_api_fulltext
-      sorts: {  }
+      sorts:
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_default_index
+          field: search_api_relevance
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
+        title:
+          id: title
+          table: search_api_index_default_index
+          field: title
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
       header: {  }
       footer: {  }
       empty: {  }

@@ -11,11 +11,11 @@ dependencies:
     - field.field.block_content.text.field_head
     - field.field.block_content.text.field_image
     - field.field.block_content.text.field_link
-    - image.style.brand_block_dhd
+    - responsive_image.styles.block_style_1
   module:
     - ds
-    - image
     - link
+    - responsive_image
     - text
 third_party_settings:
   ds:
@@ -70,7 +70,7 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: brand_block_dhd
+      responsive_image_style: block_style_1
       image_link: ''
     third_party_settings:
       ds:
@@ -80,7 +80,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: image
+    type: responsive_image
   field_link:
     type: link
     weight: 4

@@ -28,7 +28,7 @@ variant_settings:
       info: ''
       view_mode: full
       region: top
-      weight: -2
+      weight: -10
       uuid: e8750c8b-6a27-40e0-a6b9-3146cd158f96
       context_mapping: {  }
     9199d4ff-bc46-4d94-9569-a5efdadc7851:
@@ -39,8 +39,8 @@ variant_settings:
       status: true
       info: ''
       view_mode: full
-      region: top
-      weight: -1
+      region: white
+      weight: -2
       uuid: 9199d4ff-bc46-4d94-9569-a5efdadc7851
       context_mapping: {  }
     c0e756e5-6535-40a3-9553-7fe34615be08:
@@ -63,7 +63,7 @@ variant_settings:
       status: true
       info: ''
       view_mode: 2_up
-      region: white
+      region: white_2
       weight: -2
       uuid: f24ca544-673d-439d-a49e-ad11371b5430
       context_mapping: {  }
@@ -75,8 +75,8 @@ variant_settings:
       status: true
       info: ''
       view_mode: full
-      region: bottom
-      weight: -9
+      region: blue_2
+      weight: -2
       uuid: ab82d6bf-95af-4775-850e-1f959f4ad3bf
       context_mapping: {  }
     3d4f8e7e-74b7-46a4-81ff-cfc65a5cd194:
@@ -95,7 +95,7 @@ variant_settings:
   uuid: 9df0706c-4111-4a37-8747-45a1b04e2a74
   label: null
   weight: 0
-  layout: panel_homepage
+  layout: panel_landing_1
   layout_settings: {  }
   page_title: 'Education & Workforce Development | PMMI'
   storage_type: page_manager

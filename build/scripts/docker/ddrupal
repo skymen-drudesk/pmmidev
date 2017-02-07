@@ -11,4 +11,4 @@ if [[ "$drupal" == "" ]]; then
   fi
 fi
 
-docker-compose exec --user www-data web bash -ci "$drupal"
+docker-compose exec --user www-data pmmiweb bash -ci "$drupal"

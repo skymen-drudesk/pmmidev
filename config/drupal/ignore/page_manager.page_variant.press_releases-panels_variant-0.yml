@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - page_manager.page.press_releases
-    - views.view.news
+    - views.view.news_search_api
   module:
     - panels
     - views
@@ -13,8 +13,8 @@ label: 'Press Releases Panels'
 variant: panels_variant
 variant_settings:
   blocks:
-    98647dfc-9445-4243-a315-a38aae24a80c:
-      id: 'views_block:news-block_paged'
+    d150ce38-56f7-4760-930e-d3d79f1f85c4:
+      id: 'views_block:news_search_api-paged'
       label: ''
       provider: views
       label_display: '0'
@@ -22,7 +22,17 @@ variant_settings:
       items_per_page: none
       region: main
       weight: 0
-      uuid: 98647dfc-9445-4243-a315-a38aae24a80c
+      uuid: d150ce38-56f7-4760-930e-d3d79f1f85c4
+      context_mapping: {  }
+    788b5584-1987-43e8-a622-0f8e77cb9145:
+      id: 'views_exposed_filter_block:news_search_api-paged'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      region: top
+      weight: 0
+      uuid: 788b5584-1987-43e8-a622-0f8e77cb9145
       context_mapping: {  }
   id: panels_variant
   uuid: 3df3ef8c-6705-4247-9e9f-3c6163fbe1e2

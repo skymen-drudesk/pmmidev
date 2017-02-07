@@ -5,9 +5,13 @@ dependencies:
   config:
     - page_manager.page.join_pmmi
   content:
+    - 'block_content:accordion:08de98ce-4f06-47cc-968e-e3a1e9b36199'
     - 'block_content:accordion:c0a63e76-3f76-4d98-ac36-1451be0dfa8d'
-    - 'block_content:enticement:e9a38cd2-37f7-4e69-837e-afe40f1587ef'
-    - 'block_content:text:cf8470c8-8440-400c-a41c-1597c7db237b'
+    - 'block_content:image_header:0258eb70-1fda-4047-8c73-2b3be6e1fc99'
+    - 'block_content:links:d44e3768-5916-40fb-9d1c-36fdd755bfac'
+    - 'block_content:text:39822597-02b0-44e4-89ce-aa5da702d501'
+    - 'block_content:text:646c46d6-e055-4abb-8457-a373409ad0c2'
+    - 'block_content:text:ac88d7cd-541b-4481-813b-f9904722d025'
   module:
     - block_content
     - panels
@@ -25,32 +29,80 @@ variant_settings:
       info: ''
       view_mode: full
       region: main
-      weight: 0
+      weight: -2
       uuid: 395c65b1-5819-40fb-a9ac-a2a7ca7f7c44
       context_mapping: {  }
-    ab02b548-e6d6-4e7b-8414-af682fd5e654:
-      id: 'block_content:e9a38cd2-37f7-4e69-837e-afe40f1587ef'
-      label: 'Join - Enticement (Brochure)'
+    6aa512d5-b8ec-4c67-82c5-ffe988d494af:
+      id: 'block_content:d44e3768-5916-40fb-9d1c-36fdd755bfac'
+      label: 'Join - Links'
       provider: block_content
       label_display: '0'
       status: true
       info: ''
       view_mode: full
-      region: main
+      region: sidebar
       weight: 0
-      uuid: ab02b548-e6d6-4e7b-8414-af682fd5e654
+      uuid: 6aa512d5-b8ec-4c67-82c5-ffe988d494af
       context_mapping: {  }
-    30e84124-a396-4b6e-b87f-a289b42c427d:
-      id: 'block_content:cf8470c8-8440-400c-a41c-1597c7db237b'
-      label: 'Join - Text (Application Process)'
+    50c90e10-4ca7-438f-975b-6641d5eff969:
+      id: 'block_content:0258eb70-1fda-4047-8c73-2b3be6e1fc99'
+      label: 'Join - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: 50c90e10-4ca7-438f-975b-6641d5eff969
+      context_mapping: {  }
+    89125a7d-6ed6-4d94-b8cd-36a1107227fb:
+      id: 'block_content:646c46d6-e055-4abb-8457-a373409ad0c2'
+      label: 'Join - Text (Member Directory)'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: sidebar
+      weight: 0
+      uuid: 89125a7d-6ed6-4d94-b8cd-36a1107227fb
+      context_mapping: {  }
+    ee7bf54b-8040-407f-85af-ba56e98bb0d3:
+      id: 'block_content:39822597-02b0-44e4-89ce-aa5da702d501'
+      label: 'Join - Intro Text'
       provider: block_content
       label_display: '0'
       status: true
       info: ''
       view_mode: default
       region: main
+      weight: -3
+      uuid: ee7bf54b-8040-407f-85af-ba56e98bb0d3
+      context_mapping: {  }
+    0f363b74-c033-41ad-a6d6-b0547d5c9a90:
+      id: 'block_content:ac88d7cd-541b-4481-813b-f9904722d025'
+      label: 'Join - Text (Questions?)'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: sidebar
       weight: 0
-      uuid: 30e84124-a396-4b6e-b87f-a289b42c427d
+      uuid: 0f363b74-c033-41ad-a6d6-b0547d5c9a90
+      context_mapping: {  }
+    9a359536-b7ff-416c-bbdf-aa1c37c6f6cc:
+      id: 'block_content:08de98ce-4f06-47cc-968e-e3a1e9b36199'
+      label: 'Join - TEST (nested accordion)'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: default
+      region: main
+      weight: -1
+      uuid: 9a359536-b7ff-416c-bbdf-aa1c37c6f6cc
       context_mapping: {  }
   id: panels_variant
   uuid: 0cd0e210-d7a6-42a6-b39c-1e2c8292286d

@@ -27,26 +27,44 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: block_default_single
+      id: article_news_default
       path: themes/custom/pmmi_bootstrap
       library: ''
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
-      head:
+      press_date:
         - field_news_category
         - field_date
+      title:
+        - node_title
+      body:
         - body
-        - node_link
+      button:
+        - news_category_link
     fields:
-      node_link:
-        plugin_id: node_link
-        weight: 3
+      node_title:
+        plugin_id: node_title
+        weight: 2
         label: hidden
         formatter: default
         settings:
-          'link text': 'View Press Release'
+          wrapper: ''
+          class: ''
+          link: false
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      news_category_link:
+        plugin_id: news_category_link
+        weight: 4
+        label: hidden
+        formatter: default
+        settings:
           'link class': ''
           wrapper: ''
           class: ''
@@ -64,10 +82,17 @@ content:
   body:
     label: hidden
     type: text_summary_or_trimmed
-    weight: 2
+    weight: 3
     settings:
       trim_length: 400
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_date:
     type: datetime_default
     weight: 1
@@ -84,13 +109,19 @@ content:
             lb-col: false
             classes: {  }
   field_news_category:
-    type: entity_reference_entity_view
+    type: entity_reference_label
     weight: 0
     label: hidden
     settings:
-      view_mode: default
       link: false
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 hidden:
   field_author: true
   field_author_title: true
