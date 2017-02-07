@@ -41,20 +41,18 @@ third_party_settings:
     regions:
       image_header:
         - field_image_header
-      page_name:
-        - field_page_name
-      image:
-        - field_image
       title:
         - node_title
+      image:
+        - field_image
       date:
         - field_date
-      body:
-        - body
       link:
         - field_link
       immediate_release:
         - field_immediate_release
+      body:
+        - body
       author:
         - field_author
       author_title:
@@ -63,10 +61,11 @@ third_party_settings:
         - field_company
       phone:
         - field_phone
+        - field_email
     fields:
       node_title:
         plugin_id: node_title
-        weight: 2
+        weight: 1
         label: hidden
         formatter: default
 id: node.article.full
@@ -77,7 +76,7 @@ content:
   body:
     label: hidden
     type: text_summary_or_trimmed
-    weight: 4
+    weight: 6
     settings:
       trim_length: 400
     third_party_settings: {  }
@@ -110,9 +109,15 @@ content:
       format_type: month_day_year
     third_party_settings: {  }
     type: datetime_default
+  field_email:
+    type: email_mailto
+    weight: 11
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   field_image:
     type: responsive_image
-    weight: 0
+    weight: 2
     label: hidden
     settings:
       responsive_image_style: detail_page
@@ -134,32 +139,39 @@ content:
       link: false
     third_party_settings: {  }
   field_immediate_release:
-    weight: 6
-    label: hidden
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-  field_link:
     weight: 5
     label: hidden
+    settings:
+      format: custom
+      format_custom_true: 'FOR IMMEDIATE RELEASE'
+      format_custom_false: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: boolean
+  field_link:
+    weight: 4
+    label: inline
     settings:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: 'Follow PMMI on Twitter'
+            lb-col: true
+            classes: {  }
     type: link
-  field_page_name:
-    weight: 0
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
   field_phone:
     weight: 10
     label: hidden
@@ -168,8 +180,8 @@ content:
     third_party_settings: {  }
     type: telephone_link
 hidden:
-  field_email: true
   field_meta_tags: true
   field_news_category: true
+  field_page_name: true
   field_tags: true
   links: true

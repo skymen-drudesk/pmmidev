@@ -76,6 +76,9 @@ html, body {
       }
     }
   }
+  .block-copyright-block {
+    @extend .col-md-5;
+  }
   .block-audience-switcher {
     @extend .col-md-5;
     opacity: 0.75;
@@ -121,11 +124,6 @@ html, body {
   }
   .social-links {
     text-align: right;
-    span {
-      a {
-        text-indent: 9999em;
-      }
-    }
   }
   @include desktop-max {
     font-size: $r13;
@@ -137,6 +135,7 @@ html, body {
     min-height: 90px;
     margin-top: -90px;
     nav,
+    .block-copyright-block,
     .block-audience-select {
       margin-bottom: 5px;
     }
@@ -168,6 +167,9 @@ html, body {
           }
         }
       }
+    }
+    .block-copyright-block {
+      margin-bottom: 7px;
     }
     .block-audience-switcher {
       margin-bottom: 7px;

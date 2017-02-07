@@ -13,7 +13,9 @@
   font-style: normal;
 }
 
-.fa, .text-link:before, .linked-list-item a:before, .block-links .field--name-field-links .field--item a:before, .content-left .block-text.mode-default .link a:before, .accordion-item .field-name-field-link a:before, .school-info .website a:before, .school-info .email .field:before, .selector:before, .content ul li:before, .block-pmmi-twitter-block .block-title:before, .block-pmmi-facebook-block .block-title:before, .audience-select .audience-link:after, .main-nav .header-search button, .footer .block-audience-switcher .audience-switcher a:before, .feature-block .attachment-after .more-link a:before,
+.fa, .text-link:before, .linked-list-item a:before, .block-links .field--name-field-links .field--item a:before, .content-left .block-text.mode-default .link a:before, .accordion-item .field-name-field-link a:before, .school-info .website a:before, .school-info .email .field:before, .selector:before, .content ul li:before, .pmmi-pager .pager-previous.disabled:before,
+.pmmi-pager .pager-previous a:before, .pmmi-pager .pager-next.disabled:after,
+.pmmi-pager .pager-next a:after, .block-pmmi-twitter-block .block-title:before, .block-pmmi-facebook-block .block-title:before, .audience-select .audience-link:after, .main-nav .header-search button, .footer .block-audience-switcher .audience-switcher a:before, .feature-block .attachment-after .more-link a:before,
 .feature-block .attachment-after .views-row a:before {
   display: inline-block;
   font: normal normal normal 14px/1 FontAwesome;
@@ -87,12 +89,16 @@
   float: right;
 }
 
-.fa.fa-pull-left, .fa-pull-left.text-link:before, .linked-list-item a.fa-pull-left:before, .block-links .field--name-field-links .field--item a.fa-pull-left:before, .content-left .block-text.mode-default .link a.fa-pull-left:before, .accordion-item .field-name-field-link a.fa-pull-left:before, .school-info .website a.fa-pull-left:before, .school-info .email .fa-pull-left.field:before, .fa-pull-left.selector:before, .content ul li.fa-pull-left:before, .block-pmmi-twitter-block .fa-pull-left.block-title:before, .block-pmmi-facebook-block .fa-pull-left.block-title:before, .audience-select .fa-pull-left.audience-link:after, .main-nav .header-search button.fa-pull-left, .footer .block-audience-switcher .audience-switcher a.fa-pull-left:before, .feature-block .attachment-after .more-link a.fa-pull-left:before,
+.fa.fa-pull-left, .fa-pull-left.text-link:before, .linked-list-item a.fa-pull-left:before, .block-links .field--name-field-links .field--item a.fa-pull-left:before, .content-left .block-text.mode-default .link a.fa-pull-left:before, .accordion-item .field-name-field-link a.fa-pull-left:before, .school-info .website a.fa-pull-left:before, .school-info .email .fa-pull-left.field:before, .fa-pull-left.selector:before, .content ul li.fa-pull-left:before, .pmmi-pager .fa-pull-left.pager-previous.disabled:before,
+.pmmi-pager .pager-previous a.fa-pull-left:before, .pmmi-pager .fa-pull-left.pager-next.disabled:after,
+.pmmi-pager .pager-next a.fa-pull-left:after, .block-pmmi-twitter-block .fa-pull-left.block-title:before, .block-pmmi-facebook-block .fa-pull-left.block-title:before, .audience-select .fa-pull-left.audience-link:after, .main-nav .header-search button.fa-pull-left, .footer .block-audience-switcher .audience-switcher a.fa-pull-left:before, .feature-block .attachment-after .more-link a.fa-pull-left:before,
 .feature-block .attachment-after .views-row a.fa-pull-left:before {
   margin-right: .3em;
 }
 
-.fa.fa-pull-right, .fa-pull-right.text-link:before, .linked-list-item a.fa-pull-right:before, .block-links .field--name-field-links .field--item a.fa-pull-right:before, .content-left .block-text.mode-default .link a.fa-pull-right:before, .accordion-item .field-name-field-link a.fa-pull-right:before, .school-info .website a.fa-pull-right:before, .school-info .email .fa-pull-right.field:before, .fa-pull-right.selector:before, .content ul li.fa-pull-right:before, .block-pmmi-twitter-block .fa-pull-right.block-title:before, .block-pmmi-facebook-block .fa-pull-right.block-title:before, .audience-select .fa-pull-right.audience-link:after, .main-nav .header-search button.fa-pull-right, .footer .block-audience-switcher .audience-switcher a.fa-pull-right:before, .feature-block .attachment-after .more-link a.fa-pull-right:before,
+.fa.fa-pull-right, .fa-pull-right.text-link:before, .linked-list-item a.fa-pull-right:before, .block-links .field--name-field-links .field--item a.fa-pull-right:before, .content-left .block-text.mode-default .link a.fa-pull-right:before, .accordion-item .field-name-field-link a.fa-pull-right:before, .school-info .website a.fa-pull-right:before, .school-info .email .fa-pull-right.field:before, .fa-pull-right.selector:before, .content ul li.fa-pull-right:before, .pmmi-pager .fa-pull-right.pager-previous.disabled:before,
+.pmmi-pager .pager-previous a.fa-pull-right:before, .pmmi-pager .fa-pull-right.pager-next.disabled:after,
+.pmmi-pager .pager-next a.fa-pull-right:after, .block-pmmi-twitter-block .fa-pull-right.block-title:before, .block-pmmi-facebook-block .fa-pull-right.block-title:before, .audience-select .fa-pull-right.audience-link:after, .main-nav .header-search button.fa-pull-right, .footer .block-audience-switcher .audience-switcher a.fa-pull-right:before, .feature-block .attachment-after .more-link a.fa-pull-right:before,
 .feature-block .attachment-after .views-row a.fa-pull-right:before {
   margin-left: .3em;
 }
@@ -106,12 +112,16 @@
   float: left;
 }
 
-.fa.pull-left, .pull-left.text-link:before, .linked-list-item a.pull-left:before, .block-links .field--name-field-links .field--item a.pull-left:before, .content-left .block-text.mode-default .link a.pull-left:before, .accordion-item .field-name-field-link a.pull-left:before, .school-info .website a.pull-left:before, .school-info .email .pull-left.field:before, .pull-left.selector:before, .content ul li.pull-left:before, .block-pmmi-twitter-block .pull-left.block-title:before, .block-pmmi-facebook-block .pull-left.block-title:before, .audience-select .pull-left.audience-link:after, .main-nav .header-search button.pull-left, .footer .block-audience-switcher .audience-switcher a.pull-left:before, .feature-block .attachment-after .more-link a.pull-left:before,
+.fa.pull-left, .pull-left.text-link:before, .linked-list-item a.pull-left:before, .block-links .field--name-field-links .field--item a.pull-left:before, .content-left .block-text.mode-default .link a.pull-left:before, .accordion-item .field-name-field-link a.pull-left:before, .school-info .website a.pull-left:before, .school-info .email .pull-left.field:before, .pull-left.selector:before, .content ul li.pull-left:before, .pmmi-pager .pull-left.pager-previous.disabled:before,
+.pmmi-pager .pager-previous a.pull-left:before, .pmmi-pager .pull-left.pager-next.disabled:after,
+.pmmi-pager .pager-next a.pull-left:after, .block-pmmi-twitter-block .pull-left.block-title:before, .block-pmmi-facebook-block .pull-left.block-title:before, .audience-select .pull-left.audience-link:after, .main-nav .header-search button.pull-left, .footer .block-audience-switcher .audience-switcher a.pull-left:before, .feature-block .attachment-after .more-link a.pull-left:before,
 .feature-block .attachment-after .views-row a.pull-left:before {
   margin-right: .3em;
 }
 
-.fa.pull-right, .pull-right.text-link:before, .linked-list-item a.pull-right:before, .block-links .field--name-field-links .field--item a.pull-right:before, .content-left .block-text.mode-default .link a.pull-right:before, .accordion-item .field-name-field-link a.pull-right:before, .school-info .website a.pull-right:before, .school-info .email .pull-right.field:before, .pull-right.selector:before, .content ul li.pull-right:before, .block-pmmi-twitter-block .pull-right.block-title:before, .block-pmmi-facebook-block .pull-right.block-title:before, .audience-select .pull-right.audience-link:after, .main-nav .header-search button.pull-right, .footer .block-audience-switcher .audience-switcher a.pull-right:before, .feature-block .attachment-after .more-link a.pull-right:before,
+.fa.pull-right, .pull-right.text-link:before, .linked-list-item a.pull-right:before, .block-links .field--name-field-links .field--item a.pull-right:before, .content-left .block-text.mode-default .link a.pull-right:before, .accordion-item .field-name-field-link a.pull-right:before, .school-info .website a.pull-right:before, .school-info .email .pull-right.field:before, .pull-right.selector:before, .content ul li.pull-right:before, .pmmi-pager .pull-right.pager-previous.disabled:before,
+.pmmi-pager .pager-previous a.pull-right:before, .pmmi-pager .pull-right.pager-next.disabled:after,
+.pmmi-pager .pager-next a.pull-right:after, .block-pmmi-twitter-block .pull-right.block-title:before, .block-pmmi-facebook-block .pull-right.block-title:before, .audience-select .pull-right.audience-link:after, .main-nav .header-search button.pull-right, .footer .block-audience-switcher .audience-switcher a.pull-right:before, .feature-block .attachment-after .more-link a.pull-right:before,
 .feature-block .attachment-after .views-row a.pull-right:before {
   margin-left: .3em;
 }
@@ -3998,7 +4008,7 @@ pre code {
 }
 
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .footer .block-block-content, .col-lg-2, .col-xs-3, .col-sm-3, .events-block-3 .views-row,
-.block-views-blockevents-block-3 .views-row, .col-md-3, .block-icons.cols-4 .column > .field, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .block-icons.cols-3 .column > .field, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .footer nav, .footer .block-audience-switcher, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .block-icons.cols-2 .column > .field, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+.block-views-blockevents-block-3 .views-row, .col-md-3, .block-icons.cols-4 .column > .field, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .block-icons.cols-3 .column > .field, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .footer nav, .footer .block-copyright-block, .footer .block-audience-switcher, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .block-icons.cols-2 .column > .field, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -4375,7 +4385,7 @@ pre code {
 }
 
 @media (min-width: 1024px) {
-  .col-md-1, .col-md-2, .footer .block-block-content, .col-md-3, .block-icons.cols-4 .column > .field, .col-md-4, .block-icons.cols-3 .column > .field, .col-md-5, .footer nav, .footer .block-audience-switcher, .col-md-6, .block-icons.cols-2 .column > .field, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+  .col-md-1, .col-md-2, .footer .block-block-content, .col-md-3, .block-icons.cols-4 .column > .field, .col-md-4, .block-icons.cols-3 .column > .field, .col-md-5, .footer nav, .footer .block-copyright-block, .footer .block-audience-switcher, .col-md-6, .block-icons.cols-2 .column > .field, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left;
   }
   .col-md-1 {
@@ -4390,7 +4400,7 @@ pre code {
   .col-md-4, .block-icons.cols-3 .column > .field {
     width: 33.33333%;
   }
-  .col-md-5, .footer nav, .footer .block-audience-switcher {
+  .col-md-5, .footer nav, .footer .block-copyright-block, .footer .block-audience-switcher {
     width: 41.66667%;
   }
   .col-md-6, .block-icons.cols-2 .column > .field {
@@ -12134,7 +12144,9 @@ fieldset[disabled] a.focus {
   clear: both;
 }
 
-.inherited-p p, .paragraph1 p, p p, .node-body p, .node-bold-label p,
+.inherited-p p, .paragraph1 p, p p, .article-node .node-body p, .article-node .author-info p, .article-node .author-info:before p, .article-node .date p,
+.article-node .twitter-link p,
+.article-node .article-release p, .node-body p, .node-bold-label p,
 .featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
 .layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .cert-info li .field--item p, .mode-default.school p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
 .block-pack-expo-show .date p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
@@ -12144,7 +12156,9 @@ fieldset[disabled] a.focus {
   color: inherit;
 }
 
-.paragraph1, p, .node-body, .node-bold-label,
+.paragraph1, p, .article-node .node-body, .article-node .author-info, .article-node .author-info:before, .article-node .date,
+.article-node .twitter-link,
+.article-node .article-release, .node-body, .node-bold-label,
 .featured-speaker, .school-node .focus, .school-node .content-verified {
   font-size: 18px;
   font-size: 1.125rem;
@@ -12154,7 +12168,9 @@ fieldset[disabled] a.focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .paragraph1, p, .node-body, .node-bold-label,
+  .paragraph1, p, .article-node .node-body, .article-node .author-info, .article-node .author-info:before, .article-node .date,
+  .article-node .twitter-link,
+  .article-node .article-release, .node-body, .node-bold-label,
   .featured-speaker, .school-node .focus, .school-node .content-verified {
     font-size: 1.0625rem;
     line-height: 1.3125rem;
@@ -12532,6 +12548,108 @@ h1, .h1, h2, .h2, h3, .h3 {
   }
 }
 
+.pmmi-pager {
+  display: block;
+  color: #c2c2c2;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.pmmi-pager .pager-first,
+.pmmi-pager .pager-last {
+  display: none;
+}
+
+.pmmi-pager > li {
+  display: inline;
+}
+
+.pmmi-pager > li > a {
+  float: none;
+  padding: 0;
+  border: none;
+  margin: 0;
+  color: #c2c2c2;
+  font-weight: 600;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 21px;
+  line-height: 1.3125rem;
+}
+
+.pmmi-pager > li > a:hover {
+  color: #004e75;
+}
+
+.pmmi-pager > li.active > a {
+  color: #004e75;
+  font-weight: 900;
+}
+
+.pmmi-pager > li.pager-btn {
+  width: 83px;
+}
+
+.pmmi-pager > li.pager-btn > a {
+  color: #004e75;
+  font-weight: 900;
+}
+
+.pmmi-pager > li.pager-btn > span {
+  font-weight: 900;
+}
+
+.pmmi-pager .pager-item:after {
+  content: '/';
+  margin: 0 4px;
+}
+
+.pmmi-pager .pager-item.last:after {
+  display: none;
+}
+
+.pmmi-pager .pager-previous {
+  float: left;
+  text-align: left;
+}
+
+.pmmi-pager .pager-previous.disabled:before,
+.pmmi-pager .pager-previous a:before {
+  content: "\f060";
+}
+
+.pmmi-pager .pager-next {
+  float: right;
+  text-align: right;
+}
+
+.pmmi-pager .pager-next.disabled:after,
+.pmmi-pager .pager-next a:after {
+  content: "\f061";
+}
+
+@media screen and (max-width: 767px) {
+  .pmmi-pager > li.pager-btn {
+    width: auto;
+    overflow: hidden;
+    height: 21px;
+  }
+  .pmmi-pager > li.pager-btn.disabled,
+  .pmmi-pager > li.pager-btn a {
+    text-decoration: none !important;
+  }
+  .pmmi-pager > li.pager-btn.disabled:before, .pmmi-pager > li.pager-btn.disabled:after,
+  .pmmi-pager > li.pager-btn a:before,
+  .pmmi-pager > li.pager-btn a:after {
+    width: 30px;
+  }
+  .pmmi-pager > li.pager-btn span {
+    font-size: 0;
+    color: transparent;
+    visibility: hidden;
+  }
+}
+
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
   .container-fluid {
     padding-left: 10px;
@@ -12571,7 +12689,7 @@ h1, .h1, h2, .h2, h3, .h3 {
     padding-left: 10px;
     padding-right: 10px;
   }
-  .col-md-5, .footer nav, .footer .block-audience-switcher,
+  .col-md-5, .footer nav, .footer .block-copyright-block, .footer .block-audience-switcher,
   .col-sm-5 {
     padding-left: 10px;
     padding-right: 10px;
@@ -12652,7 +12770,7 @@ h1, .h1, h2, .h2, h3, .h3 {
     padding-left: 25px;
     padding-right: 25px;
   }
-  .col-md-5, .footer nav, .footer .block-audience-switcher,
+  .col-md-5, .footer nav, .footer .block-copyright-block, .footer .block-audience-switcher,
   .col-sm-5 {
     padding-left: 25px;
     padding-right: 25px;
@@ -15281,7 +15399,91 @@ h1, .h1, h2, .h2, h3, .h3 {
   .region-content > article .view-empty .footer nav, .footer
   .region-content > article .view-empty nav, .user-pass-reset .view-empty .footer nav, .footer .user-pass-reset .view-empty nav,
   .user-login-form .view-empty .footer nav, .footer
-  .user-login-form .view-empty nav, .view-empty .view-empty .footer nav, .footer .view-empty .view-empty nav, .container .container .footer .block-audience-switcher, .footer .container .container .block-audience-switcher, .default-exposed-form form .container .footer .block-audience-switcher, .footer .default-exposed-form form .container .block-audience-switcher, .region-top .block.views-exposed-form form .container .footer .block-audience-switcher, .footer .region-top .block.views-exposed-form form .container .block-audience-switcher, .block-pmmi-search-library-block form .container .footer .block-audience-switcher, .footer .block-pmmi-search-library-block form .container .block-audience-switcher, .region-content > form .container .footer .block-audience-switcher, .footer .region-content > form .container .block-audience-switcher,
+  .user-login-form .view-empty nav, .view-empty .view-empty .footer nav, .footer .view-empty .view-empty nav, .container .container .footer .block-copyright-block, .footer .container .container .block-copyright-block, .default-exposed-form form .container .footer .block-copyright-block, .footer .default-exposed-form form .container .block-copyright-block, .region-top .block.views-exposed-form form .container .footer .block-copyright-block, .footer .region-top .block.views-exposed-form form .container .block-copyright-block, .block-pmmi-search-library-block form .container .footer .block-copyright-block, .footer .block-pmmi-search-library-block form .container .block-copyright-block, .region-content > form .container .footer .block-copyright-block, .footer .region-content > form .container .block-copyright-block,
+  .region-content > article .container .footer .block-copyright-block, .footer
+  .region-content > article .container .block-copyright-block, .user-pass-reset .container .footer .block-copyright-block, .footer .user-pass-reset .container .block-copyright-block,
+  .user-login-form .container .footer .block-copyright-block, .footer
+  .user-login-form .container .block-copyright-block, .view-empty .container .footer .block-copyright-block, .footer .view-empty .container .block-copyright-block, .container .default-exposed-form form .footer .block-copyright-block, .footer .container .default-exposed-form form .block-copyright-block, .default-exposed-form .container form .footer .block-copyright-block, .footer .default-exposed-form .container form .block-copyright-block, .default-exposed-form form form .footer .block-copyright-block, .footer .default-exposed-form form form .block-copyright-block, .region-top .block.views-exposed-form form .default-exposed-form form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form form .default-exposed-form form .block-copyright-block, .default-exposed-form .region-top .block.views-exposed-form form form .footer .block-copyright-block, .footer .default-exposed-form .region-top .block.views-exposed-form form form .block-copyright-block, .block-pmmi-search-library-block form .default-exposed-form form .footer .block-copyright-block, .footer .block-pmmi-search-library-block form .default-exposed-form form .block-copyright-block, .default-exposed-form .block-pmmi-search-library-block form form .footer .block-copyright-block, .footer .default-exposed-form .block-pmmi-search-library-block form form .block-copyright-block, .region-content > form .default-exposed-form form .footer .block-copyright-block, .footer .region-content > form .default-exposed-form form .block-copyright-block, .default-exposed-form .region-content > form form .footer .block-copyright-block, .footer .default-exposed-form .region-content > form form .block-copyright-block,
+  .region-content > article .default-exposed-form form .footer .block-copyright-block, .footer
+  .region-content > article .default-exposed-form form .block-copyright-block, .default-exposed-form
+  .region-content > article form .footer .block-copyright-block, .footer .default-exposed-form
+  .region-content > article form .block-copyright-block, .user-pass-reset .default-exposed-form form .footer .block-copyright-block, .footer .user-pass-reset .default-exposed-form form .block-copyright-block, .default-exposed-form .user-pass-reset form .footer .block-copyright-block, .footer .default-exposed-form .user-pass-reset form .block-copyright-block,
+  .user-login-form .default-exposed-form form .footer .block-copyright-block, .footer
+  .user-login-form .default-exposed-form form .block-copyright-block, .default-exposed-form
+  .user-login-form form .footer .block-copyright-block, .footer .default-exposed-form
+  .user-login-form form .block-copyright-block, .view-empty .default-exposed-form form .footer .block-copyright-block, .footer .view-empty .default-exposed-form form .block-copyright-block, .default-exposed-form .view-empty form .footer .block-copyright-block, .footer .default-exposed-form .view-empty form .block-copyright-block, .container .region-top .block.views-exposed-form form .footer .block-copyright-block, .footer .container .region-top .block.views-exposed-form form .block-copyright-block, .region-top .block.views-exposed-form .container form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form .container form .block-copyright-block, .default-exposed-form form .region-top .block.views-exposed-form form .footer .block-copyright-block, .footer .default-exposed-form form .region-top .block.views-exposed-form form .block-copyright-block, .region-top .block.views-exposed-form .default-exposed-form form form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form .default-exposed-form form form .block-copyright-block, .region-top .block.views-exposed-form form form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form form form .block-copyright-block, .block-pmmi-search-library-block form .region-top .block.views-exposed-form form .footer .block-copyright-block, .footer .block-pmmi-search-library-block form .region-top .block.views-exposed-form form .block-copyright-block, .region-top .block.views-exposed-form .block-pmmi-search-library-block form form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form .block-pmmi-search-library-block form form .block-copyright-block, .region-content > form .region-top .block.views-exposed-form form .footer .block-copyright-block, .footer .region-content > form .region-top .block.views-exposed-form form .block-copyright-block, .region-top .block.views-exposed-form .region-content > form form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form .region-content > form form .block-copyright-block,
+  .region-content > article .region-top .block.views-exposed-form form .footer .block-copyright-block, .footer
+  .region-content > article .region-top .block.views-exposed-form form .block-copyright-block, .region-top .block.views-exposed-form
+  .region-content > article form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form
+  .region-content > article form .block-copyright-block, .user-pass-reset .region-top .block.views-exposed-form form .footer .block-copyright-block, .footer .user-pass-reset .region-top .block.views-exposed-form form .block-copyright-block, .region-top .block.views-exposed-form .user-pass-reset form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form .user-pass-reset form .block-copyright-block,
+  .user-login-form .region-top .block.views-exposed-form form .footer .block-copyright-block, .footer
+  .user-login-form .region-top .block.views-exposed-form form .block-copyright-block, .region-top .block.views-exposed-form
+  .user-login-form form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form
+  .user-login-form form .block-copyright-block, .view-empty .region-top .block.views-exposed-form form .footer .block-copyright-block, .footer .view-empty .region-top .block.views-exposed-form form .block-copyright-block, .region-top .block.views-exposed-form .view-empty form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form .view-empty form .block-copyright-block, .container .block-pmmi-search-library-block form .footer .block-copyright-block, .footer .container .block-pmmi-search-library-block form .block-copyright-block, .block-pmmi-search-library-block .container form .footer .block-copyright-block, .footer .block-pmmi-search-library-block .container form .block-copyright-block, .default-exposed-form form .block-pmmi-search-library-block form .footer .block-copyright-block, .footer .default-exposed-form form .block-pmmi-search-library-block form .block-copyright-block, .block-pmmi-search-library-block .default-exposed-form form form .footer .block-copyright-block, .footer .block-pmmi-search-library-block .default-exposed-form form form .block-copyright-block, .region-top .block.views-exposed-form form .block-pmmi-search-library-block form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form form .block-pmmi-search-library-block form .block-copyright-block, .block-pmmi-search-library-block .region-top .block.views-exposed-form form form .footer .block-copyright-block, .footer .block-pmmi-search-library-block .region-top .block.views-exposed-form form form .block-copyright-block, .block-pmmi-search-library-block form form .footer .block-copyright-block, .footer .block-pmmi-search-library-block form form .block-copyright-block, .region-content > form .block-pmmi-search-library-block form .footer .block-copyright-block, .footer .region-content > form .block-pmmi-search-library-block form .block-copyright-block, .block-pmmi-search-library-block .region-content > form form .footer .block-copyright-block, .footer .block-pmmi-search-library-block .region-content > form form .block-copyright-block,
+  .region-content > article .block-pmmi-search-library-block form .footer .block-copyright-block, .footer
+  .region-content > article .block-pmmi-search-library-block form .block-copyright-block, .block-pmmi-search-library-block
+  .region-content > article form .footer .block-copyright-block, .footer .block-pmmi-search-library-block
+  .region-content > article form .block-copyright-block, .user-pass-reset .block-pmmi-search-library-block form .footer .block-copyright-block, .footer .user-pass-reset .block-pmmi-search-library-block form .block-copyright-block, .block-pmmi-search-library-block .user-pass-reset form .footer .block-copyright-block, .footer .block-pmmi-search-library-block .user-pass-reset form .block-copyright-block,
+  .user-login-form .block-pmmi-search-library-block form .footer .block-copyright-block, .footer
+  .user-login-form .block-pmmi-search-library-block form .block-copyright-block, .block-pmmi-search-library-block
+  .user-login-form form .footer .block-copyright-block, .footer .block-pmmi-search-library-block
+  .user-login-form form .block-copyright-block, .view-empty .block-pmmi-search-library-block form .footer .block-copyright-block, .footer .view-empty .block-pmmi-search-library-block form .block-copyright-block, .block-pmmi-search-library-block .view-empty form .footer .block-copyright-block, .footer .block-pmmi-search-library-block .view-empty form .block-copyright-block, .container .region-content > form .footer .block-copyright-block, .footer .container .region-content > form .block-copyright-block, .default-exposed-form form .region-content > form .footer .block-copyright-block, .footer .default-exposed-form form .region-content > form .block-copyright-block, .region-top .block.views-exposed-form form .region-content > form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form form .region-content > form .block-copyright-block, .block-pmmi-search-library-block form .region-content > form .footer .block-copyright-block, .footer .block-pmmi-search-library-block form .region-content > form .block-copyright-block, .region-content > form .region-content > form .footer .block-copyright-block, .footer .region-content > form .region-content > form .block-copyright-block,
+  .region-content > article .region-content > form .footer .block-copyright-block, .footer
+  .region-content > article .region-content > form .block-copyright-block, .user-pass-reset .region-content > form .footer .block-copyright-block, .footer .user-pass-reset .region-content > form .block-copyright-block,
+  .user-login-form .region-content > form .footer .block-copyright-block, .footer
+  .user-login-form .region-content > form .block-copyright-block, .view-empty .region-content > form .footer .block-copyright-block, .footer .view-empty .region-content > form .block-copyright-block, .container
+  .region-content > article .footer .block-copyright-block, .footer .container
+  .region-content > article .block-copyright-block, .default-exposed-form form
+  .region-content > article .footer .block-copyright-block, .footer .default-exposed-form form
+  .region-content > article .block-copyright-block, .region-top .block.views-exposed-form form
+  .region-content > article .footer .block-copyright-block, .footer .region-top .block.views-exposed-form form
+  .region-content > article .block-copyright-block, .block-pmmi-search-library-block form
+  .region-content > article .footer .block-copyright-block, .footer .block-pmmi-search-library-block form
+  .region-content > article .block-copyright-block, .region-content > form
+  .region-content > article .footer .block-copyright-block, .footer .region-content > form
+  .region-content > article .block-copyright-block,
+  .region-content > article
+  .region-content > article .footer .block-copyright-block, .footer
+  .region-content > article
+  .region-content > article .block-copyright-block, .user-pass-reset
+  .region-content > article .footer .block-copyright-block, .footer .user-pass-reset
+  .region-content > article .block-copyright-block,
+  .user-login-form
+  .region-content > article .footer .block-copyright-block, .footer
+  .user-login-form
+  .region-content > article .block-copyright-block, .view-empty
+  .region-content > article .footer .block-copyright-block, .footer .view-empty
+  .region-content > article .block-copyright-block, .container .user-pass-reset .footer .block-copyright-block, .footer .container .user-pass-reset .block-copyright-block, .default-exposed-form form .user-pass-reset .footer .block-copyright-block, .footer .default-exposed-form form .user-pass-reset .block-copyright-block, .region-top .block.views-exposed-form form .user-pass-reset .footer .block-copyright-block, .footer .region-top .block.views-exposed-form form .user-pass-reset .block-copyright-block, .block-pmmi-search-library-block form .user-pass-reset .footer .block-copyright-block, .footer .block-pmmi-search-library-block form .user-pass-reset .block-copyright-block, .region-content > form .user-pass-reset .footer .block-copyright-block, .footer .region-content > form .user-pass-reset .block-copyright-block,
+  .region-content > article .user-pass-reset .footer .block-copyright-block, .footer
+  .region-content > article .user-pass-reset .block-copyright-block, .user-pass-reset .user-pass-reset .footer .block-copyright-block, .footer .user-pass-reset .user-pass-reset .block-copyright-block,
+  .user-login-form .user-pass-reset .footer .block-copyright-block, .footer
+  .user-login-form .user-pass-reset .block-copyright-block, .view-empty .user-pass-reset .footer .block-copyright-block, .footer .view-empty .user-pass-reset .block-copyright-block, .container
+  .user-login-form .footer .block-copyright-block, .footer .container
+  .user-login-form .block-copyright-block, .default-exposed-form form
+  .user-login-form .footer .block-copyright-block, .footer .default-exposed-form form
+  .user-login-form .block-copyright-block, .region-top .block.views-exposed-form form
+  .user-login-form .footer .block-copyright-block, .footer .region-top .block.views-exposed-form form
+  .user-login-form .block-copyright-block, .block-pmmi-search-library-block form
+  .user-login-form .footer .block-copyright-block, .footer .block-pmmi-search-library-block form
+  .user-login-form .block-copyright-block, .region-content > form
+  .user-login-form .footer .block-copyright-block, .footer .region-content > form
+  .user-login-form .block-copyright-block,
+  .region-content > article
+  .user-login-form .footer .block-copyright-block, .footer
+  .region-content > article
+  .user-login-form .block-copyright-block, .user-pass-reset
+  .user-login-form .footer .block-copyright-block, .footer .user-pass-reset
+  .user-login-form .block-copyright-block,
+  .user-login-form
+  .user-login-form .footer .block-copyright-block, .footer
+  .user-login-form
+  .user-login-form .block-copyright-block, .view-empty
+  .user-login-form .footer .block-copyright-block, .footer .view-empty
+  .user-login-form .block-copyright-block, .container .view-empty .footer .block-copyright-block, .footer .container .view-empty .block-copyright-block, .default-exposed-form form .view-empty .footer .block-copyright-block, .footer .default-exposed-form form .view-empty .block-copyright-block, .region-top .block.views-exposed-form form .view-empty .footer .block-copyright-block, .footer .region-top .block.views-exposed-form form .view-empty .block-copyright-block, .block-pmmi-search-library-block form .view-empty .footer .block-copyright-block, .footer .block-pmmi-search-library-block form .view-empty .block-copyright-block, .region-content > form .view-empty .footer .block-copyright-block, .footer .region-content > form .view-empty .block-copyright-block,
+  .region-content > article .view-empty .footer .block-copyright-block, .footer
+  .region-content > article .view-empty .block-copyright-block, .user-pass-reset .view-empty .footer .block-copyright-block, .footer .user-pass-reset .view-empty .block-copyright-block,
+  .user-login-form .view-empty .footer .block-copyright-block, .footer
+  .user-login-form .view-empty .block-copyright-block, .view-empty .view-empty .footer .block-copyright-block, .footer .view-empty .view-empty .block-copyright-block, .container .container .footer .block-audience-switcher, .footer .container .container .block-audience-switcher, .default-exposed-form form .container .footer .block-audience-switcher, .footer .default-exposed-form form .container .block-audience-switcher, .region-top .block.views-exposed-form form .container .footer .block-audience-switcher, .footer .region-top .block.views-exposed-form form .container .block-audience-switcher, .block-pmmi-search-library-block form .container .footer .block-audience-switcher, .footer .block-pmmi-search-library-block form .container .block-audience-switcher, .region-content > form .container .footer .block-audience-switcher, .footer .region-content > form .container .block-audience-switcher,
   .region-content > article .container .footer .block-audience-switcher, .footer
   .region-content > article .container .block-audience-switcher, .user-pass-reset .container .footer .block-audience-switcher, .footer .user-pass-reset .container .block-audience-switcher,
   .user-login-form .container .footer .block-audience-switcher, .footer
@@ -17102,10 +17304,6 @@ html, body {
   text-align: right;
 }
 
-.footer .social-links span a {
-  text-indent: 9999em;
-}
-
 @media screen and (max-width: 1199px) {
   .footer {
     font-size: 0.8125rem;
@@ -17121,6 +17319,7 @@ html, body {
     margin-top: -90px;
   }
   .footer nav,
+  .footer .block-copyright-block,
   .footer .block-audience-select {
     margin-bottom: 5px;
   }
@@ -17149,6 +17348,9 @@ html, body {
   }
   .footer nav .nav li:first-child:after {
     display: none;
+  }
+  .footer .block-copyright-block {
+    margin-bottom: 7px;
   }
   .footer .block-audience-switcher {
     margin-bottom: 7px;
@@ -19590,6 +19792,10 @@ div.view {
   margin: 0 15px 0 0;
 }
 
+.block-social-media-footer .social-links span a {
+  text-indent: 9999em;
+}
+
 .block-social-media-footer .social-links span:last-child {
   margin: 0;
 }
@@ -19717,6 +19923,43 @@ div.view {
     min-width: 0;
     width: 100%;
   }
+}
+
+.article-node .article-font-size, .article-node .node-body, .article-node .author-info, .article-node .date, .article-node .twitter-link, .article-node .article-release {
+  font-size: 19px;
+  font-size: 1.1875rem;
+}
+
+@media screen and (max-width: 1023px) {
+  .article-node .article-font-size, .article-node .node-body, .article-node .author-info, .article-node .date, .article-node .twitter-link, .article-node .article-release {
+    font-size: 1.0625rem;
+  }
+}
+
+.article-node .author-info {
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+.article-node .author-info:before {
+  font-style: normal;
+  content: '###';
+  font-weight: 800;
+  display: block;
+  margin: 35px 0;
+  text-align: center;
+}
+
+@media screen and (max-width: 1023px) {
+  .article-node .author-info:before {
+    font-weight: 500;
+  }
+}
+
+.article-node .date,
+.article-node .twitter-link,
+.article-node .article-release {
+  margin-bottom: 20px;
 }
 
 .cert-info {
