@@ -20,6 +20,9 @@ use Drupal\Core\Form\FormStateInterface;
 function pmmi_bootstrap_preprocess_html(&$variables) {
   $front_class = (\Drupal::service('path.matcher')->isFrontPage()) ? 'front' : 'not-front';
   $variables['attributes']['class'][] = $front_class;
+  if (!\Drupal::routeMatch()->getParameter('node') && !\Drupal::routeMatch()->getParameter('page_manager_page_variant')) {
+    $variables['attributes']['class'][] = 'use-container';
+  }
 }
 
 /**
