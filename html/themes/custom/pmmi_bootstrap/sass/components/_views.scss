@@ -179,3 +179,12 @@ div.view {
     }
   }
 }
+
+.block-views-blockpage-videos-block-category {
+  @include tablet-max {
+    &,
+    div.view {
+      margin-bottom: 0;
+    }
+  }
+}
