@@ -134,6 +134,11 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_news_category
+  state:
+    label: State
+    datasource_id: 'entity:node'
+    property_path: state
+    type: string
 datasource_settings:
   'entity:node':
     bundles:
@@ -143,6 +148,7 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
+  state: {  }
   country: {  }
   pmmi_shows: {  }
   ignorecase:
