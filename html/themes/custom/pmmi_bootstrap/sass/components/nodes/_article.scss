@@ -63,7 +63,6 @@
     font-style: italic;
     margin-bottom: 40px;
     &:before {
-      @extend .paragraph1;
       font-style: normal;
       content: '###';
       font-weight: 800;

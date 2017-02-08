@@ -14,16 +14,6 @@ label: Panels
 variant: panels_variant
 variant_settings:
   blocks:
-    2ed74f3c-5dd8-405a-894a-a9094995cfe6:
-      id: 'views_exposed_filter_block:search_page-block_1'
-      label: ''
-      provider: views
-      label_display: visible
-      views_label: ''
-      region: top
-      weight: 0
-      uuid: 2ed74f3c-5dd8-405a-894a-a9094995cfe6
-      context_mapping: {  }
     015a88f4-5074-48e3-b0df-6e031abe3a03:
       id: 'views_block:search_page-block_1'
       label: ''
@@ -39,14 +29,24 @@ variant_settings:
       id: pmmi_search_result_title_block
       label: 'PMMI Search Result Title block'
       provider: pmmi_search
-      label_display: visible
+      label_display: '0'
       search_title: 'Search Results for:'
       search_path: 'internal:/search?text=text'
       search_identifier: text
-      region: top
-      weight: 0
+      region: oneone
+      weight: -1
       block_title: ''
       uuid: a44b6662-19e9-48ff-a5f7-f80ea9e365dc
+      context_mapping: {  }
+    b29428c5-d1ca-447e-87ff-dc310e75247d:
+      id: 'views_exposed_filter_block:search_page-block_1'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      region: top
+      weight: -10
+      uuid: b29428c5-d1ca-447e-87ff-dc310e75247d
       context_mapping: {  }
   id: panels_variant
   uuid: fb36ba8b-4370-4280-a936-ee36b0721fe3
