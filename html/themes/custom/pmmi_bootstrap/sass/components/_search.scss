@@ -114,3 +114,25 @@
     }
   }
 }
+
+/**
+ * Main search page.
+ */
+.block-views-exposed-filter-blocksearch-page-block-1 {
+  .form-type-textfield {
+    display: none;
+  }
+}
+.block-views-blocksearch-page-block-1 {
+  .views-row {
+    margin-bottom: 30px;
+  }
+  .views-field-body {
+    @extend .paragraph2;
+  }
+  @include mobile {
+    .views-row {
+      margin-bottom: 20px;
+    }
+  }
+}

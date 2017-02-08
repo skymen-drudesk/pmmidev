@@ -13,7 +13,10 @@
   font-style: normal;
 }
 
-.fa, .text-link:before, .linked-list-item a:before, .block-links .field--name-field-links .field--item a:before, .content-left .block-text.mode-default .link a:before, .accordion-item .field-name-field-link a:before, .school-info .website a:before, .school-info .email .field:before, .selector:before, .content ul li:before, .pmmi-pager .pager-previous.disabled:before,
+.fa, .text-link:before, .linked-list-item a:before, .block-links .field--name-field-links .field--item a:before, .content-left .block-text.mode-default .link a:before, .accordion-item .field-name-field-link a:before, .school-info .website a:before, .school-info .email .field:before, .selector:before, .bullet-list ul li:before, .views-field-body ul li:before,
+.block-body ul li:before,
+.node-body ul li:before,
+.content ul li:before, .pmmi-pager .pager-previous.disabled:before,
 .pmmi-pager .pager-previous a:before, .pmmi-pager .pager-next.disabled:after,
 .pmmi-pager .pager-next a:after, .block-pmmi-twitter-block .block-title:before, .block-pmmi-facebook-block .block-title:before, .audience-select .audience-link:after, .footer .block-audience-switcher .audience-switcher a:before, .main-nav .header-search button, .feature-block .attachment-after .more-link a:before,
 .feature-block .attachment-after .views-row a:before {
@@ -89,14 +92,20 @@
   float: right;
 }
 
-.fa.fa-pull-left, .fa-pull-left.text-link:before, .linked-list-item a.fa-pull-left:before, .block-links .field--name-field-links .field--item a.fa-pull-left:before, .content-left .block-text.mode-default .link a.fa-pull-left:before, .accordion-item .field-name-field-link a.fa-pull-left:before, .school-info .website a.fa-pull-left:before, .school-info .email .fa-pull-left.field:before, .fa-pull-left.selector:before, .content ul li.fa-pull-left:before, .pmmi-pager .fa-pull-left.pager-previous.disabled:before,
+.fa.fa-pull-left, .fa-pull-left.text-link:before, .linked-list-item a.fa-pull-left:before, .block-links .field--name-field-links .field--item a.fa-pull-left:before, .content-left .block-text.mode-default .link a.fa-pull-left:before, .accordion-item .field-name-field-link a.fa-pull-left:before, .school-info .website a.fa-pull-left:before, .school-info .email .fa-pull-left.field:before, .fa-pull-left.selector:before, .bullet-list ul li.fa-pull-left:before, .views-field-body ul li.fa-pull-left:before,
+.block-body ul li.fa-pull-left:before,
+.node-body ul li.fa-pull-left:before,
+.content ul li.fa-pull-left:before, .pmmi-pager .fa-pull-left.pager-previous.disabled:before,
 .pmmi-pager .pager-previous a.fa-pull-left:before, .pmmi-pager .fa-pull-left.pager-next.disabled:after,
 .pmmi-pager .pager-next a.fa-pull-left:after, .block-pmmi-twitter-block .fa-pull-left.block-title:before, .block-pmmi-facebook-block .fa-pull-left.block-title:before, .audience-select .fa-pull-left.audience-link:after, .footer .block-audience-switcher .audience-switcher a.fa-pull-left:before, .main-nav .header-search button.fa-pull-left, .feature-block .attachment-after .more-link a.fa-pull-left:before,
 .feature-block .attachment-after .views-row a.fa-pull-left:before {
   margin-right: .3em;
 }
 
-.fa.fa-pull-right, .fa-pull-right.text-link:before, .linked-list-item a.fa-pull-right:before, .block-links .field--name-field-links .field--item a.fa-pull-right:before, .content-left .block-text.mode-default .link a.fa-pull-right:before, .accordion-item .field-name-field-link a.fa-pull-right:before, .school-info .website a.fa-pull-right:before, .school-info .email .fa-pull-right.field:before, .fa-pull-right.selector:before, .content ul li.fa-pull-right:before, .pmmi-pager .fa-pull-right.pager-previous.disabled:before,
+.fa.fa-pull-right, .fa-pull-right.text-link:before, .linked-list-item a.fa-pull-right:before, .block-links .field--name-field-links .field--item a.fa-pull-right:before, .content-left .block-text.mode-default .link a.fa-pull-right:before, .accordion-item .field-name-field-link a.fa-pull-right:before, .school-info .website a.fa-pull-right:before, .school-info .email .fa-pull-right.field:before, .fa-pull-right.selector:before, .bullet-list ul li.fa-pull-right:before, .views-field-body ul li.fa-pull-right:before,
+.block-body ul li.fa-pull-right:before,
+.node-body ul li.fa-pull-right:before,
+.content ul li.fa-pull-right:before, .pmmi-pager .fa-pull-right.pager-previous.disabled:before,
 .pmmi-pager .pager-previous a.fa-pull-right:before, .pmmi-pager .fa-pull-right.pager-next.disabled:after,
 .pmmi-pager .pager-next a.fa-pull-right:after, .block-pmmi-twitter-block .fa-pull-right.block-title:before, .block-pmmi-facebook-block .fa-pull-right.block-title:before, .audience-select .fa-pull-right.audience-link:after, .footer .block-audience-switcher .audience-switcher a.fa-pull-right:before, .main-nav .header-search button.fa-pull-right, .feature-block .attachment-after .more-link a.fa-pull-right:before,
 .feature-block .attachment-after .views-row a.fa-pull-right:before {
@@ -112,14 +121,20 @@
   float: left;
 }
 
-.fa.pull-left, .pull-left.text-link:before, .linked-list-item a.pull-left:before, .block-links .field--name-field-links .field--item a.pull-left:before, .content-left .block-text.mode-default .link a.pull-left:before, .accordion-item .field-name-field-link a.pull-left:before, .school-info .website a.pull-left:before, .school-info .email .pull-left.field:before, .pull-left.selector:before, .content ul li.pull-left:before, .pmmi-pager .pull-left.pager-previous.disabled:before,
+.fa.pull-left, .pull-left.text-link:before, .linked-list-item a.pull-left:before, .block-links .field--name-field-links .field--item a.pull-left:before, .content-left .block-text.mode-default .link a.pull-left:before, .accordion-item .field-name-field-link a.pull-left:before, .school-info .website a.pull-left:before, .school-info .email .pull-left.field:before, .pull-left.selector:before, .bullet-list ul li.pull-left:before, .views-field-body ul li.pull-left:before,
+.block-body ul li.pull-left:before,
+.node-body ul li.pull-left:before,
+.content ul li.pull-left:before, .pmmi-pager .pull-left.pager-previous.disabled:before,
 .pmmi-pager .pager-previous a.pull-left:before, .pmmi-pager .pull-left.pager-next.disabled:after,
 .pmmi-pager .pager-next a.pull-left:after, .block-pmmi-twitter-block .pull-left.block-title:before, .block-pmmi-facebook-block .pull-left.block-title:before, .audience-select .pull-left.audience-link:after, .footer .block-audience-switcher .audience-switcher a.pull-left:before, .main-nav .header-search button.pull-left, .feature-block .attachment-after .more-link a.pull-left:before,
 .feature-block .attachment-after .views-row a.pull-left:before {
   margin-right: .3em;
 }
 
-.fa.pull-right, .pull-right.text-link:before, .linked-list-item a.pull-right:before, .block-links .field--name-field-links .field--item a.pull-right:before, .content-left .block-text.mode-default .link a.pull-right:before, .accordion-item .field-name-field-link a.pull-right:before, .school-info .website a.pull-right:before, .school-info .email .pull-right.field:before, .pull-right.selector:before, .content ul li.pull-right:before, .pmmi-pager .pull-right.pager-previous.disabled:before,
+.fa.pull-right, .pull-right.text-link:before, .linked-list-item a.pull-right:before, .block-links .field--name-field-links .field--item a.pull-right:before, .content-left .block-text.mode-default .link a.pull-right:before, .accordion-item .field-name-field-link a.pull-right:before, .school-info .website a.pull-right:before, .school-info .email .pull-right.field:before, .pull-right.selector:before, .bullet-list ul li.pull-right:before, .views-field-body ul li.pull-right:before,
+.block-body ul li.pull-right:before,
+.node-body ul li.pull-right:before,
+.content ul li.pull-right:before, .pmmi-pager .pull-right.pager-previous.disabled:before,
 .pmmi-pager .pager-previous a.pull-right:before, .pmmi-pager .pull-right.pager-next.disabled:after,
 .pmmi-pager .pager-next a.pull-right:after, .block-pmmi-twitter-block .pull-right.block-title:before, .block-pmmi-facebook-block .pull-right.block-title:before, .audience-select .pull-right.audience-link:after, .footer .block-audience-switcher .audience-switcher a.pull-right:before, .main-nav .header-search button.pull-right, .feature-block .attachment-after .more-link a.pull-right:before,
 .feature-block .attachment-after .views-row a.pull-right:before {
@@ -952,7 +967,10 @@
   content: "";
 }
 
-.fa-square:before, .content ul li li:before {
+.fa-square:before, .bullet-list ul li li:before, .views-field-body ul li li:before,
+.block-body ul li li:before,
+.node-body ul li li:before,
+.content ul li li:before {
   content: "";
 }
 
@@ -1235,7 +1253,10 @@
   content: "";
 }
 
-.fa-circle:before, .content ul li:before {
+.fa-circle:before, .bullet-list ul li:before, .views-field-body ul li:before,
+.block-body ul li:before,
+.node-body ul li:before,
+.content ul li:before {
   content: "";
 }
 
@@ -12086,10 +12107,10 @@ fieldset[disabled] a.focus {
   clear: both;
 }
 
-.inherited-p p, .paragraph1 p, p p, .article-node .node-body p, .article-node .author-info p, .article-node .author-info:before p, .article-node .date p,
+.inherited-p p, .paragraph1 p, p p, .article-node .node-body p, .article-node .author-info p, .article-node .date p,
 .article-node .twitter-link p,
 .article-node .article-release p, .node-body p, .node-bold-label p,
-.featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
+.featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .block-views-blocksearch-page-block-1 .views-field-body p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
 .layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .cert-info li .field--item p, .mode-default.school p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
 .block-pack-expo-show .date p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
   font-size: inherit;
@@ -12098,7 +12119,7 @@ fieldset[disabled] a.focus {
   color: inherit;
 }
 
-.paragraph1, p, .article-node .node-body, .article-node .author-info, .article-node .author-info:before, .article-node .date,
+.paragraph1, p, .article-node .node-body, .article-node .author-info, .article-node .date,
 .article-node .twitter-link,
 .article-node .article-release, .node-body, .node-bold-label,
 .featured-speaker, .school-node .focus, .school-node .content-verified {
@@ -12110,7 +12131,7 @@ fieldset[disabled] a.focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .paragraph1, p, .article-node .node-body, .article-node .author-info, .article-node .author-info:before, .article-node .date,
+  .paragraph1, p, .article-node .node-body, .article-node .author-info, .article-node .date,
   .article-node .twitter-link,
   .article-node .article-release, .node-body, .node-bold-label,
   .featured-speaker, .school-node .focus, .school-node .content-verified {
@@ -12119,7 +12140,7 @@ fieldset[disabled] a.focus {
   }
 }
 
-.paragraph2, .block-pmmi-twitter-block .block-title .subtitle, .block-pmmi-facebook-block .block-title .subtitle, .mode-default.video .field-name-body, .mode-default.video .field-name-field-featured-speaker, .mode-default.certification-test .field-name-body, .mode-default.certification-test .field-name-field-cert-test-price, .mode-default.certification-test .field-name-field-cert-test-text-price, .block-enticement .block-body, .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand .block-body, .block-social-media.mode-media-social-with-text .block-body, .block-text.mode-image-text .block-body, .article.mode-default .body, .accordion-item .body {
+.paragraph2, .block-pmmi-twitter-block .block-title .subtitle, .block-pmmi-facebook-block .block-title .subtitle, .block-views-blocksearch-page-block-1 .views-field-body, .mode-default.video .field-name-body, .mode-default.video .field-name-field-featured-speaker, .mode-default.certification-test .field-name-body, .mode-default.certification-test .field-name-field-cert-test-price, .mode-default.certification-test .field-name-field-cert-test-text-price, .block-enticement .block-body, .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand .block-body, .block-social-media.mode-media-social-with-text .block-body, .block-text.mode-image-text .block-body, .article.mode-default .body, .accordion-item .body {
   font-size: 16px;
   font-size: 1rem;
   line-height: 21px;
@@ -12128,7 +12149,7 @@ fieldset[disabled] a.focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .paragraph2, .block-pmmi-twitter-block .block-title .subtitle, .block-pmmi-facebook-block .block-title .subtitle, .mode-default.video .field-name-body, .mode-default.video .field-name-field-featured-speaker, .mode-default.certification-test .field-name-body, .mode-default.certification-test .field-name-field-cert-test-price, .mode-default.certification-test .field-name-field-cert-test-text-price, .block-enticement .block-body, .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand .block-body, .block-social-media.mode-media-social-with-text .block-body, .block-text.mode-image-text .block-body, .article.mode-default .body, .accordion-item .body {
+  .paragraph2, .block-pmmi-twitter-block .block-title .subtitle, .block-pmmi-facebook-block .block-title .subtitle, .block-views-blocksearch-page-block-1 .views-field-body, .mode-default.video .field-name-body, .mode-default.video .field-name-field-featured-speaker, .mode-default.certification-test .field-name-body, .mode-default.certification-test .field-name-field-cert-test-price, .mode-default.certification-test .field-name-field-cert-test-text-price, .block-enticement .block-body, .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand .block-body, .block-social-media.mode-media-social-with-text .block-body, .block-text.mode-image-text .block-body, .article.mode-default .body, .accordion-item .body {
     font-size: 0.9375rem;
     line-height: 1.1875rem;
   }
@@ -12425,20 +12446,34 @@ h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 0;
 }
 
+ol, ul {
+  padding-left: 20px;
+}
+
+.bullet-list ul li, .views-field-body ul li,
+.block-body ul li,
+.node-body ul li,
 .content ul li {
   list-style: none;
   position: relative;
 }
 
+.bullet-list ul li:before, .views-field-body ul li:before,
+.block-body ul li:before,
+.node-body ul li:before,
 .content ul li:before {
   font-size: 0.4em;
   margin: 1.5em 0 0 0;
   vertical-align: top;
   position: absolute;
   left: -2.5em;
+  top: -0.2em;
   color: #004e75;
 }
 
+.bullet-list ul li li:before, .views-field-body ul li li:before,
+.block-body ul li li:before,
+.node-body ul li li:before,
 .content ul li li:before {
   color: #869fbe;
 }
@@ -14783,6 +14818,23 @@ html, body {
 @media screen and (max-width: 767px) {
   .page-search_sales_agent_directory form {
     padding: 0;
+  }
+}
+
+/**
+ * Main search page.
+ */
+.block-views-exposed-filter-blocksearch-page-block-1 .form-type-textfield {
+  display: none;
+}
+
+.block-views-blocksearch-page-block-1 .views-row {
+  margin-bottom: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .block-views-blocksearch-page-block-1 .views-row {
+    margin-bottom: 20px;
   }
 }
 
