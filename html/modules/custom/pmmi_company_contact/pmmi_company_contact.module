@@ -168,13 +168,9 @@ function pmmi_company_contact_get_active_trade_shows() {
   $show_trades = &drupal_static(__FUNCTION__, array());
 
   if (!$show_trades) {
-    $query = \Drupal::entityQuery('taxonomy_term');
-    $group = $query->orConditionGroup()
-      ->condition('field_expired', 0)
-      ->condition('field_expired', NULL, 'IS NULL');
-
-    $tids = $query->condition('vid', PMMI_COMPANY_CONTACT_TRADE_SHOWS_VOC)
-      ->condition($group)
+    $tids = \Drupal::entityQuery('taxonomy_term')
+      ->condition('vid', PMMI_COMPANY_CONTACT_TRADE_SHOWS_VOC)
+      ->condition('field_date', REQUEST_TIME, '>')
       ->execute();
 
     if ($tids) {

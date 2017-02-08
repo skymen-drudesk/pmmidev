@@ -382,7 +382,22 @@ function pmmi_fields_update_8006() {
  * Remove 'Trade shows' field as it no longer needed.
  */
 function pmmi_fields_update_8007() {
-  $field = \Drupal::entityManager()->getStorage('field_config')->load('node.company.field_trade_shows');
-  $field->delete();
-  field_purge_field($field);
+  $field_config = \Drupal::entityManager()->getStorage('field_config');
+
+  if ($field = $field_config->load('node.company.field_trade_shows')) {
+    $field->delete();
+    field_purge_field($field);
+  }
+}
+
+/**
+ * Remove 'Expired' field as it no longer needed.
+ */
+function pmmi_fields_update_8008() {
+  $field_config = \Drupal::entityManager()->getStorage('field_config');
+
+  if ($field = $field_config->load('taxonomy_term.trade_shows.field_expired')) {
+    $field->delete();
+    field_purge_field($field);
+  }
 }

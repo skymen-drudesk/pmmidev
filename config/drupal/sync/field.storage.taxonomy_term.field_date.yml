@@ -1,13 +1,13 @@
-uuid: e520e517-34f5-437f-b310-39925402da14
+uuid: 150ac784-6fc5-4679-a761-5b2cf31a3016
 langcode: en
 status: true
 dependencies:
   module:
     - taxonomy
-id: taxonomy_term.field_expired
-field_name: field_expired
+id: taxonomy_term.field_date
+field_name: field_date
 entity_type: taxonomy_term
-type: boolean
+type: timestamp
 settings: {  }
 module: core
 locked: false
