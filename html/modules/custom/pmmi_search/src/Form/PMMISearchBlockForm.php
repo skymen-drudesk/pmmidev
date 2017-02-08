@@ -73,7 +73,7 @@ class PMMISearchBlockForm extends FormBase {
       '#type' => 'search',
       '#title' => $this->t('Search'),
       '#title_display' => 'invisible',
-      '#size' => 15,
+      '#size' => 30,
       '#default_value' => '',
       '#name' => $data['search_identifier'],
       '#attributes' => array('title' => $this->t('Enter the keywords you wish to search for.')),
