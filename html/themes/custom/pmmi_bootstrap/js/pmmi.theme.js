@@ -41,9 +41,9 @@
   Drupal.behaviors.pmmiVideoUpdateAjax = {
     attach: function (context, settings) {
       // Add ajax links to videos view on Video node.
-      if ($(context).is('.video-container')) {
+      if ($(context).find('#video-node-info').length) {
         $('html, body').animate({
-          scrollTop: $('.video-node .node-title').offset().top
+          scrollTop: $('#video-node-info').offset().top
         }, 100);
         $(window).trigger('update', {$videoFrame: $(context).find('iframe')});
       }
@@ -51,7 +51,7 @@
         $(this).find('.default-mode-node').once('ajax').each(function () {
           var $item = $(this);
           var nodeID = $item.data('item-id');
-          $item.find('.field-name-node-link a').prop('href', Drupal.url('pmmi-fields/replace-video/nojs/' + nodeID)).addClass('use-ajax');
+          $item.find('.field-name-node-link a, .field-name-field-video a').prop('href', Drupal.url('pmmi-fields/replace-video/nojs/' + nodeID)).addClass('use-ajax');
         });
         Drupal.behaviors.AJAX.attach(context, settings);
       });

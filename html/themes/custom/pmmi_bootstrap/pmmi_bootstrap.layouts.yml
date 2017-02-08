@@ -284,7 +284,30 @@ video:
       label: Left Block
     view_region:
       label: Videos View
-
+video_ajax:
+  label: Video ajax (view mode)
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/video-ajax
+  regions:
+    title:
+      label: Title
+    body:
+      label: Body
+    video:
+      label: Video
+    date:
+      label: Date
+    featured_speaker:
+      label: Featured Speaker
+video_default_mode:
+  label: Video default (view mode)
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/video-default
+  regions:
+    content:
+      label: Content
+    links:
+      label: Links
 oneone:
   label: Column 1-up (1 row of 1 column)
   category: PMMI: Columns

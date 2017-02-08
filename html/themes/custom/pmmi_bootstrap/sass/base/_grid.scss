@@ -32,7 +32,7 @@ $desktop_width: $container-md;
 @include tablet {
   @include prepare-layout($tablet_width, $gutter-width-tablet);
   .container {
-    .container {
+    .containers .container {
       padding-left: $gutter-width-tablet-deep;
       padding-right: $gutter-width-tablet-deep;
       @include prepare-layout($tablet_width, $gutter-width-tablet-deep);
