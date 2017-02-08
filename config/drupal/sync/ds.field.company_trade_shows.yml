@@ -1,17 +1,16 @@
-id: videos_left_block
-label: 'Videos left block'
-ui_limit: 'video|*'
+id: company_trade_shows
+label: 'Company trade shows'
+ui_limit: 'company|*'
 properties:
-  block: 'views_block:page_videos_about-video_type_about'
+  block: 'views_block:company_trade_shows_contacts-block_1'
   use_block_title: false
   config:
-    id: 'views_block:page_videos_about-video_type_about'
+    id: 'views_block:company_trade_shows_contacts-block_1'
     label: ''
     provider: views
     label_display: visible
     views_label: ''
     items_per_page: none
-    context_mapping: {  }
 type: block
 type_label: 'Block field'
 entities:

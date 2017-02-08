@@ -74,7 +74,7 @@ function pmmi_company_contact_contacts_submit_handler($form, FormStateInterface 
       // Create contact entity of it doesn't exist.
       elseif ($trade_shows[$checkbox] && !$contact) {
         $data = array(
-          'name' => pmmi_company_contact_name_generate($company_id, $tid),
+          'name' => t('Contact @nid-@tid', array('@nid' => $company_id, '@tid' => $tid)),
           'field_name' => array('value' => $trade_shows['contacts_' . $tid]['name']),
           'field_title' => array('value' => $trade_shows['contacts_' . $tid]['title']),
           'field_email' => array('value' => $trade_shows['contacts_' . $tid]['email']),
@@ -206,28 +206,4 @@ function pmmi_company_contact_get_contacts($tid, $nid = NULL) {
   }
 
   return $contact_entity;
-}
-
-/**
- * Helper function to generate contact name.
- *
- * @param $nid integer
- *   The company ID.
- * @param $tid integer
- *   The trade show ID.
- *
- * @return string
- *   The title of contact entity.
- */
-function pmmi_company_contact_name_generate($nid, $tid) {
-  $name = '';
-
-  $node = \Drupal::entityTypeManager()->getStorage('node')->load($nid);
-  $term = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($tid);
-
-  if ($node && $term) {
-    $name = implode(' | ', array($node->getTitle(), $term->getName()));
-  }
-
-  return $name;
 }

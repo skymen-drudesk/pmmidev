@@ -11,12 +11,20 @@
   .general {
     font-size: $r20;
     margin-bottom: 20px;
-    .address-simple, .field--name-field-website-url {
+    .address-simple,
+    .field--name-field-website-url {
       float: left;
-      &:after {
+    }
+    .field--name-field-main-phone-number,
+    .field--name-field-general-company-email {
+      &:before {
         content: ' \2022 \A0';
         color: $blue;
+        margin-left: 5px;
       }
+    }
+    .line-2 {
+      clear: left;
     }
   }
   .row-wrapper, .contacts, .services{
@@ -46,6 +54,10 @@
       padding: 16px;
       max-width: 249px;
       word-wrap: break-word;
+      .field--name-field-primary-contact-first-name,
+      .field--name-field-primary-contact-last-name {
+        display: inline-block;
+      }
     }
     .address {
       margin-bottom: 0px;
@@ -64,8 +76,10 @@
     margin: 10px 0;
   }
   .footer-reg {
-    .block-label {
+    .view-header p {
       margin-bottom: 10px;
+      font-weight: 800;
+      font-size: $r18;
     }
     .views-row {
       width: 50%;
@@ -84,20 +98,15 @@
           text-transform: uppercase;
           font-size: $r14;
           font-weight: bold;
-          margin-right: 10px;
+          width: 80px;
+          display: inline-block;
+          text-align: right;
         }
       }
-      .views-field-field-name {
-        margin-left: 14px;
-      }
       .views-field-field-title {
-        margin-left: 19px;
         .field-content {
           font-style: italic;
         }
-      }
-      .views-field-field-email {
-        margin-left: 13px;
       }
     }
   }

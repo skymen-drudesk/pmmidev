@@ -66,7 +66,8 @@ class ViewfieldWidgetWithMore extends ViewfieldWidget {
     }
     if (isset($view_name)) {
       $view = explode('|', $view_name);
-      $view_instance = $this->getView($view[0], $view[1])->preview();
+      $view_object = $this->getView($view[0], $view[1]);
+      $view_instance = $view_object->preview();
       $saved_settings = $this->getSavedSettings();
 
       $element['view_override_title'] = array(
@@ -88,14 +89,17 @@ class ViewfieldWidgetWithMore extends ViewfieldWidget {
       $element['more'] = array(
         '#type' => 'container',
       );
-      $this->prepareFormElements($element, $view_instance['#view']->display_handler, $view[1]);
-
-      foreach (['attachment_after', 'attachment_before'] as $attachment_position) {
-        if (!empty($view_instance['#view']->{$attachment_position})) {
-          $attachment = $view_instance['#view']->{$attachment_position}[0]['#view'];
-          $this->prepareFormElements($element, $attachment->display_handler, $attachment->current_display, $attachment_position);
+      if (!empty($view_instance)) {
+        $this->prepareFormElements($element, $view_instance['#view']->display_handler, $view[1]);
+        foreach (['attachment_after', 'attachment_before'] as $attachment_position) {
+          if (!empty($view_instance['#view']->{$attachment_position})) {
+            $attachment = $view_instance['#view']->{$attachment_position}[0]['#view'];
+            $this->prepareFormElements($element, $attachment->display_handler, $attachment->current_display, $attachment_position);
+          }
         }
-
+      }
+      else {
+        $this->prepareFormElements($element, $view_object->display_handler, $view[1]);
       }
     }
 

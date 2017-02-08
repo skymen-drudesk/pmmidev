@@ -38,14 +38,10 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
-      industries_served:
-        - field_industries_served_other
-        - field_industries_served
+      image_header:
+        - 'dynamic_block_field:node-sales_agent_directory_image_head'
       after_sales:
         - field_after_sales_service
-      equipment_sold:
-        - field_equipment_sold_type_other
-        - field_equipment_sold_type
       title:
         - node_title
       general_line_1:
@@ -68,11 +64,28 @@ third_party_settings:
         - field_fax_number
       company_description:
         - field_company_description
-      image_header:
+      industries_served:
+        - field_industries_served
+        - field_industries_served_other
+      equipment_sold:
+        - field_equipment_sold_type
+        - field_equipment_sold_type_other
+      footer_reg:
+        - 'dynamic_block_field:node-company_trade_shows'
     fields:
+      'dynamic_block_field:node-company_trade_shows':
+        plugin_id: 'dynamic_block_field:node-company_trade_shows'
+        weight: 23
+        label: hidden
+        formatter: default
+      'dynamic_block_field:node-sales_agent_directory_image_head':
+        plugin_id: 'dynamic_block_field:node-sales_agent_directory_image_head'
+        weight: 0
+        label: hidden
+        formatter: default
       node_title:
         plugin_id: node_title
-        weight: 0
+        weight: 1
         label: hidden
         formatter: default
 id: node.company.default
@@ -81,7 +94,7 @@ bundle: company
 mode: default
 content:
   field_address:
-    weight: 10
+    weight: 11
     label: hidden
     settings: {  }
     third_party_settings: {  }
@@ -96,20 +109,20 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
   field_business_lines:
-    weight: 5
+    weight: 6
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
   field_company_description:
-    weight: 12
+    weight: 13
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
   field_equipment_sold_type:
     type: entity_reference_label
-    weight: 0
+    weight: 16
     label: hidden
     settings:
       link: false
@@ -124,12 +137,12 @@ content:
             classes: {  }
   field_equipment_sold_type_other:
     type: basic_string
-    weight: 0
+    weight: 17
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_fax_number:
-    weight: 11
+    weight: 12
     label: inline
     settings:
       link_to_entity: false
@@ -143,14 +156,14 @@ content:
             classes: {  }
     type: string
   field_general_company_email:
-    weight: 3
+    weight: 4
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: email_mailto
   field_industries_served:
     type: entity_reference_label
-    weight: 0
+    weight: 14
     label: hidden
     settings:
       link: false
@@ -165,51 +178,51 @@ content:
             classes: {  }
   field_industries_served_other:
     type: basic_string
-    weight: 0
+    weight: 15
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_main_phone_number:
-    weight: 1
+    weight: 2
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
   field_manufacturers_represented:
-    weight: 6
+    weight: 7
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
   field_primary_contact_email:
-    weight: 9
+    weight: 10
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: email_mailto
   field_primary_contact_first_name:
-    weight: 7
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-  field_primary_contact_last_name:
     weight: 8
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+  field_primary_contact_last_name:
+    weight: 9
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
   field_territory_served:
-    weight: 4
+    weight: 5
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: country_area_plain
   field_website_url:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       trim_length: 80

@@ -136,31 +136,13 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
         array_unshift($vars['content']['general_line_1'], $new_element);
       }
 
-      // Attach "Trade shows" view to the "Footer" region.
-      if ($view = Views::getView('company_trade_shows_contacts')) {
-        $view->setDisplay('block_1');
-        $view->setArguments([$node->id()]);
-        $view->preExecute();
-        $view->execute();
-
-        if ($content = $view->render()) {
-          $the_title_render_array = [
-            '#markup' => t('Attending upcoming trade shows'),
-            '#prefix' => '<div class="block-label">',
-            '#suffix' => '</div>',
-          ];
-
-          $vars['content']['footer'][] = $the_title_render_array;
-          $vars['content']['footer'][] = $content;
-        }
-      }
-
       // 'Profile updated' section.
       $changed = $node->getChangedTime();
-      $vars['content']['footer'][] = array(
+      $vars['content']['footer_reg'][] = array(
         '#markup' => t('Profile last updated @date', array('@date' => date('M. n, Y', $changed))),
         '#prefix' => '<div class="profile-updated">',
         '#suffix' => '</div>',
+        '#weight' => 100,
       );
       break;
 
@@ -318,4 +300,29 @@ function pmmi_bootstrap_form_system_theme_settings_submit(array &$form, FormStat
     $values['front_logo_path'] = $filename;
   }
   unset($values['front_logo_upload']);
+}
+
+/**
+ * Implements hook_preprocess_pager().
+ */
+function pmmi_bootstrap_preprocess_pager(&$variables) {
+  $element = $variables['pager']['#element'];
+  $items = &$variables['items'];
+  global $pager_page_array, $pager_total;
+
+  // Nothing to do if there is only one page.
+  if ($pager_total[$element] <= 1) {
+    return;
+  }
+
+  // Create "previous" disabled element.
+  if ($pager_page_array[$element] == 0) {
+    $items['previous_disabled'] = TRUE;
+  }
+
+  // Create the "next" disabled element.
+  $pager_max = $pager_total[$element];
+  if ($pager_page_array[$element] == ($pager_max - 1)) {
+    $items['next_disabled'] = TRUE;
+  }
 }

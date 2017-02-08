@@ -22,11 +22,21 @@ services:
       PHP_XDEBUG_AUTOSTART: 1
       PHP_XDEBUG_REMOTE_CONNECT_BACK: 1         # This is needed to respect remote.host setting bellow
       PHP_XDEBUG_REMOTE_HOST: "10.254.254.254"
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+      - "9000"
     volumes:
       - pmmi-unison-sync:/var/www:rw # Replace volume to this to use docker-sync for macOS users
     links:
       - pmmidb
       - pmmisolr
+    ports:
+      - "80:80"
+    expose:
+      - "80"
+      - "9000"
 
   pmmidb:
     extends:

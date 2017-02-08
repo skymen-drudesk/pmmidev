@@ -49,16 +49,10 @@ function pmmi_import_migrate_prepare_row(Row $row, MigrateSourceInterface $sourc
     case 'company_migrate':
       $source = $row->getSource();
 
-      // Convert some data to lower case.
-      $fields_to_lower = array(
-        'Companies Represented',
-        'Company Description',
-        'Type of Equiptment Sold',
-        'Customer Industries',
-      );
-      foreach ($fields_to_lower as $field) {
+      // Convert necessary data to Camel Case.
+      foreach (pmmi_import_company_camel_case_columns() as $field) {
         if (!empty($source[$field])) {
-          $row->setSourceProperty($field, strtolower($source[$field]));
+          $row->setSourceProperty($field, ucwords(strtolower($source[$field])));
         }
       }
 
@@ -66,4 +60,25 @@ function pmmi_import_migrate_prepare_row(Row $row, MigrateSourceInterface $sourc
       $row->setSourceProperty('Pack', 1);
       break;
   }
+}
+
+/**
+ * Get all columns which should be converted to Camel Case during the import.
+ *
+ * @return array
+ *   List of columns to be converted.
+ */
+function pmmi_import_company_camel_case_columns() {
+  return array(
+    'Address 1',
+    'Address 2',
+    'City',
+    'Companies Represented',
+    'Company Description',
+    'Customer Industries',
+    'Type of Equiptment Sold',
+    'Postal Code',
+    'Primary First Name',
+    'Primary Last Name',
+  );
 }
