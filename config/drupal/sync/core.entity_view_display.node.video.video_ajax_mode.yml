@@ -1,8 +1,9 @@
-uuid: 533193b0-6c13-4e91-8f51-24d39f32cbae
+uuid: c3851351-7d0f-4726-bb92-a4c827dc1b12
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.video_ajax_mode
     - field.field.node.video.body
     - field.field.node.video.field_date
     - field.field.node.video.field_featured_speaker
@@ -14,72 +15,55 @@ dependencies:
   module:
     - datetime
     - ds
-    - link
     - text
     - user
     - video
 third_party_settings:
   ds:
     layout:
-      id: video_default_mode
+      id: video_ajax
       path: themes/custom/pmmi_bootstrap
       library: ''
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
-      content:
-        - field_video
+      title:
         - node_title
-        - field_date
+      body:
         - body
+      video:
+        - field_video
+      date:
+        - field_date
+      featured_speaker:
         - field_featured_speaker
-      links:
-        - node_link
-        - field_link
     fields:
-      node_link:
-        plugin_id: node_link
-        weight: 5
-        label: hidden
-        formatter: default
-        settings:
-          'link text': 'Watch Video'
-          'link class': ''
-          wrapper: ''
-          class: ''
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
       node_title:
         plugin_id: node_title
-        weight: 1
+        weight: 0
         label: hidden
         formatter: default
         settings:
-          link: true
           wrapper: h2
           class: ''
+          link: false
         ft:
           id: minimal
           settings:
             lb: ''
             lb-col: false
             classes: {  }
-id: node.video.default
+id: node.video.video_ajax_mode
 targetEntityType: node
 bundle: video
-mode: default
+mode: video_ajax_mode
 content:
   body:
-    type: text_summary_or_trimmed
-    weight: 3
+    type: text_default
+    weight: 1
     label: hidden
-    settings:
-      trim_length: 300
+    settings: {  }
     third_party_settings:
       ds:
         ft:
@@ -90,7 +74,7 @@ content:
             classes: {  }
   field_date:
     type: datetime_default
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       timezone_override: ''
@@ -117,30 +101,13 @@ content:
             lb: 'Featured Speaker'
             lb-col: true
             classes: {  }
-  field_link:
-    type: link
-    weight: 6
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings:
-      ds:
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
   field_video:
-    weight: 0
+    weight: 2
     label: hidden
     settings:
-      image_style: video_block_mobile
-      link_image_to: content
+      autoplay: true
+      width: '670'
+      height: '370'
     third_party_settings:
       ds:
         ft:
@@ -149,8 +116,9 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: video_embed_thumbnail
+    type: video_embed_player
 hidden:
   field_image_header: true
+  field_link: true
   field_video_type: true
   links: true

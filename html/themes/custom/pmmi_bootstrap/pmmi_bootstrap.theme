@@ -9,9 +9,8 @@ use Drupal\Component\Utility\Html;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
 use Drupal\Core\Template\Attribute;
-use Drupal\image\Entity\ImageStyle;
-use Drupal\views\Views;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\block\Entity\Block;
 
 
 /**
@@ -328,4 +327,18 @@ function pmmi_bootstrap_preprocess_pager(&$variables) {
   if ($pager_page_array[$element] == ($pager_max - 1)) {
     $items['next_disabled'] = TRUE;
   }
+}
+
+/**
+ * Implements hook_theme_suggestions_block_alter().
+ */
+function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  if (!empty($variables['elements']['#plugin_id'])) {
+    switch ($variables['elements']['#plugin_id']) {
+      case 'pmmi_search_block':
+        $suggestions[] = 'block__header_search';
+        break;
+    }
+  }
+  return $suggestions;
 }

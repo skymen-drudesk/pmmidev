@@ -27,11 +27,11 @@ class VideoFieldAjax extends ControllerBase {
     $entity = Node::load($node);
 
     if ($entity->access('view')) {
-      $rendered_field = $entity->field_video->view('full');
-      $rendered_field['#prefix'] = '<div class="video-container">';
-      $rendered_field['#suffix'] = '</div>';
-      $video = render($rendered_field);
-      $response->addCommand(new ReplaceCommand('.video-container', $video));
+      $node_render = \Drupal::entityTypeManager()
+        ->getViewBuilder($entity->getEntityTypeId())
+        ->view($entity, 'video_ajax_mode');;
+      $node_rendered = render($node_render);
+      $response->addCommand(new ReplaceCommand('#video-node-info', $node_rendered));
     }
     return $response;
   }

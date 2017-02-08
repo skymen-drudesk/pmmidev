@@ -75,10 +75,9 @@ mode: full
 content:
   body:
     label: hidden
-    type: text_summary_or_trimmed
+    type: text_default
     weight: 6
-    settings:
-      trim_length: 400
+    settings: {  }
     third_party_settings: {  }
   field_author:
     weight: 7

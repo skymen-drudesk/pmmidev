@@ -56,6 +56,9 @@
   .node-body {
     @extend .paragraph1;
     @extend .article-font-size;
+    p {
+      margin-bottom: 25px;
+    }
   }
   .author-info {
     @extend .paragraph1;
