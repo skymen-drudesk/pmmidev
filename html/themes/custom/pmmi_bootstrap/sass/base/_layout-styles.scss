@@ -4,9 +4,8 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
 .main-section {
   clear: both;
 }
-.region-content {
-  > form,
-  > article {
+body.use-container {
+  .block-region-main {
     @extend .container;
     margin-bottom: 20px;
   }
