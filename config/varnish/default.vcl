@@ -6,6 +6,8 @@ vcl 4.0;
 # Default backend definition. Points to Apache, normally.
 
 import cookie;
+import std;
+import directors;
 
 backend default {
     .host = "pmmiweb";
@@ -18,6 +20,8 @@ backend default {
 # Access control list for PURGE requests.
 acl purge {
     "172.17.0.0/16";
+    "172.19.0.0/16";
+    "pmmiweb";
     "localhost";
     "127.0.0.1";
     "::1";
@@ -54,13 +58,13 @@ sub vcl_recv {
             return (synth(403, "Not allowed."));
         }
 
-        # Logic for the ban, using the Purge-Cache-Tags header. For more info
+        # Logic for the ban, using the Cache-Tags header. For more info
         # see https://github.com/geerlingguy/drupal-vm/issues/397.
-        if (req.http.Purge-Cache-Tags) {
-            ban("obj.http.Purge-Cache-Tags ~ " + req.http.Purge-Cache-Tags);
+        if (req.http.Cache-Tags) {
+            ban("obj.http.Cache-Tags ~ " + req.http.Cache-Tags);
         }
         else {
-            return (synth(403, "Purge-Cache-Tags header missing."));
+            return (synth(403, "Cache-Tags header missing."));
         }
 
         # Throw a synthetic page so the request won't go to the backend.
@@ -158,8 +162,21 @@ sub vcl_recv {
 sub vcl_hash {
    # Create hash from url and cookie
    hash_data(req.url);
-   hash_data(req.http.Cookie);
+   if (req.http.Cookie) {
+     hash_data(req.http.Cookie);
+   }
    # return (hash);
+}
+
+sub vcl_hit {
+  # Called when a cache lookup is successful.
+  if (cookie.isset("audience_select_audience")) {
+    # A pure unadultered hit, deliver it
+    return (deliver);
+  }
+  else {
+    return (fetch);
+  }
 }
 
 # Set a header to track a cache HITs and MISSes.
@@ -167,16 +184,18 @@ sub vcl_deliver {
     # Remove ban-lurker friendly custom headers when delivering to client.
     unset resp.http.X-Url;
     unset resp.http.X-Host;
-    unset resp.http.Purge-Cache-Tags;
+    # Comment these for easier Drupal cache tag debugging in development.
+    unset resp.http.Cache-Tags;
+    unset resp.http.X-Drupal-Cache-Contexts;
 
     # Remove some headers
     unset resp.http.Via;
 
     if (obj.hits > 0) {
-        set resp.http.X-Varnish-Cache = "HIT";
+        set resp.http.Cache-Tags = "HIT";
     }
     else {
-        set resp.http.X-Varnish-Cache = "MISS";
+        set resp.http.Cache-Tags = "MISS";
     }
 }
 
