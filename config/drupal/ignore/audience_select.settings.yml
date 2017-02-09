@@ -15,5 +15,5 @@ map:
     audience_image:
       - '245'
 gateway_url: 'internal:/gateway'
-excluded_pages: "/admin\r\n/admin/*\r\n/user\r\n/user/*\r\n/node/297\r\n/node/add\r\n/node/*/edit\r\n/block\r\n/block/*\r\n/file\r\n/file/*\r\n/batch\r\n/batch/*\r\n/node/add/company\r\n/node/305/edit"
+excluded_pages: "/admin\r\n/admin/*\r\n/sites/*\r\n/entity-browser/*\r\n/user\r\n/user/*\r\n/node/297\r\n/node/add\r\n/node/*/edit\r\n/block\r\n/block/*\r\n/file\r\n/file/*\r\n/batch\r\n/batch/*\r\n/node/add/company\r\n/node/305/edit\r\n/sales-agent-directory/search\r\n/sales-agent-directory/search/results"
 default_bot_audience: audience_1
