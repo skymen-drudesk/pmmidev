@@ -4,44 +4,23 @@ status: true
 dependencies:
   config:
     - page_manager.page.site_template
-    - system.menu.emerging-leaders-nav
     - system.menu.footer
   content:
+    - 'block_content:image:32a03c64-b529-40d6-915c-88ff08733fd8'
     - 'block_content:social_media:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
   module:
     - audience_select
     - block_content
     - panels_everywhere
     - pmmi
+    - pmmi_search
     - system
+    - tb_megamenu
 id: site_template-panels_everywhere_variant-4
 label: 'Emerging Leaders Network'
 variant: panels_everywhere_variant
 variant_settings:
   blocks:
-    45802746-aeac-47c0-a401-af97bdd84436:
-      id: system_branding_block
-      label: 'Site branding'
-      provider: system
-      label_display: 0
-      use_site_logo: 1
-      use_site_name: 0
-      use_site_slogan: 0
-      region: header_logo
-      weight: '-10'
-      uuid: 45802746-aeac-47c0-a401-af97bdd84436
-      context_mapping: {  }
-    3356c638-56f5-46ce-9f70-3c54ef2f35eb:
-      id: 'system_menu_block:emerging-leaders-nav'
-      label: 'Emerging Leaders navigation'
-      provider: system
-      label_display: 0
-      level: '1'
-      depth: '0'
-      region: header_main_nav
-      weight: '0'
-      uuid: 3356c638-56f5-46ce-9f70-3c54ef2f35eb
-      context_mapping: {  }
     5cb2ef2c-ddef-4307-9006-7ccfcf25c127:
       id: system_messages_block
       label: Messages
@@ -112,6 +91,38 @@ variant_settings:
       region: footer
       weight: '-4'
       uuid: ee3b6d98-bc70-4ed5-a832-1b2e37d67082
+      context_mapping: {  }
+    2ee8adc4-65a4-47ab-bc7a-c360b0c6359b:
+      id: pmmi_search_block
+      label: 'PMMI Search block'
+      provider: pmmi_search
+      label_display: 0
+      search_path: 'internal:/search'
+      search_identifier: text
+      region: header_main_nav
+      weight: '0'
+      uuid: 2ee8adc4-65a4-47ab-bc7a-c360b0c6359b
+      context_mapping: {  }
+    6ebcfd51-bdf9-40be-a969-0ba5d0fe2ea1:
+      id: 'block_content:32a03c64-b529-40d6-915c-88ff08733fd8'
+      label: 'Emerging Leaders Logo'
+      provider: block_content
+      label_display: 0
+      status: true
+      info: ''
+      view_mode: full
+      region: header_logo
+      weight: '0'
+      uuid: 6ebcfd51-bdf9-40be-a969-0ba5d0fe2ea1
+      context_mapping: {  }
+    d0f59d26-08df-4a60-8591-848338ffbe51:
+      id: 'tb_megamenu_menu_block:emerging-leaders-nav'
+      label: 'Emerging Leaders navigation'
+      provider: tb_megamenu
+      label_display: 0
+      region: header_main_nav
+      weight: '0'
+      uuid: d0f59d26-08df-4a60-8591-848338ffbe51
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: d50f3796-4d4b-40b6-a48b-ea0d3a051c16
