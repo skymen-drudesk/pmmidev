@@ -1,5 +1,8 @@
 .navbar {
   padding: 0;
+  @include desktop {
+    padding: 0 10px;
+  }
   .navbar-header {
     float: none;
     position: relative;
@@ -10,7 +13,7 @@
       min-height: 133px;
     }
   }
-  a.logo {
+  div.logo {
     width: 73px;
     padding: 0;
     position: absolute;
@@ -20,20 +23,27 @@
       height: 133px;
       margin: -10px 0 0 -136px;
     }
+    a {
+      float: none !important;
+      margin: 0;
+    }
+    img[src$=".svg"] {
+      width: 100%;
+    }
   }
   @include dhd {
     width: auto;
     max-width: 1360px;
   }
   @include tablet {
-    max-width: 720px;
+    max-width: 718px;
     .front &,
     .not-front & {
       .navbar-header {
         padding-left: 65px;
         min-height: 59px;
       }
-      a.logo {
+      div.logo {
         width: 55px;
         height: 59px;
         overflow: hidden;
@@ -41,7 +51,7 @@
       }
     }
     .front & {
-      a.logo img {
+      div.logo img {
         margin: 0px -10px 0;
         width: 75px;
       }
@@ -63,7 +73,7 @@
         padding-left: 50px;
         min-height: 43px;
       }
-      a.logo {
+      div.logo {
         width: 41px;
         height: 45px;
         overflow: hidden;
@@ -71,7 +81,7 @@
       }
     }
     .front & {
-      a.logo img {
+      div.logo img {
         margin: 0 -7px 0;
         width: 54px;
       }
@@ -83,6 +93,7 @@
   }
   .main-nav {
     background: $blue;
+    @extend .clear-after;
     .navbar-toggle {
       border: none;
       margin: 0;
@@ -126,8 +137,8 @@
         > a {
           color: #fff;
           padding: 6px 7px;
-          font-size: 15px;
-          line-height: 24px;
+          font-size: 17px;
+          line-height: 26px;
           letter-spacing: 1px;
           text-transform: uppercase;
           position: relative;
@@ -178,9 +189,9 @@
         }
         @include tablet {
           > a {
-            font-size: $r13;
+            font-size: $r14;
             line-height: 18px;
-            padding: 6px 5px;
+            padding: 6px 7px;
           }
         }
       }
@@ -439,6 +450,52 @@
   }
 }
 // Header search block.
+@mixin search-header-block-visible {
+  float: none;
+  position: static;
+  overflow: hidden;
+  padding: 5px;
+  margin-right: 30px;
+  border-right: 1px solid $blueopacity;
+  box-sizing: content-box;
+  .search-toggle {
+    display: none;
+  }
+  .block {
+    display: block;
+    white-space: normal;
+    position: static;
+    border: none !important;
+    min-height: 20px;
+    background: none;
+  }
+  .form-search,
+  .form-text {
+    border: none;
+    margin: 0;
+    padding: 0 5px;
+    height: 20px;
+    line-height: 20px;
+    font-size: $r12;
+    width: 100%;
+  }
+  form {
+    position: relative;
+    padding-right: 25px;
+    max-width: 190px;
+  }
+  button.form-submit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: #fff;
+    margin: -5px;
+    font-size: 20px;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+  }
+}
 .main-nav {
   position: relative;
   .header-search {
@@ -452,6 +509,7 @@
       right: 0;
       top: 100%;
       white-space: nowrap;
+      background: #fff;
       &.collapsing,
       &.in {
         border: 4px solid $dkblue;
@@ -532,49 +590,211 @@
       }
     }
     @include mobile {
-      float: none;
-      position: static;
-      overflow: hidden;
-      padding: 5px;
-      margin-right: 30px;
-      border-right: 1px solid $blueopacity;
-      box-sizing: content-box;
-      .search-toggle {
+      @include search-header-block-visible;
+    }
+  }
+  .show-search {
+    .header-search {
+      @include search-header-block-visible;
+      float: right;
+      border-right: none;
+      border-left: 1px solid $blueopacity;
+      margin-right: 0;
+      form {
+        max-width: 290px;
+      }
+      @include desktop-min {
+        padding: 7px 0 7px 10px;
+        form {
+          padding-right: 40px;
+        }
+        .form-search,
+        .form-text {
+          font-size: $r16;
+          height: 24px;
+          line-height: 24px;
+          padding: 0 10px;
+        }
+        button.form-submit {
+          height: 38px;
+          line-height: 38px;
+          width: 40px;
+          margin: -7px 0;
+        }
+      }
+    }
+  }
+}
+
+// Different site template variants.
+.pmmi-panel {
+  &.variant-member {
+    .navbar .main-nav {
+      @include desktop {
+        .nav > li > a {
+          font-size: 15px;
+          font-size: $r15;
+          padding: 6px;
+        }
+      }
+      @include tablet {
+        .nav > li {
+          vertical-align: middle;
+          > a {
+            font-size: 13px;
+            font-size: $r13;
+            padding: 6px 4px 6px 5px;
+          }
+          &.link-workforce-development {
+            > a {
+              display: block;
+              width: 65px;
+              white-space: nowrap;
+              overflow: hidden;
+              word-spacing: 100px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin site-template-header($logo_width, $logo_padding, $min_height) {
+  .navbar-header {
+    padding-left: $logo_width + $logo_padding;
+    min-height: $min_height;
+    div.logo {
+      margin-left: -($logo_width + $logo_padding);
+      width: $logo_width;
+      height: auto;
+      img {
+        width: auto;
+        max-width: 100%;
+        max-height: $min_height;
+        height: auto;
+        margin: 0;
+      }
+    }
+  }
+}
+.microsite-info {
+  text-align: right;
+  margin-bottom: 7px;
+  min-height: 84px;
+  .block {
+    margin-bottom: 0;
+  }
+  .block-event {
+    @extend .headline2;
+    text-transform: uppercase;
+    .field-name-field-location {
+      color: $textdark;
+      letter-spacing: 2px;
+      line-height: $r35;
+      font-weight: 400;
+      font-family: $trumpgothicpro;
+      @extend .inherited-p;
+      p {
+        margin-bottom: 0;
+      }
+      br,
+      .country {
         display: none;
       }
-      .block {
-        display: block;
-        white-space: normal;
-        position: static;
-        border: none !important;
-        min-height: 20px;
+      .organization {
+        &:after {
+          content: '\2022';
+          margin: 0 5px;
+        }
       }
-      .form-search,
-      .form-text {
-        border: none;
-        margin: 0;
-        padding: 0 5px;
-        height: 20px;
-        line-height: 20px;
-        font-size: $r12;
-        width: 100%;
+    }
+    @include desktop {
+      font-size: $r28;
+      line-height: $r34;
+      .field-name-field-location {
+        line-height: $r28;
       }
-      form {
-        position: relative;
-        padding-right: 25px;
-        max-width: 190px;
+    }
+    @include tablet {
+      font-size: $r20;
+      .field-name-field-location {
+        line-height: $r20;
       }
-      button.form-submit {
-        position: absolute;
-        right: 0;
-        top: 0;
-        color: #fff;
-        margin: -5px;
-        font-size: 20px;
-        height: 30px;
-        line-height: 30px;
-        width: 30px;
-      }
+    }
+  }
+  @include mobile {
+    display: none;
+  }
+}
+
+#panel-am {
+  @include site-template-header(332px, 13px, 141px);
+  .microsite-info {
+    margin-top: 11px;
+  }
+  @include desktop {
+    @include site-template-header(297px, 15px, 126px);
+    .microsite-info {
+      margin: 10px 0;
+      min-height: 68px;
+    }
+  }
+  @include tablet {
+    @include site-template-header(177px, 6px, 75px);
+    .microsite-info {
+      margin: -7px 0 4px;
+      min-height: 48px;
+    }
+  }
+  @include mobile {
+    @include site-template-header(92px, 4px, 39px);
+    .navbar .main-nav {
+      margin-top: 9px;
+    }
+  }
+}
+#panel-exln {
+  @include site-template-header(425px, 17px, 150px);
+  .microsite-info {
+    margin-top: 17px;
+  }
+  @include desktop {
+    @include site-template-header(312px, 6px, 110px);
+    .microsite-info {
+      margin: 0 0 4px;
+      min-height: 68px;
+    }
+  }
+  @include tablet {
+    @include site-template-header(221px, 10px, 78px);
+    .microsite-info {
+      margin: 0;
+      min-height: 48px;
+    }
+  }
+  @include mobile {
+    @include site-template-header(107px, 7px, 38px);
+    .navbar .main-nav {
+      margin-top: 8px;
+    }
+  }
+}
+#panel-eln {
+  @include site-template-header(266px, 8px, 86px);
+  .navbar .main-nav {
+    margin-top: 46px;
+  }
+  @include tablet {
+    @include site-template-header(170px, 5px, 55px);
+    .navbar .main-nav {
+      margin-top: 25px;
+    }
+  }
+  @include mobile {
+    @include site-template-header(96px, 3px, 31px);
+    .navbar .main-nav {
+      margin-top: 1px;
     }
   }
 }

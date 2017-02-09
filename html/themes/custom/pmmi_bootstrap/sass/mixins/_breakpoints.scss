@@ -28,3 +28,8 @@
     @content;
   }
 }
+@mixin desktop-min {
+  @media screen and (min-width: $screen-md-min) {
+    @content;
+  }
+}
