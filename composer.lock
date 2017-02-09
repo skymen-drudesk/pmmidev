@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "77f898232dbbba4f25ade8e511910c98",
+    "content-hash": "997c932c644a67de25a1028cbaa72106",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -2168,17 +2168,11 @@
         },
         {
             "name": "drupal/config_split",
-            "version": "1.0.0-beta1",
+            "version": "dev-1.x",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/config_split",
-                "reference": "8.x-1.0-beta1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/config_split-8.x-1.0-beta1.zip",
-                "reference": "8.x-1.0-beta1",
-                "shasum": "8a5839160a432712165d5aab9e7b4c33fc2eea44"
+                "reference": "95252231fad30deb7d44777884d64cde28ecd529"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -2189,8 +2183,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1",
-                    "datestamp": "1480263780"
+                    "version": "8.x-1.0-beta1+6-dev",
+                    "datestamp": "1485178383"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2219,7 +2213,8 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/config_split",
                 "issues": "https://www.drupal.org/project/issues/config_split"
-            }
+            },
+            "time": "2017-01-23 13:44:13"
         },
         {
             "name": "drupal/config_update",
@@ -2641,7 +2636,8 @@
                     "SystemBrandingBlock causes fatal error if theme is not set when place it in Panels": "https://www.drupal.org/files/issues/systembrandingblock-causes-fatal-error-if-theme-is-not-set-when-place-it-in-panels-2838601-2.patch",
                     "Expose contextual filters of views blocks as context": "https://www.drupal.org/files/issues/2287073-148.patch",
                     "Datetime Views plugins don't support timezones": "https://www.drupal.org/files/issues/2627512-139_0.patch",
-                    "Improve the views integration for daterange fields": "https://www.drupal.org/files/issues/improve_the_views-2786577-71.patch"
+                    "Improve the views integration for daterange fields": "https://www.drupal.org/files/issues/improve_the_views-2786577-71.patch",
+                    "Fix Datetime Timestamp widget issue": "https://www.drupal.org/files/issues/2802663-18.patch"
                 }
             },
             "autoload": {
@@ -3138,7 +3134,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-beta4",
-                    "datestamp": "1486242784"
+                    "datestamp": "1484816284"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -10380,7 +10376,7 @@
         "drupal/backup_migrate": 15,
         "drupal/blazy": 10,
         "drupal/config_readonly": 10,
-        "drupal/config_split": 10,
+        "drupal/config_split": 20,
         "drupal/ctools": 15,
         "drupal/date": 20,
         "drupal/default_content": 20,
