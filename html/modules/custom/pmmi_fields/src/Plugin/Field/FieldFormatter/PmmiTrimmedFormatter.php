@@ -33,6 +33,9 @@ class PmmiTrimmedFormatter extends TextTrimmedFormatter {
       'html' => TRUE,
       'word_boundary' => TRUE,
       'ellipsis' => FALSE,
+      'strip_tags' => FALSE,
+      'preserve_tags' => '',
+      'nl2br' => FALSE,
     ) + parent::defaultSettings();
   }
 
@@ -41,6 +44,7 @@ class PmmiTrimmedFormatter extends TextTrimmedFormatter {
    */
   public function settingsForm(array $form, FormStateInterface $form_state) {
     $element = parent::settingsForm($form, $form_state);
+    $triggering_element = $form_state->getTriggeringElement();
     $element['word_boundary'] = array(
       '#type' => 'checkbox',
       '#title' => $this->t('Trim only on a word boundary'),
@@ -58,6 +62,30 @@ class PmmiTrimmedFormatter extends TextTrimmedFormatter {
       '#description' => $this->t('An HTML corrector will be run to ensure HTML tags are properly closed after trimming.'),
       '#default_value' => $this->getSetting('html'),
     );
+    $element['strip_tags'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Strip HTML tags'),
+      '#default_value' => $this->getSetting('strip_tags'),
+    );
+    $element['preserve_tags'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Preserve certain tags'),
+      '#default_value' => $this->getSetting('preserve_tags'),
+      '#description' => $this->t('List the tags that need to be preserved during the stripping process. example &quot;&lt;p&gt; &lt;br&gt;&quot; which will preserve all p and br elements'),
+      '#states' => array(
+        'visible' => array(
+          ":input[name='fields[{$triggering_element['#field_name']}][settings_edit_form][settings][strip_tags]']" => array(
+            'checked' => TRUE,
+          ),
+        ),
+      ),
+    );
+    $element['nl2br'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Convert newlines to HTML &lt;br&gt; tags'),
+      '#default_value' => $this->getSetting('nl2br'),
+    );
+
     return $element;
   }
 
@@ -85,9 +113,25 @@ class PmmiTrimmedFormatter extends TextTrimmedFormatter {
         'html' => $this->getSetting('html'),
         'ellipsis' => $this->getSetting('ellipsis'),
         'word_boundary' => $this->getSetting('word_boundary'),
+        'strip_tags' => $this->getSetting('strip_tags'),
+        'preserve_tags' => $this->getSetting('preserve_tags'),
+        'nl2br' => $this->getSetting('nl2br'),
       ];
 
-      $elements[$delta]['#text'] = ViewsPluginBase::trimText($alter, $item->value);
+      $value = $item->value;
+
+      // New line to <br>.
+      if (!empty($alter['nl2br'])) {
+        $value = nl2br($value);
+      }
+
+      // Strip tags.
+      if (!empty($alter['strip_tags'])) {
+        $value = strip_tags($value, $alter['preserve_tags']);
+      }
+
+      // Trim text.
+      $elements[$delta]['#text'] = ViewsPluginBase::trimText($alter, $value);
     }
 
     return $elements;
