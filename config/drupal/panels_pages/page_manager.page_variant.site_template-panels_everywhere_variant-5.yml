@@ -4,32 +4,24 @@ status: true
 dependencies:
   config:
     - page_manager.page.site_template
-    - system.menu.executive-leadership-nav
     - system.menu.footer
   content:
+    - 'block_content:event:5fb18233-3dd3-4cae-bbc6-d6480cc96531'
+    - 'block_content:image:51ed1df7-c3a2-4a07-ab02-78d54634a563'
     - 'block_content:social_media:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
   module:
     - audience_select
     - block_content
     - panels_everywhere
     - pmmi
+    - pmmi_search
     - system
+    - tb_megamenu
 id: site_template-panels_everywhere_variant-5
 label: 'Executive Leadership Network'
 variant: panels_everywhere_variant
 variant_settings:
   blocks:
-    5380b762-c784-43f1-89ba-b6bee3acfc90:
-      id: 'system_menu_block:executive-leadership-nav'
-      label: 'Executive Leadership navigation'
-      provider: system
-      label_display: 0
-      level: '1'
-      depth: '0'
-      region: header_main_nav
-      weight: '0'
-      uuid: 5380b762-c784-43f1-89ba-b6bee3acfc90
-      context_mapping: {  }
     4a76dad0-d8d7-4d93-9a4f-13d1db954f95:
       id: system_messages_block
       label: Messages
@@ -70,18 +62,6 @@ variant_settings:
       weight: '-3'
       uuid: 84501042-f596-4f47-92fc-a48b5299bc22
       context_mapping: {  }
-    5909fbbc-266f-4bbe-a1ce-c2ad973bbc9d:
-      id: system_branding_block
-      label: 'Site branding'
-      provider: system
-      label_display: 0
-      use_site_logo: 1
-      use_site_name: 0
-      use_site_slogan: 0
-      region: header_logo
-      weight: '0'
-      uuid: 5909fbbc-266f-4bbe-a1ce-c2ad973bbc9d
-      context_mapping: {  }
     c1c8c74e-7e44-4948-a524-0f126a02885d:
       id: audience_switcher
       label: 'Audience Switcher'
@@ -112,6 +92,50 @@ variant_settings:
       region: footer
       weight: '-4'
       uuid: a5518de0-e08e-4813-8089-b06758f2ee7e
+      context_mapping: {  }
+    e395eeff-d44b-4fc8-b602-f1d32e903ba1:
+      id: pmmi_search_block
+      label: 'PMMI Search block'
+      provider: pmmi_search
+      label_display: 0
+      search_path: 'internal:/search'
+      search_identifier: text
+      region: header_main_nav
+      weight: '0'
+      uuid: e395eeff-d44b-4fc8-b602-f1d32e903ba1
+      context_mapping: {  }
+    ff934d57-21ee-438f-9657-7952719c771b:
+      id: 'block_content:51ed1df7-c3a2-4a07-ab02-78d54634a563'
+      label: 'Executive leadership conference Logo'
+      provider: block_content
+      label_display: 0
+      status: true
+      info: ''
+      view_mode: full
+      region: header_logo
+      weight: '0'
+      uuid: ff934d57-21ee-438f-9657-7952719c771b
+      context_mapping: {  }
+    7b8d8b17-7645-4720-a4af-fdfa66cefff4:
+      id: 'tb_megamenu_menu_block:executive-leadership-nav'
+      label: 'Executive Leadership navigation'
+      provider: tb_megamenu
+      label_display: 0
+      region: header_main_nav
+      weight: '0'
+      uuid: 7b8d8b17-7645-4720-a4af-fdfa66cefff4
+      context_mapping: {  }
+    a865d4c5-ee4e-44cc-bbf7-286046091477:
+      id: 'block_content:5fb18233-3dd3-4cae-bbc6-d6480cc96531'
+      label: 'Event (July 13-16, 2017) - Summer Executive Committee Meeting'
+      provider: block_content
+      label_display: 0
+      status: true
+      info: ''
+      view_mode: default
+      region: header_microsite_info
+      weight: '0'
+      uuid: a865d4c5-ee4e-44cc-bbf7-286046091477
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: 1ef5137e-9b08-4ff4-abe7-6ad64f8dc770

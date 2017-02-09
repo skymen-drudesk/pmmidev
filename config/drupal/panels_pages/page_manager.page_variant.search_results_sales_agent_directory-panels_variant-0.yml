@@ -1,0 +1,38 @@
+uuid: 98dd3a28-ddbc-439c-bfbb-78c4e877eb08
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.search_results_sales_agent_directory
+  module:
+    - panels
+    - pmmi_search
+id: search_results_sales_agent_directory-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    fd31fb19-2777-4972-bbba-7d0161af949f:
+      id: pmmi_company_search_results_block
+      label: 'PMMI Company Search Results block'
+      provider: pmmi_search
+      label_display: '0'
+      region: middle
+      weight: 0
+      uuid: fd31fb19-2777-4972-bbba-7d0161af949f
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 26926f96-7929-4534-826c-fb53a4fe5d5d
+  label: null
+  weight: 0
+  layout: onecol
+  layout_settings: {  }
+  page_title: 'Search results sales agent directory'
+  storage_type: page_manager
+  storage_id: search_results_sales_agent_directory-panels_variant-0
+  builder: standard
+page: search_results_sales_agent_directory
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

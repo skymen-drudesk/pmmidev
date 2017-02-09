@@ -1,12 +1,11 @@
-uuid: 23d01bc5-72ad-44a6-ada2-7a1b74819c72
+uuid: 829ef51b-9433-42ff-a442-98967cc085ba
 langcode: en
 status: true
 dependencies:
   config:
     - page_manager.page.site_template
     - system.menu.footer
-    - system.menu.utility-navigation-other
-    - views.view.search_page
+    - system.menu.utility-navigation-end-user
   content:
     - 'block_content:social_media:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
   module:
@@ -14,35 +13,26 @@ dependencies:
     - block_content
     - panels_everywhere
     - pmmi
+    - pmmi_search
     - system
     - tb_megamenu
-    - views
-id: site_template-panels_everywhere_variant-2
-label: Other
+id: site_template-panels_everywhere_variant-0
+label: 'End User'
 variant: panels_everywhere_variant
 variant_settings:
   blocks:
-    68cdaf28-0849-4d42-81be-b83440977e3e:
-      id: 'system_menu_block:utility-navigation-other'
-      label: 'Utility navigation - Other'
+    e498fad8-bb1f-4ad6-8b87-a260036dc615:
+      id: 'system_menu_block:utility-navigation-end-user'
+      label: 'Utility navigation - End User'
       provider: system
       label_display: 0
       level: '1'
       depth: '0'
       region: header_utility_nav
       weight: '0'
-      uuid: 68cdaf28-0849-4d42-81be-b83440977e3e
+      uuid: e498fad8-bb1f-4ad6-8b87-a260036dc615
       context_mapping: {  }
-    5a4f4982-0583-487b-b9ce-1c83ba0d4cab:
-      id: 'tb_megamenu_menu_block:main-navigation-other'
-      label: 'Main navigation - Other'
-      provider: tb_megamenu
-      label_display: 0
-      region: header_main_nav
-      weight: '0'
-      uuid: 5a4f4982-0583-487b-b9ce-1c83ba0d4cab
-      context_mapping: {  }
-    1642ef28-36b7-4426-a421-2c8785807a57:
+    ce0ef49a-e82f-41f3-af27-47b3a7ec4bc6:
       id: local_tasks_block
       label: Tabs
       provider: core
@@ -51,27 +41,27 @@ variant_settings:
       secondary: 1
       region: topbar
       weight: '0'
-      uuid: 1642ef28-36b7-4426-a421-2c8785807a57
+      uuid: ce0ef49a-e82f-41f3-af27-47b3a7ec4bc6
       context_mapping: {  }
-    e214e721-e36e-4ad9-8485-a6e2791b60a4:
+    b31b962a-681e-485c-be4a-4a65ecc08905:
       id: system_messages_block
       label: Messages
       provider: system
       label_display: 0
       region: topbar
       weight: '0'
-      uuid: e214e721-e36e-4ad9-8485-a6e2791b60a4
+      uuid: b31b962a-681e-485c-be4a-4a65ecc08905
       context_mapping: {  }
-    d9b70701-082d-4691-a04b-beebb4bdf0fb:
+    54843da1-7bb1-407d-b9d7-de1119c2de92:
       id: system_main_block
       label: 'Main page content'
       provider: system
       label_display: 0
       region: main
       weight: '0'
-      uuid: d9b70701-082d-4691-a04b-beebb4bdf0fb
+      uuid: 54843da1-7bb1-407d-b9d7-de1119c2de92
       context_mapping: {  }
-    e9fd9d8b-6846-4bcf-9e67-e0279fbac388:
+    1acf3082-453c-4df6-a582-3c38e4e7cd0d:
       id: 'system_menu_block:footer'
       label: Footer
       provider: system
@@ -80,9 +70,18 @@ variant_settings:
       depth: '0'
       region: footer
       weight: '-4'
-      uuid: e9fd9d8b-6846-4bcf-9e67-e0279fbac388
+      uuid: 1acf3082-453c-4df6-a582-3c38e4e7cd0d
       context_mapping: {  }
-    148b658b-bf26-4de8-bae8-93b2932da87e:
+    5e3cd20a-f36b-4e9f-982e-d0f3b219ef65:
+      id: 'tb_megamenu_menu_block:main-navigation-end-user'
+      label: 'Main navigation - End User'
+      provider: tb_megamenu
+      label_display: 0
+      region: header_main_nav
+      weight: '-3'
+      uuid: 5e3cd20a-f36b-4e9f-982e-d0f3b219ef65
+      context_mapping: {  }
+    03c483d4-71db-4a5f-8015-1c91be0172b9:
       id: system_branding_block
       label: 'Site branding'
       provider: system
@@ -92,19 +91,9 @@ variant_settings:
       use_site_slogan: 0
       region: header_logo
       weight: '0'
-      uuid: 148b658b-bf26-4de8-bae8-93b2932da87e
+      uuid: 03c483d4-71db-4a5f-8015-1c91be0172b9
       context_mapping: {  }
-    eb5c4988-ac1d-477b-a4c7-39ddbc7a2483:
-      id: 'views_exposed_filter_block:search_page-block_1'
-      label: ''
-      provider: views
-      label_display: 0
-      views_label: ''
-      region: header_main_nav
-      weight: '-2'
-      uuid: eb5c4988-ac1d-477b-a4c7-39ddbc7a2483
-      context_mapping: {  }
-    73f26a2e-a3e3-43db-8608-3dc9dc82940b:
+    3877ea9f-6a60-415e-b150-cdfe4081c40e:
       id: audience_switcher
       label: 'Audience Switcher'
       provider: audience_select
@@ -112,9 +101,9 @@ variant_settings:
       excluded_audiences: {  }
       region: footer
       weight: '-3'
-      uuid: 73f26a2e-a3e3-43db-8608-3dc9dc82940b
+      uuid: 3877ea9f-6a60-415e-b150-cdfe4081c40e
       context_mapping: {  }
-    81d5c335-fd32-49d5-910e-768e259ae6f5:
+    efc80ed2-24df-485f-9424-692ec0ad0adb:
       id: 'block_content:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
       label: 'PMMI - Social Media'
       provider: block_content
@@ -124,34 +113,45 @@ variant_settings:
       view_mode: footer_social
       region: footer
       weight: '-2'
-      uuid: 81d5c335-fd32-49d5-910e-768e259ae6f5
+      uuid: efc80ed2-24df-485f-9424-692ec0ad0adb
       context_mapping: {  }
-    63a8326a-c9e0-4a2b-adde-cbe92702b85c:
+    ef4c7f2b-b38e-4d59-939c-fd48bade414b:
       id: copyright_block
       label: 'Copyright block'
       provider: pmmi
       label_display: 0
       region: footer
       weight: '-5'
-      uuid: 63a8326a-c9e0-4a2b-adde-cbe92702b85c
+      uuid: ef4c7f2b-b38e-4d59-939c-fd48bade414b
+      context_mapping: {  }
+    0d284a64-a680-4641-9e2d-75dcf13cd188:
+      id: pmmi_search_block
+      label: 'PMMI Search block'
+      provider: pmmi_search
+      label_display: 0
+      search_path: 'internal:/search'
+      search_identifier: text
+      region: header_main_nav
+      weight: '0'
+      uuid: 0d284a64-a680-4641-9e2d-75dcf13cd188
       context_mapping: {  }
   id: panels_everywhere_variant
-  uuid: eb5855a2-bbfc-4ee6-baa1-e933c5bb9108
+  uuid: e3e9f1a9-d6c5-4a5b-ab6c-bd57cd3b27f9
   label: null
   weight: 0
   layout: panel_default
   layout_settings: {  }
   page_title: ''
-  storage_type: page_manager
-  storage_id: site_template-panels_everywhere_variant-2
+  storage_type: ''
+  storage_id: ''
   builder: standard
 page: site_template
-weight: -5
+weight: -7
 selection_criteria:
   1:
     id: audience
     audiences:
-      audience_3: audience_3
+      audience_2: audience_2
     negate: false
     context_mapping: {  }
 selection_logic: and

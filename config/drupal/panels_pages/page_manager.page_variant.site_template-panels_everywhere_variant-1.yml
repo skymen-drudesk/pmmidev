@@ -6,7 +6,6 @@ dependencies:
     - page_manager.page.site_template
     - system.menu.footer
     - system.menu.utility-navigation-member
-    - views.view.search_page
   content:
     - 'block_content:social_media:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
   module:
@@ -14,9 +13,9 @@ dependencies:
     - block_content
     - panels_everywhere
     - pmmi
+    - pmmi_search
     - system
     - tb_megamenu
-    - views
 id: site_template-panels_everywhere_variant-1
 label: Member
 variant: panels_everywhere_variant
@@ -94,16 +93,6 @@ variant_settings:
       weight: '0'
       uuid: 1f9cc58f-f55d-47e5-ae95-dc7e125aa3a9
       context_mapping: {  }
-    ebb11696-0144-4a00-a9b7-02130f502801:
-      id: 'views_exposed_filter_block:search_page-block_1'
-      label: ''
-      provider: views
-      label_display: 0
-      views_label: ''
-      region: header_main_nav
-      weight: '0'
-      uuid: ebb11696-0144-4a00-a9b7-02130f502801
-      context_mapping: {  }
     d2df90fd-30a6-413c-b43c-17fe38fcc80d:
       id: audience_switcher
       label: 'Other Versions:'
@@ -134,6 +123,17 @@ variant_settings:
       region: footer
       weight: '0'
       uuid: 3908cb21-8e25-4add-a910-7c7f8c54c8b4
+      context_mapping: {  }
+    7964544f-2ae3-45ef-94d0-44ffd3fe5866:
+      id: pmmi_search_block
+      label: 'PMMI Search block'
+      provider: pmmi_search
+      label_display: 0
+      search_path: 'internal:/search'
+      search_identifier: text
+      region: header_main_nav
+      weight: '0'
+      uuid: 7964544f-2ae3-45ef-94d0-44ffd3fe5866
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: cdb68bb8-520f-44f2-bd99-ead75a9f3553
