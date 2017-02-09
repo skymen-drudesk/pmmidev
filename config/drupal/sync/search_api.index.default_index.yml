@@ -9,6 +9,19 @@ dependencies:
     - field.storage.node.field_industries_served
     - field.storage.node.field_manufacturers_represented
     - field.storage.node.field_news_category
+    - field.storage.node.field_main_phone_number
+    - field.storage.node.field_fax_number
+    - field.storage.node.field_website_url
+    - field.storage.node.field_general_company_email
+    - field.storage.node.field_company_description
+    - field.storage.node.field_primary_contact_first_name
+    - field.storage.node.field_primary_contact_last_name
+    - field.storage.node.field_primary_contact_email
+    - field.storage.node.field_business_lines
+    - field.storage.node.field_territory_served
+    - field.storage.node.field_industries_served_other
+    - field.storage.node.field_equipment_sold_type_other
+    - field.storage.node.field_after_sales_service
     - search_api.server.solr_server
   module:
     - search_api
@@ -139,6 +152,142 @@ field_settings:
     datasource_id: 'entity:node'
     property_path: state
     type: string
+  field_main_phone_number:
+    label: 'Main Phone Number'
+    datasource_id: 'entity:node'
+    property_path: field_main_phone_number
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_main_phone_number
+  field_fax_number:
+    label: 'Fax Number'
+    datasource_id: 'entity:node'
+    property_path: field_fax_number
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_fax_number
+  field_website_url:
+    label: 'Website URL'
+    datasource_id: 'entity:node'
+    property_path: field_website_url
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_website_url
+  field_general_company_email:
+    label: 'General Company Email'
+    datasource_id: 'entity:node'
+    property_path: field_general_company_email
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_general_company_email
+  locality:
+    label: 'Address » The locality (i.e. city).'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:locality'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  postal_code:
+    label: 'Address » The postal code.'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:postal_code'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  address_line1:
+    label: 'Address » The first line of the address block.'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:address_line1'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  address_line2:
+    label: 'Address » The second line of the address block.'
+    datasource_id: 'entity:node'
+    property_path: 'field_address:address_line2'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_address
+  field_company_description:
+    label: 'Company Description'
+    datasource_id: 'entity:node'
+    property_path: field_company_description
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_company_description
+  field_primary_contact_first_name:
+    label: 'Primary Contact First Name'
+    datasource_id: 'entity:node'
+    property_path: field_primary_contact_first_name
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_primary_contact_first_name
+  field_primary_contact_last_name:
+    label: 'Primary Contact Last Name'
+    datasource_id: 'entity:node'
+    property_path: field_primary_contact_last_name
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_primary_contact_last_name
+  field_primary_contact_email:
+    label: 'Primary Contact Email'
+    datasource_id: 'entity:node'
+    property_path: field_primary_contact_email
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_primary_contact_email
+  field_business_lines:
+    label: 'Lines of  business'
+    datasource_id: 'entity:node'
+    property_path: field_business_lines
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_business_lines
+  field_territory_served:
+    label: 'Territory served'
+    datasource_id: 'entity:node'
+    property_path: field_territory_served
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_territory_served
+  field_industries_served_other:
+    label: 'Industries served (Other)'
+    datasource_id: 'entity:node'
+    property_path: field_industries_served_other
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_industries_served_other
+  field_equipment_sold_type_other:
+    label: 'Type of equipment sold (other)'
+    datasource_id: 'entity:node'
+    property_path: field_equipment_sold_type_other
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_equipment_sold_type_other
+  field_after_sales_service:
+    label: 'Do you provide after sales service?'
+    datasource_id: 'entity:node'
+    property_path: field_after_sales_service
+    type: boolean
+    dependencies:
+      config:
+        - field.storage.node.field_after_sales_service
 datasource_settings:
   'entity:node':
     bundles:
@@ -161,7 +310,6 @@ processor_settings:
     weights:
       preprocess_query: -10
   aggregated_field: {  }
-  node_status: {  }
   rendered_item: {  }
   add_url: {  }
   tokenizer:
