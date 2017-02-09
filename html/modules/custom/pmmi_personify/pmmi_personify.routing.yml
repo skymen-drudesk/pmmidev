@@ -1,0 +1,11 @@
+
+pmmi_personify.admin_settings:
+  path: '/admin/config/pmmi_personify/settings'
+  defaults:
+    _form: '\Drupal\pmmi_personify\Form\PMMIPersonifySettings'
+    _title: 'PMMI Personify Settings'
+  requirements:
+    _permission: 'administer pmmi personify'
+  options:
+    _admin_route: TRUE
+
