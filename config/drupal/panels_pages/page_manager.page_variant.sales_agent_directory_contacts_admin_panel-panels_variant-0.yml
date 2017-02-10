@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - page_manager.page.sales_agent_directory_contacts_admin_panel
-    - views.view.company_trade_shows_contacts
+    - views.view.agent_trade_shows
   module:
     - panels
     - views
@@ -13,8 +13,8 @@ label: Panels
 variant: panels_variant
 variant_settings:
   blocks:
-    501de973-a68e-4bf8-99f1-45020c5b2fe6:
-      id: 'views_block:company_trade_shows_contacts-block_2'
+    3cbbfda6-a4f0-4c32-94e7-826d79eb8ec0:
+      id: 'views_block:agent_trade_shows-block_1'
       label: ''
       provider: views
       label_display: visible
@@ -22,7 +22,7 @@ variant_settings:
       items_per_page: none
       region: middle
       weight: 0
-      uuid: 501de973-a68e-4bf8-99f1-45020c5b2fe6
+      uuid: 3cbbfda6-a4f0-4c32-94e7-826d79eb8ec0
       context_mapping: {  }
   id: panels_variant
   uuid: a46ac78f-efe3-4bcc-898a-6312c0b14cdb
