@@ -10,8 +10,6 @@ use Drupal\Core\Url;
 use Drupal\Core\Link;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\block\Entity\Block;
-
 
 /**
  * Implements hook_preprocess_html().
@@ -67,7 +65,9 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
       break;
 
     case 'block_content':
-      $variables['attributes']['class'][] = Html::cleanCssIdentifier($variables['content']['#bundle']);
+      if (isset($variables['content']['#bundle'])) {
+        $variables['attributes']['class'][] = Html::cleanCssIdentifier($variables['content']['#bundle']);
+      }
       break;
   }
 }
@@ -341,4 +341,11 @@ function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array
     }
   }
   return $suggestions;
+}
+
+/**
+ * Implements hook_preprocess_tb_megamenu_item().
+ */
+function pmmi_bootstrap_preprocess_tb_megamenu_item(&$vars) {
+  $vars['attributes']['class'][] = 'link-' . Html::getClass($vars['link']['title']);
 }

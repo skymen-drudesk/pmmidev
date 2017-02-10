@@ -75,6 +75,12 @@ module:
   pmmi_search: 0
   pmmi_taxonomy: 0
   pmmi_twitter: 0
+  purge: 0
+  purge_processor_cron: 0
+  purge_processor_lateruntime: 0
+  purge_queuer_coretags: 0
+  purge_tokens: 0
+  purge_ui: 0
   quickedit: 0
   responsive_image: 0
   rest: 0
@@ -96,6 +102,8 @@ module:
   toolbar: 0
   update: 0
   user: 0
+  varnish_purge_tags: 0
+  varnish_purger: 0
   video: 0
   viewfield: 0
   views: 0
