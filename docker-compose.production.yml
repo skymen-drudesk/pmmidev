@@ -50,6 +50,7 @@ services:
   pmmisolr:
     container_name: pmmi_prod_solr
     image: solr:5.5-alpine
+    restart: always
     networks:
       - back
     volumes:
@@ -68,6 +69,7 @@ services:
       - back
     volumes:
       - ./config/varnish:/etc/varnish/
+    restart: always
     environment:
       VARNISH_SECRET: secret
       VARNISH_BACKEND_HOST: pmmiweb
