@@ -7,7 +7,7 @@
     margin: inherit;
   }
 }
-@mixin views-list-default($button, $button_op, $labeled_fields) {
+@mixin views-list-default($button: false, $button_op: false, $labeled_fields: false) {
   clear: both;
   margin-bottom: 40px;
   padding: 20px;
@@ -19,29 +19,39 @@
   @include mobile {
     padding: 10px
   }
+  .field-name-field-head,
   .field-name-node-title {
     @extend .default-headline-3;
   }
-  #{$button} {
-    display: inline-block;
-    a {
-      @extend .button-primary;
-      margin-right: 32px;
-    }
-    @include mobile {
-      display: block;
+  @if $button {
+    #{$button} {
+      display: inline-block;
       a {
-        margin: 0 0 15px;
+        @extend .button-primary;
+        margin-right: 32px;
+      }
+      @include desktop-max {
+        a {
+          margin-right: 17px;
+        }
+      }
+      @include mobile {
+        display: block;
+        a {
+          margin: 0 0 15px;
+        }
       }
     }
   }
-  #{$button_op} {
-    display: inline-block;
-    a {
-      @extend .btn-primary-opacity;
-    }
-    @include mobile {
-      display: block;
+  @if $button_op {
+    #{$button_op} {
+      display: inline-block;
+      a {
+        @extend .btn-primary-opacity;
+      }
+      @include mobile {
+        display: block;
+      }
     }
   }
   .field-name-field-date {
@@ -71,11 +81,13 @@
       }
     }
   }
-  #{$labeled_fields} {
-    @extend .paragraph2;
-    margin: 13px 0 20px;
-    .field-label-inline {
-      font-weight: 800;
+  @if $labeled_fields {
+    #{$labeled_fields} {
+      @extend .paragraph2;
+      margin: 13px 0 20px;
+      .field-label-inline {
+        font-weight: 800;
+      }
     }
   }
 }
