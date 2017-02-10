@@ -4,6 +4,7 @@ namespace Drupal\audience_select\Plugin\Block;
 
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
@@ -251,7 +252,8 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     $build['#audience_title'] = $audience['audience_title'];
     $build['#audience_image'] = $image_url;
     $build['#audience_redirect_url'] = $url;
-
+    // Disable cache for this block.
+    $build['#cache']['max-age'] = 0;
     return $build;
   }
 
