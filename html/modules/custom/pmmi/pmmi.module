@@ -8,6 +8,8 @@ use Drupal\views\ViewExecutable;
 use Drupal\Core\Template\Attribute;
 use \Drupal\panels\Plugin\DisplayVariant\PanelsDisplayVariant;
 use Drupal\page_manager\Context\EntityLazyLoadContext;
+use Drupal\Component\Utility\Html;
+
 /**
  * Implements hook_views_pre_build().
  */
@@ -74,11 +76,17 @@ function _pmmi_get_video_type_contexts() {
 function pmmi_panels_build_alter(array &$build, PanelsDisplayVariant $panels_display) {
   if ($panel = \Drupal::routeMatch()->getParameter('page_manager_page_variant')) {
     $attributes = new Attribute();
-    $class = 'panel-' . $panel->get('page');
+    $classes = [Html::getClass('panel-' . $panel->get('page'))];
     if ($panels_display->getPluginId() == 'panels_everywhere_variant') {
-      $class = 'page-' . $panel->get('page');
+      $classes[] = Html::getClass('page-' . $panel->get('page'));
+      $site_template_variants = \Drupal::entityTypeManager()
+        ->getStorage('page')->load('site_template')->getVariants();
+      if ($panels_display->getStorageId()
+      && $current_variant = $site_template_variants[$panels_display->getStorageId()]) {
+        $classes[] = Html::getClass('variant-' . $current_variant->label());
+      }
     }
-    $attributes['class'] = [$class];
+    $attributes['class'] = $classes;
     $build['#attrs'] = $attributes;
   }
 }
