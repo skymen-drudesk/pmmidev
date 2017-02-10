@@ -12450,6 +12450,13 @@ ol, ul {
   padding-left: 20px;
 }
 
+.bullet-list ul, .views-field-body ul,
+.block-body ul,
+.node-body ul,
+.content ul {
+  overflow: hidden;
+}
+
 .bullet-list ul li, .views-field-body ul li,
 .block-body ul li,
 .node-body ul li,
