@@ -89,6 +89,11 @@ class PMMITerritoryServed extends ProcessPluginBase implements ContainerFactoryP
     foreach (explode(',', $value[0]) as $country) {
       $country = trim($country);
 
+      // Empty string. Ignore it!
+      if (!$country) {
+        return;
+      }
+
       if ($ccode = $this->getCountryCodeByName($country)) {
         $sub = FALSE;
 

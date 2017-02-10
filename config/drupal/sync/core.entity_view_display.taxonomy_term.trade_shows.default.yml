@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.taxonomy_term.trade_shows.field_expired
+    - field.field.taxonomy_term.trade_shows.field_date
     - taxonomy.vocabulary.trade_shows
   module:
     - text
@@ -18,13 +18,5 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
-  field_expired:
-    weight: 1
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
-hidden: {  }
+hidden:
+  field_date: true

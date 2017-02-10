@@ -56,6 +56,9 @@
   .node-body {
     @extend .paragraph1;
     @extend .article-font-size;
+    p {
+      margin-bottom: 25px;
+    }
   }
   .author-info {
     @extend .paragraph1;
@@ -63,7 +66,6 @@
     font-style: italic;
     margin-bottom: 40px;
     &:before {
-      @extend .paragraph1;
       font-style: normal;
       content: '###';
       font-weight: 800;

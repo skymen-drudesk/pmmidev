@@ -41,9 +41,9 @@
   Drupal.behaviors.pmmiVideoUpdateAjax = {
     attach: function (context, settings) {
       // Add ajax links to videos view on Video node.
-      if ($(context).is('.video-container')) {
+      if ($(context).find('#video-node-info').length) {
         $('html, body').animate({
-          scrollTop: $('.video-node .node-title').offset().top
+          scrollTop: $('#video-node-info').offset().top
         }, 100);
         $(window).trigger('update', {$videoFrame: $(context).find('iframe')});
       }
@@ -51,7 +51,7 @@
         $(this).find('.default-mode-node').once('ajax').each(function () {
           var $item = $(this);
           var nodeID = $item.data('item-id');
-          $item.find('.field-name-node-link a').prop('href', Drupal.url('pmmi-fields/replace-video/nojs/' + nodeID)).addClass('use-ajax');
+          $item.find('.field-name-node-link a, .field-name-field-video a').prop('href', Drupal.url('pmmi-fields/replace-video/nojs/' + nodeID)).addClass('use-ajax');
         });
         Drupal.behaviors.AJAX.attach(context, settings);
       });
@@ -145,12 +145,38 @@
    * Main menu theming.
    */
   Drupal.behaviors.pmmiMainMenu = {
+    searchBlock: function ($context) {
+      var $menu = $context.find('.block-tb-megamenu');
+      var $menuParent = $menu.parent();
+      var handleResize = function () {
+        var currentBp = _.invert(drupalSettings.responsive.activeBreakpoints, true)['true'];
+        if (currentBp !== 'mobile') {
+          var freeWidth = $menuParent.width() - $menu.width();
+          if (freeWidth >= 305) {
+            $menuParent.addClass('show-search');
+          }
+          else {
+            $menuParent.removeClass('show-search');
+          }
+        }
+        else {
+          $menuParent.removeClass('show-search');
+        }
+      };
+      $(window).on('load resize', _.throttle(handleResize, 300, {leading: false}));
+    },
     attach: function () {
+      var _this = this;
       $('.main-nav').once('main-nav').each(function () {
+        var $navContext = $(this);
         var $dropdownToggle = $('a.dropdown-toggle');
         $dropdownToggle.each(function () {
           $(this).parent().find('.mega-nav').prepend($('<li>').addClass('only-mobile').append($(this).clone().toggleClass('dropdown-toggle')));
         });
+        // Search block.
+        _this.searchBlock($navContext);
+
+        // Mobile toggler.
         $(window).on('breakpointActivated', function (e, breakpoint) {
           if (breakpoint === 'mobile') {
             $dropdownToggle.on('click.mobile-toggler', function (e) {

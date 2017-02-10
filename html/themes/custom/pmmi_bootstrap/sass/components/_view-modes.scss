@@ -9,6 +9,16 @@
     padding-left: 300px;
     min-height: 140px;
     @extend .clearfix;
+    .field-name-field-date {
+      float: none;
+      top: 0;
+    }
+    .field-name-body {
+      display: inline;
+    }
+    .links {
+      margin-top: 13px;
+    }
     .field-name-field-video {
       float: left;
       width: 250px;
@@ -17,6 +27,7 @@
     @include tablet {
       padding-left: 250px;
       .field-name-field-video {
+        width: 210px;
         margin-left: -230px;
       }
     }

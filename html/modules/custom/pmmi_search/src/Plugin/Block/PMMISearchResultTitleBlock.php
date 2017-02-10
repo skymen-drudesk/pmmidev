@@ -65,8 +65,9 @@ class PMMISearchResultTitleBlock extends PMMISearchBlock implements ContainerFac
       $current_request = \Drupal::request();
       $uri = $current_request->getPathInfo();
       $keywords = $current_request->query->get($this->configuration['search_identifier']);
+      $title = !empty($keywords) ? $this->configuration['search_title'] . ' ' . $keywords : $this->t('All results');
       if ($search_path->toString() == $uri) {
-        $build['pmmi_search_result_title_block']['#markup'] = '<h2>' . $this->configuration['search_title'] .' '. $keywords. '</h2>';
+        $build['pmmi_search_result_title_block']['#markup'] = '<h2 class="headline2">' . $title . '</h2>';
       }
     }
 

@@ -11,7 +11,10 @@ h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 0;
 }
 // Lists.
-.content {
+ol, ul {
+  padding-left: 20px;
+}
+.bullet-list {
   ul {
     li {
       list-style: none;
@@ -24,6 +27,7 @@ h1, .h1, h2, .h2, h3, .h3 {
         vertical-align: top;
         position: absolute;
         left: -2.5em;
+        top: -0.2em;
         color: $blue;
       }
       li {
@@ -34,6 +38,12 @@ h1, .h1, h2, .h2, h3, .h3 {
       }
     }
   }
+}
+.views-field-body,
+.block-body,
+.node-body,
+.content {
+  @extend .bullet-list;
 }
 .field-label-inline {
   display: inline;

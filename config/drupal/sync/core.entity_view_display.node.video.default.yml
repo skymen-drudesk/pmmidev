@@ -21,7 +21,7 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: default_mode
+      id: video_default_mode
       path: themes/custom/pmmi_bootstrap
       library: ''
       disable_css: false
@@ -34,6 +34,7 @@ third_party_settings:
         - field_date
         - body
         - field_featured_speaker
+      links:
         - node_link
         - field_link
     fields:
