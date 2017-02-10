@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.company.field_equipment_sold_type_other
     - field.field.node.company.field_fax_number
     - field.field.node.company.field_general_company_email
+    - field.field.node.company.field_image_header
     - field.field.node.company.field_industries_served
     - field.field.node.company.field_industries_served_other
     - field.field.node.company.field_main_phone_number
@@ -41,9 +42,10 @@ third_party_settings:
       weight: 0
       format_type: fieldset
       format_settings:
-        id: ''
-        classes: ''
+        label: 'Company information'
         description: ''
+        id: ''
+        classes: company-info
         required_fields: false
       label: 'Company information'
     group_main_contact_information:
@@ -55,9 +57,10 @@ third_party_settings:
       weight: 2
       format_type: fieldset
       format_settings:
-        id: ''
-        classes: ''
+        label: 'Main contact information'
         description: ''
+        id: ''
+        classes: main-contact
         required_fields: false
       label: 'Main contact information'
     group_industries_served:
@@ -66,12 +69,13 @@ third_party_settings:
         - field_industries_served_other
       parent_name: ''
       weight: 5
-      format_type: fieldset
+      format_type: details
       format_settings:
-        description: ''
-        classes: ''
-        id: ''
+        label: 'Industries served'
         required_fields: true
+        id: ''
+        classes: industries-served
+        open: false
       label: 'Industries served'
     group_type_of_equipment_sold:
       children:
@@ -79,12 +83,13 @@ third_party_settings:
         - field_equipment_sold_type_other
       parent_name: ''
       weight: 6
-      format_type: fieldset
+      format_type: details
       format_settings:
-        description: ''
-        classes: ''
-        id: ''
+        label: 'Type of equipment sold'
         required_fields: true
+        id: ''
+        classes: equipment-sold
+        open: false
       label: 'Type of equipment sold'
 id: node.company.default
 targetEntityType: node
@@ -211,6 +216,7 @@ hidden:
   field_businbess_lines: true
   field_city: true
   field_country: true
+  field_image_header: true
   field_postal_code: true
   field_state: true
   field_trade_shows: true

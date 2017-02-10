@@ -66,6 +66,38 @@
       $('select').once('uniform').each(function () {
         $(this).uniform();
       });
+      $('input[type="checkbox"]').once('uniform').each(function () {
+        var $checkBox = $(this);
+        var $checkBoxParent = $checkBox.closest('.form-type-checkbox');
+        if ($checkBox.is(':checked')) {
+          $checkBoxParent.addClass('checked')
+        }
+        $checkBox.uniform();
+        $checkBox.on('change', function () {
+          if ($checkBox.is(':checked')) {
+            $checkBoxParent.addClass('checked')
+          }
+          else {
+            $checkBoxParent.removeClass('checked')
+          }
+        });
+      });
+      $('input[type="radio"]').once('uniform').each(function () {
+        var $checkBox = $(this);
+        var $checkBoxParent = $checkBox.closest('.form-type-radio');
+        if ($checkBox.is(':checked')) {
+          $checkBoxParent.addClass('checked')
+        }
+        $checkBox.uniform();
+        $checkBox.on('change', function () {
+          if ($checkBox.is(':checked')) {
+            $checkBoxParent.addClass('checked')
+          }
+          else {
+            $checkBoxParent.removeClass('checked')
+          }
+        });
+      });
       // Equal heights for blocks inside containers.
       $('.containers .row').once('matchHeight').each(function () {
         var $row = $(this);
