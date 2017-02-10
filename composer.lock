@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "997c932c644a67de25a1028cbaa72106",
+    "content-hash": "b4a52c7b66b4d7bce4d9043243b9ca9a",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -2168,11 +2168,17 @@
         },
         {
             "name": "drupal/config_split",
-            "version": "dev-1.x",
+            "version": "1.0.0-beta1",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/config_split",
-                "reference": "95252231fad30deb7d44777884d64cde28ecd529"
+                "reference": "8.x-1.0-beta1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/config_split-8.x-1.0-beta1.zip",
+                "reference": "8.x-1.0-beta1",
+                "shasum": "8a5839160a432712165d5aab9e7b4c33fc2eea44"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -2183,8 +2189,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1+6-dev",
-                    "datestamp": "1485178383"
+                    "version": "8.x-1.0-beta1",
+                    "datestamp": "1480263780"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2213,8 +2219,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/config_split",
                 "issues": "https://www.drupal.org/project/issues/config_split"
-            },
-            "time": "2017-01-23 13:44:13"
+            }
         },
         {
             "name": "drupal/config_update",
@@ -4067,10 +4072,9 @@
                 "drupal/ctools": ">=3.0.0-alpha26",
                 "drupal/layout_plugin": ">=1.0.0-alpha22"
             },
-            "suggest": {
-                "drupal/core": "Required by drupal/panels_ipe",
-                "drupal/page_manager": "Required by drupal/panels",
-                "drupal/panelizer": "Required by drupal/panels"
+            "require-dev": {
+                "drupal/page_manager": "*",
+                "drupal/panelizer": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -4192,6 +4196,48 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/pathauto"
             }
+        },
+        {
+            "name": "drupal/purge",
+            "version": "8.3.0-beta6",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/purge",
+                "reference": "067aa717f01c5a394e5f1b7ad5ebba3c46931223"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/purge-8.x-3.0-beta6.zip",
+                "reference": "067aa717f01c5a394e5f1b7ad5ebba3c46931223",
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*"
+            },
+            "replace": {
+                "drupal/purge_drush": "self.version",
+                "drupal/purge_processor_cron": "self.version",
+                "drupal/purge_processor_lateruntime": "self.version",
+                "drupal/purge_queuer_coretags": "self.version",
+                "drupal/purge_tokens": "self.version",
+                "drupal/purge_ui": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/purge_drush, drupal/purge_processor_cron, drupal/purge_processor_lateruntime, drupal/purge_queuer_coretags, drupal/purge_tokens, drupal/purge_ui"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-3.x": "8.3.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Provides a generic external cache invalidation API and queue service.",
+            "homepage": "https://www.drupal.org/project/purge",
+            "time": "2016-10-26T12:16:03+00:00"
         },
         {
             "name": "drupal/redirect",
@@ -4524,6 +4570,47 @@
                 "source": "http://cgit.drupalcode.org/token",
                 "issues": "https://www.drupal.org/project/issues/token"
             }
+        },
+        {
+            "name": "drupal/varnish_purge",
+            "version": "8.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/varnish_purge.git",
+                "reference": "ad293a77026950b9c5dded5ecad5514f328e6c8c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/varnish_purge-8.x-1.4.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "drupal/core": "8.*",
+                "drupal/purge": "8.*"
+            },
+            "replace": {
+                "drupal/varnish_purge_tags": "self.version",
+                "drupal/varnish_purger": "self.version"
+            },
+            "suggest": {
+                "drupal/core": "Required by drupal/varnish_purger",
+                "drupal/purge": "Required by drupal/varnish_purger",
+                "drupal/purge_tokens": "Required by drupal/varnish_purger"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-8.x-1.x": "8.1.x-dev"
+                }
+            },
+            "notification-url": "https://packagist.drupal-composer.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "description": "Cache-Tags response header to support tag-based invalidation.",
+            "homepage": "https://www.drupal.org/project/varnish_purge",
+            "time": "2016-09-09T18:11:01+00:00"
         },
         {
             "name": "drupal/video",
@@ -10376,7 +10463,7 @@
         "drupal/backup_migrate": 15,
         "drupal/blazy": 10,
         "drupal/config_readonly": 10,
-        "drupal/config_split": 20,
+        "drupal/config_split": 10,
         "drupal/ctools": 15,
         "drupal/date": 20,
         "drupal/default_content": 20,
