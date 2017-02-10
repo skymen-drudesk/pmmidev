@@ -1,0 +1,32 @@
+uuid: 8dab9297-a5c7-4cd7-afa3-9a933d315689
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_solr
+id: solr_agent_contacts_server
+name: 'Solr Agent Contacts Server'
+description: ''
+backend: search_api_solr
+backend_config:
+  connector: standard
+  connector_config:
+    scheme: http
+    host: pmmisolr
+    port: '8983'
+    path: /solr
+    core: d8_contacts
+    timeout: 5
+    index_timeout: 5
+    optimize_timeout: 10
+    commit_within: 1000
+    solr_version: ''
+    http_method: AUTO
+  retrieve_data: false
+  highlight_data: false
+  excerpt: false
+  skip_schema_check: false
+  site_hash: true
+  suggest_suffix: true
+  suggest_corrections: true
+  suggest_words: false
