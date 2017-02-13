@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - block_content.type.accordion
+    - block_content.type.box
     - block_content.type.brand
     - block_content.type.card
     - block_content.type.containers
@@ -40,6 +41,7 @@ settings:
   handler_settings:
     target_bundles:
       accordion: accordion
+      box: box
       brand: brand
       card: card
       enticement: enticement
