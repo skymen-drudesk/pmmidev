@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * @file
+ * Contains odata.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function odata_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the odata module.
+    case 'help.page.odata':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Odata') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function odata_theme() {
+  return [
+    'odata' => [
+      'template' => 'odata',
+      'render element' => 'children',
+    ],
+  ];
+}
+
+
+/**
+ * Converts an oData Type to a Drupal one.
+ *
+ * @param string $type
+ *   oData type to be converted.
+ *
+ * @return string
+ *   A Drupal equivalent type.
+ */
+function odata_convert_type($type) {
+  switch ($type) {
+    case 'Edm.Int16':
+    case 'Edm.Int32':
+    case 'Edm.Int64':
+    case 'Edm.SByte':
+    case 'Edm.Single':
+    case 'Edm.Double':
+    case 'Edm.Decimal':
+    case 'Edm.Byte':
+      return 'Numeric';
+
+    case 'Edm.DateTime':
+    case 'Edm.DateTimeOffset':
+    case 'Edm.Time':
+      return 'Date';
+
+    case 'Edm.Boolean':
+      return 'Boolean';
+
+    case 'Edm.String':
+      return 'String';
+
+    case 'ComplexType':
+      return 'Complex';
+
+    case 'Edm.Guid ':
+    case 'Edm.Binary':
+    case 'Null':
+    case 'Edm.GeographyPoint':
+    default:
+      return '';
+  }
+}

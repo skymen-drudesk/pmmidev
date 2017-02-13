@@ -1,0 +1,6 @@
+entity.odata_entity.add_form:
+  route_name: 'entity.odata_entity.add_form'
+  title: 'Add Odata entity'
+  appears_on:
+    - entity.odata_entity.collection
+

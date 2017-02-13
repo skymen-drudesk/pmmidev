@@ -1,0 +1,12 @@
+odata.odata_entity.*:
+  type: config_entity
+  label: 'Odata entity config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    uuid:
+      type: string

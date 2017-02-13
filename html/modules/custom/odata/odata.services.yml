@@ -1,0 +1,5 @@
+services:
+  odata.manager:
+    class: Drupal\odata\OdataManager
+    arguments: ['@request_stack', '@serializer.encoder.json', '@serialization.phpserialize', '@serializer.encoder.xml']
+
