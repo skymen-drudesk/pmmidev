@@ -40,6 +40,8 @@ third_party_settings:
     regions:
       image_header:
         - 'dynamic_block_field:node-sales_agent_directory_image_head'
+      header_menu:
+        - 'dynamic_block_field:node-sales_agent_action_toolbar'
       after_sales:
         - field_after_sales_service
       title:
@@ -76,6 +78,11 @@ third_party_settings:
       'dynamic_block_field:node-company_trade_shows':
         plugin_id: 'dynamic_block_field:node-company_trade_shows'
         weight: 23
+        label: hidden
+        formatter: default
+      'dynamic_block_field:node-sales_agent_action_toolbar':
+        plugin_id: 'dynamic_block_field:node-sales_agent_action_toolbar'
+        weight: 0
         label: hidden
         formatter: default
       'dynamic_block_field:node-sales_agent_directory_image_head':
@@ -242,4 +249,5 @@ hidden:
   field_postal_code: true
   field_state: true
   field_trade_shows: true
+  flag_favorites_content: true
   links: true
