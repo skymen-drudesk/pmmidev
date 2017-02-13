@@ -1,14 +1,14 @@
-uuid: f7b799e8-8e3f-4b11-afe3-6b6eea6f52ba
+uuid: b24f9ab5-8ecb-4b29-a9b3-69fc913c1c32
 langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.study_guide
+    - block_content.type.box
     - field.storage.block_content.field_head
-id: block_content.study_guide.field_head
+id: block_content.box.field_head
 field_name: field_head
 entity_type: block_content
-bundle: study_guide
+bundle: box
 label: Head
 description: ''
 required: true
