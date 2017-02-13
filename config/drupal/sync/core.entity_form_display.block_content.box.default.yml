@@ -29,9 +29,12 @@ content:
     third_party_settings: {  }
   field_box_type:
     weight: 5
-    settings: {  }
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
+    type: entity_reference_autocomplete_tags
   field_buttons:
     weight: 4
     settings:
