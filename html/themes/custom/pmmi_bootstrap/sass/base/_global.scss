@@ -16,6 +16,7 @@ ol, ul {
 }
 .bullet-list {
   ul {
+    overflow: hidden;
     li {
       list-style: none;
       position: relative;

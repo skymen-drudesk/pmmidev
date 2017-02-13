@@ -50,16 +50,7 @@ services:
       - "9000"
 
   pmmisolr:
-    container_name: pmmi_dev_solr
-    image: solr:5.5-alpine
-    volumes:
-      - ./solr:/opt/solr/server/solr/d8
-      - ./build/solr-conf/5.x:/solr-conf/conf
-    entrypoint:
-      - docker-entrypoint.sh
-      - solr-precreate
-      - d8
-      - /solr-conf
+    build: ./build/solr
     ports:
       - "8003:8983"
 

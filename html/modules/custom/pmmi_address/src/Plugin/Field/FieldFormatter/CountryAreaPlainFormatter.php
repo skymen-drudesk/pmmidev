@@ -82,7 +82,6 @@ class CountryAreaPlainFormatter extends  FormatterBase implements ContainerFacto
       $container->get('address.country_repository'),
       $container->get('address.subdivision_repository')
     );
-    // @see \Drupal\Core\Field\FormatterPluginManager::createInstance().
   }
 
   /**
