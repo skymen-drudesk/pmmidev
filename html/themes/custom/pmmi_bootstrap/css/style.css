@@ -12211,7 +12211,7 @@ fieldset[disabled] a.focus {
   font-weight: 500;
 }
 
-.headline1, .events-block-3 .block-title,
+.headline1, .page-search-sales-agent-directory .main-container .block-title, .events-block-3 .block-title,
 .block-views-blockevents-block-3 .block-title, .block-views-blocknews-block-most-recent .block-title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .field-name-field-head, .block-icons > .title, .block-text.mode-default.centered .title {
   font-size: 60px;
   font-size: 3.75rem;
@@ -12223,7 +12223,7 @@ fieldset[disabled] a.focus {
   letter-spacing: 3px;
 }
 
-.headline1:after, .events-block-3 .block-title:after,
+.headline1:after, .page-search-sales-agent-directory .main-container .block-title:after, .events-block-3 .block-title:after,
 .block-views-blockevents-block-3 .block-title:after, .block-views-blocknews-block-most-recent .block-title:after, .blue-region .containers .region-top .field-name-field-head:after, .grey-region .containers .region-top .field-name-field-head:after, .block-icons > .title:after, .block-text.mode-default.centered .title:after {
   display: block;
   border-bottom: 3px solid #004e75;
@@ -12232,20 +12232,22 @@ fieldset[disabled] a.focus {
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .headline1, .events-block-3 .block-title,
+  .headline1, .page-search-sales-agent-directory .main-container .block-title, .events-block-3 .block-title,
   .block-views-blockevents-block-3 .block-title, .block-views-blocknews-block-most-recent .block-title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .field-name-field-head, .block-icons > .title, .block-text.mode-default.centered .title {
     font-size: 2.5rem;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .headline1, .events-block-3 .block-title,
+  .headline1, .page-search-sales-agent-directory .main-container .block-title, .events-block-3 .block-title,
   .block-views-blockevents-block-3 .block-title, .block-views-blocknews-block-most-recent .block-title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .field-name-field-head, .block-icons > .title, .block-text.mode-default.centered .title {
     font-size: 2.1875rem;
   }
 }
 
-.headline1.white, .events-block-3 .block-title,
+.headline1.white, .page-search-sales-agent-directory .main-container .white.block-title, .page-search-sales-agent-directory .main-container .events-block-3 .block-title, .events-block-3 .page-search-sales-agent-directory .main-container .block-title, .page-search-sales-agent-directory .main-container
+.block-views-blockevents-block-3 .block-title,
+.block-views-blockevents-block-3 .page-search-sales-agent-directory .main-container .block-title, .blue-region .page-search-sales-agent-directory .main-container .block-icons > .block-title.title, .events-block-3 .block-title,
 .block-views-blockevents-block-3 .block-title, .block-views-blocknews-block-most-recent .white.block-title, .blue-region .block-views-blocknews-block-most-recent .block-icons > .block-title.title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .white.field-name-field-head, .grey-region .containers .region-top .events-block-3 .field-name-field-head.block-title, .events-block-3 .grey-region .containers .region-top .field-name-field-head.block-title, .grey-region .containers .region-top
 .block-views-blockevents-block-3 .field-name-field-head.block-title,
 .block-views-blockevents-block-3 .grey-region .containers .region-top .field-name-field-head.block-title, .grey-region .containers .region-top .blue-region .block-icons > .field-name-field-head.title, .block-icons > .white.title, .blue-region .block-icons > .title, .blue-region .events-block-3 .block-icons > .title.block-title, .blue-region
@@ -12255,7 +12257,9 @@ fieldset[disabled] a.focus {
   color: #fff;
 }
 
-.headline1.white:after, .events-block-3 .block-title:after,
+.headline1.white:after, .page-search-sales-agent-directory .main-container .white.block-title:after, .page-search-sales-agent-directory .main-container .events-block-3 .block-title:after, .events-block-3 .page-search-sales-agent-directory .main-container .block-title:after, .page-search-sales-agent-directory .main-container
+.block-views-blockevents-block-3 .block-title:after,
+.block-views-blockevents-block-3 .page-search-sales-agent-directory .main-container .block-title:after, .blue-region .page-search-sales-agent-directory .main-container .block-icons > .block-title.title:after, .events-block-3 .block-title:after,
 .block-views-blockevents-block-3 .block-title:after, .block-views-blocknews-block-most-recent .white.block-title:after, .blue-region .block-views-blocknews-block-most-recent .block-icons > .block-title.title:after, .blue-region .containers .region-top .field-name-field-head:after, .grey-region .containers .region-top .white.field-name-field-head:after, .grey-region .containers .region-top .events-block-3 .field-name-field-head.block-title:after, .events-block-3 .grey-region .containers .region-top .field-name-field-head.block-title:after, .grey-region .containers .region-top
 .block-views-blockevents-block-3 .field-name-field-head.block-title:after,
 .block-views-blockevents-block-3 .grey-region .containers .region-top .field-name-field-head.block-title:after, .grey-region .containers .region-top .blue-region .block-icons > .field-name-field-head.title:after, .block-icons > .white.title:after, .blue-region .block-icons > .title:after, .blue-region .events-block-3 .block-icons > .title.block-title:after, .blue-region
@@ -15257,154 +15261,219 @@ html, body {
   }
 }
 
-.page-search_sales_agent_directory .block-title {
-  color: #004e75;
-  text-align: center;
-  font-size: 60px;
-  font-size: 3.75rem;
-}
-
-.page-search_sales_agent_directory .control-label {
+.page-search-sales-agent-directory .main-container {
   color: #004e75;
 }
 
-.page-search_sales_agent_directory form {
-  max-width: 593px;
-  border-top: solid 3px #004e75;
-  min-width: 375px;
-  padding: 33px 200px 0 0;
-  margin: auto;
-  margin-top: 25px;
-  clear: both;
+.page-search-sales-agent-directory .main-container .row, .page-search-sales-agent-directory .main-container .footer .region-footer, .footer .page-search-sales-agent-directory .main-container .region-footer, .page-search-sales-agent-directory .main-container .events-block-3 .view-content, .events-block-3 .page-search-sales-agent-directory .main-container .view-content, .page-search-sales-agent-directory .main-container
+.block-views-blockevents-block-3 .view-content,
+.block-views-blockevents-block-3 .page-search-sales-agent-directory .main-container .view-content, .page-search-sales-agent-directory .main-container .block-icons .column, .block-icons .page-search-sales-agent-directory .main-container .column {
+  margin-left: 0;
+  margin-right: 0;
 }
 
-.page-search_sales_agent_directory form .form-group {
+.page-search-sales-agent-directory .main-container .block-title {
+  display: inline-block;
+}
+
+.page-search-sales-agent-directory .main-container .block-title:after {
+  margin: 0 45px 0 0;
+}
+
+.page-search-sales-agent-directory .main-container label {
+  padding-left: 0;
+}
+
+.page-search-sales-agent-directory .main-container form {
+  width: 770px;
+  padding: 33px 0 0 0;
+}
+
+.page-search-sales-agent-directory .main-container form .form-group {
   margin-bottom: 16px;
 }
 
-.page-search_sales_agent_directory form .form-group .form-item {
-  float: right;
-}
-
-.page-search_sales_agent_directory form .form-group .form-item .chosen-container {
+.page-search-sales-agent-directory .main-container form .form-group .chosen-container {
   max-width: 270px;
   min-width: 270px;
   font-size: 16px;
   font-size: 1rem;
 }
 
-.page-search_sales_agent_directory form .form-group .form-item .chosen-container ul {
+.page-search-sales-agent-directory .main-container form .form-group .chosen-container ul {
   background: none;
+  min-height: 40px;
+  padding: 5px 10px;
 }
 
-.page-search_sales_agent_directory form .form-group .form-item .chosen-container li {
+.page-search-sales-agent-directory .main-container form .form-group .chosen-container li {
   background: none;
   border: none;
   color: #038dc0;
   box-shadow: none;
 }
 
-.page-search_sales_agent_directory form .form-group .input-group,
-.page-search_sales_agent_directory form .form-group .form-control {
+.page-search-sales-agent-directory .main-container form .input-group,
+.page-search-sales-agent-directory .main-container form .form-control {
   display: inline;
   min-height: 40px;
-  width: 270px;
+  max-width: 270px;
 }
 
-.page-search_sales_agent_directory form .form-group .input-group .input-group-addon,
-.page-search_sales_agent_directory form .form-group .form-control .input-group-addon {
+.page-search-sales-agent-directory .main-container form .input-group .input-group-addon,
+.page-search-sales-agent-directory .main-container form .form-control .input-group-addon {
   display: none;
 }
 
-.page-search_sales_agent_directory form #edit-industries {
-  clear: both;
-}
-
-.page-search_sales_agent_directory #edit-industries,
-.page-search_sales_agent_directory #edit-equipments,
-.page-search_sales_agent_directory #edit-shows {
-  width: 270px;
-  float: right;
+.page-search-sales-agent-directory .main-container #edit-industries,
+.page-search-sales-agent-directory .main-container #edit-equipments,
+.page-search-sales-agent-directory .main-container #edit-shows {
   position: relative;
   padding-left: 52px;
-  overflow: hidden;
+  margin-left: 66px;
 }
 
-.page-search_sales_agent_directory #edit-industries .panel-heading,
-.page-search_sales_agent_directory #edit-equipments .panel-heading,
-.page-search_sales_agent_directory #edit-shows .panel-heading {
+.page-search-sales-agent-directory .main-container #edit-industries .panel-heading,
+.page-search-sales-agent-directory .main-container #edit-equipments .panel-heading,
+.page-search-sales-agent-directory .main-container #edit-shows .panel-heading {
   margin-left: -12px;
   color: #8c8888;
   background: none;
   border: none;
 }
 
-.page-search_sales_agent_directory #edit-industries .panel-heading .panel-title,
-.page-search_sales_agent_directory #edit-equipments .panel-heading .panel-title,
-.page-search_sales_agent_directory #edit-shows .panel-heading .panel-title {
-  position: absolute;
-  margin-left: -52px;
-  opacity: 0;
-  word-break: break-all;
-  width: 35px;
+.page-search-sales-agent-directory .main-container #edit-industries .panel-heading a[aria-expanded="true"],
+.page-search-sales-agent-directory .main-container #edit-equipments .panel-heading a[aria-expanded="true"],
+.page-search-sales-agent-directory .main-container #edit-shows .panel-heading a[aria-expanded="true"] {
+  color: #004e75;
+  font-weight: 700;
+  padding-left: 12px;
 }
 
-.page-search_sales_agent_directory #edit-industries .panel-heading .panel-title.collapsed,
-.page-search_sales_agent_directory #edit-equipments .panel-heading .panel-title.collapsed,
-.page-search_sales_agent_directory #edit-shows .panel-heading .panel-title.collapsed {
-  position: relative;
-  color: #8c8888;
-  margin-left: 0;
-  opacity: 1;
-}
-
-.page-search_sales_agent_directory #edit-industries .in,
-.page-search_sales_agent_directory #edit-equipments .in,
-.page-search_sales_agent_directory #edit-shows .in {
+.page-search-sales-agent-directory .main-container #edit-industries .in,
+.page-search-sales-agent-directory .main-container #edit-equipments .in,
+.page-search-sales-agent-directory .main-container #edit-shows .in {
   margin-top: -20px;
 }
 
-.page-search_sales_agent_directory #edit-industries .control-label,
-.page-search_sales_agent_directory #edit-equipments .control-label,
-.page-search_sales_agent_directory #edit-shows .control-label {
-  color: #55acee;
+.page-search-sales-agent-directory .main-container #edit-industries.active:before,
+.page-search-sales-agent-directory .main-container #edit-equipments.active:before,
+.page-search-sales-agent-directory .main-container #edit-shows.active:before {
+  content: '\f068';
+  background-color: #038dc0;
 }
 
-.page-search_sales_agent_directory #edit-industries:before,
-.page-search_sales_agent_directory #edit-equipments:before,
-.page-search_sales_agent_directory #edit-shows:before {
+.page-search-sales-agent-directory .main-container #edit-industries:before,
+.page-search-sales-agent-directory .main-container #edit-equipments:before,
+.page-search-sales-agent-directory .main-container #edit-shows:before {
   background-color: #004e75;
   width: 40px;
   display: block;
-  color: #e8eded;
-  content: '\02C5';
-  font-size: 55px;
-  font-size: 3.4375rem;
-  font-weight: bolder;
+  font-family: FontAwesome;
+  color: #fff;
+  content: '\f067';
+  font-size: 20px;
+  font-size: 1.25rem;
+  padding-top: 9px;
   text-align: center;
-  float: left;
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
 }
 
-.page-search_sales_agent_directory .form-type-textfield {
-  float: right;
+.page-search-sales-agent-directory .main-container #edit-industries .checker,
+.page-search-sales-agent-directory .main-container #edit-equipments .checker,
+.page-search-sales-agent-directory .main-container #edit-shows .checker {
+  opacity: 0;
 }
 
-.page-search_sales_agent_directory .button {
-  margin-left: 31%;
+.page-search-sales-agent-directory .main-container #edit-industries .checkbox.checked,
+.page-search-sales-agent-directory .main-container #edit-equipments .checkbox.checked,
+.page-search-sales-agent-directory .main-container #edit-shows .checkbox.checked {
+  color: #038dc0;
+}
+
+.page-search-sales-agent-directory .main-container #edit-industries .checkbox.checked label,
+.page-search-sales-agent-directory .main-container #edit-equipments .checkbox.checked label,
+.page-search-sales-agent-directory .main-container #edit-shows .checkbox.checked label {
+  color: #038dc0;
+  margin-left: 20px;
+}
+
+.page-search-sales-agent-directory .main-container #edit-industries .checkbox.checked:before,
+.page-search-sales-agent-directory .main-container #edit-equipments .checkbox.checked:before,
+.page-search-sales-agent-directory .main-container #edit-shows .checkbox.checked:before {
+  font-family: FontAwesome;
+  content: '\f046';
+  position: absolute;
+}
+
+.page-search-sales-agent-directory .main-container #edit-industries .checkbox,
+.page-search-sales-agent-directory .main-container #edit-equipments .checkbox,
+.page-search-sales-agent-directory .main-container #edit-shows .checkbox {
+  color: #000;
+}
+
+.page-search-sales-agent-directory .main-container #edit-industries .checkbox label,
+.page-search-sales-agent-directory .main-container #edit-equipments .checkbox label,
+.page-search-sales-agent-directory .main-container #edit-shows .checkbox label {
+  color: #000;
+  margin-left: 20px;
+}
+
+.page-search-sales-agent-directory .main-container #edit-industries .checkbox:before,
+.page-search-sales-agent-directory .main-container #edit-equipments .checkbox:before,
+.page-search-sales-agent-directory .main-container #edit-shows .checkbox:before {
+  font-family: FontAwesome;
+  content: '\f096';
+  position: absolute;
+}
+
+.page-search-sales-agent-directory .main-container .button {
+  margin-left: 66px;
+  margin-bottom: 100px;
   width: 170px;
 }
 
-.page-search_sales_agent_directory .button .icon {
+.page-search-sales-agent-directory .main-container .button .icon {
   display: none;
 }
 
 @media screen and (max-width: 767px) {
-  .page-search_sales_agent_directory form {
-    padding: 0;
+  .page-search-sales-agent-directory .main-container .block-title {
+    font-size: 2.1875rem;
+    margin: 0 10px 0 20px;
+  }
+  .page-search-sales-agent-directory .main-container label {
+    padding-left: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 20px;
+  }
+  .page-search-sales-agent-directory .main-container form {
+    max-width: 340px;
+  }
+  .page-search-sales-agent-directory .main-container form #edit-industries,
+  .page-search-sales-agent-directory .main-container form #edit-equipments,
+  .page-search-sales-agent-directory .main-container form #edit-shows,
+  .page-search-sales-agent-directory .main-container form .form-type-textfield,
+  .page-search-sales-agent-directory .main-container form .form-type-select {
+    width: 340px;
+    float: left;
+    margin-left: 0;
+  }
+  .page-search-sales-agent-directory .main-container form .form-type-select label {
+    float: left;
+    margin-right: 11px;
+    padding-right: 0;
+  }
+  .page-search-sales-agent-directory .main-container form .form-type-textfield input {
+    max-width: 375px;
+  }
+  .page-search-sales-agent-directory .main-container .button {
+    margin: 30px 0 35px 70px;
   }
 }
 
@@ -17533,6 +17602,9 @@ div.view {
   }
 }
 
+/**
+ *  Company node view
+ */
 .company-node .block-image-header .page-name {
   max-width: 370px;
 }
@@ -17567,7 +17639,9 @@ div.view {
   clear: left;
 }
 
-.company-node .row-wrapper, .company-node .contacts, .company-node .services {
+.company-node .row-wrapper,
+.company-node .contacts,
+.company-node .services {
   margin: 20px 0;
   padding-bottom: 20px;
 }
@@ -17649,7 +17723,9 @@ div.view {
   font-weight: bold;
 }
 
-.company-node .footer-reg .views-row .views-field-field-name span, .company-node .footer-reg .views-row .views-field-field-title span, .company-node .footer-reg .views-row .views-field-field-email span {
+.company-node .footer-reg .views-row .views-field-field-name span,
+.company-node .footer-reg .views-row .views-field-field-title span,
+.company-node .footer-reg .views-row .views-field-field-email span {
   color: #8c8888;
   text-transform: uppercase;
   font-size: 14px;
@@ -17678,10 +17754,12 @@ div.view {
     margin-bottom: 0;
     font-size: 2.1875rem;
   }
-  .company-node .general .address-simple, .company-node .general .field--name-field-website-url {
+  .company-node .general .address-simple,
+  .company-node .general .field--name-field-website-url {
     float: none;
   }
-  .company-node .general .address-simple:after, .company-node .general .field--name-field-website-url:after {
+  .company-node .general .address-simple:after,
+  .company-node .general .field--name-field-website-url:after {
     display: none;
   }
   .company-node .row-wrapper {
@@ -17706,6 +17784,395 @@ div.view {
 @media screen and (max-width: 1023px) {
   .company-node .contacts > .col-md-4, .company-node .block-icons.cols-3 .column.contacts > .field, .block-icons.cols-3 .company-node .column.contacts > .field, .company-node .services > .col-md-4, .company-node .block-icons.cols-3 .column.services > .field, .block-icons.cols-3 .company-node .column.services > .field {
     padding-left: 0;
+  }
+}
+
+/**
+ * Company node edit form
+ */
+form#node-company-edit-form,
+form#node-company-form {
+  max-width: 770px;
+}
+
+form#node-company-edit-form .form-control,
+form#node-company-edit-form .selector,
+form#node-company-form .form-control,
+form#node-company-form .selector {
+  color: #000;
+}
+
+form#node-company-edit-form .panel-body,
+form#node-company-form .panel-body {
+  padding: 0;
+}
+
+form#node-company-edit-form .form-control,
+form#node-company-form .form-control {
+  border-color: #869fbe;
+}
+
+form#node-company-edit-form .panel-heading,
+form#node-company-edit-form .panel-default,
+form#node-company-edit-form legend,
+form#node-company-form .panel-heading,
+form#node-company-form .panel-default,
+form#node-company-form legend {
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding-left: 0;
+}
+
+form#node-company-edit-form .panel-title,
+form#node-company-edit-form .field--name-field-company-description label,
+form#node-company-edit-form .field--name-field-manufacturers-represented label,
+form#node-company-edit-form .field--name-field-business-lines legend,
+form#node-company-form .panel-title,
+form#node-company-form .field--name-field-company-description label,
+form#node-company-form .field--name-field-manufacturers-represented label,
+form#node-company-form .field--name-field-business-lines legend {
+  color: #004e75;
+  font-weight: 800;
+  font-size: 20px;
+  font-size: 1.25rem;
+}
+
+form#node-company-edit-form .field--name-field-address .input-group-addon,
+form#node-company-form .field--name-field-address .input-group-addon {
+  display: none;
+}
+
+form#node-company-edit-form .field--name-field-address .panel-body > div,
+form#node-company-form .field--name-field-address .panel-body > div {
+  float: right;
+}
+
+form#node-company-edit-form .field--name-field-address .input-group,
+form#node-company-form .field--name-field-address .input-group {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+form#node-company-edit-form .field--name-field-address .selector,
+form#node-company-form .field--name-field-address .selector {
+  width: 530px !important;
+  border-color: #869fbe;
+  font-weight: inherit;
+}
+
+form#node-company-edit-form .field--name-field-address .selector:before,
+form#node-company-form .field--name-field-address .selector:before {
+  display: none;
+}
+
+form#node-company-edit-form .field--name-field-address .address-container-inline .form-item,
+form#node-company-form .field--name-field-address .address-container-inline .form-item {
+  display: inline;
+  float: right;
+  margin: 0 0 15px 0;
+}
+
+form#node-company-edit-form .field--name-field-address .address-container-inline .form-item .select-wrapper,
+form#node-company-form .field--name-field-address .address-container-inline .form-item .select-wrapper {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  float: right;
+  margin-left: 5px;
+}
+
+form#node-company-edit-form .field--name-field-address .address-container-inline .form-item .form-text,
+form#node-company-form .field--name-field-address .address-container-inline .form-item .form-text {
+  width: 530px;
+}
+
+form#node-company-edit-form .field--name-field-address .control-label.sr-only,
+form#node-company-form .field--name-field-address .control-label.sr-only {
+  position: relative;
+  width: auto;
+  height: auto;
+}
+
+form#node-company-edit-form .company-info .form-wrapper,
+form#node-company-edit-form .main-contact .form-wrapper,
+form#node-company-form .company-info .form-wrapper,
+form#node-company-form .main-contact .form-wrapper {
+  float: right;
+}
+
+form#node-company-edit-form .company-info .form-wrapper label,
+form#node-company-edit-form .main-contact .form-wrapper label,
+form#node-company-form .company-info .form-wrapper label,
+form#node-company-form .main-contact .form-wrapper label {
+  font-size: 14px;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+form#node-company-edit-form .company-info .form-tel,
+form#node-company-edit-form .company-info .form-text,
+form#node-company-edit-form .company-info .form-url,
+form#node-company-edit-form .company-info .form-email,
+form#node-company-edit-form .main-contact .form-tel,
+form#node-company-edit-form .main-contact .form-text,
+form#node-company-edit-form .main-contact .form-url,
+form#node-company-edit-form .main-contact .form-email,
+form#node-company-form .company-info .form-tel,
+form#node-company-form .company-info .form-text,
+form#node-company-form .company-info .form-url,
+form#node-company-form .company-info .form-email,
+form#node-company-form .main-contact .form-tel,
+form#node-company-form .main-contact .form-text,
+form#node-company-form .main-contact .form-url,
+form#node-company-form .main-contact .form-email {
+  max-width: 530px;
+  width: 530px;
+  display: inline;
+  min-width: 338px;
+}
+
+form#node-company-edit-form .company-info .field--type-address .panel-heading,
+form#node-company-edit-form .main-contact .field--type-address .panel-heading,
+form#node-company-form .company-info .field--type-address .panel-heading,
+form#node-company-form .main-contact .field--type-address .panel-heading {
+  display: none;
+}
+
+form#node-company-edit-form .checker,
+form#node-company-form .checker {
+  opacity: 0;
+}
+
+form#node-company-edit-form .checkbox.checked,
+form#node-company-form .checkbox.checked {
+  color: #038dc0;
+}
+
+form#node-company-edit-form .checkbox.checked:before,
+form#node-company-form .checkbox.checked:before {
+  font-family: FontAwesome;
+  content: '\f046';
+  position: absolute;
+}
+
+form#node-company-edit-form .checkbox:before,
+form#node-company-form .checkbox:before {
+  font-family: FontAwesome;
+  content: '\f096';
+  position: absolute;
+}
+
+form#node-company-edit-form .field--name-field-territory-served label,
+form#node-company-form .field--name-field-territory-served label {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  color: #004e75;
+}
+
+form#node-company-edit-form .field--name-field-territory-served .chosen-container,
+form#node-company-form .field--name-field-territory-served .chosen-container {
+  height: auto;
+  border: none;
+  box-shadow: none;
+  max-width: 470px;
+  min-width: 470px;
+  padding-left: 0;
+}
+
+form#node-company-edit-form .field--name-field-territory-served .input-group-addon:last-child,
+form#node-company-form .field--name-field-territory-served .input-group-addon:last-child {
+  display: none;
+}
+
+form#node-company-edit-form .field--name-field-territory-served .search-choice,
+form#node-company-form .field--name-field-territory-served .search-choice {
+  background-image: none;
+  background-color: #038dc0;
+  border: none;
+  color: white;
+  height: 23px;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+form#node-company-edit-form .field--name-field-territory-served .search-choice span,
+form#node-company-form .field--name-field-territory-served .search-choice span {
+  padding-left: 15px;
+}
+
+form#node-company-edit-form .field--name-field-territory-served .search-choice span:before,
+form#node-company-form .field--name-field-territory-served .search-choice span:before {
+  font-family: FontAwesome;
+  content: '\f00d';
+  margin-left: -15px;
+  padding-right: 5px;
+}
+
+form#node-company-edit-form .field--name-field-territory-served .search-choice .search-choice-close,
+form#node-company-form .field--name-field-territory-served .search-choice .search-choice-close {
+  position: relative;
+  top: -12px;
+  left: 1px;
+  opacity: 0;
+}
+
+form#node-company-edit-form .equipment-sold legend,
+form#node-company-edit-form .industries-served legend,
+form#node-company-form .equipment-sold legend,
+form#node-company-form .industries-served legend {
+  display: none;
+}
+
+form#node-company-edit-form .equipment-sold .form-textarea-wrapper,
+form#node-company-edit-form .industries-served .form-textarea-wrapper,
+form#node-company-form .equipment-sold .form-textarea-wrapper,
+form#node-company-form .industries-served .form-textarea-wrapper {
+  margin-right: 30px;
+}
+
+form#node-company-edit-form .equipment-sold .panel-body,
+form#node-company-edit-form .industries-served .panel-body,
+form#node-company-form .equipment-sold .panel-body,
+form#node-company-form .industries-served .panel-body {
+  padding: 15px 0px 15px 70px;
+  position: relative;
+  border: 1px solid #869fbe;
+}
+
+form#node-company-edit-form .equipment-sold .panel-body:before,
+form#node-company-edit-form .industries-served .panel-body:before,
+form#node-company-form .equipment-sold .panel-body:before,
+form#node-company-form .industries-served .panel-body:before {
+  font-family: FontAwesome;
+  content: "\f068";
+  display: block;
+  width: 40px;
+  background: #038dc0;
+  position: absolute;
+  height: auto;
+  color: #e8eded;
+  text-align: center;
+  font-size: 20px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+form#node-company-edit-form .field--name-field-manufacturers-represented .description,
+form#node-company-form .field--name-field-manufacturers-represented .description {
+  color: #004e75;
+}
+
+form#node-company-edit-form .field--name-field-after-sales-service,
+form#node-company-form .field--name-field-after-sales-service {
+  margin: 40px 0;
+}
+
+form#node-company-edit-form .field--name-field-after-sales-service legend,
+form#node-company-form .field--name-field-after-sales-service legend {
+  font-size: 15px;
+  font-size: 0.9375rem;
+  font-weight: bold;
+}
+
+form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column input,
+form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column input {
+  opacity: 0;
+}
+
+form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column label:before,
+form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label:before {
+  font-family: FontAwesome;
+  content: '\f096';
+  position: absolute;
+  margin-left: -20px;
+}
+
+form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked,
+form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked {
+  color: #038dc0;
+}
+
+form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked:before,
+form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked:before {
+  font-family: FontAwesome;
+  content: '\f046';
+}
+
+form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:first-child,
+form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:first-child {
+  display: inline-block;
+}
+
+form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:last-child,
+form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:last-child {
+  float: left;
+  margin-top: 0px;
+  margin-right: 50px;
+}
+
+form#node-company-edit-form .button,
+form#node-company-form .button {
+  width: 470px;
+  font-size: 25px;
+  font-size: 1.5625rem;
+  text-transform: uppercase;
+  font-weight: bold;
+  height: 50px;
+  border-radius: 6px;
+  margin-bottom: 50px;
+}
+
+@media screen and (max-width: 767px) {
+  form#node-company-edit-form,
+  form#node-company-form {
+    max-width: 353px;
+  }
+  form#node-company-edit-form .company-info .form-tel,
+  form#node-company-edit-form .company-info .form-text,
+  form#node-company-edit-form .company-info .form-url,
+  form#node-company-edit-form .company-info .form-email,
+  form#node-company-edit-form .main-contact .form-tel,
+  form#node-company-edit-form .main-contact .form-text,
+  form#node-company-edit-form .main-contact .form-url,
+  form#node-company-edit-form .main-contact .form-email,
+  form#node-company-form .company-info .form-tel,
+  form#node-company-form .company-info .form-text,
+  form#node-company-form .company-info .form-url,
+  form#node-company-form .company-info .form-email,
+  form#node-company-form .main-contact .form-tel,
+  form#node-company-form .main-contact .form-text,
+  form#node-company-form .main-contact .form-url,
+  form#node-company-form .main-contact .form-email {
+    max-width: 338px;
+    min-width: 338px;
+    width: 338px;
+  }
+  form#node-company-edit-form .field--name-field-address .selector,
+  form#node-company-form .field--name-field-address .selector {
+    width: 338px !important;
+  }
+  form#node-company-edit-form .field--name-field-address .address-container-inline .form-item .select-wrapper,
+  form#node-company-form .field--name-field-address .address-container-inline .form-item .select-wrapper {
+    margin-left: auto;
+  }
+  form#node-company-edit-form .equipment-sold .panel-body label,
+  form#node-company-edit-form .industries-served .panel-body label,
+  form#node-company-form .equipment-sold .panel-body label,
+  form#node-company-form .industries-served .panel-body label {
+    padding-left: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 20px;
+  }
+  form#node-company-edit-form .button,
+  form#node-company-form .button {
+    width: 338px;
+    margin-bottom: 20px;
   }
 }
 

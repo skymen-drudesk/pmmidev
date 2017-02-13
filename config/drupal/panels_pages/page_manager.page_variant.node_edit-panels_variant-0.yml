@@ -4,7 +4,10 @@ status: true
 dependencies:
   config:
     - page_manager.page.node_edit
+  content:
+    - 'block_content:image_header:14fbe4e8-9d85-4988-93d1-f0b2e3a5b49f'
   module:
+    - block_content
     - node
     - panels
     - pmmi_forms
@@ -23,6 +26,18 @@ variant_settings:
       uuid: 46085b7a-38af-4eb0-97a5-d9e89737a36f
       context_mapping:
         entity: node
+    30db20f9-d9cd-4952-a2ba-f373c071029a:
+      id: 'block_content:14fbe4e8-9d85-4988-93d1-f0b2e3a5b49f'
+      label: 'Sales Agent Directory - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: 30db20f9-d9cd-4952-a2ba-f373c071029a
+      context_mapping: {  }
   id: panels_variant
   uuid: 02917af5-d54a-40b4-be20-6923b23defe6
   label: null

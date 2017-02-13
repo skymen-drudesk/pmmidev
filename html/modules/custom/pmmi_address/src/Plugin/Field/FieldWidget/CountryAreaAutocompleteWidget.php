@@ -118,6 +118,9 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
       '#prefix' => '<div id="' . $wrapper_id . '">',
       '#suffix' => '</div>',
       '#correlation' => array(),
+      '#attributes' => [
+        'class' => ['pmmi-autocomplete-address'],
+      ],
     ];
 
     $element['country_code'] = [
@@ -178,6 +181,10 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
     }
 
     $element['#element_validate'][] = array(get_class($this), 'validateElement');
+
+    // Attach chosen library.
+    $this->attachChosen($form);
+
     return $element;
   }
 
@@ -229,6 +236,15 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
     $address_element = NestedArray::getValue($form, array_slice($country_element['#array_parents'], 0, -1));
 
     return $address_element;
+  }
+
+  /**
+   * Attach chosen library.
+   */
+  protected function attachChosen(array &$form) {
+    $form['#attached']['library'][] = 'chosen/drupal.chosen';
+    $form['#attached']['library'][] = 'chosen_lib/chosen.css';
+    $form['#attached']['drupalSettings']['chosen']['selector'] = '.pmmi-autocomplete-address .form-select';
   }
 
   /**

@@ -66,6 +66,48 @@
       $('select').once('uniform').each(function () {
         $(this).uniform();
       });
+      $('input[type="checkbox"]').once('uniform').each(function () {
+        var $checkBox = $(this);
+        var $checkBoxParent = $checkBox.closest('.form-type-checkbox');
+        if ($checkBox.is(':checked')) {
+          $checkBoxParent.addClass('checked')
+        }
+        $checkBox.uniform();
+        $checkBox.on('change', function () {
+          if ($checkBox.is(':checked')) {
+            $checkBoxParent.addClass('checked')
+          }
+          else {
+            $checkBoxParent.removeClass('checked')
+          }
+        });
+      });
+      $('input[type="radio"]').once('uniform').each(function () {
+        var $radio = $(this);
+        var $radios = $('input[name="' + $radio.prop('name') + '"]');
+        if ($radio.is(':checked')) {
+          $radio.closest('.control-label').addClass('checked')
+        }
+        $radio.uniform();
+        var $radiosGroup = $radios.closest('.form-item').parent();
+        $radiosGroup.once('radio-group').each(function () {
+          $(this).find('input:radio').on('change', function () {
+            $radiosGroup.find('.checked').removeClass('checked');
+            var $radioParent = $(this).closest('.control-label');
+            if ($(this).is(':checked')) {
+              $radioParent.addClass('checked')
+            }
+            else {
+              $radioParent.removeClass('checked')
+            }
+          });
+        });
+      });
+      var $expandedList = $('.pmmi-company-search-block-form .js-form-wrapper');
+      var $clicker = $('.panel-heading a', $expandedList);
+      $clicker.once('pmmiCommonTheme').click(function(){
+        $(this).closest('.js-form-wrapper').toggleClass('active');
+      })
       // Equal heights for blocks inside containers.
       $('.containers .row').once('matchHeight').each(function () {
         var $row = $(this);

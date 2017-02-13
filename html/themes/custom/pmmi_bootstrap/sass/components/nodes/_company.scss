@@ -1,3 +1,6 @@
+/**
+ *  Company node view
+ */
 .company-node {
   .block-image-header .page-name {
     max-width: 370px;
@@ -27,7 +30,9 @@
       clear: left;
     }
   }
-  .row-wrapper, .contacts, .services{
+  .row-wrapper,
+  .contacts,
+  .services{
     margin: 20px 0;
     padding-bottom: 20px;
   }
@@ -92,7 +97,9 @@
         color: $blue;
         font-weight: bold;
       }
-      .views-field-field-name, .views-field-field-title, .views-field-field-email {
+      .views-field-field-name,
+      .views-field-field-title,
+      .views-field-field-email {
         span {
           color: $grey;
           text-transform: uppercase;
@@ -124,7 +131,8 @@
       font-size: $r35;
     }
     .general {
-      .address-simple, .field--name-field-website-url {
+      .address-simple,
+      .field--name-field-website-url {
         float: none;
         &:after {
           display: none;
@@ -163,5 +171,276 @@
       }
     }
   }
+}
 
+/**
+ * Company node edit form
+ */
+form#node-company-edit-form,
+form#node-company-form {
+  max-width: 770px;
+  .form-control,
+  .selector {
+    color: #000;
+  }
+  .panel-body {
+    padding: 0;
+  }
+  .form-control {
+    border-color: $blueopacity;
+  }
+  //margin: auto;
+  .panel-heading,
+  .panel-default,
+  legend {
+    background: none;
+    border: none;
+    box-shadow: none;
+    padding-left: 0;
+  }
+  .panel-title,
+  .field--name-field-company-description label,
+  .field--name-field-manufacturers-represented label,
+  .field--name-field-business-lines legend {
+    color: $blue;
+    font-weight: 800;
+    font-size: $r20;
+  }
+  .field--name-field-address {
+    .input-group-addon {
+      display: none;
+    }
+    .panel-body > div {
+      float: right;
+    }
+    .input-group {
+      display: inline-flex;
+    }
+    .selector {
+      width: 530px !important;
+      border-color: $blueopacity;
+      font-weight: inherit;
+      &:before {
+        display: none;
+      }
+    }
+    .address-container-inline .form-item {
+      display: inline;
+      float: right;
+      margin: 0 0 15px 0;
+      .select-wrapper {
+        display: inline-flex;
+        float: right;
+        margin-left: 5px;
+      }
+      .form-text {
+        width: 530px;
+      }
+    }
+    .control-label.sr-only {
+      position: relative;
+      width: auto;
+      height: auto;
+    }
+  }
+  .company-info,
+  .main-contact {
+    .form-wrapper {
+      float: right;
+      label {
+        font-size: $r14;
+        text-transform: uppercase;
+      }
+    }
+    .form-tel,
+    .form-text,
+    .form-url,
+    .form-email {
+      max-width: 530px;
+      width: 530px;
+      display: inline;
+      min-width: 338px;
+    }
+    .field--type-address {
+      .panel-heading {
+        display: none;
+      }
+    }
+  }
+  .checker {
+    opacity: 0;
+  }
+  .checkbox.checked {
+    color: $ltblue;
+    &:before {
+      font-family: FontAwesome;
+      content: '\f046';
+      position: absolute;
+    }
+  }
+  .checkbox {
+    &:before {
+      font-family: FontAwesome;
+      content: '\f096';
+      position: absolute;
+    }
+  }
+  .field--name-field-territory-served {
+    label {
+      font-size: $r15;
+      font-weight: 400;
+      color: $blue;
+    }
+    .chosen-container {
+      height: auto;
+      border: none;
+      box-shadow: none;
+      max-width: 470px;
+      min-width: 470px;
+      padding-left: 0;
+    }
+    .input-group-addon {
+      &:last-child {
+        display: none;
+      }
+    }
+    .search-choice {
+      background-image: none;
+      background-color: #038dc0;
+      border: none;
+      color: white;
+      height: 23px;
+      border-radius: 6px;
+      box-shadow: none;
+      span {
+        padding-left: 15px;
+        &:before {
+          font-family: FontAwesome;
+          content: '\f00d';
+          margin-left: -15px;
+          padding-right: 5px;
+        }
+      }
+      .search-choice-close {
+        position: relative;
+        top: -12px;
+        left: 1px;
+        opacity: 0;
+      }
+    }
+  }
+  .equipment-sold,
+  .industries-served {
+    legend{
+      display: none;
+    }
+    .form-textarea-wrapper {
+      margin-right: 30px;
+    }
+    .panel-body {
+      padding: 15px 0px 15px 70px;
+      position: relative;
+      border: 1px solid $blueopacity;
+      &:before {
+        font-family: FontAwesome;
+        content: "\f068";
+        display: block;
+        width: 40px;
+        background: $ltblue;
+        position: absolute;
+        height: auto;
+        color: $ltgrey;
+        text-align: center;
+        font-size: 20px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+      }
+    }
+  }
+  .field--name-field-manufacturers-represented .description {
+    color: $blue;
+  }
+  .field--name-field-after-sales-service {
+    margin: 40px 0;
+    legend {
+      font-size: $r15;
+      font-weight: bold;
+    }
+    .webform-options-display-one-column {
+      input {
+        opacity: 0;
+      }
+      label {
+        &:before {
+          font-family: FontAwesome;
+          content: '\f096';
+          position: absolute;
+          margin-left: -20px;
+        }
+      }
+      label.checked {
+        color: $ltblue;
+        &:before {
+          font-family: FontAwesome;
+          content: '\f046';
+        }
+      }
+      div.form-item:first-child {
+        display: inline-block;
+      }
+      div.form-item:last-child {
+        float: left;
+        margin-top: 0px;
+        margin-right: 50px;
+      }
+    }
+  }
+  .button {
+    width: 470px;
+    font-size: $r25;
+    text-transform: uppercase;
+    font-weight: bold;
+    height: 50px;
+    border-radius: 6px;
+    margin-bottom: 50px;
+  }
+  @include mobile {
+    max-width: 353px;
+    .company-info,
+    .main-contact {
+      .form-tel,
+      .form-text,
+      .form-url,
+      .form-email {
+        max-width: 338px;
+        min-width: 338px;
+        width: 338px;
+      }
+    }
+    .field--name-field-address {
+      .selector {
+        width: 338px !important;
+      }
+      .address-container-inline .form-item .select-wrapper {
+        margin-left: auto;
+      }
+    }
+    .equipment-sold,
+    .industries-served {
+      .panel-body {
+        label {
+          padding-left: 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          padding-right: 20px;
+        }
+      }
+    }
+    .button {
+      width: 338px;
+      margin-bottom: 20px;
+    }
+  }
 }
