@@ -344,15 +344,6 @@ function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array
 }
 
 /**
- * Implements hook_theme_suggestions_alter().
- */
-function pmmi_bootstrap_theme_suggestions_form_alter(array &$suggestions, array $variables, $hook) {
-  if (isset($variables['element']['#entity_type']) && $variables['element']['#entity_type']) {
-    $suggestions[] = 'form__node_edit';
-  }
-}
-
-/**
  * Implements hook_preprocess_tb_megamenu_item().
  */
 function pmmi_bootstrap_preprocess_tb_megamenu_item(&$vars) {
