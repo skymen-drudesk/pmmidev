@@ -1,16 +1,16 @@
-uuid: bbe8b379-7388-4862-a627-a7d3ff3c5da0
+uuid: 9e2f823a-d79a-4909-891a-842e4093ad2e
 langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.study_guide
+    - block_content.type.box
     - field.storage.block_content.field_image
   module:
     - image
-id: block_content.study_guide.field_image
+id: block_content.box.field_image
 field_name: field_image
 entity_type: block_content
-bundle: study_guide
+bundle: box
 label: Image
 description: ''
 required: true

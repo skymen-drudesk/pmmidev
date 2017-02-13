@@ -1,16 +1,16 @@
-uuid: 39634db2-aab5-420e-9301-cd7309071b5a
+uuid: be2a4f55-0b32-4158-b30c-b525a5291a8a
 langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.study_guide
+    - block_content.type.box
     - field.storage.block_content.field_buttons
   module:
     - link
-id: block_content.study_guide.field_buttons
+id: block_content.box.field_buttons
 field_name: field_buttons
 entity_type: block_content
-bundle: study_guide
+bundle: box
 label: Button(s)
 description: ''
 required: false

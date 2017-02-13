@@ -3,10 +3,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.study_guide
+    - block_content.type.box
+    - taxonomy.vocabulary.box_type
+  content:
+    - 'taxonomy_term:box_type:659039f4-b342-4909-a693-e68f4bbb255a'
   module:
     - block_content
     - ds
+    - taxonomy
 id: study_guides
 label: 'Study Guides'
 module: views
@@ -125,11 +129,86 @@ display:
           id: type
           table: block_content_field_data
           field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: in
           value:
-            study_guide: study_guide
+            box: box
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
           entity_type: block_content
           entity_field: type
           plugin_id: bundle
+        field_box_type_target_id:
+          id: field_box_type_target_id
+          table: block_content__field_box_type
+          field: field_box_type_target_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            24: 24
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: box_type
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       sorts:
         field_head_value:
           id: field_head_value
@@ -155,6 +234,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - user
       tags: {  }
   block_default:
     display_plugin: block
@@ -170,4 +250,5 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - user
       tags: {  }
