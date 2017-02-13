@@ -36,11 +36,23 @@ variant_settings:
       weight: 0
       uuid: 084cbfbb-69dc-4737-81c5-116f125e479d
       context_mapping: {  }
+    084cbfbb-69dc-4737-81c5-116f125e479d:
+      id: 'block_content:14fbe4e8-9d85-4988-93d1-f0b2e3a5b49f'
+      label: 'Sales Agent Directory - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: -10
+      uuid: 084cbfbb-69dc-4737-81c5-116f125e479d
+      context_mapping: {  }
   id: panels_variant
   uuid: b7698ee2-54aa-4247-b422-d2d74f262fd1
   label: null
   weight: 0
-  layout: onecol
+  layout: sitewide
   layout_settings: {  }
   page_title: 'Search sales agent directory'
   storage_type: page_manager

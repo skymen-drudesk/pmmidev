@@ -267,27 +267,24 @@ form.node-company-form {
       }
     }
   }
-  //.field--name-field-business-lines {
-    label {
-      padding-left: 0;
-      .checker {
-        opacity: 0;
-      }
+  .checker {
+    opacity: 0;
+  }
+  .checkbox.checked {
+    color: $ltblue;
+    &:before {
+      font-family: FontAwesome;
+      content: '\f046';
+      position: absolute;
     }
-    .checkbox.checked {
-      color: $ltblue;
-      &:before {
-        font-family: FontAwesome;
-        content: '\f046';
-      }
+  }
+  .checkbox {
+    &:before {
+      font-family: FontAwesome;
+      content: '\f096';
+      position: absolute;
     }
-    .checkbox {
-      &:before {
-        font-family: FontAwesome;
-        content: '\f096';
-      }
-    }
-  //}
+  }
   .field--name-field-territory-served {
     label {
       font-size: $r15;
@@ -370,9 +367,33 @@ form.node-company-form {
       font-size: $r15;
       font-weight: bold;
     }
-    .form-type-radio {
-      display: inline;
-      margin-right: 50px;
+    .webform-options-display-one-column {
+      input {
+        opacity: 0;
+      }
+      label {
+        &:before {
+          font-family: FontAwesome;
+          content: '\f096';
+          position: absolute;
+          margin-left: -20px;
+        }
+      }
+      label.checked {
+        color: $ltblue;
+        &:before {
+          font-family: FontAwesome;
+          content: '\f046';
+        }
+      }
+      div.form-item:first-child {
+        display: inline-block;
+      }
+      div.form-item:last-child {
+        float: left;
+        margin-top: 0px;
+        margin-right: 50px;
+      }
     }
   }
   .button {
@@ -403,6 +424,18 @@ form.node-company-form {
       }
       .address-container-inline .form-item .select-wrapper {
         margin-left: auto;
+      }
+    }
+    .equipment-sold,
+    .industries-served {
+      .panel-body {
+        label {
+          padding-left: 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          padding-right: 20px;
+        }
       }
     }
     .button {
