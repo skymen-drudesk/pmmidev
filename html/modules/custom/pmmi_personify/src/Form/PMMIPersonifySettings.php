@@ -33,12 +33,33 @@ class PMMIPersonifySettings extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('pmmi_personify.settings');
-    $form['vendor_identifier'] = [
+    $form['personify'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Personify Data'),
+    ];
+    $form['personify']['endpoint'] = [
       '#type' => 'textfield',
-      '#title' => $this->t('Vendor Identifier'),
-      '#maxlength' => 64,
-      '#size' => 64,
-      '#default_value' => $config->get('vendor_identifier'),
+      '#title' => $this->t('Endpoint URL'),
+      '#maxlength' => 1024,
+      '#size' => 80,
+      '#required' => TRUE,
+      '#default_value' => $config->get('endpoint'),
+    ];
+    $form['personify']['username'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Personify username'),
+      '#maxlength' => 255,
+      '#size' => 80,
+      '#required' => TRUE,
+      '#default_value' => $config->get('username'),
+    ];
+    $form['personify']['password'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Personify password'),
+      '#maxlength' => 255,
+      '#size' => 80,
+      '#required' => TRUE,
+      '#default_value' => $config->get('password'),
     ];
     return parent::buildForm($form, $form_state);
   }
@@ -57,7 +78,9 @@ class PMMIPersonifySettings extends ConfigFormBase {
     parent::submitForm($form, $form_state);
 
     $this->config('pmmi_personify.settings')
-      ->set('vendor_identifier', $form_state->getValue('vendor_identifier'))
+      ->set('endpoint', $form_state->getValue('endpoint'))
+      ->set('username', $form_state->getValue('username'))
+      ->set('password', $form_state->getValue('password'))
       ->save();
   }
 

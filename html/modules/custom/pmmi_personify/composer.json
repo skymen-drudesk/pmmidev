@@ -10,5 +10,8 @@
     "issues": "https://www.drupal.org/project/issues/pmmi_personify",
     "source": "http://cgit.drupalcode.org/pmmi_personify"
   },
-  "require": { }
+  "require": {
+    "php-http/curl-client": "^1.7",
+    "mekras/odata-client": "^v0.3"
+  }
 }
