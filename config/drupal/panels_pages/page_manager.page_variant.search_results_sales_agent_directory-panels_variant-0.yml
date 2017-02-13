@@ -4,8 +4,12 @@ status: true
 dependencies:
   config:
     - page_manager.page.search_results_sales_agent_directory
+  content:
+    - 'block_content:image_header:14fbe4e8-9d85-4988-93d1-f0b2e3a5b49f'
   module:
+    - block_content
     - panels
+    - pmmi_sales_agent
     - pmmi_search
 id: search_results_sales_agent_directory-panels_variant-0
 label: Panels
@@ -17,15 +21,41 @@ variant_settings:
       label: 'PMMI Company Search Results block'
       provider: pmmi_search
       label_display: '0'
-      region: middle
+      region: main
       weight: 0
       uuid: fd31fb19-2777-4972-bbba-7d0161af949f
+      context_mapping: {  }
+    b117cb0a-f009-4199-a352-efac04638c8f:
+      id: 'block_content:14fbe4e8-9d85-4988-93d1-f0b2e3a5b49f'
+      label: 'Sales Agent Directory - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: -1
+      uuid: b117cb0a-f009-4199-a352-efac04638c8f
+      context_mapping: {  }
+    3102403c-dfd4-41a8-a2a5-4c8b6c78c6ae:
+      id: pmmi_sales_agent_action_toolbar
+      label: 'PMMI Sales Agent Action Toolbar'
+      provider: pmmi_sales_agent
+      label_display: '0'
+      links:
+        company_add: company_add
+        favorites_download: favorites_download
+        search_new: search_new
+        favorites_add: 0
+      region: top
+      weight: 0
+      uuid: 3102403c-dfd4-41a8-a2a5-4c8b6c78c6ae
       context_mapping: {  }
   id: panels_variant
   uuid: 26926f96-7929-4534-826c-fb53a4fe5d5d
   label: null
   weight: 0
-  layout: onecol
+  layout: sitewide
   layout_settings: {  }
   page_title: 'Search results sales agent directory'
   storage_type: page_manager
