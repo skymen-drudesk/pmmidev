@@ -77,7 +77,13 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
    *   The event to process.
    */
   public function checkForRedirection(GetResponseEvent $event) {
-    $request = $event->getRequest();
+    // Get a clone of the request. During inbound processing the request
+    // can be altered. Allowing this here can lead to unexpected behavior.
+    // For example the path_processor.files inbound processor provided by
+    // the system module alters both the path and the request; only the
+    // changes to the request will be propagated, while the change to the
+    // path will be lost.
+    $request = clone $event->getRequest();
     $request_uri = $request->getPathInfo();
     // Filter Sub-request and POST.
     if (!$event->isMasterRequest() || $request->isMethod('POST')) {
