@@ -12136,7 +12136,7 @@ fieldset[disabled] a.focus {
 .article-node .article-release p, .node-body p, .node-bold-label p,
 .featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .block-views-blocksearch-page-block-1 .views-field-body p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .mode-default.study-guide .field-name-body p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
 .layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
-.block-pack-expo-show .date p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
+.block-pack-expo-show .date p, .pack-expo-show.mode-mega-menu p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
   font-size: inherit;
   line-height: inherit;
   font-weight: inherit;
@@ -15219,6 +15219,10 @@ html, body {
   }
 }
 
+.tb-megamenu-block .col-md-3, .tb-megamenu-block .footer nav, .footer .tb-megamenu-block nav, .tb-megamenu-block .block-icons.cols-4 .column > .field, .block-icons.cols-4 .tb-megamenu-block .column > .field {
+  padding: 0 12px;
+}
+
 .user-pass-reset,
 .user-login-form {
   margin-bottom: 40px;
@@ -16872,6 +16876,47 @@ div.view {
 
 .block-pack-expo-show .location .administrative-area:after {
   content: ',';
+}
+
+.pack-expo-show.mode-mega-menu {
+  color: #656363;
+  line-height: 16px;
+  line-height: 1rem;
+  font-weight: 500;
+  font-size: 12px;
+  font-size: 0.75rem;
+  margin-bottom: 30px;
+  font-family: "Lato", Arial, FreeSans, sans-serif;
+}
+
+.pack-expo-show.mode-mega-menu a {
+  color: #656363;
+}
+
+.pack-expo-show.mode-mega-menu .field-name-field-logo {
+  height: 105px;
+  line-height: 103px;
+  border: 1px solid #c2c2c2;
+  text-align: center;
+  padding: 0 5px;
+  margin: 0 0 5px;
+}
+
+.pack-expo-show.mode-mega-menu .field-name-field-logo img {
+  margin: 0 auto;
+  display: inline-block;
+  max-height: 98px;
+}
+
+.pack-expo-show.mode-mega-menu .field--name-field-show-link {
+  font-weight: 800;
+  font-size: 13px;
+  font-size: 0.8125rem;
+}
+
+.pack-expo-show.mode-mega-menu .address br,
+.pack-expo-show.mode-mega-menu .address .country {
+  display: none;
 }
 
 .viewfield .feature-block {
