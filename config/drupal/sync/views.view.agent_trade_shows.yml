@@ -23,6 +23,7 @@ dependencies:
     - field.storage.pmmi_company_contact.field_name
     - field.storage.pmmi_company_contact.field_title
     - field.storage.pmmi_company_contact.field_trade_show
+    - node.type.company
     - search_api.index.agent_contacts_index
     - taxonomy.vocabulary.trade_shows
   module:
@@ -469,7 +470,20 @@ display:
           plugin_id: search_api
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'There are no agents found.'
+            format: filtered_html
+          plugin_id: text
       relationships: {  }
       arguments:
         field_company:
@@ -494,11 +508,16 @@ display:
             sort_order: asc
             number_of_records: 0
             format: default_summary
-          specify_validation: false
+          specify_validation: true
           validate:
-            type: none
+            type: 'entity:node'
             fail: 'not found'
-          validate_options: {  }
+          validate_options:
+            bundles:
+              company: company
+            operation: view
+            multiple: 0
+            access: false
           break_phrase: false
           not: false
           plugin_id: search_api
@@ -548,8 +567,8 @@ display:
         options:
           offset: 0
       displays:
+        block_1: block_1
         default: '0'
-        block_1: '0'
       style:
         type: data_export
         options:
