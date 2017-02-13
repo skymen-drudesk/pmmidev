@@ -46,19 +46,12 @@ services:
       - pmmisolr
 
   pmmisolr:
-    container_name: pmmi_test_solr
-    image: solr:5.5-alpine
+    build: ./build/solr
     restart: always
     networks:
       - back
-    volumes:
-      - ./solr:/opt/solr/server/solr/d8
-      - ./build/solr-conf/5.x:/solr-conf/conf
-    entrypoint:
-      - docker-entrypoint.sh
-      - solr-precreate
-      - d8
-      - /solr-conf
+    ports:
+      - "8003:8983"
 
   pmmivarnish:
     container_name: pmmi_test_varnish

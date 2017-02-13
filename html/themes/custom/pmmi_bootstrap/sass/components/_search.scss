@@ -1,107 +1,123 @@
-.page-search_sales_agent_directory {
-  .block-title {
-    color: $blue;
-    text-align: center;
-    font-size: $r60;
+.page-search-sales-agent-directory .main-container {
+  .row {
+    margin-left: 0;
+    margin-right: 0;
   }
-  .control-label {
-    color: $blue;
+  .block-title {
+    @extend .headline1;
+    display: inline-block;
+    &:after {
+      margin: 0 45px 0 0;
+    }
+  }
+  color: $blue;
+  label {
+    padding-left: 0;
   }
   form {
-    max-width: 593px;
-    border-top: solid 3px $blue;
-    min-width: 375px;
-    padding: 33px 200px 0 0;
-    margin: auto;
-    margin-top: 25px;
-    clear: both;
+    width: 770px;
+    padding: 33px 0 0 0;
     .form-group {
       margin-bottom: 16px;
-      .form-item {
-        float: right;
-        .chosen-container {
-          max-width: 270px;
-          min-width: 270px;
-          font-size: $r16;
-          ul {
-            background: none;
-          }
-          li {
-            background: none;
-            border: none;
-            color: $ltblue;
-            box-shadow: none;
-          }
+      .chosen-container {
+        max-width: 270px;
+        min-width: 270px;
+        font-size: $r16;
+        ul {
+          background: none;
+          min-height: 40px;
+          padding: 5px 10px;
         }
-      }
-      .input-group,
-      .form-control {
-        display: inline;
-        min-height: 40px;
-        width: 270px;
-        .input-group-addon {
-          display: none;
+        li {
+          background: none;
+          border: none;
+          color: $ltblue;
+          box-shadow: none;
         }
       }
     }
-    #edit-industries {
-      clear: both;
+    .input-group,
+    .form-control {
+      display: inline;
+      min-height: 40px;
+      max-width: 270px;
+      .input-group-addon {
+        display: none;
+      }
     }
   }
   #edit-industries,
   #edit-equipments,
   #edit-shows {
-    width: 270px;
-    float: right;
     position: relative;
     padding-left: 52px;
-    overflow: hidden;
+    margin-left: 66px;
     .panel-heading {
       margin-left: -12px;
       color: $grey;
       background: none;
       border: none;
-      .panel-title{
-        position: absolute;
-        margin-left: -52px;
-        opacity: 0;
-        word-break: break-all;
-        width: 35px;
-      }
-      .panel-title.collapsed {
-        position: relative;
-        color: $grey;
-        margin-left: 0;
-        opacity: 1;
+      a[aria-expanded="true"] {
+        color: $blue;
+        font-weight: 700;
+        padding-left: 12px;
       }
     }
     .in {
       margin-top: -20px;
     }
-    .control-label {
-      color: $twitterblue;
+    &.active {
+      &:before {
+        content: '\f068';
+        background-color: $ltblue;
+      }
     }
     &:before {
       background-color: $blue;
       width: 40px;
       display: block;
-      color: $ltgrey;
-      content: '\02C5';
-      font-size: $r55;
-      font-weight: bolder;
+      font-family: FontAwesome;
+      color: #fff;
+      content: '\f067';
+      font-size: $r20;
+      padding-top: 9px;
       text-align: center;
-      float: left;
       position: absolute;
       left: 0;
       top: 0;
       bottom: 0;
     }
-  }
-  .form-type-textfield {
-    float: right;
+    .checker {
+      opacity: 0;
+    }
+    .checkbox.checked {
+      color: $ltblue;
+      label {
+        color: $ltblue;
+        margin-left: 20px;
+      }
+      &:before {
+        font-family: FontAwesome;
+        content: '\f046';
+        position: absolute;
+      }
+    }
+    .checkbox {
+      color: #000;
+      label {
+        color: #000;
+        margin-left: 20px;
+      }
+      &:before {
+        font-family: FontAwesome;
+        content: '\f096';
+        position: absolute;
+      }
+    }
   }
   .button {
-    margin-left: 31%;
+    margin-left: 66px;
+    margin-bottom: 100px;
     width: 170px;
     .icon {
       display: none;
@@ -109,8 +125,39 @@
   }
 
   @include mobile {
+    .block-title {
+      font-size: $r35;
+      margin: 0 10px 0 20px;
+    }
+    label {
+      padding-left: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      padding-right: 20px;
+    }
     form {
-      padding: 0;
+      max-width: 340px;
+      #edit-industries,
+      #edit-equipments,
+      #edit-shows,
+      .form-type-textfield,
+      .form-type-select {
+        width: 340px;
+        float: left;
+        margin-left: 0;
+      }
+      .form-type-select label {
+        float: left;
+        margin-right: 11px;
+        padding-right: 0;
+      }
+      .form-type-textfield input {
+        max-width: 375px;
+      }
+    }
+    .button {
+      margin: 30px 0 35px 70px;
     }
   }
 }
