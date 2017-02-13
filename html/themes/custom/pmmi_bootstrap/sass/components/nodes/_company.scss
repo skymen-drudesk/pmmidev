@@ -173,11 +173,11 @@
   }
 }
 
-/**А
+/**
  * Company node edit form
  */
-form.node-company-edit-form,
-form.node-company-form {
+form#node-company-edit-form,
+form#node-company-form {
   max-width: 770px;
   .form-control,
   .selector {

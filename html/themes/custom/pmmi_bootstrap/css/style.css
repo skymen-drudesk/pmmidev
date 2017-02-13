@@ -17787,95 +17787,95 @@ div.view {
   }
 }
 
-/**А
+/**
  * Company node edit form
  */
-form.node-company-edit-form,
-form.node-company-form {
+form#node-company-edit-form,
+form#node-company-form {
   max-width: 770px;
 }
 
-form.node-company-edit-form .form-control,
-form.node-company-edit-form .selector,
-form.node-company-form .form-control,
-form.node-company-form .selector {
+form#node-company-edit-form .form-control,
+form#node-company-edit-form .selector,
+form#node-company-form .form-control,
+form#node-company-form .selector {
   color: #000;
 }
 
-form.node-company-edit-form .panel-body,
-form.node-company-form .panel-body {
+form#node-company-edit-form .panel-body,
+form#node-company-form .panel-body {
   padding: 0;
 }
 
-form.node-company-edit-form .form-control,
-form.node-company-form .form-control {
+form#node-company-edit-form .form-control,
+form#node-company-form .form-control {
   border-color: #869fbe;
 }
 
-form.node-company-edit-form .panel-heading,
-form.node-company-edit-form .panel-default,
-form.node-company-edit-form legend,
-form.node-company-form .panel-heading,
-form.node-company-form .panel-default,
-form.node-company-form legend {
+form#node-company-edit-form .panel-heading,
+form#node-company-edit-form .panel-default,
+form#node-company-edit-form legend,
+form#node-company-form .panel-heading,
+form#node-company-form .panel-default,
+form#node-company-form legend {
   background: none;
   border: none;
   box-shadow: none;
   padding-left: 0;
 }
 
-form.node-company-edit-form .panel-title,
-form.node-company-edit-form .field--name-field-company-description label,
-form.node-company-edit-form .field--name-field-manufacturers-represented label,
-form.node-company-edit-form .field--name-field-business-lines legend,
-form.node-company-form .panel-title,
-form.node-company-form .field--name-field-company-description label,
-form.node-company-form .field--name-field-manufacturers-represented label,
-form.node-company-form .field--name-field-business-lines legend {
+form#node-company-edit-form .panel-title,
+form#node-company-edit-form .field--name-field-company-description label,
+form#node-company-edit-form .field--name-field-manufacturers-represented label,
+form#node-company-edit-form .field--name-field-business-lines legend,
+form#node-company-form .panel-title,
+form#node-company-form .field--name-field-company-description label,
+form#node-company-form .field--name-field-manufacturers-represented label,
+form#node-company-form .field--name-field-business-lines legend {
   color: #004e75;
   font-weight: 800;
   font-size: 20px;
   font-size: 1.25rem;
 }
 
-form.node-company-edit-form .field--name-field-address .input-group-addon,
-form.node-company-form .field--name-field-address .input-group-addon {
+form#node-company-edit-form .field--name-field-address .input-group-addon,
+form#node-company-form .field--name-field-address .input-group-addon {
   display: none;
 }
 
-form.node-company-edit-form .field--name-field-address .panel-body > div,
-form.node-company-form .field--name-field-address .panel-body > div {
+form#node-company-edit-form .field--name-field-address .panel-body > div,
+form#node-company-form .field--name-field-address .panel-body > div {
   float: right;
 }
 
-form.node-company-edit-form .field--name-field-address .input-group,
-form.node-company-form .field--name-field-address .input-group {
+form#node-company-edit-form .field--name-field-address .input-group,
+form#node-company-form .field--name-field-address .input-group {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
 }
 
-form.node-company-edit-form .field--name-field-address .selector,
-form.node-company-form .field--name-field-address .selector {
+form#node-company-edit-form .field--name-field-address .selector,
+form#node-company-form .field--name-field-address .selector {
   width: 530px !important;
   border-color: #869fbe;
   font-weight: inherit;
 }
 
-form.node-company-edit-form .field--name-field-address .selector:before,
-form.node-company-form .field--name-field-address .selector:before {
+form#node-company-edit-form .field--name-field-address .selector:before,
+form#node-company-form .field--name-field-address .selector:before {
   display: none;
 }
 
-form.node-company-edit-form .field--name-field-address .address-container-inline .form-item,
-form.node-company-form .field--name-field-address .address-container-inline .form-item {
+form#node-company-edit-form .field--name-field-address .address-container-inline .form-item,
+form#node-company-form .field--name-field-address .address-container-inline .form-item {
   display: inline;
   float: right;
   margin: 0 0 15px 0;
 }
 
-form.node-company-edit-form .field--name-field-address .address-container-inline .form-item .select-wrapper,
-form.node-company-form .field--name-field-address .address-container-inline .form-item .select-wrapper {
+form#node-company-edit-form .field--name-field-address .address-container-inline .form-item .select-wrapper,
+form#node-company-form .field--name-field-address .address-container-inline .form-item .select-wrapper {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -17883,97 +17883,97 @@ form.node-company-form .field--name-field-address .address-container-inline .for
   margin-left: 5px;
 }
 
-form.node-company-edit-form .field--name-field-address .address-container-inline .form-item .form-text,
-form.node-company-form .field--name-field-address .address-container-inline .form-item .form-text {
+form#node-company-edit-form .field--name-field-address .address-container-inline .form-item .form-text,
+form#node-company-form .field--name-field-address .address-container-inline .form-item .form-text {
   width: 530px;
 }
 
-form.node-company-edit-form .field--name-field-address .control-label.sr-only,
-form.node-company-form .field--name-field-address .control-label.sr-only {
+form#node-company-edit-form .field--name-field-address .control-label.sr-only,
+form#node-company-form .field--name-field-address .control-label.sr-only {
   position: relative;
   width: auto;
   height: auto;
 }
 
-form.node-company-edit-form .company-info .form-wrapper,
-form.node-company-edit-form .main-contact .form-wrapper,
-form.node-company-form .company-info .form-wrapper,
-form.node-company-form .main-contact .form-wrapper {
+form#node-company-edit-form .company-info .form-wrapper,
+form#node-company-edit-form .main-contact .form-wrapper,
+form#node-company-form .company-info .form-wrapper,
+form#node-company-form .main-contact .form-wrapper {
   float: right;
 }
 
-form.node-company-edit-form .company-info .form-wrapper label,
-form.node-company-edit-form .main-contact .form-wrapper label,
-form.node-company-form .company-info .form-wrapper label,
-form.node-company-form .main-contact .form-wrapper label {
+form#node-company-edit-form .company-info .form-wrapper label,
+form#node-company-edit-form .main-contact .form-wrapper label,
+form#node-company-form .company-info .form-wrapper label,
+form#node-company-form .main-contact .form-wrapper label {
   font-size: 14px;
   font-size: 0.875rem;
   text-transform: uppercase;
 }
 
-form.node-company-edit-form .company-info .form-tel,
-form.node-company-edit-form .company-info .form-text,
-form.node-company-edit-form .company-info .form-url,
-form.node-company-edit-form .company-info .form-email,
-form.node-company-edit-form .main-contact .form-tel,
-form.node-company-edit-form .main-contact .form-text,
-form.node-company-edit-form .main-contact .form-url,
-form.node-company-edit-form .main-contact .form-email,
-form.node-company-form .company-info .form-tel,
-form.node-company-form .company-info .form-text,
-form.node-company-form .company-info .form-url,
-form.node-company-form .company-info .form-email,
-form.node-company-form .main-contact .form-tel,
-form.node-company-form .main-contact .form-text,
-form.node-company-form .main-contact .form-url,
-form.node-company-form .main-contact .form-email {
+form#node-company-edit-form .company-info .form-tel,
+form#node-company-edit-form .company-info .form-text,
+form#node-company-edit-form .company-info .form-url,
+form#node-company-edit-form .company-info .form-email,
+form#node-company-edit-form .main-contact .form-tel,
+form#node-company-edit-form .main-contact .form-text,
+form#node-company-edit-form .main-contact .form-url,
+form#node-company-edit-form .main-contact .form-email,
+form#node-company-form .company-info .form-tel,
+form#node-company-form .company-info .form-text,
+form#node-company-form .company-info .form-url,
+form#node-company-form .company-info .form-email,
+form#node-company-form .main-contact .form-tel,
+form#node-company-form .main-contact .form-text,
+form#node-company-form .main-contact .form-url,
+form#node-company-form .main-contact .form-email {
   max-width: 530px;
   width: 530px;
   display: inline;
   min-width: 338px;
 }
 
-form.node-company-edit-form .company-info .field--type-address .panel-heading,
-form.node-company-edit-form .main-contact .field--type-address .panel-heading,
-form.node-company-form .company-info .field--type-address .panel-heading,
-form.node-company-form .main-contact .field--type-address .panel-heading {
+form#node-company-edit-form .company-info .field--type-address .panel-heading,
+form#node-company-edit-form .main-contact .field--type-address .panel-heading,
+form#node-company-form .company-info .field--type-address .panel-heading,
+form#node-company-form .main-contact .field--type-address .panel-heading {
   display: none;
 }
 
-form.node-company-edit-form .checker,
-form.node-company-form .checker {
+form#node-company-edit-form .checker,
+form#node-company-form .checker {
   opacity: 0;
 }
 
-form.node-company-edit-form .checkbox.checked,
-form.node-company-form .checkbox.checked {
+form#node-company-edit-form .checkbox.checked,
+form#node-company-form .checkbox.checked {
   color: #038dc0;
 }
 
-form.node-company-edit-form .checkbox.checked:before,
-form.node-company-form .checkbox.checked:before {
+form#node-company-edit-form .checkbox.checked:before,
+form#node-company-form .checkbox.checked:before {
   font-family: FontAwesome;
   content: '\f046';
   position: absolute;
 }
 
-form.node-company-edit-form .checkbox:before,
-form.node-company-form .checkbox:before {
+form#node-company-edit-form .checkbox:before,
+form#node-company-form .checkbox:before {
   font-family: FontAwesome;
   content: '\f096';
   position: absolute;
 }
 
-form.node-company-edit-form .field--name-field-territory-served label,
-form.node-company-form .field--name-field-territory-served label {
+form#node-company-edit-form .field--name-field-territory-served label,
+form#node-company-form .field--name-field-territory-served label {
   font-size: 15px;
   font-size: 0.9375rem;
   font-weight: 400;
   color: #004e75;
 }
 
-form.node-company-edit-form .field--name-field-territory-served .chosen-container,
-form.node-company-form .field--name-field-territory-served .chosen-container {
+form#node-company-edit-form .field--name-field-territory-served .chosen-container,
+form#node-company-form .field--name-field-territory-served .chosen-container {
   height: auto;
   border: none;
   box-shadow: none;
@@ -17982,13 +17982,13 @@ form.node-company-form .field--name-field-territory-served .chosen-container {
   padding-left: 0;
 }
 
-form.node-company-edit-form .field--name-field-territory-served .input-group-addon:last-child,
-form.node-company-form .field--name-field-territory-served .input-group-addon:last-child {
+form#node-company-edit-form .field--name-field-territory-served .input-group-addon:last-child,
+form#node-company-form .field--name-field-territory-served .input-group-addon:last-child {
   display: none;
 }
 
-form.node-company-edit-form .field--name-field-territory-served .search-choice,
-form.node-company-form .field--name-field-territory-served .search-choice {
+form#node-company-edit-form .field--name-field-territory-served .search-choice,
+form#node-company-form .field--name-field-territory-served .search-choice {
   background-image: none;
   background-color: #038dc0;
   border: none;
@@ -17998,54 +17998,54 @@ form.node-company-form .field--name-field-territory-served .search-choice {
   box-shadow: none;
 }
 
-form.node-company-edit-form .field--name-field-territory-served .search-choice span,
-form.node-company-form .field--name-field-territory-served .search-choice span {
+form#node-company-edit-form .field--name-field-territory-served .search-choice span,
+form#node-company-form .field--name-field-territory-served .search-choice span {
   padding-left: 15px;
 }
 
-form.node-company-edit-form .field--name-field-territory-served .search-choice span:before,
-form.node-company-form .field--name-field-territory-served .search-choice span:before {
+form#node-company-edit-form .field--name-field-territory-served .search-choice span:before,
+form#node-company-form .field--name-field-territory-served .search-choice span:before {
   font-family: FontAwesome;
   content: '\f00d';
   margin-left: -15px;
   padding-right: 5px;
 }
 
-form.node-company-edit-form .field--name-field-territory-served .search-choice .search-choice-close,
-form.node-company-form .field--name-field-territory-served .search-choice .search-choice-close {
+form#node-company-edit-form .field--name-field-territory-served .search-choice .search-choice-close,
+form#node-company-form .field--name-field-territory-served .search-choice .search-choice-close {
   position: relative;
   top: -12px;
   left: 1px;
   opacity: 0;
 }
 
-form.node-company-edit-form .equipment-sold legend,
-form.node-company-edit-form .industries-served legend,
-form.node-company-form .equipment-sold legend,
-form.node-company-form .industries-served legend {
+form#node-company-edit-form .equipment-sold legend,
+form#node-company-edit-form .industries-served legend,
+form#node-company-form .equipment-sold legend,
+form#node-company-form .industries-served legend {
   display: none;
 }
 
-form.node-company-edit-form .equipment-sold .form-textarea-wrapper,
-form.node-company-edit-form .industries-served .form-textarea-wrapper,
-form.node-company-form .equipment-sold .form-textarea-wrapper,
-form.node-company-form .industries-served .form-textarea-wrapper {
+form#node-company-edit-form .equipment-sold .form-textarea-wrapper,
+form#node-company-edit-form .industries-served .form-textarea-wrapper,
+form#node-company-form .equipment-sold .form-textarea-wrapper,
+form#node-company-form .industries-served .form-textarea-wrapper {
   margin-right: 30px;
 }
 
-form.node-company-edit-form .equipment-sold .panel-body,
-form.node-company-edit-form .industries-served .panel-body,
-form.node-company-form .equipment-sold .panel-body,
-form.node-company-form .industries-served .panel-body {
+form#node-company-edit-form .equipment-sold .panel-body,
+form#node-company-edit-form .industries-served .panel-body,
+form#node-company-form .equipment-sold .panel-body,
+form#node-company-form .industries-served .panel-body {
   padding: 15px 0px 15px 70px;
   position: relative;
   border: 1px solid #869fbe;
 }
 
-form.node-company-edit-form .equipment-sold .panel-body:before,
-form.node-company-edit-form .industries-served .panel-body:before,
-form.node-company-form .equipment-sold .panel-body:before,
-form.node-company-form .industries-served .panel-body:before {
+form#node-company-edit-form .equipment-sold .panel-body:before,
+form#node-company-edit-form .industries-served .panel-body:before,
+form#node-company-form .equipment-sold .panel-body:before,
+form#node-company-form .industries-served .panel-body:before {
   font-family: FontAwesome;
   content: "\f068";
   display: block;
@@ -18061,61 +18061,61 @@ form.node-company-form .industries-served .panel-body:before {
   left: 0;
 }
 
-form.node-company-edit-form .field--name-field-manufacturers-represented .description,
-form.node-company-form .field--name-field-manufacturers-represented .description {
+form#node-company-edit-form .field--name-field-manufacturers-represented .description,
+form#node-company-form .field--name-field-manufacturers-represented .description {
   color: #004e75;
 }
 
-form.node-company-edit-form .field--name-field-after-sales-service,
-form.node-company-form .field--name-field-after-sales-service {
+form#node-company-edit-form .field--name-field-after-sales-service,
+form#node-company-form .field--name-field-after-sales-service {
   margin: 40px 0;
 }
 
-form.node-company-edit-form .field--name-field-after-sales-service legend,
-form.node-company-form .field--name-field-after-sales-service legend {
+form#node-company-edit-form .field--name-field-after-sales-service legend,
+form#node-company-form .field--name-field-after-sales-service legend {
   font-size: 15px;
   font-size: 0.9375rem;
   font-weight: bold;
 }
 
-form.node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column input,
-form.node-company-form .field--name-field-after-sales-service .webform-options-display-one-column input {
+form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column input,
+form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column input {
   opacity: 0;
 }
 
-form.node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column label:before,
-form.node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label:before {
+form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column label:before,
+form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label:before {
   font-family: FontAwesome;
   content: '\f096';
   position: absolute;
   margin-left: -20px;
 }
 
-form.node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked,
-form.node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked {
+form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked,
+form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked {
   color: #038dc0;
 }
 
-form.node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked:before,
-form.node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked:before {
+form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked:before,
+form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked:before {
   font-family: FontAwesome;
   content: '\f046';
 }
 
-form.node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:first-child,
-form.node-company-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:first-child {
+form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:first-child,
+form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:first-child {
   display: inline-block;
 }
 
-form.node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:last-child,
-form.node-company-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:last-child {
+form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:last-child,
+form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:last-child {
   float: left;
   margin-top: 0px;
   margin-right: 50px;
 }
 
-form.node-company-edit-form .button,
-form.node-company-form .button {
+form#node-company-edit-form .button,
+form#node-company-form .button {
   width: 470px;
   font-size: 25px;
   font-size: 1.5625rem;
@@ -18127,50 +18127,50 @@ form.node-company-form .button {
 }
 
 @media screen and (max-width: 767px) {
-  form.node-company-edit-form,
-  form.node-company-form {
+  form#node-company-edit-form,
+  form#node-company-form {
     max-width: 353px;
   }
-  form.node-company-edit-form .company-info .form-tel,
-  form.node-company-edit-form .company-info .form-text,
-  form.node-company-edit-form .company-info .form-url,
-  form.node-company-edit-form .company-info .form-email,
-  form.node-company-edit-form .main-contact .form-tel,
-  form.node-company-edit-form .main-contact .form-text,
-  form.node-company-edit-form .main-contact .form-url,
-  form.node-company-edit-form .main-contact .form-email,
-  form.node-company-form .company-info .form-tel,
-  form.node-company-form .company-info .form-text,
-  form.node-company-form .company-info .form-url,
-  form.node-company-form .company-info .form-email,
-  form.node-company-form .main-contact .form-tel,
-  form.node-company-form .main-contact .form-text,
-  form.node-company-form .main-contact .form-url,
-  form.node-company-form .main-contact .form-email {
+  form#node-company-edit-form .company-info .form-tel,
+  form#node-company-edit-form .company-info .form-text,
+  form#node-company-edit-form .company-info .form-url,
+  form#node-company-edit-form .company-info .form-email,
+  form#node-company-edit-form .main-contact .form-tel,
+  form#node-company-edit-form .main-contact .form-text,
+  form#node-company-edit-form .main-contact .form-url,
+  form#node-company-edit-form .main-contact .form-email,
+  form#node-company-form .company-info .form-tel,
+  form#node-company-form .company-info .form-text,
+  form#node-company-form .company-info .form-url,
+  form#node-company-form .company-info .form-email,
+  form#node-company-form .main-contact .form-tel,
+  form#node-company-form .main-contact .form-text,
+  form#node-company-form .main-contact .form-url,
+  form#node-company-form .main-contact .form-email {
     max-width: 338px;
     min-width: 338px;
     width: 338px;
   }
-  form.node-company-edit-form .field--name-field-address .selector,
-  form.node-company-form .field--name-field-address .selector {
+  form#node-company-edit-form .field--name-field-address .selector,
+  form#node-company-form .field--name-field-address .selector {
     width: 338px !important;
   }
-  form.node-company-edit-form .field--name-field-address .address-container-inline .form-item .select-wrapper,
-  form.node-company-form .field--name-field-address .address-container-inline .form-item .select-wrapper {
+  form#node-company-edit-form .field--name-field-address .address-container-inline .form-item .select-wrapper,
+  form#node-company-form .field--name-field-address .address-container-inline .form-item .select-wrapper {
     margin-left: auto;
   }
-  form.node-company-edit-form .equipment-sold .panel-body label,
-  form.node-company-edit-form .industries-served .panel-body label,
-  form.node-company-form .equipment-sold .panel-body label,
-  form.node-company-form .industries-served .panel-body label {
+  form#node-company-edit-form .equipment-sold .panel-body label,
+  form#node-company-edit-form .industries-served .panel-body label,
+  form#node-company-form .equipment-sold .panel-body label,
+  form#node-company-form .industries-served .panel-body label {
     padding-left: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     padding-right: 20px;
   }
-  form.node-company-edit-form .button,
-  form.node-company-form .button {
+  form#node-company-edit-form .button,
+  form#node-company-form .button {
     width: 338px;
     margin-bottom: 20px;
   }
