@@ -57,3 +57,40 @@
 .block-brand {
   @extend .brand-and-expo-show;
 }
+
+// Expo show mega menu.
+.pack-expo-show.mode-mega-menu {
+  color: $dkgrey;
+  line-height: $r16;
+  font-weight: 500;
+  font-size: $r12;
+  margin-bottom: 30px;
+  font-family: $lato;
+  @extend .inherited-p;
+  a {
+    color: $dkgrey;
+  }
+  .field-name-field-logo {
+    height: 105px;
+    line-height: 103px;
+    border: 1px solid $mdgrey;
+    text-align: center;
+    padding: 0 5px;
+    margin: 0 0 5px;
+    img {
+      margin: 0 auto;
+      display: inline-block;
+      max-height: 98px;
+    }
+  }
+  .field--name-field-show-link {
+    font-weight: 800;
+    font-size: $r13;
+  }
+  .address {
+    br,
+    .country {
+      display: none;
+    }
+  }
+}

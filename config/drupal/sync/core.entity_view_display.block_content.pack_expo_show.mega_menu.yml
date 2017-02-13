@@ -1,9 +1,10 @@
-uuid: 799aa88d-eebe-4c22-9a87-f01b17868400
+uuid: 39b2e5a3-2170-4df6-98e3-e10fba15f284
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.pack_expo_show
+    - core.entity_view_mode.block_content.mega_menu
     - field.field.block_content.pack_expo_show.body
     - field.field.block_content.pack_expo_show.field_button
     - field.field.block_content.pack_expo_show.field_buttons
@@ -11,63 +12,43 @@ dependencies:
     - field.field.block_content.pack_expo_show.field_location
     - field.field.block_content.pack_expo_show.field_logo
     - field.field.block_content.pack_expo_show.field_show_dates
+    - field.field.block_content.pack_expo_show.field_show_link
     - responsive_image.styles.shows_block
   module:
     - address
     - ds
     - link
+    - linked_field
     - pmmi_fields
     - responsive_image
-    - text
 third_party_settings:
   ds:
     layout:
-      id: block_pack_expo_show
+      id: block_default_single
       path: themes/custom/pmmi_bootstrap
       library: ''
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
-      logo:
+      main:
         - field_logo
-      dates:
+        - field_show_link
         - field_show_dates
-      location:
         - field_location
-      body:
-        - body
-      button:
-        - field_buttons
-id: block_content.pack_expo_show.default
+id: block_content.pack_expo_show.mega_menu
 targetEntityType: block_content
 bundle: pack_expo_show
-mode: default
+mode: mega_menu
 content:
-  body:
+  field_location:
+    type: address_default
     weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: text_default
-  field_buttons:
-    weight: 4
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: ''
-      target: ''
-    third_party_settings: {  }
-    type: link
-  field_location:
-    weight: 2
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: address_default
   field_logo:
+    type: responsive_image
     weight: 0
     label: hidden
     settings:
@@ -81,19 +62,43 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
+      linked_field:
+        linked: '1'
+        type: field
+        destination: field_show_link
+        advanced: {  }
   field_show_dates:
-    weight: 1
+    type: daterange_event_custom
+    weight: 2
     label: hidden
     settings:
       timezone_override: ''
-      show_end_date: true
       date_format_month: F
       date_format_day: j
       date_format_year: 'Y'
+      show_end_date: '1'
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_show_link:
+    type: link
+    weight: 1
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
     third_party_settings: {  }
-    type: daterange_event_custom
 hidden:
+  body: true
   field_button: true
+  field_buttons: true
   field_dates: true
-  field_show_link: true

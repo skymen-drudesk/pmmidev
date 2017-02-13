@@ -4,9 +4,11 @@ status: true
 dependencies:
   config:
     - block_content.type.pack_expo_show
+    - core.entity_view_mode.block_content.mega_menu
   module:
     - block_content
     - datetime
+    - ds
 id: pack_expo_shows
 label: 'Pack Expo Shows'
 module: views
@@ -206,6 +208,77 @@ display:
       display_extenders: {  }
       block_category: 'PMMI (Views)'
       display_description: ''
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 2
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: col-md-6
+          row_class_default: false
+          row_class_custom: row
+      defaults:
+        style: false
+        row: false
+      row:
+        type: 'ds_entity:block_content'
+        options:
+          relationship: none
+          view_mode: default
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+          grouping_fieldset:
+            group: false
+            group_field: block_content__field_show_dates|field_show_dates_value
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+      tags: {  }
+  block_mega_menu:
+    display_plugin: block
+    id: block_mega_menu
+    display_title: 'Mega Menu'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 4
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: col-md-3
+          row_class_default: false
+          row_class_custom: row
+      defaults:
+        style: false
+        row: false
+      row:
+        type: 'ds_entity:block_content'
+        options:
+          relationship: none
+          view_mode: mega_menu
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+          grouping_fieldset:
+            group: false
+            group_field: block_content__field_show_dates|field_show_dates_value
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
+      block_category: 'PMMI (Views)'
     cache_metadata:
       max-age: -1
       contexts:
