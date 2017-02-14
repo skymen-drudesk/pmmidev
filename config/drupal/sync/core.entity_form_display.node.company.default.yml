@@ -18,6 +18,8 @@ dependencies:
     - field.field.node.company.field_primary_contact_email
     - field.field.node.company.field_primary_contact_first_name
     - field.field.node.company.field_primary_contact_last_name
+    - field.field.node.company.field_primary_contact_mobile
+    - field.field.node.company.field_primary_contact_title
     - field.field.node.company.field_territory_served
     - field.field.node.company.field_website_url
     - node.type.company
@@ -51,7 +53,9 @@ third_party_settings:
       children:
         - field_primary_contact_first_name
         - field_primary_contact_last_name
+        - field_primary_contact_title
         - field_primary_contact_email
+        - field_primary_contact_mobile
       parent_name: ''
       weight: 2
       format_type: fieldset
@@ -169,7 +173,7 @@ content:
     third_party_settings: {  }
     type: string_textarea
   field_primary_contact_email:
-    weight: 9
+    weight: 10
     settings:
       size: 60
       placeholder: ''
@@ -184,6 +188,19 @@ content:
     type: string_textfield
   field_primary_contact_last_name:
     weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_primary_contact_mobile:
+    weight: 11
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: telephone_default
+  field_primary_contact_title:
+    weight: 9
     settings:
       size: 60
       placeholder: ''
