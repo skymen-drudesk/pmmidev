@@ -12124,7 +12124,7 @@ fieldset[disabled] a.focus {
   word-wrap: normal;
 }
 
-.clear-after:after, .navbar .main-nav:after, .block-enticement:after, .accordion-item.accordion .body:after {
+.clear-after:after, .navbar .main-nav:after, .block-enticement:after, .company-node .footer-reg .view-content:after, .accordion-item.accordion .body:after {
   content: "";
   display: block;
   height: 0;
@@ -17721,8 +17721,18 @@ div.view {
 }
 
 .company-node .contacts .primary .field--name-field-primary-contact-first-name,
-.company-node .contacts .primary .field--name-field-primary-contact-last-name {
-  display: inline-block;
+.company-node .contacts .primary .field--name-field-primary-contact-last-name,
+.company-node .contacts .primary .field--name-field-primary-contact-title {
+  display: inline;
+}
+
+.company-node .contacts .primary .field--name-field-primary-contact-title {
+  font-style: italic;
+}
+
+.company-node .contacts .primary .field--name-field-primary-contact-title:before {
+  content: ", ";
+  margin-left: -4px;
 }
 
 .company-node .contacts .address {
@@ -17753,6 +17763,14 @@ div.view {
   font-size: 1.125rem;
 }
 
+.company-node .footer-reg .view-company-trade-shows-contacts {
+  margin-bottom: 10px;
+}
+
+.company-node .footer-reg .view-content {
+  border-bottom: solid 1px #c2c2c2;
+}
+
 .company-node .footer-reg .views-row {
   width: 50%;
   float: left;
@@ -17779,6 +17797,7 @@ div.view {
   width: 80px;
   display: inline-block;
   text-align: right;
+  margin-right: 5px;
 }
 
 .company-node .footer-reg .views-row .views-field-field-title .field-content {
@@ -17786,9 +17805,7 @@ div.view {
 }
 
 .company-node .profile-updated {
-  border-top: solid 1px #c2c2c2;
-  margin-top: 10px;
-  padding: 8px 0 40px 0;
+  padding-bottom: 40px;
   font-size: 14px;
   font-size: 0.875rem;
   clear: both;

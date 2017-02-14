@@ -60,8 +60,16 @@
       max-width: 249px;
       word-wrap: break-word;
       .field--name-field-primary-contact-first-name,
-      .field--name-field-primary-contact-last-name {
-        display: inline-block;
+      .field--name-field-primary-contact-last-name,
+      .field--name-field-primary-contact-title {
+        display: inline;
+      }
+      .field--name-field-primary-contact-title {
+        font-style: italic;
+        &:before {
+          content: ", ";
+          margin-left: -4px;
+        }
       }
     }
     .address {
@@ -86,6 +94,13 @@
       font-weight: 800;
       font-size: $r18;
     }
+    .view-company-trade-shows-contacts {
+      margin-bottom: 10px;
+    }
+    .view-content {
+      @extend .clear-after;
+      border-bottom: solid 1px $mdgrey;
+    }
     .views-row {
       width: 50%;
       float: left;
@@ -108,6 +123,7 @@
           width: 80px;
           display: inline-block;
           text-align: right;
+          margin-right: 5px;
         }
       }
       .views-field-field-title {
@@ -118,9 +134,7 @@
     }
   }
   .profile-updated {
-    border-top: solid 1px $mdgrey;
-    margin-top: 10px;
-    padding: 8px 0 40px 0;
+    padding-bottom: 40px;
     font-size: $r14;
     clear: both;
   }
