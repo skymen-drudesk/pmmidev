@@ -16657,6 +16657,55 @@ div.view {
   }
 }
 
+.container .block-enticement.mode-enticement-full-width .image, .default-exposed-form form .block-enticement.mode-enticement-full-width .image, .region-top .block.views-exposed-form form .block-enticement.mode-enticement-full-width .image, .block-pmmi-search-library-block form .block-enticement.mode-enticement-full-width .image, body.use-container .region-content .block-enticement.mode-enticement-full-width .image, .view-empty .block-enticement.mode-enticement-full-width .image {
+  margin: -17px 15px -17px 10px;
+}
+
+.container .block-enticement.mode-enticement-full-width .title-body, .default-exposed-form form .block-enticement.mode-enticement-full-width .title-body, .region-top .block.views-exposed-form form .block-enticement.mode-enticement-full-width .title-body, .block-pmmi-search-library-block form .block-enticement.mode-enticement-full-width .title-body, body.use-container .region-content .block-enticement.mode-enticement-full-width .title-body, .view-empty .block-enticement.mode-enticement-full-width .title-body {
+  margin-right: 250px;
+  padding: 15px 0;
+}
+
+.container .block-enticement.mode-enticement-full-width .button a, .default-exposed-form form .block-enticement.mode-enticement-full-width .button a, .region-top .block.views-exposed-form form .block-enticement.mode-enticement-full-width .button a, .block-pmmi-search-library-block form .block-enticement.mode-enticement-full-width .button a, body.use-container .region-content .block-enticement.mode-enticement-full-width .button a, .view-empty .block-enticement.mode-enticement-full-width .button a {
+  min-width: 225px;
+  max-width: 225px;
+  right: 15px;
+}
+
+.container .block-enticement.mode-enticement-full-width .wrapper, .default-exposed-form form .block-enticement.mode-enticement-full-width .wrapper, .region-top .block.views-exposed-form form .block-enticement.mode-enticement-full-width .wrapper, .block-pmmi-search-library-block form .block-enticement.mode-enticement-full-width .wrapper, body.use-container .region-content .block-enticement.mode-enticement-full-width .wrapper, .view-empty .block-enticement.mode-enticement-full-width .wrapper {
+  width: auto;
+  padding: 0;
+}
+
+@media screen and (max-width: 1199px) {
+  .container .block-enticement.mode-enticement-full-width .button, .default-exposed-form form .block-enticement.mode-enticement-full-width .button, .region-top .block.views-exposed-form form .block-enticement.mode-enticement-full-width .button, .block-pmmi-search-library-block form .block-enticement.mode-enticement-full-width .button, body.use-container .region-content .block-enticement.mode-enticement-full-width .button, .view-empty .block-enticement.mode-enticement-full-width .button {
+    right: 15px;
+  }
+  .container .block-enticement.mode-enticement-full-width .image, .default-exposed-form form .block-enticement.mode-enticement-full-width .image, .region-top .block.views-exposed-form form .block-enticement.mode-enticement-full-width .image, .block-pmmi-search-library-block form .block-enticement.mode-enticement-full-width .image, body.use-container .region-content .block-enticement.mode-enticement-full-width .image, .view-empty .block-enticement.mode-enticement-full-width .image {
+    margin: 10px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .container .block-enticement.mode-enticement-full-width .title-body, .default-exposed-form form .block-enticement.mode-enticement-full-width .title-body, .region-top .block.views-exposed-form form .block-enticement.mode-enticement-full-width .title-body, .block-pmmi-search-library-block form .block-enticement.mode-enticement-full-width .title-body, body.use-container .region-content .block-enticement.mode-enticement-full-width .title-body, .view-empty .block-enticement.mode-enticement-full-width .title-body {
+    margin: 0;
+    padding: 30px 0 0;
+  }
+  .container .block-enticement.mode-enticement-full-width .image, .default-exposed-form form .block-enticement.mode-enticement-full-width .image, .region-top .block.views-exposed-form form .block-enticement.mode-enticement-full-width .image, .block-pmmi-search-library-block form .block-enticement.mode-enticement-full-width .image, body.use-container .region-content .block-enticement.mode-enticement-full-width .image, .view-empty .block-enticement.mode-enticement-full-width .image {
+    margin: 0 0 10px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .container .block-enticement.mode-enticement-full-width .wrapper, .default-exposed-form form .block-enticement.mode-enticement-full-width .wrapper, .region-top .block.views-exposed-form form .block-enticement.mode-enticement-full-width .wrapper, .block-pmmi-search-library-block form .block-enticement.mode-enticement-full-width .wrapper, body.use-container .region-content .block-enticement.mode-enticement-full-width .wrapper, .view-empty .block-enticement.mode-enticement-full-width .wrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  .container .block-enticement.mode-enticement-full-width .title-body, .default-exposed-form form .block-enticement.mode-enticement-full-width .title-body, .region-top .block.views-exposed-form form .block-enticement.mode-enticement-full-width .title-body, .block-pmmi-search-library-block form .block-enticement.mode-enticement-full-width .title-body, body.use-container .region-content .block-enticement.mode-enticement-full-width .title-body, .view-empty .block-enticement.mode-enticement-full-width .title-body {
+    padding: 0;
+  }
+}
+
 /* EVENT VIEW MODES. */
 .block-event-default {
   border: 1px solid #c2c2c2;
