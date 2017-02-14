@@ -242,44 +242,9 @@ form#node-company-form {
       width: auto;
       height: auto;
     }
-    .form-item-field-address-0-address-address-line1 {
-      label {
-        display: none;
-      }
-      &:before {
-        content: 'ADDRESS 1';
-        font-size: $r14;
-        text-transform: uppercase;
-        font-weight: bold;
-        padding-right: 10px;
-      }
-    }
-    .form-item-field-address-0-address-address-line2 {
-      @extend .form-item-field-address-0-address-address-line1;
-      &:before {
-        content: 'ADDRESS 2';
-      }
-    }
-    .form-item-field-address-0-address-postal-code {
-      @extend .form-item-field-address-0-address-address-line1;
-      &:before {
-        content: 'POSTAL CODE';
-      }
-    }
   }
   .company-info,
   .main-contact {
-    .field--name-field-fax-number,
-    .field--name-field-main-phone-number {
-      &:after {
-        float: right;
-        font-size: $r13;
-        color: $blue;
-        margin-right: 120px;
-        margin-top: 5px;
-        content: '* Must include country code, area code and phone number, in that order';
-      }
-    }
     .form-wrapper {
       float: right;
       label {

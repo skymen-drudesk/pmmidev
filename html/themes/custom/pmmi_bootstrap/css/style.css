@@ -20288,48 +20288,6 @@ form#node-company-form .field--name-field-address .control-label.sr-only {
   height: auto;
 }
 
-form#node-company-edit-form .field--name-field-address .form-item-field-address-0-address-address-line1 label, form#node-company-edit-form .field--name-field-address .form-item-field-address-0-address-address-line2 label, form#node-company-edit-form .field--name-field-address .form-item-field-address-0-address-postal-code label,
-form#node-company-form .field--name-field-address .form-item-field-address-0-address-address-line1 label, form#node-company-form .field--name-field-address .form-item-field-address-0-address-address-line2 label, form#node-company-form .field--name-field-address .form-item-field-address-0-address-postal-code label {
-  display: none;
-}
-
-form#node-company-edit-form .field--name-field-address .form-item-field-address-0-address-address-line1:before, form#node-company-edit-form .field--name-field-address .form-item-field-address-0-address-address-line2:before, form#node-company-edit-form .field--name-field-address .form-item-field-address-0-address-postal-code:before,
-form#node-company-form .field--name-field-address .form-item-field-address-0-address-address-line1:before, form#node-company-form .field--name-field-address .form-item-field-address-0-address-address-line2:before, form#node-company-form .field--name-field-address .form-item-field-address-0-address-postal-code:before {
-  content: 'ADDRESS 1';
-  font-size: 14px;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  font-weight: bold;
-  padding-right: 10px;
-}
-
-form#node-company-edit-form .field--name-field-address .form-item-field-address-0-address-address-line2:before,
-form#node-company-form .field--name-field-address .form-item-field-address-0-address-address-line2:before {
-  content: 'ADDRESS 2';
-}
-
-form#node-company-edit-form .field--name-field-address .form-item-field-address-0-address-postal-code:before,
-form#node-company-form .field--name-field-address .form-item-field-address-0-address-postal-code:before {
-  content: 'POSTAL CODE';
-}
-
-form#node-company-edit-form .company-info .field--name-field-fax-number:after,
-form#node-company-edit-form .company-info .field--name-field-main-phone-number:after,
-form#node-company-edit-form .main-contact .field--name-field-fax-number:after,
-form#node-company-edit-form .main-contact .field--name-field-main-phone-number:after,
-form#node-company-form .company-info .field--name-field-fax-number:after,
-form#node-company-form .company-info .field--name-field-main-phone-number:after,
-form#node-company-form .main-contact .field--name-field-fax-number:after,
-form#node-company-form .main-contact .field--name-field-main-phone-number:after {
-  float: right;
-  font-size: 13px;
-  font-size: 0.8125rem;
-  color: #004e75;
-  margin-right: 120px;
-  margin-top: 5px;
-  content: '* Must include country code, area code and phone number, in that order';
-}
-
 form#node-company-edit-form .company-info .form-wrapper,
 form#node-company-edit-form .main-contact .form-wrapper,
 form#node-company-form .company-info .form-wrapper,
