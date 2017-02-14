@@ -54,7 +54,7 @@ services:
     depends_on:
       - pmmiweb
     volumes:
-      - ./config/varnish:/etc/varnish/
+      - ./config/varnish/dev:/etc/varnish/
     environment:
       VARNISH_SECRET: secret
       VARNISH_BACKEND_HOST: pmmiweb
