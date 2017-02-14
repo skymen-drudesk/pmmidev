@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - block_content.type.box
+    - core.entity_view_mode.block_content.mega_menu
   module:
     - block_content
     - ds
@@ -55,6 +56,18 @@ display:
         type: default
       row:
         type: 'ds_entity:block_content'
+        options:
+          relationship: none
+          view_mode: mega_menu
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+          grouping_fieldset:
+            group: false
+            group_field: block_content__field_head|field_head_value
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
       fields:
         info:
           table: block_content_field_data
@@ -231,6 +244,21 @@ display:
     display_options:
       display_extenders: {  }
       block_category: 'PMMI (Views)'
+      display_description: ''
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+      tags: {  }
+  block_mega_menu:
+    display_plugin: block
+    id: block_mega_menu
+    display_title: 'Mega Menu'
+    position: 2
+    display_options:
+      display_extenders: {  }
       display_description: ''
     cache_metadata:
       max-age: -1

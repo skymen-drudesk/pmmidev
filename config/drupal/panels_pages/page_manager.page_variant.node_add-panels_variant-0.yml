@@ -38,13 +38,22 @@ variant_settings:
       weight: 0
       uuid: b2eee949-4995-4818-b70b-c2048e5fe10a
       context_mapping: {  }
+    2bea7c5c-a3c6-4f80-8257-a0ec079710eb:
+      id: page_title_block
+      label: 'Page title'
+      provider: core
+      label_display: '0'
+      region: main
+      weight: -1
+      uuid: 2bea7c5c-a3c6-4f80-8257-a0ec079710eb
+      context_mapping: {  }
   id: panels_variant
   uuid: f0616422-cb4a-4757-a9c3-6af9ed6a70c4
   label: null
   weight: 0
   layout: sitewide
   layout_settings: {  }
-  page_title: ''
+  page_title: 'New Agent Registration Form'
   storage_type: page_manager
   storage_id: node_add-panels_variant-0
   builder: standard
