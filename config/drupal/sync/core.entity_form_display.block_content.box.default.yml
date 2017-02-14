@@ -1,21 +1,22 @@
-uuid: e9ac0ff9-6d44-477f-acd9-3a79b05f117c
+uuid: 57892bd4-3c1f-4dd8-8577-2d98df065364
 langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.study_guide
+    - block_content.type.box
     - entity_browser.browser.browse_files_modal
-    - field.field.block_content.study_guide.body
-    - field.field.block_content.study_guide.field_buttons
-    - field.field.block_content.study_guide.field_head
-    - field.field.block_content.study_guide.field_image
+    - field.field.block_content.box.body
+    - field.field.block_content.box.field_box_type
+    - field.field.block_content.box.field_buttons
+    - field.field.block_content.box.field_head
+    - field.field.block_content.box.field_image
   module:
     - entity_browser
-    - link
+    - link_attributes
     - text
-id: block_content.study_guide.default
+id: block_content.box.default
 targetEntityType: block_content
-bundle: study_guide
+bundle: box
 mode: default
 content:
   body:
@@ -26,13 +27,28 @@ content:
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
+  field_box_type:
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
   field_buttons:
     weight: 4
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      enabled_attributes:
+        id: false
+        name: false
+        target: true
+        rel: true
+        class: true
+        accesskey: false
     third_party_settings: {  }
-    type: link_default
+    type: link_attributes
   field_head:
     weight: 2
     settings:

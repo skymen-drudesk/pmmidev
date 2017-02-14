@@ -5,10 +5,13 @@ dependencies:
   config:
     - block_content.type.pack_expo_show
     - field.field.block_content.pack_expo_show.body
+    - field.field.block_content.pack_expo_show.field_button
     - field.field.block_content.pack_expo_show.field_buttons
+    - field.field.block_content.pack_expo_show.field_dates
     - field.field.block_content.pack_expo_show.field_location
     - field.field.block_content.pack_expo_show.field_logo
     - field.field.block_content.pack_expo_show.field_show_dates
+    - field.field.block_content.pack_expo_show.field_show_link
     - image.style.thumbnail
   module:
     - address
@@ -61,6 +64,20 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: daterange_default
+  field_show_link:
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      enabled_attributes:
+        id: false
+        name: false
+        target: true
+        rel: true
+        class: true
+        accesskey: false
+    third_party_settings: {  }
+    type: link_attributes
   info:
     type: string_textfield
     weight: 0

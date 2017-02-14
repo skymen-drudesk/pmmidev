@@ -133,7 +133,6 @@ class PMMICompanySearchBlockForm extends FormBase {
     $form['industries'] = [
       '#type' => 'details',
       '#title' => $this->t('Industries Served'),
-      '#open' => TRUE,
     ];
     $form['industries']['field_industries_served'] = [
       '#type' => 'checkboxes',
@@ -145,7 +144,6 @@ class PMMICompanySearchBlockForm extends FormBase {
     $form['equipments'] = [
       '#type' => 'details',
       '#title' => $this->t('Types of equipment sold'),
-      '#open' => TRUE,
     ];
     $form['equipments']['field_equipment_sold_type'] = [
       '#type' => 'checkboxes',
@@ -156,7 +154,6 @@ class PMMICompanySearchBlockForm extends FormBase {
     $form['shows'] = [
       '#type' => 'details',
       '#title' => $this->t('Attending PMMI show'),
-      '#open' => TRUE,
     ];
     $form['shows']['pmmi_shows'] = [
       '#type' => 'checkboxes',

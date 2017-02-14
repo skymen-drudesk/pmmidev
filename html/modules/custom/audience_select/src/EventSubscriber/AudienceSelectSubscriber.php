@@ -77,7 +77,13 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
    *   The event to process.
    */
   public function checkForRedirection(GetResponseEvent $event) {
-    $request = $event->getRequest();
+    // Get a clone of the request. During inbound processing the request
+    // can be altered. Allowing this here can lead to unexpected behavior.
+    // For example the path_processor.files inbound processor provided by
+    // the system module alters both the path and the request; only the
+    // changes to the request will be propagated, while the change to the
+    // path will be lost.
+    $request = clone $event->getRequest();
     $request_uri = $request->getPathInfo();
     // Filter Sub-request and POST.
     if (!$event->isMasterRequest() || $request->isMethod('POST')) {
@@ -115,7 +121,6 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
 
     $has_cookie = $request->cookies->has('audience_select_audience');
     $excluded = $this->excludedPages($request);
-    $request->request->set('audience_excluded', $excluded);
 
     // If audience_select_audience cookie is not set, redirect to gateway page.
     if (!$excluded && !$gateway_page && !$has_cookie && !isset($audience)) {
@@ -199,7 +204,7 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
 
     $request = $event->getRequest();
     // Filter excluded pages.
-    $excluded = $request->request->get('audience_excluded');
+    $excluded = $this->excludedPages($request);
     $gateway_page_url = $this->AudienceManager->getGateway();
     $gateway_page = $request->getPathInfo() == $gateway_page_url ? TRUE : FALSE;
     if ($request->query->has('audience') || $request->isMethod('POST') || $excluded == TRUE || $gateway_page) {

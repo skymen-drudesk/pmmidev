@@ -1,16 +1,16 @@
-uuid: ed26f052-aaaf-4cfb-b506-8cfa6b652945
+uuid: e377b7cf-f029-474b-a914-19eeb052029b
 langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.study_guide
+    - block_content.type.box
     - field.storage.block_content.body
   module:
     - text
-id: block_content.study_guide.body
+id: block_content.box.body
 field_name: body
 entity_type: block_content
-bundle: study_guide
+bundle: box
 label: Body
 description: ''
 required: true
