@@ -12196,7 +12196,7 @@ fieldset[disabled] a.focus {
 .article-node .twitter-link p,
 .article-node .article-release p, .node-body p, .node-bold-label p,
 .featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .block-views-blocksearch-page-block-1 .views-field-body p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-box.mode-full .field-name-body p, .block-box.mode-default .field-name-body p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
-.layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
+.layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-box.mode-mega-menu .field-name-body p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
 .block-pack-expo-show .date p, .pack-expo-show.mode-mega-menu p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
   font-size: inherit;
   line-height: inherit;
@@ -16703,7 +16703,7 @@ html, body {
   border-radius: 0;
   margin: 0;
   min-width: 624px;
-  padding: 25px 30px;
+  padding: 25px 30px 10px;
 }
 
 .navbar .main-nav .dropdown-menu .mega-nav {
@@ -17438,8 +17438,33 @@ html, body {
   }
 }
 
+.tb-megamenu-block {
+  font-family: "Lato", Arial, FreeSans, sans-serif;
+}
+
 .tb-megamenu-block .col-md-3, .tb-megamenu-block .footer nav, .footer .tb-megamenu-block nav, .tb-megamenu-block .block-icons.cols-4 .column > .field, .block-icons.cols-4 .tb-megamenu-block .column > .field {
   padding: 0 12px;
+}
+
+.tb-megamenu-block .col-sm-12 {
+  padding: 0;
+  float: none;
+}
+
+.tb-megamenu-submenu .desktop-hidden {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .tb-megamenu-submenu .desktop-hidden {
+    display: block;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .tb-megamenu-submenu .mobile-hidden {
+    display: none;
+  }
 }
 
 .user-pass-reset,
@@ -18401,6 +18426,26 @@ div.view {
   }
 }
 
+.boxes-block-mega-menu .view {
+  margin: 0;
+}
+
+.boxes-block-mega-menu .view-content {
+  font-size: 0;
+}
+
+.boxes-block-mega-menu .views-row {
+  display: inline-block;
+  padding: 0 10px;
+  font-size: 16px;
+  font-size: 1rem;
+  width: 180px;
+}
+
+.link-media .boxes-block-mega-menu .field-name-field-image {
+  margin-left: -10px;
+}
+
 .block-accordion > .title {
   margin-bottom: 15px;
 }
@@ -18537,6 +18582,36 @@ div.view {
   .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a {
     width: 100%;
   }
+}
+
+.block-box.mode-mega-menu {
+  color: #656363;
+  line-height: 15px;
+  line-height: 0.9375rem;
+  font-weight: 500;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  margin-bottom: 18px;
+}
+
+.block-box.mode-mega-menu a {
+  color: #656363;
+}
+
+.block-box.mode-mega-menu p {
+  margin: 0;
+}
+
+.block-box.mode-mega-menu .field-name-field-head {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  margin: 4px 0 2px;
+}
+
+.block-box.mode-mega-menu .field-name-body {
+  font-size: 11px;
+  font-size: 0.6875rem;
 }
 
 /* CARD BLOCK. */

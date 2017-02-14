@@ -1,20 +1,21 @@
-uuid: 7ce87a67-3ad0-4613-9639-561c9ad84b9c
+uuid: ae49b636-181d-4169-b6c4-af722a597d3b
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.box
+    - core.entity_view_mode.block_content.mega_menu
     - field.field.block_content.box.body
     - field.field.block_content.box.field_box_type
     - field.field.block_content.box.field_buttons
     - field.field.block_content.box.field_head
     - field.field.block_content.box.field_image
-    - responsive_image.styles.block_style_3
+    - image.style.shows_block_dhd
   module:
     - ds
-    - link
-    - responsive_image
-    - text
+    - image
+    - linked_field
+    - pmmi_fields
 third_party_settings:
   ds:
     layout:
@@ -29,44 +30,31 @@ third_party_settings:
         - field_image
         - field_head
         - body
-        - field_buttons
-id: block_content.box.default
+id: block_content.box.mega_menu
 targetEntityType: block_content
 bundle: box
-mode: default
+mode: mega_menu
 content:
   body:
     label: hidden
-    type: text_default
+    type: pmmi_trimmed
     weight: 2
-    settings: {  }
-    third_party_settings:
-      ds:
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
-  field_buttons:
-    weight: 3
-    label: hidden
     settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
+      trim_length: '90'
+      word_boundary: '1'
+      strip_tags: '1'
+      preserve_tags: ''
+      ellipsis: 0
+      html: 0
+      nl2br: 0
     third_party_settings:
       ds:
-        ds_limit: ''
         ft:
           id: minimal
           settings:
             lb: ''
             lb-col: false
             classes: {  }
-    type: link
   field_head:
     weight: 1
     label: hidden
@@ -80,12 +68,17 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+      linked_field:
+        linked: '1'
+        type: field
+        destination: field_buttons
+        advanced: {  }
     type: string
   field_image:
     weight: 0
     label: hidden
     settings:
-      responsive_image_style: block_style_3
+      image_style: shows_block_dhd
       image_link: ''
     third_party_settings:
       ds:
@@ -95,6 +88,12 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
+      linked_field:
+        linked: '1'
+        type: field
+        destination: field_buttons
+        advanced: {  }
+    type: image
 hidden:
   field_box_type: true
+  field_buttons: true

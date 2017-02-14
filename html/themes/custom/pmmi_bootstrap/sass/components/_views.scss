@@ -188,3 +188,22 @@ div.view {
     }
   }
 }
+.boxes-block-mega-menu {
+  .view {
+    margin: 0;
+  }
+  .view-content {
+    font-size: 0;
+  }
+  .views-row {
+    display: inline-block;
+    padding: 0 10px;
+    font-size: $r16;
+    width: 180px;
+  }
+  .link-media & {
+    .field-name-field-image {
+      margin-left: -10px;
+    }
+  }
+}
