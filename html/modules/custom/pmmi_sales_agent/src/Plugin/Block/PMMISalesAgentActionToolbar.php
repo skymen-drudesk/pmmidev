@@ -124,7 +124,7 @@ class PMMISalesAgentActionToolbar extends BlockBase implements ContainerFactoryP
           break;
 
         case 'favorites_download':
-          $url = Url::fromUri('internal:/admin');
+          $url = Url::fromUri('internal:/sales-agent-directory/favorites');
           $link_options = ['attributes' => ['class' => ['pmmi-download-favorites']]];
           $url->setOptions($link_options);
 
