@@ -61,7 +61,7 @@ services:
     networks:
       - back
     volumes:
-      - ./config/varnish/dev:/etc/varnish/
+      - ./config/varnish/prod:/etc/varnish/
     restart: always
     environment:
       VARNISH_SECRET: secret
