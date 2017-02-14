@@ -529,7 +529,7 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          field_rendering: false
+          field_rendering: true
           fallback_handler: search_api_numeric
           fallback_options:
             set_precision: false
@@ -540,7 +540,7 @@ display:
             prefix: ''
             suffix: ''
             link_to_item: false
-            multi_separator: ', '
+            multi_separator: ''
             format_plural_values:
               - '1'
               - '@count'
