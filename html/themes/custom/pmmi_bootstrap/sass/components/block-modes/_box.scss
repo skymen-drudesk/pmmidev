@@ -39,4 +39,26 @@
       }
     }
   }
+  &.mode-mega-menu {
+    color: $dkgrey;
+    line-height: $r15;
+    font-weight: 500;
+    font-size: $r13;
+    margin-bottom: 18px;
+    a {
+      color: $dkgrey;
+    }
+    p {
+      margin: 0;
+    }
+    .field-name-field-head {
+      font-size: $r13;
+      font-weight: 800;
+      margin: 4px 0 2px;
+    }
+    .field-name-body {
+      font-size: $r11;
+      @extend .inherited-p;
+    }
+  }
 }
