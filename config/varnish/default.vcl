@@ -30,6 +30,11 @@ acl purge {
 # Respond to incoming requests.
 sub vcl_recv {
 
+    if (! req.http.Authorization ~ "Basic ZGVtbzpkZW1v") {
+        return(synth(401, "Authentication required"));
+    }
+    unset req.http.Authorization;
+
     # Protecting against the HTTPOXY CGI vulnerability.
     unset req.http.proxy;
 
@@ -177,6 +182,14 @@ sub vcl_hit {
   else {
     return (fetch);
   }
+}
+
+sub vcl_synth {
+    if (resp.status == 401) {
+        set resp.status = 401;
+        set resp.http.WWW-Authenticate = "Basic";
+        return(deliver);
+    }
 }
 
 # Set a header to track a cache HITs and MISSes.
