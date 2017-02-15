@@ -12,7 +12,7 @@ field_name: field_main_phone_number
 entity_type: node
 bundle: company
 label: 'Main Phone Number'
-description: 'Must include country code, area code and phone number, in that order'
+description: '* Must include country code, area code and phone number, in that order'
 required: true
 translatable: false
 default_value: {  }

@@ -29329,21 +29329,16 @@ body.use-container .company-node .region-content, .company-node .page-search-res
     margin-bottom: 0;
     font-size: 2.1875rem;
   }
-  .company-node .container, .company-node .default-exposed-form form, .default-exposed-form .company-node form, .company-node .region-top .block.views-exposed-form form, .region-top .block.views-exposed-form .company-node form, .company-node .block-pmmi-search-library-block form, .block-pmmi-search-library-block .company-node form, .company-node body.use-container .block-region-main, body.use-container .company-node .block-region-main, .company-node
-  body.use-container .region-content,
-  body.use-container .company-node .region-content, .company-node .page-search-results-sales-agent-directory .sales-agent-search-results-header .filters, .page-search-results-sales-agent-directory .sales-agent-search-results-header .company-node .filters, .company-node
-  .page-search-results-sales-agent-directory .sales-agent-search-results-header h2,
-  .page-search-results-sales-agent-directory .sales-agent-search-results-header .company-node h2, .company-node .page-search-results-sales-agent-directory .view-search-sales-agent-directory, .page-search-results-sales-agent-directory .company-node .view-search-sales-agent-directory, .company-node .view-empty, .company-node .block-pmmi-sales-agent-action-toolbar ul, .block-pmmi-sales-agent-action-toolbar .company-node ul, .company-node
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar .company-node ul {
-    margin-top: inherit;
-  }
   .company-node .general .address-simple,
   .company-node .general .field--name-field-website-url {
     float: none;
   }
   .company-node .general .address-simple:after,
   .company-node .general .field--name-field-website-url:after {
+    display: none;
+  }
+  .company-node .general .field--name-field-main-phone-number:before,
+  .company-node .general .field--name-field-general-company-email:before {
     display: none;
   }
   .company-node .row-wrapper {
@@ -29374,6 +29369,29 @@ body.use-container .company-node .region-content, .company-node .page-search-res
 /**
  * Company node edit form
  */
+.page-node-type-company .panel-node-edit .block-block-content .block-title,
+.page-node-type-company .panel-node-add .block-block-content .block-title {
+  color: #004e75;
+  font-size: 35px;
+  font-size: 2.1875rem;
+  font-weight: 900;
+  line-height: 42px;
+}
+
+.page-node-type-company .panel-node-edit .block-block-content .title,
+.page-node-type-company .panel-node-add .block-block-content .title {
+  color: #1d262c;
+  font-size: 23px;
+  font-size: 1.4375rem;
+  font-weight: 500;
+  line-height: 23px;
+}
+
+.page-node-type-company .panel-node-edit .block-block-content .field--name-body,
+.page-node-type-company .panel-node-add .block-block-content .field--name-body {
+  color: #8c8888;
+}
+
 form#node-company-edit-form,
 form#node-company-form {
   max-width: 770px;
@@ -29470,6 +29488,7 @@ form#node-company-edit-form .main-contact .form-wrapper,
 form#node-company-form .company-info .form-wrapper,
 form#node-company-form .main-contact .form-wrapper {
   float: right;
+  text-align: right;
 }
 
 form#node-company-edit-form .company-info .form-wrapper label,
@@ -29502,6 +29521,19 @@ form#node-company-form .main-contact .form-email {
   width: 530px;
   display: inline;
   min-width: 338px;
+}
+
+form#node-company-edit-form .company-info .description,
+form#node-company-edit-form .main-contact .description,
+form#node-company-form .company-info .description,
+form#node-company-form .main-contact .description {
+  float: right;
+  text-align: left;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: #004e75;
+  max-width: 530px;
+  width: 530px;
 }
 
 form#node-company-edit-form .checker,
@@ -29731,6 +29763,12 @@ form#node-company-form .button {
   form#node-company-form {
     max-width: 353px;
   }
+  form#node-company-edit-form .company-info .form-wrapper,
+  form#node-company-edit-form .main-contact .form-wrapper,
+  form#node-company-form .company-info .form-wrapper,
+  form#node-company-form .main-contact .form-wrapper {
+    text-align: left;
+  }
   form#node-company-edit-form .company-info .form-tel,
   form#node-company-edit-form .company-info .form-text,
   form#node-company-edit-form .company-info .form-url,
@@ -29750,6 +29788,12 @@ form#node-company-form .button {
     max-width: 338px;
     min-width: 338px;
     width: 338px;
+  }
+  form#node-company-edit-form .company-info .description,
+  form#node-company-edit-form .main-contact .description,
+  form#node-company-form .company-info .description,
+  form#node-company-form .main-contact .description {
+    width: auto;
   }
   form#node-company-edit-form .field--name-field-address .selector,
   form#node-company-form .field--name-field-address .selector {
