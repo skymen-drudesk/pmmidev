@@ -4,3 +4,18 @@
  * @file
  * Includes PMMI Sales Agent Directory extensions.
  */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function pmmi_sales_agent_form_node_company_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // The field descriptions are converted into tooltips (in accordance with
+  // theme settings). But we need to have descriptions in some places. So, let
+  // use suffix for this.
+  foreach (['field_main_phone_number', 'field_fax_number'] as $field) {
+    if (!empty($form[$field]['widget']['#description'])) {
+      $description = $form[$field]['widget']['#description'];
+      $form[$field]['widget']['#suffix'] = '<div class="pmmi-extra-description">' . $description->__toString() . '</div>';
+    }
+  }
+}
