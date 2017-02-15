@@ -262,7 +262,7 @@
     }
     .filters,
     h2 {
-      @extend .container;
+      @include container;
     }
     .info-block {
       display: inline-block;
@@ -291,7 +291,7 @@
     }
   }
   .view-search-sales-agent-directory {
-    @extend .container;
+    @include container;
     .table > thead:first-child > tr:first-child > th {
       font-weight: 800;
       font-size: $r20;
