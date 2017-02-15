@@ -5,7 +5,6 @@ namespace Drupal\odata\Form;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\odata\Service\OdataJsonParser;
 use Drupal\odata\Service\OdataParser;
 use GuzzleHttp\Psr7\Stream;
 
@@ -51,13 +50,24 @@ class OdataEntityForm extends EntityForm {
       '#default_value' => $odata_entity->getEndpointUrl(),
       '#required' => TRUE,
     ];
-
+    $form['odata_accept_request_header'] = array(
+      '#type' => 'radios',
+      '#title' => t('Accept Request Header'),
+      '#options' => array(
+        'xml' => 'XML',
+        'json' => 'JSON',
+//        'json_light' => 'JSON Light',
+//        'json_light' => 'JSON Light',
+      ),
+      '#required' => TRUE,
+      '#default_value' => $odata_entity->getRequestFormat(),
+      '#description' => t('Indicates that the request is specifically limited to the desired type.'),
+    );
     $form['auth_required'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Required Authentification'),
       '#default_value' => $odata_entity->getAuthHash() != NULL ? TRUE : FALSE,
     ];
-
     $form['odata_username'] = [
       '#type' => 'textfield',
       '#title' => t('Odata Username'),
@@ -98,14 +108,14 @@ class OdataEntityForm extends EntityForm {
       if ($this->operation == 'add' && $form_state->hasTemporaryValue('odata_collection')) {
         $this->buildOptions($form);
         $form['odata_collection']['#options'] = $form_state->getTemporaryValue('odata_collection');
-        $form['odata_collections_schema']['#value'] = $form_state->getTemporaryValue('odata_collections_schema');
+        $form['odata_collections_schema']['#value'] = serialize($form_state->getTemporaryValue('odata_collections_schema'));
       }
       elseif ($this->operation == 'edit' && $schema = $odata_entity->getCollectionSchema()) {
         $this->buildOptions($form);
-        $keys = array_keys(unserialize($schema));
-        $odata_collection = array_combine($keys, $keys);
-        $form['odata_collection']['#default_value'] = $odata_entity->getCollection();
-        $form['odata_collection']['#options'] = $odata_collection;
+        $form['odata_collection']['#disabled'] = TRUE;
+        $odata_collection = $odata_entity->getCollection();
+        $form['odata_collection']['#default_value'] = $odata_collection;
+        $form['odata_collection']['#options'] = [$odata_collection => $odata_collection];
         $form['odata_collections_schema']['#value'] = $schema;
       }
       else {
@@ -150,7 +160,7 @@ class OdataEntityForm extends EntityForm {
     }
 
     if (!$this->entity->isNew() && $this->entity->hasLinkTemplate('delete-form')) {
-      $route_info = $this->entity->urlInfo('delete-form');
+      $route_info = $this->entity->toUrl('delete-form');
       if ($this->getRequest()->query->has('destination')) {
         $query = $route_info->getOption('query');
         $query['destination'] = $this->getRequest()->query->get('destination');
@@ -201,7 +211,7 @@ class OdataEntityForm extends EntityForm {
         $collections = new OdataParser($data);
         $entity_names = $collections->GetEntityTypes();
         if (!empty($entity_names)) {
-          $properties = serialize($collections->GetPropertiesPerEntity());
+          $properties = $collections->GetPropertiesPerEntity();
           $form_state->setTemporaryValue('odata_collection', $entity_names);
           $form_state->setTemporaryValue('odata_collections_schema', $properties);
           $this->step++;
@@ -222,7 +232,19 @@ class OdataEntityForm extends EntityForm {
    * {@inheritdoc}
    */
   public function save(array $form, FormStateInterface $form_state) {
+    /** @var \Drupal\odata\Entity\OdataEntity $odata_entity */
     $odata_entity = $this->entity;
+    // Delete unused data from $metadata array.
+    if ($this->operation == 'add') {
+      $default_schema = unserialize($odata_entity->getCollectionSchema());
+      if (!empty($default_schema) && array_key_exists($odata_entity->getCollection(), $default_schema)) {
+        $schema = serialize($default_schema[$odata_entity->getCollection()]);
+      }
+      else {
+        $schema = NULL;
+      }
+      $odata_entity->setCollectionSchema($schema);
+    }
     $status = $odata_entity->save();
 
     switch ($status) {

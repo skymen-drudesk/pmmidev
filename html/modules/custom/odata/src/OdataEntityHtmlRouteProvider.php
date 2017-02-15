@@ -9,8 +9,8 @@ use Symfony\Component\Routing\Route;
 /**
  * Provides routes for Odata entity entities.
  *
- * @see Drupal\Core\Entity\Routing\AdminHtmlRouteProvider
- * @see Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider
+ * @see \Drupal\Core\Entity\Routing\AdminHtmlRouteProvider
+ * @see \Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider
  */
 class OdataEntityHtmlRouteProvider extends AdminHtmlRouteProvider {
 

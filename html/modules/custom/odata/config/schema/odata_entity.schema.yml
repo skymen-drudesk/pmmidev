@@ -19,6 +19,9 @@ odata.odata_entity.*:
     odata_password:
       type: string
       label: 'Odata Password'
+    odata_accept_request_header:
+      type: string
+      label: 'Accept Request Header'
     odata_collection:
       type: string
       label: 'Odata Collection'

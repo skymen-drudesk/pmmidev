@@ -80,6 +80,13 @@ class OdataEntity extends ConfigEntityBase implements OdataEntityInterface {
    *
    * @var string
    */
+  protected $odata_accept_request_header;
+
+  /**
+   * The Odata Auth hash string.
+   *
+   * @var string
+   */
   protected $odata_collection;
 
   /**
@@ -125,8 +132,23 @@ class OdataEntity extends ConfigEntityBase implements OdataEntityInterface {
   /**
    * {@inheritdoc}
    */
+  public function getRequestFormat() {
+    return isset($this->odata_accept_request_header) ? $this->odata_accept_request_header : NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getCollection() {
     return isset($this->odata_collection) ? $this->odata_collection : NULL;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setCollectionSchema($schema) {
+    $this->set('odata_collections_schema', $schema);
+    return $this;
   }
 
   /**
