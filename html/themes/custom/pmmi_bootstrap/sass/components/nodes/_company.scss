@@ -202,6 +202,26 @@
 /**
  * Company node edit form
  */
+.page-node-type-company,
+.page-node-type-company {
+  .block-block-content {
+    .block-title {
+      color: $blue;
+      font-size: $r35;
+      font-weight: 900;
+      line-height: 42px;
+    }
+    .title {
+      color: $textdark;
+      font-size: $r23;
+      font-weight: 500;
+      line-height: 23px;
+    }
+    .field--name-body {
+      color: $grey;
+    }
+  }
+}
 form#node-company-edit-form,
 form#node-company-form {
   max-width: 770px;
@@ -264,6 +284,7 @@ form#node-company-form {
   .main-contact {
     .form-wrapper {
       float: right;
+      text-align: right;
       label {
         font-size: $r14;
         text-transform: uppercase;
@@ -278,6 +299,15 @@ form#node-company-form {
       width: 530px;
       display: inline;
       min-width: 338px;
+    }
+    .description {
+      float: right;
+      text-align: left;
+      font-size: $r13;
+      color: $blue;
+      max-width: 530px;
+      width: 530px;
+      margin-bottom: 0;
     }
   }
   .checker {
@@ -446,6 +476,9 @@ form#node-company-form {
     max-width: 353px;
     .company-info,
     .main-contact {
+      .form-wrapper {
+        text-align: left;
+      }
       .form-tel,
       .form-text,
       .form-url,
@@ -453,6 +486,9 @@ form#node-company-form {
         max-width: 338px;
         min-width: 338px;
         width: 338px;
+      }
+      .description {
+        width: auto;
       }
     }
     .field--name-field-address {
