@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * @file
+ * Update hooks for the 'PMMI Sales Agent Director' module.
+ */
+
+/**
+ * Create 'New Agent Registration Form' block.
+ */
+function pmmi_sales_agent_update_8002() {
+  $service = \Drupal::service('default_content.manager');
+  $service->importContent('pmmi_sales_agent');
+}
