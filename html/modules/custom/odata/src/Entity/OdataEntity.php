@@ -2,7 +2,6 @@
 
 namespace Drupal\odata\Entity;
 
-use Drupal\bootstrap\Utility\Crypt;
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 
 /**

@@ -5,7 +5,7 @@ namespace Drupal\odata\Form;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\odata\Service\OdataParser;
+use Drupal\odata\Parsers\OdataParser;
 use GuzzleHttp\Psr7\Stream;
 
 /**

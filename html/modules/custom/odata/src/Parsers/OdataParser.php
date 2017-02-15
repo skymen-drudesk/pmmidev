@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\odata\Service;
+namespace Drupal\odata\Parsers;
 
 use DOMDocument;
 use DOMXPath;
