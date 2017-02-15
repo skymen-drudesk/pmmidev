@@ -2,7 +2,7 @@ div.view {
   margin-bottom: 20px;
 }
 .view-empty {
-  @extend .container;
+  @include container;
 }
 .views-view-grid.cols-2 {
   .row {
