@@ -58,6 +58,11 @@ function pmmi_import_migrate_prepare_row(Row $row, MigrateSourceInterface $sourc
 
       // Default-check Packaging equipment for all entries.
       $row->setSourceProperty('Pack', 1);
+
+      // Convert date to UNIX timestamp for the "Profile Updated" column.
+      if (!empty($source['Profile Updated'])) {
+        $row->setSourceProperty('Profile Updated', ($source['Profile Updated'] - 25569) * 86400);
+      }
       break;
   }
 }
