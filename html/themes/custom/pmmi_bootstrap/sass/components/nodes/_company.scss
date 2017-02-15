@@ -150,14 +150,17 @@
       margin-bottom: 0;
       font-size: $r35;
     }
-    .container {
-      margin-top: inherit;
-    }
     .general {
       .address-simple,
       .field--name-field-website-url {
         float: none;
         &:after {
+          display: none;
+        }
+      }
+      .field--name-field-main-phone-number,
+      .field--name-field-general-company-email {
+        &:before {
           display: none;
         }
       }
@@ -542,7 +545,7 @@ form#node-company-form {
   @include tablet-max {
     ul {
       margin-right: 0;
-      padding: 0 15px;
+      padding: 4px 15px;
       li:first-child {
         background-color: $blue;
         a {
@@ -554,7 +557,7 @@ form#node-company-form {
       }
     }
     li {
-      width: 165px;
+      width: 160px;
       text-align: center;
       border: 2px solid $blue;
       border-radius: 3px;
