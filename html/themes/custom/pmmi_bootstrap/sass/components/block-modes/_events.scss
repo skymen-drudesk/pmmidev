@@ -75,3 +75,36 @@
     }
   }
 }
+.mode-event-left-rail {
+  margin-bottom: 7px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid $mdgrey;
+  .field {
+    margin-bottom: 2px;
+  }
+  .field-name-field-dates {
+    @extend .headline4;
+  }
+  .field-name-field-head {
+    @extend .sidehead3;
+  }
+  .field-name-field-location {
+    @extend .side-paragraph;
+    p {
+      margin: 0;
+    }
+    .country {
+      display: none;
+    }
+  }
+  .field-name-field-link {
+    margin: 5px 0;
+    a {
+      @extend .text-link;
+    }
+  }
+  .field-name-field-button {
+    margin: 5px 0;
+    @extend .btn-prm-wrap;
+  }
+}
