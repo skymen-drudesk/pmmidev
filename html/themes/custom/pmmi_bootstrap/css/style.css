@@ -20492,7 +20492,7 @@ html, body {
 }
 
 .page-search-sales-agent-directory .main-container .block-title:after {
-  margin: 0 45px 0 0;
+  margin: 15px 45px 0 0;
 }
 
 .page-search-sales-agent-directory .main-container .panel-default,
@@ -20520,24 +20520,73 @@ html, body {
   margin-bottom: 16px;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .chosen-container {
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area {
+  margin-left: 6px;
+}
+
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .chosen-container, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container {
   max-width: 270px;
   min-width: 270px;
   font-size: 16px;
   font-size: 1rem;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .chosen-container ul {
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .chosen-container ul, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container ul {
   background: none;
   min-height: 40px;
   padding: 5px 10px;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .chosen-container li {
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .chosen-container li, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container li {
   background: none;
   border: none;
   color: #038dc0;
   box-shadow: none;
+}
+
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area {
+  margin-left: 0;
+}
+
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area label {
+  position: absolute;
+  margin-left: -30px;
+  margin-top: 5px;
+}
+
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container {
+  margin-left: 70px;
+  width: 700px;
+  max-width: 700px;
+  min-width: 700px;
+}
+
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container li.search-choice {
+  background-image: none;
+  background-color: #038dc0;
+  border: none;
+  color: #fff;
+  height: 23px;
+  border-radius: 6px;
+  box-shadow: none;
+}
+
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container li.search-choice span {
+  padding-left: 15px;
+}
+
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container li.search-choice span:before {
+  font-family: FontAwesome;
+  content: '\f00d';
+  margin-left: -15px;
+  padding-right: 5px;
+}
+
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container li.search-choice .search-choice-close {
+  position: relative;
+  top: -12px;
+  left: 1px;
+  opacity: 0;
 }
 
 .page-search-sales-agent-directory .main-container form .input-group,
@@ -20557,7 +20606,7 @@ html, body {
 .page-search-sales-agent-directory .main-container #edit-shows {
   position: relative;
   padding-left: 52px;
-  margin-left: 66px;
+  margin-left: 70px;
 }
 
 .page-search-sales-agent-directory .main-container #edit-industries .panel-heading,
@@ -20673,7 +20722,7 @@ html, body {
 @media screen and (max-width: 767px) {
   .page-search-sales-agent-directory .main-container .block-title {
     font-size: 2.1875rem;
-    margin: 0 10px 0 20px;
+    margin: 0 10px 0 0px;
   }
   .page-search-sales-agent-directory .main-container label {
     padding-left: 0;
@@ -20684,6 +20733,17 @@ html, body {
   }
   .page-search-sales-agent-directory .main-container form {
     max-width: 340px;
+  }
+  .page-search-sales-agent-directory .main-container form .form-group .form-item-country-code, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area {
+    margin-left: 0;
+  }
+  .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area label {
+    position: relative;
+    margin-left: 0;
+    margin-top: 0;
+  }
+  .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .form-control {
+    float: right;
   }
   .page-search-sales-agent-directory .main-container form #edit-industries,
   .page-search-sales-agent-directory .main-container form #edit-equipments,
@@ -20703,7 +20763,11 @@ html, body {
     max-width: 375px;
   }
   .page-search-sales-agent-directory .main-container .button {
-    margin: 30px 0 35px 70px;
+    margin: 30px auto;
+    font-weight: normal;
+    position: relative;
+    left: 50%;
+    margin-left: -85px;
   }
 }
 
@@ -23572,7 +23636,7 @@ form#node-company-form .field--name-field-territory-served .search-choice {
   background-image: none;
   background-color: #038dc0;
   border: none;
-  color: white;
+  color: #fff;
   height: 23px;
   border-radius: 6px;
   box-shadow: none;
