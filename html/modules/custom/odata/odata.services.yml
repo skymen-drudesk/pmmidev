@@ -1,5 +1,12 @@
 services:
   odata.manager:
-    class: Drupal\odata\OdataManager
-    arguments: ['@request_stack', '@serializer.encoder.json', '@serialization.phpserialize', '@serializer.encoder.xml']
+    class: Drupal\odata\Service\OdataManager
+    arguments: ['@http_client', '@request_stack', '@serializer.encoder.json', '@serialization.phpserialize', '@serializer.encoder.xml']
+
+  odata.parser:
+    class: Drupal\odata\Service\OdataParser
+    arguments: []
+  odata.json_parser:
+    class: Drupal\odata\Service\OdataJsonParser
+    arguments: ['@serialization.json']
 

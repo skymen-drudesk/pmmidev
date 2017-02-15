@@ -2,8 +2,12 @@
 
 namespace Drupal\odata\Form;
 
+use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\odata\Service\OdataJsonParser;
+use Drupal\odata\Service\OdataParser;
+use GuzzleHttp\Psr7\Stream;
 
 /**
  * Class OdataEntityForm.
@@ -12,13 +16,16 @@ use Drupal\Core\Form\FormStateInterface;
  */
 class OdataEntityForm extends EntityForm {
 
+  protected $step = 1;
+
   /**
    * {@inheritdoc}
    */
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
-
+    /** @var \Drupal\odata\Entity\OdataEntity $odata_entity */
     $odata_entity = $this->entity;
+    $this->step = $odata_entity->isNew() ? $this->step : 2;
     $form['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Label'),
@@ -37,17 +44,178 @@ class OdataEntityForm extends EntityForm {
       '#disabled' => !$odata_entity->isNew(),
     ];
 
-    $form['odata_endpoint_uri'] = array(
+    $form['odata_endpoint_uri'] = [
       '#type' => 'textfield',
       '#title' => t('Endpoint URI'),
-      '#description' => t('The URL of the endpoint, e.g., http://example.com/odataservice/'),
+      '#description' => t('The URL of the endpoint, e.g., http://example.com/odataservice.svc'),
       '#default_value' => $odata_entity->getEndpointUrl(),
       '#required' => TRUE,
-//      '#disabled' => TRUE,
-    );
-    /* You will need additional form elements for your custom properties. */
+    ];
+
+    $form['auth_required'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Required Authentification'),
+      '#default_value' => $odata_entity->getAuthHash() != NULL ? TRUE : FALSE,
+    ];
+
+    $form['odata_username'] = [
+      '#type' => 'textfield',
+      '#title' => t('Odata Username'),
+      '#description' => t('Username for the endpoint'),
+      '#default_value' => $odata_entity->getUsername(),
+      '#states' => array(
+        'invisible' => array(
+          ':input[name="auth_required"]' => array('checked' => FALSE),
+        ),
+        'required' => array(
+          ':input[name="auth_required"]' => array('checked' => TRUE),
+        ),
+      ),
+    ];
+
+    $form['odata_password'] = [
+      '#type' => 'textfield',
+      '#title' => t('Odata Password'),
+      '#description' => t('Password for the endpoint'),
+      '#default_value' => $odata_entity->getPassword(),
+      '#states' => array(
+        'invisible' => array(
+          ':input[name="auth_required"]' => array('checked' => FALSE),
+        ),
+        'required' => array(
+          ':input[name="auth_required"]' => array('checked' => TRUE),
+        ),
+      ),
+    ];
+
+    if ($this->step == 2) {
+      $form['odata_endpoint_uri']['#disabled'] = TRUE;
+      $form['auth_required']['#disabled'] = TRUE;
+      $form['odata_username']['#disabled'] = TRUE;
+      $form['odata_password']['#disabled'] = TRUE;
+      $this->buildOptions($form);
+
+      if ($this->operation == 'add' && $form_state->hasTemporaryValue('odata_collection')) {
+        $this->buildOptions($form);
+        $form['odata_collection']['#options'] = $form_state->getTemporaryValue('odata_collection');
+        $form['odata_collections_schema']['#value'] = $form_state->getTemporaryValue('odata_collections_schema');
+      }
+      elseif ($this->operation == 'edit' && $schema = $odata_entity->getCollectionSchema()) {
+        $this->buildOptions($form);
+        $keys = array_keys(unserialize($schema));
+        $odata_collection = array_combine($keys, $keys);
+        $form['odata_collection']['#default_value'] = $odata_entity->getCollection();
+        $form['odata_collection']['#options'] = $odata_collection;
+        $form['odata_collections_schema']['#value'] = $schema;
+      }
+      else {
+        drupal_set_message(t("We weren't able to find any available collection sets"), 'error');
+      }
+    }
 
     return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function buildOptions(&$form) {
+    $form['odata_collection'] = array(
+      '#type' => 'select',
+      '#required' => TRUE,
+      '#title' => t('Available collection sets'),
+      '#description' => t('Select the collection you want to add.'),
+    );
+    $form['odata_collections_schema'] = array(
+      '#type' => 'hidden',
+    );
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function actions(array $form, FormStateInterface $form_state) {
+    $actions['submit'] = array(
+      '#type' => 'submit',
+      '#value' => $this->t('Save'),
+      '#submit' => array('::submitForm', '::save'),
+    );
+    if ($this->step == 1) {
+      $actions['submit'] = array(
+        '#type' => 'submit',
+        '#value' => $this->t('Next'),
+        '#submit' => array('::submitForm'),
+      );
+    }
+
+    if (!$this->entity->isNew() && $this->entity->hasLinkTemplate('delete-form')) {
+      $route_info = $this->entity->urlInfo('delete-form');
+      if ($this->getRequest()->query->has('destination')) {
+        $query = $route_info->getOption('query');
+        $query['destination'] = $this->getRequest()->query->get('destination');
+        $route_info->setOption('query', $query);
+      }
+      $actions['delete'] = array(
+        '#type' => 'link',
+        '#title' => $this->t('Delete'),
+        '#access' => $this->entity->access('delete'),
+        '#attributes' => array(
+          'class' => array('button', 'button--danger'),
+        ),
+      );
+      $actions['delete']['#url'] = $route_info;
+    }
+
+    return $actions;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    parent::validateForm($form, $form_state);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    // Remove button and internal Form API values from submitted values.
+    if ($this->step == 1) {
+      $odata_endpoint_uri = $form_state->get('odata_endpoint_uri');
+      // Remove / from the end of the URI.
+      if (Unicode::substr($odata_endpoint_uri, -1) == '/') {
+        $odata_endpoint_uri = rtrim($odata_endpoint_uri, '/');
+      }
+      $form_state->setValue('odata_endpoint_uri', $odata_endpoint_uri);
+      $form_state->setRebuild();
+      $odata = \Drupal::service('odata.manager');
+      $request_data = new \stdClass();
+      $request_data->entity = $this->entity;
+      $data = $odata->getDataRequest($request_data, 'xml', TRUE);
+      if (!$data instanceof Stream) {
+        $form_state->setRebuild(TRUE);
+      }
+      else {
+        $collections = new OdataParser($data);
+        $entity_names = $collections->GetEntityTypes();
+        if (!empty($entity_names)) {
+          $properties = serialize($collections->GetPropertiesPerEntity());
+          $form_state->setTemporaryValue('odata_collection', $entity_names);
+          $form_state->setTemporaryValue('odata_collections_schema', $properties);
+          $this->step++;
+        }
+        else {
+          drupal_set_message(t("We weren't able to find any available collection sets"), 'error');
+          $form_state->setRebuild(TRUE);
+        }
+      }
+    }
+    else {
+      $form_state->cleanValues();
+      $this->entity = $this->buildEntity($form, $form_state);
+    }
   }
 
   /**

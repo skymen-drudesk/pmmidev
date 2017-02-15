@@ -10,3 +10,18 @@ odata.odata_entity.*:
       label: 'Label'
     uuid:
       type: string
+    odata_endpoint_uri:
+      type: string
+      label: 'Odata entity Endpoint Uri'
+    odata_username:
+      type: string
+      label: 'Odata Username'
+    odata_password:
+      type: string
+      label: 'Odata Password'
+    odata_collection:
+      type: string
+      label: 'Odata Collection'
+    odata_collections_schema:
+      type: string
+      label: 'Odata Collection Schema'

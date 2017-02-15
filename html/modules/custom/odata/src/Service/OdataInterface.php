@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\odata;
+namespace Drupal\odata\Service;
 
 /**
  * Interface OdataInterface.
