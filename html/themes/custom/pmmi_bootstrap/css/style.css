@@ -23313,19 +23313,16 @@ body.use-container .company-node .region-content, .company-node .page-search-res
     margin-bottom: 0;
     font-size: 2.1875rem;
   }
-  .company-node .container, .company-node .default-exposed-form form, .default-exposed-form .company-node form, .company-node .region-top .block.views-exposed-form form, .region-top .block.views-exposed-form .company-node form, .company-node .block-pmmi-search-library-block form, .block-pmmi-search-library-block .company-node form, .company-node body.use-container .block-region-main, body.use-container .company-node .block-region-main, .company-node
-  body.use-container .region-content,
-  body.use-container .company-node .region-content, .company-node .page-search-results-sales-agent-directory .sales-agent-search-results-header .filters, .page-search-results-sales-agent-directory .sales-agent-search-results-header .company-node .filters, .company-node
-  .page-search-results-sales-agent-directory .sales-agent-search-results-header h2,
-  .page-search-results-sales-agent-directory .sales-agent-search-results-header .company-node h2, .company-node .page-search-results-sales-agent-directory .view-search-sales-agent-directory, .page-search-results-sales-agent-directory .company-node .view-search-sales-agent-directory, .company-node .view-empty {
-    margin-top: inherit;
-  }
   .company-node .general .address-simple,
   .company-node .general .field--name-field-website-url {
     float: none;
   }
   .company-node .general .address-simple:after,
   .company-node .general .field--name-field-website-url:after {
+    display: none;
+  }
+  .company-node .general .field--name-field-main-phone-number:before,
+  .company-node .general .field--name-field-general-company-email:before {
     display: none;
   }
   .company-node .row-wrapper {
@@ -23835,7 +23832,7 @@ form#node-company-form .button {
   .block-pmmi-sales-agent-action-toolbar ul,
   .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul {
     margin-right: 0;
-    padding: 0 15px;
+    padding: 4px 15px;
   }
   .block-pmmi-sales-agent-action-toolbar ul li:first-child,
   .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li:first-child {
@@ -23851,7 +23848,7 @@ form#node-company-form .button {
   }
   .block-pmmi-sales-agent-action-toolbar li,
   .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li {
-    width: 165px;
+    width: 160px;
     text-align: center;
     border: 2px solid #004e75;
     border-radius: 3px;
