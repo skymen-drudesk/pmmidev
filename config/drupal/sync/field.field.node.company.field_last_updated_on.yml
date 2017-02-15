@@ -1,0 +1,21 @@
+uuid: b5b22ab6-7229-4dc6-b322-4f2583b4f5b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_last_updated_on
+    - node.type.company
+id: node.company.field_last_updated_on
+field_name: field_last_updated_on
+entity_type: node
+bundle: company
+label: 'Last Updated On'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1487196542
+default_value_callback: ''
+settings: {  }
+field_type: timestamp
