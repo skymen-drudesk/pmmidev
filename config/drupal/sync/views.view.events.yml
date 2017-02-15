@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - block_content.type.event
+    - core.entity_view_mode.block_content.event_left_rail
     - core.entity_view_mode.block_content.ribbon
     - taxonomy.vocabulary.event_type
   module:
@@ -477,6 +478,56 @@ display:
       use_more_text: 'View all upcoming events'
       link_display: custom_url
       link_url: calendar
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+      tags: {  }
+  block_upcoming_left_rail:
+    display_plugin: block
+    id: block_upcoming_left_rail
+    display_title: 'Upcoming - Left Rail'
+    position: 4
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      defaults:
+        title: false
+        style: false
+        row: false
+        pager: false
+      style:
+        type: default
+        options:
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      row:
+        type: 'ds_entity:block_content'
+        options:
+          relationship: none
+          view_mode: event_left_rail
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+            item_0: default
+            item_1: default
+            item_2: default
+            item_3: default
+          grouping_fieldset:
+            group: false
+            group_field: block_content__field_dates|field_dates_value
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
+      block_category: 'PMMI (Views)'
+      pager:
+        type: some
+        options:
+          items_per_page: 4
+          offset: 0
     cache_metadata:
       max-age: -1
       contexts:
