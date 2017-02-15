@@ -1,0 +1,108 @@
+{
+    "_links": {
+        "self": {
+            "href": "http:\/\/default\/block\/262?_format=hal_json"
+        },
+        "type": {
+            "href": "http:\/\/drupal.org\/rest\/type\/block_content\/text"
+        },
+        "http:\/\/drupal.org\/rest\/relation\/block_content\/text\/revision_user": [
+            {
+                "href": "http:\/\/default\/user\/1?_format=hal_json"
+            }
+        ]
+    },
+    "id": [
+        {
+            "value": "262"
+        }
+    ],
+    "uuid": [
+        {
+            "value": "f20bacbc-7520-417a-a6e5-1f4eb8685a02"
+        }
+    ],
+    "revision_id": [
+        {
+            "value": "262"
+        }
+    ],
+    "langcode": [
+        {
+            "value": "en",
+            "lang": "en"
+        }
+    ],
+    "type": [
+        {
+            "target_id": "text"
+        }
+    ],
+    "info": [
+        {
+            "value": "New Agent Registration Form",
+            "lang": "en"
+        }
+    ],
+    "changed": [
+        {
+            "value": "1487149719",
+            "lang": "en"
+        }
+    ],
+    "revision_created": [
+        {
+            "value": "1487149719"
+        }
+    ],
+    "_embedded": {
+        "http:\/\/drupal.org\/rest\/relation\/block_content\/text\/revision_user": [
+            {
+                "_links": {
+                    "self": {
+                        "href": "http:\/\/default\/user\/1?_format=hal_json"
+                    },
+                    "type": {
+                        "href": "http:\/\/drupal.org\/rest\/type\/user\/user"
+                    }
+                },
+                "uuid": [
+                    {
+                        "value": "c1388579-2cec-436f-83cf-134eff390843"
+                    }
+                ]
+            }
+        ]
+    },
+    "revision_translation_affected": [
+        {
+            "value": "1",
+            "lang": "en"
+        }
+    ],
+    "default_langcode": [
+        {
+            "value": "1",
+            "lang": "en"
+        }
+    ],
+    "body": [
+        {
+            "value": "<p>Are you an existing agent? Please be sure to <a href=\"\/sales-agent-directory\/search\">update your listing.&nbsp;<\/a><\/p>\r\n",
+            "format": "filtered_html",
+            "summary": "",
+            "lang": "en"
+        }
+    ],
+    "field_center_text": [
+        {
+            "value": "0"
+        }
+    ],
+    "field_head": [
+        {
+            "value": "Welcome! Please add your company to PMMI\u2019s agent directory. ",
+            "lang": "en"
+        }
+    ]
+}
