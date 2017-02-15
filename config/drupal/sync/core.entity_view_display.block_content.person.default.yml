@@ -8,6 +8,7 @@ dependencies:
     - field.field.block_content.person.field_image
     - field.field.block_content.person.field_job_title
     - field.field.block_content.person.field_name
+    - image.style.person_block
   module:
     - ds
     - image
@@ -45,9 +46,16 @@ content:
     weight: 0
     label: hidden
     settings:
-      image_style: ''
+      image_style: person_block
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: image
   field_job_title:
     weight: 2

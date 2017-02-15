@@ -97,7 +97,7 @@
   background: $blue;
   margin: 3px 0 30px;
   form {
-    @extend .container;
+    @include container;
     padding-top: 16px;
     padding-bottom: 14px;
     .form-group {
