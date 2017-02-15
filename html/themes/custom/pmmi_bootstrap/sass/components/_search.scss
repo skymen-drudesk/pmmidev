@@ -10,7 +10,7 @@
     @extend .headline1;
     display: inline-block;
     &:after {
-      margin: 0 45px 0 0;
+      margin: 15px 45px 0 0;
     }
   }
   .panel-default,
@@ -32,20 +32,62 @@
     padding: 33px 0 0 0;
     .form-group {
       margin-bottom: 16px;
-      .chosen-container {
-        max-width: 270px;
-        min-width: 270px;
-        font-size: $r16;
-        ul {
-          background: none;
-          min-height: 40px;
-          padding: 5px 10px;
+      .form-item-country-code {
+        margin-left: 6px;
+        .chosen-container {
+          max-width: 270px;
+          min-width: 270px;
+          font-size: $r16;
+          ul {
+            background: none;
+            min-height: 40px;
+            padding: 5px 10px;
+          }
+          li {
+            background: none;
+            border: none;
+            color: $ltblue;
+            box-shadow: none;
+          }
         }
-        li {
-          background: none;
-          border: none;
-          color: $ltblue;
-          box-shadow: none;
+      }
+      .form-item-administrative-area {
+        @extend .form-item-country-code;
+        margin-left: 0;
+        label {
+          position: absolute;
+          margin-left: -30px;
+          margin-top: 5px;
+        }
+        .chosen-container {
+          margin-left: 70px;
+          width: 700px;
+          max-width: 700px;
+          min-width: 700px;
+          li.search-choice {
+            background-image: none;
+            background-color: $ltblue;
+            border: none;
+            color: #fff;
+            height: 23px;
+            border-radius: 6px;
+            box-shadow: none;
+            span {
+              padding-left: 15px;
+              &:before {
+                font-family: FontAwesome;
+                content: '\f00d';
+                margin-left: -15px;
+                padding-right: 5px;
+              }
+            }
+            .search-choice-close {
+              position: relative;
+              top: -12px;
+              left: 1px;
+              opacity: 0;
+            }
+          }
         }
       }
     }
@@ -64,7 +106,7 @@
   #edit-shows {
     position: relative;
     padding-left: 52px;
-    margin-left: 66px;
+    margin-left: 70px;
     .panel-heading {
       margin-left: -12px;
       color: $grey;
@@ -143,7 +185,7 @@
   @include mobile {
     .block-title {
       font-size: $r35;
-      margin: 0 10px 0 20px;
+      margin: 0 10px 0 0px;
     }
     label {
       padding-left: 0;
@@ -154,6 +196,21 @@
     }
     form {
       max-width: 340px;
+      .form-group {
+        .form-item-country-code {
+          margin-left: 0;
+        }
+        .form-item-administrative-area {
+          label {
+            position: relative;
+            margin-left: 0;
+            margin-top: 0;
+          }
+          .form-control {
+            float: right;
+          }
+        }
+      }
       #edit-industries,
       #edit-equipments,
       #edit-shows,
@@ -173,7 +230,11 @@
       }
     }
     .button {
-      margin: 30px 0 35px 70px;
+      margin: 30px auto;
+      font-weight: normal;
+      position: relative;
+      left: 50%;
+      margin-left: -85px;
     }
   }
 }
