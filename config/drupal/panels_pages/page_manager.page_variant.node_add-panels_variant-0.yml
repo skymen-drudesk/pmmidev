@@ -6,6 +6,7 @@ dependencies:
     - page_manager.page.node_add
   content:
     - 'block_content:image_header:14fbe4e8-9d85-4988-93d1-f0b2e3a5b49f'
+    - 'block_content:text:f20bacbc-7520-417a-a6e5-1f4eb8685a02'
   module:
     - block_content
     - panels
@@ -38,14 +39,17 @@ variant_settings:
       weight: 0
       uuid: b2eee949-4995-4818-b70b-c2048e5fe10a
       context_mapping: {  }
-    2bea7c5c-a3c6-4f80-8257-a0ec079710eb:
-      id: page_title_block
-      label: 'Page title'
-      provider: core
-      label_display: '0'
+    3129aa01-1bf8-488c-9939-608611a00ef1:
+      id: 'block_content:f20bacbc-7520-417a-a6e5-1f4eb8685a02'
+      label: 'New Agent Registration Form'
+      provider: block_content
+      label_display: visible
+      status: true
+      info: ''
+      view_mode: default
       region: main
       weight: -1
-      uuid: 2bea7c5c-a3c6-4f80-8257-a0ec079710eb
+      uuid: 3129aa01-1bf8-488c-9939-608611a00ef1
       context_mapping: {  }
   id: panels_variant
   uuid: f0616422-cb4a-4757-a9c3-6af9ed6a70c4

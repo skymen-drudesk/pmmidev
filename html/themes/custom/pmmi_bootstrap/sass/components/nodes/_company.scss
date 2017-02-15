@@ -281,6 +281,7 @@ form#node-company-form {
   .main-contact {
     .form-wrapper {
       float: right;
+      text-align: right;
       label {
         font-size: $r14;
         text-transform: uppercase;
@@ -295,6 +296,14 @@ form#node-company-form {
       width: 530px;
       display: inline;
       min-width: 338px;
+    }
+    .description {
+      float: right;
+      text-align: left;
+      font-size: $r13;
+      color: $blue;
+      max-width: 530px;
+      width: 530px;
     }
   }
   .checker {
@@ -463,6 +472,9 @@ form#node-company-form {
     max-width: 353px;
     .company-info,
     .main-contact {
+      .form-wrapper {
+        text-align: left;
+      }
       .form-tel,
       .form-text,
       .form-url,
@@ -470,6 +482,9 @@ form#node-company-form {
         max-width: 338px;
         min-width: 338px;
         width: 338px;
+      }
+      .description {
+        width: auto;
       }
     }
     .field--name-field-address {
