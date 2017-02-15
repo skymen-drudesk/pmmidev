@@ -202,8 +202,8 @@
 /**
  * Company node edit form
  */
-.page-node-type-company .panel-node-edit,
-.page-node-type-company .panel-node-add {
+.page-node-type-company,
+.page-node-type-company {
   .block-block-content {
     .block-title {
       color: $blue;
@@ -307,6 +307,7 @@ form#node-company-form {
       color: $blue;
       max-width: 530px;
       width: 530px;
+      margin-bottom: 0;
     }
   }
   .checker {

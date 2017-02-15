@@ -18069,8 +18069,8 @@ div.view {
 /**
  * Company node edit form
  */
-.page-node-type-company .panel-node-edit .block-block-content .block-title,
-.page-node-type-company .panel-node-add .block-block-content .block-title {
+.page-node-type-company .block-block-content .block-title,
+.page-node-type-company .block-block-content .block-title {
   color: #004e75;
   font-size: 35px;
   font-size: 2.1875rem;
@@ -18078,8 +18078,8 @@ div.view {
   line-height: 42px;
 }
 
-.page-node-type-company .panel-node-edit .block-block-content .title,
-.page-node-type-company .panel-node-add .block-block-content .title {
+.page-node-type-company .block-block-content .title,
+.page-node-type-company .block-block-content .title {
   color: #1d262c;
   font-size: 23px;
   font-size: 1.4375rem;
@@ -18087,8 +18087,8 @@ div.view {
   line-height: 23px;
 }
 
-.page-node-type-company .panel-node-edit .block-block-content .field--name-body,
-.page-node-type-company .panel-node-add .block-block-content .field--name-body {
+.page-node-type-company .block-block-content .field--name-body,
+.page-node-type-company .block-block-content .field--name-body {
   color: #8c8888;
 }
 
@@ -18234,6 +18234,7 @@ form#node-company-form .main-contact .description {
   color: #004e75;
   max-width: 530px;
   width: 530px;
+  margin-bottom: 0;
 }
 
 form#node-company-edit-form .checker,
