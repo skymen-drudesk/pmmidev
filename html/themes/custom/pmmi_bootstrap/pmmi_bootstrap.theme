@@ -27,6 +27,14 @@ function pmmi_bootstrap_preprocess_html(&$variables) {
   if ($page_variant && $page_variant->get('page') == 'node_add') {
     $node_type = \Drupal::routeMatch()->getParameter('node_type');
     $variables['attributes']['class'][] = 'page-node-type-' . $node_type->id();
+
+    // Fix empty title issue.
+    // @todo: find out why a title from panel isn't used!
+    $pc = $page_variant->getPluginCollections();
+    if (isset($pc['variant_settings']) && ($conf = $pc['variant_settings']->getConfiguration())) {
+      $site_name = \Drupal::config('system.site')->get('name');
+      $variables['head_title']['title'] = $conf['page_title'] . ' | ' .  $site_name;
+    }
   }
 }
 

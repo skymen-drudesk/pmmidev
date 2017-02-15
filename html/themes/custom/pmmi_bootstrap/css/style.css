@@ -20531,29 +20531,6 @@ form#node-company-form .main-contact .form-email {
   min-width: 338px;
 }
 
-form#node-company-edit-form .company-info .field--name-field-main-phone-number .form-group,
-form#node-company-edit-form .company-info .field--name-field-fax-number .form-group,
-form#node-company-edit-form .main-contact .field--name-field-main-phone-number .form-group,
-form#node-company-edit-form .main-contact .field--name-field-fax-number .form-group,
-form#node-company-form .company-info .field--name-field-main-phone-number .form-group,
-form#node-company-form .company-info .field--name-field-fax-number .form-group,
-form#node-company-form .main-contact .field--name-field-main-phone-number .form-group,
-form#node-company-form .main-contact .field--name-field-fax-number .form-group {
-  margin-bottom: 10px;
-}
-
-form#node-company-edit-form .company-info .pmmi-extra-description,
-form#node-company-edit-form .main-contact .pmmi-extra-description,
-form#node-company-form .company-info .pmmi-extra-description,
-form#node-company-form .main-contact .pmmi-extra-description {
-  float: right;
-  font-size: 13px;
-  font-size: 0.8125rem;
-  color: #004e75;
-  max-width: 530px;
-  width: 530px;
-}
-
 form#node-company-edit-form .checker,
 form#node-company-form .checker {
   opacity: 0;
@@ -20800,12 +20777,6 @@ form#node-company-form .button {
     max-width: 338px;
     min-width: 338px;
     width: 338px;
-  }
-  form#node-company-edit-form .company-info .pmmi-extra-description,
-  form#node-company-edit-form .main-contact .pmmi-extra-description,
-  form#node-company-form .company-info .pmmi-extra-description,
-  form#node-company-form .main-contact .pmmi-extra-description {
-    width: auto;
   }
   form#node-company-edit-form .field--name-field-address .selector,
   form#node-company-form .field--name-field-address .selector {
