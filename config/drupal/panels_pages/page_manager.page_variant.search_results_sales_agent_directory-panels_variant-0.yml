@@ -21,11 +21,11 @@ variant_settings:
       label: 'PMMI Company Search Results block'
       provider: pmmi_search
       label_display: '0'
-      region: main
-      weight: 0
+      region: top
+      weight: 1
       uuid: fd31fb19-2777-4972-bbba-7d0161af949f
       context_mapping: {  }
-    b117cb0a-f009-4199-a352-efac04638c8f:
+    0b6bd921-d77e-4cd6-b7cd-af96c98bf4cf:
       id: 'block_content:14fbe4e8-9d85-4988-93d1-f0b2e3a5b49f'
       label: 'Sales Agent Directory - Image Header'
       provider: block_content
@@ -35,9 +35,9 @@ variant_settings:
       view_mode: full
       region: top
       weight: -1
-      uuid: b117cb0a-f009-4199-a352-efac04638c8f
+      uuid: 0b6bd921-d77e-4cd6-b7cd-af96c98bf4cf
       context_mapping: {  }
-    3102403c-dfd4-41a8-a2a5-4c8b6c78c6ae:
+    a500a64b-5a8a-44c2-a900-ddf8896ef6aa:
       id: pmmi_sales_agent_action_toolbar
       label: 'PMMI Sales Agent Action Toolbar'
       provider: pmmi_sales_agent
@@ -49,7 +49,7 @@ variant_settings:
         favorites_add: 0
       region: top
       weight: 0
-      uuid: 3102403c-dfd4-41a8-a2a5-4c8b6c78c6ae
+      uuid: a500a64b-5a8a-44c2-a900-ddf8896ef6aa
       context_mapping: {  }
   id: panels_variant
   uuid: 26926f96-7929-4534-826c-fb53a4fe5d5d

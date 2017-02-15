@@ -5,6 +5,7 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
   clear: both;
 }
 body.use-container {
+  .block-region-main,
   .region-content {
     @extend .container;
     margin-bottom: 20px;

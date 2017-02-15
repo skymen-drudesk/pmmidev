@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.mega_menu
     - node.type.download
   module:
     - ds
@@ -153,60 +154,27 @@ display:
       footer: {  }
       empty: {  }
       relationships: {  }
-      arguments:
-        field_report_type_target_id:
-          id: field_report_type_target_id
-          table: node__field_report_type
-          field: field_report_type_target_id
-          relationship: none
-          group_type: group
-          admin_label: ''
-          default_action: ignore
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: fixed
-          default_argument_options:
-            argument: ''
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            items_per_page: 25
-            override: false
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          break_phrase: false
-          not: false
-          plugin_id: numeric
+      arguments: {  }
       display_extenders: {  }
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_interface'
-        - url
         - 'user.node_grants:view'
         - user.permissions
       tags:
         - 'config:core.entity_view_display.node.article.default'
         - 'config:core.entity_view_display.node.article.full'
         - 'config:core.entity_view_display.node.article.teaser'
+        - 'config:core.entity_view_display.node.basic_page.accordion'
         - 'config:core.entity_view_display.node.basic_page.default'
         - 'config:core.entity_view_display.node.basic_page.full'
         - 'config:core.entity_view_display.node.basic_page.teaser'
         - 'config:core.entity_view_display.node.certification_test.default'
         - 'config:core.entity_view_display.node.certification_test.full'
         - 'config:core.entity_view_display.node.certification_test.teaser'
+        - 'config:core.entity_view_display.node.company.default'
+        - 'config:core.entity_view_display.node.company.teaser'
         - 'config:core.entity_view_display.node.download.default'
         - 'config:core.entity_view_display.node.download.full'
         - 'config:core.entity_view_display.node.download.teaser'
@@ -215,8 +183,91 @@ display:
         - 'config:core.entity_view_display.node.school.teaser'
         - 'config:core.entity_view_display.node.video.default'
         - 'config:core.entity_view_display.node.video.full'
+        - 'config:core.entity_view_display.node.video.landing'
         - 'config:core.entity_view_display.node.video.short'
         - 'config:core.entity_view_display.node.video.teaser'
+        - 'config:core.entity_view_display.node.video.video_ajax_mode'
+        - 'config:core.entity_view_display.node.video.video_thumbnail'
+  block_mega_menu:
+    display_plugin: block
+    id: block_mega_menu
+    display_title: 'Mega Menu'
+    position: 5
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      title: ''
+      defaults:
+        title: false
+        style: false
+        row: false
+        sorts: false
+      style:
+        type: default
+        options: {  }
+      row:
+        type: 'ds_entity:node'
+        options:
+          relationship: none
+          view_mode: mega_menu
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+            item_0: teaser
+          grouping_fieldset:
+            group: false
+            group_field: node_counter|totalcount
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
+      sorts:
+        created:
+          id: created
+          table: node_field_data
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          granularity: second
+          entity_type: node
+          entity_field: created
+          plugin_id: date
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_interface'
+        - 'user.node_grants:view'
+        - user.permissions
+      tags:
+        - 'config:core.entity_view_display.node.article.default'
+        - 'config:core.entity_view_display.node.article.full'
+        - 'config:core.entity_view_display.node.article.teaser'
+        - 'config:core.entity_view_display.node.basic_page.accordion'
+        - 'config:core.entity_view_display.node.basic_page.default'
+        - 'config:core.entity_view_display.node.basic_page.full'
+        - 'config:core.entity_view_display.node.basic_page.teaser'
+        - 'config:core.entity_view_display.node.certification_test.default'
+        - 'config:core.entity_view_display.node.certification_test.full'
+        - 'config:core.entity_view_display.node.certification_test.teaser'
+        - 'config:core.entity_view_display.node.company.default'
+        - 'config:core.entity_view_display.node.company.teaser'
+        - 'config:core.entity_view_display.node.download.default'
+        - 'config:core.entity_view_display.node.download.full'
+        - 'config:core.entity_view_display.node.download.teaser'
+        - 'config:core.entity_view_display.node.school.default'
+        - 'config:core.entity_view_display.node.school.full'
+        - 'config:core.entity_view_display.node.school.teaser'
+        - 'config:core.entity_view_display.node.video.default'
+        - 'config:core.entity_view_display.node.video.full'
+        - 'config:core.entity_view_display.node.video.landing'
+        - 'config:core.entity_view_display.node.video.short'
+        - 'config:core.entity_view_display.node.video.teaser'
+        - 'config:core.entity_view_display.node.video.video_ajax_mode'
+        - 'config:core.entity_view_display.node.video.video_thumbnail'
   block_recent_primary:
     display_plugin: block
     id: block_recent_primary
@@ -270,19 +321,21 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
-        - url
         - 'user.node_grants:view'
         - user.permissions
       tags:
         - 'config:core.entity_view_display.node.article.default'
         - 'config:core.entity_view_display.node.article.full'
         - 'config:core.entity_view_display.node.article.teaser'
+        - 'config:core.entity_view_display.node.basic_page.accordion'
         - 'config:core.entity_view_display.node.basic_page.default'
         - 'config:core.entity_view_display.node.basic_page.full'
         - 'config:core.entity_view_display.node.basic_page.teaser'
         - 'config:core.entity_view_display.node.certification_test.default'
         - 'config:core.entity_view_display.node.certification_test.full'
         - 'config:core.entity_view_display.node.certification_test.teaser'
+        - 'config:core.entity_view_display.node.company.default'
+        - 'config:core.entity_view_display.node.company.teaser'
         - 'config:core.entity_view_display.node.download.default'
         - 'config:core.entity_view_display.node.download.full'
         - 'config:core.entity_view_display.node.download.teaser'
@@ -291,8 +344,11 @@ display:
         - 'config:core.entity_view_display.node.school.teaser'
         - 'config:core.entity_view_display.node.video.default'
         - 'config:core.entity_view_display.node.video.full'
+        - 'config:core.entity_view_display.node.video.landing'
         - 'config:core.entity_view_display.node.video.short'
         - 'config:core.entity_view_display.node.video.teaser'
+        - 'config:core.entity_view_display.node.video.video_ajax_mode'
+        - 'config:core.entity_view_display.node.video.video_thumbnail'
   block_recent_secondary:
     display_plugin: attachment
     id: block_recent_secondary
@@ -413,7 +469,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }
@@ -453,19 +508,21 @@ display:
       max-age: -1
       contexts:
         - 'languages:language_interface'
-        - url
         - 'user.node_grants:view'
         - user.permissions
       tags:
         - 'config:core.entity_view_display.node.article.default'
         - 'config:core.entity_view_display.node.article.full'
         - 'config:core.entity_view_display.node.article.teaser'
+        - 'config:core.entity_view_display.node.basic_page.accordion'
         - 'config:core.entity_view_display.node.basic_page.default'
         - 'config:core.entity_view_display.node.basic_page.full'
         - 'config:core.entity_view_display.node.basic_page.teaser'
         - 'config:core.entity_view_display.node.certification_test.default'
         - 'config:core.entity_view_display.node.certification_test.full'
         - 'config:core.entity_view_display.node.certification_test.teaser'
+        - 'config:core.entity_view_display.node.company.default'
+        - 'config:core.entity_view_display.node.company.teaser'
         - 'config:core.entity_view_display.node.download.default'
         - 'config:core.entity_view_display.node.download.full'
         - 'config:core.entity_view_display.node.download.teaser'
@@ -474,8 +531,11 @@ display:
         - 'config:core.entity_view_display.node.school.teaser'
         - 'config:core.entity_view_display.node.video.default'
         - 'config:core.entity_view_display.node.video.full'
+        - 'config:core.entity_view_display.node.video.landing'
         - 'config:core.entity_view_display.node.video.short'
         - 'config:core.entity_view_display.node.video.teaser'
+        - 'config:core.entity_view_display.node.video.video_ajax_mode'
+        - 'config:core.entity_view_display.node.video.video_thumbnail'
   block_trending_secondary:
     display_plugin: attachment
     id: block_trending_secondary
@@ -579,7 +639,6 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
-        - url
         - 'user.node_grants:view'
         - user.permissions
       tags: {  }

@@ -32,4 +32,6 @@ blacklist:
   - page_manager.page_variant.site_template-panels_everywhere_variant-5
   - page_manager.page_variant.site_template-panels_everywhere_variant-6
 graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
 weight: 0

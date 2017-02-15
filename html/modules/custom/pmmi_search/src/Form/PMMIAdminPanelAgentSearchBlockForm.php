@@ -6,6 +6,7 @@ use CommerceGuys\Addressing\Country\CountryRepositoryInterface;
 use CommerceGuys\Addressing\Subdivision\SubdivisionRepositoryInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -67,6 +68,10 @@ class PMMIAdminPanelAgentSearchBlockForm extends FormBase {
 
     // We can use static wrapper here.
     $wrapper_id = 'admin-panel-sales-agent-directory-address';
+
+    // Add link to quick add new company node.
+    $url = Url::fromUri('internal:/node/add/company');
+    $form['create_company']['#markup'] = Link::fromTextAndUrl($this->t('Add new company'), $url)->toString();
 
     // Describe address filters.
     $form['address'] = [
