@@ -17,8 +17,16 @@ use Drupal\Core\Form\FormStateInterface;
 function pmmi_bootstrap_preprocess_html(&$variables) {
   $front_class = (\Drupal::service('path.matcher')->isFrontPage()) ? 'front' : 'not-front';
   $variables['attributes']['class'][] = $front_class;
-  if (!\Drupal::routeMatch()->getParameter('node') && !\Drupal::routeMatch()->getParameter('page_manager_page_variant')) {
+
+  $page_variant = \Drupal::routeMatch()->getParameter('page_manager_page_variant');
+  if (!\Drupal::routeMatch()->getParameter('node') && !$page_variant) {
     $variables['attributes']['class'][] = 'use-container';
+  }
+
+  // Add a class for node_add page to specify content type.
+  if ($page_variant && $page_variant->get('page') == 'node_add') {
+    $node_type = \Drupal::routeMatch()->getParameter('node_type');
+    $variables['attributes']['class'][] = 'page-node-type-' . $node_type->id();
   }
 }
 
