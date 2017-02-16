@@ -100,6 +100,19 @@ class PMMIState extends ProcessorPluginBase {
       $properties['state'] = new ProcessorProperty($definition);
     }
 
+    // Let's do the same for 'pmmi_company_contact' entity.
+    // @todo: find out why it doesn't work by reference!
+    if ($datasource && $datasource->getPluginId() == 'entity:pmmi_company_contact') {
+      $definition = [
+        'label' => $this->t('Company » Content » State'),
+        'description' => $this->t('The state name from address field.'),
+        'type' => 'string',
+        'processor_id' => $this->getPluginId(),
+      ];
+
+      $properties['state'] = new ProcessorProperty($definition);
+    }
+
     return $properties;
   }
 
@@ -116,7 +129,7 @@ class PMMIState extends ProcessorPluginBase {
 
     $fields = $item->getFields();
     $fields = $this->getFieldsHelper()
-      ->filterForPropertyPath($fields, 'entity:node', 'state');
+      ->filterForPropertyPath($fields, $item->getDatasourceId(), 'state');
 
     foreach ($fields as $field) {
       $address = $node->get('field_address')->getValue();
@@ -141,6 +154,14 @@ class PMMIState extends ProcessorPluginBase {
    */
   protected function getNode(ComplexDataInterface $item) {
     $item = $item->getValue();
+
+    // Extend for 'pmmi_company_contact' entity.
+    if ($item->getEntityTypeId() == 'pmmi_company_contact') {
+      if ($target = $item->get('field_company')->getValue()) {
+        $item = \Drupal::entityTypeManager()->getStorage('node')->load($target[0]['target_id']);
+      }
+    }
+
     if ($item instanceof NodeInterface) {
       return $item;
     }
