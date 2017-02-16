@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.company.field_general_company_email
     - field.field.node.company.field_industries_served
     - field.field.node.company.field_industries_served_other
+    - field.field.node.company.field_last_updated_on
     - field.field.node.company.field_main_phone_number
     - field.field.node.company.field_manufacturers_represented
     - field.field.node.company.field_primary_contact_email
@@ -25,6 +26,7 @@ dependencies:
     - node.type.company
   module:
     - address
+    - datetime
     - ds
     - link
     - options
@@ -193,6 +195,14 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
+  field_last_updated_on:
+    weight: 22
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
   field_main_phone_number:
     weight: 3
     label: hidden

@@ -12228,7 +12228,7 @@ fieldset[disabled] a.focus {
 .article-node .twitter-link p,
 .article-node .article-release p, .node-body p, .node-bold-label p,
 .featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .block-views-blocksearch-page-block-1 .views-field-body p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-box.mode-full .field-name-body p, .block-box.mode-default .field-name-body p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
-.layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .mode-event-left-rail .field-name-field-location p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-box.mode-mega-menu .field-name-body p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
+.layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .mode-event-left-rail .field-name-field-location p, .block-pricing .pricings p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-box.mode-mega-menu .field-name-body p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
 .block-pack-expo-show .date p, .pack-expo-show.mode-mega-menu p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
   font-size: inherit;
   line-height: inherit;
@@ -12296,7 +12296,7 @@ fieldset[disabled] a.focus {
   }
 }
 
-.side-paragraph, .mode-event-left-rail .field-name-field-location, .block-text.mode-text-image .block-body, .content-left .block-text.mode-default .block-body, .cert-info li .field--item {
+.side-paragraph, .mode-event-left-rail .field-name-field-location, .block-pricing .pricings, .block-text.mode-text-image .block-body, .content-left .block-text.mode-default .block-body, .cert-info li .field--item {
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 18px;
@@ -12448,8 +12448,8 @@ fieldset[disabled] a.focus {
   }
 }
 
-.sidehead1, .node-layout .content-left .containers.layout-1up .region-top .field-name-field-head,
-.landing-left-sidebar .content-left .containers.layout-1up .region-top .field-name-field-head, .block-layout .title, .block-links .title, .events-block-upcoming-left-rail .viewfield-title, .block-social-media.mode-default .title, .content-left .block-text.mode-default .title, .cert-info li .field--label, .school-info .title {
+.sidehead1, .node-layout .content-left .containers .region-top .field-name-field-head,
+.landing-left-sidebar .content-left .containers .region-top .field-name-field-head, .block-layout .title, .block-links .title, .events-block-upcoming-left-rail .viewfield-title, .block-social-media.mode-default .title, .content-left .block-text.mode-default .title, .cert-info li .field--label, .school-info .title {
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 23px;
@@ -12462,13 +12462,13 @@ fieldset[disabled] a.focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .sidehead1, .node-layout .content-left .containers.layout-1up .region-top .field-name-field-head,
-  .landing-left-sidebar .content-left .containers.layout-1up .region-top .field-name-field-head, .block-layout .title, .block-links .title, .events-block-upcoming-left-rail .viewfield-title, .block-social-media.mode-default .title, .content-left .block-text.mode-default .title, .cert-info li .field--label, .school-info .title {
+  .sidehead1, .node-layout .content-left .containers .region-top .field-name-field-head,
+  .landing-left-sidebar .content-left .containers .region-top .field-name-field-head, .block-layout .title, .block-links .title, .events-block-upcoming-left-rail .viewfield-title, .block-social-media.mode-default .title, .content-left .block-text.mode-default .title, .cert-info li .field--label, .school-info .title {
     font-size: 1rem;
   }
 }
 
-.sidehead2 {
+.sidehead2, .block-pricing .pricings .title {
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 18px;
@@ -13595,9 +13595,14 @@ body.use-container .region-content:after {
   }
 }
 
-.node-layout .content-left .containers.layout-1up,
-.landing-left-sidebar .content-left .containers.layout-1up {
+.node-layout .content-left .containers,
+.landing-left-sidebar .content-left .containers {
   margin-bottom: 30px;
+}
+
+.node-layout .content-left .containers .col,
+.landing-left-sidebar .content-left .containers .col {
+  width: 100%;
 }
 
 .col-sm-x5 {
@@ -18131,6 +18136,20 @@ div.view {
   border-radius: 50%;
 }
 
+.block-pricing .pricings .title {
+  margin: 2px 0 3px;
+}
+
+.block-pricing .pricings p {
+  margin-bottom: 0;
+}
+
+.block-pricing .pricings .field > div {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #c2c2c2;
+  margin-bottom: 10px;
+}
+
 .block-social-media-footer .social-links span,
 .block-social-media .social-links span {
   display: inline-block;
@@ -18582,6 +18601,29 @@ div.view {
 /**
  * Company node edit form
  */
+.page-node-type-company .block-block-content .block-title,
+.page-node-type-company .block-block-content .block-title {
+  color: #004e75;
+  font-size: 35px;
+  font-size: 2.1875rem;
+  font-weight: 900;
+  line-height: 42px;
+}
+
+.page-node-type-company .block-block-content .title,
+.page-node-type-company .block-block-content .title {
+  color: #1d262c;
+  font-size: 23px;
+  font-size: 1.4375rem;
+  font-weight: 500;
+  line-height: 23px;
+}
+
+.page-node-type-company .block-block-content .field--name-body,
+.page-node-type-company .block-block-content .field--name-body {
+  color: #8c8888;
+}
+
 form#node-company-edit-form,
 form#node-company-form {
   max-width: 770px;
@@ -18678,6 +18720,7 @@ form#node-company-edit-form .main-contact .form-wrapper,
 form#node-company-form .company-info .form-wrapper,
 form#node-company-form .main-contact .form-wrapper {
   float: right;
+  text-align: right;
 }
 
 form#node-company-edit-form .company-info .form-wrapper label,
@@ -18710,6 +18753,20 @@ form#node-company-form .main-contact .form-email {
   width: 530px;
   display: inline;
   min-width: 338px;
+}
+
+form#node-company-edit-form .company-info .description,
+form#node-company-edit-form .main-contact .description,
+form#node-company-form .company-info .description,
+form#node-company-form .main-contact .description {
+  float: right;
+  text-align: left;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: #004e75;
+  max-width: 530px;
+  width: 530px;
+  margin-bottom: 0;
 }
 
 form#node-company-edit-form .checker,
@@ -18939,6 +18996,12 @@ form#node-company-form .button {
   form#node-company-form {
     max-width: 353px;
   }
+  form#node-company-edit-form .company-info .form-wrapper,
+  form#node-company-edit-form .main-contact .form-wrapper,
+  form#node-company-form .company-info .form-wrapper,
+  form#node-company-form .main-contact .form-wrapper {
+    text-align: left;
+  }
   form#node-company-edit-form .company-info .form-tel,
   form#node-company-edit-form .company-info .form-text,
   form#node-company-edit-form .company-info .form-url,
@@ -18958,6 +19021,12 @@ form#node-company-form .button {
     max-width: 338px;
     min-width: 338px;
     width: 338px;
+  }
+  form#node-company-edit-form .company-info .description,
+  form#node-company-edit-form .main-contact .description,
+  form#node-company-form .company-info .description,
+  form#node-company-form .main-contact .description {
+    width: auto;
   }
   form#node-company-edit-form .field--name-field-address .selector,
   form#node-company-form .field--name-field-address .selector {
