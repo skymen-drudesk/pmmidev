@@ -200,7 +200,7 @@
 }
 
 /**
- * Company node edit form
+ * Company node edit form.
  */
 .page-node-type-company,
 .page-node-type-company {
@@ -222,8 +222,7 @@
     }
   }
 }
-form#node-company-edit-form,
-form#node-company-form {
+.node-company-form {
   max-width: 770px;
   .form-control,
   .selector {
@@ -235,7 +234,6 @@ form#node-company-form {
   .form-control {
     border-color: $blueopacity;
   }
-  //margin: auto;
   .panel-heading,
   .panel-default,
   legend {
@@ -266,15 +264,23 @@ form#node-company-form {
     .select-wrapper {
       display: inline-flex;
     }
-    .selector {
-      width: 530px !important;
+    .selector,
+    .locality,
+    .postal-code {
+      width: 265px !important;
+      min-width: 265px !important;
       border-color: $blueopacity;
       font-weight: inherit;
+      margin-right: 265px;
       &:before {
         display: none;
       }
+      & span {
+        text-align: left;
+        padding-left: 10px;
+      }
     }
-    .control-label.sr-only {
+    .control-label {
       position: relative;
       width: auto;
       height: auto;
@@ -347,7 +353,7 @@ form#node-company-form {
         display: none;
       }
     }
-    .search-choice {
+    li.search-choice {
       background-image: none;
       background-color: $ltblue;
       border: none;
@@ -377,28 +383,12 @@ form#node-company-form {
     legend{
       display: none;
     }
-    .form-textarea-wrapper {
-      margin-right: 30px;
+    h3 {
+      @extend .panel-title;
+      padding: 20px 0;
     }
-    .panel-body {
-      padding: 15px 0px 15px 70px;
-      position: relative;
-      border: 1px solid $blueopacity;
-      &:before {
-        font-family: FontAwesome;
-        content: "\f068";
-        display: block;
-        width: 40px;
-        background: $ltblue;
-        position: absolute;
-        height: auto;
-        color: $ltgrey;
-        text-align: center;
-        font-size: 20px;
-        top: 0;
-        bottom: 0;
-        left: 0;
-      }
+    &-details {
+      @extend .details-wrapper;
     }
   }
   .field--name-field-manufacturers-represented .description {
@@ -444,16 +434,19 @@ form#node-company-form {
   #edit-trade-shows {
     .panel-body {
       max-width: 470px;
+      .form-group {
+        display: inline-block;
+      }
       .form-group > .form-item {
         float: right;
         label {
           display: inline-flex;
           text-transform: uppercase;
+          padding-right: 10px;
         }
         input {
           max-width: 370px;
           display: inline-flex;
-          margin-left: 10px;
         }
       }
       .checkbox label {
@@ -492,8 +485,12 @@ form#node-company-form {
       }
     }
     .field--name-field-address {
-      .selector {
+      .selector,
+      .locality,
+      .postal-code {
         width: 338px !important;
+        min-width: 338px !important;
+        margin-right: 0 !important;
       }
       .address-container-inline .form-item .select-wrapper {
         margin-left: auto;
