@@ -2,6 +2,12 @@
  *  Company node view
  */
 .company-node {
+  .top-banner.clearfix {
+    margin-bottom: 0;
+  }
+  .container {
+    margin-top: 30px;
+  }
   .block-image-header .page-name {
     max-width: 370px;
   }
@@ -60,8 +66,16 @@
       max-width: 249px;
       word-wrap: break-word;
       .field--name-field-primary-contact-first-name,
-      .field--name-field-primary-contact-last-name {
-        display: inline-block;
+      .field--name-field-primary-contact-last-name,
+      .field--name-field-primary-contact-title {
+        display: inline;
+      }
+      .field--name-field-primary-contact-title {
+        font-style: italic;
+        &:before {
+          content: ", ";
+          margin-left: -4px;
+        }
       }
     }
     .address {
@@ -86,6 +100,13 @@
       font-weight: 800;
       font-size: $r18;
     }
+    .view-company-trade-shows-contacts {
+      margin-bottom: 10px;
+    }
+    .view-content {
+      @extend .clear-after;
+      border-bottom: solid 1px $mdgrey;
+    }
     .views-row {
       width: 50%;
       float: left;
@@ -108,6 +129,7 @@
           width: 80px;
           display: inline-block;
           text-align: right;
+          margin-right: 5px;
         }
       }
       .views-field-field-title {
@@ -118,9 +140,7 @@
     }
   }
   .profile-updated {
-    border-top: solid 1px $mdgrey;
-    margin-top: 10px;
-    padding: 8px 0 40px 0;
+    padding-bottom: 40px;
     font-size: $r14;
     clear: both;
   }
@@ -135,6 +155,12 @@
       .field--name-field-website-url {
         float: none;
         &:after {
+          display: none;
+        }
+      }
+      .field--name-field-main-phone-number,
+      .field--name-field-general-company-email {
+        &:before {
           display: none;
         }
       }
@@ -176,6 +202,26 @@
 /**
  * Company node edit form
  */
+.page-node-type-company,
+.page-node-type-company {
+  .block-block-content {
+    .block-title {
+      color: $blue;
+      font-size: $r35;
+      font-weight: 900;
+      line-height: 42px;
+    }
+    .title {
+      color: $textdark;
+      font-size: $r23;
+      font-weight: 500;
+      line-height: 23px;
+    }
+    .field--name-body {
+      color: $grey;
+    }
+  }
+}
 form#node-company-edit-form,
 form#node-company-form {
   max-width: 770px;
@@ -207,13 +253,17 @@ form#node-company-form {
     font-size: $r20;
   }
   .field--name-field-address {
-    .input-group-addon {
+    .input-group-addon,
+    .panel-heading {
       display: none;
     }
-    .panel-body > div {
+    .form-group,
+    .address-container-inline > div {
       float: right;
+      margin-right: 0;
     }
-    .input-group {
+    .input-group,
+    .select-wrapper {
       display: inline-flex;
     }
     .selector {
@@ -222,19 +272,6 @@ form#node-company-form {
       font-weight: inherit;
       &:before {
         display: none;
-      }
-    }
-    .address-container-inline .form-item {
-      display: inline;
-      float: right;
-      margin: 0 0 15px 0;
-      .select-wrapper {
-        display: inline-flex;
-        float: right;
-        margin-left: 5px;
-      }
-      .form-text {
-        width: 530px;
       }
     }
     .control-label.sr-only {
@@ -247,9 +284,11 @@ form#node-company-form {
   .main-contact {
     .form-wrapper {
       float: right;
+      text-align: right;
       label {
         font-size: $r14;
         text-transform: uppercase;
+        padding-right: 10px;
       }
     }
     .form-tel,
@@ -261,10 +300,14 @@ form#node-company-form {
       display: inline;
       min-width: 338px;
     }
-    .field--type-address {
-      .panel-heading {
-        display: none;
-      }
+    .description {
+      float: right;
+      text-align: left;
+      font-size: $r13;
+      color: $blue;
+      max-width: 530px;
+      width: 530px;
+      margin-bottom: 0;
     }
   }
   .checker {
@@ -306,9 +349,9 @@ form#node-company-form {
     }
     .search-choice {
       background-image: none;
-      background-color: #038dc0;
+      background-color: $ltblue;
       border: none;
-      color: white;
+      color: #fff;
       height: 23px;
       border-radius: 6px;
       box-shadow: none;
@@ -360,9 +403,11 @@ form#node-company-form {
   }
   .field--name-field-manufacturers-represented .description {
     color: $blue;
+    font-size: 15px;
+    padding-right: 10px;
   }
   .field--name-field-after-sales-service {
-    margin: 40px 0;
+    margin: 35px 0 20px;
     legend {
       font-size: $r15;
       font-weight: bold;
@@ -396,19 +441,44 @@ form#node-company-form {
       }
     }
   }
+  #edit-trade-shows {
+    .panel-body {
+      max-width: 470px;
+      .form-group > .form-item {
+        float: right;
+        label {
+          display: inline-flex;
+          text-transform: uppercase;
+        }
+        input {
+          max-width: 370px;
+          display: inline-flex;
+          margin-left: 10px;
+        }
+      }
+      .checkbox label {
+        font-weight: bold;
+      }
+    }
+  }
   .button {
     width: 470px;
+    float: left;
     font-size: $r25;
     text-transform: uppercase;
     font-weight: bold;
     height: 50px;
     border-radius: 6px;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
+    margin-top: 30px;
   }
   @include mobile {
     max-width: 353px;
     .company-info,
     .main-contact {
+      .form-wrapper {
+        text-align: left;
+      }
       .form-tel,
       .form-text,
       .form-url,
@@ -416,6 +486,9 @@ form#node-company-form {
         max-width: 338px;
         min-width: 338px;
         width: 338px;
+      }
+      .description {
+        width: auto;
       }
     }
     .field--name-field-address {
@@ -438,9 +511,105 @@ form#node-company-form {
         }
       }
     }
+    #edit-trade-shows {
+      .panel-body {
+        .form-group > .form-item {
+          float: left;
+        }
+      }
+      label {
+        display: block;
+      }
+      input {
+        display: block;
+        margin-left: 0;
+      }
+    }
     .button {
       width: 338px;
       margin-bottom: 20px;
+    }
+  }
+}
+
+/**
+ * block-pmmi-sales-agent-action-toolbar.
+ */
+.block-pmmi-sales-agent-action-toolbar,
+.field--name-dynamic-block-fieldnode-sales-agent-action-toolbar {
+  min-height: 50px;
+  display: block;
+  background-color: #d8e1e1;
+  ul {
+    float: right;
+    margin-right: 135px;
+    height: 100%;
+    margin-bottom: 0;
+    li {
+      display: inline-block;
+      margin: 15px 10px;
+      a {
+        line-height: $r19;
+        color: $blue;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .pmmi-company-add:before {
+        font-family: FontAwesome;
+        content: '\f055';
+        padding-right: 5px;
+        font-weight: normal;
+        text-decoration: none;
+      }
+      .pmmi-download-favorites:before {
+        font-family: FontAwesome;
+        content: '\f019';
+        @extend .pmmi-company-add:before;
+      }
+      .pmmi-search-new:before {
+        font-family: FontAwesome;
+        content: '\f002';
+        @extend .pmmi-company-add:before;
+      }
+      .flag-favorites_content:before {
+        font-family: FontAwesome;
+        content: '\f006';
+        @extend .pmmi-company-add:before;
+      }
+    }
+  }
+  @include tablet-max {
+    ul {
+      margin-right: 0;
+      padding: 4px 15px;
+      li:first-child {
+        background-color: $blue;
+        a {
+          color: #fff;
+        }
+      }
+      li:nth-child(3) {
+        width: 340px;
+      }
+    }
+    li {
+      width: 160px;
+      text-align: center;
+      border: 2px solid $blue;
+      border-radius: 3px;
+      margin: 5px !important;
+      height: 30px;
+      padding-top: 2px;
+      a {
+        line-height: $r16;
+        font-size: $r13;
+      }
+      .pmmi-company-add:before,
+      .pmmi-download-favorites:before,
+      .pmmi-search-new:before,
+      .flag-favorites_content:before {
+        display: none;
+      }
     }
   }
 }

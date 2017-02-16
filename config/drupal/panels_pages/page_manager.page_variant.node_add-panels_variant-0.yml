@@ -6,6 +6,7 @@ dependencies:
     - page_manager.page.node_add
   content:
     - 'block_content:image_header:14fbe4e8-9d85-4988-93d1-f0b2e3a5b49f'
+    - 'block_content:text:9475ba91-a451-4c81-a852-f1413a6b768a'
   module:
     - block_content
     - panels
@@ -38,13 +39,25 @@ variant_settings:
       weight: 0
       uuid: b2eee949-4995-4818-b70b-c2048e5fe10a
       context_mapping: {  }
+    3129aa01-1bf8-488c-9939-608611a00ef1:
+      id: 'block_content:9475ba91-a451-4c81-a852-f1413a6b768a'
+      label: 'New Agent Registration Form'
+      provider: block_content
+      label_display: visible
+      status: true
+      info: ''
+      view_mode: default
+      region: main
+      weight: -1
+      uuid: 3129aa01-1bf8-488c-9939-608611a00ef1
+      context_mapping: {  }
   id: panels_variant
   uuid: f0616422-cb4a-4757-a9c3-6af9ed6a70c4
   label: null
   weight: 0
   layout: sitewide
   layout_settings: {  }
-  page_title: ''
+  page_title: 'New Agent Registration Form'
   storage_type: page_manager
   storage_id: node_add-panels_variant-0
   builder: standard

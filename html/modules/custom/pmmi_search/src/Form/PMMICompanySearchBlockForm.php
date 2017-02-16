@@ -93,6 +93,9 @@ class PMMICompanySearchBlockForm extends FormBase {
         'callback' => [get_class($this), 'addressAjaxRefresh'],
         'wrapper' => $wrapper_id,
       ],
+      '#attributes' => [
+        'data-placeholder' => $this->t('Select country'),
+      ],
     ];
     $form['address']['administrative_area'] = [
       '#type' => 'select',
@@ -100,6 +103,9 @@ class PMMICompanySearchBlockForm extends FormBase {
       '#multiple' => TRUE,
       '#chosen' => TRUE,
       '#access' => FALSE,
+      '#attributes' => [
+        'data-placeholder' => $this->t('Select State/Region'),
+      ],
     ];
 
     $countries = [];

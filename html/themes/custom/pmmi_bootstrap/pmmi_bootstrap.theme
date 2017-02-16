@@ -17,8 +17,24 @@ use Drupal\Core\Form\FormStateInterface;
 function pmmi_bootstrap_preprocess_html(&$variables) {
   $front_class = (\Drupal::service('path.matcher')->isFrontPage()) ? 'front' : 'not-front';
   $variables['attributes']['class'][] = $front_class;
-  if (!\Drupal::routeMatch()->getParameter('node') && !\Drupal::routeMatch()->getParameter('page_manager_page_variant')) {
+
+  $page_variant = \Drupal::routeMatch()->getParameter('page_manager_page_variant');
+  if (!\Drupal::routeMatch()->getParameter('node') && !$page_variant) {
     $variables['attributes']['class'][] = 'use-container';
+  }
+
+  // Add a class for node_add page to specify content type.
+  if ($page_variant && $page_variant->get('page') == 'node_add') {
+    $node_type = \Drupal::routeMatch()->getParameter('node_type');
+    $variables['attributes']['class'][] = 'page-node-type-' . $node_type->id();
+
+    // Fix empty title issue.
+    // @todo: find out why a title from panel isn't used!
+    $pc = $page_variant->getPluginCollections();
+    if (isset($pc['variant_settings']) && ($conf = $pc['variant_settings']->getConfiguration())) {
+      $site_name = \Drupal::config('system.site')->get('name');
+      $variables['head_title']['title'] = $conf['page_title'] . ' | ' .  $site_name;
+    }
   }
 }
 
@@ -141,7 +157,7 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
       // 'Profile updated' section.
       $changed = $node->getChangedTime();
       $vars['content']['footer_reg'][] = array(
-        '#markup' => t('Profile last updated @date', array('@date' => date('M. n, Y', $changed))),
+        '#markup' => t('Profile last updated @date', array('@date' => date('M. j, Y', $changed))),
         '#prefix' => '<div class="profile-updated">',
         '#suffix' => '</div>',
         '#weight' => 100,

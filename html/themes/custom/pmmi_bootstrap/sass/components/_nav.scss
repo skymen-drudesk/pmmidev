@@ -301,7 +301,7 @@
       border-radius: 0;
       margin: 0;
       min-width: 624px;
-      padding: 25px 30px;
+      padding: 25px 30px 10px;
       .mega-nav {
         font-family: $lato;
         list-style: none;
@@ -802,7 +802,25 @@
 
 // Megamenu subnav.
 .tb-megamenu-block {
+  font-family: $lato;
   .col-md-3 {
     padding: 0 12px;
+  }
+  .col-sm-12 {
+    padding: 0;
+    float: none;
+  }
+}
+.tb-megamenu-submenu {
+  .desktop-hidden {
+    display: none;
+    @include mobile {
+      display: block;
+    }
+  }
+  .mobile-hidden {
+    @include mobile {
+      display: none;
+    }
   }
 }

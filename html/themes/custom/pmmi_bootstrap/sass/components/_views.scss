@@ -2,7 +2,7 @@ div.view {
   margin-bottom: 20px;
 }
 .view-empty {
-  @extend .container;
+  @include container;
 }
 .views-view-grid.cols-2 {
   .row {
@@ -185,6 +185,37 @@ div.view {
     &,
     div.view {
       margin-bottom: 0;
+    }
+  }
+}
+.boxes-block-mega-menu {
+  .view {
+    margin: 0;
+  }
+  .view-content {
+    font-size: 0;
+  }
+  .views-row {
+    display: inline-block;
+    padding: 0 10px;
+    font-size: $r16;
+    width: 180px;
+  }
+  .link-media & {
+    .field-name-field-image {
+      margin-left: -10px;
+    }
+  }
+}
+.events-block-upcoming-left-rail {
+  .viewfield-title {
+    display: block;
+    @extend .sidehead1;
+  }
+  .more-link {
+    a {
+      @extend .text-link;
+      line-height: 23px;
     }
   }
 }

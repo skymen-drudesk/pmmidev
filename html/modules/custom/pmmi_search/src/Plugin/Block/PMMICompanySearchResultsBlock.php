@@ -148,7 +148,7 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
    * @return array
    *   The renderable array with information about the filter.
    */
-  protected function getFilterInfo($filter, $values) {
+  protected function getFilterInfo($filter, array $values) {
     $items = [];
     $query_params = \Drupal::request()->query->all();
 
@@ -188,8 +188,9 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
         break;
 
       case 'keywords':
-        $value = reset($values);
-        $items[] = str_replace('+', ' ', $value);
+        if ($values && ($value = reset($values))) {
+          $items[] = str_replace('+', ' ', $value);
+        }
         break;
 
     }

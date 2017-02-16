@@ -100,45 +100,4 @@
       }
     }
   }
-  &.box {
-    @include views-list-default(
-      '.field-name-field-buttons'
-    );
-    padding: 20px 20px 20px 300px;
-    min-height: 228px;
-    border: 1px solid $mdgrey;
-    border-radius: 6px;
-    .field-name-body {
-      margin-bottom: 20px;
-    }
-    .field-name-field-image {
-      float: left;
-      width: 246px;
-      margin-left: - 280px;
-    }
-    @include desktop-max {
-      padding-left: 250px;
-      .field-name-field-image {
-        width: auto;
-        margin-left: -230px;
-      }
-    }
-    .field-name-field-buttons a:not(:first-child) {
-      @extend .btn-primary-opacity;
-    }
-    @include mobile {
-      padding-left: 10px;
-      min-height: 0;
-      .field-name-field-image {
-        float: none;
-        width: auto;
-        margin: 0 0 15px;
-      }
-      .field-name-field-buttons {
-        a {
-          width: 100%;
-        }
-      }
-    }
-  }
 }

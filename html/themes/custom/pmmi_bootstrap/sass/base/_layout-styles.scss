@@ -5,13 +5,14 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
   clear: both;
 }
 body.use-container {
+  .block-region-main,
   .region-content {
-    @extend .container;
+    @include container;
     margin-bottom: 20px;
   }
 }
 .container {
-  .containers  .container {
+  .containers .container {
     width: auto;
     padding-left: 0;
     padding-right: 0;
@@ -82,6 +83,12 @@ body.use-container {
         width: 49.5%;
         display: inline-block;
         vertical-align: top;
+      }
+    }
+    .containers.layout-1up {
+      margin-bottom: 30px;
+      .region-top .field-name-field-head {
+        @extend .sidehead1;
       }
     }
   }
