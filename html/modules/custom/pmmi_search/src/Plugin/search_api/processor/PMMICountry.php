@@ -59,7 +59,6 @@ class PMMICountry extends ProcessorPluginBase {
     return $this;
   }
 
-
   /**
    * {@inheritdoc}
    */
@@ -69,6 +68,19 @@ class PMMICountry extends ProcessorPluginBase {
     if ($datasource && $datasource->getPluginId() == 'entity:node') {
       $definition = [
         'label' => $this->t('Country'),
+        'description' => $this->t('The country name from address field.'),
+        'type' => 'string',
+        'processor_id' => $this->getPluginId(),
+      ];
+
+      $properties['country'] = new ProcessorProperty($definition);
+    }
+
+    // Let's do the same for 'pmmi_company_contact' entity.
+    // @todo: find out why it doesn't work by reference!
+    if ($datasource && $datasource->getPluginId() == 'entity:pmmi_company_contact') {
+      $definition = [
+        'label' => $this->t('Company » Content » Country'),
         'description' => $this->t('The country name from address field.'),
         'type' => 'string',
         'processor_id' => $this->getPluginId(),
@@ -92,14 +104,13 @@ class PMMICountry extends ProcessorPluginBase {
     }
     $fields = $item->getFields();
     $fields = $this->getFieldsHelper()
-      ->filterForPropertyPath($fields, 'entity:node', 'country');
-    if ($node->hasField('field_address')) {
-      foreach ($fields as $field) {
-        $address = $node->get('field_address')->getValue();
-        $countries = $this->countryRepository->getList();
-        if (!empty($address[0]['country_code']) && isset($countries[$address[0]['country_code']])) {
-          $field->addValue($countries[$address[0]['country_code']]);
-        }
+      ->filterForPropertyPath($fields, $item->getDatasourceId(), 'country');
+
+    foreach ($fields as $field) {
+      $address = $node->get('field_address')->getValue();
+      $countries = $this->countryRepository->getList();
+      if (!empty($address[0]['country_code']) && isset($countries[$address[0]['country_code']])) {
+        $field->addValue($countries[$address[0]['country_code']]);
       }
     }
   }
@@ -115,6 +126,14 @@ class PMMICountry extends ProcessorPluginBase {
    */
   protected function getNode(ComplexDataInterface $item) {
     $item = $item->getValue();
+
+    // Extend for 'pmmi_company_contact' entity.
+    if ($item->getEntityTypeId() == 'pmmi_company_contact') {
+      if ($target = $item->get('field_company')->getValue()) {
+        $item = \Drupal::entityTypeManager()->getStorage('node')->load($target[0]['target_id']);
+      }
+    }
+
     if ($item instanceof NodeInterface) {
       return $item;
     }
