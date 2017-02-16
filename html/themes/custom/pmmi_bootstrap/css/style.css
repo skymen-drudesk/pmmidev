@@ -12429,8 +12429,8 @@ fieldset[disabled] a.focus {
   }
 }
 
-.sidehead1, .node-layout .content-left .containers.layout-1up .region-top .field-name-field-head,
-.landing-left-sidebar .content-left .containers.layout-1up .region-top .field-name-field-head, .block-layout .title, .block-links .title, .events-block-upcoming-left-rail .viewfield-title, .block-social-media.mode-default .title, .content-left .block-text.mode-default .title, .cert-info li .field--label, .school-info .title {
+.sidehead1, .node-layout .content-left .containers .region-top .field-name-field-head,
+.landing-left-sidebar .content-left .containers .region-top .field-name-field-head, .block-layout .title, .block-links .title, .events-block-upcoming-left-rail .viewfield-title, .block-social-media.mode-default .title, .content-left .block-text.mode-default .title, .cert-info li .field--label, .school-info .title {
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 23px;
@@ -12443,8 +12443,8 @@ fieldset[disabled] a.focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .sidehead1, .node-layout .content-left .containers.layout-1up .region-top .field-name-field-head,
-  .landing-left-sidebar .content-left .containers.layout-1up .region-top .field-name-field-head, .block-layout .title, .block-links .title, .events-block-upcoming-left-rail .viewfield-title, .block-social-media.mode-default .title, .content-left .block-text.mode-default .title, .cert-info li .field--label, .school-info .title {
+  .sidehead1, .node-layout .content-left .containers .region-top .field-name-field-head,
+  .landing-left-sidebar .content-left .containers .region-top .field-name-field-head, .block-layout .title, .block-links .title, .events-block-upcoming-left-rail .viewfield-title, .block-social-media.mode-default .title, .content-left .block-text.mode-default .title, .cert-info li .field--label, .school-info .title {
     font-size: 1rem;
   }
 }
@@ -13169,9 +13169,14 @@ body.use-container .region-content:after {
   }
 }
 
-.node-layout .content-left .containers.layout-1up,
-.landing-left-sidebar .content-left .containers.layout-1up {
+.node-layout .content-left .containers,
+.landing-left-sidebar .content-left .containers {
   margin-bottom: 30px;
+}
+
+.node-layout .content-left .containers .col,
+.landing-left-sidebar .content-left .containers .col {
+  width: 100%;
 }
 
 .col-sm-x5 {
