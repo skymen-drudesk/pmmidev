@@ -26,6 +26,7 @@ dependencies:
     - node.type.company
   module:
     - address
+    - datetime
     - ds
     - link
     - options
@@ -198,11 +199,10 @@ content:
     weight: 22
     label: above
     settings:
-      date_format: medium
-      custom_date_format: ''
-      timezone: ''
+      format_type: medium
+      timezone_override: ''
     third_party_settings: {  }
-    type: timestamp
+    type: datetime_default
   field_main_phone_number:
     weight: 3
     label: hidden
