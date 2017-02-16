@@ -12209,7 +12209,7 @@ fieldset[disabled] a.focus {
 .article-node .twitter-link p,
 .article-node .article-release p, .node-body p, .node-bold-label p,
 .featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .block-views-blocksearch-page-block-1 .views-field-body p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-box.mode-full .field-name-body p, .block-box.mode-default .field-name-body p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
-.layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .mode-event-left-rail .field-name-field-location p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-box.mode-mega-menu .field-name-body p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
+.layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .mode-event-left-rail .field-name-field-location p, .block-pricing .pricings p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-box.mode-mega-menu .field-name-body p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
 .block-pack-expo-show .date p, .pack-expo-show.mode-mega-menu p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
   font-size: inherit;
   line-height: inherit;
@@ -12277,7 +12277,7 @@ fieldset[disabled] a.focus {
   }
 }
 
-.side-paragraph, .mode-event-left-rail .field-name-field-location, .block-text.mode-text-image .block-body, .content-left .block-text.mode-default .block-body, .cert-info li .field--item {
+.side-paragraph, .mode-event-left-rail .field-name-field-location, .block-pricing .pricings, .block-text.mode-text-image .block-body, .content-left .block-text.mode-default .block-body, .cert-info li .field--item {
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 18px;
@@ -12449,7 +12449,7 @@ fieldset[disabled] a.focus {
   }
 }
 
-.sidehead2 {
+.sidehead2, .block-pricing .pricings .title {
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 18px;
@@ -17623,6 +17623,20 @@ div.view {
 
 .block-person .image img {
   border-radius: 50%;
+}
+
+.block-pricing .pricings .title {
+  margin: 2px 0 3px;
+}
+
+.block-pricing .pricings p {
+  margin-bottom: 0;
+}
+
+.block-pricing .pricings .field > div {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #c2c2c2;
+  margin-bottom: 10px;
 }
 
 .block-social-media-footer .social-links span,

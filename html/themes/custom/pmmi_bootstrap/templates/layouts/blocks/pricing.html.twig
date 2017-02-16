@@ -1,32 +1,7 @@
 <div class="block-pricing">
 
-  {{ field_render([content.head, 'title', 'h2']) }}
+  {{ field_render([content.head, 'title sidehead1', 'h2']) }}
 
-  <div class="members-sections">
-
-    {% set members_early = field_render([content.members_early, 'members-early']) %}
-    {% set members_standard = field_render([content.members_standard, 'members-standard']) %}
-    {%  if members_early or members_standard %}
-      <h3>{% trans %}Members:{% endtrans %}</h3>
-    {% endif %}
-
-    {{ members_early|raw }}
-    {{ members_standard|raw }}
-
-  </div>
-  <div class="non-members-sections">
-
-    {% set nonmembers_early = field_render([content.nonmembers_early, 'non-members-early']) %}
-    {% set nonmembers_standard = field_render([content.nonmembers_standard, 'non-members-standard']) %}
-    {%  if nonmembers_early or nonmembers_standard %}
-      <h3>{% trans %}Non-members:{% endtrans %}</h3>
-    {% endif %}
-
-    {{ nonmembers_early|raw }}
-    {{ nonmembers_standard|raw }}
-
-  </div>
-
-  {{ field_render([content.discounts, 'discounts']) }}
+  {{ field_render([content.pricings, 'pricings']) }}
 
 </div>
