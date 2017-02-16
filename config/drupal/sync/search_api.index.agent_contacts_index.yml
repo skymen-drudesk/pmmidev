@@ -328,12 +328,21 @@ field_settings:
         - field.storage.node.field_after_sales_service
       module:
         - node
+  country:
+    label: 'Company » Content » Country'
+    datasource_id: 'entity:pmmi_company_contact'
+    property_path: country
+    type: string
+  state:
+    label: 'Company » Content » State'
+    datasource_id: 'entity:pmmi_company_contact'
+    property_path: state
+    type: string
 datasource_settings:
   'entity:pmmi_company_contact': {  }
 processor_settings:
   state: {  }
   country: {  }
-  agent_contacts: {  }
   pmmi_shows: {  }
   aggregated_field: {  }
   rendered_item: {  }
