@@ -2,17 +2,27 @@
 
 namespace Drupal\odata\Plugin\views\filter;
 
-/**
- * @file
- * Definition of odata_handler_filter_string.
- */
+///**
+// * @file
+// * Definition of odata_handler_filter_string.
+// */
+use Drupal\Component\Utility\UrlHelper;
+use Drupal\views\Plugin\views\filter\StringFilter;
+
+///**
+// * Handler to handle an oData String filter.
+// *
+// * Extends views_handler_filter_string.
+// */
 
 /**
- * Handler to handle an oData String filter.
+ * Basic textfield filter to handle an oData String filter.
  *
- * Extends views_handler_filter_string.
+ * @ingroup views_filter_handlers
+ *
+ * @ViewsFilter("odata_filter_string")
  */
-class OdataFilterString extends views_handler_filter_string {
+class OdataFilterString extends StringFilter {
 
   /**
    * Overrides query().
@@ -22,73 +32,73 @@ class OdataFilterString extends views_handler_filter_string {
       'eq' => array(
         'title' => t('Is equal to'),
         'short' => t('='),
-        'method' => 'op_equal',
+        'method' => 'opEqual',
         'values' => 1,
       ),
       'ne' => array(
         'title' => t('Is not equal to'),
         'short' => t('!='),
-        'method' => 'op_equal',
+        'method' => 'opEqual',
         'values' => 1,
       ),
       'startswith' => array(
         'title' => t('Starts with'),
         'short' => t('begins'),
-        'method' => 'op_starts',
+        'method' => 'opStartsWith',
         'values' => 1,
       ),
       'not_starts' => array(
         'title' => t('Does not start with'),
         'short' => t('not_begins'),
-        'method' => 'op_not_starts',
+        'method' => 'opNotStartsWith',
         'values' => 1,
       ),
       'endswith' => array(
         'title' => t('Ends with'),
         'short' => t('ends'),
-        'method' => 'op_ends',
+        'method' => 'opEndsWith',
         'values' => 1,
       ),
       'not_ends' => array(
         'title' => t('Does not end with'),
         'short' => t('not_ends'),
-        'method' => 'op_not_ends',
+        'method' => 'opNotEndsWith',
         'values' => 1,
       ),
       'substringof' => array(
         'title' => t('Contains'),
         'short' => t('contains'),
-        'method' => 'op_contains',
+        'method' => 'opContains',
         'values' => 1,
       ),
       'not' => array(
         'title' => t('Does not contain'),
         'short' => t('!has'),
-        'method' => 'op_not',
+        'method' => 'opNotLike',
         'values' => 1,
       ),
       'length' => array(
         'title' => t('Length equals'),
         'short' => t('length ='),
-        'method' => 'op_length',
+        'method' => 'opLength',
         'values' => 1,
       ),
       'not_length' => array(
         'title' => t('Length not equals'),
         'short' => t('length !='),
-        'method' => 'op_not_length',
+        'method' => 'opNotLength',
         'values' => 1,
       ),
       'shorterthan' => array(
         'title' => t('Length is shorter than'),
         'short' => t('length <'),
-        'method' => 'op_shorter',
+        'method' => 'opShorterThan',
         'values' => 1,
       ),
       'longerthan' => array(
         'title' => t('Length is longer than'),
         'short' => t('length >'),
-        'method' => 'op_longer',
+        'method' => 'opLongerThan',
         'values' => 1,
       ),
     );
@@ -99,7 +109,7 @@ class OdataFilterString extends views_handler_filter_string {
    * Overrides query().
    */
   public function query() {
-    $field = "$this->real_field";
+    $field = "$this->realField";
 
     $info = $this->operators();
     if (!empty($info[$this->operator]['method'])) {
@@ -115,79 +125,80 @@ class OdataFilterString extends views_handler_filter_string {
   }
 
   /**
-   * Overrides op_equal().
+   * Overrides opEqual().
    */
-  public function op_equal($field) {
-    $this->query->addWhere($this->options['group'], $field, "'" . drupal_encode_path($this->value) . "'", $this->operator());
+  public function opEqual($field) {
+    $this->query->addWhere($this->options['group'], $field, "'" . UrlHelper::encodePath($this->value) . "'", $this->operator());
   }
 
   /**
-   * Overrides op_starts().
+   * Overrides opStartsWith().
    */
-  public function op_starts($field) {
-    $this->query->addWhere($this->options['group'], "startswith($field,'" . drupal_encode_path($this->value) . "')", "true", "+eq+");
+  public function opStartsWith($field) {
+    $this->query->addWhere($this->options['group'], "startswith($field,'" . UrlHelper::encodePath($this->value) . "')", "true", "+eq+");
   }
 
   /**
-   * Overrides op_not_starts().
+   * Overrides opNotStartsWith().
    */
-  public function op_not_starts($field) {
-    $this->query->addWhere($this->options['group'], "startswith($field,'" . drupal_encode_path($this->value) . "')", "false", "+eq+");
+  public function opNotStartsWith($field) {
+    $this->query->addWhere($this->options['group'], "startswith($field,'" . UrlHelper::encodePath($this->value) . "')", "false", "+eq+");
   }
 
   /**
-   * Overrides op_ends().
+   * Overrides opEndsWith().
    */
-  public function op_ends($field) {
-    $this->query->addWhere($this->options['group'], "endswith($field,'" . drupal_encode_path($this->value) . "')", "true", "+eq+");
+  public function opEndsWith($field) {
+    $this->query->addWhere($this->options['group'], "endswith($field,'" . UrlHelper::encodePath($this->value) . "')", "true", "+eq+");
   }
 
   /**
-   * Overrides op_not_ends().
+   * Overrides opNotEndsWith().
    */
-  public function op_not_ends($field) {
-    $this->query->addWhere($this->options['group'], "endswith($field,'" . drupal_encode_path($this->value) . "')", "false", "+eq+");
+  public function opNotEndsWith($field) {
+    $this->query->addWhere($this->options['group'], "endswith($field,'" . UrlHelper::encodePath($this->value) . "')", "false", "+eq+");
   }
 
   /**
-   * Overrides op_contains().
+   * Overrides opContains().
    */
-  public function op_contains($field) {
-    $this->query->addWhere($this->options['group'], "substringof('" . drupal_encode_path($this->value) . "',$field)", "true", "+eq+");
+  public function opContains($field) {
+    $this->query->addWhere($this->options['group'], "substringof('" . UrlHelper::encodePath($this->value) . "',$field)", "true", "+eq+");
   }
 
   /**
-   * Overrides op_not().
+   * Overrides opNotLike().
    */
-  public function op_not($field) {
-    $this->query->addWhere($this->options['group'], "substringof('" . drupal_encode_path($this->value) . "',$field)", "false", "+eq+");
+  public function opNotLike($field) {
+    $this->query->addWhere($this->options['group'], "substringof('" . UrlHelper::encodePath($this->value) . "',$field)", "false", "+eq+");
   }
 
   /**
-   * Overrides op_length().
+   * Overrides opLength().
    */
-  public function op_length($field) {
-    $this->query->addWhere($this->options['group'], "length($field)", drupal_encode_path($this->value), '+eq+');
+  public function opLength($field) {
+    $this->query->addWhere($this->options['group'], "length($field)", UrlHelper::encodePath($this->value), '+eq+');
   }
 
   /**
-   * Overrides op_not_length().
+   * Overrides opNotLength().
    */
-  public function op_not_length($field) {
-    $this->query->addWhere($this->options['group'], "length($field)", drupal_encode_path($this->value), '+ne+');
+  public function opNotLength($field) {
+    $this->query->addWhere($this->options['group'], "length($field)", UrlHelper::encodePath($this->value), '+ne+');
   }
 
   /**
-   * Overrides op_shorter().
+   * Overrides opShorterThan().
    */
-  public function op_shorter($field) {
-    $this->query->addWhere($this->options['group'], "length($field)", drupal_encode_path($this->value), '+lt+');
+  public function opShorterThan($field) {
+    $this->query->addWhere($this->options['group'], "length($field)", UrlHelper::encodePath($this->value), '+lt+');
   }
 
   /**
-   * Overrides op_longer().
+   * Overrides opLongerThan().
    */
-  public function op_longer($field) {
-    $this->query->addWhere($this->options['group'], "length($field)", drupal_encode_path($this->value), '+gt+');
+  public function opLongerThan($field) {
+    $this->query->addWhere($this->options['group'], "length($field)", UrlHelper::encodePath($this->value), '+gt+');
   }
+
 }

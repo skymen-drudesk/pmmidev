@@ -13,9 +13,7 @@ function odata_views_data() {
   /** @var \Drupal\Core\Entity\EntityTypeManager $etm */
   $etm = \Drupal::service('entity_type.manager');
   $odata_enities = $etm->getStorage('odata_entity')->loadMultiple();
-//  $query = db_select('odata_endpoints', 'oe')
-//    ->fields('oe', array('title', 'url', 'options', 'endpoint_name'))
-//    ->execute();
+
   /** @var \Drupal\odata\Entity\OdataEntity $entity */
   foreach ($odata_enities as $entity) {
     $data[$entity->id()]['table']['group'] = t('Open Data');
@@ -23,14 +21,22 @@ function odata_views_data() {
     $data[$entity->id()]['table']['base'] = array(
       // This is the identifier field for the view.
       'field' => $entity->getEndpointUrl() . '/' . $entity->getCollection(),
+      'index' => $entity->id(),
       'title' => $entity->label(),
       'help' => t('Directly query oData:@title to get some data realtime.', array('@title' => $entity->label())),
-      'query_id' => 'odata_view_query',
+      'query_id' => 'odata_views_query',
 //      'query class' => 'odata_query',
       'accept_request_header' => $entity->getRequestFormat(),
     );
 
     $data[$entity->id()]['table']['endpoint'] = $entity->getEndpointUrl() . '/' . $entity->getCollection();
+
+//    $schema = unserialize($entity->getCollectionSchema());
+//    $collection = $entity->getCollection();
+//
+//    $schema = _odata_return_fields($collection, $schema);
+//    $data[$entity->id()] = array_merge($data[$entity->id()], $schema);
+
   }
 
   return $data;
@@ -54,26 +60,26 @@ function odata_views_data_alter(&$data) {
     $data[$entity->id()] = array_merge($data[$entity->id()], $schema);
 
     // Override the combine filter.
-    $data['views']['combine']['filter'] = array(
-      'handler' => 'ODataHandlerFilterCombine',
-    );
+//    $data['views']['combine']['filter'] = array(
+//      'handler' => 'OdataFilterCombine',
+//    );
   }
 }
 
-/**
- * Implements hook_views_plugins().
- */
-function odata_views_plugins() {
-  return array(
-    'query' => array(
-      'odata_query' => array(
-        'title' => t('oData query'),
-        'help' => t('Query will be generated and executed using current oData endpoint.'),
-        'handler' => 'OdataPluginQueryOdata',
-      ),
-    ),
-  );
-}
+///**
+// * Implements hook_views_plugins().
+// */
+//function odata_views_plugins() {
+//  return array(
+//    'query' => array(
+//      'odata_query' => array(
+//        'title' => t('oData query'),
+//        'help' => t('Query will be generated and executed using current oData endpoint.'),
+//        'handler' => 'OdataPluginQueryOdata',
+//      ),
+//    ),
+//  );
+//}
 
 /**
  * Returns schema array to be inserted in the hook_views_data_alter() array.
@@ -98,21 +104,25 @@ function _odata_return_fields($group, $field) {
       'title' => $name,
       'group' => $group,
       'field' => array(
-        'handler' => 'ODataHandlerField' . $type,
+//        'handler' => 'ODataHandlerField' . $type,
+        'id' => 'odata_field' . $type,
         'click sortable' => TRUE,
         'help' => $name,
       ),
       'sort' => array(
         'help' => t('Order results as @name.', array('@name' => $attributes['Name'])),
-        'handler' => 'ODataHandlerSort' . $type,
+//        'handler' => 'ODataHandlerSort' . $type,
+        'id' => 'odata_sort' . $type,
       ),
       'filter' => array(
         'help' => t('Filter results by @name.', array('@name' => $attributes['Name'])),
-        'handler' => 'ODataHandlerFilter' . $type,
+//        'handler' => 'ODataHandlerFilter' . $type,
+        'id' => 'odata_filter' . $type,
       ),
       'argument' => array(
         'help' => t('Filter results by @name.', array('@name' => $attributes['Name'])),
-        'handler' => 'ODataHandlerArgument' . $type,
+//        'handler' => 'ODataHandlerArgument' . $type,
+        'id' => 'odata_argument' . $type,
       ),
     );
 

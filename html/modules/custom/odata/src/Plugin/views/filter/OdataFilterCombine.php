@@ -2,17 +2,21 @@
 
 namespace Drupal\odata\Plugin\views\filter;
 
-/**
- * @file
- * Definition of ODataHandlerFilterCombine.
- */
+///**
+// * @file
+// * Definition of ODataHandlerFilterCombine.
+// */
+use Drupal\Component\Utility\UrlHelper;
+use Drupal\views\Plugin\views\filter\Combine;
 
 /**
  * Filter handler which allows to search on multiple fields.
  *
- * Extends views_handler_filter_combine.
+ * @ingroup views_filter_handlers
+ *
+ * @ViewsFilter("odata_filter_combine")
  */
-class OdataFilterCombine extends views_handler_filter_combine {
+class OdataFilterCombine extends Combine {
 
   /**
    * Overrides query().
@@ -23,73 +27,73 @@ class OdataFilterCombine extends views_handler_filter_combine {
       'eq' => array(
         'title' => t('Is equal to'),
         'short' => t('='),
-        'method' => 'op_equal',
+        'method' => 'opEqual',
         'values' => 1,
       ),
       'ne' => array(
         'title' => t('Is not equal to'),
         'short' => t('!='),
-        'method' => 'op_equal',
+        'method' => 'opEqual',
         'values' => 1,
       ),
       'startswith' => array(
         'title' => t('Starts with'),
         'short' => t('begins'),
-        'method' => 'op_starts',
+        'method' => 'opStartsWith',
         'values' => 1,
       ),
       'not_starts' => array(
         'title' => t('Does not start with'),
         'short' => t('not_begins'),
-        'method' => 'op_not_starts',
+        'method' => 'opNotStartsWith',
         'values' => 1,
       ),
       'endswith' => array(
         'title' => t('Ends with'),
         'short' => t('ends'),
-        'method' => 'op_ends',
+        'method' => 'opEndsWith',
         'values' => 1,
       ),
       'not_ends' => array(
         'title' => t('Does not end with'),
         'short' => t('not_ends'),
-        'method' => 'op_not_ends',
+        'method' => 'opNotEndsWith',
         'values' => 1,
       ),
       'substringof' => array(
         'title' => t('Contains'),
         'short' => t('contains'),
-        'method' => 'op_contains',
+        'method' => 'opContains',
         'values' => 1,
       ),
       'not' => array(
         'title' => t('Does not contain'),
         'short' => t('!has'),
-        'method' => 'op_not',
+        'method' => 'opNotLike',
         'values' => 1,
       ),
       'length' => array(
         'title' => t('Length equals'),
         'short' => t('length ='),
-        'method' => 'op_length',
+        'method' => 'opLength',
         'values' => 1,
       ),
       'not_length' => array(
         'title' => t('Length not equals'),
         'short' => t('length !='),
-        'method' => 'op_not_length',
+        'method' => 'opNotLength',
         'values' => 1,
       ),
       'shorterthan' => array(
         'title' => t('Length is shorter than'),
         'short' => t('length <'),
-        'method' => 'op_shorter',
+        'method' => 'opShorterThan',
         'values' => 1,
       ),
       'longerthan' => array(
         'title' => t('Length is longer than'),
         'short' => t('length >'),
-        'method' => 'op_longer',
+        'method' => 'opLongerThan',
         'values' => 1,
       ),
     );
@@ -109,9 +113,9 @@ class OdataFilterCombine extends views_handler_filter_combine {
       $field = $this->view->field[$id];
       // Always add the table of the selected fields to be sure a table alias
       // exists.
-      $field->ensure_my_table();
+      $field->ensureMyTable();
       if (!empty($field->field_alias) && !empty($field->field_alias)) {
-        $fields[] = "$field->real_field";
+        $fields[] = "$field->realField";
       }
     }
 
@@ -120,7 +124,7 @@ class OdataFilterCombine extends views_handler_filter_combine {
         $separated_fields[] = $field;
       }
       // Ensure that value is encoded properly.
-      $this->value = drupal_encode_path($this->value);
+      $this->value = UrlHelper::encodePath($this->value);
 
       $info = $this->operators();
 
@@ -131,9 +135,9 @@ class OdataFilterCombine extends views_handler_filter_combine {
   }
 
   /**
-   * Overrides op_equal().
+   * Overrides opEqual().
    */
-  public function op_equal($fields) {
+  public function opEqual($fields) {
 
     foreach ($fields as $field) {
       $expression[] = "$field+$this->operator+'$this->value'";
@@ -142,9 +146,9 @@ class OdataFilterCombine extends views_handler_filter_combine {
   }
 
   /**
-   * Overrides op_contains().
+   * Overrides opContains().
    */
-  public function op_contains($fields) {
+  public function opContains($fields) {
 
     foreach ($fields as $field) {
       $expression[] = "substringof('$this->value',$field)+eq+true";
@@ -154,9 +158,9 @@ class OdataFilterCombine extends views_handler_filter_combine {
   }
 
   /**
-   * Overrides op_contains().
+   * Overrides opNotLike().
    */
-  public function op_not($fields) {
+  public function opNotLike($fields) {
 
     foreach ($fields as $field) {
       $expression[] = "substringof('$this->value',$field)+eq+false";
@@ -166,9 +170,9 @@ class OdataFilterCombine extends views_handler_filter_combine {
   }
 
   /**
-   * Overrides op_starts().
+   * Overrides opStartsWith().
    */
-  public function op_starts($fields) {
+  public function opStartsWith($fields) {
 
     foreach ($fields as $field) {
       $expression[] = "startswith($field,'$this->value')+eq+true";
@@ -178,9 +182,9 @@ class OdataFilterCombine extends views_handler_filter_combine {
   }
 
   /**
-   * Overrides op_starts().
+   * Overrides opNotStartsWith().
    */
-  public function op_not_starts($fields) {
+  public function opNotStartsWith($fields) {
 
     foreach ($fields as $field) {
       $expression[] = "startswith($field,'$this->value')+eq+false";
@@ -190,9 +194,9 @@ class OdataFilterCombine extends views_handler_filter_combine {
   }
 
   /**
-   * Overrides op_ends().
+   * Overrides opEndsWith().
    */
-  public function op_ends($fields) {
+  public function opEndsWith($fields) {
     foreach ($fields as $field) {
       $expression[] = "endswith($field,'$this->value')+eq+true";
     }
@@ -201,9 +205,9 @@ class OdataFilterCombine extends views_handler_filter_combine {
   }
 
   /**
-   * Overrides op_not_ends().
+   * Overrides opNotEndsWith().
    */
-  public function op_not_ends($fields) {
+  public function opNotEndsWith($fields) {
     foreach ($fields as $field) {
       $expression[] = "endswith($field,'$this->value')+eq+false";
     }
@@ -212,9 +216,9 @@ class OdataFilterCombine extends views_handler_filter_combine {
   }
 
   /**
-   * Overrides op_length().
+   * Overrides opLength().
    */
-  public function op_length($fields) {
+  public function opLength($fields) {
     foreach ($fields as $field) {
       $expression[] = "length($field)+eq+$this->value";
     }
@@ -223,9 +227,9 @@ class OdataFilterCombine extends views_handler_filter_combine {
   }
 
   /**
-   * Overrides op_not_length().
+   * Overrides opNotLength().
    */
-  public function op_not_length($fields) {
+  public function opNotLength($fields) {
     foreach ($fields as $field) {
       $expression[] = "length($field)+ne+$this->value";
     }
@@ -234,9 +238,9 @@ class OdataFilterCombine extends views_handler_filter_combine {
   }
 
   /**
-   * Overrides op_shorter().
+   * Overrides opShorterThan().
    */
-  public function op_shorter($fields) {
+  public function opShorterThan($fields) {
     foreach ($fields as $field) {
       $expression[] = "length($field)+lt+$this->value";
     }
@@ -245,13 +249,14 @@ class OdataFilterCombine extends views_handler_filter_combine {
   }
 
   /**
-   * Overrides op_longer().
+   * Overrides opLongerThan().
    */
-  public function op_longer($fields) {
+  public function opLongerThan($fields) {
     foreach ($fields as $field) {
       $expression[] = "length($field)+gt+$this->value";
     }
 
     $this->query->addWhereExpression($this->options['group'], "(" . implode("+and+", $expression) . ")", NULL);
   }
+
 }

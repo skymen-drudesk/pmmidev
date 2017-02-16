@@ -124,4 +124,54 @@ class OdataManager implements OdataInterface {
     }
   }
 
+  public function getODataDataRequest($request_data, $format, $metadata = FALSE) {
+//    /** @var \Drupal\odata\Entity\OdataEntity $odata_entity */
+//    $odata_entity = $request_data->entity;
+    if ($format == 'json') {
+      $url = $request_data['url'];
+      $request_format = 'application/json';
+//      $request_format = 'application/json;odata=verbose';
+//      $request_format = 'application/json;odata=light;q=1,application/json;odata=verbose;q=0.5';
+    }
+    elseif ($format == 'xml') {
+      $url = $request_data['url'];
+      $request_format = 'application/xml';
+    }
+    else {
+      drupal_set_message(t("Server message: No specified format for request"), 'error');
+      return NULL;
+    }
+    /** @var \GuzzleHttp\Client $client */
+    $client = $this->httpClient;
+    $options = [
+      'headers' => [
+        'Accept' => $request_format,
+      ],
+      'auth' => [$request_data['username'], $request_data['password']],
+    ];
+    try {
+      $response = $client->request('GET', $url, $options);
+      // Expected result.
+      $data = $response->getBody();
+      if ($format == 'json') {
+        $json = Json::decode($response->getBody());
+        // @todo
+        if (isset($json['d']['results'])) {
+          return $json['d']['results'];
+        }
+
+        if (isset($json['value'])) {
+          return $json['value'];
+        }
+        return $json['d'];
+      }
+      return $response->getBody();
+    }
+    catch (RequestException $e) {
+      watchdog_exception('odata', $e);
+      drupal_set_message(t("Wrong response: @message", ['@message' => $e->getMessage()]), 'error');
+      return NULL;
+    }
+  }
+
 }

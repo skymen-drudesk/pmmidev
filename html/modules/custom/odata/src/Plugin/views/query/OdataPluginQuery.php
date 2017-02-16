@@ -3,6 +3,8 @@
 namespace Drupal\odata\Plugin\views\query;
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Cache\UncacheableDependencyTrait;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\views\Plugin\views\display\DisplayPluginBase;
 use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\ResultRow;
@@ -20,12 +22,14 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * Reference: http://www.sitepoint.com/drupal-8-version-entityfieldquery/.
  *
  * @ViewsQuery(
- *   id = "odata_view_query",
- *   title = @Translation("Configuration Entity"),
- *   help = @Translation("Configuration Entity Query")
+ *   id = "odata_views_query",
+ *   title = @Translation("Odata Entity"),
+ *   help = @Translation("Odata Entity Query")
  * )
  */
 class OdataPluginQuery extends QueryPluginBase {
+
+  use UncacheableDependencyTrait;
 
   /**
    * Number of results to display.
@@ -118,6 +122,29 @@ class OdataPluginQuery extends QueryPluginBase {
   public $group_operator = 'AND';
 
   /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $OdataManager;
+
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+    $this->entityTypeManager = \Drupal::entityTypeManager();
+    $this->OdataManager = \Drupal::service('odata.manager');
+  }
+
+  /**
    * {@inheritdoc}
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
@@ -166,11 +193,15 @@ class OdataPluginQuery extends QueryPluginBase {
     // Store the view in the object to be able to use it later.
     $this->view = $view;
 
+    if ($this->shouldAbort()) {
+      return;
+    }
+
     // Initialize the pager and let it modify the query to add limits.
     $view->initPager();
 
     // Let the pager modify the query to add limits.
-    $this->pager->query();
+    $view->pager->query();
 
     $view->build_info['query'] = $this->query();
     $view->build_info['count_query'] = $this->query(TRUE);
@@ -252,18 +283,28 @@ class OdataPluginQuery extends QueryPluginBase {
    *   The view which is executed.
    */
   public function execute(ViewExecutable $view) {
-
+//    $reply = drupal_http_request($request, array(
+//      'headers' => array(
+//        'Accept' => $format,
+//        'Authorization' => 'Basic ' . base64_encode('SUMMIT:pmg@123'),
+//      ),
+//    ));
     $start = microtime(TRUE);
 
     $query = $view->build_info['query'];
     $count_query = $view->build_info['count_query'];
-
+    $base_field = $view->storage->get('base_field');
+    $request_data = [
+      'url' => $base_field,
+      'username' => 'SUMMIT',
+      'password' => 'pmg@123',
+    ];
     // If we are using the pager, calculate the total number of results.
-    if ($this->pager->usePager()) {
+    if ($view->pager->usePager()) {
       try {
-
         // Execute count query for pager.
-        $count = odata_request($view->base_field . '/$count?' . $count_query, ' ');
+        $request_data['url'] = $base_field . '/$count?' . $count_query;
+        $count = $this->OdataManager->getODataDataRequest($request_data, 'json');
         $view->total_rows = (is_array($count)) ? count($count) : $count;
         $this->pager->total_items = $view->total_rows;
 
@@ -271,8 +312,8 @@ class OdataPluginQuery extends QueryPluginBase {
           $this->pager->total_items -= $this->pager->options['offset'];
         }
 
-        $this->pager->update_page_info();
-      } catch (Exception $e) {
+        $view->pager->updatePageInfo();
+      } catch (\Exception $e) {
         if (!empty($view->simpletest)) {
           throw($e);
         }
@@ -301,8 +342,11 @@ class OdataPluginQuery extends QueryPluginBase {
       $query .= '&$skip=' . $skip;
     }
 
+//    $request_data['url'] = $base_field . '/?' . $query;
+    $query = '$select=*&$filter=CommitteeMasterCustomer eq \'C0000010\'';
+    $request_data['url'] = $base_field . '/?' . $query;
     // Get results.
-    $result = odata_request($view->base_field . '/?' . $query, 'application/json');
+    $result = $this->OdataManager->getODataDataRequest($request_data, 'json');
 
     // Abort if it's empty.
     if (is_null($result)) {
@@ -325,7 +369,7 @@ class OdataPluginQuery extends QueryPluginBase {
   /**
    * Set a LIMIT on the query, specifying a maximum number of results.
    */
-  public function set_limit($limit) {
+  public function setLimit($limit) {
     $this->limit = ($limit) ? $limit : 10000000;
   }
 
@@ -398,10 +442,10 @@ class OdataPluginQuery extends QueryPluginBase {
   /**
    * Add an ORDER BY clause to the query.
    */
-  function add_orderby($table, $field = NULL, $order = 'ASC', $alias = '', $params = array()) {
+  function addOrderBy($table, $field = NULL, $order = 'ASC', $alias = '', $params = array()) {
     // Only ensure the table if it's not the special random key.
     if ($table && $table != 'rand') {
-      $this->ensure_table($table);
+      $this->ensureTable($table);
     }
 
     // Only fill out this aliasing if there is a table;
@@ -480,4 +524,5 @@ class OdataPluginQuery extends QueryPluginBase {
   public function shouldAbort() {
     return $this->abort;
   }
+
 }

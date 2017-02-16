@@ -2,17 +2,27 @@
 
 namespace Drupal\odata\Plugin\views\filter;
 
-/**
- * @file
- * Defines the various handler objects to help build and display oData views.
- */
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\views\Plugin\views\filter\Date;
 
+///**
+// * @file
+// * Defines the various handler objects to help build and display oData views.
+// */
+//
+///**
+// * Handler to handle
+// *
+// * Extends views_handler_filter_date.
+// */
 /**
- * Handler to handle an oData Date filter.
+ * Filter to handle an oData Date filter.
  *
- * Extends views_handler_filter_date.
+ * @ingroup views_filter_handlers
+ *
+ * @ViewsFilter("odata_filter_date")
  */
-class OdataFilterDate extends views_handler_filter_date {
+class OdataFilterDate extends Date {
 
   /**
    * Overrides operators().
@@ -20,51 +30,51 @@ class OdataFilterDate extends views_handler_filter_date {
   public function operators() {
     $operators = array(
       'lt' => array(
-        'title' => t('Is less than'),
-        'method' => 'op_simple',
-        'short' => t('<'),
+        'title' => $this->t('Is less than'),
+        'method' => 'opSimple',
+        'short' => $this->t('<'),
         'values' => 1,
       ),
       'le' => array(
-        'title' => t('Is less than or equal to'),
-        'method' => 'op_simple',
-        'short' => t('<='),
+        'title' => $this->t('Is less than or equal to'),
+        'method' => 'opSimple',
+        'short' => $this->t('<='),
         'values' => 1,
       ),
       'eq' => array(
-        'title' => t('Is equal to'),
-        'method' => 'op_simple',
-        'short' => t('='),
+        'title' => $this->t('Is equal to'),
+        'method' => 'opSimple',
+        'short' => $this->t('='),
         'values' => 1,
       ),
       'ne' => array(
-        'title' => t('Is not equal to'),
-        'method' => 'op_simple',
-        'short' => t('!='),
+        'title' => $this->t('Is not equal to'),
+        'method' => 'opSimple',
+        'short' => $this->t('!='),
         'values' => 1,
       ),
       'ge' => array(
-        'title' => t('Is greater than or equal to'),
-        'method' => 'op_simple',
-        'short' => t('>='),
+        'title' => $this->t('Is greater than or equal to'),
+        'method' => 'opSimple',
+        'short' => $this->t('>='),
         'values' => 1,
       ),
       'gt' => array(
-        'title' => t('Is greater than'),
-        'method' => 'op_simple',
-        'short' => t('>'),
+        'title' => $this->t('Is greater than'),
+        'method' => 'opSimple',
+        'short' => $this->t('>'),
         'values' => 1,
       ),
       'between' => array(
-        'title' => t('Is between'),
-        'method' => 'op_between',
-        'short' => t('between'),
+        'title' => $this->t('Is between'),
+        'method' => 'opBetween',
+        'short' => $this->t('between'),
         'values' => 2,
       ),
       'not between' => array(
-        'title' => t('Is not between'),
-        'method' => 'op_between',
-        'short' => t('not between'),
+        'title' => $this->t('Is not between'),
+        'method' => 'opBetween',
+        'short' => $this->t('not between'),
         'values' => 2,
       ),
     );
@@ -75,11 +85,11 @@ class OdataFilterDate extends views_handler_filter_date {
   /**
    * Add a type selector to the value form.
    */
-  public function value_form(&$form, &$form_state) {
+  public function valueForm(&$form, FormStateInterface $form_state) {
 
-    parent::value_form($form, $form_state);
+    parent::valueForm($form, $form_state);
 
-    if (empty($form_state['exposed'])) {
+    if (!$form_state->get('exposed')) {
       $form['value']['type']['#options'] = array(
         'date' => t('A date in a machine readable format. CCYY-MM-DDTHH:MM:SS is required.'),
         'offset' => t('An offset from the current time such as "!example1" or "!example2"', array('!example1' => '+1 day', '!example2' => '-2 hours -30 minutes')),
@@ -91,21 +101,21 @@ class OdataFilterDate extends views_handler_filter_date {
   /**
    * Validate if our user has entered a valid date.
    */
-  public function options_validate(&$form, &$form_state) {
-    parent::options_validate($form, $form_state);
+  public function validateOptionsForm(&$form, FormStateInterface $form_state) {
+    parent::validateOptionsForm($form, $form_state);
 
     if (!empty($this->options['exposed']) && empty($form_state['values']['options']['expose']['required'])) {
       // Who cares what the value is if it's exposed and non-required.
       return;
     }
 
-    $this->validate_valid_time($form['value'], $form_state['values']['options']['operator'], $form_state['values']['options']['value']);
+    $this->validateValidTime($form['value'], $form_state['values']['options']['operator'], $form_state['values']['options']['value']);
   }
 
   /**
    * Validate that the time values convert to something usable.
    */
-  public function validate_valid_time(&$form, $operator, $value) {
+  public function validateValidTime(&$form, FormStateInterface $form_state, $operator, $value) {
     $operators = $this->operators();
     if ($operators[$operator]['values'] == 1) {
       $convert = format_date(strtotime($value['value']), 'odata_datetime_format');
@@ -126,9 +136,9 @@ class OdataFilterDate extends views_handler_filter_date {
   }
 
   /**
-   * Overrides op_between().
+   * Overrides opBetween().
    */
-  function op_between($field) {
+  protected function opBetween($field) {
     $a = format_date(strtotime($this->value['min']), 'odata_datetime_format');
     $b = format_date(strtotime($this->value['max']), 'odata_datetime_format');
 
@@ -146,11 +156,12 @@ class OdataFilterDate extends views_handler_filter_date {
   }
 
   /**
-   * Overrides op_simple().
+   * Overrides opSimple().
    */
-  function op_simple($field) {
+  protected function opSimple($field) {
     $value = format_date(strtotime($this->value['value']), 'odata_datetime_format');
 
-    $this->query->addWhere($this->options['group'], $this->real_field, "datetime'$value'", "+$this->operator+");
+    $this->query->addWhere($this->options['group'], $this->realField, "datetime'$value'", "+$this->operator+");
   }
+
 }

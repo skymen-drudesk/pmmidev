@@ -7,16 +7,28 @@ namespace Drupal\odata\Plugin\views\field;
  * Adds fields as numbers
  */
 
+///**
+// * Handler to handle an oData numeric field.
+// */
+
+use Drupal\views\Plugin\views\display\DisplayPluginBase;
+use Drupal\views\Plugin\views\field\NumericField;
+use Drupal\views\ViewExecutable;
+
 /**
- * Handler to handle an oData numeric field.
+ * Displays numeric data.
+ *
+ * @ingroup views_field_handlers
+ *
+ * @ViewsField("odata_field_numeric")
  */
-class OdataFieldNumeric extends views_handler_field_numeric {
+class OdataFieldNumeric extends NumericField {
 
   /**
-   * Overrides init().
+   * {@inheritdoc}
    */
-  public function init(&$view, &$options) {
-    parent::init($view, $options);
+  public function init(ViewExecutable $view, DisplayPluginBase $display, array &$options = NULL) {
+    parent::init($view, $display, $options);
     // Always treat numbers as floats.
     $this->definition['float'] = TRUE;
   }
@@ -27,6 +39,7 @@ class OdataFieldNumeric extends views_handler_field_numeric {
   public function query() {
 
     // Add the field.
-    $this->field_alias = $this->query->addField($this->table_alias, $this->real_field, NULL);
+    $this->field_alias = $this->query->addField($this->table, $this->realField, NULL);
   }
+
 }

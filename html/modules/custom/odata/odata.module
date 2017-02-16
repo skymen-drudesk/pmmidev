@@ -55,21 +55,21 @@ function odata_convert_type($type) {
     case 'Edm.Double':
     case 'Edm.Decimal':
     case 'Edm.Byte':
-      return 'Numeric';
+      return '_numeric';
 
     case 'Edm.DateTime':
     case 'Edm.DateTimeOffset':
     case 'Edm.Time':
-      return 'Date';
+      return '_date';
 
     case 'Edm.Boolean':
-      return 'Boolean';
+      return '_boolean';
 
     case 'Edm.String':
-      return 'String';
+      return '_string';
 
     case 'ComplexType':
-      return 'Complex';
+      return '_complex';
 
     case 'Edm.Guid ':
     case 'Edm.Binary':

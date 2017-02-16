@@ -10,7 +10,16 @@ namespace Drupal\odata\Plugin\views\filter;
 /**
  * Handler to handle an oData filter.
  */
-class OdataFilter extends views_handler_filter {
+use Drupal\views\Plugin\views\filter\FilterPluginBase;
+
+/**
+ * Defines a filter for filtering on boolean values.
+ *
+ * @ingroup views_filter_handlers
+ *
+ * @ViewsFilter("odata_filter")
+ */
+class OdataFilter extends FilterPluginBase {
 
   /**
    * Overrides operator().
@@ -23,6 +32,7 @@ class OdataFilter extends views_handler_filter {
    * Add this filter to the query.
    */
   public function query() {
-    $this->query->addWhere($this->options['group'], "$this->real_field", $this->value, $this->operator);
+    $this->query->addWhere($this->options['group'], "$this->realField", $this->value, $this->operator);
   }
+
 }
