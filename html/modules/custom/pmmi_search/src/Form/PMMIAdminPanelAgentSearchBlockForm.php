@@ -71,6 +71,12 @@ class PMMIAdminPanelAgentSearchBlockForm extends FormBase {
 
     // Add link to quick add new company node.
     $url = Url::fromUri('internal:/node/add/company');
+    $link_options = [
+      'attributes' => [
+        'class' => ['button']
+      ]
+    ];
+    $url->setOptions($link_options);
     $form['create_company']['#markup'] = Link::fromTextAndUrl($this->t('Add new company'), $url)->toString();
 
     // Describe address filters.

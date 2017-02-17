@@ -7,12 +7,12 @@ body.toolbar-tray-open.toolbar-vertical.toolbar-fixed {
 body.use-container {
   .block-region-main,
   .region-content {
-    @extend .container;
+    @include container;
     margin-bottom: 20px;
   }
 }
 .container {
-  .containers  .container {
+  .containers .container {
     width: auto;
     padding-left: 0;
     padding-right: 0;
@@ -83,6 +83,15 @@ body.use-container {
         width: 49.5%;
         display: inline-block;
         vertical-align: top;
+      }
+    }
+    .containers {
+      margin-bottom: 30px;
+      .region-top .field-name-field-head {
+        @extend .sidehead1;
+      }
+      .col {
+        width: 100%;
       }
     }
   }

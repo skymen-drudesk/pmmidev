@@ -58,7 +58,7 @@ display:
         type: 'ds_entity:block_content'
         options:
           relationship: none
-          view_mode: mega_menu
+          view_mode: default
           alternating_fieldset:
             alternating: false
             allpages: false
@@ -260,6 +260,26 @@ display:
     display_options:
       display_extenders: {  }
       display_description: ''
+      style:
+        type: default
+        options: {  }
+      defaults:
+        style: false
+        row: false
+      row:
+        type: 'ds_entity:block_content'
+        options:
+          relationship: none
+          view_mode: mega_menu
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+          grouping_fieldset:
+            group: false
+            group_field: block_content__field_head|field_head_value
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
     cache_metadata:
       max-age: -1
       contexts:

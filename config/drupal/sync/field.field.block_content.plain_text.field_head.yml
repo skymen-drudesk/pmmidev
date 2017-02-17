@@ -1,14 +1,14 @@
-uuid: 5015be43-dcda-4a47-917f-43e1fcd5f049
+uuid: ddb3878e-9288-43b4-895f-e8f185bf81b7
 langcode: en
 status: true
 dependencies:
   config:
-    - block_content.type.accordion
+    - block_content.type.plain_text
     - field.storage.block_content.field_head
-id: block_content.accordion.field_head
+id: block_content.plain_text.field_head
 field_name: field_head
 entity_type: block_content
-bundle: accordion
+bundle: plain_text
 label: Head
 description: ''
 required: false

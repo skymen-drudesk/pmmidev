@@ -5,6 +5,7 @@ dependencies:
   config:
     - block_content.type.plain_text
     - field.field.block_content.plain_text.body
+    - field.field.block_content.plain_text.field_head
   module:
     - text
 id: block_content.plain_text.default
@@ -14,15 +15,22 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 3
+    weight: 2
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
+  field_head:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
   info:
     type: string_textfield
-    weight: -5
+    weight: 0
     settings:
       size: 60
       placeholder: ''
