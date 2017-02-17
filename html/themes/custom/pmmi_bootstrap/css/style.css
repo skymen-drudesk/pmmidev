@@ -12198,7 +12198,8 @@ fieldset[disabled] a.focus {
   word-wrap: normal;
 }
 
-.clear-after:after, .navbar .main-nav:after, .block-enticement:after, .block-person:after, .company-node .footer-reg .view-content:after, .accordion-item.accordion .body:after {
+.clear-after:after, .navbar .main-nav:after, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area:after,
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code:after, .block-enticement:after, .block-person:after, .company-node .footer-reg .view-content:after, .accordion-item.accordion .body:after {
   content: "";
   display: block;
   height: 0;
@@ -12563,6 +12564,112 @@ form .webform-flexbox {
 
 .label {
   color: inherit;
+}
+
+.selectize-control {
+  position: relative;
+  border: none;
+  padding: 35px 0 0;
+  height: auto;
+}
+
+.selectize-control input {
+  width: 100% !important;
+  max-width: 100%;
+  border: 1px solid #869fbe;
+  height: 30px;
+  padding: 5px 10px;
+  position: absolute !important;
+  top: 0;
+  left: 0 !important;
+  opacity: 1 !important;
+}
+
+.selectize-control.multi .selectize-input {
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.selectize-control.multi .selectize-input.has-items {
+  padding: 0;
+  border: none;
+}
+
+.selectize-control.multi .selectize-input.has-items .item {
+  vertical-align: baseline;
+  display: inline-block;
+  background: #038dc0;
+  border: none;
+  color: #fff;
+  height: 32px;
+  border-radius: 6px;
+  box-shadow: none;
+  position: relative;
+  padding: 5px 10px 5px 25px;
+  margin: 0 10px 5px 0;
+  line-height: 18px;
+}
+
+.selectize-control.multi .selectize-input.has-items .item .remove {
+  border: none;
+  color: #038dc0;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 30px;
+  line-height: 28px;
+  width: 27px;
+  margin: -15px 0 0;
+  text-align: center;
+  overflow: hidden;
+}
+
+.selectize-control.multi .selectize-input.has-items .item .remove:before {
+  display: block;
+  color: #fff;
+  font-family: FontAwesome;
+  content: '\f00d';
+}
+
+.selectize-control .selectize-dropdown {
+  display: block;
+  position: absolute;
+  z-index: 10;
+  border: 1px solid #c2c2c2;
+  background: #ffffff;
+  margin: -1px 0 0 0;
+  border-top: 0 none;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 0 0 3px 3px;
+  height: auto;
+  float: none;
+  padding: 0;
+  top: 30px !important;
+}
+
+.selectize-control .selectize-dropdown-content {
+  background: #fff;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 200px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.selectize-control .selectize-dropdown-content .option {
+  padding: 3px 10px;
+  cursor: pointer;
+}
+
+.selectize-control .selectize-dropdown-content .option.active {
+  background-color: #f5fafd;
+  color: #495c68;
+}
+
+.selectize-control .selectize-dropdown-content .option .highlight {
+  text-decoration: underline;
 }
 
 html {
@@ -15025,73 +15132,42 @@ html, body {
   margin-bottom: 16px;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area {
-  margin-left: 6px;
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .control-label,
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .control-label {
+  float: left;
+  width: 70px;
+  line-height: 40px;
+  padding-right: 0;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .chosen-container, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container {
-  max-width: 270px;
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .selectize-control,
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .selectize-control {
   min-width: 270px;
   font-size: 16px;
   font-size: 1rem;
+  padding-top: 45px;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .chosen-container ul, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container ul {
-  background: none;
-  min-height: 40px;
-  padding: 5px 10px;
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .selectize-control input,
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .selectize-control input {
+  color: #55acee;
+  height: 40px;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .chosen-container li, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container li {
-  background: none;
-  border: none;
-  color: #038dc0;
-  box-shadow: none;
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .selectize-control .selectize-dropdown,
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .selectize-control .selectize-dropdown {
+  top: 40px !important;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area {
-  margin-left: 0;
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .input-group,
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .input-group {
+  display: inline-block;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area label {
-  position: absolute;
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .control-label {
+  width: 100px;
   margin-left: -30px;
   margin-top: 5px;
-}
-
-.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container {
-  margin-left: 70px;
-  width: 700px;
-  max-width: 700px;
-  min-width: 700px;
-}
-
-.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container li.search-choice {
-  background-image: none;
-  background-color: #038dc0;
-  border: none;
-  color: #fff;
-  height: 23px;
-  border-radius: 6px;
-  box-shadow: none;
-}
-
-.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container li.search-choice span {
-  padding-left: 15px;
-}
-
-.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container li.search-choice span:before {
-  font-family: FontAwesome;
-  content: '\f00d';
-  margin-left: -15px;
-  padding-right: 5px;
-}
-
-.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container li.search-choice .search-choice-close {
-  position: relative;
-  top: -12px;
-  left: 1px;
-  opacity: 0;
 }
 
 .page-search-sales-agent-directory .main-container form .input-group,
@@ -15239,13 +15315,13 @@ html, body {
   .page-search-sales-agent-directory .main-container form {
     max-width: 340px;
   }
-  .page-search-sales-agent-directory .main-container form .form-group .form-item-country-code, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area {
+  .page-search-sales-agent-directory .main-container form .form-group .form-item-country-code {
     margin-left: 0;
   }
-  .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area label {
+  .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .control-label {
     position: relative;
-    margin-left: 0;
-    margin-top: 0;
+    margin: 0;
+    width: 70px;
   }
   .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .form-control {
     float: right;
@@ -18236,7 +18312,7 @@ form#node-company-form .main-contact .form-tel,
 form#node-company-form .main-contact .form-text,
 form#node-company-form .main-contact .form-url,
 form#node-company-form .main-contact .form-email {
-  max-width: 530px;
+  max-width: 100%;
   width: 530px;
   display: inline;
   min-width: 338px;
@@ -18288,51 +18364,22 @@ form#node-company-form .field--name-field-territory-served label {
   color: #004e75;
 }
 
-form#node-company-edit-form .field--name-field-territory-served .chosen-container,
-form#node-company-form .field--name-field-territory-served .chosen-container {
-  height: auto;
-  border: none;
-  box-shadow: none;
-  max-width: 470px;
-  min-width: 470px;
-  padding-left: 0;
-}
-
 form#node-company-edit-form .field--name-field-territory-served .input-group-addon:last-child,
 form#node-company-form .field--name-field-territory-served .input-group-addon:last-child {
   display: none;
 }
 
-form#node-company-edit-form .field--name-field-territory-served .search-choice,
-form#node-company-form .field--name-field-territory-served .search-choice {
-  background-image: none;
-  background-color: #038dc0;
-  border: none;
-  color: #fff;
-  height: 23px;
-  border-radius: 6px;
+form#node-company-edit-form .input-group,
+form#node-company-form .input-group {
+  display: block;
+}
+
+form#node-company-edit-form .selectize-control,
+form#node-company-form .selectize-control {
+  height: auto;
   box-shadow: none;
-}
-
-form#node-company-edit-form .field--name-field-territory-served .search-choice span,
-form#node-company-form .field--name-field-territory-served .search-choice span {
-  padding-left: 15px;
-}
-
-form#node-company-edit-form .field--name-field-territory-served .search-choice span:before,
-form#node-company-form .field--name-field-territory-served .search-choice span:before {
-  font-family: FontAwesome;
-  content: '\f00d';
-  margin-left: -15px;
-  padding-right: 5px;
-}
-
-form#node-company-edit-form .field--name-field-territory-served .search-choice .search-choice-close,
-form#node-company-form .field--name-field-territory-served .search-choice .search-choice-close {
-  position: relative;
-  top: -12px;
-  left: 1px;
-  opacity: 0;
+  max-width: 100%;
+  width: 470px;
 }
 
 form#node-company-edit-form .equipment-sold legend,
@@ -18514,6 +18561,14 @@ form#node-company-form .button {
   form#node-company-form .company-info .description,
   form#node-company-form .main-contact .description {
     width: auto;
+  }
+  form#node-company-edit-form .selectize-control,
+  form#node-company-form .selectize-control {
+    min-width: 0;
+  }
+  form#node-company-edit-form .selectize-control .selectize-input input,
+  form#node-company-form .selectize-control .selectize-input input {
+    max-width: 338px;
   }
   form#node-company-edit-form .field--name-field-address .selector,
   form#node-company-form .field--name-field-address .selector {
