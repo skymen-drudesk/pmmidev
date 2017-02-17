@@ -4,12 +4,14 @@ status: true
 dependencies:
   config:
     - page_manager.page.sales_agent_directory_my_favorites
+    - views.view.my_favorites_companies
   content:
     - 'block_content:image_header:14fbe4e8-9d85-4988-93d1-f0b2e3a5b49f'
   module:
     - block_content
     - panels
     - pmmi_sales_agent
+    - views
 id: sales_agent_directory_my_favorites-panels_variant-0
 label: Panels
 variant: panels_variant
@@ -40,6 +42,17 @@ variant_settings:
       region: top
       weight: 1
       uuid: 1d805dcd-56a0-4d53-b490-7017898c7097
+      context_mapping: {  }
+    c8abc5d1-645d-4be3-8df1-53ca9824d54f:
+      id: 'views_block:my_favorites_companies-block_1'
+      label: 'My Favorites'
+      provider: views
+      label_display: visible
+      views_label: 'My Favorites'
+      items_per_page: none
+      region: main
+      weight: 0
+      uuid: c8abc5d1-645d-4be3-8df1-53ca9824d54f
       context_mapping: {  }
   id: panels_variant
   uuid: 66ee0aca-61de-4b7c-868a-541490ca542c
