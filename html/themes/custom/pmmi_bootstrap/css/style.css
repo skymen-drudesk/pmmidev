@@ -15551,6 +15551,10 @@ html, body {
   border-bottom: 1px solid #c2c2c2;
 }
 
+.page-sales-agent-directory-my-favorites tbody tr:hover, .page-sales-agent-directory-my-favorites tbody tr:nth-of-type(odd):hover {
+  background: #edf5ff;
+}
+
 .page-sales-agent-directory-my-favorites tbody tr td {
   border-top: none;
   padding: 15px 8px;
@@ -18042,15 +18046,21 @@ div.view {
   float: left;
 }
 
-.company-node .general .field--name-field-main-phone-number:before,
-.company-node .general .field--name-field-general-company-email:before {
+.company-node .general .line-1,
+.company-node .general .line-2 {
+  clear: left;
+}
+
+.company-node .general .line-1 > div:before,
+.company-node .general .line-2 > div:before {
   content: ' \2022 \A0';
   color: #004e75;
   margin-left: 5px;
 }
 
-.company-node .general .line-2 {
-  clear: left;
+.company-node .general .line-1 > div:first-child:before,
+.company-node .general .line-2 > div:first-child:before {
+  display: none;
 }
 
 .company-node .row-wrapper,

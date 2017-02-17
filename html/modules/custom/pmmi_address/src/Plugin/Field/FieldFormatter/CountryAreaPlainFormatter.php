@@ -96,7 +96,7 @@ class CountryAreaPlainFormatter extends  FormatterBase implements ContainerFacto
       $division = explode('::', $division);
       $country = $this->countryRepository->getList();
       if (empty($division[1])) {
-        $elements[]['#markup'] = $country[$division[0]];
+        $elements[]['#markup'] = '<strong>' . $country[$division[0]] . '</strong>';
       } else {
         $divisions[$division[0]][] = $division[1];
       }

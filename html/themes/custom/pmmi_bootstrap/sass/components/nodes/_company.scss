@@ -24,16 +24,21 @@
     .field--name-field-website-url {
       float: left;
     }
-    .field--name-field-main-phone-number,
-    .field--name-field-general-company-email {
-      &:before {
-        content: ' \2022 \A0';
-        color: $blue;
-        margin-left: 5px;
-      }
-    }
+    .line-1,
     .line-2 {
       clear: left;
+      > div {
+        &:before {
+          content: ' \2022 \A0';
+          color: $blue;
+          margin-left: 5px;
+        }
+        &:first-child {
+          &:before {
+            display: none;
+          }
+        }
+      }
     }
   }
   .row-wrapper,

@@ -405,6 +405,10 @@
   tbody {
     tr {
       border-bottom: 1px solid $mdgrey;
+      &:hover,
+      &:nth-of-type(odd):hover {
+        background: $ltbluebg;
+      }
       td {
         border-top: none;
         padding: 15px 8px;
