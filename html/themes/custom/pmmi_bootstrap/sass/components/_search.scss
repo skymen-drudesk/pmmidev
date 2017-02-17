@@ -374,6 +374,124 @@
 }
 
 /**
+ * Sales Agent Directory Favorites Page.
+ */
+.page-sales-agent-directory-my-favorites {
+  h2 {
+    @extend .headline2;
+  }
+  .view-header {
+    margin: -45px 0 30px 250px;
+    height: auto;
+    @extend .button-primary;
+    p {
+      margin: 0;
+    }
+    a {
+      color: #fff;
+      font-size: $r14;
+      padding: 5px;
+      font-weight: 700;
+    }
+  }
+  thead {
+    font-weight: 800;
+    font-size: $r20;
+    color: $blue;
+    & > tr > th {
+      border-bottom: 1px solid $mdgrey;
+    }
+  }
+  tbody {
+    tr {
+      border-bottom: 1px solid $mdgrey;
+      td {
+        border-top: none;
+        padding: 15px 8px;
+        &.views-field-title {
+          display: block;
+          max-width: 425px;
+          a {
+            color: $blue;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+          }
+        }
+        &.views-field-field-address-country-code {
+          width: 230px;
+        }
+        &.views-field-field-manufacturers-represented {
+          width: 400px;
+          display: block;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        &.views-field-link-flag {
+          a {
+            color: $twitterblue;
+            font-style: italic;
+            font-size: $r14;
+            font-weight: 700;
+            &:before {
+              font-family: FontAwesome;
+              content: '\f00d';
+              font-style: normal;
+              padding-right: 5px;
+            }
+          }
+        }
+      }
+      &:nth-of-type(odd) {
+        background: none;
+      }
+    }
+  }
+  @include desktop {
+    tbody tr {
+      td.views-field-title,
+      td.views-field-field-manufacturers-represented {
+        width: 300px;
+      }
+    }
+  }
+  @include tablet-max {
+    .table-responsive {
+      border: none;
+      max-width: 345px;
+    }
+    h2 {
+      position: relative;
+    }
+    .view-header {
+      margin: 5px 0 15px 0;
+    }
+    thead {
+      display: none;
+    }
+    tbody > tr {
+      display: block;
+      max-width: 345px;
+      padding: 15px 0;
+      td {
+        display: block;
+        padding: 0;
+        &.views-field-field-manufacturers-represented {
+          width: 345px;
+        }
+        &.views-field-field-address-country-code {
+          font-style: italic;
+        }
+      }
+    }
+  }
+}
+
+/**
  * Main search page.
  */
 .block-views-exposed-filter-blocksearch-page-block-1 {
