@@ -34,6 +34,7 @@
     }
     .line-2 {
       clear: left;
+      min-height: 25px;
     }
   }
   .row-wrapper,
@@ -202,7 +203,6 @@
 /**
  * Company node edit form.
  */
-.page-node-type-company,
 .page-node-type-company {
   .block-block-content {
     .block-title {
@@ -250,28 +250,52 @@
     font-weight: 800;
     font-size: $r20;
   }
+  .company-info,
+  .main-contact {
+    .panel-body {
+      label {
+        width: 230px;
+        text-align: right;
+        font-size: $r14;
+        text-transform: uppercase;
+        padding-right: 10px;
+      }
+      input {
+        max-width: 535px;
+        min-width: 345px;
+        width: 100%;
+        display: inline-block;
+      }
+      .description {
+        text-align: left;
+        font-size: $r13;
+        color: $blue;
+        margin-bottom: 0;
+        padding-left: 232px;
+      }
+    }
+  }
   .field--name-field-address {
     .input-group-addon,
     .panel-heading {
       display: none;
     }
-    .form-group,
-    .address-container-inline > div {
-      float: right;
-      margin-right: 0;
-    }
     .input-group,
     .select-wrapper {
       display: inline-flex;
+      .selector {
+        border-color: $blueopacity;
+      }
     }
-    .selector,
-    .locality,
-    .postal-code {
-      width: 265px !important;
-      min-width: 265px !important;
-      border-color: $blueopacity;
+    .address-container-inline > .form-item {
+      width: 100%;
+    }
+    .select-wrapper > .selector,
+    .form-item > .locality,
+    .form-item > .postal-code {
+      min-width: 265px;
+      max-width: 265px;
       font-weight: inherit;
-      margin-right: 265px;
       &:before {
         display: none;
       }
@@ -284,36 +308,6 @@
       position: relative;
       width: auto;
       height: auto;
-    }
-  }
-  .company-info,
-  .main-contact {
-    .form-wrapper {
-      float: right;
-      text-align: right;
-      label {
-        font-size: $r14;
-        text-transform: uppercase;
-        padding-right: 10px;
-      }
-    }
-    .form-tel,
-    .form-text,
-    .form-url,
-    .form-email {
-      max-width: 530px;
-      width: 530px;
-      display: inline;
-      min-width: 338px;
-    }
-    .description {
-      float: right;
-      text-align: left;
-      font-size: $r13;
-      color: $blue;
-      max-width: 530px;
-      width: 530px;
-      margin-bottom: 0;
     }
   }
   .checker {
@@ -376,6 +370,9 @@
         left: 1px;
         opacity: 0;
       }
+    }
+    .input-group {
+      display: block;
     }
   }
   .equipment-sold,
@@ -466,31 +463,23 @@
     margin-top: 30px;
   }
   @include mobile {
-    max-width: 353px;
+    max-width: 345px;
     .company-info,
     .main-contact {
-      .form-wrapper {
-        text-align: left;
-      }
-      .form-tel,
-      .form-text,
-      .form-url,
-      .form-email {
-        max-width: 338px;
-        min-width: 338px;
-        width: 338px;
-      }
-      .description {
-        width: auto;
+      .panel-body {
+        label {
+          text-align: left;
+        }
+        .description {
+          padding-left: 0;
+        }
       }
     }
     .field--name-field-address {
-      .selector,
-      .locality,
-      .postal-code {
-        width: 338px !important;
-        min-width: 338px !important;
-        margin-right: 0 !important;
+      .select-wrapper > .selector,
+      .form-item > .locality,
+      .form-item > .postal-code {
+        min-width: 345px;
       }
       .address-container-inline .form-item .select-wrapper {
         margin-left: auto;
@@ -523,7 +512,7 @@
       }
     }
     .button {
-      width: 338px;
+      width: 345px;
       margin-bottom: 20px;
     }
   }
@@ -588,24 +577,24 @@
       li:nth-child(3) {
         width: 340px;
       }
-    }
-    li {
-      width: 160px;
-      text-align: center;
-      border: 2px solid $blue;
-      border-radius: 3px;
-      margin: 5px !important;
-      height: 30px;
-      padding-top: 2px;
-      a {
-        line-height: $r16;
-        font-size: $r13;
-      }
-      .pmmi-company-add:before,
-      .pmmi-download-favorites:before,
-      .pmmi-search-new:before,
-      .flag-favorites_content:before {
-        display: none;
+      li {
+        width: 160px;
+        text-align: center;
+        border: 2px solid $blue;
+        border-radius: 3px;
+        margin: 5px;
+        height: 30px;
+        padding-top: 2px;
+        a {
+          line-height: $r16;
+          font-size: $r13;
+        }
+        .pmmi-company-add:before,
+        .pmmi-download-favorites:before,
+        .pmmi-search-new:before,
+        .flag-favorites_content:before {
+          display: none;
+        }
       }
     }
   }

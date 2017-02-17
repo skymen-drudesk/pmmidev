@@ -12211,24 +12211,24 @@ fieldset[disabled] a.focus {
   clear: both;
 }
 
-.details-wrapper, .node-company-form .equipment-sold-details,
-.node-company-form .industries-served-details {
+.details-wrapper.panel-default, .node-company-form .panel-default.equipment-sold-details,
+.node-company-form .panel-default.industries-served-details {
   position: relative;
-  border: 1px solid #869fbe !important;
+  border: 1px solid #869fbe;
   border-radius: 0;
-  padding-left: 52px !important;
+  padding-left: 52px;
   margin-bottom: 15px;
 }
 
-.details-wrapper .panel-heading, .node-company-form .equipment-sold-details .panel-heading,
-.node-company-form .industries-served-details .panel-heading {
+.details-wrapper.panel-default .panel-heading, .node-company-form .panel-default.equipment-sold-details .panel-heading,
+.node-company-form .panel-default.industries-served-details .panel-heading {
   color: #8c8888;
   background: none;
   border: none;
 }
 
-.details-wrapper .panel-heading a, .node-company-form .equipment-sold-details .panel-heading a,
-.node-company-form .industries-served-details .panel-heading a {
+.details-wrapper.panel-default .panel-heading a, .node-company-form .panel-default.equipment-sold-details .panel-heading a,
+.node-company-form .panel-default.industries-served-details .panel-heading a {
   color: inherit;
   font-weight: 600;
   font-style: italic;
@@ -12236,45 +12236,45 @@ fieldset[disabled] a.focus {
   font-size: 1rem;
 }
 
-.details-wrapper .panel-heading a[aria-expanded="true"], .node-company-form .equipment-sold-details .panel-heading a[aria-expanded="true"],
-.node-company-form .industries-served-details .panel-heading a[aria-expanded="true"] {
+.details-wrapper.panel-default .panel-heading a[aria-expanded="true"], .node-company-form .panel-default.equipment-sold-details .panel-heading a[aria-expanded="true"],
+.node-company-form .panel-default.industries-served-details .panel-heading a[aria-expanded="true"] {
   font-weight: 700;
   padding-left: 15px;
 }
 
-.details-wrapper .panel-body.in, .node-company-form .equipment-sold-details .panel-body.in,
-.node-company-form .industries-served-details .panel-body.in {
+.details-wrapper.panel-default .panel-body.in, .node-company-form .panel-default.equipment-sold-details .panel-body.in,
+.node-company-form .panel-default.industries-served-details .panel-body.in {
   padding: 0 20px 20px 15px;
 }
 
-.details-wrapper .panel-body.in .form-type-textarea label, .node-company-form .equipment-sold-details .panel-body.in .form-type-textarea label,
-.node-company-form .industries-served-details .panel-body.in .form-type-textarea label {
+.details-wrapper.panel-default .panel-body.in .form-type-textarea label, .node-company-form .panel-default.equipment-sold-details .panel-body.in .form-type-textarea label,
+.node-company-form .panel-default.industries-served-details .panel-body.in .form-type-textarea label {
   text-transform: uppercase;
   padding: 4px 15px 0 0;
 }
 
-.details-wrapper .panel-body.in .form-type-textarea .form-textarea-wrapper, .node-company-form .equipment-sold-details .panel-body.in .form-type-textarea .form-textarea-wrapper,
-.node-company-form .industries-served-details .panel-body.in .form-type-textarea .form-textarea-wrapper {
+.details-wrapper.panel-default .panel-body.in .form-type-textarea .form-textarea-wrapper, .node-company-form .panel-default.equipment-sold-details .panel-body.in .form-type-textarea .form-textarea-wrapper,
+.node-company-form .panel-default.industries-served-details .panel-body.in .form-type-textarea .form-textarea-wrapper {
   position: absolute;
   padding-right: 20px;
   display: inline-block;
 }
 
 @media screen and (max-width: 1023px) {
-  .details-wrapper .panel-body.in .form-type-textarea .form-textarea-wrapper, .node-company-form .equipment-sold-details .panel-body.in .form-type-textarea .form-textarea-wrapper,
-  .node-company-form .industries-served-details .panel-body.in .form-type-textarea .form-textarea-wrapper {
+  .details-wrapper.panel-default .panel-body.in .form-type-textarea .form-textarea-wrapper, .node-company-form .panel-default.equipment-sold-details .panel-body.in .form-type-textarea .form-textarea-wrapper,
+  .node-company-form .panel-default.industries-served-details .panel-body.in .form-type-textarea .form-textarea-wrapper {
     position: relative;
   }
 }
 
-.details-wrapper.active:before, .node-company-form .active.equipment-sold-details:before,
-.node-company-form .active.industries-served-details:before {
+.details-wrapper.panel-default.active:before, .node-company-form .panel-default.active.equipment-sold-details:before,
+.node-company-form .panel-default.active.industries-served-details:before {
   content: '\f068';
   background-color: #038dc0;
 }
 
-.details-wrapper:before, .node-company-form .equipment-sold-details:before,
-.node-company-form .industries-served-details:before {
+.details-wrapper.panel-default:before, .node-company-form .panel-default.equipment-sold-details:before,
+.node-company-form .panel-default.industries-served-details:before {
   background-color: #004e75;
   width: 40px;
   display: block;
@@ -12291,40 +12291,40 @@ fieldset[disabled] a.focus {
   bottom: 0;
 }
 
-.details-wrapper .checker, .node-company-form .equipment-sold-details .checker,
-.node-company-form .industries-served-details .checker {
+.details-wrapper.panel-default .checker, .node-company-form .panel-default.equipment-sold-details .checker,
+.node-company-form .panel-default.industries-served-details .checker {
   opacity: 0;
 }
 
-.details-wrapper .checkbox.checked, .node-company-form .equipment-sold-details .checkbox.checked,
-.node-company-form .industries-served-details .checkbox.checked {
+.details-wrapper.panel-default .checkbox.checked, .node-company-form .panel-default.equipment-sold-details .checkbox.checked,
+.node-company-form .panel-default.industries-served-details .checkbox.checked {
   color: #038dc0;
 }
 
-.details-wrapper .checkbox.checked label, .node-company-form .equipment-sold-details .checkbox.checked label,
-.node-company-form .industries-served-details .checkbox.checked label {
+.details-wrapper.panel-default .checkbox.checked label, .node-company-form .panel-default.equipment-sold-details .checkbox.checked label,
+.node-company-form .panel-default.industries-served-details .checkbox.checked label {
   color: #038dc0;
 }
 
-.details-wrapper .checkbox.checked:before, .node-company-form .equipment-sold-details .checkbox.checked:before,
-.node-company-form .industries-served-details .checkbox.checked:before {
+.details-wrapper.panel-default .checkbox.checked:before, .node-company-form .panel-default.equipment-sold-details .checkbox.checked:before,
+.node-company-form .panel-default.industries-served-details .checkbox.checked:before {
   font-family: FontAwesome;
   content: '\f046';
   position: absolute;
 }
 
-.details-wrapper .checkbox, .node-company-form .equipment-sold-details .checkbox,
-.node-company-form .industries-served-details .checkbox {
+.details-wrapper.panel-default .checkbox, .node-company-form .panel-default.equipment-sold-details .checkbox,
+.node-company-form .panel-default.industries-served-details .checkbox {
   color: #000;
 }
 
-.details-wrapper .checkbox label, .node-company-form .equipment-sold-details .checkbox label,
-.node-company-form .industries-served-details .checkbox label {
+.details-wrapper.panel-default .checkbox label, .node-company-form .panel-default.equipment-sold-details .checkbox label,
+.node-company-form .panel-default.industries-served-details .checkbox label {
   color: #000;
 }
 
-.details-wrapper .checkbox:before, .node-company-form .equipment-sold-details .checkbox:before,
-.node-company-form .industries-served-details .checkbox:before {
+.details-wrapper.panel-default .checkbox:before, .node-company-form .panel-default.equipment-sold-details .checkbox:before,
+.node-company-form .panel-default.industries-served-details .checkbox:before {
   font-family: FontAwesome;
   content: '\f096';
   position: absolute;
@@ -15574,6 +15574,7 @@ html, body {
   border: none;
   padding-left: 20px;
   display: inline-block;
+  width: 100%;
 }
 
 .page-search-results-sales-agent-directory .view-search-sales-agent-directory tbody > tr td:first-child:before {
@@ -15595,31 +15596,31 @@ html, body {
   overflow: hidden;
   text-transform: uppercase;
   font-weight: bold;
-  width: 80%;
+  width: 90%;
 }
 
 @media screen and (max-width: 1023px) {
-  .page-search-results-sales-agent-directory .table-responsive {
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory .table-responsive {
     border: none;
   }
-  .page-search-results-sales-agent-directory .table > thead {
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory .table > thead {
     display: none;
   }
-  .page-search-results-sales-agent-directory tbody > tr {
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory tbody > tr {
     display: block;
-    border-bottom: 0 !important;
+    border-bottom: 0;
     max-width: 345px;
   }
-  .page-search-results-sales-agent-directory tbody > tr td {
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory tbody > tr td {
     display: block;
     white-space: normal;
     padding: 5px 0 5px 32px;
   }
-  .page-search-results-sales-agent-directory td.views-field-country {
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory td.views-field-country {
     font-style: italic;
   }
-  .page-search-results-sales-agent-directory td.views-field-field-manufacturers-represented {
-    width: inherit !important;
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory td.views-field-field-manufacturers-represented {
+    width: 345px;
   }
 }
 
@@ -18020,6 +18021,7 @@ div.view {
 
 .company-node .general .line-2 {
   clear: left;
+  min-height: 25px;
 }
 
 .company-node .row-wrapper,
@@ -18194,7 +18196,6 @@ div.view {
 /**
  * Company node edit form.
  */
-.page-node-type-company .block-block-content .block-title,
 .page-node-type-company .block-block-content .block-title {
   color: #004e75;
   font-size: 35px;
@@ -18203,7 +18204,6 @@ div.view {
   line-height: 42px;
 }
 
-.page-node-type-company .block-block-content .title,
 .page-node-type-company .block-block-content .title {
   color: #1d262c;
   font-size: 23px;
@@ -18212,7 +18212,6 @@ div.view {
   line-height: 23px;
 }
 
-.page-node-type-company .block-block-content .field--name-body,
 .page-node-type-company .block-block-content .field--name-body {
   color: #8c8888;
 }
@@ -18253,15 +18252,37 @@ div.view {
   font-size: 1.25rem;
 }
 
+.node-company-form .company-info .panel-body label,
+.node-company-form .main-contact .panel-body label {
+  width: 230px;
+  text-align: right;
+  font-size: 14px;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  padding-right: 10px;
+}
+
+.node-company-form .company-info .panel-body input,
+.node-company-form .main-contact .panel-body input {
+  max-width: 535px;
+  min-width: 345px;
+  width: 100%;
+  display: inline-block;
+}
+
+.node-company-form .company-info .panel-body .description,
+.node-company-form .main-contact .panel-body .description {
+  text-align: left;
+  font-size: 13px;
+  font-size: 0.8125rem;
+  color: #004e75;
+  margin-bottom: 0;
+  padding-left: 232px;
+}
+
 .node-company-form .field--name-field-address .input-group-addon,
 .node-company-form .field--name-field-address .panel-heading {
   display: none;
-}
-
-.node-company-form .field--name-field-address .form-group,
-.node-company-form .field--name-field-address .address-container-inline > div {
-  float: right;
-  margin-right: 0;
 }
 
 .node-company-form .field--name-field-address .input-group,
@@ -18271,25 +18292,32 @@ div.view {
   display: inline-flex;
 }
 
-.node-company-form .field--name-field-address .selector,
-.node-company-form .field--name-field-address .locality,
-.node-company-form .field--name-field-address .postal-code {
-  width: 265px !important;
-  min-width: 265px !important;
+.node-company-form .field--name-field-address .input-group .selector,
+.node-company-form .field--name-field-address .select-wrapper .selector {
   border-color: #869fbe;
-  font-weight: inherit;
-  margin-right: 265px;
 }
 
-.node-company-form .field--name-field-address .selector:before,
-.node-company-form .field--name-field-address .locality:before,
-.node-company-form .field--name-field-address .postal-code:before {
+.node-company-form .field--name-field-address .address-container-inline > .form-item {
+  width: 100%;
+}
+
+.node-company-form .field--name-field-address .select-wrapper > .selector,
+.node-company-form .field--name-field-address .form-item > .locality,
+.node-company-form .field--name-field-address .form-item > .postal-code {
+  min-width: 265px;
+  max-width: 265px;
+  font-weight: inherit;
+}
+
+.node-company-form .field--name-field-address .select-wrapper > .selector:before,
+.node-company-form .field--name-field-address .form-item > .locality:before,
+.node-company-form .field--name-field-address .form-item > .postal-code:before {
   display: none;
 }
 
-.node-company-form .field--name-field-address .selector span,
-.node-company-form .field--name-field-address .locality span,
-.node-company-form .field--name-field-address .postal-code span {
+.node-company-form .field--name-field-address .select-wrapper > .selector span,
+.node-company-form .field--name-field-address .form-item > .locality span,
+.node-company-form .field--name-field-address .form-item > .postal-code span {
   text-align: left;
   padding-left: 10px;
 }
@@ -18298,46 +18326,6 @@ div.view {
   position: relative;
   width: auto;
   height: auto;
-}
-
-.node-company-form .company-info .form-wrapper,
-.node-company-form .main-contact .form-wrapper {
-  float: right;
-  text-align: right;
-}
-
-.node-company-form .company-info .form-wrapper label,
-.node-company-form .main-contact .form-wrapper label {
-  font-size: 14px;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  padding-right: 10px;
-}
-
-.node-company-form .company-info .form-tel,
-.node-company-form .company-info .form-text,
-.node-company-form .company-info .form-url,
-.node-company-form .company-info .form-email,
-.node-company-form .main-contact .form-tel,
-.node-company-form .main-contact .form-text,
-.node-company-form .main-contact .form-url,
-.node-company-form .main-contact .form-email {
-  max-width: 530px;
-  width: 530px;
-  display: inline;
-  min-width: 338px;
-}
-
-.node-company-form .company-info .description,
-.node-company-form .main-contact .description {
-  float: right;
-  text-align: left;
-  font-size: 13px;
-  font-size: 0.8125rem;
-  color: #004e75;
-  max-width: 530px;
-  width: 530px;
-  margin-bottom: 0;
 }
 
 .node-company-form .checker {
@@ -18406,6 +18394,10 @@ div.view {
   top: -12px;
   left: 1px;
   opacity: 0;
+}
+
+.node-company-form .field--name-field-territory-served .input-group {
+  display: block;
 }
 
 .node-company-form .equipment-sold legend,
@@ -18510,34 +18502,20 @@ div.view {
 
 @media screen and (max-width: 767px) {
   .node-company-form {
-    max-width: 353px;
+    max-width: 345px;
   }
-  .node-company-form .company-info .form-wrapper,
-  .node-company-form .main-contact .form-wrapper {
+  .node-company-form .company-info .panel-body label,
+  .node-company-form .main-contact .panel-body label {
     text-align: left;
   }
-  .node-company-form .company-info .form-tel,
-  .node-company-form .company-info .form-text,
-  .node-company-form .company-info .form-url,
-  .node-company-form .company-info .form-email,
-  .node-company-form .main-contact .form-tel,
-  .node-company-form .main-contact .form-text,
-  .node-company-form .main-contact .form-url,
-  .node-company-form .main-contact .form-email {
-    max-width: 338px;
-    min-width: 338px;
-    width: 338px;
+  .node-company-form .company-info .panel-body .description,
+  .node-company-form .main-contact .panel-body .description {
+    padding-left: 0;
   }
-  .node-company-form .company-info .description,
-  .node-company-form .main-contact .description {
-    width: auto;
-  }
-  .node-company-form .field--name-field-address .selector,
-  .node-company-form .field--name-field-address .locality,
-  .node-company-form .field--name-field-address .postal-code {
-    width: 338px !important;
-    min-width: 338px !important;
-    margin-right: 0 !important;
+  .node-company-form .field--name-field-address .select-wrapper > .selector,
+  .node-company-form .field--name-field-address .form-item > .locality,
+  .node-company-form .field--name-field-address .form-item > .postal-code {
+    min-width: 345px;
   }
   .node-company-form .field--name-field-address .address-container-inline .form-item .select-wrapper {
     margin-left: auto;
@@ -18561,7 +18539,7 @@ div.view {
     margin-left: 0;
   }
   .node-company-form .button {
-    width: 338px;
+    width: 345px;
     margin-bottom: 20px;
   }
 }
@@ -18644,35 +18622,29 @@ div.view {
   .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li:nth-child(3) {
     width: 340px;
   }
-  .block-pmmi-sales-agent-action-toolbar li,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li {
+  .block-pmmi-sales-agent-action-toolbar ul li,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li {
     width: 160px;
     text-align: center;
     border: 2px solid #004e75;
     border-radius: 3px;
-    margin: 5px !important;
+    margin: 5px;
     height: 30px;
     padding-top: 2px;
   }
-  .block-pmmi-sales-agent-action-toolbar li a,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li a {
+  .block-pmmi-sales-agent-action-toolbar ul li a,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li a {
     line-height: 1rem;
     font-size: 0.8125rem;
   }
-  .block-pmmi-sales-agent-action-toolbar li .pmmi-company-add:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-download-favorites:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul .block-pmmi-sales-agent-action-toolbar li .pmmi-download-favorites:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-search-new:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul .block-pmmi-sales-agent-action-toolbar li .pmmi-search-new:before, .block-pmmi-sales-agent-action-toolbar ul li .flag-favorites_content:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul .block-pmmi-sales-agent-action-toolbar li .flag-favorites_content:before,
-  .block-pmmi-sales-agent-action-toolbar li .pmmi-download-favorites:before,
-  .block-pmmi-sales-agent-action-toolbar li .pmmi-search-new:before,
-  .block-pmmi-sales-agent-action-toolbar li .flag-favorites_content:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-company-add:before, .block-pmmi-sales-agent-action-toolbar ul
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-download-favorites:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-download-favorites:before, .block-pmmi-sales-agent-action-toolbar ul
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-search-new:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-search-new:before, .block-pmmi-sales-agent-action-toolbar ul
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .flag-favorites_content:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .flag-favorites_content:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-download-favorites:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-search-new:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .flag-favorites_content:before {
+  .block-pmmi-sales-agent-action-toolbar ul li .pmmi-company-add:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-download-favorites:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-search-new:before, .block-pmmi-sales-agent-action-toolbar ul li .flag-favorites_content:before,
+  .block-pmmi-sales-agent-action-toolbar ul li .pmmi-download-favorites:before,
+  .block-pmmi-sales-agent-action-toolbar ul li .pmmi-search-new:before,
+  .block-pmmi-sales-agent-action-toolbar ul li .flag-favorites_content:before,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-company-add:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-download-favorites:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-search-new:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .flag-favorites_content:before,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-download-favorites:before,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-search-new:before,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .flag-favorites_content:before {
     display: none;
   }
 }

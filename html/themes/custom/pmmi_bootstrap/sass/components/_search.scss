@@ -323,6 +323,7 @@
           border: none;
           padding-left: 20px;
           display: inline-block;
+          width: 100%;
           &:before {
             float: left;
             margin-left: -20px;
@@ -341,34 +342,36 @@
             overflow: hidden;
             text-transform: uppercase;
             font-weight: bold;
-            width: 80%;
+            width: 90%;
           }
         }
       }
     }
   }
   @include tablet-max {
-    .table-responsive {
-      border: none;
-    }
-    .table > thead {
-      display: none;
-    }
-    tbody > tr {
-      display: block;
-      border-bottom: 0 !important;;
-      max-width: 345px;
-      td {
-        display: block;
-        white-space: normal;
-        padding: 5px 0 5px 32px;
+    .view-search-sales-agent-directory {
+      .table-responsive {
+        border: none;
       }
-    }
-    td.views-field-country {
-      font-style: italic;
-    }
-    td.views-field-field-manufacturers-represented {
-      width: inherit !important;
+      .table > thead {
+        display: none;
+      }
+      tbody > tr {
+        display: block;
+        border-bottom: 0;
+        max-width: 345px;
+        td {
+          display: block;
+          white-space: normal;
+          padding: 5px 0 5px 32px;
+        }
+      }
+      td.views-field-country {
+        font-style: italic;
+      }
+      td.views-field-field-manufacturers-represented {
+        width: 345px;
+      }
     }
   }
 }
