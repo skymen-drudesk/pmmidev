@@ -18418,46 +18418,6 @@ div.view {
   height: auto;
 }
 
-.node-company-form .company-info .form-wrapper,
-.node-company-form .main-contact .form-wrapper {
-  float: right;
-  text-align: right;
-}
-
-.node-company-form .company-info .form-wrapper label,
-.node-company-form .main-contact .form-wrapper label {
-  font-size: 14px;
-  font-size: 0.875rem;
-  text-transform: uppercase;
-  padding-right: 10px;
-}
-
-.node-company-form .company-info .form-tel,
-.node-company-form .company-info .form-text,
-.node-company-form .company-info .form-url,
-.node-company-form .company-info .form-email,
-.node-company-form .main-contact .form-tel,
-.node-company-form .main-contact .form-text,
-.node-company-form .main-contact .form-url,
-.node-company-form .main-contact .form-email {
-  max-width: 100%;
-  width: 530px;
-  display: inline;
-  min-width: 338px;
-}
-
-.node-company-form .company-info .description,
-.node-company-form .main-contact .description {
-  float: right;
-  text-align: left;
-  font-size: 13px;
-  font-size: 0.8125rem;
-  color: #004e75;
-  max-width: 530px;
-  width: 530px;
-  margin-bottom: 0;
-}
-
 .node-company-form .checker {
   opacity: 0;
 }

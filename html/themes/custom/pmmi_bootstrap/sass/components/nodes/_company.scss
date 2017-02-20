@@ -310,36 +310,6 @@
       height: auto;
     }
   }
-  .company-info,
-  .main-contact {
-    .form-wrapper {
-      float: right;
-      text-align: right;
-      label {
-        font-size: $r14;
-        text-transform: uppercase;
-        padding-right: 10px;
-      }
-    }
-    .form-tel,
-    .form-text,
-    .form-url,
-    .form-email {
-      max-width: 100%;
-      width: 530px;
-      display: inline;
-      min-width: 338px;
-    }
-    .description {
-      float: right;
-      text-align: left;
-      font-size: $r13;
-      color: $blue;
-      max-width: 530px;
-      width: 530px;
-      margin-bottom: 0;
-    }
-  }
   .checker {
     opacity: 0;
   }
