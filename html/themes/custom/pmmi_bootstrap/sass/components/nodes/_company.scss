@@ -202,7 +202,6 @@
 /**
  * Company node edit form
  */
-.page-node-type-company,
 .page-node-type-company {
   .block-block-content {
     .block-title {
@@ -235,7 +234,6 @@ form#node-company-form {
   .form-control {
     border-color: $blueopacity;
   }
-  //margin: auto;
   .panel-heading,
   .panel-default,
   legend {
@@ -524,7 +522,7 @@ form#node-company-form {
   display: block;
   background-color: #d8e1e1;
   ul {
-    float: right;
+    text-align: right;
     margin-right: 135px;
     height: 100%;
     margin-bottom: 0;
@@ -565,6 +563,7 @@ form#node-company-form {
     ul {
       margin-right: 0;
       padding: 4px 15px;
+      text-align: left;
       li:first-child {
         background-color: $blue;
         a {
@@ -573,25 +572,22 @@ form#node-company-form {
       }
       li {
         width: 340px;
-      }
-    }
-    li {
-      width: 160px;
-      text-align: center;
-      border: 2px solid $blue;
-      border-radius: 3px;
-      margin: 5px !important;
-      height: 30px;
-      padding-top: 2px;
-      a {
-        line-height: $r16;
-        font-size: $r13;
-      }
-      .pmmi-company-add:before,
-      .pmmi-download-favorites:before,
-      .pmmi-search-new:before,
-      .flag-favorites_content:before {
-        display: none;
+        text-align: center;
+        border: 2px solid $blue;
+        border-radius: 3px;
+        margin: 5px 0;
+        height: 30px;
+        padding-top: 2px;
+        a {
+          line-height: $r16;
+          font-size: $r13;
+        }
+        .pmmi-company-add:before,
+        .pmmi-download-favorites:before,
+        .pmmi-search-new:before,
+        .flag-favorites_content:before {
+          display: none;
+        }
       }
     }
   }
