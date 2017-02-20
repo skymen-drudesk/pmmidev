@@ -13,6 +13,10 @@ libraries:
 
 libraries-override:
   tb_megamenu/theme.tb_megamenu: false
+  selectize/core:
+    css:
+      component:
+        /libraries/selectize/dist/css/selectize.default.css: false
 
 regions:
   navigation: 'Navigation'

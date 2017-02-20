@@ -5,6 +5,7 @@ dependencies:
   config:
     - block_content.type.plain_text
     - field.field.block_content.plain_text.body
+    - field.field.block_content.plain_text.field_head
   module:
     - ds
     - text
@@ -18,6 +19,8 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
+      head:
+        - field_head
       main:
         - body
 id: block_content.plain_text.default
@@ -28,7 +31,14 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
+  field_head:
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
 hidden: {  }

@@ -157,6 +157,18 @@
     {
       "type": "package",
       "package": {
+        "name": "selectize/selectize",
+        "version": "0.12.4",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/selectize/selectize.js/archive/v0.12.4.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
         "name": "derhasi/viewfield",
         "version": "2.0",
         "type": "drupal-module",
@@ -354,6 +366,7 @@
     "drupal/search_api": "8.x-1.x-dev",
     "drupal/search_api_page": "8.x-1.x-dev",
     "drupal/search_api_solr": "8.x-1.x-dev",
+    "drupal/selectize": "^8.1@beta",
     "drupal/slick": "1.x-dev",
     "drupal/slick_views": "1.x-dev",
     "drupal/tb_megamenu": "8.1.0-alpha1",
@@ -375,6 +388,7 @@
     "psr/log": "dev-master",
     "qwertypants/word-and-character-counter": "^2.3.5",
     "select2/select2": "^4.0.3",
+    "selectize/selectize": "^0.12.4",
     "simontabor/jquery.toggles": "^4.0.0",
     "summitmedia/panels_everywhere": "dev-master",
     "szimek/signature_pad": "^1.5.3",

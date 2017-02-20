@@ -8,6 +8,7 @@ use CommerceGuys\Addressing\Country\CountryRepository;
 use Drupal\Component\Utility\Html;
 use Drupal\Core\Url;
 use Drupal\Core\Link;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Template\Attribute;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -364,4 +365,39 @@ function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array
  */
 function pmmi_bootstrap_preprocess_tb_megamenu_item(&$vars) {
   $vars['attributes']['class'][] = 'link-' . Html::getClass($vars['link']['title']);
+}
+
+/**
+ * Implements template_preprocess_views_view_field().
+ */
+function pmmi_bootstrap_preprocess_views_view_field(&$variables) {
+  $view = $variables['view'];
+
+  switch ($view->id() . '-' . $view->current_display) {
+    case'my_favorites_companies-block_1':
+      // Override flag link text in the view.
+      if ($variables['field']->field == 'link_flag') {
+        $flag_link = $variables['output']->__toString();
+        $new_flag_link = str_replace('Remove from favorites', 'remove', $flag_link);
+        $variables['output'] = Markup::create($new_flag_link);
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function pmmi_bootstrap_element_info_alter(&$data, &$context1 = NULL, &$context2 = NULL) {
+  if (isset($data['selectize'])) {
+    $data['selectize']['#pre_render'][] = 'pmmi_bootstrap_selectize_pre_render';
+  }
+}
+
+/**
+ * Selectize pre_render.
+ */
+function pmmi_bootstrap_selectize_pre_render($element) {
+  $element['#attached']['library'][] = 'pmmi_bootstrap/selectize-plugins';
+  return $element;
 }

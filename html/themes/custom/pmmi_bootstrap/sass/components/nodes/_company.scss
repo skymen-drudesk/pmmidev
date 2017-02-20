@@ -310,6 +310,36 @@
       height: auto;
     }
   }
+  .company-info,
+  .main-contact {
+    .form-wrapper {
+      float: right;
+      text-align: right;
+      label {
+        font-size: $r14;
+        text-transform: uppercase;
+        padding-right: 10px;
+      }
+    }
+    .form-tel,
+    .form-text,
+    .form-url,
+    .form-email {
+      max-width: 100%;
+      width: 530px;
+      display: inline;
+      min-width: 338px;
+    }
+    .description {
+      float: right;
+      text-align: left;
+      font-size: $r13;
+      color: $blue;
+      max-width: 530px;
+      width: 530px;
+      margin-bottom: 0;
+    }
+  }
   .checker {
     opacity: 0;
   }
@@ -334,46 +364,20 @@
       font-weight: 400;
       color: $blue;
     }
-    .chosen-container {
-      height: auto;
-      border: none;
-      box-shadow: none;
-      max-width: 470px;
-      min-width: 470px;
-      padding-left: 0;
-    }
     .input-group-addon {
       &:last-child {
         display: none;
       }
     }
-    li.search-choice {
-      background-image: none;
-      background-color: $ltblue;
-      border: none;
-      color: #fff;
-      height: 23px;
-      border-radius: 6px;
-      box-shadow: none;
-      span {
-        padding-left: 15px;
-        &:before {
-          font-family: FontAwesome;
-          content: '\f00d';
-          margin-left: -15px;
-          padding-right: 5px;
-        }
-      }
-      .search-choice-close {
-        position: relative;
-        top: -12px;
-        left: 1px;
-        opacity: 0;
-      }
-    }
-    .input-group {
-      display: block;
-    }
+  }
+  .input-group {
+    display: block;
+  }
+  .selectize-control {
+    height: auto;
+    box-shadow: none;
+    max-width: 100%;
+    width: 470px;
   }
   .equipment-sold,
   .industries-served {
@@ -473,6 +477,12 @@
         .description {
           padding-left: 0;
         }
+      }
+    }
+    .selectize-control {
+      min-width: 0;
+      .selectize-input input {
+        max-width: 338px;
       }
     }
     .field--name-field-address {
