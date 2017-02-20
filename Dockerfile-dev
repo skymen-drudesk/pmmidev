@@ -24,3 +24,8 @@ RUN pecl install xdebug \
   && echo "xdebug.max_nesting_level = 256" >> /usr/local/etc/php/conf.d/xdebug.ini \
   && echo "xdebug.remote_log = /tmp/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini
 
+# sSMTP: note php is configured to use ssmtp, which is configured to send to
+# pmmimail:1025, which is standard configuration for a mailhog/mailhog image
+# with hostname mail.
+RUN apt-get install ssmtp -y
+COPY ./build/ssmtp/ssmtp.conf /etc/ssmtp/ssmtp.conf
