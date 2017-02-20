@@ -20520,24 +20520,24 @@ html, body {
   margin-bottom: 16px;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area {
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code {
   margin-left: 6px;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .chosen-container, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container {
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .chosen-container {
   max-width: 270px;
   min-width: 270px;
   font-size: 16px;
   font-size: 1rem;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .chosen-container ul, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container ul {
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .chosen-container ul {
   background: none;
   min-height: 40px;
   padding: 5px 10px;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .chosen-container li, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container li {
+.page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .chosen-container li {
   background: none;
   border: none;
   color: #038dc0;
@@ -20545,13 +20545,13 @@ html, body {
 }
 
 .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area {
-  margin-left: 0;
+  z-index: 1;
+  position: relative;
 }
 
-.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area label {
-  position: absolute;
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .control-label {
+  width: 100px;
   margin-left: -30px;
-  margin-top: 5px;
 }
 
 .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .chosen-container {
@@ -20734,7 +20734,7 @@ html, body {
   .page-search-sales-agent-directory .main-container form {
     max-width: 340px;
   }
-  .page-search-sales-agent-directory .main-container form .form-group .form-item-country-code, .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area {
+  .page-search-sales-agent-directory .main-container form .form-group .form-item-country-code {
     margin-left: 0;
   }
   .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area label {
@@ -23909,39 +23909,29 @@ form#node-company-form .button {
   .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li:first-child a {
     color: #fff;
   }
-  .block-pmmi-sales-agent-action-toolbar ul li:nth-child(3),
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li:nth-child(3) {
+  .block-pmmi-sales-agent-action-toolbar ul li,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li {
     width: 340px;
-  }
-  .block-pmmi-sales-agent-action-toolbar li,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li {
-    width: 165px;
     text-align: center;
     border: 2px solid #004e75;
     border-radius: 3px;
-    margin: 5px !important;
+    margin: 5px;
     height: 30px;
     padding-top: 2px;
   }
-  .block-pmmi-sales-agent-action-toolbar li a,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li a {
+  .block-pmmi-sales-agent-action-toolbar ul li a,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li a {
     line-height: 1rem;
     font-size: 0.8125rem;
   }
-  .block-pmmi-sales-agent-action-toolbar li .pmmi-company-add:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-download-favorites:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul .block-pmmi-sales-agent-action-toolbar li .pmmi-download-favorites:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-search-new:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul .block-pmmi-sales-agent-action-toolbar li .pmmi-search-new:before, .block-pmmi-sales-agent-action-toolbar ul li .flag-favorites_content:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul .block-pmmi-sales-agent-action-toolbar li .flag-favorites_content:before,
-  .block-pmmi-sales-agent-action-toolbar li .pmmi-download-favorites:before,
-  .block-pmmi-sales-agent-action-toolbar li .pmmi-search-new:before,
-  .block-pmmi-sales-agent-action-toolbar li .flag-favorites_content:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-company-add:before, .block-pmmi-sales-agent-action-toolbar ul
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-download-favorites:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-download-favorites:before, .block-pmmi-sales-agent-action-toolbar ul
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-search-new:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-search-new:before, .block-pmmi-sales-agent-action-toolbar ul
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .flag-favorites_content:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .flag-favorites_content:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-download-favorites:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-search-new:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .flag-favorites_content:before {
+  .block-pmmi-sales-agent-action-toolbar ul li .pmmi-company-add:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-download-favorites:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-search-new:before, .block-pmmi-sales-agent-action-toolbar ul li .flag-favorites_content:before,
+  .block-pmmi-sales-agent-action-toolbar ul li .pmmi-download-favorites:before,
+  .block-pmmi-sales-agent-action-toolbar ul li .pmmi-search-new:before,
+  .block-pmmi-sales-agent-action-toolbar ul li .flag-favorites_content:before,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-company-add:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-download-favorites:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-search-new:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .flag-favorites_content:before,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-download-favorites:before,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-search-new:before,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .flag-favorites_content:before {
     display: none;
   }
 }

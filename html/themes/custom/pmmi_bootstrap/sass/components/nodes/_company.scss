@@ -549,27 +549,24 @@ form#node-company-form {
           color: #fff;
         }
       }
-      li:nth-child(3) {
+      li {
         width: 340px;
-      }
-    }
-    li {
-      width: 165px;
-      text-align: center;
-      border: 2px solid $blue;
-      border-radius: 3px;
-      margin: 5px !important;
-      height: 30px;
-      padding-top: 2px;
-      a {
-        line-height: $r16;
-        font-size: $r13;
-      }
-      .pmmi-company-add:before,
-      .pmmi-download-favorites:before,
-      .pmmi-search-new:before,
-      .flag-favorites_content:before {
-        display: none;
+        text-align: center;
+        border: 2px solid $blue;
+        border-radius: 3px;
+        margin: 5px;
+        height: 30px;
+        padding-top: 2px;
+        a {
+          line-height: $r16;
+          font-size: $r13;
+        }
+        .pmmi-company-add:before,
+        .pmmi-download-favorites:before,
+        .pmmi-search-new:before,
+        .flag-favorites_content:before {
+          display: none;
+        }
       }
     }
   }
