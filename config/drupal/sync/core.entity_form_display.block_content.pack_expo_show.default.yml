@@ -4,19 +4,18 @@ status: true
 dependencies:
   config:
     - block_content.type.pack_expo_show
+    - entity_browser.browser.browse_files_modal
     - field.field.block_content.pack_expo_show.body
-    - field.field.block_content.pack_expo_show.field_button
     - field.field.block_content.pack_expo_show.field_buttons
     - field.field.block_content.pack_expo_show.field_dates
+    - field.field.block_content.pack_expo_show.field_head
     - field.field.block_content.pack_expo_show.field_location
     - field.field.block_content.pack_expo_show.field_logo
     - field.field.block_content.pack_expo_show.field_show_dates
-    - field.field.block_content.pack_expo_show.field_show_link
-    - image.style.thumbnail
   module:
     - address
     - datetime_range
-    - image
+    - entity_browser
     - link_attributes
     - text
 id: block_content.pack_expo_show.default
@@ -25,7 +24,7 @@ bundle: pack_expo_show
 mode: default
 content:
   body:
-    weight: 2
+    weight: 3
     settings:
       rows: 9
       summary_rows: 3
@@ -33,38 +32,6 @@ content:
     third_party_settings: {  }
     type: text_textarea_with_summary
   field_buttons:
-    weight: 5
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-      enabled_attributes:
-        id: false
-        name: false
-        target: true
-        rel: true
-        class: true
-        accesskey: false
-    third_party_settings: {  }
-    type: link_attributes
-  field_location:
-    weight: 1
-    settings:
-      default_country: null
-    third_party_settings: {  }
-    type: address_default
-  field_logo:
-    weight: 3
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-    type: image_image
-  field_show_dates:
-    weight: 4
-    settings: {  }
-    third_party_settings: {  }
-    type: daterange_default
-  field_show_link:
     weight: 6
     settings:
       placeholder_url: ''
@@ -78,6 +45,36 @@ content:
         accesskey: false
     third_party_settings: {  }
     type: link_attributes
+  field_head:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_location:
+    weight: 5
+    settings:
+      default_country: null
+    third_party_settings: {  }
+    type: address_default
+  field_logo:
+    weight: 2
+    settings:
+      entity_browser: browse_files_modal
+      field_widget_edit: true
+      field_widget_remove: true
+      open: true
+      selection_mode: selection_append
+      view_mode: default
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: entity_browser_file
+  field_show_dates:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: daterange_default
   info:
     type: string_textfield
     weight: 0
@@ -86,5 +83,4 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
-  field_button: true
   field_dates: true
