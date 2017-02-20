@@ -241,6 +241,7 @@
     .info-block {
       display: inline-block;
       vertical-align: top;
+      width: 20%;
     }
     h3 {
       font-size: $r16;
@@ -249,7 +250,7 @@
     }
     ul {
       padding-left: 0;
-      padding-right: 100px;
+      padding-right: 40px;
       white-space: nowrap;
       overflow: hidden;
       max-width: 266px;
@@ -322,6 +323,11 @@
       }
     }
   }
+  @include desktop {
+    tbody > tr > td:first-child {
+      max-width: 300px !important;
+    }
+  }
   @include tablet-max {
     .view-search-sales-agent-directory {
       .table-responsive {
@@ -350,6 +356,7 @@
   }
 }
 
+
 /**
  * Main search page.
  */
@@ -371,3 +378,4 @@
     }
   }
 }
+

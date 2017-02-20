@@ -507,10 +507,11 @@
   display: block;
   background-color: #d8e1e1;
   ul {
-    float: right;
-    margin-right: 135px;
+    @extend .container;
+    text-align: right;
     height: 100%;
     margin-bottom: 0;
+    margin-top: 0 !important;
     li {
       display: inline-block;
       margin: 15px 10px;
@@ -547,7 +548,8 @@
   @include tablet-max {
     ul {
       margin-right: 0;
-      padding: 4px 15px;
+      padding: 0 15px;
+      text-align: left;
       li:first-child {
         background-color: $blue;
         a {
