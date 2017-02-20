@@ -58,3 +58,102 @@ form {
     margin-bottom: 10px;
   }
 }
+.label {
+  color: inherit;
+}
+.selectize-control {
+  position: relative;
+  border: none;
+  padding: 35px 0 0;
+  height: auto;
+  input {
+    width: 100% !important;
+    max-width: 100%;
+    border: 1px solid $blueopacity;
+    height: 30px;
+    padding: 5px 10px;
+    position: absolute !important;
+    top: 0;
+    left: 0 !important;
+    opacity: 1 !important;
+  }
+  &.multi {
+    .selectize-input {
+      padding: 0;
+      border: none;
+      box-shadow: none;
+      border-radius: 0;
+      &.has-items {
+        padding: 0;
+        border: none;
+        .item {
+          vertical-align: baseline;
+          display: inline-block;
+          background: $ltblue;
+          border: none;
+          color: #fff;
+          height: 32px;
+          border-radius: 6px;
+          box-shadow: none;
+          position: relative;
+          padding: 5px 10px 5px 25px;
+          margin: 0 10px 5px 0;
+          line-height: 18px;
+          .remove {
+            border: none;
+            color: $ltblue;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            height: 30px;
+            line-height: 28px;
+            width: 27px;
+            margin: -15px 0 0;
+            text-align: center;
+            overflow: hidden;
+            &:before {
+              display: block;
+              color: #fff;
+              font-family: FontAwesome;
+              content: '\f00d';
+            }
+          }
+        }
+      }
+    }
+  }
+  .selectize-dropdown {
+    display: block;
+    position: absolute;
+    z-index: 10;
+    border: 1px solid $mdgrey;
+    background: #ffffff;
+    margin: -1px 0 0 0;
+    border-top: 0 none;
+    box-sizing: border-box;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 3px 3px;
+    height: auto;
+    float: none;
+    padding: 0;
+    top: 30px !important;
+  }
+  .selectize-dropdown-content {
+    background: #fff;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 200px;
+    -webkit-overflow-scrolling: touch;
+    .option {
+      padding: 3px 10px;
+      cursor: pointer;
+      &.active {
+        background-color: #f5fafd;
+        color: #495c68;
+      }
+      .highlight {
+        text-decoration: underline;
+      }
+    }
+  }
+}

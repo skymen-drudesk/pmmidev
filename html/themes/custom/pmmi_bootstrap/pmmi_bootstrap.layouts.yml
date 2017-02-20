@@ -608,16 +608,8 @@ block_pricing:
   regions:
     head:
       label: Head
-    members_early:
-      label: Early Bird
-    members_standard:
-      label: Standard
-    nonmembers_early:
-      label: Non-Members Early Bird
-    nonmembers_standard:
-      label: Non-Members Standard
-    discounts:
-      label: Discounts
+    pricings:
+      label: Pricings
 block_image_header:
   label: Image Header
   category: PMMI: Blocks

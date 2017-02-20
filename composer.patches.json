@@ -13,9 +13,6 @@
       "Don't call getCacheTagsToInvalidate() when null": "https://www.drupal.org/files/issues/2696345-2.patch",
       "Custom attributes in blocks": "https://www.drupal.org/files/issues/page_manager-block-css-attributes-9.patch"
     },
-    "drupal/panels": {
-      "Cannot switch variant layout": "https://www.drupal.org/files/issues/patch-issue-2687483-cannot-switch-variant-layout.patch"
-    },
     "drupal/ctools": {
       "Avoid unserialization of blockPluginCollection in BlockDisplayVariant": "https://www.drupal.org/files/issues/ctools-unserialize-plugin-collection-2831521-1.patch"
     },
@@ -33,6 +30,9 @@
     },
     "drupal/chosen": {
       "Removing composer requirement on drmonty/chosen": "https://www.drupal.org/files/issues/composer_dist_problem-2706433-28.patch"
+    },
+    "drupal/selectize": {
+      "AJAX issue": "https://www.drupal.org/files/issues/selectize-ajax-issue-2853540-2.patch"
     }
   }
 }

@@ -83,11 +83,14 @@ class PMMICompanySearchBlockForm extends FormBase {
       '#suffix' => '</div>',
     ];
     $form['address']['country_code'] = [
-      '#type' => 'select',
+      '#type' => 'selectize',
       '#title' => $this->t('Country'),
       '#options' => $this->countryRepository->getList(),
       '#multiple' => TRUE,
-      '#chosen' => TRUE,
+      '#settings' => [
+        'placeholder' => $this->t('Select Some Options'),
+        'plugins' => ['remove_button', 'prevent_items_backspace_delete'],
+      ],
       '#limit_validation_errors' => [],
       '#ajax' => [
         'callback' => [get_class($this), 'addressAjaxRefresh'],
@@ -98,10 +101,14 @@ class PMMICompanySearchBlockForm extends FormBase {
       ],
     ];
     $form['address']['administrative_area'] = [
-      '#type' => 'select',
+      '#type' => 'selectize',
       '#title' => $this->t('State/Region'),
       '#multiple' => TRUE,
-      '#chosen' => TRUE,
+      '#settings' => [
+        'placeholder' => $this->t('Select Some Options'),
+        'plugins' => ['remove_button', 'prevent_items_backspace_delete'],
+      ],
+      '#input_group' => TRUE,
       '#access' => FALSE,
       '#attributes' => [
         'data-placeholder' => $this->t('Select State/Region'),
@@ -178,9 +185,6 @@ class PMMICompanySearchBlockForm extends FormBase {
       '#value' => $this->t('Search'),
     ];
 
-    // Attach chosen library.
-    $this->attachChosen($form);
-
     return $form;
   }
 
@@ -223,15 +227,6 @@ class PMMICompanySearchBlockForm extends FormBase {
     $url = Url::fromUri('internal:/sales-agent-directory/search/results');
     $url->setOption('query', $query);
     $form_state->setRedirectUrl($url);
-  }
-
-  /**
-   * Attach chosen library.
-   */
-  protected function attachChosen(array &$form) {
-    $form['#attached']['library'][] = 'chosen/drupal.chosen';
-    $form['#attached']['library'][] = 'chosen_lib/chosen.css';
-    $form['#attached']['drupalSettings']['chosen']['selector'] = '.form-select';
   }
 
   /**

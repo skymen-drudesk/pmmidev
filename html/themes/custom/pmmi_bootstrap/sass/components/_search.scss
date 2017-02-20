@@ -32,23 +32,29 @@
     padding: 33px 0 0 0;
     .form-group {
       margin-bottom: 16px;
+      .form-item-administrative-area,
       .form-item-country-code {
-        margin-left: 6px;
-        .chosen-container {
-          max-width: 270px;
+        @extend .clear-after;
+        .control-label {
+          float: left;
+          width: 70px;
+          line-height: 40px;
+          padding-right: 0;
+        }
+        .selectize-control {
           min-width: 270px;
           font-size: $r16;
-          ul {
-            background: none;
-            min-height: 40px;
-            padding: 5px 10px;
+          padding-top: 45px;
+          input {
+            color: #55acee;
+            height: 40px;
           }
-          li {
-            background: none;
-            border: none;
-            color: $ltblue;
-            box-shadow: none;
+          .selectize-dropdown {
+            top: 40px !important;
           }
+        }
+        .input-group {
+          display: inline-block;
         }
       }
       .form-item-administrative-area {
@@ -57,36 +63,6 @@
         .control-label {
           width: 100px;
           margin-left: -30px;
-        }
-        .chosen-container {
-          margin-left: 70px;
-          width: 700px;
-          max-width: 700px;
-          min-width: 700px;
-          li.search-choice {
-            background-image: none;
-            background-color: $ltblue;
-            border: none;
-            color: #fff;
-            height: 23px;
-            border-radius: 6px;
-            box-shadow: none;
-            span {
-              padding-left: 15px;
-              &:before {
-                font-family: FontAwesome;
-                content: '\f00d';
-                margin-left: -15px;
-                padding-right: 5px;
-              }
-            }
-            .search-choice-close {
-              position: relative;
-              top: -12px;
-              left: 1px;
-              opacity: 0;
-            }
-          }
         }
       }
     }
@@ -200,10 +176,10 @@
           margin-left: 0;
         }
         .form-item-administrative-area {
-          label {
+          .control-label {
             position: relative;
-            margin-left: 0;
-            margin-top: 0;
+            margin: 0;
+            width: 70px;
           }
           .form-control {
             float: right;
@@ -261,7 +237,7 @@
     }
     .filters,
     h2 {
-      @extend .container;
+      @include container;
     }
     .info-block {
       display: inline-block;
@@ -289,7 +265,7 @@
     }
   }
   .view-search-sales-agent-directory {
-    @extend .container;
+    @include container;
     .table > thead:first-child > tr:first-child > th {
       font-weight: 800;
       font-size: $r20;
