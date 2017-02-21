@@ -58,10 +58,11 @@
         }
       }
       .form-item-administrative-area {
+        z-index: 1;
+        position: relative;
         .control-label {
           width: 100px;
           margin-left: -30px;
-          margin-top: 5px;
         }
       }
     }
@@ -241,6 +242,7 @@
     .info-block {
       display: inline-block;
       vertical-align: top;
+      width: 20%;
     }
     h3 {
       font-size: $r16;
@@ -249,7 +251,7 @@
     }
     ul {
       padding-left: 0;
-      padding-right: 100px;
+      padding-right: 40px;
       white-space: nowrap;
       overflow: hidden;
       max-width: 266px;
@@ -297,6 +299,7 @@
           border: none;
           padding-left: 20px;
           display: inline-block;
+          width: 100%;
           &:before {
             float: left;
             margin-left: -20px;
@@ -315,37 +318,45 @@
             overflow: hidden;
             text-transform: uppercase;
             font-weight: bold;
-            width: 80%;
+            width: 90%;
           }
         }
       }
     }
   }
+  @include desktop {
+    tbody > tr > td:first-child {
+      max-width: 300px !important;
+    }
+  }
   @include tablet-max {
-    .table-responsive {
-      border: none;
-    }
-    .table > thead {
-      display: none;
-    }
-    tbody > tr {
-      display: block;
-      border-bottom: 0 !important;;
-      max-width: 345px;
-      td {
-        display: block;
-        white-space: normal;
-        padding: 5px 0 5px 32px;
+    .view-search-sales-agent-directory {
+      .table-responsive {
+        border: none;
       }
-    }
-    td.views-field-country {
-      font-style: italic;
-    }
-    td.views-field-field-manufacturers-represented {
-      width: inherit !important;
+      .table > thead {
+        display: none;
+      }
+      tbody > tr {
+        display: block;
+        border-bottom: 0;
+        max-width: 345px;
+        td {
+          display: block;
+          white-space: normal;
+          padding: 5px 0 5px 32px;
+        }
+      }
+      td.views-field-country {
+        font-style: italic;
+      }
+      td.views-field-field-manufacturers-represented {
+        width: 345px;
+      }
     }
   }
 }
+
 
 /**
  * Main search page.
@@ -368,3 +379,4 @@
     }
   }
 }
+
