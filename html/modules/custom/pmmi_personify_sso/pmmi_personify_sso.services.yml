@@ -1,0 +1,15 @@
+services:
+  authentication.pmmi_personify_sso:
+    class: Drupal\pmmi_personify_sso\Authentication\Provider\PMMIPersonifySSOAuthProvider
+    arguments: ['@config.factory', '@entity_type.manager']
+    tags:
+      - { name: authentication_provider, provider_id: pmmi_personify_sso_auth_provider, priority: 100, global: TRUE }
+
+  pmmi_personify_sso.service:
+    class: Drupal\pmmi_personify_sso\Service\PMMIPersonifySSOService
+    arguments: ['@http_client', '@config.factory']
+
+  pmmi_personify_sso.manager:
+    class: Drupal\pmmi_personify_sso\Service\PMMIPersonifySSOManager
+    arguments: ['@externalauth.externalauth', '@config.factory', '@entity_type.manager', '@logger.channel.externalauth']
+

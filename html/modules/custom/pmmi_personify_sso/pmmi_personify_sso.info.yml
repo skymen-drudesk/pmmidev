@@ -1,0 +1,9 @@
+name: PMMI Personify SSO
+type: module
+description: PMMI Personify SSO integration
+core: 8.x
+package: PMMI
+dependencies:
+  - pmmi
+  - externalauth
+configure: pmmi_personify_sso.settings

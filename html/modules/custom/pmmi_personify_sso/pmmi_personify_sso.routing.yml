@@ -1,0 +1,11 @@
+
+pmmi_personify_sso.settings:
+  path: '/admin/config/pmmi_personify_sso/settings'
+  defaults:
+    _form: '\Drupal\pmmi_personify_sso\Form\PMMIPersonifySSOSettings'
+    _title: 'PMMI Personify SSO Settings'
+  requirements:
+    _permission: 'administer pmmi personify sso settings'
+  options:
+    _admin_route: TRUE
+
