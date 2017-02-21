@@ -1,0 +1,14 @@
+pmmi_sales_agent.mail_settings:
+  type: config_object
+  label: 'PMMI Sales Agent Mail Settings'
+  mapping:
+    mail_notification_address:
+      type: integer
+      label: 'Notification email address'
+
+    ss_update:
+      type: mail
+      label: 'Self-service update your listing'
+    ss_update_reminder:
+      type: mail
+      label: 'Self-service update your listing (reminder)'
