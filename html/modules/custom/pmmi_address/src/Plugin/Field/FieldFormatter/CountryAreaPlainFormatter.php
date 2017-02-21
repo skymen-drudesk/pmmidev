@@ -113,6 +113,11 @@ class CountryAreaPlainFormatter extends  FormatterBase implements ContainerFacto
       unset($title);
     }
 
+    if (count($elements) > 3) {
+      $elements['#prefix'] = '<div class="two-columns">';
+      $elements['#suffix'] = '</div>';
+    }
+
     return $elements;
   }
 }

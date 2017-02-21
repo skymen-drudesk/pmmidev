@@ -17991,6 +17991,28 @@ div.view {
   clear: left;
 }
 
+.company-node .territory-served {
+  max-width: 66.6%;
+  width: auto;
+  min-width: 33.3%;
+}
+
+.company-node .territory-served .territory-covered .two-columns {
+  font-size: 0;
+}
+
+.company-node .territory-served .territory-covered .two-columns div.field--item {
+  width: 50%;
+  display: inline-block;
+  padding: 0 15px;
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+.company-node .territory-served .territory-covered .two-columns div.field--item:nth-child(odd) {
+  padding-left: 0;
+}
+
 .company-node .row-wrapper,
 .company-node .contacts,
 .company-node .services {
@@ -18009,6 +18031,7 @@ div.view {
   color: #004e75;
   font-size: 20px;
   font-size: 1.25rem;
+  border-bottom: 2px solid #c2c2c2;
 }
 
 .company-node .contacts :first-child, .company-node .services :first-child {
@@ -18135,9 +18158,16 @@ div.view {
   .company-node .general .field--name-field-general-company-email:before {
     display: none;
   }
+  .company-node .territory-served {
+    max-width: 100%;
+  }
+  .company-node .territory-served .territory-covered .two-columns div.field--item {
+    width: 100%;
+    display: block;
+    padding: 0;
+  }
   .company-node .row-wrapper {
-    margin: 0 -15px;
-    border-radius: 0;
+    padding-left: 10px;
   }
   .company-node .contacts > .col-md-4, .company-node .block-icons.cols-3 .column.contacts > .field, .block-icons.cols-3 .company-node .column.contacts > .field, .company-node .services > .col-md-4, .company-node .block-icons.cols-3 .column.services > .field, .block-icons.cols-3 .company-node .column.services > .field {
     padding-left: 0;
@@ -18148,15 +18178,13 @@ div.view {
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  .company-node .contacts > .col-md-4, .company-node .block-icons.cols-3 .column.contacts > .field, .block-icons.cols-3 .company-node .column.contacts > .field, .company-node .services > .col-md-4, .company-node .block-icons.cols-3 .column.services > .field, .block-icons.cols-3 .company-node .column.services > .field {
-    padding-left: 0;
-  }
-}
-
 @media screen and (max-width: 1023px) {
-  .company-node .contacts > .col-md-4, .company-node .block-icons.cols-3 .column.contacts > .field, .block-icons.cols-3 .company-node .column.contacts > .field, .company-node .services > .col-md-4, .company-node .block-icons.cols-3 .column.services > .field, .block-icons.cols-3 .company-node .column.services > .field {
-    padding-left: 0;
+  .company-node .territory-served {
+    max-width: 100%;
+  }
+  .company-node .row-wrapper {
+    margin: 0 -25px;
+    border-radius: 0;
   }
 }
 
