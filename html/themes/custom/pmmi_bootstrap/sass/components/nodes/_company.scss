@@ -507,8 +507,8 @@
   display: block;
   background-color: #d8e1e1;
   ul {
-    @extend .container;
     text-align: right;
+    margin-right: 135px;
     height: 100%;
     margin-bottom: 0;
     margin-top: 0 !important;
@@ -548,7 +548,7 @@
   @include tablet-max {
     ul {
       margin-right: 0;
-      padding: 0 15px;
+      padding: 4px 15px;
       text-align: left;
       li:first-child {
         background-color: $blue;
@@ -556,15 +556,12 @@
           color: #fff;
         }
       }
-      li:nth-child(3) {
-        width: 340px;
-      }
       li {
-        width: 160px;
+        width: 100%;
         text-align: center;
         border: 2px solid $blue;
         border-radius: 3px;
-        margin: 5px;
+        margin: 5px 0;
         height: 30px;
         padding-top: 2px;
         a {
