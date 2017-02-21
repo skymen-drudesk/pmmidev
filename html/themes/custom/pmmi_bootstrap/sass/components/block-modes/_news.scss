@@ -32,6 +32,7 @@
   .date {
     font-size: $r12;
     line-height: $r18;
+    text-transform: uppercase;
   }
   .head {
     font-size: $r16;
@@ -51,7 +52,6 @@
   .button {
     margin-top: 15px;
     a {
-      @extend .button-primary;
       min-width: 130px;
     }
   }

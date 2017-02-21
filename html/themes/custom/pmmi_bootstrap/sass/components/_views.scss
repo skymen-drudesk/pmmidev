@@ -3,6 +3,11 @@ div.view {
 }
 .view-empty {
   @include container;
+  .container & {
+    width: auto;
+    padding-right: 0;
+    padding-left: 0;
+  }
 }
 .views-view-grid.cols-2 {
   .row {

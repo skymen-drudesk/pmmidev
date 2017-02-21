@@ -49,12 +49,6 @@
     }
     @extend .inherited-p;
   }
-  .button {
-    a {
-      @extend .button-primary;
-      max-width: 100%;
-    }
-  }
   .front-side {
     transform: rotateY(0deg);
   }

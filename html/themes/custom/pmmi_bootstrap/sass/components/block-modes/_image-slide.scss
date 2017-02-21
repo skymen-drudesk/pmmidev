@@ -101,11 +101,6 @@
     font-weight: 400;
     @extend .inherited-p;
   }
-  .button {
-    a {
-      @extend .button-secondary;
-    }
-  }
   @include desktop {
     min-height: 290px;
     .img {
@@ -132,10 +127,14 @@
     }
     .title {
       font-size: $r30;
+      line-height: 1;
       margin-bottom: 7px;
     }
+    .sub-title {
+      margin-bottom: 10px;
+    }
     .block-body {
-      margin-bottom: 15px;
+      margin-bottom: 12px;
     }
   }
   @include mobile {
@@ -151,7 +150,8 @@
     }
     .title {
       font-size: $r24;
-      margin-bottom: 2px;
+      line-height: 1;
+      margin-bottom: 7px;
     }
     .sub-title,
     .block-body {
@@ -159,7 +159,7 @@
       line-height: $r15;
     }
     .block-body {
-      margin-bottom: 20px;
+      margin-bottom: 10px;
     }
   }
 }
