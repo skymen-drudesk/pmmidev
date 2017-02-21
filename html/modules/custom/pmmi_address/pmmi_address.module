@@ -5,6 +5,18 @@
  * Extends functionality of address module.
  */
 
+
+/**
+ * Implements hook_theme().
+ */
+function pmmi_address_theme() {
+  return [
+    'pmmi_address_country_state' => [
+      'variables' => ['separator' => ': ', 'country' => '', 'states' => '']
+    ],
+  ];
+}
+
 /**
  * Implements hook_field_widget_form_alter().
  */
