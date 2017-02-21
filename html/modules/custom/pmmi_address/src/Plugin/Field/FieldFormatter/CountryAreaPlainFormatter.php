@@ -88,29 +88,29 @@ class CountryAreaPlainFormatter extends  FormatterBase implements ContainerFacto
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
-    $elements = [];
-    $divisions = $country = [];
+    $elements = $address_items = [];
 
-    foreach ($items as $item) {
-      $division = $item->value;
-      $division = explode('::', $division);
-      $country = $this->countryRepository->getList();
-      if (empty($division[1])) {
-        $elements[]['#markup'] = '<strong>' . $country[$division[0]] . '</strong>';
-      } else {
-        $divisions[$division[0]][] = $division[1];
+    foreach ($items as $delta => $item) {
+      $division = explode('::', $item->value);
+      $countries = $this->countryRepository->getList();
+
+      // Add country items
+      $address_items[$division[0]]['country'] = $countries[$division[0]];
+
+      if (!empty($division[1])) {
+        // Add state items.
+        $subdivisions = $this->subdivisionRepository->getList(array($division[0]));
+        $address_items[$division[0]]['states'][$subdivisions[$division[1]]] = $subdivisions[$division[1]];
       }
     }
 
-    foreach ($divisions as $div => $subdiv) {
-      $country_name = $country[$div];
-      $subdivisionsList = $this->subdivisionRepository->getList(array($div));
-      $title = [];
-      foreach ($subdiv as $key) {
-        $title[] = $subdivisionsList[$key];
-      }
-      $elements[]['#markup'] = '<strong>' . $country_name . '</strong>' . ': ' . implode(', ', $title);
-      unset($title);
+    foreach ($address_items as $address_item) {
+      $elements[] = [
+        '#type' => 'theme',
+        '#theme' => 'pmmi_address_country_state',
+        '#country' => $address_item['country'],
+        '#states' => !empty($address_item['states']) ? implode(',', $address_item['states']) : '',
+      ];
     }
 
     return $elements;
