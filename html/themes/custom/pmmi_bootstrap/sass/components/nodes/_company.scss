@@ -24,17 +24,38 @@
     .field--name-field-website-url {
       float: left;
     }
-    .field--name-field-main-phone-number,
-    .field--name-field-general-company-email {
-      &:before {
-        content: ' \2022 \A0';
-        color: $blue;
-        margin-left: 5px;
-      }
-    }
+    .line-1,
     .line-2 {
       clear: left;
-      min-height: 25px;
+      > div {
+        &:before {
+          content: ' \2022 \A0';
+          color: $blue;
+          margin-left: 5px;
+        }
+        &:first-child {
+          &:before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .territory-served {
+    max-width: 66.6%;
+    width: auto;
+    min-width: 33.3%;
+    .territory-covered .two-columns {
+      font-size: 0;
+      div.field--item {
+        width: 50%;
+        display: inline-block;
+        padding: 0 15px;
+        font-size: $r16;
+        &:nth-child(odd) {
+          padding-left: 0;
+        }
+      }
     }
   }
   .row-wrapper,
@@ -51,6 +72,7 @@
     .block-label {
       color: $blue;
       font-size: $r20;
+      border-bottom: 2px solid $mdgrey;
     }
   }
   .contacts, .services {
@@ -166,9 +188,18 @@
         }
       }
     }
+    .territory-served {
+      max-width: 100%;
+      .territory-covered .two-columns {
+        div.field--item {
+          width: 100%;
+          display: block;
+          padding: 0;
+        }
+      }
+    }
     .row-wrapper {
-      margin: 0 -15px;
-      border-radius: 0;
+      padding-left: 10px;
     }
     .contacts, .services {
       > .col-md-4 {
@@ -182,20 +213,13 @@
       }
     }
   }
-
-  @include tablet {
-    .contacts, .services {
-      > .col-md-4 {
-        padding-left: 0;
-      }
-    }
-  }
-
   @include tablet-max {
-    .contacts, .services {
-      > .col-md-4 {
-        padding-left: 0;
-      }
+    .territory-served {
+      max-width: 100%;
+    }
+    .row-wrapper {
+      margin: 0 -25px;
+      border-radius: 0;
     }
   }
 }
