@@ -2169,7 +2169,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/config_split",
-                "reference": "95252231fad30deb7d44777884d64cde28ecd529"
+                "reference": "23cecb0523d7831b06327db674eab2b83a9191da"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -2211,7 +2211,7 @@
                 "source": "http://cgit.drupalcode.org/config_split",
                 "issues": "https://www.drupal.org/project/issues/config_split"
             },
-            "time": "2017-01-23 13:44:13"
+            "time": "2017-02-18 14:11:50"
         },
         {
             "name": "drupal/config_update",
@@ -2936,17 +2936,17 @@
         },
         {
             "name": "drupal/dropzonejs",
-            "version": "1.0.0-alpha4",
+            "version": "1.0.0-alpha5",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/dropzonejs",
-                "reference": "8.x-1.0-alpha4"
+                "reference": "8.x-1.0-alpha5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/dropzonejs-8.x-1.0-alpha4.zip",
-                "reference": "8.x-1.0-alpha4",
-                "shasum": "f8ab49fdd1226670473423de1ed47a0c89772dc0"
+                "url": "https://ftp.drupal.org/files/projects/dropzonejs-8.x-1.0-alpha5.zip",
+                "reference": null,
+                "shasum": "c4687dd281c7726ed07379604e4c2d31259c7854"
             },
             "require": {
                 "drupal/core": "*"
@@ -2954,14 +2954,17 @@
             "require-dev": {
                 "drupal/entity_browser": "*"
             },
+            "suggest": {
+                "enyo/dropzone": "Required to user drupal/dropzonejs. Dropzone is an easy to use drag'n'drop library."
+            },
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha4",
-                    "datestamp": "1487251383"
+                    "version": "8.x-1.0-alpha5",
+                    "datestamp": "1487593983"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -2970,20 +2973,24 @@
             ],
             "authors": [
                 {
-                    "name": "Drupal Media Team",
-                    "homepage": "https://www.drupal.org/user/3260690"
+                    "name": "Janez Urevc",
+                    "homepage": "https://drupal.org/u/slashrsm",
+                    "role": "Maintainer"
                 },
                 {
-                    "name": "Drupal media CI",
-                    "homepage": "https://www.drupal.org/user/3057985"
+                    "name": "Christian Fritsch",
+                    "homepage": "https://drupal.org/u/chrfritsch",
+                    "role": "Maintainer"
                 },
                 {
-                    "name": "Primsi",
-                    "homepage": "https://www.drupal.org/user/282629"
+                    "name": "Primoz Hmeljak",
+                    "homepage": "https://drupal.org/u/Primsi",
+                    "role": "Maintainer"
                 },
                 {
-                    "name": "chr.fritsch",
-                    "homepage": "https://www.drupal.org/user/2103716"
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/1998478/committers",
+                    "role": "contributor"
                 },
                 {
                     "name": "slashrsm",
@@ -2998,15 +3005,21 @@
                     "homepage": "https://www.drupal.org/user/888644"
                 }
             ],
-            "description": "DropzoneJS",
+            "description": "Drupal integration for DropzoneJS - An open source library that provides drag’n’drop file uploads with image previews.",
             "homepage": "https://www.drupal.org/project/dropzonejs",
+            "keywords": [
+                "DropzoneJS",
+                "Drupal"
+            ],
             "support": {
-                "source": "http://cgit.drupalcode.org/dropzonejs"
+                "source": "https://www.drupal.org/project/dropzonejs",
+                "issues": "https://www.drupal.org/project/issues/dropzonejs",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
             }
         },
         {
             "name": "drupal/dropzonejs_eb_widget",
-            "version": "1.0.0-alpha4",
+            "version": "1.0.0-alpha5",
             "require": {
                 "drupal/core": "*",
                 "drupal/dropzonejs": "self.version",
@@ -3018,8 +3031,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha4",
-                    "datestamp": "1487251383"
+                    "version": "8.x-1.0-alpha5",
+                    "datestamp": "1487593983"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3195,17 +3208,17 @@
         },
         {
             "name": "drupal/entity_browser",
-            "version": "1.0.0-rc1",
+            "version": "1.0.0-rc2",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/entity_browser",
-                "reference": "8.x-1.0-rc1"
+                "reference": "8.x-1.0-rc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/entity_browser-8.x-1.0-rc1.zip",
-                "reference": "8.x-1.0-rc1",
-                "shasum": "290b9db0f2b0f30bc59a4c18d869e58ce85de63d"
+                "url": "https://ftp.drupal.org/files/projects/entity_browser-8.x-1.0-rc2.zip",
+                "reference": "8.x-1.0-rc2",
+                "shasum": "7954668b9134a8ec2dac2604c482d6521e43ee91"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -3224,8 +3237,8 @@
                     "dev-8.x-1.x": "8.1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-rc1",
-                    "datestamp": "1486242784"
+                    "version": "8.x-1.0-rc2",
+                    "datestamp": "1487581984"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4222,7 +4235,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/panels",
-                "reference": "77c33ce58eb17e497fba7a3f4eac69901e15f904"
+                "reference": "133f64fda4257b3b3d264e980e8cd9e43725e7b7"
             },
             "require": {
                 "drupal/core": "~8.0",
@@ -4239,10 +4252,9 @@
                     "dev-3.x": "3.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-3.0-beta5+9-dev",
-                    "datestamp": "1487227084"
-                },
-                "patches_applied": []
+                    "version": "8.x-3.0-beta5+10-dev",
+                    "datestamp": "1487228584"
+                }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
@@ -4293,7 +4305,7 @@
                 "issues": "https://www.drupal.org/project/issues/panels",
                 "irc": "irc://irc.freenode.org/drupal-scotch"
             },
-            "time": "2017-02-16 06:58:17"
+            "time": "2017-02-20 15:59:17"
         },
         {
             "name": "drupal/pathauto",
@@ -4593,7 +4605,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/slick",
-                "reference": "fb3276daf4ed358c1dca1a7861cf2872898f37c9"
+                "reference": "59d12561628b61cb71b6c4aeac8a91462b8a9d8f"
             },
             "require": {
                 "drupal/blazy": "~1.0",
@@ -4634,7 +4646,7 @@
                 "source": "http://cgit.drupalcode.org/slick",
                 "issues": "https://drupal.org/project/issues/slick"
             },
-            "time": "2017-02-10 11:39:34"
+            "time": "2017-02-19 17:56:52"
         },
         {
             "name": "drupal/slick_views",
@@ -9203,7 +9215,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/config_devel-8.x-1.0.zip",
-                "reference": null,
+                "reference": "8.x-1.0",
                 "shasum": "148d408827c570e725b08d7e4c1c46d321dc1efa"
             },
             "require": {
