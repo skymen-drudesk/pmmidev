@@ -3,10 +3,9 @@ html, body {
   height: 100%;
 }
 .pmmi-panel {
-  height: 100%;
-}
-.page-wrapper {
   min-height: 100%;
+  overflow: hidden;
+  clear: both;
   &:after {
     content: "";
     display: block;
@@ -23,10 +22,9 @@ html, body {
     }
   }
 }
-
 .footer {
   width: auto;
-  padding: 20px 0;
+  padding: 20px 0 15px;
   background: $dkblue;
   color: #fff;
   margin: -60px 0 0;

@@ -129,11 +129,6 @@
       display: none;
     }
   }
-  .button {
-    a {
-      @extend .button-primary;
-    }
-  }
   .link {
     a {
       @extend .btn-primary-opacity;

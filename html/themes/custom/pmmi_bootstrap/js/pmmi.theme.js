@@ -112,9 +112,11 @@
       $('.containers .row').once('matchHeight').each(function () {
         var $row = $(this);
         var $socialBlock = $row.find('.social-block');
+        var $textBlock = $row.find('.block-text');
+        var $containerBlocks = $socialBlock.add($textBlock);
         $row.imagesLoaded()
           .always(function () {
-            if ($socialBlock.length) {
+            if ($containerBlocks.length) {
               $('.col > .field > *', $row).matchHeight();
             }
             var $matchHeightBlock = $('.match-height', $row);
