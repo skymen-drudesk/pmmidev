@@ -15,6 +15,7 @@
   font-size: $r14;
   line-height: $r16;
   min-width: 166px;
+  max-width: 100%;
   height: 30px;
   text-transform: uppercase;
   &,
@@ -52,6 +53,11 @@
   @extend .button-primary-defaults;
   @include button-variant($btn-primary-color, $btn-primary-bg, $btn-primary-border);
 }
+.btn-prm-wrap {
+  a {
+    @extend .button-primary;
+  }
+}
 .btn-primary-opacity {
   @extend .button-primary-defaults;
   @include button-variant($btn-primary-color, $blueopacity, $blueopacity);
@@ -68,6 +74,11 @@
   &:hover {
     border-color: $mdgrey;
     color: $mdgrey;
+  }
+}
+.btn-scnd-wrap {
+  a {
+    @extend .button-secondary;
   }
 }
 .text-link {
@@ -164,10 +175,5 @@
         display: block;
       }
     }
-  }
-}
-.btn-prm-wrap {
-  a {
-    @extend .button-primary;
   }
 }

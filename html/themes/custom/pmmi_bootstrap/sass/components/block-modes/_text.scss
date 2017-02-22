@@ -1,16 +1,11 @@
 /* TEXT VIEW MODES */
 .block-text {
-  .button {
-    a {
-      @extend .button-primary;
-    }
+  .image {
+    margin-bottom: 10px;
   }
   // Blocks with images and links.
   &.mode-image-text,
   &.mode-text-image {
-    .image {
-      margin-bottom: 10px;
-    }
     .button,
     .link {
       margin: 10px 0;
@@ -89,6 +84,41 @@
     img {
       display: block;
       margin: 0 auto;
+    }
+  }
+  &.mode-container-mode {
+    border: 1px solid $mdgrey;
+    padding: 11px;
+    @extend .clearfix;
+    .title {
+      display: block;
+      @extend .headline2;
+      background: $blue;
+      color: #fff;
+      padding: 10px 14px;
+      margin: -7px -7px 4px;
+      text-align: left;
+      &:after {
+        display: none;
+      }
+      & + * {
+        &:before {
+          display: block;
+          content: "";
+          margin: 0 -7px;
+          padding: 5px 0 0;
+          border-top: 1px solid $mdgrey;
+        }
+      }
+    }
+    .image {
+      img {
+        margin-top: 5px;
+      }
+    }
+    .block-body {
+      margin-bottom: 10px;
+      @extend .side-paragraph;
     }
   }
 }
