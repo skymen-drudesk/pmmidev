@@ -12749,6 +12749,10 @@ h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 0;
 }
 
+strong {
+  font-weight: 800;
+}
+
 ol, ul {
   padding-left: 20px;
 }
@@ -12758,6 +12762,10 @@ ol, ul {
 .node-body ul,
 .content ul {
   overflow: hidden;
+  font-size: 19px;
+  font-size: 1.1875rem;
+  line-height: 23px;
+  line-height: 1.4375rem;
 }
 
 .bullet-list ul li, .views-field-body ul li,
