@@ -114,7 +114,6 @@
         var $socialBlock = $row.find('.social-block');
         var $textBlock = $row.find('.block-text');
         var $containerBlocks = $socialBlock.add($textBlock);
-        console.log($containerBlocks)
         $row.imagesLoaded()
           .always(function () {
             if ($containerBlocks.length) {
