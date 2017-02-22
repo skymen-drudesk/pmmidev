@@ -36,7 +36,6 @@ dependencies:
     - ds
     - link
     - pmmi_fields
-    - viewfield
 third_party_settings:
   ds:
     layout:
@@ -175,11 +174,32 @@ content:
     third_party_settings:
       ds:
         ft:
-          id: minimal
+          id: expert
           settings:
             lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: h2
+            ow-cl: field-name-field-head
+            ow-at: ''
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
             lb-col: false
-            classes: {  }
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
     type: string
 hidden:
   field_block_4: true

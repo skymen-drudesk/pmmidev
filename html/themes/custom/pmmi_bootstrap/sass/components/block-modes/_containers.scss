@@ -41,6 +41,11 @@
       }
     }
   }
+  .region-top {
+    .field-name-field-head {
+      @extend .headline2;
+    }
+  }
 }
 .blue-region {
   .containers {
