@@ -16513,6 +16513,10 @@ div.view {
   margin-bottom: 20px;
 }
 
+.block-box.mode-full .field-name-body p, .block-box.mode-default .field-name-body p {
+  display: block;
+}
+
 .block-box.mode-full .field-name-field-image, .block-box.mode-default .field-name-field-image {
   float: left;
   width: 246px;
