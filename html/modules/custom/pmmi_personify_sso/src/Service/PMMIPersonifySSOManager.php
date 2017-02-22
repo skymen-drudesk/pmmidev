@@ -38,14 +38,42 @@ class PMMIPersonifySSOManager {
    * @var \Drupal\Core\Logger\LoggerChannel
    */
   protected $loggerChannelExternalauth;
+
+  /**
+   * Drupal\pmmi_personify_sso\Service\PMMIPersonifySSOService service.
+   *
+   * @var \Drupal\pmmi_personify_sso\Service\PMMIPersonifySSOService
+   */
+  protected $ssoService;
+
   /**
    * Constructor.
    */
-  public function __construct(ExternalAuth $externalauth_externalauth, ConfigFactory $config_factory, EntityTypeManager $entity_type_manager, LoggerChannel $logger_channel_externalauth) {
+  public function __construct(
+    ExternalAuth $externalauth_externalauth,
+    ConfigFactory $config_factory,
+    EntityTypeManager $entity_type_manager,
+    LoggerChannel $logger_channel_externalauth,
+    PMMIPersonifySSOService $sso_service
+  ) {
     $this->externalauthExternalauth = $externalauth_externalauth;
     $this->configFactory = $config_factory;
     $this->entityTypeManager = $entity_type_manager;
     $this->loggerChannelExternalauth = $logger_channel_externalauth;
+    $this->ssoService = $sso_service;
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function login() {
+
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function logout() {
+
+  }
 }

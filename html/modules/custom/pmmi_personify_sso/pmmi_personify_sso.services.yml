@@ -7,9 +7,9 @@ services:
 
   pmmi_personify_sso.service:
     class: Drupal\pmmi_personify_sso\Service\PMMIPersonifySSOService
-    arguments: ['@http_client', '@config.factory']
+    arguments: ['@http_client', '@config.factory', '@logger.factory']
 
   pmmi_personify_sso.manager:
     class: Drupal\pmmi_personify_sso\Service\PMMIPersonifySSOManager
-    arguments: ['@externalauth.externalauth', '@config.factory', '@entity_type.manager', '@logger.channel.externalauth']
+    arguments: ['@externalauth.externalauth', '@config.factory', '@entity_type.manager', '@logger.channel.externalauth', '@pmmi_personify_sso.service']
 
