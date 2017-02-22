@@ -88,6 +88,16 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
+    // Add the token tree UI.
+    $form['ss_update']['token_tree'] =
+    $form['ss_update_reminder']['token_tree'] = [
+      '#theme' => 'token_tree_link',
+      '#token_types' => array('node'),
+      '#show_restricted' => TRUE,
+      '#show_nested' => FALSE,
+      '#weight' => 90,
+    ];
+
     return $form;
   }
 

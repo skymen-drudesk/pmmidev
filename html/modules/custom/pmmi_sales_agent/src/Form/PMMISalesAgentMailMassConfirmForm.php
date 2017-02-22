@@ -90,6 +90,10 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
 
     // Schedule the batch.
     batch_set($batch_definition);
+
+    // Redirect to the previous page after batch will be finished.
+    $url = \Drupal\Core\Url::fromRoute('pmmi_sales_agent.mass_email');
+    $form_state->setRedirectUrl($url);
   }
 
   /**
@@ -125,17 +129,18 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
       if (!empty($to[0]['value'])) {
         // Compose and send an email.
         $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
-        $params = ['subject' => $subject, 'body' => $body, 'from' => $params['from']];
+        $params = ['subject' => $subject, 'body' => $body, 'from' => $from, 'node' => $node];
         $result = $mailManager->mail('pmmi_sales_agent', 'pmmi_sales_agent_mass', $to[0]['value'], $current_langcode, $params);
 
-        //
-        $node->set('field_mass_mail_status', 1);
-        $node->save();
-
-        // @todo: do we need info about items which weren't processed?
         if ($result['result'] == true) {
           $context['results']['processed']++;
+
+          // We should force to review this node later (i.e. remind message).
+          $node->set('field_mass_email_queue', 1);
+          $node->save();
         }
+
+        // @todo: do we need info about items which weren't processed?
       }
     }
   }
