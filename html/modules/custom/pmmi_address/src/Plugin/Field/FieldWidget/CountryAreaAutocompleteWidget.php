@@ -129,7 +129,7 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
       '#options' => $this->countryRepository->getList(),
       '#multiple' => TRUE,
       '#settings' => [
-        'placeholder' => $this->t('Select Some Options'),
+        'placeholder' => $this->t('Select Country'),
         'plugins' => ['remove_button', 'prevent_items_backspace_delete'],
       ],
       '#limit_validation_errors' => [],
@@ -144,7 +144,7 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
       '#title' => $this->t('State/Region'),
       '#multiple' => TRUE,
       '#settings' => [
-        'placeholder' => $this->t('Select Some Options'),
+        'placeholder' => $this->t('Select State/Region'),
         'plugins' => ['remove_button', 'prevent_items_backspace_delete'],
       ],
       '#access' => FALSE,

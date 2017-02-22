@@ -157,10 +157,10 @@
     }
   }
 
-  @include mobile {
+  @include tablet-max {
     .block-title {
       font-size: $r35;
-      margin: 0 10px 0 0px;
+      margin: 0 10px 0 0;
     }
     label {
       padding-left: 0;
@@ -171,19 +171,21 @@
     }
     form {
       max-width: 340px;
+      width: auto;
       .form-group {
-        .form-item-country-code {
-          margin-left: 0;
-        }
-        .form-item-administrative-area {
+        > .form-item {
           .control-label {
-            position: relative;
-            margin: 0;
-            width: 70px;
+            line-height: inherit;
           }
-          .form-control {
-            float: right;
+          .input-group {
+            max-width: 100%;
+            width: 100%;
+            min-width: 220px;
           }
+        }
+        .form-item-administrative-area .control-label {
+          margin-left: 0;
+          line-height: inherit;
         }
       }
       #edit-industries,
@@ -191,7 +193,7 @@
       #edit-shows,
       .form-type-textfield,
       .form-type-select {
-        width: 340px;
+        width: 100%;
         float: left;
         margin-left: 0;
       }
@@ -200,8 +202,8 @@
         margin-right: 11px;
         padding-right: 0;
       }
-      .form-type-textfield input {
-        max-width: 375px;
+      .form-control {
+        max-width: 100%;
       }
     }
     .button {
@@ -230,6 +232,7 @@
         margin-top: 10px;
         content: ' ';
         border-bottom: 1px solid $mdgrey;
+        width: 100%;
       }
       span {
         font-weight: normal;
@@ -324,12 +327,13 @@
       }
     }
   }
-  @include desktop {
-    tbody > tr > td:first-child {
-      max-width: 300px !important;
-    }
-  }
   @include tablet-max {
+    .sales-agent-search-results-header {
+      .info-block {
+        display: block;
+        width: 100%;
+      }
+    }
     .view-search-sales-agent-directory {
       .table-responsive {
         border: none;
@@ -337,21 +341,29 @@
       .table > thead {
         display: none;
       }
-      tbody > tr {
+      table,
+      tbody {
         display: block;
+      }
+      tbody > tr {
         border-bottom: 0;
-        max-width: 345px;
+        display: block;
         td {
-          display: block;
           white-space: normal;
-          padding: 5px 0 5px 32px;
+          padding: 5px 0 0 32px;
+          width: auto;
+          &, &:first-child {
+            padding-bottom: 0;
+            display: block;
+          }
+          &.views-field-field-manufacturers-represented {
+            width: auto;
+          }
+          &.views-field-country {
+            font-style: italic;
+            width: auto;
+          }
         }
-      }
-      td.views-field-country {
-        font-style: italic;
-      }
-      td.views-field-field-manufacturers-represented {
-        width: 345px;
       }
     }
   }
@@ -451,7 +463,7 @@
   @include tablet-max {
     .table-responsive {
       border: none;
-      max-width: 345px;
+      max-width: 100%;
     }
     h2 {
       position: relative;
@@ -462,15 +474,19 @@
     thead {
       display: none;
     }
+    table,
+    tbody {
+      display: block;
+    }
     tbody > tr {
       display: block;
-      max-width: 345px;
+      max-width: 100%;
       padding: 15px 0;
       td {
         display: block;
         padding: 0;
         &.views-field-field-manufacturers-represented {
-          width: 345px;
+          width: 100%;
         }
         &.views-field-field-address-country-code {
           font-style: italic;
@@ -501,4 +517,3 @@
     }
   }
 }
-

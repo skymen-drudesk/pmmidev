@@ -20,14 +20,12 @@
   .general {
     font-size: $r20;
     margin-bottom: 20px;
-    .address-simple,
-    .field--name-field-website-url {
-      float: left;
-    }
     .line-1,
     .line-2 {
       clear: left;
       > div {
+        display: inline-block;
+        word-break: break-all;
         &:before {
           content: ' \2022 \A0';
           color: $blue;
@@ -102,7 +100,7 @@
       }
     }
     .address {
-      margin-bottom: 0px;
+      margin-bottom: 0;
       font-size: $r16;
     }
   }
@@ -168,23 +166,19 @@
     clear: both;
   }
 
-  @include mobile {
+  @include tablet-max {
     .node-title {
       margin-bottom: 0;
       font-size: $r35;
     }
     .general {
-      .address-simple,
-      .field--name-field-website-url {
-        float: none;
-        &:after {
-          display: none;
-        }
-      }
-      .field--name-field-main-phone-number,
-      .field--name-field-general-company-email {
-        &:before {
-          display: none;
+      .line-1,
+      .line-2 {
+        > div {
+          display: block;
+          &:before {
+            display: none;
+          }
         }
       }
     }
@@ -199,7 +193,8 @@
       }
     }
     .row-wrapper {
-      padding-left: 10px;
+      margin: 0 -15px;
+      border-radius: 0;
     }
     .contacts, .services {
       > .col-md-4 {
@@ -211,15 +206,6 @@
         width: 100%;
         float: none;
       }
-    }
-  }
-  @include tablet-max {
-    .territory-served {
-      max-width: 100%;
-    }
-    .row-wrapper {
-      margin: 0 -25px;
-      border-radius: 0;
     }
   }
 }
@@ -286,7 +272,6 @@
       }
       input {
         max-width: 535px;
-        min-width: 345px;
         width: 100%;
         display: inline-block;
       }
@@ -317,8 +302,7 @@
     .select-wrapper > .selector,
     .form-item > .locality,
     .form-item > .postal-code {
-      min-width: 265px;
-      max-width: 265px;
+      min-width: 290px;
       font-weight: inherit;
       &:before {
         display: none;
@@ -370,8 +354,7 @@
   .selectize-control {
     height: auto;
     box-shadow: none;
-    max-width: 100%;
-    width: 470px;
+    max-width: 470px;
   }
   .equipment-sold,
   .industries-served {
@@ -460,8 +443,8 @@
     margin-bottom: 35px;
     margin-top: 30px;
   }
-  @include mobile {
-    max-width: 345px;
+  @include tablet-max {
+    max-width: 500px;
     .company-info,
     .main-contact {
       .panel-body {
@@ -474,16 +457,12 @@
       }
     }
     .selectize-control {
-      min-width: 0;
-      .selectize-input input {
-        max-width: 338px;
-      }
+      max-width: 500px;
     }
     .field--name-field-address {
-      .select-wrapper > .selector,
-      .form-item > .locality,
-      .form-item > .postal-code {
-        min-width: 345px;
+      .input-group,
+      .select-wrapper {
+        display: block;
       }
       .address-container-inline .form-item .select-wrapper {
         margin-left: auto;
@@ -502,11 +481,6 @@
       }
     }
     #edit-trade-shows {
-      .panel-body {
-        .form-group > .form-item {
-          float: left;
-        }
-      }
       label {
         display: block;
       }
@@ -516,7 +490,8 @@
       }
     }
     .button {
-      width: 345px;
+      width: 100%;
+      max-width: 350px;
       margin-bottom: 20px;
     }
   }
@@ -531,11 +506,10 @@
   display: block;
   background-color: #d8e1e1;
   ul {
+    margin: 0 auto;
+    max-width: 1200px;
     text-align: right;
-    margin-right: 135px;
     height: 100%;
-    margin-bottom: 0;
-    margin-top: 0 !important;
     li {
       display: inline-block;
       margin: 15px 10px;
