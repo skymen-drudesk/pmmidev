@@ -2,6 +2,7 @@
 
 namespace Drupal\pmmi_sales_agent\Form;
 
+use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
@@ -59,10 +60,13 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $operations = [];
 
-    $nids = \Drupal::entityQuery('node')
-      // @todo: any condition?
-      ->condition('type', 'company')
-      ->execute();
+    $mm_config = \Drupal::service('config.factory')
+      ->getEditable('pmmi_sales_agent.mail_mass_settings');
+
+    // Save info about last run.
+    $mm_config->set('last_run', time())->save();
+    // Get all companies, which should receive mass email.
+    $nids = $this->massMailGetContacts($mm_config->get('filter'));
 
     if ($nids) {
       // The sales agent mail settings.
@@ -107,22 +111,30 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
     $entity_manager = \Drupal::entityManager();
     $mailManager = \Drupal::service('plugin.manager.mail');
 
+    // Check if the results should be initialized.
+    if (!isset($context['results']['processed'])) {
+      // Initialize the results with data which is shared among the batch runs.
+      $context['results']['all'] = 0;
+      $context['results']['processed'] = 0;
+    }
+
     $nodes = $entity_manager->getStorage('node')->loadMultiple($nids);
     foreach ($nodes as $node) {
+      $context['results']['all']++;
       $to = $node->get('field_primary_contact_email')->getValue();
       if (!empty($to[0]['value'])) {
         // Compose and send an email.
         $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
         $params = ['subject' => $subject, 'body' => $body, 'from' => $params['from']];
-
         $result = $mailManager->mail('pmmi_sales_agent', 'pmmi_sales_agent_mass', $to[0]['value'], $current_langcode, $params);
 
-        // @todo: track results.
-        if ($result['result'] !== true) {
+        //
+        $node->set('field_mass_mail_status', 1);
+        $node->save();
 
-        }
-        else {
-
+        // @todo: do we need info about items which weren't processed?
+        if ($result['result'] == true) {
+          $context['results']['processed']++;
         }
       }
     }
@@ -131,5 +143,30 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
   /**
    * Finishes a batch.
    */
-  public static function finish($success, $results, $operations) {}
+  public static function finish($success, $results, $operations) {
+    // Check if the batch job was successful.
+    if ($success) {
+      // Display the number of items which were processed.
+      drupal_set_message(t('Processed @processed companies from @companies.', ['@processed' => $results['processed'], '@companies' => $results['all']]));
+    }
+    else {
+      // Notify user about batch job failure.
+      drupal_set_message(t('An error occurred while trying send mass email. Check the logs for details.'), 'error');
+    }
+  }
+
+  /**
+   * Helper function to get all companies, which will receive remind mass email.
+   */
+  protected function massMailGetContacts($filter) {
+    $query = \Drupal::entityQuery('node');
+    $query->condition('type', PMMI_SALES_AGENT_CONTENT);
+
+    if ($filter != 'all') {
+      $date = DateTimePlus::createFromTimestamp(strtotime($filter))->format(DATETIME_DATETIME_STORAGE_FORMAT);
+      $query->condition('field_last_updated_on.value', $date, '>');
+    }
+
+    return $query->execute();
+  }
 }

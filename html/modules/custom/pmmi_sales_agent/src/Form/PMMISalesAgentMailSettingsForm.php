@@ -39,7 +39,7 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       '#type' => 'email',
       '#title' => $this->t('Notification email address'),
       '#default_value' => $config->get('mail_notification_address'),
-      '#description' => $this->t("The email address to be used as the 'from' address for all notifications listed below. Leave empty to use the default system email address <em>(%site-email).</em>", array('%site-email' => $site_config->get('mail'))),
+      '#description' => $this->t("The email address to be used for all notifications listed below. Leave empty to use the default system email address <em>(%site-email).</em>", array('%site-email' => $site_config->get('mail'))),
       '#maxlength' => 180,
     );
 
@@ -52,7 +52,7 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
     $form['ss_update'] = [
       '#type' => 'details',
       '#open' => TRUE,
-      '#title' => $this->t('Self-service update your listing'),
+      '#title' => $this->t('Mass email'),
       '#group' => 'email_settings',
     ];
     $form['ss_update']['subject'] = [
@@ -72,7 +72,7 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
     $form['ss_update_reminder'] = [
       '#type' => 'details',
       '#open' => TRUE,
-      '#title' => $this->t('Self-service update your listing (reminder)'),
+      '#title' => $this->t('Mass email (reminder)'),
       '#group' => 'email_settings',
     ];
     $form['ss_update_reminder']['subject_reminder'] = [
