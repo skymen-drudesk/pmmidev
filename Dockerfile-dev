@@ -28,4 +28,4 @@ RUN pecl install xdebug \
 # pmmimail:1025, which is standard configuration for a mailhog/mailhog image
 # with hostname mail.
 RUN apt-get install ssmtp -y
-COPY ./build/ssmtp/ssmtp.conf /etc/ssmtp/ssmtp.conf
+COPY ./config/ssmtp/ssmtp.conf /etc/ssmtp/ssmtp.conf
