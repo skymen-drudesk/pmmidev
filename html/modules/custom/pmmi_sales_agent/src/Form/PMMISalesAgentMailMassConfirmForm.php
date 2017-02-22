@@ -164,7 +164,11 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
 
     if ($filter != 'all') {
       $date = DateTimePlus::createFromTimestamp(strtotime($filter))->format(DATETIME_DATETIME_STORAGE_FORMAT);
-      $query->condition('field_last_updated_on.value', $date, '>');
+      $group = $query->orConditionGroup()
+        ->condition('field_last_updated_on.value', $date, '<=')
+        ->condition('field_last_updated_on', NULL, 'IS NULL');
+
+      $query->condition($group);
     }
 
     return $query->execute();

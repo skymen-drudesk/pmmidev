@@ -88,9 +88,6 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
-    // Submit a listing.
-    // @todo
-
     return $form;
   }
 
