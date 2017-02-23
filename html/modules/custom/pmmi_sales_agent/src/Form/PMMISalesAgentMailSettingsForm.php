@@ -43,9 +43,49 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       '#maxlength' => 180,
     );
 
-    $form['email_settings'] = [
+    $form['email_settings_send'] = [
       '#type' => 'vertical_tabs',
-      '#title' => $this->t('Emails'),
+      '#title' => $this->t('Messages which will be send from internal PMMI admin'),
+    ];
+
+    // Listing has been approval.
+    $form['listing_approve'] = [
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#title' => $this->t('Approval email'),
+      '#group' => 'email_settings_send',
+    ];
+    $form['listing_approve']['la_subject'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Subject'),
+      '#default_value' => $config->get('listing_approve.subject'),
+      '#required' => TRUE,
+    ];
+    $form['listing_approve']['la_body'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Body'),
+      '#default_value' => $config->get('listing_approve.body'),
+      '#required' => TRUE,
+    ];
+
+    // Listing has been rejected.
+    $form['listing_reject'] = [
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#title' => $this->t('Rejection email'),
+      '#group' => 'email_settings_send',
+    ];
+    $form['listing_reject']['lr_subject'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Subject'),
+      '#default_value' => $config->get('listing_reject.subject'),
+      '#required' => TRUE,
+    ];
+    $form['listing_reject']['lr_body'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Body'),
+      '#default_value' => $config->get('listing_reject.body'),
+      '#required' => TRUE,
     ];
 
     // Self-service update your listing.
@@ -53,7 +93,7 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       '#type' => 'details',
       '#open' => TRUE,
       '#title' => $this->t('Mass email'),
-      '#group' => 'email_settings',
+      '#group' => 'email_settings_send',
     ];
     $form['ss_update']['subject'] = [
       '#type' => 'textfield',
@@ -73,7 +113,7 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       '#type' => 'details',
       '#open' => TRUE,
       '#title' => $this->t('Mass email (reminder)'),
-      '#group' => 'email_settings',
+      '#group' => 'email_settings_send',
     ];
     $form['ss_update_reminder']['subject_reminder'] = [
       '#type' => 'textfield',
@@ -88,15 +128,72 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
-    // Add the token tree UI.
-    $form['ss_update']['token_tree'] =
-    $form['ss_update_reminder']['token_tree'] = [
-      '#theme' => 'token_tree_link',
-      '#token_types' => array('node'),
-      '#show_restricted' => TRUE,
-      '#show_nested' => FALSE,
-      '#weight' => 90,
+    $form['email_settings_receive'] = [
+      '#type' => 'vertical_tabs',
+      '#title' => $this->t('Messages which will receive internal PMMI admin:'),
     ];
+
+    // New listing has been created (to internal PMMI admin).
+    $form['listing_create'] = [
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#title' => $this->t('Created email'),
+      '#description' => $this->t('Wording of e-mail to internal PMMI admin that a new listing has been created'),
+      '#group' => 'email_settings_receive',
+    ];
+    $form['listing_create']['lc_subject'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Subject'),
+      '#default_value' => $config->get('listing_create.subject'),
+      '#required' => TRUE,
+    ];
+    $form['listing_create']['lc_body'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Body'),
+      '#default_value' => $config->get('listing_create.body'),
+      '#required' => TRUE,
+    ];
+
+    // New listing is pending review (to internal PMMI admin).
+    $form['listing_review'] = [
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#title' => $this->t('Pending review email'),
+      '#description' => $this->t('Wording of e-mail to internal PMMI admin that a listing is pending review'),
+      '#group' => 'email_settings_receive',
+    ];
+    $form['listing_review']['lrw_subject'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Subject'),
+      '#default_value' => $config->get('listing_review.subject'),
+      '#required' => TRUE,
+    ];
+    $form['listing_review']['lrw_body'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Body'),
+      '#default_value' => $config->get('listing_review.body'),
+      '#required' => TRUE,
+    ];
+
+    // Add the token tree UI.
+    $details = [
+      'listing_reject',
+      'listing_approve',
+      'ss_update',
+      'ss_update_reminder',
+      'listing_create',
+      'listing_review',
+    ];
+
+    foreach ($details as $detail) {
+      $form[$detail]['token_tree'] = [
+        '#theme' => 'token_tree_link',
+        '#token_types' => array('node'),
+        '#show_restricted' => TRUE,
+        '#show_nested' => FALSE,
+        '#weight' => 90,
+      ];
+    }
 
     return $form;
   }
@@ -113,11 +210,19 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->configFactory()->getEditable('pmmi_sales_agent.mail_settings')
+      ->set('mail_notification_address', $form_state->getValue('mail_notification_address'))
       ->set('ss_update.subject', $form_state->getValue('subject'))
       ->set('ss_update.body', $form_state->getValue('body'))
       ->set('ss_update_reminder.subject', $form_state->getValue('subject_reminder'))
       ->set('ss_update_reminder.body', $form_state->getValue('body_reminder'))
-      ->set('mail_notification_address', $form_state->getValue('mail_notification_address'))
+      ->set('listing_approve.subject', $form_state->getValue('la_subject'))
+      ->set('listing_approve.body', $form_state->getValue('la_body'))
+      ->set('listing_reject.subject', $form_state->getValue('lr_subject'))
+      ->set('listing_reject.body', $form_state->getValue('lr_body'))
+      ->set('listing_create.subject', $form_state->getValue('lc_subject'))
+      ->set('listing_create.body', $form_state->getValue('lc_body'))
+      ->set('listing_review.subject', $form_state->getValue('lrw_subject'))
+      ->set('listing_review.body', $form_state->getValue('lrw_body'))
       ->save();
 
     parent::submitForm($form, $form_state);

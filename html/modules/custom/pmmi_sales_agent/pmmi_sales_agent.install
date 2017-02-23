@@ -12,3 +12,10 @@ function pmmi_sales_agent_update_8005() {
   \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_settings');
   \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_mass_settings');
 }
+
+/**
+ * Revert configuration to set default value for mail settings.
+ */
+function pmmi_sales_agent_update_8006() {
+  \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_settings');
+}
