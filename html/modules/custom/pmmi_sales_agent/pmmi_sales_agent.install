@@ -8,7 +8,8 @@
 /**
  * Revert configuration to the value from extension storage.
  */
-function pmmi_sales_agent_update_8005() {
+function pmmi_sales_agent_update_8001() {
+  \Drupal::service('module_installer')->install(['config_update'], TRUE);
   \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_settings');
   \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_mass_settings');
 }
@@ -16,6 +17,6 @@ function pmmi_sales_agent_update_8005() {
 /**
  * Revert configuration to set default value for mail settings.
  */
-function pmmi_sales_agent_update_8006() {
+function pmmi_sales_agent_update_8002() {
   \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_settings');
 }
