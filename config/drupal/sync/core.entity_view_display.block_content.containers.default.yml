@@ -35,7 +35,6 @@ dependencies:
     - ds
     - link
     - pmmi_fields
-    - viewfield
 third_party_settings:
   ds:
     layout:
@@ -104,15 +103,6 @@ content:
             lb-col: false
             classes: {  }
     type: link
-  field_center_text:
-    weight: 5
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
   field_head:
     weight: 0
     label: hidden
@@ -121,11 +111,32 @@ content:
     third_party_settings:
       ds:
         ft:
-          id: minimal
+          id: expert
           settings:
             lb: ''
+            prefix: ''
+            lbw-el: ''
+            lbw-cl: ''
+            lbw-at: ''
+            ow: true
+            ow-el: h2
+            ow-cl: field-name-field-head
+            ow-at: ''
+            fis-el: ''
+            fis-cl: ''
+            fis-at: ''
+            fi-el: ''
+            fi-cl: ''
+            fi-at: ''
+            suffix: ''
+            lbw: false
             lb-col: false
-            classes: {  }
+            ow-def-at: false
+            ow-def-cl: false
+            fis: false
+            fis-def-at: false
+            fi: false
+            fi-def-at: false
     type: string
 hidden:
   field_block_2: true
@@ -149,3 +160,4 @@ hidden:
   field_block_views_4: true
   field_block_views_5: true
   field_block_views_6: true
+  field_center_text: true

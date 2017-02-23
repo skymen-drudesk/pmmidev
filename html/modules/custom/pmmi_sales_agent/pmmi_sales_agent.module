@@ -5,15 +5,145 @@
  * Includes PMMI Sales Agent Directory extensions.
  */
 
+use Drupal\Component\Datetime\DateTimePlus;
+use Drupal\Core\Form\FormStateInterface;
+
+// Define sales agent content ID.
+define('PMMI_SALES_AGENT_CONTENT', 'company');
+
+/**
+ * Implements hook_cron().
+ */
+function pmmi_sales_agent_cron() {
+  if ($nids = pmmi_sales_agent_remind_mail_get_contacts()) {
+    foreach ($nids as $nid) {
+      pmmi_sales_agent_remind_send($nid);
+    }
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function pmmi_sales_agent_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'pmmi_sales_agent_mass':
+    case 'pmmi_sales_agent_mass_remind':
+      $token_service = \Drupal::token();
+      $variables = array('node' => $params['node']);
+
+      // Use default email if it is not specific.
+      $from = !empty($params['from']) ? $params['from'] : \Drupal::config('system.site')->get('mail');
+
+      $message['from'] = $from;
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $token_service->replace($params['body'], $variables);
+      break;
+  }
+}
+
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function pmmi_sales_agent_form_node_company_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+function pmmi_sales_agent_form_node_company_form_alter(&$form, FormStateInterface $form_state, $form_id) {
   // The field descriptions are converted into tooltips (in accordance with
   // theme settings). But we need to have simple descriptions for some fields.
   foreach (['field_main_phone_number', 'field_fax_number'] as $field) {
     if (isset($form[$field])) {
       $form[$field]['widget'][0]['value']['#smart_description'] = FALSE;
+    }
+  }
+
+  // Someone has updated a company, which means we should update appropriate
+  // field (skip remind message).
+  $form['actions']['submit']['#submit'][] = 'pmmi_sales_agent_node_company_form_submit';
+}
+
+/**
+ * Extra submit handler for the node_company_form form.
+ */
+function pmmi_sales_agent_node_company_form_submit($form, FormStateInterface $form_state) {
+  if ($nid = $form_state->getValue('nid')) {
+    $node = \Drupal\node\Entity\Node::load($nid);
+
+    // Update value of the "Last Updated On" field.
+    $new_date = DateTimePlus::createFromTimestamp(time())->format('Y-m-d');
+    $node->set('field_last_updated_on', $new_date);
+    // Reset mass mail status.
+    $node->set('field_mass_email_queue', NULL);
+    $node->save();
+  }
+}
+
+/**
+ * Helper function to get all companies, which should receive remind mass email.
+ *
+ * @return array
+ *   An array of node ID's, which should receive remind message.
+ */
+function pmmi_sales_agent_remind_mail_get_contacts() {
+  $result = array();
+
+  // Get all company ID's which have remind step and this step less or equal 3.
+  $query = \Drupal::entityQuery('node');
+  $query->condition('type', PMMI_SALES_AGENT_CONTENT);
+  $query->condition('field_mass_email_queue', 3, '<=');
+  $nids = $query->execute();
+
+  if ($nids && ($nodes = \Drupal\node\Entity\Node::loadMultiple($nids))) {
+    $mm_config = \Drupal::service('config.factory')
+      ->getEditable('pmmi_sales_agent.mail_mass_settings');
+
+    foreach ($nodes as $node) {
+      // @todo: do we need additional check here (looks like no, in accordance
+      // with the query above)?
+      $mm_status = $node->get('field_mass_email_queue')->getValue()[0]['value'];
+
+      // Use this simple formula to get companies which are ready to get remind
+      // message.
+      $formula = $mm_status * $mm_config->get('remind_period') + $mm_config->get('last_run');
+
+      if ($formula < REQUEST_TIME) {
+        $result[] = $node->id();
+      }
+    }
+  }
+
+  return $result;
+}
+
+/**
+ * Sends remind message.
+ *
+ * @param $nid
+ *   The node ID.
+ */
+function pmmi_sales_agent_remind_send($nid) {
+  $node = \Drupal\node\Entity\Node::load($nid);
+  if ($node && $node->hasField('field_primary_contact_email')) {
+    $to = $node->get('field_primary_contact_email')->getValue();
+
+    // Check if email is valid.
+    if (!empty($to[0]['value']) && \Drupal::service('email.validator')->isValid($to[0]['value'])) {
+      // Compose and send remind email.
+      $mailManager = \Drupal::service('plugin.manager.mail');
+      $mail_settings = \Drupal::config('pmmi_sales_agent.mail_settings');
+      $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+      $params = [
+        'subject' => $mail_settings->get('ss_update_reminder.subject'),
+        'body' => $mail_settings->get('ss_update_reminder.body'),
+        'from' => $mail_settings->get('mail_notification_address'),
+        'node' => $node,
+      ];
+
+      $mailManager->mail('pmmi_sales_agent', 'pmmi_sales_agent_mass_remind', $to[0]['value'], $current_langcode, $params);
+
+      // Update mass mail status.
+      if ($mm_statue = $node->get('field_mass_email_queue')->getValue()) {
+        $node->set('field_mass_email_queue', ++$mm_statue[0]['value']);
+        $node->save();
+      }
     }
   }
 }

@@ -23,6 +23,11 @@
     @content;
   }
 }
+@mixin tablet-min {
+  @media screen and (min-width: $screen-sm-min) {
+    @content;
+  }
+}
 @mixin desktop-max {
   @media screen and (max-width: $screen-md-max) {
     @content;

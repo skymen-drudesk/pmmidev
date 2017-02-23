@@ -43,6 +43,7 @@ services:
     links:
       - pmmidb
       - pmmisolr
+      - pmmimail
     ports:
       - "80:80"
     expose:
@@ -70,3 +71,9 @@ services:
     ports:
       - "8004:6081" # HTTP Proxy for testing purposes. On production we need to change this line to 80:6081
       - "8005:6082" # Control terminal
+
+  pmmimail:
+    container_name: pmmi_dev_mailhog
+    image: mailhog/mailhog
+    ports:
+      - "8006:8025"

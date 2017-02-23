@@ -88,7 +88,7 @@ class PMMICompanySearchBlockForm extends FormBase {
       '#options' => $this->countryRepository->getList(),
       '#multiple' => TRUE,
       '#settings' => [
-        'placeholder' => $this->t('Select Some Options'),
+        'placeholder' => $this->t('Select Country'),
         'plugins' => ['remove_button', 'prevent_items_backspace_delete'],
       ],
       '#limit_validation_errors' => [],
@@ -96,23 +96,17 @@ class PMMICompanySearchBlockForm extends FormBase {
         'callback' => [get_class($this), 'addressAjaxRefresh'],
         'wrapper' => $wrapper_id,
       ],
-      '#attributes' => [
-        'data-placeholder' => $this->t('Select country'),
-      ],
     ];
     $form['address']['administrative_area'] = [
       '#type' => 'selectize',
       '#title' => $this->t('State/Region'),
       '#multiple' => TRUE,
       '#settings' => [
-        'placeholder' => $this->t('Select Some Options'),
+        'placeholder' => $this->t('Select State/Region'),
         'plugins' => ['remove_button', 'prevent_items_backspace_delete'],
       ],
       '#input_group' => TRUE,
       '#access' => FALSE,
-      '#attributes' => [
-        'data-placeholder' => $this->t('Select State/Region'),
-      ],
     ];
 
     $countries = [];

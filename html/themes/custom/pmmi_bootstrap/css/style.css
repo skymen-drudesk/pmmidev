@@ -9331,18 +9331,24 @@ button.list-group-item-danger.active:focus {
   color: inherit;
 }
 
-.panel-title {
+.panel-title, .node-company-form .equipment-sold h3,
+.node-company-form .industries-served h3 {
   margin-top: 0;
   margin-bottom: 0;
   font-size: 18px;
   color: inherit;
 }
 
-.panel-title > a,
-.panel-title > small,
-.panel-title > .small,
-.panel-title > small > a,
-.panel-title > .small > a {
+.panel-title > a, .node-company-form .equipment-sold h3 > a,
+.node-company-form .industries-served h3 > a,
+.panel-title > small, .node-company-form .equipment-sold h3 > small,
+.node-company-form .industries-served h3 > small,
+.panel-title > .small, .node-company-form .equipment-sold h3 > .small,
+.node-company-form .industries-served h3 > .small,
+.panel-title > small > a, .node-company-form .equipment-sold h3 > small > a,
+.node-company-form .industries-served h3 > small > a,
+.panel-title > .small > a, .node-company-form .equipment-sold h3 > .small > a,
+.node-company-form .industries-served h3 > .small > a {
   color: inherit;
 }
 
@@ -10450,12 +10456,12 @@ button.close {
   }
 }
 
-.clearfix:before, .field--type-viewfield .features-videos.viewfield-wrapper:before, .mode-default.video:before, .block-event-ribbon:before, .feature-block .views-row:before, .block-news:before, .clearfix:after, .field--type-viewfield .features-videos.viewfield-wrapper:after, .mode-default.video:after, .block-event-ribbon:after, .feature-block .views-row:after, .block-news:after {
+.clearfix:before, .field--type-viewfield .features-videos.viewfield-wrapper:before, .mode-default.video:before, .block-event-ribbon:before, .feature-block .views-row:before, .block-news:before, .block-text.mode-container-mode:before, .clearfix:after, .field--type-viewfield .features-videos.viewfield-wrapper:after, .mode-default.video:after, .block-event-ribbon:after, .feature-block .views-row:after, .block-news:after, .block-text.mode-container-mode:after {
   content: " ";
   display: table;
 }
 
-.clearfix:after, .field--type-viewfield .features-videos.viewfield-wrapper:after, .mode-default.video:after, .block-event-ribbon:after, .feature-block .views-row:after, .block-news:after {
+.clearfix:after, .field--type-viewfield .features-videos.viewfield-wrapper:after, .mode-default.video:after, .block-event-ribbon:after, .feature-block .views-row:after, .block-news:after, .block-text.mode-container-mode:after {
   clear: both;
 }
 
@@ -11599,8 +11605,8 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
   width: 24rem;
 }
 
-.button-primary-defaults, .button-primary, .btn-prm-wrap a, .mode-event-left-rail .field-name-field-button a, .mode-default.video .field-name-node-link a, .mode-default.certification-test .field-name-field-link a, .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a, .block-card .button a, .containers .region-bottom .field-name-field-button a, .block-enticement .button a, .block-event-default .button a, .block-news .button a, .block-text .button a, .node-button a, .accordion-item .field-name-field-button a, .btn-primary-opacity, .mode-default.video .field-name-field-link a, .mode-default.certification-test .field-name-node-link a, .block-box.mode-full .field-name-field-buttons a:not(:first-child), .block-box.mode-default .field-name-field-buttons a:not(:first-child), .block-event-default .link a, .button-secondary, .default-exposed-form form button, .region-top .block.views-exposed-form form button, .block-pmmi-search-library-block form button, .events-block-3 .more-link a,
-.block-views-blockevents-block-3 .more-link a, .blue-region .containers .region-bottom .field-name-field-button a, .block-image-slide .button a {
+.button-primary-defaults, .button-primary, .btn-prm-wrap a, .mode-event-left-rail .field-name-field-button a, .page-sales-agent-directory-my-favorites .view-header, .mode-default.video .field-name-node-link a, .mode-default.certification-test .field-name-field-link a, .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a, .containers .region-bottom .field-name-field-button a, .accordion-item .field-name-field-button a, .btn-primary-opacity, .mode-default.video .field-name-field-link a, .mode-default.certification-test .field-name-node-link a, .block-box.mode-full .field-name-field-buttons a:not(:first-child), .block-box.mode-default .field-name-field-buttons a:not(:first-child), .block-event-default .link a, .button-secondary, .btn-scnd-wrap a, .default-exposed-form form button, .region-top .block.views-exposed-form form button, .block-pmmi-search-library-block form button, .events-block-3 .more-link a,
+.block-views-blockevents-block-3 .more-link a, .blue-region .containers .region-bottom .field-name-field-button a {
   display: inline-block;
   margin-bottom: 0;
   text-align: center;
@@ -11625,47 +11631,50 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
   line-height: 16px;
   line-height: 1rem;
   min-width: 166px;
+  max-width: 100%;
   height: 30px;
   text-transform: uppercase;
 }
 
-.button-primary-defaults:focus, .button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .block-card .button a:focus, .containers .region-bottom .field-name-field-button a:focus, .block-enticement .button a:focus, .block-event-default .button a:focus, .block-news .button a:focus, .block-text .button a:focus, .node-button a:focus, .accordion-item .field-name-field-button a:focus, .btn-primary-opacity:focus, .mode-default.video .field-name-field-link a:focus, .mode-default.certification-test .field-name-node-link a:focus, .block-event-default .link a:focus, .button-secondary:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
-.block-views-blockevents-block-3 .more-link a:focus, .block-image-slide .button a:focus, .button-primary-defaults.focus, .focus.button-primary, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .block-card .button a.focus, .containers .region-bottom .field-name-field-button a.focus, .block-enticement .button a.focus, .block-event-default .button a.focus, .block-news .button a.focus, .block-text .button a.focus, .node-button a.focus, .accordion-item .field-name-field-button a.focus, .focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.focus, .mode-default.certification-test .field-name-node-link a.focus, .block-event-default .link a.focus, .focus.button-secondary, .default-exposed-form form button.focus, .region-top .block.views-exposed-form form button.focus, .block-pmmi-search-library-block form button.focus, .events-block-3 .more-link a.focus,
-.block-views-blockevents-block-3 .more-link a.focus, .block-image-slide .button a.focus, .button-primary-defaults:active:focus, .button-primary:active:focus, .btn-prm-wrap a:active:focus, .mode-event-left-rail .field-name-field-button a:active:focus, .mode-default.video .field-name-node-link a:active:focus, .mode-default.certification-test .field-name-field-link a:active:focus, .block-box.mode-full .field-name-field-buttons a:active:focus, .block-box.mode-default .field-name-field-buttons a:active:focus, .block-card .button a:active:focus, .containers .region-bottom .field-name-field-button a:active:focus, .block-enticement .button a:active:focus, .block-event-default .button a:active:focus, .block-news .button a:active:focus, .block-text .button a:active:focus, .node-button a:active:focus, .accordion-item .field-name-field-button a:active:focus, .btn-primary-opacity:active:focus, .mode-default.video .field-name-field-link a:active:focus, .mode-default.certification-test .field-name-node-link a:active:focus, .block-event-default .link a:active:focus, .button-secondary:active:focus, .default-exposed-form form button:active:focus, .region-top .block.views-exposed-form form button:active:focus, .block-pmmi-search-library-block form button:active:focus, .events-block-3 .more-link a:active:focus,
-.block-views-blockevents-block-3 .more-link a:active:focus, .block-image-slide .button a:active:focus, .button-primary-defaults:active.focus, .button-primary:active.focus, .btn-prm-wrap a:active.focus, .mode-event-left-rail .field-name-field-button a:active.focus, .mode-default.video .field-name-node-link a:active.focus, .mode-default.certification-test .field-name-field-link a:active.focus, .block-box.mode-full .field-name-field-buttons a:active.focus, .block-box.mode-default .field-name-field-buttons a:active.focus, .block-card .button a:active.focus, .containers .region-bottom .field-name-field-button a:active.focus, .block-enticement .button a:active.focus, .block-event-default .button a:active.focus, .block-news .button a:active.focus, .block-text .button a:active.focus, .node-button a:active.focus, .accordion-item .field-name-field-button a:active.focus, .btn-primary-opacity:active.focus, .mode-default.video .field-name-field-link a:active.focus, .mode-default.certification-test .field-name-node-link a:active.focus, .block-event-default .link a:active.focus, .button-secondary:active.focus, .default-exposed-form form button:active.focus, .region-top .block.views-exposed-form form button:active.focus, .block-pmmi-search-library-block form button:active.focus, .events-block-3 .more-link a:active.focus,
-.block-views-blockevents-block-3 .more-link a:active.focus, .block-image-slide .button a:active.focus, .button-primary-defaults.active:focus, .active.button-primary:focus, .btn-prm-wrap a.active:focus, .mode-event-left-rail .field-name-field-button a.active:focus, .mode-default.video .field-name-node-link a.active:focus, .mode-default.certification-test .field-name-field-link a.active:focus, .block-box.mode-full .field-name-field-buttons a.active:focus, .block-box.mode-default .field-name-field-buttons a.active:focus, .block-card .button a.active:focus, .containers .region-bottom .field-name-field-button a.active:focus, .block-enticement .button a.active:focus, .block-event-default .button a.active:focus, .block-news .button a.active:focus, .block-text .button a.active:focus, .node-button a.active:focus, .accordion-item .field-name-field-button a.active:focus, .active.btn-primary-opacity:focus, .mode-default.video .field-name-field-link a.active:focus, .mode-default.certification-test .field-name-node-link a.active:focus, .block-event-default .link a.active:focus, .active.button-secondary:focus, .default-exposed-form form button.active:focus, .region-top .block.views-exposed-form form button.active:focus, .block-pmmi-search-library-block form button.active:focus, .events-block-3 .more-link a.active:focus,
-.block-views-blockevents-block-3 .more-link a.active:focus, .block-image-slide .button a.active:focus, .button-primary-defaults.active.focus, .active.focus.button-primary, .btn-prm-wrap a.active.focus, .mode-event-left-rail .field-name-field-button a.active.focus, .mode-default.video .field-name-node-link a.active.focus, .mode-default.certification-test .field-name-field-link a.active.focus, .block-box.mode-full .field-name-field-buttons a.active.focus, .block-box.mode-default .field-name-field-buttons a.active.focus, .block-card .button a.active.focus, .containers .region-bottom .field-name-field-button a.active.focus, .block-enticement .button a.active.focus, .block-event-default .button a.active.focus, .block-news .button a.active.focus, .block-text .button a.active.focus, .node-button a.active.focus, .accordion-item .field-name-field-button a.active.focus, .active.focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.active.focus, .mode-default.certification-test .field-name-node-link a.active.focus, .block-event-default .link a.active.focus, .active.focus.button-secondary, .default-exposed-form form button.active.focus, .region-top .block.views-exposed-form form button.active.focus, .block-pmmi-search-library-block form button.active.focus, .events-block-3 .more-link a.active.focus,
-.block-views-blockevents-block-3 .more-link a.active.focus, .block-image-slide .button a.active.focus {
+.button-primary-defaults:focus, .button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .btn-primary-opacity:focus, .mode-default.video .field-name-field-link a:focus, .mode-default.certification-test .field-name-node-link a:focus, .block-event-default .link a:focus, .button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
+.block-views-blockevents-block-3 .more-link a:focus, .button-primary-defaults.focus, .focus.button-primary, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .focus.view-header, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus, .focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.focus, .mode-default.certification-test .field-name-node-link a.focus, .block-event-default .link a.focus, .focus.button-secondary, .btn-scnd-wrap a.focus, .default-exposed-form form button.focus, .region-top .block.views-exposed-form form button.focus, .block-pmmi-search-library-block form button.focus, .events-block-3 .more-link a.focus,
+.block-views-blockevents-block-3 .more-link a.focus, .button-primary-defaults:active:focus, .button-primary:active:focus, .btn-prm-wrap a:active:focus, .mode-event-left-rail .field-name-field-button a:active:focus, .page-sales-agent-directory-my-favorites .view-header:active:focus, .mode-default.video .field-name-node-link a:active:focus, .mode-default.certification-test .field-name-field-link a:active:focus, .block-box.mode-full .field-name-field-buttons a:active:focus, .block-box.mode-default .field-name-field-buttons a:active:focus, .containers .region-bottom .field-name-field-button a:active:focus, .accordion-item .field-name-field-button a:active:focus, .btn-primary-opacity:active:focus, .mode-default.video .field-name-field-link a:active:focus, .mode-default.certification-test .field-name-node-link a:active:focus, .block-event-default .link a:active:focus, .button-secondary:active:focus, .btn-scnd-wrap a:active:focus, .default-exposed-form form button:active:focus, .region-top .block.views-exposed-form form button:active:focus, .block-pmmi-search-library-block form button:active:focus, .events-block-3 .more-link a:active:focus,
+.block-views-blockevents-block-3 .more-link a:active:focus, .button-primary-defaults:active.focus, .button-primary:active.focus, .btn-prm-wrap a:active.focus, .mode-event-left-rail .field-name-field-button a:active.focus, .page-sales-agent-directory-my-favorites .view-header:active.focus, .mode-default.video .field-name-node-link a:active.focus, .mode-default.certification-test .field-name-field-link a:active.focus, .block-box.mode-full .field-name-field-buttons a:active.focus, .block-box.mode-default .field-name-field-buttons a:active.focus, .containers .region-bottom .field-name-field-button a:active.focus, .accordion-item .field-name-field-button a:active.focus, .btn-primary-opacity:active.focus, .mode-default.video .field-name-field-link a:active.focus, .mode-default.certification-test .field-name-node-link a:active.focus, .block-event-default .link a:active.focus, .button-secondary:active.focus, .btn-scnd-wrap a:active.focus, .default-exposed-form form button:active.focus, .region-top .block.views-exposed-form form button:active.focus, .block-pmmi-search-library-block form button:active.focus, .events-block-3 .more-link a:active.focus,
+.block-views-blockevents-block-3 .more-link a:active.focus, .button-primary-defaults.active:focus, .active.button-primary:focus, .btn-prm-wrap a.active:focus, .mode-event-left-rail .field-name-field-button a.active:focus, .page-sales-agent-directory-my-favorites .active.view-header:focus, .mode-default.video .field-name-node-link a.active:focus, .mode-default.certification-test .field-name-field-link a.active:focus, .block-box.mode-full .field-name-field-buttons a.active:focus, .block-box.mode-default .field-name-field-buttons a.active:focus, .containers .region-bottom .field-name-field-button a.active:focus, .accordion-item .field-name-field-button a.active:focus, .active.btn-primary-opacity:focus, .mode-default.video .field-name-field-link a.active:focus, .mode-default.certification-test .field-name-node-link a.active:focus, .block-event-default .link a.active:focus, .active.button-secondary:focus, .btn-scnd-wrap a.active:focus, .default-exposed-form form button.active:focus, .region-top .block.views-exposed-form form button.active:focus, .block-pmmi-search-library-block form button.active:focus, .events-block-3 .more-link a.active:focus,
+.block-views-blockevents-block-3 .more-link a.active:focus, .button-primary-defaults.active.focus, .active.focus.button-primary, .btn-prm-wrap a.active.focus, .mode-event-left-rail .field-name-field-button a.active.focus, .page-sales-agent-directory-my-favorites .active.focus.view-header, .mode-default.video .field-name-node-link a.active.focus, .mode-default.certification-test .field-name-field-link a.active.focus, .block-box.mode-full .field-name-field-buttons a.active.focus, .block-box.mode-default .field-name-field-buttons a.active.focus, .containers .region-bottom .field-name-field-button a.active.focus, .accordion-item .field-name-field-button a.active.focus, .active.focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.active.focus, .mode-default.certification-test .field-name-node-link a.active.focus, .block-event-default .link a.active.focus, .active.focus.button-secondary, .btn-scnd-wrap a.active.focus, .default-exposed-form form button.active.focus, .region-top .block.views-exposed-form form button.active.focus, .block-pmmi-search-library-block form button.active.focus, .events-block-3 .more-link a.active.focus,
+.block-views-blockevents-block-3 .more-link a.active.focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 
-.button-primary-defaults:hover, .button-primary:hover, .btn-prm-wrap a:hover, .mode-event-left-rail .field-name-field-button a:hover, .mode-default.video .field-name-node-link a:hover, .mode-default.certification-test .field-name-field-link a:hover, .block-box.mode-full .field-name-field-buttons a:hover, .block-box.mode-default .field-name-field-buttons a:hover, .block-card .button a:hover, .containers .region-bottom .field-name-field-button a:hover, .block-enticement .button a:hover, .block-event-default .button a:hover, .block-news .button a:hover, .block-text .button a:hover, .node-button a:hover, .accordion-item .field-name-field-button a:hover, .btn-primary-opacity:hover, .mode-default.video .field-name-field-link a:hover, .mode-default.certification-test .field-name-node-link a:hover, .block-event-default .link a:hover, .button-secondary:hover, .default-exposed-form form button:hover, .region-top .block.views-exposed-form form button:hover, .block-pmmi-search-library-block form button:hover, .events-block-3 .more-link a:hover,
-.block-views-blockevents-block-3 .more-link a:hover, .block-image-slide .button a:hover, .button-primary-defaults:focus, .button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .block-card .button a:focus, .containers .region-bottom .field-name-field-button a:focus, .block-enticement .button a:focus, .block-event-default .button a:focus, .block-news .button a:focus, .block-text .button a:focus, .node-button a:focus, .accordion-item .field-name-field-button a:focus, .btn-primary-opacity:focus, .mode-default.video .field-name-field-link a:focus, .mode-default.certification-test .field-name-node-link a:focus, .block-event-default .link a:focus, .button-secondary:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
-.block-views-blockevents-block-3 .more-link a:focus, .block-image-slide .button a:focus, .button-primary-defaults.focus, .focus.button-primary, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .block-card .button a.focus, .containers .region-bottom .field-name-field-button a.focus, .block-enticement .button a.focus, .block-event-default .button a.focus, .block-news .button a.focus, .block-text .button a.focus, .node-button a.focus, .accordion-item .field-name-field-button a.focus, .focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.focus, .mode-default.certification-test .field-name-node-link a.focus, .block-event-default .link a.focus, .focus.button-secondary, .default-exposed-form form button.focus, .region-top .block.views-exposed-form form button.focus, .block-pmmi-search-library-block form button.focus, .events-block-3 .more-link a.focus,
-.block-views-blockevents-block-3 .more-link a.focus, .block-image-slide .button a.focus {
+.button-primary-defaults:hover, .button-primary:hover, .btn-prm-wrap a:hover, .mode-event-left-rail .field-name-field-button a:hover, .page-sales-agent-directory-my-favorites .view-header:hover, .mode-default.video .field-name-node-link a:hover, .mode-default.certification-test .field-name-field-link a:hover, .block-box.mode-full .field-name-field-buttons a:hover, .block-box.mode-default .field-name-field-buttons a:hover, .containers .region-bottom .field-name-field-button a:hover, .accordion-item .field-name-field-button a:hover, .btn-primary-opacity:hover, .mode-default.video .field-name-field-link a:hover, .mode-default.certification-test .field-name-node-link a:hover, .block-event-default .link a:hover, .button-secondary:hover, .btn-scnd-wrap a:hover, .default-exposed-form form button:hover, .region-top .block.views-exposed-form form button:hover, .block-pmmi-search-library-block form button:hover, .events-block-3 .more-link a:hover,
+.block-views-blockevents-block-3 .more-link a:hover, .button-primary-defaults:focus, .button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .btn-primary-opacity:focus, .mode-default.video .field-name-field-link a:focus, .mode-default.certification-test .field-name-node-link a:focus, .block-event-default .link a:focus, .button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
+.block-views-blockevents-block-3 .more-link a:focus, .button-primary-defaults.focus, .focus.button-primary, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .focus.view-header, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus, .focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.focus, .mode-default.certification-test .field-name-node-link a.focus, .block-event-default .link a.focus, .focus.button-secondary, .btn-scnd-wrap a.focus, .default-exposed-form form button.focus, .region-top .block.views-exposed-form form button.focus, .block-pmmi-search-library-block form button.focus, .events-block-3 .more-link a.focus,
+.block-views-blockevents-block-3 .more-link a.focus {
   color: #333;
   text-decoration: none;
 }
 
-.button-primary-defaults:active, .button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .block-card .button a:active, .containers .region-bottom .field-name-field-button a:active, .block-enticement .button a:active, .block-event-default .button a:active, .block-news .button a:active, .block-text .button a:active, .node-button a:active, .accordion-item .field-name-field-button a:active, .btn-primary-opacity:active, .mode-default.video .field-name-field-link a:active, .mode-default.certification-test .field-name-node-link a:active, .block-event-default .link a:active, .button-secondary:active, .default-exposed-form form button:active, .region-top .block.views-exposed-form form button:active, .block-pmmi-search-library-block form button:active, .events-block-3 .more-link a:active,
-.block-views-blockevents-block-3 .more-link a:active, .block-image-slide .button a:active, .button-primary-defaults.active, .active.button-primary, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .block-card .button a.active, .containers .region-bottom .field-name-field-button a.active, .block-enticement .button a.active, .block-event-default .button a.active, .block-news .button a.active, .block-text .button a.active, .node-button a.active, .accordion-item .field-name-field-button a.active, .active.btn-primary-opacity, .mode-default.video .field-name-field-link a.active, .mode-default.certification-test .field-name-node-link a.active, .block-event-default .link a.active, .active.button-secondary, .default-exposed-form form button.active, .region-top .block.views-exposed-form form button.active, .block-pmmi-search-library-block form button.active, .events-block-3 .more-link a.active,
-.block-views-blockevents-block-3 .more-link a.active, .block-image-slide .button a.active {
+.button-primary-defaults:active, .button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .page-sales-agent-directory-my-favorites .view-header:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .containers .region-bottom .field-name-field-button a:active, .accordion-item .field-name-field-button a:active, .btn-primary-opacity:active, .mode-default.video .field-name-field-link a:active, .mode-default.certification-test .field-name-node-link a:active, .block-event-default .link a:active, .button-secondary:active, .btn-scnd-wrap a:active, .default-exposed-form form button:active, .region-top .block.views-exposed-form form button:active, .block-pmmi-search-library-block form button:active, .events-block-3 .more-link a:active,
+.block-views-blockevents-block-3 .more-link a:active, .button-primary-defaults.active, .active.button-primary, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .page-sales-agent-directory-my-favorites .active.view-header, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .containers .region-bottom .field-name-field-button a.active, .accordion-item .field-name-field-button a.active, .active.btn-primary-opacity, .mode-default.video .field-name-field-link a.active, .mode-default.certification-test .field-name-node-link a.active, .block-event-default .link a.active, .active.button-secondary, .btn-scnd-wrap a.active, .default-exposed-form form button.active, .region-top .block.views-exposed-form form button.active, .block-pmmi-search-library-block form button.active, .events-block-3 .more-link a.active,
+.block-views-blockevents-block-3 .more-link a.active {
   outline: 0;
   background-image: none;
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 
-.button-primary-defaults.disabled, .disabled.button-primary, .btn-prm-wrap a.disabled, .mode-event-left-rail .field-name-field-button a.disabled, .mode-default.video .field-name-node-link a.disabled, .mode-default.certification-test .field-name-field-link a.disabled, .block-box.mode-full .field-name-field-buttons a.disabled, .block-box.mode-default .field-name-field-buttons a.disabled, .block-card .button a.disabled, .containers .region-bottom .field-name-field-button a.disabled, .block-enticement .button a.disabled, .block-event-default .button a.disabled, .block-news .button a.disabled, .block-text .button a.disabled, .node-button a.disabled, .accordion-item .field-name-field-button a.disabled, .disabled.btn-primary-opacity, .mode-default.video .field-name-field-link a.disabled, .mode-default.certification-test .field-name-node-link a.disabled, .block-event-default .link a.disabled, .disabled.button-secondary, .default-exposed-form form button.disabled, .region-top .block.views-exposed-form form button.disabled, .block-pmmi-search-library-block form button.disabled, .events-block-3 .more-link a.disabled,
-.block-views-blockevents-block-3 .more-link a.disabled, .block-image-slide .button a.disabled, .button-primary-defaults[disabled], [disabled].button-primary, .btn-prm-wrap a[disabled], .mode-event-left-rail .field-name-field-button a[disabled], .mode-default.video .field-name-node-link a[disabled], .mode-default.certification-test .field-name-field-link a[disabled], .block-box.mode-full .field-name-field-buttons a[disabled], .block-box.mode-default .field-name-field-buttons a[disabled], .block-card .button a[disabled], .containers .region-bottom .field-name-field-button a[disabled], .block-enticement .button a[disabled], .block-event-default .button a[disabled], .block-news .button a[disabled], .block-text .button a[disabled], .node-button a[disabled], .accordion-item .field-name-field-button a[disabled], [disabled].btn-primary-opacity, .mode-default.video .field-name-field-link a[disabled], .mode-default.certification-test .field-name-node-link a[disabled], .block-event-default .link a[disabled], [disabled].button-secondary, .default-exposed-form form button[disabled], .region-top .block.views-exposed-form form button[disabled], .block-pmmi-search-library-block form button[disabled], .events-block-3 .more-link a[disabled],
-.block-views-blockevents-block-3 .more-link a[disabled], .block-image-slide .button a[disabled],
+.button-primary-defaults.disabled, .disabled.button-primary, .btn-prm-wrap a.disabled, .mode-event-left-rail .field-name-field-button a.disabled, .page-sales-agent-directory-my-favorites .disabled.view-header, .mode-default.video .field-name-node-link a.disabled, .mode-default.certification-test .field-name-field-link a.disabled, .block-box.mode-full .field-name-field-buttons a.disabled, .block-box.mode-default .field-name-field-buttons a.disabled, .containers .region-bottom .field-name-field-button a.disabled, .accordion-item .field-name-field-button a.disabled, .disabled.btn-primary-opacity, .mode-default.video .field-name-field-link a.disabled, .mode-default.certification-test .field-name-node-link a.disabled, .block-event-default .link a.disabled, .disabled.button-secondary, .btn-scnd-wrap a.disabled, .default-exposed-form form button.disabled, .region-top .block.views-exposed-form form button.disabled, .block-pmmi-search-library-block form button.disabled, .events-block-3 .more-link a.disabled,
+.block-views-blockevents-block-3 .more-link a.disabled, .button-primary-defaults[disabled], [disabled].button-primary, .btn-prm-wrap a[disabled], .mode-event-left-rail .field-name-field-button a[disabled], .page-sales-agent-directory-my-favorites [disabled].view-header, .mode-default.video .field-name-node-link a[disabled], .mode-default.certification-test .field-name-field-link a[disabled], .block-box.mode-full .field-name-field-buttons a[disabled], .block-box.mode-default .field-name-field-buttons a[disabled], .containers .region-bottom .field-name-field-button a[disabled], .accordion-item .field-name-field-button a[disabled], [disabled].btn-primary-opacity, .mode-default.video .field-name-field-link a[disabled], .mode-default.certification-test .field-name-node-link a[disabled], .block-event-default .link a[disabled], [disabled].button-secondary, .btn-scnd-wrap a[disabled], .default-exposed-form form button[disabled], .region-top .block.views-exposed-form form button[disabled], .block-pmmi-search-library-block form button[disabled], .events-block-3 .more-link a[disabled],
+.block-views-blockevents-block-3 .more-link a[disabled],
 fieldset[disabled] .button-primary-defaults,
 fieldset[disabled] .button-primary,
 fieldset[disabled] .btn-prm-wrap a, .btn-prm-wrap
 fieldset[disabled] a,
 fieldset[disabled] .mode-event-left-rail .field-name-field-button a, .mode-event-left-rail .field-name-field-button
 fieldset[disabled] a,
+fieldset[disabled] .page-sales-agent-directory-my-favorites .view-header, .page-sales-agent-directory-my-favorites
+fieldset[disabled] .view-header,
 fieldset[disabled] .mode-default.video .field-name-node-link a, .mode-default.video .field-name-node-link
 fieldset[disabled] a,
 fieldset[disabled] .mode-default.certification-test .field-name-field-link a, .mode-default.certification-test .field-name-field-link
@@ -11674,19 +11683,7 @@ fieldset[disabled] .block-box.mode-full .field-name-field-buttons a, .block-box.
 fieldset[disabled] a,
 fieldset[disabled] .block-box.mode-default .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons
 fieldset[disabled] a,
-fieldset[disabled] .block-card .button a, .block-card .button
-fieldset[disabled] a,
 fieldset[disabled] .containers .region-bottom .field-name-field-button a, .containers .region-bottom .field-name-field-button
-fieldset[disabled] a,
-fieldset[disabled] .block-enticement .button a, .block-enticement .button
-fieldset[disabled] a,
-fieldset[disabled] .block-event-default .button a, .block-event-default .button
-fieldset[disabled] a,
-fieldset[disabled] .block-news .button a, .block-news .button
-fieldset[disabled] a,
-fieldset[disabled] .block-text .button a, .block-text .button
-fieldset[disabled] a,
-fieldset[disabled] .node-button a, .node-button
 fieldset[disabled] a,
 fieldset[disabled] .accordion-item .field-name-field-button a, .accordion-item .field-name-field-button
 fieldset[disabled] a,
@@ -11698,6 +11695,8 @@ fieldset[disabled] a,
 fieldset[disabled] .block-event-default .link a, .block-event-default .link
 fieldset[disabled] a,
 fieldset[disabled] .button-secondary,
+fieldset[disabled] .btn-scnd-wrap a, .btn-scnd-wrap
+fieldset[disabled] a,
 fieldset[disabled] .default-exposed-form form button, .default-exposed-form form
 fieldset[disabled] button,
 fieldset[disabled] .region-top .block.views-exposed-form form button, .region-top .block.views-exposed-form form
@@ -11709,8 +11708,6 @@ fieldset[disabled] a,
 fieldset[disabled]
 .block-views-blockevents-block-3 .more-link a,
 .block-views-blockevents-block-3 .more-link
-fieldset[disabled] a,
-fieldset[disabled] .block-image-slide .button a, .block-image-slide .button
 fieldset[disabled] a {
   cursor: not-allowed;
   opacity: 0.65;
@@ -11718,38 +11715,33 @@ fieldset[disabled] a {
   box-shadow: none;
 }
 
-.button-primary, .btn-prm-wrap a, .mode-event-left-rail .field-name-field-button a, .mode-default.video .field-name-node-link a, .mode-default.certification-test .field-name-field-link a, .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a, .block-card .button a, .containers .region-bottom .field-name-field-button a, .block-enticement .button a, .block-event-default .button a, .block-news .button a, .block-text .button a, .node-button a, .accordion-item .field-name-field-button a {
+.button-primary, .btn-prm-wrap a, .mode-event-left-rail .field-name-field-button a, .page-sales-agent-directory-my-favorites .view-header, .mode-default.video .field-name-node-link a, .mode-default.certification-test .field-name-field-link a, .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a, .containers .region-bottom .field-name-field-button a, .accordion-item .field-name-field-button a {
   color: #fff;
   background-color: #004e75;
   border-color: #004e75;
 }
 
-.button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .block-card .button a:focus, .containers .region-bottom .field-name-field-button a:focus, .block-enticement .button a:focus, .block-event-default .button a:focus, .block-news .button a:focus, .block-text .button a:focus, .node-button a:focus, .accordion-item .field-name-field-button a:focus, .button-primary.focus, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .block-card .button a.focus, .containers .region-bottom .field-name-field-button a.focus, .block-enticement .button a.focus, .block-event-default .button a.focus, .block-news .button a.focus, .block-text .button a.focus, .node-button a.focus, .accordion-item .field-name-field-button a.focus {
+.button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .button-primary.focus, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .focus.view-header, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus {
   color: #fff;
   background-color: #002c42;
   border-color: black;
 }
 
-.button-primary:hover, .btn-prm-wrap a:hover, .mode-event-left-rail .field-name-field-button a:hover, .mode-default.video .field-name-node-link a:hover, .mode-default.certification-test .field-name-field-link a:hover, .block-box.mode-full .field-name-field-buttons a:hover, .block-box.mode-default .field-name-field-buttons a:hover, .block-card .button a:hover, .containers .region-bottom .field-name-field-button a:hover, .block-enticement .button a:hover, .block-event-default .button a:hover, .block-news .button a:hover, .block-text .button a:hover, .node-button a:hover, .accordion-item .field-name-field-button a:hover {
+.button-primary:hover, .btn-prm-wrap a:hover, .mode-event-left-rail .field-name-field-button a:hover, .page-sales-agent-directory-my-favorites .view-header:hover, .mode-default.video .field-name-node-link a:hover, .mode-default.certification-test .field-name-field-link a:hover, .block-box.mode-full .field-name-field-buttons a:hover, .block-box.mode-default .field-name-field-buttons a:hover, .containers .region-bottom .field-name-field-button a:hover, .accordion-item .field-name-field-button a:hover {
   color: #fff;
   background-color: #002c42;
   border-color: #002538;
 }
 
-.button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .block-card .button a:active, .containers .region-bottom .field-name-field-button a:active, .block-enticement .button a:active, .block-event-default .button a:active, .block-news .button a:active, .block-text .button a:active, .node-button a:active, .accordion-item .field-name-field-button a:active, .button-primary.active, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .block-card .button a.active, .containers .region-bottom .field-name-field-button a.active, .block-enticement .button a.active, .block-event-default .button a.active, .block-news .button a.active, .block-text .button a.active, .node-button a.active, .accordion-item .field-name-field-button a.active,
+.button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .page-sales-agent-directory-my-favorites .view-header:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .containers .region-bottom .field-name-field-button a:active, .accordion-item .field-name-field-button a:active, .button-primary.active, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .page-sales-agent-directory-my-favorites .active.view-header, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .containers .region-bottom .field-name-field-button a.active, .accordion-item .field-name-field-button a.active,
 .open > .button-primary.dropdown-toggle, .btn-prm-wrap
 .open > a.dropdown-toggle, .mode-event-left-rail .field-name-field-button
-.open > a.dropdown-toggle, .mode-default.video .field-name-node-link
+.open > a.dropdown-toggle, .page-sales-agent-directory-my-favorites
+.open > .dropdown-toggle.view-header, .mode-default.video .field-name-node-link
 .open > a.dropdown-toggle, .mode-default.certification-test .field-name-field-link
 .open > a.dropdown-toggle, .block-box.mode-full .field-name-field-buttons
 .open > a.dropdown-toggle, .block-box.mode-default .field-name-field-buttons
-.open > a.dropdown-toggle, .block-card .button
 .open > a.dropdown-toggle, .containers .region-bottom .field-name-field-button
-.open > a.dropdown-toggle, .block-enticement .button
-.open > a.dropdown-toggle, .block-event-default .button
-.open > a.dropdown-toggle, .block-news .button
-.open > a.dropdown-toggle, .block-text .button
-.open > a.dropdown-toggle, .node-button
 .open > a.dropdown-toggle, .accordion-item .field-name-field-button
 .open > a.dropdown-toggle {
   color: #fff;
@@ -11757,50 +11749,35 @@ fieldset[disabled] a {
   border-color: #002538;
 }
 
-.button-primary:active:hover, .btn-prm-wrap a:active:hover, .mode-event-left-rail .field-name-field-button a:active:hover, .mode-default.video .field-name-node-link a:active:hover, .mode-default.certification-test .field-name-field-link a:active:hover, .block-box.mode-full .field-name-field-buttons a:active:hover, .block-box.mode-default .field-name-field-buttons a:active:hover, .block-card .button a:active:hover, .containers .region-bottom .field-name-field-button a:active:hover, .block-enticement .button a:active:hover, .block-event-default .button a:active:hover, .block-news .button a:active:hover, .block-text .button a:active:hover, .node-button a:active:hover, .accordion-item .field-name-field-button a:active:hover, .button-primary:active:focus, .btn-prm-wrap a:active:focus, .mode-event-left-rail .field-name-field-button a:active:focus, .mode-default.video .field-name-node-link a:active:focus, .mode-default.certification-test .field-name-field-link a:active:focus, .block-box.mode-full .field-name-field-buttons a:active:focus, .block-box.mode-default .field-name-field-buttons a:active:focus, .block-card .button a:active:focus, .containers .region-bottom .field-name-field-button a:active:focus, .block-enticement .button a:active:focus, .block-event-default .button a:active:focus, .block-news .button a:active:focus, .block-text .button a:active:focus, .node-button a:active:focus, .accordion-item .field-name-field-button a:active:focus, .button-primary:active.focus, .btn-prm-wrap a:active.focus, .mode-event-left-rail .field-name-field-button a:active.focus, .mode-default.video .field-name-node-link a:active.focus, .mode-default.certification-test .field-name-field-link a:active.focus, .block-box.mode-full .field-name-field-buttons a:active.focus, .block-box.mode-default .field-name-field-buttons a:active.focus, .block-card .button a:active.focus, .containers .region-bottom .field-name-field-button a:active.focus, .block-enticement .button a:active.focus, .block-event-default .button a:active.focus, .block-news .button a:active.focus, .block-text .button a:active.focus, .node-button a:active.focus, .accordion-item .field-name-field-button a:active.focus, .button-primary.active:hover, .btn-prm-wrap a.active:hover, .mode-event-left-rail .field-name-field-button a.active:hover, .mode-default.video .field-name-node-link a.active:hover, .mode-default.certification-test .field-name-field-link a.active:hover, .block-box.mode-full .field-name-field-buttons a.active:hover, .block-box.mode-default .field-name-field-buttons a.active:hover, .block-card .button a.active:hover, .containers .region-bottom .field-name-field-button a.active:hover, .block-enticement .button a.active:hover, .block-event-default .button a.active:hover, .block-news .button a.active:hover, .block-text .button a.active:hover, .node-button a.active:hover, .accordion-item .field-name-field-button a.active:hover, .button-primary.active:focus, .btn-prm-wrap a.active:focus, .mode-event-left-rail .field-name-field-button a.active:focus, .mode-default.video .field-name-node-link a.active:focus, .mode-default.certification-test .field-name-field-link a.active:focus, .block-box.mode-full .field-name-field-buttons a.active:focus, .block-box.mode-default .field-name-field-buttons a.active:focus, .block-card .button a.active:focus, .containers .region-bottom .field-name-field-button a.active:focus, .block-enticement .button a.active:focus, .block-event-default .button a.active:focus, .block-news .button a.active:focus, .block-text .button a.active:focus, .node-button a.active:focus, .accordion-item .field-name-field-button a.active:focus, .button-primary.active.focus, .btn-prm-wrap a.active.focus, .mode-event-left-rail .field-name-field-button a.active.focus, .mode-default.video .field-name-node-link a.active.focus, .mode-default.certification-test .field-name-field-link a.active.focus, .block-box.mode-full .field-name-field-buttons a.active.focus, .block-box.mode-default .field-name-field-buttons a.active.focus, .block-card .button a.active.focus, .containers .region-bottom .field-name-field-button a.active.focus, .block-enticement .button a.active.focus, .block-event-default .button a.active.focus, .block-news .button a.active.focus, .block-text .button a.active.focus, .node-button a.active.focus, .accordion-item .field-name-field-button a.active.focus,
+.button-primary:active:hover, .btn-prm-wrap a:active:hover, .mode-event-left-rail .field-name-field-button a:active:hover, .page-sales-agent-directory-my-favorites .view-header:active:hover, .mode-default.video .field-name-node-link a:active:hover, .mode-default.certification-test .field-name-field-link a:active:hover, .block-box.mode-full .field-name-field-buttons a:active:hover, .block-box.mode-default .field-name-field-buttons a:active:hover, .containers .region-bottom .field-name-field-button a:active:hover, .accordion-item .field-name-field-button a:active:hover, .button-primary:active:focus, .btn-prm-wrap a:active:focus, .mode-event-left-rail .field-name-field-button a:active:focus, .page-sales-agent-directory-my-favorites .view-header:active:focus, .mode-default.video .field-name-node-link a:active:focus, .mode-default.certification-test .field-name-field-link a:active:focus, .block-box.mode-full .field-name-field-buttons a:active:focus, .block-box.mode-default .field-name-field-buttons a:active:focus, .containers .region-bottom .field-name-field-button a:active:focus, .accordion-item .field-name-field-button a:active:focus, .button-primary:active.focus, .btn-prm-wrap a:active.focus, .mode-event-left-rail .field-name-field-button a:active.focus, .page-sales-agent-directory-my-favorites .view-header:active.focus, .mode-default.video .field-name-node-link a:active.focus, .mode-default.certification-test .field-name-field-link a:active.focus, .block-box.mode-full .field-name-field-buttons a:active.focus, .block-box.mode-default .field-name-field-buttons a:active.focus, .containers .region-bottom .field-name-field-button a:active.focus, .accordion-item .field-name-field-button a:active.focus, .button-primary.active:hover, .btn-prm-wrap a.active:hover, .mode-event-left-rail .field-name-field-button a.active:hover, .page-sales-agent-directory-my-favorites .active.view-header:hover, .mode-default.video .field-name-node-link a.active:hover, .mode-default.certification-test .field-name-field-link a.active:hover, .block-box.mode-full .field-name-field-buttons a.active:hover, .block-box.mode-default .field-name-field-buttons a.active:hover, .containers .region-bottom .field-name-field-button a.active:hover, .accordion-item .field-name-field-button a.active:hover, .button-primary.active:focus, .btn-prm-wrap a.active:focus, .mode-event-left-rail .field-name-field-button a.active:focus, .page-sales-agent-directory-my-favorites .active.view-header:focus, .mode-default.video .field-name-node-link a.active:focus, .mode-default.certification-test .field-name-field-link a.active:focus, .block-box.mode-full .field-name-field-buttons a.active:focus, .block-box.mode-default .field-name-field-buttons a.active:focus, .containers .region-bottom .field-name-field-button a.active:focus, .accordion-item .field-name-field-button a.active:focus, .button-primary.active.focus, .btn-prm-wrap a.active.focus, .mode-event-left-rail .field-name-field-button a.active.focus, .page-sales-agent-directory-my-favorites .active.focus.view-header, .mode-default.video .field-name-node-link a.active.focus, .mode-default.certification-test .field-name-field-link a.active.focus, .block-box.mode-full .field-name-field-buttons a.active.focus, .block-box.mode-default .field-name-field-buttons a.active.focus, .containers .region-bottom .field-name-field-button a.active.focus, .accordion-item .field-name-field-button a.active.focus,
 .open > .button-primary.dropdown-toggle:hover, .btn-prm-wrap
 .open > a.dropdown-toggle:hover, .mode-event-left-rail .field-name-field-button
-.open > a.dropdown-toggle:hover, .mode-default.video .field-name-node-link
+.open > a.dropdown-toggle:hover, .page-sales-agent-directory-my-favorites
+.open > .dropdown-toggle.view-header:hover, .mode-default.video .field-name-node-link
 .open > a.dropdown-toggle:hover, .mode-default.certification-test .field-name-field-link
 .open > a.dropdown-toggle:hover, .block-box.mode-full .field-name-field-buttons
 .open > a.dropdown-toggle:hover, .block-box.mode-default .field-name-field-buttons
-.open > a.dropdown-toggle:hover, .block-card .button
 .open > a.dropdown-toggle:hover, .containers .region-bottom .field-name-field-button
-.open > a.dropdown-toggle:hover, .block-enticement .button
-.open > a.dropdown-toggle:hover, .block-event-default .button
-.open > a.dropdown-toggle:hover, .block-news .button
-.open > a.dropdown-toggle:hover, .block-text .button
-.open > a.dropdown-toggle:hover, .node-button
 .open > a.dropdown-toggle:hover, .accordion-item .field-name-field-button
 .open > a.dropdown-toggle:hover,
 .open > .button-primary.dropdown-toggle:focus, .btn-prm-wrap
 .open > a.dropdown-toggle:focus, .mode-event-left-rail .field-name-field-button
-.open > a.dropdown-toggle:focus, .mode-default.video .field-name-node-link
+.open > a.dropdown-toggle:focus, .page-sales-agent-directory-my-favorites
+.open > .dropdown-toggle.view-header:focus, .mode-default.video .field-name-node-link
 .open > a.dropdown-toggle:focus, .mode-default.certification-test .field-name-field-link
 .open > a.dropdown-toggle:focus, .block-box.mode-full .field-name-field-buttons
 .open > a.dropdown-toggle:focus, .block-box.mode-default .field-name-field-buttons
-.open > a.dropdown-toggle:focus, .block-card .button
 .open > a.dropdown-toggle:focus, .containers .region-bottom .field-name-field-button
-.open > a.dropdown-toggle:focus, .block-enticement .button
-.open > a.dropdown-toggle:focus, .block-event-default .button
-.open > a.dropdown-toggle:focus, .block-news .button
-.open > a.dropdown-toggle:focus, .block-text .button
-.open > a.dropdown-toggle:focus, .node-button
 .open > a.dropdown-toggle:focus, .accordion-item .field-name-field-button
 .open > a.dropdown-toggle:focus,
 .open > .button-primary.dropdown-toggle.focus, .btn-prm-wrap
 .open > a.dropdown-toggle.focus, .mode-event-left-rail .field-name-field-button
-.open > a.dropdown-toggle.focus, .mode-default.video .field-name-node-link
+.open > a.dropdown-toggle.focus, .page-sales-agent-directory-my-favorites
+.open > .dropdown-toggle.focus.view-header, .mode-default.video .field-name-node-link
 .open > a.dropdown-toggle.focus, .mode-default.certification-test .field-name-field-link
 .open > a.dropdown-toggle.focus, .block-box.mode-full .field-name-field-buttons
 .open > a.dropdown-toggle.focus, .block-box.mode-default .field-name-field-buttons
-.open > a.dropdown-toggle.focus, .block-card .button
 .open > a.dropdown-toggle.focus, .containers .region-bottom .field-name-field-button
-.open > a.dropdown-toggle.focus, .block-enticement .button
-.open > a.dropdown-toggle.focus, .block-event-default .button
-.open > a.dropdown-toggle.focus, .block-news .button
-.open > a.dropdown-toggle.focus, .block-text .button
-.open > a.dropdown-toggle.focus, .node-button
 .open > a.dropdown-toggle.focus, .accordion-item .field-name-field-button
 .open > a.dropdown-toggle.focus {
   color: #fff;
@@ -11808,31 +11785,28 @@ fieldset[disabled] a {
   border-color: black;
 }
 
-.button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .block-card .button a:active, .containers .region-bottom .field-name-field-button a:active, .block-enticement .button a:active, .block-event-default .button a:active, .block-news .button a:active, .block-text .button a:active, .node-button a:active, .accordion-item .field-name-field-button a:active, .button-primary.active, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .block-card .button a.active, .containers .region-bottom .field-name-field-button a.active, .block-enticement .button a.active, .block-event-default .button a.active, .block-news .button a.active, .block-text .button a.active, .node-button a.active, .accordion-item .field-name-field-button a.active,
+.button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .page-sales-agent-directory-my-favorites .view-header:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .containers .region-bottom .field-name-field-button a:active, .accordion-item .field-name-field-button a:active, .button-primary.active, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .page-sales-agent-directory-my-favorites .active.view-header, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .containers .region-bottom .field-name-field-button a.active, .accordion-item .field-name-field-button a.active,
 .open > .button-primary.dropdown-toggle, .btn-prm-wrap
 .open > a.dropdown-toggle, .mode-event-left-rail .field-name-field-button
-.open > a.dropdown-toggle, .mode-default.video .field-name-node-link
+.open > a.dropdown-toggle, .page-sales-agent-directory-my-favorites
+.open > .dropdown-toggle.view-header, .mode-default.video .field-name-node-link
 .open > a.dropdown-toggle, .mode-default.certification-test .field-name-field-link
 .open > a.dropdown-toggle, .block-box.mode-full .field-name-field-buttons
 .open > a.dropdown-toggle, .block-box.mode-default .field-name-field-buttons
-.open > a.dropdown-toggle, .block-card .button
 .open > a.dropdown-toggle, .containers .region-bottom .field-name-field-button
-.open > a.dropdown-toggle, .block-enticement .button
-.open > a.dropdown-toggle, .block-event-default .button
-.open > a.dropdown-toggle, .block-news .button
-.open > a.dropdown-toggle, .block-text .button
-.open > a.dropdown-toggle, .node-button
 .open > a.dropdown-toggle, .accordion-item .field-name-field-button
 .open > a.dropdown-toggle {
   background-image: none;
 }
 
-.button-primary.disabled:hover, .btn-prm-wrap a.disabled:hover, .mode-event-left-rail .field-name-field-button a.disabled:hover, .mode-default.video .field-name-node-link a.disabled:hover, .mode-default.certification-test .field-name-field-link a.disabled:hover, .block-box.mode-full .field-name-field-buttons a.disabled:hover, .block-box.mode-default .field-name-field-buttons a.disabled:hover, .block-card .button a.disabled:hover, .containers .region-bottom .field-name-field-button a.disabled:hover, .block-enticement .button a.disabled:hover, .block-event-default .button a.disabled:hover, .block-news .button a.disabled:hover, .block-text .button a.disabled:hover, .node-button a.disabled:hover, .accordion-item .field-name-field-button a.disabled:hover, .button-primary.disabled:focus, .btn-prm-wrap a.disabled:focus, .mode-event-left-rail .field-name-field-button a.disabled:focus, .mode-default.video .field-name-node-link a.disabled:focus, .mode-default.certification-test .field-name-field-link a.disabled:focus, .block-box.mode-full .field-name-field-buttons a.disabled:focus, .block-box.mode-default .field-name-field-buttons a.disabled:focus, .block-card .button a.disabled:focus, .containers .region-bottom .field-name-field-button a.disabled:focus, .block-enticement .button a.disabled:focus, .block-event-default .button a.disabled:focus, .block-news .button a.disabled:focus, .block-text .button a.disabled:focus, .node-button a.disabled:focus, .accordion-item .field-name-field-button a.disabled:focus, .button-primary.disabled.focus, .btn-prm-wrap a.disabled.focus, .mode-event-left-rail .field-name-field-button a.disabled.focus, .mode-default.video .field-name-node-link a.disabled.focus, .mode-default.certification-test .field-name-field-link a.disabled.focus, .block-box.mode-full .field-name-field-buttons a.disabled.focus, .block-box.mode-default .field-name-field-buttons a.disabled.focus, .block-card .button a.disabled.focus, .containers .region-bottom .field-name-field-button a.disabled.focus, .block-enticement .button a.disabled.focus, .block-event-default .button a.disabled.focus, .block-news .button a.disabled.focus, .block-text .button a.disabled.focus, .node-button a.disabled.focus, .accordion-item .field-name-field-button a.disabled.focus, .button-primary[disabled]:hover, .btn-prm-wrap a[disabled]:hover, .mode-event-left-rail .field-name-field-button a[disabled]:hover, .mode-default.video .field-name-node-link a[disabled]:hover, .mode-default.certification-test .field-name-field-link a[disabled]:hover, .block-box.mode-full .field-name-field-buttons a[disabled]:hover, .block-box.mode-default .field-name-field-buttons a[disabled]:hover, .block-card .button a[disabled]:hover, .containers .region-bottom .field-name-field-button a[disabled]:hover, .block-enticement .button a[disabled]:hover, .block-event-default .button a[disabled]:hover, .block-news .button a[disabled]:hover, .block-text .button a[disabled]:hover, .node-button a[disabled]:hover, .accordion-item .field-name-field-button a[disabled]:hover, .button-primary[disabled]:focus, .btn-prm-wrap a[disabled]:focus, .mode-event-left-rail .field-name-field-button a[disabled]:focus, .mode-default.video .field-name-node-link a[disabled]:focus, .mode-default.certification-test .field-name-field-link a[disabled]:focus, .block-box.mode-full .field-name-field-buttons a[disabled]:focus, .block-box.mode-default .field-name-field-buttons a[disabled]:focus, .block-card .button a[disabled]:focus, .containers .region-bottom .field-name-field-button a[disabled]:focus, .block-enticement .button a[disabled]:focus, .block-event-default .button a[disabled]:focus, .block-news .button a[disabled]:focus, .block-text .button a[disabled]:focus, .node-button a[disabled]:focus, .accordion-item .field-name-field-button a[disabled]:focus, .button-primary[disabled].focus, .btn-prm-wrap a[disabled].focus, .mode-event-left-rail .field-name-field-button a[disabled].focus, .mode-default.video .field-name-node-link a[disabled].focus, .mode-default.certification-test .field-name-field-link a[disabled].focus, .block-box.mode-full .field-name-field-buttons a[disabled].focus, .block-box.mode-default .field-name-field-buttons a[disabled].focus, .block-card .button a[disabled].focus, .containers .region-bottom .field-name-field-button a[disabled].focus, .block-enticement .button a[disabled].focus, .block-event-default .button a[disabled].focus, .block-news .button a[disabled].focus, .block-text .button a[disabled].focus, .node-button a[disabled].focus, .accordion-item .field-name-field-button a[disabled].focus,
+.button-primary.disabled:hover, .btn-prm-wrap a.disabled:hover, .mode-event-left-rail .field-name-field-button a.disabled:hover, .page-sales-agent-directory-my-favorites .disabled.view-header:hover, .mode-default.video .field-name-node-link a.disabled:hover, .mode-default.certification-test .field-name-field-link a.disabled:hover, .block-box.mode-full .field-name-field-buttons a.disabled:hover, .block-box.mode-default .field-name-field-buttons a.disabled:hover, .containers .region-bottom .field-name-field-button a.disabled:hover, .accordion-item .field-name-field-button a.disabled:hover, .button-primary.disabled:focus, .btn-prm-wrap a.disabled:focus, .mode-event-left-rail .field-name-field-button a.disabled:focus, .page-sales-agent-directory-my-favorites .disabled.view-header:focus, .mode-default.video .field-name-node-link a.disabled:focus, .mode-default.certification-test .field-name-field-link a.disabled:focus, .block-box.mode-full .field-name-field-buttons a.disabled:focus, .block-box.mode-default .field-name-field-buttons a.disabled:focus, .containers .region-bottom .field-name-field-button a.disabled:focus, .accordion-item .field-name-field-button a.disabled:focus, .button-primary.disabled.focus, .btn-prm-wrap a.disabled.focus, .mode-event-left-rail .field-name-field-button a.disabled.focus, .page-sales-agent-directory-my-favorites .disabled.focus.view-header, .mode-default.video .field-name-node-link a.disabled.focus, .mode-default.certification-test .field-name-field-link a.disabled.focus, .block-box.mode-full .field-name-field-buttons a.disabled.focus, .block-box.mode-default .field-name-field-buttons a.disabled.focus, .containers .region-bottom .field-name-field-button a.disabled.focus, .accordion-item .field-name-field-button a.disabled.focus, .button-primary[disabled]:hover, .btn-prm-wrap a[disabled]:hover, .mode-event-left-rail .field-name-field-button a[disabled]:hover, .page-sales-agent-directory-my-favorites [disabled].view-header:hover, .mode-default.video .field-name-node-link a[disabled]:hover, .mode-default.certification-test .field-name-field-link a[disabled]:hover, .block-box.mode-full .field-name-field-buttons a[disabled]:hover, .block-box.mode-default .field-name-field-buttons a[disabled]:hover, .containers .region-bottom .field-name-field-button a[disabled]:hover, .accordion-item .field-name-field-button a[disabled]:hover, .button-primary[disabled]:focus, .btn-prm-wrap a[disabled]:focus, .mode-event-left-rail .field-name-field-button a[disabled]:focus, .page-sales-agent-directory-my-favorites [disabled].view-header:focus, .mode-default.video .field-name-node-link a[disabled]:focus, .mode-default.certification-test .field-name-field-link a[disabled]:focus, .block-box.mode-full .field-name-field-buttons a[disabled]:focus, .block-box.mode-default .field-name-field-buttons a[disabled]:focus, .containers .region-bottom .field-name-field-button a[disabled]:focus, .accordion-item .field-name-field-button a[disabled]:focus, .button-primary[disabled].focus, .btn-prm-wrap a[disabled].focus, .mode-event-left-rail .field-name-field-button a[disabled].focus, .page-sales-agent-directory-my-favorites [disabled].focus.view-header, .mode-default.video .field-name-node-link a[disabled].focus, .mode-default.certification-test .field-name-field-link a[disabled].focus, .block-box.mode-full .field-name-field-buttons a[disabled].focus, .block-box.mode-default .field-name-field-buttons a[disabled].focus, .containers .region-bottom .field-name-field-button a[disabled].focus, .accordion-item .field-name-field-button a[disabled].focus,
 fieldset[disabled] .button-primary:hover,
 fieldset[disabled] .btn-prm-wrap a:hover, .btn-prm-wrap
 fieldset[disabled] a:hover,
 fieldset[disabled] .mode-event-left-rail .field-name-field-button a:hover, .mode-event-left-rail .field-name-field-button
 fieldset[disabled] a:hover,
+fieldset[disabled] .page-sales-agent-directory-my-favorites .view-header:hover, .page-sales-agent-directory-my-favorites
+fieldset[disabled] .view-header:hover,
 fieldset[disabled] .mode-default.video .field-name-node-link a:hover, .mode-default.video .field-name-node-link
 fieldset[disabled] a:hover,
 fieldset[disabled] .mode-default.certification-test .field-name-field-link a:hover, .mode-default.certification-test .field-name-field-link
@@ -11841,19 +11815,7 @@ fieldset[disabled] .block-box.mode-full .field-name-field-buttons a:hover, .bloc
 fieldset[disabled] a:hover,
 fieldset[disabled] .block-box.mode-default .field-name-field-buttons a:hover, .block-box.mode-default .field-name-field-buttons
 fieldset[disabled] a:hover,
-fieldset[disabled] .block-card .button a:hover, .block-card .button
-fieldset[disabled] a:hover,
 fieldset[disabled] .containers .region-bottom .field-name-field-button a:hover, .containers .region-bottom .field-name-field-button
-fieldset[disabled] a:hover,
-fieldset[disabled] .block-enticement .button a:hover, .block-enticement .button
-fieldset[disabled] a:hover,
-fieldset[disabled] .block-event-default .button a:hover, .block-event-default .button
-fieldset[disabled] a:hover,
-fieldset[disabled] .block-news .button a:hover, .block-news .button
-fieldset[disabled] a:hover,
-fieldset[disabled] .block-text .button a:hover, .block-text .button
-fieldset[disabled] a:hover,
-fieldset[disabled] .node-button a:hover, .node-button
 fieldset[disabled] a:hover,
 fieldset[disabled] .accordion-item .field-name-field-button a:hover, .accordion-item .field-name-field-button
 fieldset[disabled] a:hover,
@@ -11862,6 +11824,8 @@ fieldset[disabled] .btn-prm-wrap a:focus, .btn-prm-wrap
 fieldset[disabled] a:focus,
 fieldset[disabled] .mode-event-left-rail .field-name-field-button a:focus, .mode-event-left-rail .field-name-field-button
 fieldset[disabled] a:focus,
+fieldset[disabled] .page-sales-agent-directory-my-favorites .view-header:focus, .page-sales-agent-directory-my-favorites
+fieldset[disabled] .view-header:focus,
 fieldset[disabled] .mode-default.video .field-name-node-link a:focus, .mode-default.video .field-name-node-link
 fieldset[disabled] a:focus,
 fieldset[disabled] .mode-default.certification-test .field-name-field-link a:focus, .mode-default.certification-test .field-name-field-link
@@ -11870,19 +11834,7 @@ fieldset[disabled] .block-box.mode-full .field-name-field-buttons a:focus, .bloc
 fieldset[disabled] a:focus,
 fieldset[disabled] .block-box.mode-default .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons
 fieldset[disabled] a:focus,
-fieldset[disabled] .block-card .button a:focus, .block-card .button
-fieldset[disabled] a:focus,
 fieldset[disabled] .containers .region-bottom .field-name-field-button a:focus, .containers .region-bottom .field-name-field-button
-fieldset[disabled] a:focus,
-fieldset[disabled] .block-enticement .button a:focus, .block-enticement .button
-fieldset[disabled] a:focus,
-fieldset[disabled] .block-event-default .button a:focus, .block-event-default .button
-fieldset[disabled] a:focus,
-fieldset[disabled] .block-news .button a:focus, .block-news .button
-fieldset[disabled] a:focus,
-fieldset[disabled] .block-text .button a:focus, .block-text .button
-fieldset[disabled] a:focus,
-fieldset[disabled] .node-button a:focus, .node-button
 fieldset[disabled] a:focus,
 fieldset[disabled] .accordion-item .field-name-field-button a:focus, .accordion-item .field-name-field-button
 fieldset[disabled] a:focus,
@@ -11891,6 +11843,8 @@ fieldset[disabled] .btn-prm-wrap a.focus, .btn-prm-wrap
 fieldset[disabled] a.focus,
 fieldset[disabled] .mode-event-left-rail .field-name-field-button a.focus, .mode-event-left-rail .field-name-field-button
 fieldset[disabled] a.focus,
+fieldset[disabled] .page-sales-agent-directory-my-favorites .focus.view-header, .page-sales-agent-directory-my-favorites
+fieldset[disabled] .focus.view-header,
 fieldset[disabled] .mode-default.video .field-name-node-link a.focus, .mode-default.video .field-name-node-link
 fieldset[disabled] a.focus,
 fieldset[disabled] .mode-default.certification-test .field-name-field-link a.focus, .mode-default.certification-test .field-name-field-link
@@ -11899,19 +11853,7 @@ fieldset[disabled] .block-box.mode-full .field-name-field-buttons a.focus, .bloc
 fieldset[disabled] a.focus,
 fieldset[disabled] .block-box.mode-default .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons
 fieldset[disabled] a.focus,
-fieldset[disabled] .block-card .button a.focus, .block-card .button
-fieldset[disabled] a.focus,
 fieldset[disabled] .containers .region-bottom .field-name-field-button a.focus, .containers .region-bottom .field-name-field-button
-fieldset[disabled] a.focus,
-fieldset[disabled] .block-enticement .button a.focus, .block-enticement .button
-fieldset[disabled] a.focus,
-fieldset[disabled] .block-event-default .button a.focus, .block-event-default .button
-fieldset[disabled] a.focus,
-fieldset[disabled] .block-news .button a.focus, .block-news .button
-fieldset[disabled] a.focus,
-fieldset[disabled] .block-text .button a.focus, .block-text .button
-fieldset[disabled] a.focus,
-fieldset[disabled] .node-button a.focus, .node-button
 fieldset[disabled] a.focus,
 fieldset[disabled] .accordion-item .field-name-field-button a.focus, .accordion-item .field-name-field-button
 fieldset[disabled] a.focus {
@@ -11919,7 +11861,7 @@ fieldset[disabled] a.focus {
   border-color: #004e75;
 }
 
-.button-primary .badge, .btn-prm-wrap a .badge, .mode-event-left-rail .field-name-field-button a .badge, .mode-default.video .field-name-node-link a .badge, .mode-default.certification-test .field-name-field-link a .badge, .block-box.mode-full .field-name-field-buttons a .badge, .block-box.mode-default .field-name-field-buttons a .badge, .block-card .button a .badge, .containers .region-bottom .field-name-field-button a .badge, .block-enticement .button a .badge, .block-event-default .button a .badge, .block-news .button a .badge, .block-text .button a .badge, .node-button a .badge, .accordion-item .field-name-field-button a .badge {
+.button-primary .badge, .btn-prm-wrap a .badge, .mode-event-left-rail .field-name-field-button a .badge, .page-sales-agent-directory-my-favorites .view-header .badge, .mode-default.video .field-name-node-link a .badge, .mode-default.certification-test .field-name-field-link a .badge, .block-box.mode-full .field-name-field-buttons a .badge, .block-box.mode-default .field-name-field-buttons a .badge, .containers .region-bottom .field-name-field-button a .badge, .accordion-item .field-name-field-button a .badge {
   color: #004e75;
   background-color: #fff;
 }
@@ -12031,8 +11973,8 @@ fieldset[disabled] a.focus {
   background-color: #fff;
 }
 
-.button-secondary, .default-exposed-form form button, .region-top .block.views-exposed-form form button, .block-pmmi-search-library-block form button, .events-block-3 .more-link a,
-.block-views-blockevents-block-3 .more-link a, .blue-region .containers .region-bottom .field-name-field-button a, .block-image-slide .button a {
+.button-secondary, .btn-scnd-wrap a, .default-exposed-form form button, .region-top .block.views-exposed-form form button, .block-pmmi-search-library-block form button, .events-block-3 .more-link a,
+.block-views-blockevents-block-3 .more-link a, .blue-region .containers .region-bottom .field-name-field-button a {
   min-width: 130px;
   background: none;
   border-width: 2px;
@@ -12042,9 +11984,9 @@ fieldset[disabled] a.focus {
   color: #fff;
 }
 
-.button-secondary:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
-.block-views-blockevents-block-3 .more-link a:focus, .blue-region .containers .region-bottom .field-name-field-button a:focus, .block-image-slide .button a:focus, .button-secondary:hover, .default-exposed-form form button:hover, .region-top .block.views-exposed-form form button:hover, .block-pmmi-search-library-block form button:hover, .events-block-3 .more-link a:hover,
-.block-views-blockevents-block-3 .more-link a:hover, .blue-region .containers .region-bottom .field-name-field-button a:hover, .block-image-slide .button a:hover {
+.button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
+.block-views-blockevents-block-3 .more-link a:focus, .blue-region .containers .region-bottom .field-name-field-button a:focus, .button-secondary:hover, .btn-scnd-wrap a:hover, .default-exposed-form form button:hover, .region-top .block.views-exposed-form form button:hover, .block-pmmi-search-library-block form button:hover, .events-block-3 .more-link a:hover,
+.block-views-blockevents-block-3 .more-link a:hover, .blue-region .containers .region-bottom .field-name-field-button a:hover {
   border-color: #c2c2c2;
   color: #c2c2c2;
 }
@@ -12206,11 +12148,130 @@ fieldset[disabled] a.focus {
   clear: both;
 }
 
+.details-wrapper.panel-default, .node-company-form .panel-default.equipment-sold-details,
+.node-company-form .panel-default.industries-served-details {
+  position: relative;
+  border: 1px solid #869fbe;
+  border-radius: 0;
+  padding-left: 52px;
+  margin-bottom: 15px;
+}
+
+.details-wrapper.panel-default .panel-heading, .node-company-form .panel-default.equipment-sold-details .panel-heading,
+.node-company-form .panel-default.industries-served-details .panel-heading {
+  color: #8c8888;
+  background: none;
+  border: none;
+}
+
+.details-wrapper.panel-default .panel-heading a, .node-company-form .panel-default.equipment-sold-details .panel-heading a,
+.node-company-form .panel-default.industries-served-details .panel-heading a {
+  color: inherit;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+.details-wrapper.panel-default .panel-heading a[aria-expanded="true"], .node-company-form .panel-default.equipment-sold-details .panel-heading a[aria-expanded="true"],
+.node-company-form .panel-default.industries-served-details .panel-heading a[aria-expanded="true"] {
+  font-weight: 700;
+  padding-left: 15px;
+}
+
+.details-wrapper.panel-default .panel-body.in, .node-company-form .panel-default.equipment-sold-details .panel-body.in,
+.node-company-form .panel-default.industries-served-details .panel-body.in {
+  padding: 0 20px 20px 15px;
+}
+
+.details-wrapper.panel-default .panel-body.in .form-type-textarea label, .node-company-form .panel-default.equipment-sold-details .panel-body.in .form-type-textarea label,
+.node-company-form .panel-default.industries-served-details .panel-body.in .form-type-textarea label {
+  text-transform: uppercase;
+  padding: 4px 15px 0 0;
+}
+
+.details-wrapper.panel-default .panel-body.in .form-type-textarea .form-textarea-wrapper, .node-company-form .panel-default.equipment-sold-details .panel-body.in .form-type-textarea .form-textarea-wrapper,
+.node-company-form .panel-default.industries-served-details .panel-body.in .form-type-textarea .form-textarea-wrapper {
+  position: absolute;
+  padding-right: 20px;
+  display: inline-block;
+}
+
+@media screen and (max-width: 1023px) {
+  .details-wrapper.panel-default .panel-body.in .form-type-textarea .form-textarea-wrapper, .node-company-form .panel-default.equipment-sold-details .panel-body.in .form-type-textarea .form-textarea-wrapper,
+  .node-company-form .panel-default.industries-served-details .panel-body.in .form-type-textarea .form-textarea-wrapper {
+    position: relative;
+  }
+}
+
+.details-wrapper.panel-default.active:before, .node-company-form .panel-default.active.equipment-sold-details:before,
+.node-company-form .panel-default.active.industries-served-details:before {
+  content: '\f068';
+  background-color: #038dc0;
+}
+
+.details-wrapper.panel-default:before, .node-company-form .panel-default.equipment-sold-details:before,
+.node-company-form .panel-default.industries-served-details:before {
+  background-color: #004e75;
+  width: 40px;
+  display: block;
+  font-family: FontAwesome;
+  color: #fff;
+  content: '\f067';
+  font-size: 20px;
+  font-size: 1.25rem;
+  padding-top: 9px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.details-wrapper.panel-default .checker, .node-company-form .panel-default.equipment-sold-details .checker,
+.node-company-form .panel-default.industries-served-details .checker {
+  opacity: 0;
+}
+
+.details-wrapper.panel-default .checkbox.checked, .node-company-form .panel-default.equipment-sold-details .checkbox.checked,
+.node-company-form .panel-default.industries-served-details .checkbox.checked {
+  color: #038dc0;
+}
+
+.details-wrapper.panel-default .checkbox.checked label, .node-company-form .panel-default.equipment-sold-details .checkbox.checked label,
+.node-company-form .panel-default.industries-served-details .checkbox.checked label {
+  color: #038dc0;
+}
+
+.details-wrapper.panel-default .checkbox.checked:before, .node-company-form .panel-default.equipment-sold-details .checkbox.checked:before,
+.node-company-form .panel-default.industries-served-details .checkbox.checked:before {
+  font-family: FontAwesome;
+  content: '\f046';
+  position: absolute;
+}
+
+.details-wrapper.panel-default .checkbox, .node-company-form .panel-default.equipment-sold-details .checkbox,
+.node-company-form .panel-default.industries-served-details .checkbox {
+  color: #000;
+}
+
+.details-wrapper.panel-default .checkbox label, .node-company-form .panel-default.equipment-sold-details .checkbox label,
+.node-company-form .panel-default.industries-served-details .checkbox label {
+  color: #000;
+}
+
+.details-wrapper.panel-default .checkbox:before, .node-company-form .panel-default.equipment-sold-details .checkbox:before,
+.node-company-form .panel-default.industries-served-details .checkbox:before {
+  font-family: FontAwesome;
+  content: '\f096';
+  position: absolute;
+}
+
 .inherited-p p, .paragraph1 p, p p, .article-node .node-body p, .article-node .author-info p, .article-node .date p,
 .article-node .twitter-link p,
 .article-node .article-release p, .node-body p, .node-bold-label p,
 .featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .block-views-blocksearch-page-block-1 .views-field-body p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-box.mode-full .field-name-body p, .block-box.mode-default .field-name-body p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
-.layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .mode-event-left-rail .field-name-field-location p, .block-pricing .pricings p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-box.mode-mega-menu .field-name-body p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
+.layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .mode-event-left-rail .field-name-field-location p, .block-pricing .pricings p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .block-text.mode-container-mode .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-box.mode-mega-menu .field-name-body p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
 .block-pack-expo-show .date p, .pack-expo-show.mode-mega-menu p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
   font-size: inherit;
   line-height: inherit;
@@ -12278,7 +12339,7 @@ fieldset[disabled] a.focus {
   }
 }
 
-.side-paragraph, .mode-event-left-rail .field-name-field-location, .block-pricing .pricings, .block-text.mode-text-image .block-body, .content-left .block-text.mode-default .block-body, .cert-info li .field--item {
+.side-paragraph, .mode-event-left-rail .field-name-field-location, .block-pricing .pricings, .block-text.mode-text-image .block-body, .content-left .block-text.mode-default .block-body, .block-text.mode-container-mode .block-body, .cert-info li .field--item {
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 18px;
@@ -12344,21 +12405,24 @@ fieldset[disabled] a.focus {
   border-color: #fff;
 }
 
-.headline2, .block-title-big-bg, .block-pmmi-twitter-block .block-title, .block-pmmi-facebook-block .block-title, .field--type-viewfield .features-videos .viewfield-title, .microsite-info .block-event, .page-search-results-sales-agent-directory .sales-agent-search-results-header h2, .block-image-slide-default .title, .block-news .title, .block-text.mode-default .title, .node-title {
+.headline2, .block-title-big-bg, .block-pmmi-twitter-block .block-title, .block-pmmi-facebook-block .block-title, .field--type-viewfield .features-videos .viewfield-title, .microsite-info .block-event, .page-search-results-sales-agent-directory .sales-agent-search-results-header h2, .page-sales-agent-directory-my-favorites h2, .containers .region-top .field-name-field-head, .block-image-slide-default .title, .block-news .title, .block-text.mode-default .title, .block-text.mode-container-mode .title, .node-title {
   font-size: 36px;
   font-size: 2.25rem;
   line-height: 42px;
   line-height: 2.625rem;
   font-weight: 800;
   color: #004e75;
+  font-family: "Lato", Arial, FreeSans, sans-serif;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
-.headline2 a, .block-title-big-bg a, .block-pmmi-twitter-block .block-title a, .block-pmmi-facebook-block .block-title a, .field--type-viewfield .features-videos .viewfield-title a, .microsite-info .block-event a, .page-search-results-sales-agent-directory .sales-agent-search-results-header h2 a, .block-image-slide-default .title a, .block-news .title a, .block-text.mode-default .title a, .node-title a {
+.headline2 a, .block-title-big-bg a, .block-pmmi-twitter-block .block-title a, .block-pmmi-facebook-block .block-title a, .field--type-viewfield .features-videos .viewfield-title a, .microsite-info .block-event a, .page-search-results-sales-agent-directory .sales-agent-search-results-header h2 a, .page-sales-agent-directory-my-favorites h2 a, .containers .region-top .field-name-field-head a, .block-image-slide-default .title a, .block-news .title a, .block-text.mode-default .title a, .block-text.mode-container-mode .title a, .node-title a {
   color: #004e75;
 }
 
 @media screen and (max-width: 1023px) {
-  .headline2, .block-title-big-bg, .block-pmmi-twitter-block .block-title, .block-pmmi-facebook-block .block-title, .field--type-viewfield .features-videos .viewfield-title, .microsite-info .block-event, .page-search-results-sales-agent-directory .sales-agent-search-results-header h2, .block-image-slide-default .title, .block-news .title, .block-text.mode-default .title, .node-title {
+  .headline2, .block-title-big-bg, .block-pmmi-twitter-block .block-title, .block-pmmi-facebook-block .block-title, .field--type-viewfield .features-videos .viewfield-title, .microsite-info .block-event, .page-search-results-sales-agent-directory .sales-agent-search-results-header h2, .page-sales-agent-directory-my-favorites h2, .containers .region-top .field-name-field-head, .block-image-slide-default .title, .block-news .title, .block-text.mode-default .title, .block-text.mode-container-mode .title, .node-title {
     font-size: 1.375rem;
     line-height: 1.1;
   }
@@ -12430,8 +12494,8 @@ fieldset[disabled] a.focus {
   }
 }
 
-.sidehead1, .node-layout .content-left .containers .region-top .field-name-field-head,
-.landing-left-sidebar .content-left .containers .region-top .field-name-field-head, .block-layout .title, .block-links .title, .events-block-upcoming-left-rail .viewfield-title, .block-social-media.mode-default .title, .content-left .block-text.mode-default .title, .cert-info li .field--label, .school-info .title {
+.sidehead1, .node-layout .content-left div.containers .region-top .field-name-field-head,
+.landing-left-sidebar .content-left div.containers .region-top .field-name-field-head, .block-layout .title, .block-links .title, .events-block-upcoming-left-rail .viewfield-title, .block-social-media.mode-default .title, .content-left .block-text.mode-default .title, .cert-info li .field--label, .school-info .title {
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 23px;
@@ -12444,8 +12508,8 @@ fieldset[disabled] a.focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .sidehead1, .node-layout .content-left .containers .region-top .field-name-field-head,
-  .landing-left-sidebar .content-left .containers .region-top .field-name-field-head, .block-layout .title, .block-links .title, .events-block-upcoming-left-rail .viewfield-title, .block-social-media.mode-default .title, .content-left .block-text.mode-default .title, .cert-info li .field--label, .school-info .title {
+  .sidehead1, .node-layout .content-left div.containers .region-top .field-name-field-head,
+  .landing-left-sidebar .content-left div.containers .region-top .field-name-field-head, .block-layout .title, .block-links .title, .events-block-upcoming-left-rail .viewfield-title, .block-social-media.mode-default .title, .content-left .block-text.mode-default .title, .cert-info li .field--label, .school-info .title {
     font-size: 1rem;
   }
 }
@@ -12685,6 +12749,10 @@ h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 0;
 }
 
+strong {
+  font-weight: 800;
+}
+
 ol, ul {
   padding-left: 20px;
 }
@@ -12694,6 +12762,10 @@ ol, ul {
 .node-body ul,
 .content ul {
   overflow: hidden;
+  font-size: 19px;
+  font-size: 1.1875rem;
+  line-height: 23px;
+  line-height: 1.4375rem;
 }
 
 .bullet-list ul li, .views-field-body ul li,
@@ -12782,6 +12854,12 @@ ol, ul {
   }
 }
 
+.text-align-center img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/** PAGER **/
 .pmmi-pager {
   display: block;
   color: #c2c2c2;
@@ -13276,13 +13354,13 @@ body.use-container .region-content:after {
   }
 }
 
-.node-layout .content-left .containers,
-.landing-left-sidebar .content-left .containers {
+.node-layout .content-left div.containers,
+.landing-left-sidebar .content-left div.containers {
   margin-bottom: 30px;
 }
 
-.node-layout .content-left .containers .col,
-.landing-left-sidebar .content-left .containers .col {
+.node-layout .content-left div.containers .col,
+.landing-left-sidebar .content-left div.containers .col {
   width: 100%;
 }
 
@@ -13733,34 +13811,32 @@ html, body {
 }
 
 .pmmi-panel {
-  height: 100%;
-}
-
-.page-wrapper {
   min-height: 100%;
+  overflow: hidden;
+  clear: both;
 }
 
-.page-wrapper:after {
+.pmmi-panel:after {
   content: "";
   display: block;
   height: 60px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .page-wrapper:after {
+  .pmmi-panel:after {
     height: 90px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .page-wrapper:after {
+  .pmmi-panel:after {
     height: 125px;
   }
 }
 
 .footer {
   width: auto;
-  padding: 20px 0;
+  padding: 20px 0 15px;
   background: #053248;
   color: #fff;
   margin: -60px 0 0;
@@ -14256,21 +14332,23 @@ html, body {
   }
 }
 
-.navbar .main-nav .mega-align-center > .dropdown-menu {
-  left: 50%;
-  -webkit-transform: translate(-50%);
-          transform: translate(-50%);
-}
-
-.navbar .main-nav .mega-align-right > .dropdown-menu {
-  left: auto;
-  right: 0;
+@media screen and (min-width: 768px) {
+  .navbar .main-nav .mega-align-center > .dropdown-menu {
+    left: 50%;
+    -webkit-transform: translate(-50%);
+            transform: translate(-50%);
+  }
+  .navbar .main-nav .mega-align-right > .dropdown-menu {
+    left: auto;
+    right: 0;
+  }
 }
 
 .navbar .main-nav .dropdown-menu {
   background-position: 100% 100%;
   background-repeat: no-repeat;
   background-color: #fff;
+  background-clip: border-box;
   float: none;
   -webkit-transition: 200ms ease;
   transition: 200ms ease;
@@ -15164,10 +15242,14 @@ html, body {
   display: inline-block;
 }
 
+.page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area {
+  z-index: 1;
+  position: relative;
+}
+
 .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .control-label {
   width: 100px;
   margin-left: -30px;
-  margin-top: 5px;
 }
 
 .page-search-sales-agent-directory .main-container form .input-group,
@@ -15300,10 +15382,10 @@ html, body {
   display: none;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .page-search-sales-agent-directory .main-container .block-title {
     font-size: 2.1875rem;
-    margin: 0 10px 0 0px;
+    margin: 0 10px 0 0;
   }
   .page-search-sales-agent-directory .main-container label {
     padding-left: 0;
@@ -15314,24 +15396,26 @@ html, body {
   }
   .page-search-sales-agent-directory .main-container form {
     max-width: 340px;
+    width: auto;
   }
-  .page-search-sales-agent-directory .main-container form .form-group .form-item-country-code {
-    margin-left: 0;
+  .page-search-sales-agent-directory .main-container form .form-group > .form-item .control-label {
+    line-height: inherit;
+  }
+  .page-search-sales-agent-directory .main-container form .form-group > .form-item .input-group {
+    max-width: 100%;
+    width: 100%;
+    min-width: 220px;
   }
   .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .control-label {
-    position: relative;
-    margin: 0;
-    width: 70px;
-  }
-  .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .form-control {
-    float: right;
+    margin-left: 0;
+    line-height: inherit;
   }
   .page-search-sales-agent-directory .main-container form #edit-industries,
   .page-search-sales-agent-directory .main-container form #edit-equipments,
   .page-search-sales-agent-directory .main-container form #edit-shows,
   .page-search-sales-agent-directory .main-container form .form-type-textfield,
   .page-search-sales-agent-directory .main-container form .form-type-select {
-    width: 340px;
+    width: 100%;
     float: left;
     margin-left: 0;
   }
@@ -15340,8 +15424,8 @@ html, body {
     margin-right: 11px;
     padding-right: 0;
   }
-  .page-search-sales-agent-directory .main-container form .form-type-textfield input {
-    max-width: 375px;
+  .page-search-sales-agent-directory .main-container form .form-control {
+    max-width: 100%;
   }
   .page-search-sales-agent-directory .main-container .button {
     margin: 30px auto;
@@ -15367,6 +15451,7 @@ html, body {
   margin-top: 10px;
   content: ' ';
   border-bottom: 1px solid #c2c2c2;
+  width: 100%;
 }
 
 .page-search-results-sales-agent-directory .sales-agent-search-results-header h2 span {
@@ -15423,6 +15508,7 @@ html, body {
 .page-search-results-sales-agent-directory .sales-agent-search-results-header .info-block {
   display: inline-block;
   vertical-align: top;
+  width: 20%;
 }
 
 .page-search-results-sales-agent-directory .sales-agent-search-results-header h3 {
@@ -15434,7 +15520,7 @@ html, body {
 
 .page-search-results-sales-agent-directory .sales-agent-search-results-header ul {
   padding-left: 0;
-  padding-right: 100px;
+  padding-right: 40px;
   white-space: nowrap;
   overflow: hidden;
   max-width: 266px;
@@ -15530,6 +15616,7 @@ html, body {
   border: none;
   padding-left: 20px;
   display: inline-block;
+  width: 100%;
 }
 
 .page-search-results-sales-agent-directory .view-search-sales-agent-directory tbody > tr td:first-child:before {
@@ -15551,31 +15638,175 @@ html, body {
   overflow: hidden;
   text-transform: uppercase;
   font-weight: bold;
-  width: 80%;
+  width: 90%;
 }
 
 @media screen and (max-width: 1023px) {
-  .page-search-results-sales-agent-directory .table-responsive {
+  .page-search-results-sales-agent-directory .sales-agent-search-results-header .info-block {
+    display: block;
+    width: 100%;
+  }
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory .table-responsive {
     border: none;
   }
-  .page-search-results-sales-agent-directory .table > thead {
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory .table > thead {
     display: none;
   }
-  .page-search-results-sales-agent-directory tbody > tr {
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory table,
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory tbody {
     display: block;
-    border-bottom: 0 !important;
-    max-width: 345px;
   }
-  .page-search-results-sales-agent-directory tbody > tr td {
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory tbody > tr {
+    border-bottom: 0;
     display: block;
+  }
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory tbody > tr td {
     white-space: normal;
-    padding: 5px 0 5px 32px;
+    padding: 5px 0 0 32px;
+    width: auto;
   }
-  .page-search-results-sales-agent-directory td.views-field-country {
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory tbody > tr td, .page-search-results-sales-agent-directory .view-search-sales-agent-directory tbody > tr td:first-child {
+    padding-bottom: 0;
+    display: block;
+  }
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory tbody > tr td.views-field-field-manufacturers-represented {
+    width: auto;
+  }
+  .page-search-results-sales-agent-directory .view-search-sales-agent-directory tbody > tr td.views-field-country {
     font-style: italic;
+    width: auto;
   }
-  .page-search-results-sales-agent-directory td.views-field-field-manufacturers-represented {
-    width: inherit !important;
+}
+
+/**
+ * Sales Agent Directory Favorites Page.
+ */
+.page-sales-agent-directory-my-favorites .view-header {
+  margin: -45px 0 30px 250px;
+  height: auto;
+}
+
+.page-sales-agent-directory-my-favorites .view-header p {
+  margin: 0;
+}
+
+.page-sales-agent-directory-my-favorites .view-header a {
+  color: #fff;
+  font-size: 14px;
+  font-size: 0.875rem;
+  padding: 5px;
+  font-weight: 700;
+}
+
+.page-sales-agent-directory-my-favorites thead {
+  font-weight: 800;
+  font-size: 20px;
+  font-size: 1.25rem;
+  color: #004e75;
+}
+
+.page-sales-agent-directory-my-favorites thead > tr > th {
+  border-bottom: 1px solid #c2c2c2;
+}
+
+.page-sales-agent-directory-my-favorites tbody tr {
+  border-bottom: 1px solid #c2c2c2;
+}
+
+.page-sales-agent-directory-my-favorites tbody tr:hover, .page-sales-agent-directory-my-favorites tbody tr:nth-of-type(odd):hover {
+  background: #edf5ff;
+}
+
+.page-sales-agent-directory-my-favorites tbody tr td {
+  border-top: none;
+  padding: 15px 8px;
+}
+
+.page-sales-agent-directory-my-favorites tbody tr td.views-field-title {
+  display: block;
+  max-width: 425px;
+}
+
+.page-sales-agent-directory-my-favorites tbody tr td.views-field-title a {
+  color: #004e75;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.page-sales-agent-directory-my-favorites tbody tr td.views-field-field-address-country-code {
+  width: 230px;
+}
+
+.page-sales-agent-directory-my-favorites tbody tr td.views-field-field-manufacturers-represented {
+  width: 400px;
+  display: block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.page-sales-agent-directory-my-favorites tbody tr td.views-field-link-flag a {
+  color: #55acee;
+  font-style: italic;
+  font-size: 14px;
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+
+.page-sales-agent-directory-my-favorites tbody tr td.views-field-link-flag a:before {
+  font-family: FontAwesome;
+  content: '\f00d';
+  font-style: normal;
+  padding-right: 5px;
+}
+
+.page-sales-agent-directory-my-favorites tbody tr:nth-of-type(odd) {
+  background: none;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .page-sales-agent-directory-my-favorites tbody tr td.views-field-title,
+  .page-sales-agent-directory-my-favorites tbody tr td.views-field-field-manufacturers-represented {
+    width: 300px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .page-sales-agent-directory-my-favorites .table-responsive {
+    border: none;
+    max-width: 100%;
+  }
+  .page-sales-agent-directory-my-favorites h2 {
+    position: relative;
+  }
+  .page-sales-agent-directory-my-favorites .view-header {
+    margin: 5px 0 15px 0;
+  }
+  .page-sales-agent-directory-my-favorites thead {
+    display: none;
+  }
+  .page-sales-agent-directory-my-favorites table,
+  .page-sales-agent-directory-my-favorites tbody {
+    display: block;
+  }
+  .page-sales-agent-directory-my-favorites tbody > tr {
+    display: block;
+    max-width: 100%;
+    padding: 15px 0;
+  }
+  .page-sales-agent-directory-my-favorites tbody > tr td {
+    display: block;
+    padding: 0;
+  }
+  .page-sales-agent-directory-my-favorites tbody > tr td.views-field-field-manufacturers-represented {
+    width: 100%;
+  }
+  .page-sales-agent-directory-my-favorites tbody > tr td.views-field-field-address-country-code {
+    font-style: italic;
   }
 }
 
@@ -15931,6 +16162,12 @@ div.view {
     padding-left: 15px;
     padding-right: 15px;
   }
+}
+
+.container .view-empty {
+  width: auto;
+  padding-right: 0;
+  padding-left: 0;
 }
 
 @media screen and (max-width: 767px) {
@@ -16297,6 +16534,10 @@ div.view {
   margin-bottom: 20px;
 }
 
+.block-box.mode-full .field-name-body p, .block-box.mode-default .field-name-body p {
+  display: block;
+}
+
 .block-box.mode-full .field-name-field-image, .block-box.mode-default .field-name-field-image {
   float: left;
   width: 246px;
@@ -16429,10 +16670,6 @@ div.view {
     font-size: 0.75rem;
     line-height: 0.875rem;
   }
-}
-
-.block-card .button a {
-  max-width: 100%;
 }
 
 .block-card .front-side {
@@ -17174,7 +17411,7 @@ div.view {
   max-height: 98px;
 }
 
-.pack-expo-show.mode-mega-menu .field--name-field-show-link {
+.pack-expo-show.mode-mega-menu .field-name-field-head {
   font-weight: 800;
   font-size: 13px;
   font-size: 0.8125rem;
@@ -17528,10 +17765,14 @@ div.view {
   }
   .block-image-slide .title {
     font-size: 1.875rem;
+    line-height: 1;
     margin-bottom: 7px;
   }
+  .block-image-slide .sub-title {
+    margin-bottom: 10px;
+  }
   .block-image-slide .block-body {
-    margin-bottom: 15px;
+    margin-bottom: 12px;
   }
 }
 
@@ -17550,7 +17791,8 @@ div.view {
   }
   .block-image-slide .title {
     font-size: 1.5rem;
-    margin-bottom: 2px;
+    line-height: 1;
+    margin-bottom: 7px;
   }
   .block-image-slide .sub-title,
   .block-image-slide .block-body {
@@ -17558,7 +17800,7 @@ div.view {
     line-height: 0.9375rem;
   }
   .block-image-slide .block-body {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 }
 
@@ -17600,6 +17842,7 @@ div.view {
   font-size: 0.75rem;
   line-height: 18px;
   line-height: 1.125rem;
+  text-transform: uppercase;
 }
 
 .block-news .head {
@@ -17760,7 +18003,7 @@ div.view {
 }
 
 /* TEXT VIEW MODES */
-.block-text.mode-image-text .image, .block-text.mode-text-image .image {
+.block-text .image {
   margin-bottom: 10px;
 }
 
@@ -17824,6 +18067,40 @@ div.view {
 .block-text.centered img {
   display: block;
   margin: 0 auto;
+}
+
+.block-text.mode-container-mode {
+  border: 1px solid #c2c2c2;
+  padding: 11px;
+}
+
+.block-text.mode-container-mode .title {
+  display: block;
+  background: #004e75;
+  color: #fff;
+  padding: 10px 14px;
+  margin: -7px -7px 4px;
+  text-align: left;
+}
+
+.block-text.mode-container-mode .title:after {
+  display: none;
+}
+
+.block-text.mode-container-mode .title + *:before {
+  display: block;
+  content: "";
+  margin: 0 -7px;
+  padding: 5px 0 0;
+  border-top: 1px solid #c2c2c2;
+}
+
+.block-text.mode-container-mode .image img {
+  margin-top: 5px;
+}
+
+.block-text.mode-container-mode .block-body {
+  margin-bottom: 10px;
 }
 
 .article.mode-default {
@@ -17945,7 +18222,7 @@ div.view {
 /**
  *  Company node view
  */
-.company-node .top-banner.clearfix, .company-node .field--type-viewfield .top-banner.features-videos.viewfield-wrapper, .field--type-viewfield .company-node .top-banner.features-videos.viewfield-wrapper, .company-node .top-banner.mode-default.video, .company-node .top-banner.block-event-ribbon, .company-node .feature-block .top-banner.views-row, .feature-block .company-node .top-banner.views-row, .company-node .top-banner.block-news {
+.company-node .top-banner.clearfix, .company-node .field--type-viewfield .top-banner.features-videos.viewfield-wrapper, .field--type-viewfield .company-node .top-banner.features-videos.viewfield-wrapper, .company-node .top-banner.mode-default.video, .company-node .top-banner.block-event-ribbon, .company-node .feature-block .top-banner.views-row, .feature-block .company-node .top-banner.views-row, .company-node .top-banner.block-news, .company-node .top-banner.block-text.mode-container-mode {
   margin-bottom: 0;
 }
 
@@ -17971,20 +18248,49 @@ div.view {
   margin-bottom: 20px;
 }
 
-.company-node .general .address-simple,
-.company-node .general .field--name-field-website-url {
-  float: left;
+.company-node .general .line-1,
+.company-node .general .line-2 {
+  clear: left;
 }
 
-.company-node .general .field--name-field-main-phone-number:before,
-.company-node .general .field--name-field-general-company-email:before {
+.company-node .general .line-1 > div,
+.company-node .general .line-2 > div {
+  display: inline-block;
+  word-break: break-all;
+}
+
+.company-node .general .line-1 > div:before,
+.company-node .general .line-2 > div:before {
   content: ' \2022 \A0';
   color: #004e75;
   margin-left: 5px;
 }
 
-.company-node .general .line-2 {
-  clear: left;
+.company-node .general .line-1 > div:first-child:before,
+.company-node .general .line-2 > div:first-child:before {
+  display: none;
+}
+
+.company-node .territory-served {
+  max-width: 66.6%;
+  width: auto;
+  min-width: 33.3%;
+}
+
+.company-node .territory-served .territory-covered .two-columns {
+  font-size: 0;
+}
+
+.company-node .territory-served .territory-covered .two-columns div.field--item {
+  width: 50%;
+  display: inline-block;
+  padding: 0 15px;
+  font-size: 16px;
+  font-size: 1rem;
+}
+
+.company-node .territory-served .territory-covered .two-columns div.field--item:nth-child(odd) {
+  padding-left: 0;
 }
 
 .company-node .row-wrapper,
@@ -18005,6 +18311,7 @@ div.view {
   color: #004e75;
   font-size: 20px;
   font-size: 1.25rem;
+  border-bottom: 2px solid #c2c2c2;
 }
 
 .company-node .contacts :first-child, .company-node .services :first-child {
@@ -18039,7 +18346,7 @@ div.view {
 }
 
 .company-node .contacts .address {
-  margin-bottom: 0px;
+  margin-bottom: 0;
   font-size: 16px;
   font-size: 1rem;
 }
@@ -18114,22 +18421,26 @@ div.view {
   clear: both;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
   .company-node .node-title {
     margin-bottom: 0;
     font-size: 2.1875rem;
   }
-  .company-node .general .address-simple,
-  .company-node .general .field--name-field-website-url {
-    float: none;
+  .company-node .general .line-1 > div,
+  .company-node .general .line-2 > div {
+    display: block;
   }
-  .company-node .general .address-simple:after,
-  .company-node .general .field--name-field-website-url:after {
+  .company-node .general .line-1 > div:before,
+  .company-node .general .line-2 > div:before {
     display: none;
   }
-  .company-node .general .field--name-field-main-phone-number:before,
-  .company-node .general .field--name-field-general-company-email:before {
-    display: none;
+  .company-node .territory-served {
+    max-width: 100%;
+  }
+  .company-node .territory-served .territory-covered .two-columns div.field--item {
+    width: 100%;
+    display: block;
+    padding: 0;
   }
   .company-node .row-wrapper {
     margin: 0 -15px;
@@ -18144,22 +18455,9 @@ div.view {
   }
 }
 
-@media screen and (min-width: 768px) and (max-width: 1023px) {
-  .company-node .contacts > .col-md-4, .company-node .block-icons.cols-3 .column.contacts > .field, .block-icons.cols-3 .company-node .column.contacts > .field, .company-node .services > .col-md-4, .company-node .block-icons.cols-3 .column.services > .field, .block-icons.cols-3 .company-node .column.services > .field {
-    padding-left: 0;
-  }
-}
-
-@media screen and (max-width: 1023px) {
-  .company-node .contacts > .col-md-4, .company-node .block-icons.cols-3 .column.contacts > .field, .block-icons.cols-3 .company-node .column.contacts > .field, .company-node .services > .col-md-4, .company-node .block-icons.cols-3 .column.services > .field, .block-icons.cols-3 .company-node .column.services > .field {
-    padding-left: 0;
-  }
-}
-
 /**
- * Company node edit form
+ * Company node edit form.
  */
-.page-node-type-company .block-block-content .block-title,
 .page-node-type-company .block-block-content .block-title {
   color: #004e75;
   font-size: 35px;
@@ -18168,7 +18466,6 @@ div.view {
   line-height: 42px;
 }
 
-.page-node-type-company .block-block-content .title,
 .page-node-type-company .block-block-content .title {
   color: #1d262c;
   font-size: 23px;
@@ -18177,337 +18474,249 @@ div.view {
   line-height: 23px;
 }
 
-.page-node-type-company .block-block-content .field--name-body,
 .page-node-type-company .block-block-content .field--name-body {
   color: #8c8888;
 }
 
-form#node-company-edit-form,
-form#node-company-form {
+.node-company-form {
   max-width: 770px;
 }
 
-form#node-company-edit-form .form-control,
-form#node-company-edit-form .selector,
-form#node-company-form .form-control,
-form#node-company-form .selector {
+.node-company-form .form-control,
+.node-company-form .selector {
   color: #000;
 }
 
-form#node-company-edit-form .panel-body,
-form#node-company-form .panel-body {
+.node-company-form .panel-body {
   padding: 0;
 }
 
-form#node-company-edit-form .form-control,
-form#node-company-form .form-control {
+.node-company-form .form-control {
   border-color: #869fbe;
 }
 
-form#node-company-edit-form .panel-heading,
-form#node-company-edit-form .panel-default,
-form#node-company-edit-form legend,
-form#node-company-form .panel-heading,
-form#node-company-form .panel-default,
-form#node-company-form legend {
+.node-company-form .panel-heading,
+.node-company-form .panel-default,
+.node-company-form legend {
   background: none;
   border: none;
   box-shadow: none;
   padding-left: 0;
 }
 
-form#node-company-edit-form .panel-title,
-form#node-company-edit-form .field--name-field-company-description label,
-form#node-company-edit-form .field--name-field-manufacturers-represented label,
-form#node-company-edit-form .field--name-field-business-lines legend,
-form#node-company-form .panel-title,
-form#node-company-form .field--name-field-company-description label,
-form#node-company-form .field--name-field-manufacturers-represented label,
-form#node-company-form .field--name-field-business-lines legend {
+.node-company-form .panel-title, .node-company-form .equipment-sold h3, .node-company-form .industries-served h3,
+.node-company-form .field--name-field-company-description label,
+.node-company-form .field--name-field-manufacturers-represented label,
+.node-company-form .field--name-field-business-lines legend {
   color: #004e75;
   font-weight: 800;
   font-size: 20px;
   font-size: 1.25rem;
 }
 
-form#node-company-edit-form .field--name-field-address .input-group-addon,
-form#node-company-edit-form .field--name-field-address .panel-heading,
-form#node-company-form .field--name-field-address .input-group-addon,
-form#node-company-form .field--name-field-address .panel-heading {
-  display: none;
-}
-
-form#node-company-edit-form .field--name-field-address .form-group,
-form#node-company-edit-form .field--name-field-address .address-container-inline > div,
-form#node-company-form .field--name-field-address .form-group,
-form#node-company-form .field--name-field-address .address-container-inline > div {
-  float: right;
-  margin-right: 0;
-}
-
-form#node-company-edit-form .field--name-field-address .input-group,
-form#node-company-edit-form .field--name-field-address .select-wrapper,
-form#node-company-form .field--name-field-address .input-group,
-form#node-company-form .field--name-field-address .select-wrapper {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-}
-
-form#node-company-edit-form .field--name-field-address .selector,
-form#node-company-form .field--name-field-address .selector {
-  width: 530px !important;
-  border-color: #869fbe;
-  font-weight: inherit;
-}
-
-form#node-company-edit-form .field--name-field-address .selector:before,
-form#node-company-form .field--name-field-address .selector:before {
-  display: none;
-}
-
-form#node-company-edit-form .field--name-field-address .control-label.sr-only,
-form#node-company-form .field--name-field-address .control-label.sr-only {
-  position: relative;
-  width: auto;
-  height: auto;
-}
-
-form#node-company-edit-form .company-info .form-wrapper,
-form#node-company-edit-form .main-contact .form-wrapper,
-form#node-company-form .company-info .form-wrapper,
-form#node-company-form .main-contact .form-wrapper {
-  float: right;
+.node-company-form .company-info .panel-body label,
+.node-company-form .main-contact .panel-body label {
+  width: 230px;
   text-align: right;
-}
-
-form#node-company-edit-form .company-info .form-wrapper label,
-form#node-company-edit-form .main-contact .form-wrapper label,
-form#node-company-form .company-info .form-wrapper label,
-form#node-company-form .main-contact .form-wrapper label {
   font-size: 14px;
   font-size: 0.875rem;
   text-transform: uppercase;
   padding-right: 10px;
 }
 
-form#node-company-edit-form .company-info .form-tel,
-form#node-company-edit-form .company-info .form-text,
-form#node-company-edit-form .company-info .form-url,
-form#node-company-edit-form .company-info .form-email,
-form#node-company-edit-form .main-contact .form-tel,
-form#node-company-edit-form .main-contact .form-text,
-form#node-company-edit-form .main-contact .form-url,
-form#node-company-edit-form .main-contact .form-email,
-form#node-company-form .company-info .form-tel,
-form#node-company-form .company-info .form-text,
-form#node-company-form .company-info .form-url,
-form#node-company-form .company-info .form-email,
-form#node-company-form .main-contact .form-tel,
-form#node-company-form .main-contact .form-text,
-form#node-company-form .main-contact .form-url,
-form#node-company-form .main-contact .form-email {
-  max-width: 100%;
-  width: 530px;
-  display: inline;
-  min-width: 338px;
+.node-company-form .company-info .panel-body input,
+.node-company-form .main-contact .panel-body input {
+  max-width: 535px;
+  width: 100%;
+  display: inline-block;
 }
 
-form#node-company-edit-form .company-info .description,
-form#node-company-edit-form .main-contact .description,
-form#node-company-form .company-info .description,
-form#node-company-form .main-contact .description {
-  float: right;
+.node-company-form .company-info .panel-body .description,
+.node-company-form .main-contact .panel-body .description {
   text-align: left;
   font-size: 13px;
   font-size: 0.8125rem;
   color: #004e75;
-  max-width: 530px;
-  width: 530px;
   margin-bottom: 0;
+  padding-left: 232px;
 }
 
-form#node-company-edit-form .checker,
-form#node-company-form .checker {
+.node-company-form .field--name-field-address .input-group-addon,
+.node-company-form .field--name-field-address .panel-heading {
+  display: none;
+}
+
+.node-company-form .field--name-field-address .input-group,
+.node-company-form .field--name-field-address .select-wrapper {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+.node-company-form .field--name-field-address .input-group .selector,
+.node-company-form .field--name-field-address .select-wrapper .selector {
+  border-color: #869fbe;
+}
+
+.node-company-form .field--name-field-address .address-container-inline > .form-item {
+  width: 100%;
+}
+
+.node-company-form .field--name-field-address .select-wrapper > .selector,
+.node-company-form .field--name-field-address .form-item > .locality,
+.node-company-form .field--name-field-address .form-item > .postal-code {
+  min-width: 290px;
+  font-weight: inherit;
+}
+
+.node-company-form .field--name-field-address .select-wrapper > .selector:before,
+.node-company-form .field--name-field-address .form-item > .locality:before,
+.node-company-form .field--name-field-address .form-item > .postal-code:before {
+  display: none;
+}
+
+.node-company-form .field--name-field-address .select-wrapper > .selector span,
+.node-company-form .field--name-field-address .form-item > .locality span,
+.node-company-form .field--name-field-address .form-item > .postal-code span {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.node-company-form .field--name-field-address .control-label {
+  position: relative;
+  width: auto;
+  height: auto;
+}
+
+.node-company-form .checker {
   opacity: 0;
 }
 
-form#node-company-edit-form .checkbox.checked,
-form#node-company-form .checkbox.checked {
+.node-company-form .checkbox.checked {
   color: #038dc0;
 }
 
-form#node-company-edit-form .checkbox.checked:before,
-form#node-company-form .checkbox.checked:before {
+.node-company-form .checkbox.checked:before {
   font-family: FontAwesome;
   content: '\f046';
   position: absolute;
 }
 
-form#node-company-edit-form .checkbox:before,
-form#node-company-form .checkbox:before {
+.node-company-form .checkbox:before {
   font-family: FontAwesome;
   content: '\f096';
   position: absolute;
 }
 
-form#node-company-edit-form .field--name-field-territory-served label,
-form#node-company-form .field--name-field-territory-served label {
+.node-company-form .field--name-field-territory-served label {
   font-size: 15px;
   font-size: 0.9375rem;
   font-weight: 400;
   color: #004e75;
 }
 
-form#node-company-edit-form .field--name-field-territory-served .input-group-addon:last-child,
-form#node-company-form .field--name-field-territory-served .input-group-addon:last-child {
+.node-company-form .field--name-field-territory-served .input-group-addon:last-child {
   display: none;
 }
 
-form#node-company-edit-form .input-group,
-form#node-company-form .input-group {
+.node-company-form .input-group {
   display: block;
 }
 
-form#node-company-edit-form .selectize-control,
-form#node-company-form .selectize-control {
+.node-company-form .selectize-control {
   height: auto;
   box-shadow: none;
-  max-width: 100%;
-  width: 470px;
+  max-width: 470px;
 }
 
-form#node-company-edit-form .equipment-sold legend,
-form#node-company-edit-form .industries-served legend,
-form#node-company-form .equipment-sold legend,
-form#node-company-form .industries-served legend {
+.node-company-form .equipment-sold legend,
+.node-company-form .industries-served legend {
   display: none;
 }
 
-form#node-company-edit-form .equipment-sold .form-textarea-wrapper,
-form#node-company-edit-form .industries-served .form-textarea-wrapper,
-form#node-company-form .equipment-sold .form-textarea-wrapper,
-form#node-company-form .industries-served .form-textarea-wrapper {
-  margin-right: 30px;
+.node-company-form .equipment-sold h3,
+.node-company-form .industries-served h3 {
+  padding: 20px 0;
 }
 
-form#node-company-edit-form .equipment-sold .panel-body,
-form#node-company-edit-form .industries-served .panel-body,
-form#node-company-form .equipment-sold .panel-body,
-form#node-company-form .industries-served .panel-body {
-  padding: 15px 0px 15px 70px;
-  position: relative;
-  border: 1px solid #869fbe;
-}
-
-form#node-company-edit-form .equipment-sold .panel-body:before,
-form#node-company-edit-form .industries-served .panel-body:before,
-form#node-company-form .equipment-sold .panel-body:before,
-form#node-company-form .industries-served .panel-body:before {
-  font-family: FontAwesome;
-  content: "\f068";
-  display: block;
-  width: 40px;
-  background: #038dc0;
-  position: absolute;
-  height: auto;
-  color: #e8eded;
-  text-align: center;
-  font-size: 20px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-}
-
-form#node-company-edit-form .field--name-field-manufacturers-represented .description,
-form#node-company-form .field--name-field-manufacturers-represented .description {
+.node-company-form .field--name-field-manufacturers-represented .description {
   color: #004e75;
   font-size: 15px;
   padding-right: 10px;
 }
 
-form#node-company-edit-form .field--name-field-after-sales-service,
-form#node-company-form .field--name-field-after-sales-service {
+.node-company-form .field--name-field-after-sales-service {
   margin: 35px 0 20px;
 }
 
-form#node-company-edit-form .field--name-field-after-sales-service legend,
-form#node-company-form .field--name-field-after-sales-service legend {
+.node-company-form .field--name-field-after-sales-service legend {
   font-size: 15px;
   font-size: 0.9375rem;
   font-weight: bold;
 }
 
-form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column input,
-form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column input {
+.node-company-form .field--name-field-after-sales-service .webform-options-display-one-column input {
   opacity: 0;
 }
 
-form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column label:before,
-form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label:before {
+.node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label:before {
   font-family: FontAwesome;
   content: '\f096';
   position: absolute;
   margin-left: -20px;
 }
 
-form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked,
-form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked {
+.node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked {
   color: #038dc0;
 }
 
-form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked:before,
-form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked:before {
+.node-company-form .field--name-field-after-sales-service .webform-options-display-one-column label.checked:before {
   font-family: FontAwesome;
   content: '\f046';
 }
 
-form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:first-child,
-form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:first-child {
+.node-company-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:first-child {
   display: inline-block;
 }
 
-form#node-company-edit-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:last-child,
-form#node-company-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:last-child {
+.node-company-form .field--name-field-after-sales-service .webform-options-display-one-column div.form-item:last-child {
   float: left;
   margin-top: 0px;
   margin-right: 50px;
 }
 
-form#node-company-edit-form #edit-trade-shows .panel-body,
-form#node-company-form #edit-trade-shows .panel-body {
+.node-company-form #edit-trade-shows .panel-body {
   max-width: 470px;
 }
 
-form#node-company-edit-form #edit-trade-shows .panel-body .form-group > .form-item,
-form#node-company-form #edit-trade-shows .panel-body .form-group > .form-item {
+.node-company-form #edit-trade-shows .panel-body .form-group {
+  display: inline-block;
+}
+
+.node-company-form #edit-trade-shows .panel-body .form-group > .form-item {
   float: right;
 }
 
-form#node-company-edit-form #edit-trade-shows .panel-body .form-group > .form-item label,
-form#node-company-form #edit-trade-shows .panel-body .form-group > .form-item label {
+.node-company-form #edit-trade-shows .panel-body .form-group > .form-item label {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
   text-transform: uppercase;
+  padding-right: 10px;
 }
 
-form#node-company-edit-form #edit-trade-shows .panel-body .form-group > .form-item input,
-form#node-company-form #edit-trade-shows .panel-body .form-group > .form-item input {
+.node-company-form #edit-trade-shows .panel-body .form-group > .form-item input {
   max-width: 370px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
-  margin-left: 10px;
 }
 
-form#node-company-edit-form #edit-trade-shows .panel-body .checkbox label,
-form#node-company-form #edit-trade-shows .panel-body .checkbox label {
+.node-company-form #edit-trade-shows .panel-body .checkbox label {
   font-weight: bold;
 }
 
-form#node-company-edit-form .button,
-form#node-company-form .button {
+.node-company-form .button {
   width: 470px;
   float: left;
   font-size: 25px;
@@ -18520,85 +18729,46 @@ form#node-company-form .button {
   margin-top: 30px;
 }
 
-@media screen and (max-width: 767px) {
-  form#node-company-edit-form,
-  form#node-company-form {
-    max-width: 353px;
+@media screen and (max-width: 1023px) {
+  .node-company-form {
+    max-width: 500px;
   }
-  form#node-company-edit-form .company-info .form-wrapper,
-  form#node-company-edit-form .main-contact .form-wrapper,
-  form#node-company-form .company-info .form-wrapper,
-  form#node-company-form .main-contact .form-wrapper {
+  .node-company-form .company-info .panel-body label,
+  .node-company-form .main-contact .panel-body label {
     text-align: left;
   }
-  form#node-company-edit-form .company-info .form-tel,
-  form#node-company-edit-form .company-info .form-text,
-  form#node-company-edit-form .company-info .form-url,
-  form#node-company-edit-form .company-info .form-email,
-  form#node-company-edit-form .main-contact .form-tel,
-  form#node-company-edit-form .main-contact .form-text,
-  form#node-company-edit-form .main-contact .form-url,
-  form#node-company-edit-form .main-contact .form-email,
-  form#node-company-form .company-info .form-tel,
-  form#node-company-form .company-info .form-text,
-  form#node-company-form .company-info .form-url,
-  form#node-company-form .company-info .form-email,
-  form#node-company-form .main-contact .form-tel,
-  form#node-company-form .main-contact .form-text,
-  form#node-company-form .main-contact .form-url,
-  form#node-company-form .main-contact .form-email {
-    max-width: 338px;
-    min-width: 338px;
-    width: 338px;
+  .node-company-form .company-info .panel-body .description,
+  .node-company-form .main-contact .panel-body .description {
+    padding-left: 0;
   }
-  form#node-company-edit-form .company-info .description,
-  form#node-company-edit-form .main-contact .description,
-  form#node-company-form .company-info .description,
-  form#node-company-form .main-contact .description {
-    width: auto;
+  .node-company-form .selectize-control {
+    max-width: 500px;
   }
-  form#node-company-edit-form .selectize-control,
-  form#node-company-form .selectize-control {
-    min-width: 0;
+  .node-company-form .field--name-field-address .input-group,
+  .node-company-form .field--name-field-address .select-wrapper {
+    display: block;
   }
-  form#node-company-edit-form .selectize-control .selectize-input input,
-  form#node-company-form .selectize-control .selectize-input input {
-    max-width: 338px;
-  }
-  form#node-company-edit-form .field--name-field-address .selector,
-  form#node-company-form .field--name-field-address .selector {
-    width: 338px !important;
-  }
-  form#node-company-edit-form .field--name-field-address .address-container-inline .form-item .select-wrapper,
-  form#node-company-form .field--name-field-address .address-container-inline .form-item .select-wrapper {
+  .node-company-form .field--name-field-address .address-container-inline .form-item .select-wrapper {
     margin-left: auto;
   }
-  form#node-company-edit-form .equipment-sold .panel-body label,
-  form#node-company-edit-form .industries-served .panel-body label,
-  form#node-company-form .equipment-sold .panel-body label,
-  form#node-company-form .industries-served .panel-body label {
+  .node-company-form .equipment-sold .panel-body label,
+  .node-company-form .industries-served .panel-body label {
     padding-left: 20px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     padding-right: 20px;
   }
-  form#node-company-edit-form #edit-trade-shows .panel-body .form-group > .form-item,
-  form#node-company-form #edit-trade-shows .panel-body .form-group > .form-item {
-    float: left;
-  }
-  form#node-company-edit-form #edit-trade-shows label,
-  form#node-company-form #edit-trade-shows label {
+  .node-company-form #edit-trade-shows label {
     display: block;
   }
-  form#node-company-edit-form #edit-trade-shows input,
-  form#node-company-form #edit-trade-shows input {
+  .node-company-form #edit-trade-shows input {
     display: block;
     margin-left: 0;
   }
-  form#node-company-edit-form .button,
-  form#node-company-form .button {
-    width: 338px;
+  .node-company-form .button {
+    width: 100%;
+    max-width: 350px;
     margin-bottom: 20px;
   }
 }
@@ -18615,10 +18785,10 @@ form#node-company-form .button {
 
 .block-pmmi-sales-agent-action-toolbar ul,
 .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul {
-  float: right;
-  margin-right: 135px;
+  margin: 0 auto;
+  max-width: 1200px;
+  text-align: right;
   height: 100%;
-  margin-bottom: 0;
 }
 
 .block-pmmi-sales-agent-action-toolbar ul li,
@@ -18668,6 +18838,7 @@ form#node-company-form .button {
   .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul {
     margin-right: 0;
     padding: 4px 15px;
+    text-align: left;
   }
   .block-pmmi-sales-agent-action-toolbar ul li:first-child,
   .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li:first-child {
@@ -18677,39 +18848,29 @@ form#node-company-form .button {
   .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li:first-child a {
     color: #fff;
   }
-  .block-pmmi-sales-agent-action-toolbar ul li:nth-child(3),
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li:nth-child(3) {
-    width: 340px;
-  }
-  .block-pmmi-sales-agent-action-toolbar li,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li {
-    width: 160px;
+  .block-pmmi-sales-agent-action-toolbar ul li,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li {
+    width: 100%;
     text-align: center;
     border: 2px solid #004e75;
     border-radius: 3px;
-    margin: 5px !important;
+    margin: 5px 0;
     height: 30px;
     padding-top: 2px;
   }
-  .block-pmmi-sales-agent-action-toolbar li a,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li a {
+  .block-pmmi-sales-agent-action-toolbar ul li a,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li a {
     line-height: 1rem;
     font-size: 0.8125rem;
   }
-  .block-pmmi-sales-agent-action-toolbar li .pmmi-company-add:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-download-favorites:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul .block-pmmi-sales-agent-action-toolbar li .pmmi-download-favorites:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-search-new:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul .block-pmmi-sales-agent-action-toolbar li .pmmi-search-new:before, .block-pmmi-sales-agent-action-toolbar ul li .flag-favorites_content:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul .block-pmmi-sales-agent-action-toolbar li .flag-favorites_content:before,
-  .block-pmmi-sales-agent-action-toolbar li .pmmi-download-favorites:before,
-  .block-pmmi-sales-agent-action-toolbar li .pmmi-search-new:before,
-  .block-pmmi-sales-agent-action-toolbar li .flag-favorites_content:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-company-add:before, .block-pmmi-sales-agent-action-toolbar ul
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-download-favorites:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-download-favorites:before, .block-pmmi-sales-agent-action-toolbar ul
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-search-new:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-search-new:before, .block-pmmi-sales-agent-action-toolbar ul
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .flag-favorites_content:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .flag-favorites_content:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-download-favorites:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .pmmi-search-new:before,
-  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar li .flag-favorites_content:before {
+  .block-pmmi-sales-agent-action-toolbar ul li .pmmi-company-add:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-download-favorites:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-search-new:before, .block-pmmi-sales-agent-action-toolbar ul li .flag-favorites_content:before,
+  .block-pmmi-sales-agent-action-toolbar ul li .pmmi-download-favorites:before,
+  .block-pmmi-sales-agent-action-toolbar ul li .pmmi-search-new:before,
+  .block-pmmi-sales-agent-action-toolbar ul li .flag-favorites_content:before,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-company-add:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-download-favorites:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-search-new:before, .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .flag-favorites_content:before,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-download-favorites:before,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .pmmi-search-new:before,
+  .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li .flag-favorites_content:before {
     display: none;
   }
 }
@@ -18989,7 +19150,7 @@ form#node-company-form .button {
   }
 }
 
-.path-gateway {
+.page-gateway {
   background: url(../i/gateway-bg-graphic.jpg) 50% 0 no-repeat #005883;
   background-size: cover;
 }
@@ -18999,7 +19160,7 @@ form#node-company-form .button {
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
   padding: 70px 0 0;
   max-width: 1280px;
-  margin: 0 auto;
+  margin: 0 auto 20px;
 }
 
 .page-gateway .logo {

@@ -282,18 +282,23 @@
     /* END First level theming in ALL modes. */
 
     /* START Dropdown theming in ALL modes. */
-    .mega-align-center > .dropdown-menu {
-      left: 50%;
-      transform: translate(-50%);
-    }
-    .mega-align-right > .dropdown-menu {
-      left: auto;
-      right: 0;
+    @include tablet-min {
+      .mega-align-center > .dropdown-menu {
+        left: 50%;
+        transform: translate(-50%);
+      }
+      .mega-align-right > .dropdown-menu {
+        left: auto;
+        right: 0;
+      }
     }
     .dropdown-menu {
-      background-position: 100% 100%;
-      background-repeat: no-repeat;
-      background-color: #fff;
+      background: {
+        position: 100% 100%;
+        repeat: no-repeat;
+        color: #fff;
+        clip: border-box;
+      };
       float: none;
       transition: 200ms ease;
       border: 4px solid $dkblue;

@@ -103,7 +103,7 @@
           });
         });
       });
-      var $expandedList = $('.pmmi-company-search-block-form .js-form-wrapper');
+      var $expandedList = $('.pmmi-company-search-block-form .js-form-wrapper, .industries-served-details.js-form-wrapper, .equipment-sold-details.js-form-wrapper');
       var $clicker = $('.panel-heading a', $expandedList);
       $clicker.once('pmmiCommonTheme').click(function () {
         $(this).closest('.js-form-wrapper').toggleClass('active');
@@ -112,9 +112,11 @@
       $('.containers .row').once('matchHeight').each(function () {
         var $row = $(this);
         var $socialBlock = $row.find('.social-block');
+        var $textBlock = $row.find('.block-text');
+        var $containerBlocks = $socialBlock.add($textBlock);
         $row.imagesLoaded()
           .always(function () {
-            if ($socialBlock.length) {
+            if ($containerBlocks.length) {
               $('.col > .field > *', $row).matchHeight();
             }
             var $matchHeightBlock = $('.match-height', $row);

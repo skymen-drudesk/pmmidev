@@ -1,0 +1,8 @@
+pmmi_sales_agent.mail_settings:
+  route_name: pmmi_sales_agent.mail_settings
+  base_route: pmmi_sales_agent.mail_settings
+  title: 'Mail Settings'
+pmmi_sales_agent.mass_email:
+  route_name: pmmi_sales_agent.mass_email
+  base_route: pmmi_sales_agent.mail_settings
+  title: 'PMMI Mass Email'

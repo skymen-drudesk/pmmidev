@@ -58,10 +58,11 @@
         }
       }
       .form-item-administrative-area {
+        z-index: 1;
+        position: relative;
         .control-label {
           width: 100px;
           margin-left: -30px;
-          margin-top: 5px;
         }
       }
     }
@@ -156,10 +157,10 @@
     }
   }
 
-  @include mobile {
+  @include tablet-max {
     .block-title {
       font-size: $r35;
-      margin: 0 10px 0 0px;
+      margin: 0 10px 0 0;
     }
     label {
       padding-left: 0;
@@ -170,19 +171,21 @@
     }
     form {
       max-width: 340px;
+      width: auto;
       .form-group {
-        .form-item-country-code {
-          margin-left: 0;
-        }
-        .form-item-administrative-area {
+        > .form-item {
           .control-label {
-            position: relative;
-            margin: 0;
-            width: 70px;
+            line-height: inherit;
           }
-          .form-control {
-            float: right;
+          .input-group {
+            max-width: 100%;
+            width: 100%;
+            min-width: 220px;
           }
+        }
+        .form-item-administrative-area .control-label {
+          margin-left: 0;
+          line-height: inherit;
         }
       }
       #edit-industries,
@@ -190,7 +193,7 @@
       #edit-shows,
       .form-type-textfield,
       .form-type-select {
-        width: 340px;
+        width: 100%;
         float: left;
         margin-left: 0;
       }
@@ -199,8 +202,8 @@
         margin-right: 11px;
         padding-right: 0;
       }
-      .form-type-textfield input {
-        max-width: 375px;
+      .form-control {
+        max-width: 100%;
       }
     }
     .button {
@@ -229,6 +232,7 @@
         margin-top: 10px;
         content: ' ';
         border-bottom: 1px solid $mdgrey;
+        width: 100%;
       }
       span {
         font-weight: normal;
@@ -241,6 +245,7 @@
     .info-block {
       display: inline-block;
       vertical-align: top;
+      width: 20%;
     }
     h3 {
       font-size: $r16;
@@ -249,7 +254,7 @@
     }
     ul {
       padding-left: 0;
-      padding-right: 100px;
+      padding-right: 40px;
       white-space: nowrap;
       overflow: hidden;
       max-width: 266px;
@@ -297,6 +302,7 @@
           border: none;
           padding-left: 20px;
           display: inline-block;
+          width: 100%;
           &:before {
             float: left;
             margin-left: -20px;
@@ -315,34 +321,177 @@
             overflow: hidden;
             text-transform: uppercase;
             font-weight: bold;
-            width: 80%;
+            width: 90%;
           }
         }
       }
     }
   }
   @include tablet-max {
+    .sales-agent-search-results-header {
+      .info-block {
+        display: block;
+        width: 100%;
+      }
+    }
+    .view-search-sales-agent-directory {
+      .table-responsive {
+        border: none;
+      }
+      .table > thead {
+        display: none;
+      }
+      table,
+      tbody {
+        display: block;
+      }
+      tbody > tr {
+        border-bottom: 0;
+        display: block;
+        td {
+          white-space: normal;
+          padding: 5px 0 0 32px;
+          width: auto;
+          &, &:first-child {
+            padding-bottom: 0;
+            display: block;
+          }
+          &.views-field-field-manufacturers-represented {
+            width: auto;
+          }
+          &.views-field-country {
+            font-style: italic;
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/**
+ * Sales Agent Directory Favorites Page.
+ */
+.page-sales-agent-directory-my-favorites {
+  h2 {
+    @extend .headline2;
+  }
+  .view-header {
+    margin: -45px 0 30px 250px;
+    height: auto;
+    @extend .button-primary;
+    p {
+      margin: 0;
+    }
+    a {
+      color: #fff;
+      font-size: $r14;
+      padding: 5px;
+      font-weight: 700;
+    }
+  }
+  thead {
+    font-weight: 800;
+    font-size: $r20;
+    color: $blue;
+    & > tr > th {
+      border-bottom: 1px solid $mdgrey;
+    }
+  }
+  tbody {
+    tr {
+      border-bottom: 1px solid $mdgrey;
+      &:hover,
+      &:nth-of-type(odd):hover {
+        background: $ltbluebg;
+      }
+      td {
+        border-top: none;
+        padding: 15px 8px;
+        &.views-field-title {
+          display: block;
+          max-width: 425px;
+          a {
+            color: $blue;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+          }
+        }
+        &.views-field-field-address-country-code {
+          width: 230px;
+        }
+        &.views-field-field-manufacturers-represented {
+          width: 400px;
+          display: block;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        &.views-field-link-flag {
+          a {
+            color: $twitterblue;
+            font-style: italic;
+            font-size: $r14;
+            font-weight: 700;
+            &:before {
+              font-family: FontAwesome;
+              content: '\f00d';
+              font-style: normal;
+              padding-right: 5px;
+            }
+          }
+        }
+      }
+      &:nth-of-type(odd) {
+        background: none;
+      }
+    }
+  }
+  @include desktop {
+    tbody tr {
+      td.views-field-title,
+      td.views-field-field-manufacturers-represented {
+        width: 300px;
+      }
+    }
+  }
+  @include tablet-max {
     .table-responsive {
       border: none;
+      max-width: 100%;
     }
-    .table > thead {
+    h2 {
+      position: relative;
+    }
+    .view-header {
+      margin: 5px 0 15px 0;
+    }
+    thead {
       display: none;
+    }
+    table,
+    tbody {
+      display: block;
     }
     tbody > tr {
       display: block;
-      border-bottom: 0 !important;;
-      max-width: 345px;
+      max-width: 100%;
+      padding: 15px 0;
       td {
         display: block;
-        white-space: normal;
-        padding: 5px 0 5px 32px;
+        padding: 0;
+        &.views-field-field-manufacturers-represented {
+          width: 100%;
+        }
+        &.views-field-field-address-country-code {
+          font-style: italic;
+        }
       }
-    }
-    td.views-field-country {
-      font-style: italic;
-    }
-    td.views-field-field-manufacturers-represented {
-      width: inherit !important;
     }
   }
 }
