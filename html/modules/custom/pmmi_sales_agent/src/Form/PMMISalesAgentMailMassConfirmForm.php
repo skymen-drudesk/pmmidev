@@ -157,7 +157,7 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
       drupal_set_message(t('Processed @processed companies from @companies.', ['@processed' => $results['processed'], '@companies' => $results['all']]));
       // Add warning message to notify that not all companies received a message.
       if ($results['processed'] != $results['all']) {
-        drupal_set_message(t('The message was not sent to all companies. Check your logs for detail info.'), 'warning');
+        drupal_set_message(t('The message was not sent to all companies. Check logs for detailed info.'), 'warning');
       }
     }
     else {

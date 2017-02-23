@@ -45,7 +45,7 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
 
     $form['email_settings_send'] = [
       '#type' => 'vertical_tabs',
-      '#title' => $this->t('Messages which will be send from internal PMMI admin'),
+      '#title' => $this->t('Messages sent by internal PMMI admin:'),
     ];
 
     // Listing has been approval.
@@ -130,7 +130,7 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
 
     $form['email_settings_receive'] = [
       '#type' => 'vertical_tabs',
-      '#title' => $this->t('Messages which will receive internal PMMI admin:'),
+      '#title' => $this->t('Messages received by internal PMMI admin:'),
     ];
 
     // New listing has been created (to internal PMMI admin).
