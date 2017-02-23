@@ -1,0 +1,36 @@
+<?php
+
+/**
+ * @file
+ * Contains pmmi_sso.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function pmmi_sso_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the pmmi_sso module.
+    case 'help.page.pmmi_sso':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('PMMI SSO integration') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function pmmi_sso_theme() {
+  return [
+    'pmmi_sso' => [
+      'template' => 'pmmi_sso',
+      'render element' => 'children',
+    ],
+  ];
+}

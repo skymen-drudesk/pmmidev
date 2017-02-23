@@ -1,0 +1,12 @@
+pmmi_sso.pmmi_sso_settings:
+  title: 'PMMI SSO Settings'
+  route_name: pmmi_sso.settings
+  description: 'PMMI SSO Settings page'
+  parent: system.admin_config_system
+  weight: 99
+
+pmmi_sso_token.admin.config.people.settings:
+  title: 'PMMI SSO Token Settings'
+  description: 'Personify SSO Token Settings and manage entity.'
+  route_name: pmmi_sso.token.settings
+  parent: user.admin_index

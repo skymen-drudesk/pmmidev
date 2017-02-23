@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * @file
+ * The install file for the pmmi_sso module.
+ */
+
+use Drupal\user\Entity\Role;
+
+/**
+ * Implements hook_install().
+ */
+function pmmi_sso_install() {
+  if (Role::load('sso_user') == NULL) {
+    $role = Role::create(['id' => 'sso_user', 'label' => 'Personify SSO user']);
+    $role->save();
+  }
+}

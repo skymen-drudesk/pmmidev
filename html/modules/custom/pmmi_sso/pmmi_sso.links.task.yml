@@ -1,0 +1,21 @@
+# Access Token routing definition
+pmmi_sso_token.settings_tab:
+  route_name: pmmi_sso.token.settings
+  title: 'Settings'
+  base_route: pmmi_sso.token.settings
+
+entity.pmmi_sso_token.collection:
+  route_name: entity.pmmi_sso_token.collection
+  base_route: pmmi_sso.token.settings
+  title: 'Tokens'
+
+entity.pmmi_sso_token.canonical:
+  route_name: entity.pmmi_sso_token.canonical
+  base_route: entity.pmmi_sso_token.canonical
+  title: 'View'
+
+entity.pmmi_sso_token.delete_form:
+  route_name:  entity.pmmi_sso_token.delete_form
+  base_route:  entity.pmmi_sso_token.canonical
+  title: Delete
+  weight: 10

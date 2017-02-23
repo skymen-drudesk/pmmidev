@@ -1,0 +1,72 @@
+
+pmmi_sso.settings:
+  path: '/admin/config/pmmi_sso/settings'
+  defaults:
+    _form: '\Drupal\pmmi_sso\Form\PMMISSOSettings'
+    _title: 'PMMI SSO Settings'
+  requirements:
+    _permission: 'administer pmmi personify sso settings'
+  options:
+    _admin_route: TRUE
+
+pmmi_sso.login:
+  path: '/sso/login'
+  defaults:
+    _controller: '\Drupal\pmmi_sso\Controller\PMMISSOController::login'
+    _title: 'Personify SSO Login'
+  requirements:
+    _role: 'anonymous'
+  options:
+     no_cache: TRUE
+
+pmmi_sso.logout:
+  path: '/sso/logout'
+  defaults:
+    _controller: '\Drupal\pmmi_sso\Controller\PMMISSOController::logout'
+    _title: 'Personify SSO Logout'
+  requirements:
+    _role: 'authenticated'
+  options:
+     no_cache: TRUE
+
+pmmi_sso.token.settings:
+  path: '/admin/config/people/pmmi_sso'
+  defaults:
+   _form: '\Drupal\pmmi_sso\Entity\Form\PMMISSOTokenSettingsForm'
+   _title: 'Personify SSO Token Settings'
+  requirements:
+    _permission: 'administer pmmi personify sso token'
+  options:
+    _admin_route: TRUE
+  base_route: entity.user.admin_form
+
+entity.pmmi_sso_token.canonical:
+  path: '/admin/config/people/pmmi_sso/personify_sso_token/{personify_sso_token}'
+  defaults:
+    _entity_view: 'personify_sso_token'
+    _title: 'Access Token'
+  requirements:
+    _entity_access: 'personify_sso_token.view'
+  options:
+    _admin_route: TRUE
+
+entity.pmmi_sso_token.collection:
+  path: '/admin/config/people/pmmi_sso/personify_sso_token'
+  defaults:
+    _entity_list: 'personify_sso_token'
+    _title: 'Access Token list'
+  requirements:
+    _permission: 'administer pmmi personify sso token'
+  options:
+    _admin_route: TRUE
+  base_route: system.admin_content
+
+entity.pmmi_sso_token.delete_form:
+  path: '/admin/config/people/pmmi_sso/token/{personify_sso_token}/delete'
+  defaults:
+    _entity_form: personify_sso_token.delete
+    _title: 'Delete Access Token'
+  requirements:
+    _entity_access: 'personify_sso_token.delete'
+  options:
+    _admin_route: TRUE
