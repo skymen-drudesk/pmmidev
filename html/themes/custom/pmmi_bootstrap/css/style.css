@@ -12267,7 +12267,9 @@ fieldset[disabled] a.focus {
   position: absolute;
 }
 
-.inherited-p p, .paragraph1 p, p p, .article-node .node-body p, .article-node .author-info p, .article-node .date p,
+.inherited-p p, .paragraph1 p, p p, .bullet-list ul p, .views-field-body ul p,
+.block-body ul p,
+.content ul p, .article-node .node-body p, .article-node .author-info p, .article-node .date p,
 .article-node .twitter-link p,
 .article-node .article-release p, .node-body p, .node-bold-label p,
 .featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .block-views-blocksearch-page-block-1 .views-field-body p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-box.mode-full .field-name-body p, .block-box.mode-default .field-name-body p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
@@ -12279,7 +12281,10 @@ fieldset[disabled] a.focus {
   color: inherit;
 }
 
-.paragraph1, p, .article-node .node-body, .article-node .author-info, .article-node .date,
+.paragraph1, p, .bullet-list ul, .views-field-body ul,
+.block-body ul,
+.node-body ul,
+.content ul, .article-node .node-body, .article-node .author-info, .article-node .date,
 .article-node .twitter-link,
 .article-node .article-release, .node-body, .node-bold-label,
 .featured-speaker, .school-node .focus, .school-node .content-verified {
@@ -12291,7 +12296,10 @@ fieldset[disabled] a.focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .paragraph1, p, .article-node .node-body, .article-node .author-info, .article-node .date,
+  .paragraph1, p, .bullet-list ul, .views-field-body ul,
+  .block-body ul,
+  .node-body ul,
+  .content ul, .article-node .node-body, .article-node .author-info, .article-node .date,
   .article-node .twitter-link,
   .article-node .article-release, .node-body, .node-bold-label,
   .featured-speaker, .school-node .focus, .school-node .content-verified {
@@ -12757,15 +12765,24 @@ ol, ul {
   padding-left: 20px;
 }
 
+body {
+  min-width: 310px;
+}
+
 .bullet-list ul, .views-field-body ul,
 .block-body ul,
 .node-body ul,
 .content ul {
   overflow: hidden;
-  font-size: 19px;
-  font-size: 1.1875rem;
-  line-height: 23px;
-  line-height: 1.4375rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .bullet-list ul, .views-field-body ul,
+  .block-body ul,
+  .node-body ul,
+  .content ul {
+    font-size: 1.1875rem;
+  }
 }
 
 .bullet-list ul li, .views-field-body ul li,
@@ -13312,7 +13329,8 @@ body.use-container .region-content:after {
 
 .layout-landing .white-region .block,
 .layout-homepage .white-region .block {
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -13419,6 +13437,14 @@ body.use-container .region-content:after {
 .sitewide .container .container {
   margin-left: -15px;
   margin-right: -15px;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .node-layout .container .container,
+  .sitewide .container .container {
+    margin-left: -25px;
+    margin-right: -25px;
+  }
 }
 
 .block {
@@ -13538,6 +13564,11 @@ body.use-container .region-content:after {
 }
 
 @media screen and (max-width: 767px) {
+  .block-pmmi-twitter-block, .block-pmmi-facebook-block {
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .block-pmmi-twitter-block .block-title, .block-pmmi-facebook-block .block-title {
     height: 72px;
     padding-top: 8px;
@@ -13718,6 +13749,14 @@ body.use-container .region-content:after {
 .field--type-viewfield .features-videos.viewfield-wrapper {
   border: 1px solid #c2c2c2;
   padding: 4px;
+}
+
+@media screen and (max-width: 767px) {
+  .field--type-viewfield .features-videos.viewfield-wrapper {
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .field--type-viewfield .features-videos .viewfield-title {
@@ -16748,6 +16787,8 @@ div.view {
 @media screen and (max-width: 767px) {
   .block-card {
     max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .block-card .side {
     padding: 6px;
@@ -16895,10 +16936,6 @@ div.view {
   .containers .col {
     margin-bottom: 20px;
   }
-  .containers .rows {
-    max-width: 280px;
-    margin: 0 auto;
-  }
 }
 
 .containers .region-bottom .field-name-field-button {
@@ -16923,6 +16960,10 @@ div.view {
   .containers.centered .col {
     display: block;
   }
+}
+
+.content-right .containers .rows {
+  margin-bottom: 20px;
 }
 
 .blue-region .containers .region-top {
@@ -17917,6 +17958,11 @@ div.view {
 }
 
 @media screen and (max-width: 767px) {
+  .block-news {
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
   .block-news .title {
     background-size: 262px 144px;
     height: 72px;
@@ -18101,6 +18147,14 @@ div.view {
 
 .block-text.mode-container-mode .block-body {
   margin-bottom: 10px;
+}
+
+@media screen and (max-width: 767px) {
+  .block-text.mode-container-mode {
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .article.mode-default {

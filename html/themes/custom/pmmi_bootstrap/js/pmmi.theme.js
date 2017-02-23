@@ -112,8 +112,11 @@
       $('.containers .row').once('matchHeight').each(function () {
         var $row = $(this);
         var $socialBlock = $row.find('.social-block');
-        var $textBlock = $row.find('.block-text');
-        var $containerBlocks = $socialBlock.add($textBlock);
+        var $containerBlocks = $socialBlock.add('.viewfield-wrapper, .match-height', $row);
+        if ($containerBlocks.length) {
+          var $textBlock = $row.find('.block-text');
+          $containerBlocks = $containerBlocks.add($textBlock);
+        }
         $row.imagesLoaded()
           .always(function () {
             if ($containerBlocks.length) {
