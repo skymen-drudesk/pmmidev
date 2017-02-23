@@ -78,8 +78,6 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
           [__CLASS__, 'process'],
           [$chunk, $mail_settings->get('ss_update.subject'), $mail_settings->get('ss_update.body'), $mail_settings->get('mail_notification_address')]
         ];
-        // @todo: remove break (this is for testing only)!
-        break;
       }
     }
 
@@ -126,7 +124,7 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
     foreach ($nodes as $node) {
       $context['results']['all']++;
       $to = $node->get('field_primary_contact_email')->getValue();
-      if (!empty($to[0]['value'])) {
+      if (!empty($to[0]['value']) && \Drupal::service('email.validator')->isValid($to[0]['value'])) {
         // Compose and send an email.
         $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
         $params = ['subject' => $subject, 'body' => $body, 'from' => $from, 'node' => $node];
@@ -139,8 +137,12 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
           $node->set('field_mass_email_queue', 1);
           $node->save();
         }
-
-        // @todo: do we need info about items which weren't processed?
+        else {
+          \Drupal::logger('pmmi_sales_agent')->error(t("Can't send an email to @address"), ['@address' => $to[0]['value']]);
+        }
+      }
+      else {
+        \Drupal::logger('pmmi_sales_agent')->notice(t("Mass mail wasn't sent to a company with @id id, because email address isn't specified or incorrect for this company.", ['@id' => $node->id()]));
       }
     }
   }
@@ -153,6 +155,10 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
     if ($success) {
       // Display the number of items which were processed.
       drupal_set_message(t('Processed @processed companies from @companies.', ['@processed' => $results['processed'], '@companies' => $results['all']]));
+      // Add warning message to notify that not all companies received a message.
+      if ($results['processed'] != $results['all']) {
+        drupal_set_message(t('The message was not sent to all companies. Check logs for detailed info.'), 'warning');
+      }
     }
     else {
       // Notify user about batch job failure.

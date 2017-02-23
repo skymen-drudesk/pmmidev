@@ -11,6 +11,18 @@ pmmi_sales_agent.mail_settings:
     ss_update_reminder:
       type: mail
       label: 'Self-service update your listing (reminder)'
+    listing_approve:
+      type: mail
+      label: 'Listing has been approval'
+    listing_reject:
+      type: mail
+      label: 'Listing has been rejected'
+    listing_create:
+      type: mail
+      label: 'New listing has been created'
+    listing_review:
+      type: mail
+      label: 'Listing is pending review'
 
 pmmi_sales_agent.mail_mass_settings:
   type: config_object

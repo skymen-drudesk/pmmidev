@@ -1,0 +1,12 @@
+uuid: 164a6a97-c8ab-4b26-8c18-8cbff3f9eb14
+langcode: en
+status: true
+dependencies: {  }
+id: sales_agent_admin
+label: 'Sales Agent Admin'
+weight: 5
+is_admin: null
+permissions:
+  0: 'administer sales agent mail settings'
+  1: 'access toolbar'
+  3: 'access administration pages'
