@@ -64,7 +64,7 @@ class PMMISalesAgentMailMassForm extends ConfigFormBase {
       '#type' => 'number',
       '#title' => $this->t('Remind period'),
       '#default_value' => $config->get('remind_period'),
-      '#description' => $this->t('The period (in seconds), which is used to send 3 drip emails. By default 5 days (432000).'),
+      '#description' => $this->t('The period (in seconds), which is used to send 3 drip emails, if no response. By default 5 days (432000).'),
       '#required' => TRUE,
     ];
 
