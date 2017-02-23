@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
- * Class CasHelper.
+ * Class PMMISSOHelper.
  */
 class PMMISSOHelper {
 
@@ -46,32 +46,32 @@ class PMMISSOHelper {
   const CHECK_TOKEN_TTL = 1;
 
   /**
-   * Event type identifier for the CasPreUserLoadEvent.
+   * Event type identifier for the PMMISSOPreUserLoadEvent.
    *
    * @var string
    */
-  const EVENT_PRE_USER_LOAD = 'cas.pre_user_load';
+  const EVENT_PRE_USER_LOAD = 'pmmi_sso.pre_user_load';
 
   /**
-   * Event type identifier for the CasPreRegisterEvent.
+   * Event type identifier for the PMMISSOPreRegisterEvent.
    *
    * @var string
    */
-  const EVENT_PRE_REGISTER = 'cas.pre_register';
+  const EVENT_PRE_REGISTER = 'pmmi_sso.pre_register';
 
   /**
-   * Event type identifier for the CasPreLoginEvent.
+   * Event type identifier for the PMMISSOPreLoginEvent.
    *
    * @var string
    */
-  const EVENT_PRE_LOGIN = 'cas.pre_login';
+  const EVENT_PRE_LOGIN = 'pmmi_sso.pre_login';
 
   /**
    * Event type identifier for pre auth events.
    *
    * @var string
    */
-  const EVENT_PRE_REDIRECT = 'cas.pre_redirect';
+  const EVENT_PRE_REDIRECT = 'pmmi_sso.pre_redirect';
 
   /**
    * Stores database connection.
@@ -127,8 +127,8 @@ class PMMISSOHelper {
     $this->connection = $database_connection;
     $this->session = $session;
 
-    $this->settings = $config_factory->get('cas.settings');
-    $this->loggerChannel = $logger_factory->get('cas');
+    $this->settings = $config_factory->get('pmmi_sso.settings');
+    $this->loggerChannel = $logger_factory->get('pmmi_sso');
   }
 
   /**
@@ -145,7 +145,7 @@ class PMMISSOHelper {
   public function getServerValidateUrl($ticket, $service_params = array()) {
     $validate_url = $this->getServerBaseUrl();
     $path = '';
-    switch ($this->getCasProtocolVersion()) {
+    switch ($this->getSsoProtocolVersion()) {
       case "1.0":
         $path = 'validate';
         break;
@@ -162,7 +162,7 @@ class PMMISSOHelper {
     $validate_url .= $path;
 
     $params = array();
-    $params['service'] = $this->getCasServiceUrl($service_params);
+    $params['service'] = $this->getSsoServiceUrl($service_params);
     $params['ticket'] = $ticket;
     if ($this->isProxy()) {
       $params['pgtUrl'] = $this->formatProxyCallbackUrl();
@@ -171,12 +171,12 @@ class PMMISSOHelper {
   }
 
   /**
-   * Return the version of the CAS server protocol.
+   * Return the version of the PMMI SSO server protocol.
    *
    * @return mixed|null
    *   The version.
    */
-  public function getCasProtocolVersion() {
+  public function getSsoProtocolVersion() {
     return $this->settings->get('server.version');
   }
 
@@ -207,14 +207,14 @@ class PMMISSOHelper {
    *   An array of query string parameters to append to the service URL.
    *
    * @return string
-   *   The fully constructed service URL to use for CAS server.
+   *   The fully constructed service URL to use for PMMI SSO server.
    */
-  public function getCasServiceUrl($service_params = array()) {
-    return $this->urlGenerator->generate('cas.service', $service_params, TRUE);
+  public function getSsoServiceUrl($service_params = array()) {
+    return $this->urlGenerator->generate('pmmi_sso.service', $service_params, TRUE);
   }
 
   /**
-   * Construct the base URL to the CAS server.
+   * Construct the base URL to the PMMI SSO server.
    *
    * @return string
    *   The base URL.
@@ -253,7 +253,7 @@ class PMMISSOHelper {
    *   The pgtCallbackURL, fully formatted.
    */
   private function formatProxyCallbackUrl() {
-    return str_replace('http://', 'https://', $this->urlGenerator->generateFromRoute('cas.proxyCallback', array(), array(
+    return str_replace('http://', 'https://', $this->urlGenerator->generateFromRoute('pmmi_sso.proxyCallback', array(), array(
       'absolute' => TRUE,
     )));
   }
@@ -270,7 +270,7 @@ class PMMISSOHelper {
    * @codeCoverageIgnore
    */
   protected function lookupPgtByPgtIou($pgt_iou) {
-    return $this->connection->select('cas_pgt_storage', 'c')
+    return $this->connection->select('pmmi_sso_pgt_storage', 'c')
       ->fields('c', array('pgt'))
       ->condition('pgt_iou', $pgt_iou)
       ->execute()
@@ -286,7 +286,7 @@ class PMMISSOHelper {
    */
   public function storePgtSession($pgt_iou) {
     $pgt = $this->lookupPgtByPgtIou($pgt_iou);
-    $this->session->set('cas_pgt', $pgt);
+    $this->session->set('pmmi_sso_pgt', $pgt);
     // Now that we have the pgt in the session,
     // we can delete the database mapping.
     $this->deletePgtMappingByPgtIou($pgt_iou);
@@ -301,7 +301,7 @@ class PMMISSOHelper {
    * @codeCoverageIgnore
    */
   protected function deletePgtMappingByPgtIou($pgt_iou) {
-    $this->connection->delete('cas_pgt_storage')
+    $this->connection->delete('pmmi_sso_pgt_storage')
       ->condition('pgt_iou', $pgt_iou)
       ->execute();
   }
@@ -342,7 +342,7 @@ class PMMISSOHelper {
   }
 
   /**
-   * Return the logout URL for the CAS server.
+   * Return the logout URL for the PMMI SSO server.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The current request, to provide base url context.
@@ -367,8 +367,8 @@ class PMMISSOHelper {
         $return_url = $request->getSchemeAndHttpHost() . '/' . ltrim($destination, '/');
       }
 
-      // CAS 2.0 uses 'url' param, while newer versions use 'service'.
-      if ($this->getCasProtocolVersion() == '2.0') {
+      // PMMI SSO 2.0 uses 'url' param, while newer versions use 'service'.
+      if ($this->getSsoProtocolVersion() == '2.0') {
         $params['url'] = $return_url;
       }
       else {
@@ -398,17 +398,17 @@ class PMMISSOHelper {
   }
 
   /**
-   * Check if the current logout request should be served by caslogout.
+   * Check if the current logout request should be served by ssologout.
    *
    * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request instance.
    *
    * @return bool
-   *   Whether to process logout as caslogout.
+   *   Whether to process logout as ssologout.
    */
-  public function provideCasLogoutOverride(Request $request) {
-    if ($this->settings->get('logout.cas_logout') == TRUE) {
-      if ($this->isCasSession($request->getSession()->getId())) {
+  public function provideSsoLogoutOverride(Request $request) {
+    if ($this->settings->get('logout.pmmi_sso_logout') == TRUE) {
+      if ($this->isSsoSession($request->getSession()->getId())) {
         return TRUE;
       }
     }
@@ -417,19 +417,19 @@ class PMMISSOHelper {
   }
 
   /**
-   * Check if the given session ID was authenticated with CAS.
+   * Check if the given session ID was authenticated with PMMI SSO.
    *
    * @param string $session_id
    *   The session ID to look up.
    *
    * @return bool
-   *   Whether or not this session was authenticated with CAS.
+   *   Whether or not this session was authenticated with PMMI SSO.
    *
    * @codeCoverageIgnore
    */
-  public function isCasSession($session_id) {
-    $results = $this->connection->select('cas_login_data')
-      ->fields('cas_login_data', array('sid'))
+  public function isSsoSession($session_id) {
+    $results = $this->connection->select('pmmi_sso_login_data')
+      ->fields('pmmi_sso_login_data', array('sid'))
       ->condition('sid', Crypt::hashBase64($session_id))
       ->execute()
       ->fetchAll();
@@ -448,7 +448,7 @@ class PMMISSOHelper {
   }
 
   /**
-   * The amount of time to allow a connection to the CAS server to take.
+   * The amount of time to allow a connection to the PMMI SSO server to take.
    *
    * @return int
    *   The timeout in seconds.

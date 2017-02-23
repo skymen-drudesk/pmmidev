@@ -9,25 +9,63 @@ pmmi_sso.settings:
   options:
     _admin_route: TRUE
 
-pmmi_sso.login:
-  path: '/sso/login'
-  defaults:
-    _controller: '\Drupal\pmmi_sso\Controller\PMMISSOController::login'
-    _title: 'Personify SSO Login'
-  requirements:
-    _role: 'anonymous'
-  options:
-     no_cache: TRUE
+#pmmi_sso.login:
+#  path: '/sso/login'
+#  defaults:
+#    _controller: '\Drupal\pmmi_sso\Controller\PMMISSOController::login'
+#    _title: 'Personify SSO Login'
+#  requirements:
+#    _role: 'anonymous'
+#  options:
+#     no_cache: TRUE
+#
+#pmmi_sso.logout:
+#  path: '/sso/logout'
+#  defaults:
+#    _controller: '\Drupal\pmmi_sso\Controller\PMMISSOController::logout'
+#    _title: 'Personify SSO Logout'
+#  requirements:
+#    _role: 'authenticated'
+#  options:
+#     no_cache: TRUE
 
-pmmi_sso.logout:
-  path: '/sso/logout'
+pmmi_sso.login:
+  path: '/ssologin'
   defaults:
-    _controller: '\Drupal\pmmi_sso\Controller\PMMISSOController::logout'
-    _title: 'Personify SSO Logout'
+    _controller: '\Drupal\pmmi_sso\Controller\PMMISSOForceLoginController::forceLogin'
   requirements:
-    _role: 'authenticated'
+    _access: 'TRUE'
   options:
-     no_cache: TRUE
+    _maintenance_access: TRUE
+
+pmmi_sso.legacy_login:
+  path: '/sso'
+  defaults:
+    _controller: '\Drupal\pmmi_sso\Controller\PMMISSOForceLoginController::forceLogin'
+  requirements:
+    _access: 'TRUE'
+  options:
+    _maintenance_access: TRUE
+
+pmmi_sso.service:
+  path: '/ssoservice'
+  defaults:
+    _controller: '\Drupal\pmmi_sso\Controller\PMMISSOServiceController::handle'
+  requirements:
+    _access: 'TRUE'
+  options:
+    _maintenance_access: TRUE
+    no_cache: TRUE
+
+#pmmi_sso.logout:
+#  path: '/ssologout'
+#  defaults:
+#    _controller: '\Drupal\pmmi_sso\Controller\LogoutController::logout'
+#  requirements:
+#    _user_is_logged_in: 'TRUE'
+#  options:
+#    _maintenance_access: TRUE
+#    no_cache: TRUE
 
 pmmi_sso.token.settings:
   path: '/admin/config/people/pmmi_sso'

@@ -25,7 +25,7 @@ class PMMISSOSettings extends ConfigFormBase {
   protected $gatewayPaths;
 
   /**
-   * Constructs a \Drupal\cas\Form\CasSettings object.
+   * Constructs a \Drupal\pmmi_sso\Form\PMMISSOSettings object.
    *
    * @param ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
