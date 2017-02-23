@@ -15126,36 +15126,36 @@ html, body {
   margin-bottom: 40px;
 }
 
-.path-workforce-development .containers.mode-2-up .col {
+.path-workforce-development .white-region .containers.mode-2-up .col {
   margin-bottom: 40px;
 }
 
-.path-workforce-development .containers.mode-2-up .col-1 {
+.path-workforce-development .white-region .containers.mode-2-up .col-1 {
   border-right: 1px solid #c2c2c2;
   padding-right: 25px;
 }
 
-.path-workforce-development .containers.mode-2-up .col-2 {
+.path-workforce-development .white-region .containers.mode-2-up .col-2 {
   border-left: 1px solid #c2c2c2;
   padding-left: 25px;
   margin-left: -1px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .path-workforce-development .containers.mode-2-up .col {
+  .path-workforce-development .white-region .containers.mode-2-up .col {
     width: 50%;
     float: left;
   }
-  .path-workforce-development .containers.mode-2-up .col-1 {
+  .path-workforce-development .white-region .containers.mode-2-up .col-1 {
     padding-right: 10px;
   }
-  .path-workforce-development .containers.mode-2-up .col-2 {
+  .path-workforce-development .white-region .containers.mode-2-up .col-2 {
     padding-left: 10px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .path-workforce-development .containers.mode-2-up .col {
+  .path-workforce-development .white-region .containers.mode-2-up .col {
     padding-left: 15px;
     padding-right: 15px;
     border: none;
@@ -16943,27 +16943,31 @@ div.view {
   margin-bottom: 40px;
 }
 
+.block .containers .region-bottom .field-name-field-button a {
+  max-width: 100%;
+}
+
 @media screen and (min-width: 1200px) {
   .block .containers .region-bottom .field-name-field-button a {
-    min-width: 370px;
+    width: 370px;
   }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
   .block .containers .region-bottom .field-name-field-button a {
-    min-width: 310px;
+    width: 310px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .block .containers .region-bottom .field-name-field-button a {
-    min-width: 230px;
+    width: 230px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .block .containers .region-bottom .field-name-field-button a {
-    min-width: 233px;
+    width: 233px;
   }
 }
 
