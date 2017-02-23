@@ -52,7 +52,8 @@ body.use-container {
   .white-region {
     padding: 50px 0 30px;
     .block {
-      margin: 0;
+      margin-top: 0;
+      margin-bottom: 0;
     }
   }
   @include tablet {
@@ -145,6 +146,10 @@ body.use-container {
     .container {
       margin-left: -($grid-gutter-width / 2);
       margin-right: -($grid-gutter-width / 2);
+      @include tablet {
+        margin-left: -($gutter-width-tablet);
+        margin-right: -($gutter-width-tablet);
+      }
     }
   }
 }
