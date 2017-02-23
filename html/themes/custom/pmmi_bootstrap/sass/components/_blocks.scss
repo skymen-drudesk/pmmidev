@@ -112,6 +112,9 @@
     }
   }
   @include mobile {
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
     .block-title {
       height: 72px;
       padding-top: 8px;
@@ -275,6 +278,11 @@
       border: 1px solid $mdgrey;
       padding: 4px;
       @extend .clearfix;
+      @include mobile {
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+      }
     }
     .viewfield-title {
       display: block;
