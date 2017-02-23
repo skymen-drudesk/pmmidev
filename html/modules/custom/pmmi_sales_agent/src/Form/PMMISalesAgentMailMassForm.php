@@ -34,6 +34,14 @@ class PMMISalesAgentMailMassForm extends ConfigFormBase {
     $config = $this->config('pmmi_sales_agent.mail_mass_settings');
     $last_run = $config->get('last_run');
 
+    // Add some explanation how it works.
+    $form['help'] = [
+      '#type' => 'fieldset',
+      '#collapsible' => FALSE,
+      '#title' => $this->t('Important'),
+      '#markup' => $this->t("If you try to start a new queue of remind messages (3 drip emails) while previous isn't finished yet, it will be overridden by a new queue of remind messages (3 drip emails)."),
+    ];
+
     // PMMI Mass Email Settings.
     $form['mail_mass_settings'] = [
       '#type' => 'details',
@@ -53,7 +61,7 @@ class PMMISalesAgentMailMassForm extends ConfigFormBase {
       ],
     ];
     $form['mail_mass_settings']['remind_period'] = [
-      '#type' => 'textfield',
+      '#type' => 'number',
       '#title' => $this->t('Remind period'),
       '#default_value' => $config->get('remind_period'),
       '#description' => $this->t('The period (in seconds), which is used to send 3 drip emails. By default 5 days (432000).'),
