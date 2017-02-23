@@ -1,0 +1,37 @@
+# Configuration schema for the PMMI Personify SSO module
+
+pmmi_personify_sso.settings:
+  type: config_object
+  label: 'PMMI Personify SSO Settings'
+  mapping:
+    login_uri:
+      type: string
+      label: 'Login URI'
+    service_uri:
+      type: string
+      label: 'Service URI'
+    vi:
+      type: number
+      label: 'Vendor Identifier'
+    vu:
+      type: string
+      label: 'Vendor username'
+    vp:
+      type: string
+      label: 'Vendor password (HEX)'
+    vib:
+      type: string
+      label: 'Vendor initilization block (HEX)'
+    expiration:
+      type: number
+      label: 'Token expiration time'
+    gateway:
+      type: mapping
+      label: 'Gateway Feature'
+      mapping:
+        check_frequency:
+          type: integer
+          label: 'Check Frequency'
+        paths:
+          type: condition.plugin.request_path
+          label: 'Paths'

@@ -2,7 +2,6 @@
 
 namespace Drupal\pmmi_personify_sso\Authentication\Provider;
 
-use Drupal\Core\Authentication\AuthenticationProviderInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,9 +12,10 @@ use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 /**
  * Class PMMIPersonifySSOAuthProvider.
  *
+ * @internal
  * @package Drupal\pmmi_personify_sso\Authentication\Provider
  */
-class PMMIPersonifySSOAuthProvider implements AuthenticationProviderInterface {
+class PMMIPersonifySSOAuthProvider implements PMMIPersonifySSOAuthProviderInterface {
 
   /**
    * The config factory.
@@ -64,9 +64,19 @@ class PMMIPersonifySSOAuthProvider implements AuthenticationProviderInterface {
   /**
    * {@inheritdoc}
    */
+  public static function hasTokenValue(Request $request) {
+    // Check the header. See: http://tools.ietf.org/html/rfc6750#section-2.1
+    $auth_header = trim($request->headers->get('Authorization', '', TRUE));
+
+    return strpos($auth_header, 'Bearer ') !== FALSE;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function authenticate(Request $request) {
     $consumer_ip = $request->getClientIp();
-    $ips = ['192.168.1.9'];
+    $ips = ['192.168.1.99'];
     if (in_array($consumer_ip, $ips)) {
       // Return Anonymous user.
       return $this->entityTypeManager->getStorage('user')->load(20);

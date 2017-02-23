@@ -4,3 +4,10 @@ vi: '14'
 vu: PMG
 vp: B5996798E5428FDC01DAD7BFC972D73E
 vib: CE32886246107DA7747ED3D55553CD6C
+expiration: '3600'
+gateway:
+  check_frequency: -2
+  paths:
+    id: request_path
+    pages: ''
+    negate: false

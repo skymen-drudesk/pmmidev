@@ -1,1 +1,6 @@
-pmmi_personify_sso:
+gateway:
+  check_frequency: -2
+  paths:
+    id: request_path
+    pages: ''
+    negate: false
