@@ -32,6 +32,8 @@ third_party_settings:
     regions:
       image_header:
         - field_image_header
+      left_block:
+        - 'dynamic_block_field:node-other_reports_block'
       title:
         - node_title
       body:
@@ -40,18 +42,17 @@ third_party_settings:
         - field_image
       links:
         - field_links
-      member_price:
-        - field_member_price
-      non_member_price:
-        - field_non_member_price
       file_download_button:
         - field_file_download_button
-      disclaimer:
-        - field_disclaimer
     fields:
+      'dynamic_block_field:node-other_reports_block':
+        plugin_id: 'dynamic_block_field:node-other_reports_block'
+        weight: 1
+        label: above
+        formatter: default
       node_title:
         plugin_id: node_title
-        weight: 1
+        weight: 2
         label: hidden
         formatter: default
 id: node.download.full
@@ -62,12 +63,12 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
   field_file_download_button:
     type: views_field_formatter
-    weight: 7
+    weight: 6
     label: hidden
     settings:
       view: 'file_download_button::block_embed'
@@ -92,7 +93,7 @@ content:
             lb-col: false
             classes: {  }
   field_image:
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       responsive_image_style: block_style_4
@@ -115,7 +116,7 @@ content:
       link: false
     third_party_settings: {  }
   field_links:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       trim_length: 80

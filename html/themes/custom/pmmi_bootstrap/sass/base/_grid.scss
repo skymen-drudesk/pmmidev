@@ -20,6 +20,7 @@ $desktop_width: $container-md;
   }
   @for $i from (1) through $grid-columns {
     .col-md-#{$i},
+    .col-lg-#{$i},
     .col-sm-#{$i} {
       padding-left: $gutter;
       padding-right: $gutter;
