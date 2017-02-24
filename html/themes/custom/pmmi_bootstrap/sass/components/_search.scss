@@ -37,9 +37,8 @@
         @extend .clear-after;
         .control-label {
           float: left;
-          width: 70px;
           line-height: 40px;
-          padding-right: 0;
+          padding-right: 10px;
         }
         .selectize-control {
           min-width: 270px;
@@ -61,8 +60,8 @@
         z-index: 1;
         position: relative;
         .control-label {
-          width: 100px;
-          margin-left: -30px;
+          margin-left: -34px;
+          padding-right: 10px;
         }
       }
     }
@@ -145,6 +144,12 @@
       }
     }
   }
+  .form-item-keywords {
+    .control-label {
+      padding-right: 8px;
+      margin-left: -8px;
+    }
+  }
   .button {
     margin-left: 66px;
     margin-bottom: 100px;
@@ -204,6 +209,11 @@
       }
       .form-control {
         max-width: 100%;
+      }
+    }
+    .form-item-keywords {
+      .control-label {
+        margin-left: 0;
       }
     }
     .button {

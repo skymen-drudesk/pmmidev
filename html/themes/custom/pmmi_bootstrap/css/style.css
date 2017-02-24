@@ -15252,9 +15252,8 @@ html, body {
 .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .control-label,
 .page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .control-label {
   float: left;
-  width: 70px;
   line-height: 40px;
-  padding-right: 0;
+  padding-right: 10px;
 }
 
 .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .selectize-control,
@@ -15287,8 +15286,8 @@ html, body {
 }
 
 .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .control-label {
-  width: 100px;
-  margin-left: -30px;
+  margin-left: -34px;
+  padding-right: 10px;
 }
 
 .page-search-sales-agent-directory .main-container form .input-group,
@@ -15408,6 +15407,11 @@ html, body {
   position: absolute;
 }
 
+.page-search-sales-agent-directory .main-container .form-item-keywords .control-label {
+  padding-right: 8px;
+  margin-left: -8px;
+}
+
 .page-search-sales-agent-directory .main-container .button {
   margin-left: 66px;
   margin-bottom: 100px;
@@ -15465,6 +15469,9 @@ html, body {
   }
   .page-search-sales-agent-directory .main-container form .form-control {
     max-width: 100%;
+  }
+  .page-search-sales-agent-directory .main-container .form-item-keywords .control-label {
+    margin-left: 0;
   }
   .page-search-sales-agent-directory .main-container .button {
     margin: 30px auto;
@@ -18329,12 +18336,6 @@ div.view {
   display: none;
 }
 
-.company-node .territory-served {
-  max-width: 66.6%;
-  width: auto;
-  min-width: 33.3%;
-}
-
 .company-node .territory-served .territory-covered .two-columns {
   font-size: 0;
 }
@@ -18355,7 +18356,45 @@ div.view {
 .company-node .contacts,
 .company-node .services {
   margin: 20px 0;
-  padding-bottom: 20px;
+}
+
+.company-node .row-wrapper > div,
+.company-node .row-wrapper .right-col .row > div,
+.company-node .row-wrapper .right-col .footer .region-footer > div, .footer
+.company-node .row-wrapper .right-col .region-footer > div,
+.company-node .row-wrapper .right-col .events-block-3 .view-content > div, .events-block-3
+.company-node .row-wrapper .right-col .view-content > div,
+.company-node .row-wrapper .right-col
+.block-views-blockevents-block-3 .view-content > div,
+.block-views-blockevents-block-3
+.company-node .row-wrapper .right-col .view-content > div,
+.company-node .row-wrapper .right-col .block-icons .column > div, .block-icons
+.company-node .row-wrapper .right-col .column > div,
+.company-node .contacts > div,
+.company-node .contacts .right-col .row > div,
+.company-node .contacts .right-col .footer .region-footer > div, .footer
+.company-node .contacts .right-col .region-footer > div,
+.company-node .contacts .right-col .events-block-3 .view-content > div, .events-block-3
+.company-node .contacts .right-col .view-content > div,
+.company-node .contacts .right-col
+.block-views-blockevents-block-3 .view-content > div,
+.block-views-blockevents-block-3
+.company-node .contacts .right-col .view-content > div,
+.company-node .contacts .right-col .block-icons .column > div, .block-icons
+.company-node .contacts .right-col .column > div,
+.company-node .services > div,
+.company-node .services .right-col .row > div,
+.company-node .services .right-col .footer .region-footer > div, .footer
+.company-node .services .right-col .region-footer > div,
+.company-node .services .right-col .events-block-3 .view-content > div, .events-block-3
+.company-node .services .right-col .view-content > div,
+.company-node .services .right-col
+.block-views-blockevents-block-3 .view-content > div,
+.block-views-blockevents-block-3
+.company-node .services .right-col .view-content > div,
+.company-node .services .right-col .block-icons .column > div, .block-icons
+.company-node .services .right-col .column > div {
+  margin-bottom: 20px;
 }
 
 .company-node .row-wrapper {
@@ -18370,6 +18409,11 @@ div.view {
   font-size: 20px;
   font-size: 1.25rem;
   border-bottom: 2px solid #c2c2c2;
+}
+
+.company-node .right-col.col-md-4 .col-md-6, .company-node .block-icons.cols-3 .column > .right-col.field .col-md-6, .block-icons.cols-3 .company-node .column > .right-col.field .col-md-6, .company-node .right-col.col-md-4 .block-icons.cols-2 .column > .field, .block-icons.cols-2 .company-node .right-col.col-md-4 .column > .field, .company-node .block-icons.cols-3 .column > .right-col.field .block-icons.cols-2 .column > .field, .block-icons.cols-2 .company-node .block-icons.cols-3 .column > .right-col.field .column > .field, .block-icons.cols-3 .company-node .column > .right-col.field .block-icons.cols-2 .column > .field, .block-icons.cols-2 .block-icons.cols-3 .company-node .column > .right-col.field .column > .field {
+  width: auto;
+  float: none;
 }
 
 .company-node .contacts :first-child, .company-node .services :first-child {
@@ -18418,10 +18462,6 @@ div.view {
   font-size: 18px;
   font-size: 1.125rem;
   margin-bottom: 4px;
-}
-
-.company-node .col-md-4, .company-node .block-icons.cols-3 .column > .field, .block-icons.cols-3 .company-node .column > .field {
-  margin: 10px 0;
 }
 
 .company-node .footer-reg .view-header p {
@@ -18918,7 +18958,6 @@ div.view {
   }
   .block-pmmi-sales-agent-action-toolbar ul li a,
   .field--name-dynamic-block-fieldnode-sales-agent-action-toolbar ul li a {
-    line-height: 1rem;
     font-size: 0.8125rem;
   }
   .block-pmmi-sales-agent-action-toolbar ul li .pmmi-company-add:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-download-favorites:before, .block-pmmi-sales-agent-action-toolbar ul li .pmmi-search-new:before, .block-pmmi-sales-agent-action-toolbar ul li .flag-favorites_content:before,
