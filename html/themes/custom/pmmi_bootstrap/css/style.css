@@ -12862,6 +12862,25 @@ body {
   }
 }
 
+table {
+  border: none;
+}
+
+table th,
+table td {
+  border-color: #c2c2c2;
+  padding: 10px;
+}
+
+table th {
+  background: #038dc0;
+  padding: 15px;
+  font-size: 24px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fff;
+}
+
 @media screen and (max-width: 767px) {
   table.responsive td, table.responsive th {
     display: block;
@@ -19113,6 +19132,10 @@ div.view {
     padding-left: 0;
     overflow: visible;
   }
+}
+
+.basic-page.mode-full {
+  margin-bottom: 30px;
 }
 
 .school .address {
