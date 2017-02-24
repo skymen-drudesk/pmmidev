@@ -35,17 +35,18 @@ pmmi_sso.login:
     _controller: '\Drupal\pmmi_sso\Controller\PMMISSOForceLoginController::forceLogin'
   requirements:
     _access: 'TRUE'
+    _role: 'anonymous'
   options:
     _maintenance_access: TRUE
 
-pmmi_sso.legacy_login:
-  path: '/sso'
-  defaults:
-    _controller: '\Drupal\pmmi_sso\Controller\PMMISSOForceLoginController::forceLogin'
-  requirements:
-    _access: 'TRUE'
-  options:
-    _maintenance_access: TRUE
+#pmmi_sso.legacy_login:
+#  path: '/sso'
+#  defaults:
+#    _controller: '\Drupal\pmmi_sso\Controller\PMMISSOForceLoginController::forceLogin'
+#  requirements:
+#    _access: 'TRUE'
+#  options:
+#    _maintenance_access: TRUE
 
 pmmi_sso.service:
   path: '/ssoservice'

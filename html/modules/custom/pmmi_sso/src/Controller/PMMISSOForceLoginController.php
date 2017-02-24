@@ -53,7 +53,7 @@ class PMMISSOForceLoginController implements ContainerInjectionInterface {
     // TODO: What if PMMISSO is not configured? need to handle that case.
     $service_url_query_params = $this->requestStack->getCurrentRequest()->query->all();
     $sso_redirect_data = new PMMISSORedirectData($service_url_query_params);
-    $sso_redirect_data->setIsCacheable(TRUE);
+    $sso_redirect_data->setIsCacheable(FALSE);
     return $this->ssoRedirector->buildRedirectResponse($sso_redirect_data, TRUE);
   }
 

@@ -4,3 +4,6 @@ gateway:
     id: request_path
     pages: ''
     negate: false
+advanced:
+  debug_log: false
+  connection_timeout: 10

@@ -35,3 +35,13 @@ pmmi_sso.settings:
         paths:
           type: condition.plugin.request_path
           label: 'Paths'
+    advanced:
+      type: mapping
+      label: 'Advanced'
+      mapping:
+        debug_log:
+          type: boolean
+          label: 'Log Debug Information'
+        connection_timeout:
+          type: integer
+          label: 'Connection Timeout'

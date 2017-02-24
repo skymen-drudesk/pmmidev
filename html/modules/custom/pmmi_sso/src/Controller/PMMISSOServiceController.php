@@ -85,14 +85,14 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
     PMMISSOHelper $sso_helper,
     PMMISSOValidator $sso_validator,
     PMMISSOUserManager $sso_user_manager,
-    PMMISSOLogout $sso_logout,
+//    PMMISSOLogout $sso_logout,
     RequestStack $request_stack,
     UrlGeneratorInterface $url_generator
   ) {
     $this->ssoHelper = $sso_helper;
     $this->ssoValidator = $sso_validator;
     $this->ssoUserManager = $sso_user_manager;
-    $this->ssoLogout = $sso_logout;
+//    $this->ssoLogout = $sso_logout;
     $this->requestStack = $request_stack;
     $this->urlGenerator = $url_generator;
   }
@@ -105,7 +105,7 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
       $container->get('pmmi_sso.helper'),
       $container->get('pmmi_sso.validator'),
       $container->get('pmmi_sso.user_manager'),
-      $container->get('pmmi_sso.logout'),
+//      $container->get('pmmi_sso.logout'),
       $container->get('request_stack'),
       $container->get('url_generator')
     );
@@ -169,7 +169,7 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
     $service_params = $request->query->all();
     unset($service_params['ct']);
     try {
-      $sso_validation_info = $this->ssoValidator->validateToken($token, $service_params);
+      $sso_validation_info = $this->ssoValidator->validateToken($token, FALSE);
     }
     catch (PMMISSOValidateException $e) {
       // Validation failed, redirect to homepage and set message.

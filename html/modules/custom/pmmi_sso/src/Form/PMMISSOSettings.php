@@ -142,6 +142,33 @@ class PMMISSOSettings extends ConfigFormBase {
     );
     $this->gatewayPaths->setConfiguration($config->get('gateway.paths'));
     $form['gateway']['paths'] = $this->gatewayPaths->buildConfigurationForm(array(), $form_state);
+    $form['advanced'] = array(
+      '#type' => 'details',
+      '#title' => $this->t('Advanced'),
+      '#open' => FALSE,
+      '#tree' => TRUE,
+    );
+    $form['advanced']['debug_log'] = array(
+      '#type' => 'checkbox',
+      '#title' => $this->t('Log debug information?'),
+      '#description' => $this->t(
+        'This is not meant for production sites! Enable this to log debug 
+        information about the interactions with the PMMI SSO Server 
+        to the Drupal log.'),
+      '#default_value' => $config->get('advanced.debug_log'),
+    );
+    $connection_description =
+    $form['advanced']['connection_timeout'] = array(
+      '#type' => 'textfield',
+      '#size' => 3,
+      '#title' => $this->t('Connection timeout'),
+      '#field_suffix' => $this->t('seconds'),
+      '#description' => $this->t(
+        'This module makes HTTP requests to your PMMI SSO server. 
+        This value determines the maximum amount of time to wait
+        on those requests before canceling them.'),
+      '#default_value' => $config->get('advanced.connection_timeout'),
+    );
     return parent::buildForm($form, $form_state);
   }
 
@@ -176,9 +203,18 @@ class PMMISSOSettings extends ConfigFormBase {
     $config
       ->set('gateway.check_frequency', $form_state->getValue([
         'gateway',
-        'check_frequency'
+        'check_frequency',
       ]))
       ->set('gateway.paths', $this->gatewayPaths->getConfiguration());
+    $config
+      ->set('advanced.debug_log', $form_state->getValue([
+        'advanced',
+        'debug_log'
+      ]))
+      ->set('advanced.connection_timeout', $form_state->getValue([
+        'advanced',
+        'connection_timeout'
+      ]));
     $config->save();
   }
 

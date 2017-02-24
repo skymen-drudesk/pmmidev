@@ -13,7 +13,7 @@ services:
 
   pmmi_sso.helper:
     class: Drupal\pmmi_sso\Service\PMMISSOHelper
-    arguments: ['@config.factory', '@url_generator.non_bubbling', '@database', '@logger.factory', '@session']
+    arguments: ['@config.factory', '@url_generator.non_bubbling', '@database', '@logger.factory', '@session', '@pmmi_sso.crypt']
 
   pmmi_sso.redirector:
     class: Drupal\pmmi_sso\Service\PMMISSORedirector
@@ -23,13 +23,36 @@ services:
     class: Drupal\pmmi_sso\Service\PMMISSOValidator
     arguments: ['@http_client', '@pmmi_sso.helper']
 
-  pmmi_sso.service:
-    class: Drupal\pmmi_sso\Service\PMMISSOService
-    arguments: ['@http_client', '@config.factory', '@logger.factory']
+  pmmi_sso.user_manager:
+    class: Drupal\pmmi_sso\Service\PMMISSOUserManager
+    arguments: ['@externalauth.externalauth', '@externalauth.authmap', '@config.factory', '@session', '@database', '@event_dispatcher']
 
-  pmmi_sso.manager:
-    class: Drupal\pmmi_sso\Service\PMMISSOManager
-    arguments: ['@externalauth.externalauth', '@config.factory', '@entity_type.manager', '@logger.channel.externalauth', '@pmmi_sso.service']
+  pmmi_sso.external_auth_subscriber:
+    class: Drupal\pmmi_sso\EventSubscriber\PMMISSOExternalAuthSubscriber
+    tags:
+      - { name: 'event_subscriber' }
+
+  pmmi_sso.prevent_password_reset_subscriber:
+    class: Drupal\pmmi_sso\EventSubscriber\PMMISSOPreventPasswordResetSubscriber
+    arguments: ['@config.factory']
+    tags:
+      - { name: 'event_subscriber' }
+
+  pmmi_sso.crypt:
+    class: Drupal\pmmi_sso\Service\PMMISSOCrypt
+    arguments: ['@config.factory', '@logger.factory']
+
+
+#  pmmi_sso.service:
+#    class: Drupal\pmmi_sso\Service\PMMISSOService
+#    arguments: ['@http_client', '@config.factory', '@logger.factory']
+#
+#  pmmi_sso.manager:
+#    class: Drupal\pmmi_sso\Service\PMMISSOManager
+#    arguments: ['@externalauth.externalauth', '@config.factory', '@entity_type.manager', '@logger.channel.externalauth', '@pmmi_sso.service']
+
+
+
 
   pmmi_sso.page_cache_response_policy.deny_sso:
     class: Drupal\pmmi_sso\PageCache\DenySSO
@@ -37,3 +60,9 @@ services:
     public: false
     tags:
       - { name: page_cache_response_policy }
+
+  pmmi_sso.auto_assign_roles_subscriber: # Do not need
+    class: Drupal\pmmi_sso\EventSubscriber\PMMISSOAutoAssignRolesSubscriber
+    arguments: ['@config.factory']
+    tags:
+      - { name: 'event_subscriber' }

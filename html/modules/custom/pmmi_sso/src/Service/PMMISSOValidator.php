@@ -3,6 +3,7 @@
 namespace Drupal\pmmi_sso\Service;
 
 use Drupal\pmmi_sso\Exception\PMMISSOValidateException;
+use Drupal\pmmi_sso\Parsers\PMMISSOXmlParser;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\RequestException;
 use Drupal\pmmi_sso\PMMISSOPropertyBag;
@@ -57,40 +58,33 @@ class PMMISSOValidator {
    *   Thrown if there was a problem making the validation request or
    *   if there was a local configuration issue.
    */
-  public function validateToken($token, $service_params = array()) {
-    $options = array();
-//    $verify = $this->ssoHelper->getSslVerificationMethod();
-//    switch ($verify) {
-//      case PMMISSOHelper::CA_CUSTOM:
-//        $cert = $this->ssoHelper->getCertificateAuthorityPem();
-//        $options['verify'] = $cert;
-//        break;
-//
-//      case PMMISSOHelper::CA_NONE:
-//        $options['verify'] = FALSE;
-//        break;
-//
-//      case PMMISSOHelper::CA_DEFAULT:
-//      default:
-//        // This triggers for PMMISSOHelper::CA_DEFAULT.
-//        $options['verify'] = TRUE;
-//    }
+  public function validateToken($token, $decrypted = FALSE) {
+//    $options = array();
+//    $options['timeout'] = $this->ssoHelper->getConnectionTimeout();
 
-    $options['timeout'] = $this->ssoHelper->getConnectionTimeout();
-
-    $validate_url = $this->ssoHelper->getServerValidateUrl($token, $service_params);
-    $this->ssoHelper->log("Attempting to validate service ticket using URL $validate_url");
-    try {
-      $response = $this->httpClient->get($validate_url, $options);
-      $response_data = $response->getBody()->__toString();
-      $this->ssoHelper->log("Validation response received from PMMI SSO server: " . htmlspecialchars($response_data));
-    } catch (RequestException $e) {
-      throw new PMMISSOValidateException("Error with request to validate ticket: " . $e->getMessage());
+    if ($decrypted) {
+      return new PMMISSOPropertyBag('');
     }
-
-    return $this->validate($response_data);
+    else {
+      $options = $this->ssoHelper->getServerValidateOptions($token);
+      if ($options['decrypt']) {
+        $this->ssoHelper->log('Attempting to validate service ticket using URL: ' . $options['uri']);
+        try {
+          $response = $this->httpClient->request('POST', $options['uri'], ['form_params' => $options['params']]);
+          $response_data = $response->getBody()->getContents();
+//          $response_data = $response->getBody()->__toString();
+          $this->ssoHelper->log("Validation response received from PMMI SSO server: " . htmlspecialchars($response_data));
+        }
+        catch (RequestException $e) {
+          throw new PMMISSOValidateException("Error with request to validate ticket: " . $e->getMessage());
+        }
+        return $this->validate($response_data);
+      }
+      else {
+        throw new PMMISSOValidateException('Token do not decrypted!!!');
+      }
+    }
   }
-
 
   /**
    * Validation of a service ticket for Version 2 of the PMMI SSO protocol.
@@ -107,8 +101,18 @@ class PMMISSOValidator {
   private function validate($data) {
     $dom = new \DOMDocument();
     $dom->preserveWhiteSpace = FALSE;
-    $dom->encoding = "utf-8";
+//    $dom->encoding = "utf-8";
+    $parser = new PMMISSOXmlParser();
+    $parser->setData($data);
+    $xml = $parser->setQuery('//Valid');
 
+    if ($xml->length > 0 && $xml->item(0)->nodeValue == 'false') {
+      $token = $parser->setQuery('//NewCustomerToken');
+      $val = $token->item(0)->nodeValue;
+//      if ($token->length > 0) {
+//        $val =
+//      }
+    }
     // Suppress errors from this function, as we intend to throw our own
     // exception.
     if (@$dom->loadXML($data) === FALSE) {
@@ -116,22 +120,20 @@ class PMMISSOValidator {
     }
 
     $validation_status = $dom->getElementsByTagName('Valid');
-
-    if ($validation_status->length > 0 && $validation_status->item(0)->nodeValue == TRUE) {
-
+    if ($validation_status->length > 0 && $validation_status->item(0)->nodeValue == 'true') {
+      $new_token = $dom->getElementsByTagName('NewCustomerToken');
+      if ($new_token->length > 0) {
+        $property_bag = $this->getPropertyBag($new_token->item(0));
+      }
+      else {
+        // All responses should have either an authenticationFailure
+        // or authenticationSuccess node.
+        throw new PMMISSOValidateException('XML from PMMI SSO server is not valid. No new token exist.');
+      }
     }
     else {
-
-    }
-
-    $failure_elements = $dom->getElementsByTagName('Valid');
-
-    if ($failure_elements->length > 0) {
-      // Failed validation, extract the message and toss exception.
-      $failure_element = $failure_elements->item(0);
-      $error_code = $failure_element->getAttribute('code');
-      $error_msg = $failure_element->nodeValue;
-      throw new PMMISSOValidateException("Error Code " . trim($error_code) . ": " . trim($error_msg));
+      // Failed validation and toss exception.
+      throw new PMMISSOValidateException('Token does not valid.');
     }
 
     $success_elements = $dom->getElementsByTagName("authenticationSuccess");
@@ -140,6 +142,24 @@ class PMMISSOValidator {
       // or authenticationSuccess node.
       throw new PMMISSOValidateException("XML from PMMI SSO server is not valid.");
     }
+
+    return $property_bag;
+  }
+
+  /**
+   * Build & send request for UserID and return PropertyBag.
+   *
+   * @param string $token
+   *   The token of the PMMI SSO user.
+   *
+   * @return PMMISSOPropertyBag
+   *   Contains user info from the PMMI SSO server.
+   *
+   * @throws PMMISSOValidateException
+   *   Thrown if there was a problem parsing the validation data.
+   */
+  private function getPropertyBag($token) {
+    $options = $this->ssoHelper->getServiceUrl();
 
     // There should only be one success element, grab it and extract username.
     $success_element = $success_elements->item(0);
@@ -157,7 +177,6 @@ class PMMISSOValidator {
     if ($attribute_elements->length > 0) {
       $property_bag->setAttributes($this->parseAttributes($attribute_elements));
     }
-
     return $property_bag;
   }
 
