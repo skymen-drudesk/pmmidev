@@ -1,0 +1,12 @@
+uuid: 7ab6982a-3e4d-4def-bf30-1e3ae20c4f67
+langcode: en
+status: true
+dependencies:
+  config:
+    - content_moderation.state.needs_review
+    - content_moderation.state.needs_work
+id: needs_review_needs_work
+label: Reject
+stateFrom: needs_review
+stateTo: needs_work
+weight: -4
