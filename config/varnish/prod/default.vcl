@@ -30,11 +30,6 @@ acl purge {
 # Respond to incoming requests.
 sub vcl_recv {
 
-    if (! req.http.Authorization ~ "Basic ZGVtbzpkZW1v") {
-        return(synth(401, "Authentication required"));
-    }
-    unset req.http.Authorization;
-
     # Protecting against the HTTPOXY CGI vulnerability.
     unset req.http.proxy;
 
@@ -75,6 +70,11 @@ sub vcl_recv {
         # Throw a synthetic page so the request won't go to the backend.
         return (synth(200, "Ban added."));
     }
+
+    if (! req.http.Authorization ~ "Basic ZGVtbzpkZW1v") {
+        return(synth(401, "Authentication required"));
+    }
+    unset req.http.Authorization;
 
     # Only cache GET and HEAD requests (pass through POST requests).
     if (req.method != "GET" && req.method != "HEAD") {
