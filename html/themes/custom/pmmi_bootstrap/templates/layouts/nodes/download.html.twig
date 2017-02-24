@@ -4,23 +4,40 @@
   </div>
 
   <div class="container">
-    <h2 class="node-title">
-      {{ content.title }}
-    </h2>
 
-    {{ field_render([content.image, 'img']) }}
+    {% set left_block = field_render([content.left_block, 'left-block']) %}
 
-    {{ field_render([content.body, 'node-body']) }}
+    <div class="row">
+      <div class="{{ left_block ? 'content-right col-lg-9 col-lg-push-3' : 'content-full col-lg-12' }}">
+        <h2 class="node-title">
+          {{ content.title }}
+        </h2>
+        <div class="row">
 
-    {{ field_render([content.links, 'links']) }}
+          {% set image = field_render([content.image, 'img col-lg-4 col-sm-4']) %}
 
-    {{ field_render([content.member_price, 'member-price price']) }}
+          {{ image|raw }}
 
-    {{ field_render([content.non_member_price, 'non-member-price price']) }}
+          {% set classes = image ? 'content col-lg-8 col-sm-8' : 'content col-md-12' %}
 
-    {{ field_render([content.file_download_button, 'download-link']) }}
+          <div class="{{ classes }}">
 
-    {{ field_render([content.disclaimer, 'disclaimer']) }}
+            {{ field_render([content.body, 'node-body']) }}
 
+            {{ field_render([content.links, 'links']) }}
+
+            {{ field_render([content.file_download_button, 'download-link btn-prm-wrap']) }}
+
+          </div>
+        </div>
+      </div>
+
+      {% if left_block %}
+        <div class="content-left col-lg-3 col-lg-pull-9">
+          {{ left_block|raw }}
+        </div>
+      {% endif %}
+
+    </div>
   </div>
 </div>
