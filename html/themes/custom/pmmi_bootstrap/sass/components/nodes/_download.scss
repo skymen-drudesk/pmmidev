@@ -1,0 +1,75 @@
+.download-node {
+  .links {
+    margin-bottom: 10px;
+    .field--item {
+      display: inline-block;
+      margin: 0 5px 10px;
+    }
+    a {
+      @extend .text-link;
+      font-size: $r18;
+      line-height: $r23;
+      &:before {
+        margin-top: 3px;
+      }
+    }
+    @include tablet-max {
+      a {
+        font-size: $r17;
+      }
+    }
+    @include mobile {
+      .field--item {
+        display: block;
+      }
+    }
+  }
+  .content-right {
+    margin-bottom: 30px;
+  }
+  @include desktop-max {
+    > .container {
+      width: auto;
+    }
+    .content-right {
+      max-width: 830px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .content-left {
+      background: $ltgrey;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+    .left-block {
+      max-width: 810px;
+      margin-left: auto;
+      margin-right: auto;
+      > * {
+        display: inline-block;
+        margin: 0 20px 10px 0
+      }
+    }
+  }
+  @include desktop {
+    .left-block > * {
+      width: 230px;
+    }
+  }
+  @include tablet {
+    .left-block > * {
+      width: 310px;
+    }
+  }
+  // Reports view.
+  .field--type-ds.field--label-above {
+    .field--label {
+      @extend .sidehead1;
+    }
+  }
+  .view-reports {
+    .views-row {
+      @extend .linked-list-item;
+    }
+  }
+}
