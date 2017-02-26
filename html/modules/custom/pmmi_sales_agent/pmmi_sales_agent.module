@@ -3,19 +3,17 @@
  * @file
  * Includes PMMI Sales Agent Directory extensions.
  *
- * Sales Agent Directory workflow:
+ * SALES AGENT DIRECTORY WORKFLOW:
+ *   Register new company:
+ *   DRAFT -> DRAFT (create unpublished node)
+ *     DRAFT - reject -> DRAFT (save changes, keep node unpublished)
+ *     DRAFT - approve -> PUBLISHED (publish new changes)
+ *       PUBLISHED -> DRAFT (create new unpublished revision)
  *
- * Register new company -> NEEDS REVIEW (unpublished node)
- *  NEEDS REVIEW - reject -> NEEDS WORK (keep unpublished)
- *    NEEDS WORK -> NEEDS REVIEW (update node, keep unpublished)
- *  NEEDS REVIEW - approve -> PUBLISH (save and publish)
- *    PUBLISH -> NEEDS REVIEW (create new unpublished revision for reviewing)
- *
- * Register existed company -> NEEDS REVIEW (create new unpublished revision)
- *  NEEDS REVIEW - reject -> NEEDS WORK (don't publish, keep in revision)
- *    NEEDS WORK -> NEEDS REVIEW (update unpublished revision)
- *  NEEDS REVIEW - approve -> PUBLISH (save and publish)
- *   PUBLISH -> NEEDS REVIEW (create new unpublished revision for reviewing)
+ *   Register existed company:
+ *   PUBLISHED -> DRAFT (create new unpublished revision)
+ *     DRAFT - reject -> DRAFT (don't publish, keep in revision)
+ *     DRAFT - approve -> PUBLISHED (publish new changes)
  */
 
 use Drupal\Component\Datetime\DateTimePlus;
@@ -63,40 +61,6 @@ function pmmi_sales_agent_field_widget_moderation_state_default_form_alter(&$ele
 }
 
 /**
- * Process callback to alter action buttons.
- *
- * @see pmmi_sales_agent_field_widget_moderation_state_default_form_alter()
- */
-function pmmi_sales_agent_widget_moderation_state_process_actions($element, FormStateInterface $form_state, array &$form) {
-  $build_info = $form_state->getBuildInfo();
-
-  // Override workflow states in accordance with own requirements.
-  if (isset($build_info['callback_object'])
-    && ($build_info['callback_object'] instanceof \Drupal\node\NodeForm)) {
-
-    // Get all necessary data about entity from the callback object.
-    $node = $build_info['callback_object']->getEntity();
-    $current_state = $node->get('moderation_state')->getValue();
-
-    // If company is new, we should remove 'Reject'/'Approve' states, even if
-    // user has transition access.
-    if (empty($current_state[0]['target_id'])) {
-      foreach (['published', 'needs_work'] as $state) {
-        $form['actions']['moderation_state_' . $state]['#access'] = FALSE;
-        unset($form['actions']['moderation_state_' . $state]['#dropbutton']);
-      }
-    }
-
-    // The 'Needs Review' state should always be 'Register'.
-    if (isset($form['actions']['moderation_state_needs_review'])) {
-      $form['actions']['moderation_state_needs_review']['#value'] = t('Register');
-    }
-  }
-
-  return $element;
-}
-
-/**
  * Implements hook_form_alter().
  */
 function pmmi_sales_agent_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
@@ -130,6 +94,29 @@ function pmmi_sales_agent_node_presave(EntityInterface $node) {
     $node->set('field_last_updated_on', $new_date);
     $node->set('field_mass_email_queue', NULL);
   }
+}
+
+/**
+ * Process callback to alter action buttons.
+ *
+ * @see pmmi_sales_agent_field_widget_moderation_state_default_form_alter()
+ */
+function pmmi_sales_agent_widget_moderation_state_process_actions($element, FormStateInterface $form_state, array &$form) {
+  $build_info = $form_state->getBuildInfo();
+
+  // Override workflow states in accordance with own requirements.
+  if (isset($build_info['callback_object'])
+    && ($build_info['callback_object'] instanceof \Drupal\node\NodeForm)) {
+
+    // Let's allow draft (Register) only. We do not need another workflow states
+    // on the add/edit company pages. The approve/reject (change workflow state
+    // operation) actions will be available on the latest revision page.
+    $form['actions']['moderation_state_draft']['#value'] = t('Register');
+    $form['actions']['moderation_state_published']['#access'] = FALSE;
+    unset($form['actions']['moderation_state_published']['#dropbutton']);
+  }
+
+  return $element;
 }
 
 /**
