@@ -16,6 +16,7 @@ dependencies:
     - field.field.node.company.field_last_updated_on
     - field.field.node.company.field_main_phone_number
     - field.field.node.company.field_manufacturers_represented
+    - field.field.node.company.field_mass_email_queue
     - field.field.node.company.field_primary_contact_email
     - field.field.node.company.field_primary_contact_first_name
     - field.field.node.company.field_primary_contact_last_name
@@ -80,7 +81,13 @@ third_party_settings:
         - field_after_sales_service
       footer_reg:
         - 'dynamic_block_field:node-company_trade_shows'
+        - field_last_updated_on
     fields:
+      node_title:
+        plugin_id: node_title
+        weight: 2
+        label: hidden
+        formatter: default
       'dynamic_block_field:node-company_trade_shows':
         plugin_id: 'dynamic_block_field:node-company_trade_shows'
         weight: 22
@@ -94,11 +101,6 @@ third_party_settings:
       'dynamic_block_field:node-sales_agent_directory_image_head':
         plugin_id: 'dynamic_block_field:node-sales_agent_directory_image_head'
         weight: 0
-        label: hidden
-        formatter: default
-      node_title:
-        plugin_id: node_title
-        weight: 2
         label: hidden
         formatter: default
 id: node.company.default
@@ -196,13 +198,20 @@ content:
     settings: {  }
     third_party_settings: {  }
   field_last_updated_on:
-    weight: 22
-    label: above
+    type: datetime_custom
+    weight: 23
+    label: inline
     settings:
-      format_type: medium
       timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
+      date_format: 'M. j, Y'
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: 'Profile last updated'
+            lb-col: false
+            classes: {  }
   field_main_phone_number:
     weight: 3
     label: hidden
