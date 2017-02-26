@@ -19,6 +19,7 @@
  */
 
 use Drupal\Component\Datetime\DateTimePlus;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 // Define sales agent content ID.
@@ -102,6 +103,8 @@ function pmmi_sales_agent_form_alter(array &$form, FormStateInterface $form_stat
   switch ($form_id) {
     case 'node_company_form':
     case 'node_company_edit_form':
+      $build_info = $form_state->getBuildInfo();
+
       // The field descriptions are converted into tooltips (in accordance with
       foreach (['field_main_phone_number', 'field_fax_number'] as $field) {
         if (isset($form[$field])) {
@@ -109,26 +112,23 @@ function pmmi_sales_agent_form_alter(array &$form, FormStateInterface $form_stat
         }
       }
 
-      // Someone has updated a company, which means we should update appropriate
-      // field (skip remind message).
-      $form['actions']['submit']['#submit'][] = 'pmmi_sales_agent_node_company_form_submit';
+      // Add simple flag to make sure that company was changed using node form.
+      // It will trigger additional updates, which should be ignored if node was
+      // saved in other way.
+      $node = $build_info['callback_object']->getEntity();
+      $node->register = TRUE;
       break;
   }
 }
 
 /**
- * Extra submit handler for the node_company_form form.
+ * Implements hook_ENTITY_TYPE_presave() for node entities.
  */
-function pmmi_sales_agent_node_company_form_submit($form, FormStateInterface $form_state) {
-  if ($nid = $form_state->getValue('nid')) {
-    $node = \Drupal\node\Entity\Node::load($nid);
-
-    // Update value of the "Last Updated On" field.
+function pmmi_sales_agent_node_presave(EntityInterface $node) {
+  if (!empty($node->register)) {
     $new_date = DateTimePlus::createFromTimestamp(time())->format('Y-m-d');
     $node->set('field_last_updated_on', $new_date);
-    // Reset mass mail status.
     $node->set('field_mass_email_queue', NULL);
-    $node->save();
   }
 }
 
