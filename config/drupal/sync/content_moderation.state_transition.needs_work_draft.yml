@@ -1,0 +1,12 @@
+uuid: bbd927fc-29f0-4606-93cf-ce3d0a28082b
+langcode: en
+status: true
+dependencies:
+  config:
+    - content_moderation.state.draft
+    - content_moderation.state.needs_work
+id: needs_work_draft
+label: 'Create New Draft'
+stateFrom: needs_work
+stateTo: draft
+weight: -5

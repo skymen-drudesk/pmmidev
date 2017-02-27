@@ -4,17 +4,19 @@
  * @file
  * Includes PMMI Sales Agent Directory extensions.
  *
- * SALES AGENT DIRECTORY WORKFLOW:
+ * SALES AGENT DIRECTORY WORKFLOW (1 - authenticated user, 2 - privileged user):
  *   Register new company:
- *   DRAFT -> DRAFT (create unpublished node)
- *     DRAFT - reject -> DRAFT (save changes, keep node unpublished)
- *     DRAFT - approve -> PUBLISHED (publish new changes)
- *       PUBLISHED -> DRAFT (create new unpublished revision)
+ *   [1,2] DRAFT -> DRAFT (create unpublished node)
+ *     [1,2] DRAFT -> DRAFT (save changes, keep node unpublished)
+ *     [2] DRAFT - reject -> NEEDS WORK (notify that changes are incorrect)
+ *       [1,2] NEEDS WORK -> DRAFT (save changes, keep node unpublished)
+ *     [2] DRAFT - approve -> PUBLISHED (publish new changes)
+ *       [1,2] PUBLISHED -> DRAFT (create new unpublished revision)
  *
  *   Register existed company:
- *   PUBLISHED -> DRAFT (create new unpublished revision)
- *     DRAFT - reject -> DRAFT (don't publish, keep in revision)
- *     DRAFT - approve -> PUBLISHED (publish new changes)
+ *   [1,2] PUBLISHED -> DRAFT (create new unpublished revision)
+ *     [2] DRAFT - reject -> DRAFT (don't publish, keep in revision)
+ *     [2] DRAFT - approve -> PUBLISHED (publish new changes)
  */
 
 use Drupal\Component\Datetime\DateTimePlus;
@@ -104,15 +106,17 @@ function pmmi_sales_agent_node_presave(EntityInterface $node) {
  * @see pmmi_sales_agent_field_widget_moderation_state_default_form_alter()
  */
 function pmmi_sales_agent_widget_moderation_state_process_actions($element, FormStateInterface $form_state, array &$form) {
-  $build_info = $form_state->getBuildInfo();
+  $callback_obj = $form_state->getBuildInfo()['callback_object'] ?: NULL;
+
+  if (!$callback_obj || !($callback_obj instanceof \Drupal\node\NodeForm)) {
+    return $element;
+  }
 
   // Override workflow states in accordance with own requirements.
-  if (isset($build_info['callback_object'])
-    && ($build_info['callback_object'] instanceof \Drupal\node\NodeForm)) {
-
+  $node = $callback_obj->getEntity();
+  if ($node && ($node->getType() == PMMI_SALES_AGENT_CONTENT)) {
     // In some reason, the node after creation is not flagged as new. Let's add
     // additional flag to make sure that node is new.
-    $node = $build_info['callback_object']->getEntity();
     $form['#new'] = $node->isNew() ? TRUE : FALSE;
 
     // Let's allow draft (Register) only. We do not need another workflow states
@@ -134,9 +138,7 @@ function pmmi_sales_agent_widget_moderation_state_process_actions($element, Form
  * Submit handler to notify internal PMMI admin about new changes.
  */
 function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_state) {
-  $build_info = $form_state->getBuildInfo();
-  $node = $build_info['callback_object']->getEntity();
-
+  $node = $form_state->getBuildInfo()['callback_object']->getEntity();
   $ms = \Drupal::config('pmmi_sales_agent.mail_settings');
   $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
@@ -152,6 +154,9 @@ function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_sta
   $to = $ms->get('mail_notification_address');
   \Drupal::service('plugin.manager.mail')
     ->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_new', $to, $current_langcode, $params);
+
+  // Show an alert to notify that listing should be reviewed.
+  drupal_set_message(t('Thank you for your interest in PMMI’s Agent Database. Your submission was submitted successfully. We will notify you by email when your profile has been approved or rejected.'));
 }
 
 /**
@@ -161,7 +166,7 @@ function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_sta
  *   An array of node ID's, which should receive remind message.
  */
 function pmmi_sales_agent_remind_mail_get_contacts() {
-  $result = array();
+  $result = [];
 
   // Get all company ID's which have remind step and this step less or equal 3.
   $query = \Drupal::entityQuery('node');

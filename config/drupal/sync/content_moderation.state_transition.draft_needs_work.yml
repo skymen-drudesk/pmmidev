@@ -1,0 +1,12 @@
+uuid: cb27a9a2-489d-4dad-a766-3ebb5bfdfebc
+langcode: en
+status: true
+dependencies:
+  config:
+    - content_moderation.state.draft
+    - content_moderation.state.needs_work
+id: draft_needs_work
+label: 'Needs work'
+stateFrom: draft
+stateTo: needs_work
+weight: -5
