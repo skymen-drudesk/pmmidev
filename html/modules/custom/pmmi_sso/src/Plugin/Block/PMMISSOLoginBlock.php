@@ -137,36 +137,41 @@ class PMMISSOLoginBlock extends BlockBase implements ContainerFactoryPluginInter
    * {@inheritdoc}
    */
   public function build() {
-//    $build = [];
+    $build = [];
 //    /** @var \Drupal\pmmi_sso\Service\PMMISSOService $sso_service */
 //    $sso_service = \Drupal::service('pmmi_sso.service');
-//
-//    $cipher = new Rijndael();
-//    $now = DateTime::createFromFormat('U.u', microtime(TRUE));
-//    $timestamp = $now->format('YmdHisv');
-//    $request = $this->requestStack->getCurrentRequest();
-//    $current_url = Url::fromUserInput($request->getPathInfo(), ['absolute' => TRUE]);
-//    $current_url->setOption('query', $request->query->all());
-//    $return_uri = $current_url->toString();
-//    $string = $timestamp . '|' . $return_uri;
-//
-//    $vi = $this->personifySSOConfig->get('vi');
-//    $vp = hex2bin($this->personifySSOConfig->get('vp'));
-//    $vib = hex2bin($this->personifySSOConfig->get('vib'));
-//
-//    $cipher->setKey($vp);
-//    $cipher->setIV($vib);
-//    $cipher->setBlockLength(128);
-//    $cipher->setKeyLength(128);
-//    $token = bin2hex($cipher->encrypt($string));
-//
+
+    $cipher = new Rijndael();
+    $now = DateTime::createFromFormat('U.u', microtime(TRUE));
+    $timestamp = $now->format('YmdHisv');
+    $request = $this->requestStack->getCurrentRequest();
+    $current_url = Url::fromUserInput('/ssoservice', ['absolute' => TRUE]);
+
+    $query = $request->query->all();
+    $query['returnto'] = $request->getPathInfo();
+
+    $current_url->setOption('query', $query);
+
+    $return_uri = $current_url->toString();
+    $string = $timestamp . '|' . $return_uri;
+
+    $vi = $this->personifySSOConfig->get('vi');
+    $vp = hex2bin($this->personifySSOConfig->get('vp'));
+    $vib = hex2bin($this->personifySSOConfig->get('vib'));
+
+    $cipher->setKey($vp);
+    $cipher->setIV($vib);
+    $cipher->setBlockLength(128);
+    $cipher->setKeyLength(128);
+    $token = bin2hex($cipher->encrypt($string));
+
 //    $str = $sso_service->encrypt($string);
 //    $dat = $cipher->decrypt(hex2bin($token));
-//
-//    $url = Url::fromUri($this->personifySSOConfig->get('login_uri'));
-//    $url->setAbsolute(TRUE);
-//    $url->setOption('query', ['vi' => $vi, 'vt' => $token]);
-    $url = Url::fromRoute('pmmi_sso.login');
+
+    $url = Url::fromUri($this->personifySSOConfig->get('login_uri'));
+    $url->setAbsolute(TRUE);
+    $url->setOption('query', ['vi' => $vi, 'vt' => $token]);
+//    $url = Url::fromRoute('pmmi_sso.login');
     $build = [
       '#type' => 'link',
       '#title' => $this->t('Login'),

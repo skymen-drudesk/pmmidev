@@ -11,21 +11,11 @@ services:
     tags:
       - { name: 'event_subscriber' }
 
-  pmmi_sso.helper:
-    class: Drupal\pmmi_sso\Service\PMMISSOHelper
-    arguments: ['@config.factory', '@url_generator.non_bubbling', '@database', '@logger.factory', '@session', '@pmmi_sso.crypt']
-
-  pmmi_sso.redirector:
-    class: Drupal\pmmi_sso\Service\PMMISSORedirector
-    arguments: ['@pmmi_sso.helper', '@event_dispatcher']
-
-  pmmi_sso.validator:
-    class: Drupal\pmmi_sso\Service\PMMISSOValidator
-    arguments: ['@http_client', '@pmmi_sso.helper']
-
-  pmmi_sso.user_manager:
-    class: Drupal\pmmi_sso\Service\PMMISSOUserManager
-    arguments: ['@externalauth.externalauth', '@externalauth.authmap', '@config.factory', '@session', '@database', '@event_dispatcher']
+  pmmi_sso.user_data_subscriber:
+    class: Drupal\pmmi_sso\EventSubscriber\PMMISSOGetUserDataSubscriber
+    arguments: ['@http_client', '@pmmi_sso.helper', '@pmmi_sso.xml_parser']
+    tags:
+      - { name: 'event_subscriber' }
 
   pmmi_sso.external_auth_subscriber:
     class: Drupal\pmmi_sso\EventSubscriber\PMMISSOExternalAuthSubscriber
@@ -37,6 +27,25 @@ services:
     arguments: ['@config.factory']
     tags:
       - { name: 'event_subscriber' }
+
+  pmmi_sso.helper:
+    class: Drupal\pmmi_sso\Service\PMMISSOHelper
+    arguments: ['@config.factory', '@url_generator.non_bubbling', '@database', '@logger.factory', '@session', '@pmmi_sso.crypt']
+
+  pmmi_sso.xml_parser:
+    class: Drupal\pmmi_sso\Parsers\PMMISSOXmlParser
+
+  pmmi_sso.redirector:
+    class: Drupal\pmmi_sso\Service\PMMISSORedirector
+    arguments: ['@pmmi_sso.helper', '@event_dispatcher']
+
+  pmmi_sso.validator:
+    class: Drupal\pmmi_sso\Service\PMMISSOValidator
+    arguments: ['@http_client', '@pmmi_sso.helper', '@pmmi_sso.xml_parser']
+
+  pmmi_sso.user_manager:
+    class: Drupal\pmmi_sso\Service\PMMISSOUserManager
+    arguments: ['@externalauth.externalauth', '@externalauth.authmap', '@config.factory', '@session', '@database', '@event_dispatcher']
 
   pmmi_sso.crypt:
     class: Drupal\pmmi_sso\Service\PMMISSOCrypt

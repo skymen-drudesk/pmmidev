@@ -80,6 +80,36 @@ class PMMISSOPreRegisterEvent extends Event {
   }
 
   /**
+   * Return the Token of the user event.
+   *
+   * @return string
+   *   The $token property.
+   */
+  public function getToken() {
+    return $this->ssoPropertyBag->getToken();
+  }
+
+  /**
+   * Return the UserId of the user event.
+   *
+   * @return string
+   *   The $id property.
+   */
+  public function getUserId() {
+    return $this->ssoPropertyBag->getUserId();
+  }
+
+  /**
+   * Return the RAWUserId of the user event.
+   *
+   * @return string
+   *   The $rawUserId property.
+   */
+  public function getRawUserId() {
+    return $this->ssoPropertyBag->getRawUserId();
+  }
+
+  /**
    * Retrieve the username that will be assigned to the Drupal account.
    *
    * @return string

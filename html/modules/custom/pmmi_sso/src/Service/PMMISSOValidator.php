@@ -28,16 +28,26 @@ class PMMISSOValidator {
   protected $ssoHelper;
 
   /**
+   * Stores PMMISSOXML parser.
+   *
+   * @var \Drupal\pmmi_sso\Parsers\PMMISSOXmlParser
+   */
+  protected $parser;
+
+  /**
    * Constructor.
    *
    * @param Client $http_client
    *   The HTTP Client library.
    * @param PMMISSOHelper $sso_helper
    *   The PMMI SSO Helper service.
+   * @param PMMISSOXmlParser $parser
+   *   The PMMI SSO XML parser service.
    */
-  public function __construct(Client $http_client, PMMISSOHelper $sso_helper) {
+  public function __construct(Client $http_client, PMMISSOHelper $sso_helper, PMMISSOXmlParser $parser) {
     $this->httpClient = $http_client;
     $this->ssoHelper = $sso_helper;
+    $this->parser = $parser;
   }
 
   /**
@@ -72,11 +82,10 @@ class PMMISSOValidator {
         try {
           $response = $this->httpClient->request('POST', $options['uri'], ['form_params' => $options['params']]);
           $response_data = $response->getBody()->getContents();
-//          $response_data = $response->getBody()->__toString();
           $this->ssoHelper->log("Validation response received from PMMI SSO server: " . htmlspecialchars($response_data));
         }
         catch (RequestException $e) {
-          throw new PMMISSOValidateException("Error with request to validate ticket: " . $e->getMessage());
+          throw new PMMISSOValidateException("Error with request to validate token: " . $e->getMessage());
         }
         return $this->validate($response_data);
       }
@@ -99,47 +108,17 @@ class PMMISSOValidator {
    *   Thrown if there was a problem parsing the validation data.
    */
   private function validate($data) {
-    $dom = new \DOMDocument();
-    $dom->preserveWhiteSpace = FALSE;
-//    $dom->encoding = "utf-8";
-    $parser = new PMMISSOXmlParser();
+    $parser = $this->parser;
     $parser->setData($data);
-    $xml = $parser->setQuery('//Valid');
-
-    if ($xml->length > 0 && $xml->item(0)->nodeValue == 'false') {
-      $token = $parser->setQuery('//NewCustomerToken');
-      $val = $token->item(0)->nodeValue;
-//      if ($token->length > 0) {
-//        $val =
-//      }
-    }
-    // Suppress errors from this function, as we intend to throw our own
-    // exception.
-    if (@$dom->loadXML($data) === FALSE) {
-      throw new PMMISSOValidateException("XML from PMMI SSO server is not valid.");
-    }
-
-    $validation_status = $dom->getElementsByTagName('Valid');
-    if ($validation_status->length > 0 && $validation_status->item(0)->nodeValue == 'true') {
-      $new_token = $dom->getElementsByTagName('NewCustomerToken');
-      if ($new_token->length > 0) {
-        $property_bag = $this->getPropertyBag($new_token->item(0));
+    if ($parser->validateBool('//m:Valid')) {
+      if ($token = $parser->getSingleValue('//m:NewCustomerToken')) {
+        $property_bag = $this->getPropertyBag($token);
       }
       else {
-        // All responses should have either an authenticationFailure
-        // or authenticationSuccess node.
         throw new PMMISSOValidateException('XML from PMMI SSO server is not valid. No new token exist.');
       }
     }
     else {
-      // Failed validation and toss exception.
-      throw new PMMISSOValidateException('Token does not valid.');
-    }
-
-    $success_elements = $dom->getElementsByTagName("authenticationSuccess");
-    if ($success_elements->length === 0) {
-      // All responses should have either an authenticationFailure
-      // or authenticationSuccess node.
       throw new PMMISSOValidateException("XML from PMMI SSO server is not valid.");
     }
 
@@ -159,24 +138,34 @@ class PMMISSOValidator {
    *   Thrown if there was a problem parsing the validation data.
    */
   private function getPropertyBag($token) {
-    $options = $this->ssoHelper->getServiceUrl();
+    $query_options = $this->ssoHelper->buildServiceQuery(
+      'TIMSSCustomerIdentifierGet',
+      ['vu', 'vp'],
+      ['customerToken' => $token]
+    );
 
-    // There should only be one success element, grab it and extract username.
-    $success_element = $success_elements->item(0);
-    $user_element = $success_element->getElementsByTagName("user");
-    if ($user_element->length == 0) {
-      throw new PMMISSOValidateException("No user found in ticket validation response.");
+    try {
+      $response = $this->httpClient->request('POST', $query_options['uri'], ['form_params' => $query_options['params']]);
+      $response_data = $response->getBody()->getContents();
+      $this->ssoHelper->log("User ID received from PMMI SSO server: " . htmlspecialchars($response_data));
     }
-    $username = $user_element->item(0)->nodeValue;
-    $this->ssoHelper->log("Extracted user: $username");
-    $property_bag = new PMMISSOPropertyBag($username);
+    catch (RequestException $e) {
+      throw new PMMISSOValidateException("Error with request to get User ID: " . $e->getMessage());
+    }
+    $parser = $this->parser;
+    $parser->setData($response_data);
+    $xml = $parser->getNodeList('//m:CustomerIdentifier');
+    // There should only be one success element, grab it and extract
+    // MasterCustomerId and SubCustomerId.
+    if ($xml->length == 0) {
+      throw new PMMISSOValidateException("Response with User ID XML from PMMI SSO server is not valid.");
+    }
+    $data = explode('|', $xml->item(0)->nodeValue);
+    $this->ssoHelper->log("Extracted user_id: $data[0]");
+    $property_bag = new PMMISSOPropertyBag($data[0]);
+    $property_bag->setToken($token);
+    $property_bag->setSubCustomerId($data[1]);
 
-    // If the server provided any attributes, parse them out into the property
-    // bag.
-    $attribute_elements = $dom->getElementsByTagName("attributes");
-    if ($attribute_elements->length > 0) {
-      $property_bag->setAttributes($this->parseAttributes($attribute_elements));
-    }
     return $property_bag;
   }
 

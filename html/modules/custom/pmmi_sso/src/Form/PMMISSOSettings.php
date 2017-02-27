@@ -157,7 +157,6 @@ class PMMISSOSettings extends ConfigFormBase {
         to the Drupal log.'),
       '#default_value' => $config->get('advanced.debug_log'),
     );
-    $connection_description =
     $form['advanced']['connection_timeout'] = array(
       '#type' => 'textfield',
       '#size' => 3,

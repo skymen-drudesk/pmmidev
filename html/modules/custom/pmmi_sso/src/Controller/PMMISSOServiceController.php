@@ -182,7 +182,7 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
     // Now that the token has been validated, we can use the information from
     // validation request to authenticate the user locally on the Drupal site.
     try {
-      $this->ssoUserManager->login($sso_validation_info, $token);
+      $this->ssoUserManager->login($sso_validation_info);
 //      if ($this->ssoHelper->isProxy() && $sso_validation_info->getPgt()) {
 //        $this->ssoHelper->log("Storing PGT information for this session.");
 //        $this->ssoHelper->storePgtSession($sso_validation_info->getPgt());

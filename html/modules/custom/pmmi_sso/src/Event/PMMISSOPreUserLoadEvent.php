@@ -46,4 +46,14 @@ class PMMISSOPreUserLoadEvent extends Event {
     return $this->ssoPropertyBag;
   }
 
+  /**
+   * Assign a different username to the Drupal account that is to be login.
+   *
+   * @param string $username
+   *   The username.
+   */
+  public function setDrupalUsername($username) {
+    $this->ssoPropertyBag->setUsername($username);
+  }
+
 }

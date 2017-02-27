@@ -8,6 +8,27 @@ namespace Drupal\pmmi_sso;
 class PMMISSOPropertyBag {
 
   /**
+   * The Raw User ID of the PMMI SSO user.
+   *
+   * @var string
+   */
+  protected $rawUserId;
+
+  /**
+   * The MasterCustomerId of the PMMI SSO user.
+   *
+   * @var string
+   */
+  protected $userId;
+
+  /**
+   * The SubCustomerId of the PMMI SSO user.
+   *
+   * @var string
+   */
+  protected $subCustomerId;
+
+  /**
    * The username of the PMMI SSO user.
    *
    * @var string
@@ -15,11 +36,18 @@ class PMMISSOPropertyBag {
   protected $username;
 
   /**
-   * The proxy granting token, if supplied.
+   * The user token.
    *
    * @var string
    */
-  protected $pgt;
+  protected $token;
+
+//  /**
+//   * The proxy granting token, if supplied.
+//   *
+//   * @var string
+//   */
+//  protected $pgt;
 
   /**
    * An array containing attributes returned from the server.
@@ -31,11 +59,11 @@ class PMMISSOPropertyBag {
   /**
    * Contructor.
    *
-   * @param string $user
-   *   The username of the PMMI SSO user.
+   * @param string $user_id
+   *   The MasterCustomerId of the PMMI SSO user.
    */
-  public function __construct($user) {
-    $this->username = $user;
+  public function __construct($user_id = NULL) {
+    $this->userId = $user_id;
   }
 
   /**
@@ -49,13 +77,43 @@ class PMMISSOPropertyBag {
   }
 
   /**
+   * UserID property setter.
+   *
+   * @param string $user_id
+   *   The new user_id.
+   */
+  public function setUserId($user_id) {
+    $this->userId = $user_id;
+  }
+
+  /**
+   * SubCustomerId property setter.
+   *
+   * @param string $subcustomer_id
+   *   The new subcustomer_id.
+   */
+  public function setSubCustomerId($subcustomer_id) {
+    $this->subCustomerId = $subcustomer_id;
+  }
+
+//  /**
+//   * Proxy granting token property setter.
+//   *
+//   * @param string $token
+//   *   The token to set as pgt.
+//   */
+//  public function setPgt($token) {
+//    $this->pgt = $token;
+//  }
+
+  /**
    * Proxy granting token property setter.
    *
    * @param string $token
    *   The token to set as pgt.
    */
-  public function setPgt($token) {
-    $this->pgt = $token;
+  public function setToken($token) {
+    $this->token = $token;
   }
 
   /**
@@ -79,13 +137,53 @@ class PMMISSOPropertyBag {
   }
 
   /**
-   * Proxy granting token getter.
+   * UserID property getter.
+   *
+   * @return string $user_id
+   *   The user_id property.
+   */
+  public function getUserId() {
+    return $this->userId;
+  }
+
+  /**
+   * SubCustomerId property getter.
+   *
+   * @return string $subcustomer_id
+   *   The subcustomer_id property.
+   */
+  public function getSubCustomerId() {
+    return $this->subCustomerId;
+  }
+
+  /**
+   * UserID property getter.
+   *
+   * @return string $user_id
+   *   The raw_user_id property.
+   */
+  public function getRawUserId() {
+    return $this->userId . '|' . $this->subCustomerId;
+  }
+
+  //  /**
+//   * Proxy granting token getter.
+//   *
+//   * @return string
+//   *   The pgt property.
+//   */
+//  public function getPgt() {
+//    return $this->pgt;
+//  }
+
+  /**
+   * Token getter.
    *
    * @return string
-   *   The pgt property.
+   *   The token property.
    */
-  public function getPgt() {
-    return $this->pgt;
+  public function getToken() {
+    return $this->token;
   }
 
   /**

@@ -147,12 +147,12 @@ class PMMISSOUserManager {
    * @throws PMMISSOLoginException
    *   Thrown if there was a problem logging in the user.
    */
-  public function login(PMMISSOPropertyBag $property_bag, $token) {
+  public function login(PMMISSOPropertyBag $property_bag, $token = NULL) {
     // Dispatch an event that allows modules to alter any of the PMMI SSO data
     // before it's used to lookup a Drupal user account via the authmap table.
     $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_PRE_USER_LOAD, new PMMISSOPreUserLoadEvent($property_bag));
 
-    $account = $this->externalAuth->load($property_bag->getUsername(), $this->provider);
+    $account = $this->externalAuth->load($property_bag->getUserId(), $this->provider);
     if ($account === FALSE) {
       // Check if we should create the user or not.
       $config = $this->settings->get('pmmi_sso.settings');
@@ -160,7 +160,7 @@ class PMMISSOUserManager {
       // for this user account or to set properties for the user that will
       // be created.
       $sso_pre_register_event = new PMMISSOPreRegisterEvent($property_bag);
-      $sso_pre_register_event->setPropertyValue('mail', $this->getEmailForNewAccount($property_bag));
+//      $sso_pre_register_event->setPropertyValue('mail', $this->getEmailForNewAccount($property_bag));
       $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_PRE_REGISTER, $sso_pre_register_event);
       if ($sso_pre_register_event->getAllowAutomaticRegistration()) {
         $account = $this->register($sso_pre_register_event->getDrupalUsername(), $sso_pre_register_event->getPropertyValues());
@@ -266,52 +266,52 @@ class PMMISSOUserManager {
     return \user_password(30);
   }
 
-  /**
-   * Return the email address that should be assigned to an auto-register user.
-   *
-   * @param \Drupal\pmmi_sso\PMMISSOPropertyBag $sso_property_bag
-   *   The PMMISSOPropertyBag associated with the user's login attempt.
-   *
-   * @return string
-   *   The email address.
-   *
-   * @throws \Drupal\pmmi_sso\Exception\PMMISSOLoginException
-   *   Thrown when the email address cannot be derived properly.
-   */
-  public function getEmailForNewAccount(PMMISSOPropertyBag $sso_property_bag) {
-    $email_assignment_strategy = $this->settings->get('pmmi_sso.settings')
-      ->get('user_accounts.email_assignment_strategy');
-    if ($email_assignment_strategy === self::EMAIL_ASSIGNMENT_STANDARD) {
-      return $sso_property_bag->getUsername() . '@' . $this->settings->get('pmmi_sso.settings')
-          ->get('user_accounts.email_hostname');
-    }
-    elseif ($email_assignment_strategy === self::EMAIL_ASSIGNMENT_ATTRIBUTE) {
-      $email_attribute = $this->settings->get('pmmi_sso.settings')
-        ->get('user_accounts.email_attribute');
-      if (empty($email_attribute) || !array_key_exists($email_attribute, $sso_property_bag->getAttributes())) {
-        throw new PMMISSOLoginException('Specified PMMI SSO email attribute does not exist.');
-      }
-
-      $val = $sso_property_bag->getAttributes()[$email_attribute];
-      if (empty($val)) {
-        throw new PMMISSOLoginException('Empty data found for PMMI SSO email attribute.');
-      }
-
-      // The attribute value may actually be an array of values, but we need it
-      // to only contain 1 value.
-      if (is_array($val) && count($val) !== 1) {
-        throw new PMMISSOLoginException('Specified PMMI SSO email attribute was formatted in an unexpected way.');
-      }
-
-      if (is_array($val)) {
-        $val = $val[0];
-      }
-
-      return trim($val);
-    }
-    else {
-      throw new PMMISSOLoginException('Invalid email address assignment type for auto user registration specified in settings.');
-    }
-  }
+//  /**
+//   * Return the email address that should be assigned to an auto-register user.
+//   *
+//   * @param \Drupal\pmmi_sso\PMMISSOPropertyBag $sso_property_bag
+//   *   The PMMISSOPropertyBag associated with the user's login attempt.
+//   *
+//   * @return string
+//   *   The email address.
+//   *
+//   * @throws \Drupal\pmmi_sso\Exception\PMMISSOLoginException
+//   *   Thrown when the email address cannot be derived properly.
+//   */
+//  public function getEmailForNewAccount(PMMISSOPropertyBag $sso_property_bag) {
+//    $email_assignment_strategy = $this->settings->get('pmmi_sso.settings')
+//      ->get('user_accounts.email_assignment_strategy');
+//    if ($email_assignment_strategy === self::EMAIL_ASSIGNMENT_STANDARD) {
+//      return $sso_property_bag->getUsername() . '@' . $this->settings->get('pmmi_sso.settings')
+//          ->get('user_accounts.email_hostname');
+//    }
+//    elseif ($email_assignment_strategy === self::EMAIL_ASSIGNMENT_ATTRIBUTE) {
+//      $email_attribute = $this->settings->get('pmmi_sso.settings')
+//        ->get('user_accounts.email_attribute');
+//      if (empty($email_attribute) || !array_key_exists($email_attribute, $sso_property_bag->getAttributes())) {
+//        throw new PMMISSOLoginException('Specified PMMI SSO email attribute does not exist.');
+//      }
+//
+//      $val = $sso_property_bag->getAttributes()[$email_attribute];
+//      if (empty($val)) {
+//        throw new PMMISSOLoginException('Empty data found for PMMI SSO email attribute.');
+//      }
+//
+//      // The attribute value may actually be an array of values, but we need it
+//      // to only contain 1 value.
+//      if (is_array($val) && count($val) !== 1) {
+//        throw new PMMISSOLoginException('Specified PMMI SSO email attribute was formatted in an unexpected way.');
+//      }
+//
+//      if (is_array($val)) {
+//        $val = $val[0];
+//      }
+//
+//      return trim($val);
+//    }
+//    else {
+//      throw new PMMISSOLoginException('Invalid email address assignment type for auto user registration specified in settings.');
+//    }
+//  }
 
 }

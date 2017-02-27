@@ -49,32 +49,62 @@ class PMMISSOXmlParser {
   public function setData($xml) {
     // Suppress errors from this function, as we intend to throw our own
     // exception.
-//    $status = $this->domDocument->loadXML($xml);
     if (@$this->domDocument->loadXML($xml) === FALSE) {
       throw new PMMISSOValidateException("XML from PMMI SSO server is not valid.");
     }
-    $this->xmlPath = new DomXpath($this->domDocument);
-    $dd = $this->xmlPath->query('valid');
-    $dd1 = $this->xmlPath->query('SSOCustomerTokenIsValidResult/Valid');
-
-//    $this->xmlPath->registerNamespace('m', $this->domDocument->getElementsByTagName("Schema")
-//      ->item(0)
-//      ->getAttribute('xmlns'));
+    $this->xmlPath = new DOMXPath($this->domDocument);
+    $rootNamespace = $this->domDocument->lookupNamespaceUri($this->domDocument->namespaceURI);
+    $this->xmlPath->registerNamespace('m', $rootNamespace);
     return $this;
   }
 
-  public function setQuery($query) {
+  /**
+   * Get NodeList by query for XML Document.
+   *
+   * @return \DOMNodeList
+   *   The DOMNodeList class.
+   */
+  public function getNodeList($query) {
     return $this->xmlPath->query($query);
   }
 
   /**
-   * Parse validate response.
+   * Validate parameter.
    *
-   * @return array
-   *   An array of mappings values.
+   * @param string $query
+   *   The XPath query for XML Document.
+   *
+   * @return bool
+   *   The validate variable.
    */
-  public function parseValidate() {
-    $this->xmlPath->query('//m:V');
+  public function validateBool($query) {
+    $value = $this->xmlPath->query($query);
+    if ($value->length > 0 && $value->item(0)->nodeValue == 'true') {
+      return TRUE;
+    }
+    else {
+      return FALSE;
+    }
+  }
+
+  /**
+   * Get single value from XML Markup.
+   *
+   * @param string $query
+   *   The XPath query for XML Document.
+   *
+   * @return string
+   *   The value.
+   *
+   * @throws PMMISSOValidateException
+   *   If one or more of the arguments are not valid.
+   */
+  public function getSingleValue($query) {
+    $value = $this->xmlPath->query($query);
+    if ($value->length == 0) {
+      throw new PMMISSOValidateException("Response XML from PMMI SSO server is not valid.");
+    }
+    return $value->item(0)->nodeValue;
   }
 
 }

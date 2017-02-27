@@ -35,6 +35,9 @@ class PMMISSOExternalAuthSubscriber implements EventSubscriberInterface {
     if (strpos($event->getUsername(), 'pmmi_sso_') === 0) {
       $event->setUsername(substr($event->getUsername(), 9));
     }
+    if (strpos($event->getAuthname(), 'pmmi_sso_') === 0) {
+      $event->setAuthname(substr($event->getAuthname(), 9));
+    }
   }
 
 }
