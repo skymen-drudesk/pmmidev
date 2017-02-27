@@ -42,7 +42,8 @@ function pmmi_sales_agent_mail($key, &$message, $params) {
   switch ($key) {
     case 'pmmi_sales_agent_mass':
     case 'pmmi_sales_agent_mass_remind':
-    case 'pmmi_sales_agent_listing_new':
+    case 'pmmi_sales_agent_listing_agent':
+    case 'pmmi_sales_agent_listing_admin':
       $token_service = \Drupal::token();
       $variables = array('node' => $params['node']);
 
@@ -126,16 +127,20 @@ function pmmi_sales_agent_widget_moderation_state_process_actions($element, Form
     $form['actions']['moderation_state_published']['#access'] = FALSE;
     unset($form['actions']['moderation_state_published']['#dropbutton']);
 
-    // Notify internal PMMI admin about new changes have been added to the
-    // company node.
+    // Notify internal PMMI admin that new changes have been added to the
+    // company node (transition has been changed to Draft).
     $form['actions']['moderation_state_draft']['#submit'][] = 'pmmi_sales_agent_notify_pmmi_admin';
+
+    // Notify sales agent that his changes have been approved/rejected.
+    $form['actions']['moderation_state_published']['#submit'][] = 'pmmi_sales_agent_notify_sales_agent';
+    $form['actions']['moderation_state_needs_work']['#submit'][] = 'pmmi_sales_agent_notify_sales_agent';
   }
 
   return $element;
 }
 
 /**
- * Submit handler to notify internal PMMI admin about new changes.
+ * Notify internal PMMI admin about new changes.
  */
 function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_state) {
   $node = $form_state->getBuildInfo()['callback_object']->getEntity();
@@ -153,10 +158,34 @@ function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_sta
 
   $to = $ms->get('mail_notification_address');
   \Drupal::service('plugin.manager.mail')
-    ->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_new', $to, $current_langcode, $params);
+    ->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_agent', $to, $current_langcode, $params);
 
   // Show an alert to notify that listing should be reviewed.
   drupal_set_message(t('Thank you for your interest in PMMI’s Agent Database. Your submission was submitted successfully. We will notify you by email when your profile has been approved or rejected.'));
+}
+
+/**
+ * Notify sales agent that his changes have been approved.
+ */
+function pmmi_sales_agent_notify_sales_agent(&$form, FormStateInterface $form_state) {
+  $triggering_element = $form_state->getTriggeringElement();
+  $approve = $triggering_element['#moderation_state'] == 'published' ? TRUE : FALSE;
+
+  $node = $form_state->getBuildInfo()['callback_object']->getEntity();
+  $ms = \Drupal::config('pmmi_sales_agent.mail_settings');
+  $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+  // Prepare a message and send it to the sales agent.
+  $params = [
+    'subject' => $approve ? $ms->get('listing_approve.subject') : $ms->get('listing_reject.subject'),
+    'body' => $approve ? $ms->get('listing_approve.body') : $ms->get('listing_reject.body'),
+    'from' => $ms->get('mail_notification_address'),
+    'node' => $node,
+  ];
+
+  $to = $node->get('field_primary_contact_email')->getValue()[0]['value'];
+  \Drupal::service('plugin.manager.mail')
+    ->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_admin', $to, $current_langcode, $params);
 }
 
 /**
@@ -224,7 +253,8 @@ function pmmi_sales_agent_remind_send($nid) {
       $mailManager->mail('pmmi_sales_agent', 'pmmi_sales_agent_mass_remind', $to[0]['value'], $current_langcode, $params);
 
       // Update mass mail status.
-      if ($mm_status = $node->get('field_mass_email_queue')->getValue()) {
+      $mm_status = $node->get('field_mass_email_queue')->getValue();
+      if (!empty($mm_status[0]['value'])) {
         $node->set('field_mass_email_queue', ++$mm_status[0]['value']);
         $node->save();
       }
