@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * Includes PMMI Sales Agent Directory extensions.
@@ -39,6 +40,7 @@ function pmmi_sales_agent_mail($key, &$message, $params) {
   switch ($key) {
     case 'pmmi_sales_agent_mass':
     case 'pmmi_sales_agent_mass_remind':
+    case 'pmmi_sales_agent_listing_new':
       $token_service = \Drupal::token();
       $variables = array('node' => $params['node']);
 
@@ -108,15 +110,48 @@ function pmmi_sales_agent_widget_moderation_state_process_actions($element, Form
   if (isset($build_info['callback_object'])
     && ($build_info['callback_object'] instanceof \Drupal\node\NodeForm)) {
 
+    // In some reason, the node after creation is not flagged as new. Let's add
+    // additional flag to make sure that node is new.
+    $node = $build_info['callback_object']->getEntity();
+    $form['#new'] = $node->isNew() ? TRUE : FALSE;
+
     // Let's allow draft (Register) only. We do not need another workflow states
     // on the add/edit company pages. The approve/reject (change workflow state
     // operation) actions will be available on the latest revision page.
     $form['actions']['moderation_state_draft']['#value'] = t('Register');
     $form['actions']['moderation_state_published']['#access'] = FALSE;
     unset($form['actions']['moderation_state_published']['#dropbutton']);
+
+    // Notify internal PMMI admin about new changes have been added to the
+    // company node.
+    $form['actions']['moderation_state_draft']['#submit'][] = 'pmmi_sales_agent_notify_pmmi_admin';
   }
 
   return $element;
+}
+
+/**
+ * Submit handler to notify internal PMMI admin about new changes.
+ */
+function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_state) {
+  $build_info = $form_state->getBuildInfo();
+  $node = $build_info['callback_object']->getEntity();
+
+  $ms = \Drupal::config('pmmi_sales_agent.mail_settings');
+  $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+  // Prepare a message and send it to the internal PMMI admin.
+  $params = [
+    'subject' => $form['#new'] ? $ms->get('listing_create.subject') : $ms->get('listing_review.subject'),
+    'body' => $form['#new'] ? $ms->get('listing_create.body') : $ms->get('listing_review.body'),
+    // Field "field_primary_contact_email" is required.
+    'from' => $node->get('field_primary_contact_email')->getValue()[0]['value'],
+    'node' => $node,
+  ];
+
+  $to = $ms->get('mail_notification_address');
+  \Drupal::service('plugin.manager.mail')
+    ->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_new', $to, $current_langcode, $params);
 }
 
 /**

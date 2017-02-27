@@ -108,6 +108,8 @@ targetEntityType: node
 bundle: company
 mode: default
 content:
+  content_moderation_control:
+    weight: -20
   field_address:
     weight: 14
     label: hidden
