@@ -8,6 +8,7 @@ dependencies:
     - field.field.block_content.social_media.field_facebook
     - field.field.block_content.social_media.field_google
     - field.field.block_content.social_media.field_head
+    - field.field.block_content.social_media.field_instagram
     - field.field.block_content.social_media.field_linkedin
     - field.field.block_content.social_media.field_twitter
     - field.field.block_content.social_media.field_youtube
@@ -36,13 +37,15 @@ third_party_settings:
         - field_google
       youtube:
         - field_youtube
+      instagram:
+        - field_instagram
 id: block_content.social_media.default
 targetEntityType: block_content
 bundle: social_media
 mode: default
 content:
   field_facebook:
-    weight: 2
+    weight: 1
     label: hidden
     settings:
       trim_length: 80
@@ -58,7 +61,7 @@ content:
             lb: ''
     type: link
   field_google:
-    weight: 5
+    weight: 4
     label: hidden
     settings:
       trim_length: 80
@@ -80,23 +83,18 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-  field_linkedin:
-    weight: 4
+  field_instagram:
+    weight: 6
     label: hidden
     settings:
       trim_length: 80
       url_only: false
       url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings:
-      ds:
-        ft:
-          id: reset
-          settings:
-            lb: ''
+      rel: ''
+      target: ''
+    third_party_settings: {  }
     type: link
-  field_twitter:
+  field_linkedin:
     weight: 3
     label: hidden
     settings:
@@ -112,8 +110,24 @@ content:
           settings:
             lb: ''
     type: link
+  field_twitter:
+    weight: 2
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: reset
+          settings:
+            lb: ''
+    type: link
   field_youtube:
-    weight: 6
+    weight: 5
     label: hidden
     settings:
       trim_length: 80
