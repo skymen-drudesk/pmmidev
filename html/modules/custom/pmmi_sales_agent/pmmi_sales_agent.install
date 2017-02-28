@@ -20,7 +20,7 @@ function pmmi_sales_agent_schema() {
         'description' => 'The mail ID.',
       ),
       'nid' => array(
-        'description' => 'Primary key: {node}.nid for node.',
+        'description' => 'The node ID.',
         'type' => 'int',
         'unsigned' => TRUE,
         'not null' => TRUE,
