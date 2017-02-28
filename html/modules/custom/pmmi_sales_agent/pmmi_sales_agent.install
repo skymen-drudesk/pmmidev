@@ -51,6 +51,46 @@ function pmmi_sales_agent_schema() {
     ),
   );
 
+  $schema['pmmi_sales_agent_search_stats'] = [
+    'description' => 'Stores information about usage of the search agent directory.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'The ID of a statistic point.',
+      ],
+      'uid' => [
+        'description' => 'The user ID of the user on which the statistic point was written.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'date' => [
+        'description' => 'The Unix timestamp when record has been added.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'countries_searched' => [
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The countries which were searched.',
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'date' => ['date'],
+      'countries_searched' => ['countries_searched'],
+    ],
+    'foreign keys' => [
+      'uid' => ['users' => 'uid'],
+    ],
+  ];
+
   return $schema;
 }
 
@@ -89,4 +129,16 @@ function pmmi_sales_agent_update_8008() {
   \Drupal::service('config.factory')->getEditable('pmmi_sales_agent.mail_settings')
     ->set('remind_period', 604800)
     ->save();
+}
+
+/**
+ * Creates the 'pmmi_sales_agent_search_stats' table.
+ */
+function pmmi_sales_agent_update_8009() {
+  $schema = Database::getConnection()->schema();
+
+  if (!$schema->tableExists('pmmi_sales_agent_search_stats')) {
+    $spec = drupal_get_module_schema('pmmi_sales_agent', 'pmmi_sales_agent_search_stats');
+    $schema->createTable('pmmi_sales_agent_search_stats', $spec);
+  }
 }

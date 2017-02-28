@@ -97,6 +97,40 @@ function pmmi_sales_agent_form_alter(array &$form, FormStateInterface $form_stat
 }
 
 /**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function pmmi_sales_agent_form_pmmi_company_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add extra submit handler to log any usage of the search agent directory.
+  $form['#submit'][] = 'pmmi_sales_agent_log_search_stats';
+}
+
+/**
+ * Extra submit handler to save search statistic.
+ *
+ * @see pmmi_sales_agent_form_pmmi_company_search_block_form_alter()
+ */
+function pmmi_sales_agent_log_search_stats(&$form, FormStateInterface $form_state) {
+  $values = $form_state->getValues();
+
+  // Select the countries which were searched to add them to usage stats.
+  $countries_searched = [];
+  if ($values['country_code']) {
+    $countries = $form_state->getValue('country_list');
+    foreach ($values['country_code'] as $country_code) {
+      $countries_searched[] = $countries[$country_code];
+    }
+  }
+
+  // Creates the statistic point.
+  $connection = Database::getConnection();
+  $connection->insert('pmmi_sales_agent_search_stats')->fields([
+    'uid' => \Drupal::currentUser()->id(),
+    'date' => REQUEST_TIME,
+    'countries_searched' => $countries_searched ? implode(', ', $countries_searched) : '',
+  ])->execute();
+}
+
+/**
  * Implements hook_ENTITY_TYPE_presave() for node entities.
  */
 function pmmi_sales_agent_node_presave(EntityInterface $node) {
