@@ -12272,9 +12272,10 @@ fieldset[disabled] a.focus {
 .content ul p, .article-node .node-body p, .article-node .author-info p, .article-node .date p,
 .article-node .twitter-link p,
 .article-node .article-release p, .node-body p, .node-bold-label p,
-.featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .block-views-blocksearch-page-block-1 .views-field-body p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-box.mode-full .field-name-body p, .block-box.mode-default .field-name-body p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
+.featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .block-views-blocksearch-page-block-1 .views-field-body p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-box.mode-full .field-name-body p, .block-box.mode-default .field-name-body p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand.mode-default .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
 .layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .mode-event-left-rail .field-name-field-location p, .block-pricing .pricings p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .block-text.mode-container-mode .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-box.mode-mega-menu .field-name-body p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
-.block-pack-expo-show .date p, .pack-expo-show.mode-mega-menu p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
+.block-pack-expo-show .date p, .brand.mode-mega-menu p,
+.pack-expo-show.mode-mega-menu p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
   font-size: inherit;
   line-height: inherit;
   font-weight: inherit;
@@ -12308,7 +12309,7 @@ fieldset[disabled] a.focus {
   }
 }
 
-.paragraph2, .block-pmmi-twitter-block .block-title .subtitle, .block-pmmi-facebook-block .block-title .subtitle, .block-views-blocksearch-page-block-1 .views-field-body, .mode-default.video .field-name-body, .mode-default.video .field-name-field-featured-speaker, .mode-default.certification-test .field-name-body, .mode-default.certification-test .field-name-field-cert-test-price, .mode-default.certification-test .field-name-field-cert-test-text-price, .block-box.mode-full .field-name-body, .block-box.mode-default .field-name-body, .block-enticement .block-body, .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand .block-body, .block-social-media.mode-media-social-with-text .block-body, .block-text.mode-image-text .block-body, .article.mode-default .body, .accordion-item .body {
+.paragraph2, .block-pmmi-twitter-block .block-title .subtitle, .block-pmmi-facebook-block .block-title .subtitle, .block-views-blocksearch-page-block-1 .views-field-body, .mode-default.video .field-name-body, .mode-default.video .field-name-field-featured-speaker, .mode-default.certification-test .field-name-body, .mode-default.certification-test .field-name-field-cert-test-price, .mode-default.certification-test .field-name-field-cert-test-text-price, .block-box.mode-full .field-name-body, .block-box.mode-default .field-name-body, .block-enticement .block-body, .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand.mode-default .block-body, .block-social-media.mode-media-social-with-text .block-body, .block-text.mode-image-text .block-body, .article.mode-default .body, .accordion-item .body {
   font-size: 16px;
   font-size: 1rem;
   line-height: 21px;
@@ -12317,7 +12318,7 @@ fieldset[disabled] a.focus {
 }
 
 @media screen and (max-width: 1023px) {
-  .paragraph2, .block-pmmi-twitter-block .block-title .subtitle, .block-pmmi-facebook-block .block-title .subtitle, .block-views-blocksearch-page-block-1 .views-field-body, .mode-default.video .field-name-body, .mode-default.video .field-name-field-featured-speaker, .mode-default.certification-test .field-name-body, .mode-default.certification-test .field-name-field-cert-test-price, .mode-default.certification-test .field-name-field-cert-test-text-price, .block-box.mode-full .field-name-body, .block-box.mode-default .field-name-body, .block-enticement .block-body, .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand .block-body, .block-social-media.mode-media-social-with-text .block-body, .block-text.mode-image-text .block-body, .article.mode-default .body, .accordion-item .body {
+  .paragraph2, .block-pmmi-twitter-block .block-title .subtitle, .block-pmmi-facebook-block .block-title .subtitle, .block-views-blocksearch-page-block-1 .views-field-body, .mode-default.video .field-name-body, .mode-default.video .field-name-field-featured-speaker, .mode-default.certification-test .field-name-body, .mode-default.certification-test .field-name-field-cert-test-price, .mode-default.certification-test .field-name-field-cert-test-text-price, .block-box.mode-full .field-name-body, .block-box.mode-default .field-name-body, .block-enticement .block-body, .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand.mode-default .block-body, .block-social-media.mode-media-social-with-text .block-body, .block-text.mode-image-text .block-body, .article.mode-default .body, .accordion-item .body {
     font-size: 0.9375rem;
     line-height: 1.1875rem;
   }
@@ -17424,7 +17425,7 @@ div.view {
   margin: 5px 0;
 }
 
-.brand-and-expo-show, .block-pack-expo-show, .block-brand {
+.brand-and-expo-show, .block-pack-expo-show, .block-brand.mode-default {
   text-align: center;
   border: 1px solid #c2c2c2;
   padding: 15px;
@@ -17432,32 +17433,32 @@ div.view {
   margin-bottom: 40px;
 }
 
-.brand-and-expo-show .logo, .block-pack-expo-show .logo, .block-brand .logo {
+.brand-and-expo-show .logo, .block-pack-expo-show .logo, .block-brand.mode-default .logo {
   margin-bottom: 8px;
 }
 
-.brand-and-expo-show .logo img, .block-pack-expo-show .logo img, .block-brand .logo img {
+.brand-and-expo-show .logo img, .block-pack-expo-show .logo img, .block-brand.mode-default .logo img {
   margin: 0 auto;
 }
 
-.brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand .block-body {
+.brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand.mode-default .block-body {
   margin-bottom: 15px;
 }
 
 @media screen and (max-width: 1023px) {
-  .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand .block-body {
+  .brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand.mode-default .block-body {
     font-size: 0.9375rem;
     line-height: 1.1875rem;
   }
 }
 
-.brand-and-expo-show .button .field--item, .block-pack-expo-show .button .field--item, .block-brand .button .field--item {
+.brand-and-expo-show .button .field--item, .block-pack-expo-show .button .field--item, .block-brand.mode-default .button .field--item {
   display: inline-block;
   margin: 0 15px 15px;
 }
 
 @media screen and (max-width: 1199px) {
-  .brand-and-expo-show, .block-pack-expo-show, .block-brand {
+  .brand-and-expo-show, .block-pack-expo-show, .block-brand.mode-default {
     margin-bottom: 20px;
   }
 }
@@ -17481,6 +17482,7 @@ div.view {
   content: ',';
 }
 
+.brand.mode-mega-menu,
 .pack-expo-show.mode-mega-menu {
   color: #656363;
   line-height: 16px;
@@ -17492,10 +17494,12 @@ div.view {
   font-family: "Lato", Arial, FreeSans, sans-serif;
 }
 
+.brand.mode-mega-menu a,
 .pack-expo-show.mode-mega-menu a {
   color: #656363;
 }
 
+.brand.mode-mega-menu .field-name-field-logo,
 .pack-expo-show.mode-mega-menu .field-name-field-logo {
   height: 105px;
   line-height: 103px;
@@ -17505,18 +17509,22 @@ div.view {
   margin: 0 0 5px;
 }
 
+.brand.mode-mega-menu .field-name-field-logo img,
 .pack-expo-show.mode-mega-menu .field-name-field-logo img {
   margin: 0 auto;
   display: inline-block;
   max-height: 98px;
 }
 
+.brand.mode-mega-menu .field-name-field-head,
 .pack-expo-show.mode-mega-menu .field-name-field-head {
   font-weight: 800;
   font-size: 13px;
   font-size: 0.8125rem;
 }
 
+.brand.mode-mega-menu .address br,
+.brand.mode-mega-menu .address .country,
 .pack-expo-show.mode-mega-menu .address br,
 .pack-expo-show.mode-mega-menu .address .country {
   display: none;
