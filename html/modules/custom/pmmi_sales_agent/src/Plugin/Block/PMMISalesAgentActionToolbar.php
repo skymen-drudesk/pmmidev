@@ -111,6 +111,12 @@ class PMMISalesAgentActionToolbar extends BlockBase implements ContainerFactoryP
       switch ($link) {
         case 'favorites_add':
           $node = \Drupal::routeMatch()->getParameter('node');
+
+          // Load a node if we didn't get an object.
+          if (is_numeric($node)) {
+            $node = \Drupal\node\Entity\Node::load($node);
+          }
+
           $links_to_display[$link] = $this->flagLinkBuilder->build('node', $node->id(), 'favorites_content');
           $links_to_display[$link]['#cache']['max-age'] = 0;
           break;

@@ -13,13 +13,13 @@ settings:
   allowed_values:
     -
       value: 1
-      label: '1'
+      label: 'Send first remind mail'
     -
       value: 2
-      label: '2'
+      label: 'Send second remind mail'
     -
       value: 3
-      label: '3'
+      label: 'Send third remind mail'
   allowed_values_function: ''
 module: options
 locked: false

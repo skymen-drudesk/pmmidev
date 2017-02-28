@@ -17,11 +17,16 @@ strong {
 ol, ul {
   padding-left: 20px;
 }
+body {
+  min-width: 310px;
+}
 .bullet-list {
   ul {
     overflow: hidden;
-    font-size: $r19;
-    line-height: $r23;
+    @extend .paragraph1;
+    @include desktop-min {
+      font-size: $r19;
+    }
     li {
       list-style: none;
       position: relative;
@@ -90,16 +95,33 @@ ol, ul {
     }
   }
 }
-table.responsive {
-  @include mobile {
-    td, th {
-      display: block;
-    }
-    td[style*="width"] {
-      width: auto !important;
+// TABLE
+table {
+  border: none;
+  th,
+  td {
+    border-color: $mdgrey;
+    padding: 10px;
+  }
+  th {
+    background: $ltblue;
+    padding: 15px;
+    font-size: $r24;
+    font-weight: 500;
+    color: #fff;
+  }
+  &.responsive {
+    @include mobile {
+      td, th {
+        display: block;
+      }
+      td[style*="width"] {
+        width: auto !important;
+      }
     }
   }
 }
+
 .text-align-center {
   img {
     margin-left: auto;

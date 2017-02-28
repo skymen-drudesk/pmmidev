@@ -51,7 +51,19 @@
         $(this).find('.default-mode-node').once('ajax').each(function () {
           var $item = $(this);
           var nodeID = $item.data('item-id');
-          $item.find('.field-name-node-link a, .field-name-field-video a').prop('href', Drupal.url('pmmi-fields/replace-video/nojs/' + nodeID)).addClass('use-ajax');
+          var title = $item.find('.field-name-node-title').text();
+          $item.find('.field-name-node-link a, .field-name-field-video a').each(function () {
+            $(this).prop('data-href', $(this).attr('href'))
+              .prop('href', Drupal.url('pmmi-fields/replace-video/nojs/' + nodeID))
+              .addClass('use-ajax');
+          }).click(function () {
+            if (window.history.pushState) {
+              history.pushState({}, title, $(this).prop('data-href'));
+              var titleParts = $(document).prop('title').split('|');
+              titleParts[0] = title;
+              $(document).prop('title', titleParts.join('|'));
+            }
+          });
         });
         Drupal.behaviors.AJAX.attach(context, settings);
       });
@@ -112,8 +124,11 @@
       $('.containers .row').once('matchHeight').each(function () {
         var $row = $(this);
         var $socialBlock = $row.find('.social-block');
-        var $textBlock = $row.find('.block-text');
-        var $containerBlocks = $socialBlock.add($textBlock);
+        var $containerBlocks = $socialBlock.add('.viewfield-wrapper, .match-height', $row);
+        if ($containerBlocks.length) {
+          var $textBlock = $row.find('.block-text');
+          $containerBlocks = $containerBlocks.add($textBlock);
+        }
         $row.imagesLoaded()
           .always(function () {
             if ($containerBlocks.length) {
