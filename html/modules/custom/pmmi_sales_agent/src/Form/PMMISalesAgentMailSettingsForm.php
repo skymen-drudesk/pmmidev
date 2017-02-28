@@ -43,6 +43,14 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       '#maxlength' => 180,
     );
 
+    $form['remind_period'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Remind period'),
+      '#default_value' => $config->get('remind_period'),
+      '#description' => $this->t('The period (in seconds), which is used to notify internal PMMI admin that some companies are pending review. By default 7 days (604800).'),
+      '#required' => TRUE,
+    ];
+
     $form['email_settings_send'] = [
       '#type' => 'vertical_tabs',
       '#title' => $this->t('Messages sent by internal PMMI admin:'),
@@ -211,6 +219,7 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $this->configFactory()->getEditable('pmmi_sales_agent.mail_settings')
       ->set('mail_notification_address', $form_state->getValue('mail_notification_address'))
+      ->set('remind_period', $form_state->getValue('remind_period'))
       ->set('ss_update.subject', $form_state->getValue('subject'))
       ->set('ss_update.body', $form_state->getValue('body'))
       ->set('ss_update_reminder.subject', $form_state->getValue('subject_reminder'))
