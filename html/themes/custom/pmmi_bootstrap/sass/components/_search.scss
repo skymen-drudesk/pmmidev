@@ -288,6 +288,7 @@
     .table > thead > tr > th {
       vertical-align: bottom;
       border-bottom: 1px solid $mdgrey;
+      background: transparent;
     }
     td.views-field-country {
       width: 266px;
@@ -401,13 +402,12 @@
       font-weight: 700;
     }
   }
-  thead {
+  thead > tr > th {
+    border-bottom: 1px solid $mdgrey;
+    background: transparent;
     font-weight: 800;
     font-size: $r20;
     color: $blue;
-    & > tr > th {
-      border-bottom: 1px solid $mdgrey;
-    }
   }
   tbody {
     tr {

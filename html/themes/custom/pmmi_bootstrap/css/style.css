@@ -15687,6 +15687,7 @@ html, body {
 .page-search-results-sales-agent-directory .view-search-sales-agent-directory .table > thead > tr > th {
   vertical-align: bottom;
   border-bottom: 1px solid #c2c2c2;
+  background: transparent;
 }
 
 .page-search-results-sales-agent-directory .view-search-sales-agent-directory td.views-field-country {
@@ -15799,15 +15800,13 @@ html, body {
   font-weight: 700;
 }
 
-.page-sales-agent-directory-my-favorites thead {
+.page-sales-agent-directory-my-favorites thead > tr > th {
+  border-bottom: 1px solid #c2c2c2;
+  background: transparent;
   font-weight: 800;
   font-size: 20px;
   font-size: 1.25rem;
   color: #004e75;
-}
-
-.page-sales-agent-directory-my-favorites thead > tr > th {
-  border-bottom: 1px solid #c2c2c2;
 }
 
 .page-sales-agent-directory-my-favorites tbody tr {
