@@ -6,7 +6,6 @@
  */
 
 use Drupal\Core\Database\Database;
-use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -89,9 +88,6 @@ function pmmi_sales_agent_form_alter(array &$form, FormStateInterface $form_stat
  */
 function pmmi_sales_agent_node_presave(EntityInterface $node) {
   if (!empty($node->register)) {
-    $new_date = DateTimePlus::createFromTimestamp(time())->format('Y-m-d');
-    $node->set('field_last_updated_on', $new_date);
-
     // Remove queue of mass email remind messages.
     if (!$node->isNew()) {
       $connection = Database::getConnection();
