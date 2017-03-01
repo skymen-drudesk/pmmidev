@@ -213,6 +213,10 @@ function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_sta
 
   // Show an alert to notify that listing should be reviewed.
   drupal_set_message(t('Thank you for your interest in PMMI’s Agent Database. Your submission was submitted successfully. We will notify you by email when your profile has been approved or rejected.'));
+
+  // Force to redirect on the node view page.
+  $url = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
+  $form_state->setRedirectUrl($url);
 }
 
 /**

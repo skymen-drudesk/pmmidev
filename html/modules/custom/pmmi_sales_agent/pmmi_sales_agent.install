@@ -90,3 +90,16 @@ function pmmi_sales_agent_update_8008() {
     ->set('remind_period', 604800)
     ->save();
 }
+
+/**
+ * Remove 'field_mass_email_queue' field as it no longer needed.
+ */
+function pmmi_sales_agent_update_8010() {
+  $field_config =  \Drupal::entityTypeManager()->getStorage('field_config');
+  $field = $field_config->load('node.company.field_mass_email_queue');
+
+  if ($field) {
+    $field->delete();
+    field_purge_field($field);
+  }
+}

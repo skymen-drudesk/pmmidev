@@ -16,7 +16,6 @@ dependencies:
     - field.field.node.company.field_last_updated_on
     - field.field.node.company.field_main_phone_number
     - field.field.node.company.field_manufacturers_represented
-    - field.field.node.company.field_mass_email_queue
     - field.field.node.company.field_primary_contact_email
     - field.field.node.company.field_primary_contact_first_name
     - field.field.node.company.field_primary_contact_last_name
@@ -292,7 +291,6 @@ hidden:
   field_city: true
   field_country: true
   field_image_header: true
-  field_mass_email_queue: true
   field_postal_code: true
   field_state: true
   field_trade_shows: true
