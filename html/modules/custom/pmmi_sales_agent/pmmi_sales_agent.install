@@ -107,7 +107,7 @@ function pmmi_sales_agent_update_8005() {
 /**
  * Rerun previous updates.
  */
-function pmmi_sales_agent_update_8013() {
+function pmmi_sales_agent_update_8006() {
   for ($i = 1; $i <= 5; $i++) {
     $function = 'pmmi_sales_agent_update_800' . $i;
     $function();

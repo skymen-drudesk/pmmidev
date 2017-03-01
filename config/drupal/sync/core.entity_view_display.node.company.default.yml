@@ -26,7 +26,6 @@ dependencies:
     - node.type.company
   module:
     - address
-    - datetime
     - ds
     - link
     - options
@@ -80,7 +79,6 @@ third_party_settings:
         - field_after_sales_service
       footer_reg:
         - 'dynamic_block_field:node-company_trade_shows'
-        - field_last_updated_on
     fields:
       node_title:
         plugin_id: node_title
@@ -107,8 +105,6 @@ targetEntityType: node
 bundle: company
 mode: default
 content:
-  content_moderation_control:
-    weight: -20
   field_address:
     weight: 14
     label: hidden
@@ -198,21 +194,6 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-  field_last_updated_on:
-    type: datetime_custom
-    weight: 23
-    label: inline
-    settings:
-      timezone_override: ''
-      date_format: 'M. j, Y'
-    third_party_settings:
-      ds:
-        ft:
-          id: minimal
-          settings:
-            lb: 'Profile last updated'
-            lb-col: false
-            classes: {  }
   field_main_phone_number:
     weight: 3
     label: hidden
@@ -285,12 +266,14 @@ content:
     third_party_settings: {  }
     type: link
 hidden:
+  content_moderation_control: true
   field_address_1: true
   field_address_2: true
   field_businbess_lines: true
   field_city: true
   field_country: true
   field_image_header: true
+  field_last_updated_on: true
   field_postal_code: true
   field_state: true
   field_trade_shows: true
