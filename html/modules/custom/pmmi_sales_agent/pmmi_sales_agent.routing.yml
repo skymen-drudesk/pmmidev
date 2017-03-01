@@ -1,12 +1,18 @@
+pmmi_sales_agent.sales_agent_directory:
+  path: '/admin/config/sales-agent-directory'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Sales agent directory'
+  requirements:
+    _permission: 'pmmi sales agent administration'
+
 pmmi_sales_agent.mail_settings:
   path: '/admin/config/services/pmmi-sales-agent-mail-settings'
   defaults:
     _form: '\Drupal\pmmi_sales_agent\Form\PMMISalesAgentMailSettingsForm'
     _title: 'PMMI Sales Agent Mail Settings'
   requirements:
-    _permission: 'administer sales agent mail settings'
-  options:
-    _admin_route: TRUE
+    _permission: 'pmmi sales agent administration'
 
 pmmi_sales_agent.mass_email:
   path: '/admin/config/services/pmmi-sales-agent-mail-settings/mass-email'
@@ -14,9 +20,7 @@ pmmi_sales_agent.mass_email:
     _form: '\Drupal\pmmi_sales_agent\Form\PMMISalesAgentMailMassForm'
     _title: 'PMMI Mass Email'
   requirements:
-    _permission: 'administer sales agent mail settings'
-  options:
-    _admin_route: TRUE
+    _permission: 'pmmi sales agent administration'
 
 pmmi_sales_agent.mass_email_confirm:
   path: '/admin/config/services/pmmi-sales-agent-mail-settings/mass-email/confirm'
@@ -24,6 +28,4 @@ pmmi_sales_agent.mass_email_confirm:
     _form: '\Drupal\pmmi_sales_agent\Form\PMMISalesAgentMailMassConfirmForm'
     _title: 'PMMI Mass Email Confirm'
   requirements:
-    _permission: 'administer sales agent mail settings'
-  options:
-    _admin_route: TRUE
+    _permission: 'pmmi sales agent administration'
