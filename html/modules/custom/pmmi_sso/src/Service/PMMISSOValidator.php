@@ -138,7 +138,7 @@ class PMMISSOValidator {
    *   Thrown if there was a problem parsing the validation data.
    */
   private function getPropertyBag($token) {
-    $query_options = $this->ssoHelper->buildServiceQuery(
+    $query_options = $this->ssoHelper->buildSsoServiceQuery(
       'TIMSSCustomerIdentifierGet',
       ['vu', 'vp'],
       ['customerToken' => $token]

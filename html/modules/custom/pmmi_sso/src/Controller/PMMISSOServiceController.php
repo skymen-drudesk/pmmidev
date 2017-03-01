@@ -138,8 +138,8 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
 
     // We will be redirecting the user below. To prevent the PMMISSOSubscriber
     // from initiating an automatic authentiation on the that request (like
-    // forced auth or gateway auth) and potentially creating an authentication
-    // loop, we set a session variable instructing the PMMISSOSubscriber skip
+    // gateway auth) and potentially creating an authentication loop,
+    // we set a session variable instructing the PMMISSOSubscriber skip
     // auto auth for that request.
     $request->getSession()->set('sso_temp_disable_auto_auth', TRUE);
 

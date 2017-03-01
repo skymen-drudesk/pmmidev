@@ -1,0 +1,23 @@
+uuid: 91e27561-afeb-4c7a-9720-c79dceeb93ac
+langcode: en
+status: true
+dependencies:
+  module:
+    - user
+_core:
+  default_config_hash: Sei9dP6DRLjMZXelCDdUg28VcFVfd5SxiOEJA3LggjU
+id: user.field_company
+field_name: field_company
+entity_type: user
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

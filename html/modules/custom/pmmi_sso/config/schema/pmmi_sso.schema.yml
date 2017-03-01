@@ -25,6 +25,34 @@ pmmi_sso.settings:
     expiration:
       type: number
       label: 'Token expiration time'
+    data_service:
+      type: mapping
+      label: 'Personify Data Service Information'
+      mapping:
+        endpoint:
+          type: string
+          label: 'Personify endpoint'
+        username:
+          type: string
+          label: 'Personify username'
+        password:
+          type: string
+          label: 'Personify password'
+    user_accounts:
+      type: mapping
+      label: 'User Accounts'
+      mapping:
+        auto_assigned_roles:
+          type: sequence
+          label: 'Auto assigned roles'
+          sequence:
+            type: string
+        restrict_password_management:
+          type: boolean
+          label: 'Restrict password management'
+        restrict_email_management:
+          type: boolean
+          label: 'Restrict email management'
     gateway:
       type: mapping
       label: 'Gateway Feature'

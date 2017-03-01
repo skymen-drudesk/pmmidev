@@ -11,7 +11,7 @@ services:
     tags:
       - { name: 'event_subscriber' }
 
-  pmmi_sso.user_data_subscriber:
+  pmmi_sso.sso_user_data_subscriber:
     class: Drupal\pmmi_sso\EventSubscriber\PMMISSOGetUserDataSubscriber
     arguments: ['@http_client', '@pmmi_sso.helper', '@pmmi_sso.xml_parser']
     tags:

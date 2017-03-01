@@ -43,9 +43,16 @@ class PMMISSOPreRegisterEvent extends Event {
   protected $allowAutomaticRegistration = TRUE;
 
   /**
+   * The SSO LabelName.
+   *
+   * @var string
+   */
+  protected $ssoLabelName;
+
+  /**
    * The username that will be assigned to the Drupal user account.
    *
-   * By default this will be populated with the PMMI SSO username.
+   * By default this will be populated with the PMMI DataService LabelName.
    *
    * @var string
    */
@@ -57,6 +64,14 @@ class PMMISSOPreRegisterEvent extends Event {
    * @var array
    */
   protected $propertyValues = [];
+
+
+  /**
+   * An array of AuthData values to assign to the user account on registration.
+   *
+   * @var array
+   */
+  protected $authData = [];
 
   /**
    * Contructor.
@@ -107,6 +122,26 @@ class PMMISSOPreRegisterEvent extends Event {
    */
   public function getRawUserId() {
     return $this->ssoPropertyBag->getRawUserId();
+  }
+
+  /**
+   * Retrieve the PMMI DataService LabelName.
+   *
+   * @return string
+   *   The LabelName.
+   */
+  public function getSsoLabelName() {
+    return $this->ssoLabelName;
+  }
+
+  /**
+   * Assign a PMMI DataService LabelName.
+   *
+   * @param string $label_name
+   *   The LabelName.
+   */
+  public function setSsoLabelName($label_name) {
+    $this->ssoLabelName = $label_name;
   }
 
   /**
@@ -174,6 +209,28 @@ class PMMISSOPreRegisterEvent extends Event {
    */
   public function setPropertyValue($property, $value) {
     $this->propertyValues[$property] = $value;
+  }
+
+  /**
+   * Getter data for the AuthMapData.
+   *
+   * @return array
+   *   The AuthMap data.
+   */
+  public function getAuthData() {
+    return $this->authData;
+  }
+
+  /**
+   * Set a single data value for the AuthMapData on registration.
+   *
+   * @param string $key
+   *   The user entity property to set.
+   * @param mixed $value
+   *   The value of the property.
+   */
+  public function setAuthData($key, $value) {
+    $this->authData[$key] = $value;
   }
 
   /**

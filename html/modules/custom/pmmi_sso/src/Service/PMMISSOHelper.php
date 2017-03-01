@@ -3,11 +3,11 @@
 namespace Drupal\pmmi_sso\Service;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Routing\UrlGeneratorInterface;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Database\Connection;
-use Drupal\Core\Logger\LoggerChannelFactory;
 use Drupal\Core\Logger\RfcLogLevel;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -74,6 +74,13 @@ class PMMISSOHelper {
   const EVENT_PRE_REDIRECT = 'pmmi_sso.pre_redirect';
 
   /**
+   * Event type identifier for the PMMISSOPreUserLoadEvent.
+   *
+   * @var string
+   */
+  const EVENT_DATA_SERVICE_LOAD = 'pmmi_sso.data_service_load';
+
+  /**
    * Stores database connection.
    *
    * @var \Drupal\Core\Database\Connection
@@ -124,7 +131,7 @@ class PMMISSOHelper {
    *   The URL generator.
    * @param Connection $database_connection
    *   The database service.
-   * @param LoggerChannelFactory $logger_factory
+   * @param LoggerChannelFactoryInterface $logger_factory
    *   The logger channel factory.
    * @param SessionInterface $session
    *   The session handler.
@@ -135,7 +142,7 @@ class PMMISSOHelper {
     ConfigFactoryInterface $config_factory,
     UrlGeneratorInterface $url_generator,
     Connection $database_connection,
-    LoggerChannelFactory $logger_factory,
+    LoggerChannelFactoryInterface $logger_factory,
     SessionInterface $session,
     PMMISSOCrypt $crypt
   ) {
@@ -163,7 +170,7 @@ class PMMISSOHelper {
     if (is_string($token_data)) {
       $data = explode('|', $token_data);
       $options['decrypt'] = TRUE;
-      $query = $this->buildServiceQuery(
+      $query = $this->buildSsoServiceQuery(
         'SSOCustomerTokenIsValid',
         ['vu', 'vp'],
         ['customerToken' => $data[1]]
@@ -173,7 +180,7 @@ class PMMISSOHelper {
   }
 
   /**
-   * Return the validation options used to validate the provided token.
+   * Return the query array for building SSO Service Request.
    *
    * @param string $path
    *   The service path.
@@ -183,10 +190,10 @@ class PMMISSOHelper {
    *   The service parameter to add to query.
    *
    * @return array
-   *   The options for building validation Request.
+   *   The options for building SSO Service Request.
    */
-  public function buildServiceQuery($path, $options, $parameter) {
-    $validate_url = $this->getServiceUrl() . '/' . $path;
+  public function buildSsoServiceQuery($path, array $options, array $parameter) {
+    $service_url = $this->settings->get('service_uri') . '/' . $path;
     $query = array();
     $result = array();
     foreach ($options as $option) {
@@ -208,52 +215,39 @@ class PMMISSOHelper {
           break;
       }
     }
-    $result['uri'] = $validate_url;
+    $result['uri'] = $service_url;
     $result['params'] = $query + $parameter;
     return $result;
   }
 
   /**
-   * Return the validation URL used to validate the provided ticket.
+   * Return the query array for building Personify Data Service Request.
    *
-   * @param string $raw_token
-   *   The ticket to validate.
-   * @param array $service_params
-   *   An array of query string parameters to add to the service URL.
+   * @param string $collection
+   *   The service collection argument.
+   * @param array $query
+   *   The service query array to build request query.
    *
-   * @return string
-   *   The fully constructed validation URL.
+   * @return array
+   *   The options for building Data Service Request.
    */
-
-//  /**
-//   * Return the version of the PMMI SSO server protocol.
-//   *
-//   * @return mixed|null
-//   *   The version.
-//   */
-//  public function getSsoProtocolVersion() {
-//    return $this->settings->get('server.version');
-//  }
-
-//  /**
-//   * Return the SSL verification method.
-//   *
-//   * @return int
-//   *   The verification method.
-//   */
-//  public function getSslVerificationMethod() {
-//    return $this->settings->get('server.verify');
-//  }
-
-//  /**
-//   * Return CA PEM file path.
-//   *
-//   * @return mixed|null
-//   *   The path to the PEM file for the CA.
-//   */
-//  public function getCertificateAuthorityPem() {
-//    return $this->settings->get('server.cert');
-//  }
+  public function buildDataServiceQuery($collection, array $query) {
+    $result = array();
+    $query = UrlHelper::buildQuery($query);
+    $service_url = $this->settings->get('data_service.endpoint') . '/' . $collection . '?' . $query;
+    $auth_header = [
+      'headers' => [
+        'Accept' => 'application/json',
+      ],
+      'auth' => [
+        $this->settings->get('data_service.username'),
+        $this->settings->get('data_service.password'),
+      ],
+    ];
+    $result['uri'] = $service_url;
+    $result['params'] = $auth_header;
+    return $result;
+  }
 
   /**
    * Return the service URL.
@@ -344,101 +338,6 @@ class PMMISSOHelper {
     $vib = $this->settings->get('vib');
     return $vib;
   }
-
-//  /**
-//   * Determine whether this client is configured to act as a proxy.
-//   *
-//   * @return bool
-//   *   TRUE if proxy, FALSE otherwise.
-//   */
-//  public function isProxy() {
-//    return $this->settings->get('proxy.initialize') == TRUE;
-//  }
-
-//  /**
-//   * Format the pgtCallbackURL parameter for use with proxying.
-//   *
-//   * We have to do a str_replace to force https for the proxy callback URL,
-//   * because it must use https, and setting the option 'https => TRUE' in the
-//   * options array won't force https if the user accessed the login route over
-//   * http and mixed-mode sessions aren't allowed.
-//   *
-//   * @return string
-//   *   The pgtCallbackURL, fully formatted.
-//   */
-//  private function formatProxyCallbackUrl() {
-//    return str_replace('http://', 'https://', $this->urlGenerator->generateFromRoute('pmmi_sso.proxyCallback', array(), array(
-//      'absolute' => TRUE,
-//    )));
-//  }
-
-//  /**
-//   * Lookup a PGT by PGTIOU.
-//   *
-//   * @param string $pgt_iou
-//   *   A pgtIou to use a key for the lookup.
-//   *
-//   * @return string
-//   *   The PGT value.
-//   *
-//   * @codeCoverageIgnore
-//   */
-//  protected function lookupPgtByPgtIou($pgt_iou) {
-//    return $this->connection->select('pmmi_sso_pgt_storage', 'c')
-//      ->fields('c', array('pgt'))
-//      ->condition('pgt_iou', $pgt_iou)
-//      ->execute()
-//      ->fetch()
-//      ->pgt;
-//  }
-
-//  /**
-//   * Store the PGT in the user session.
-//   *
-//   * @param string $pgt_iou
-//   *   A pgtIou to identify the PGT.
-//   */
-//  public function storePgtSession($pgt_iou) {
-//    $pgt = $this->lookupPgtByPgtIou($pgt_iou);
-//    $this->session->set('pmmi_sso_pgt', $pgt);
-//    // Now that we have the pgt in the session,
-//    // we can delete the database mapping.
-//    $this->deletePgtMappingByPgtIou($pgt_iou);
-//  }
-
-//  /**
-//   * Delete a PGT/PGTIOU mapping from the database.
-//   *
-//   * @param string $pgt_iou
-//   *   A pgtIou string to use as the deletion key.
-//   *
-//   * @codeCoverageIgnore
-//   */
-//  protected function deletePgtMappingByPgtIou($pgt_iou) {
-//    $this->connection->delete('pmmi_sso_pgt_storage')
-//      ->condition('pgt_iou', $pgt_iou)
-//      ->execute();
-//  }
-
-//  /**
-//   * Determine whether this client is allowed to be proxied.
-//   *
-//   * @return bool
-//   *   TRUE if it can be proxied, FALSE otherwise.
-//   */
-//  public function canBeProxied() {
-//    return $this->settings->get('proxy.can_be_proxied') == TRUE;
-//  }
-
-//  /**
-//   * Return the allowed proxy chains list.
-//   *
-//   * @return string
-//   *   A newline delimited list of proxy chains.
-//   */
-//  public function getProxyChains() {
-//    return $this->settings->get('proxy.proxy_chains');
-//  }
 
   /**
    * Log information to the logger.

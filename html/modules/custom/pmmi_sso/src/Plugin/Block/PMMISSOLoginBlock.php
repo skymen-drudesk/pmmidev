@@ -3,6 +3,7 @@
 namespace Drupal\pmmi_sso\Plugin\Block;
 
 use DateTime;
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
@@ -146,7 +147,6 @@ class PMMISSOLoginBlock extends BlockBase implements ContainerFactoryPluginInter
     $timestamp = $now->format('YmdHisv');
     $request = $this->requestStack->getCurrentRequest();
     $current_url = Url::fromUserInput('/ssoservice', ['absolute' => TRUE]);
-
     $query = $request->query->all();
     $query['returnto'] = $request->getPathInfo();
 

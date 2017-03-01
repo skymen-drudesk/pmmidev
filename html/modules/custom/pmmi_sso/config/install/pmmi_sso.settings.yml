@@ -1,3 +1,8 @@
+user_accounts:
+  restrict_password_management: false
+  restrict_email_management: false
+  auto_assigned_roles:
+    - sso_user
 gateway:
   check_frequency: -2
   paths:

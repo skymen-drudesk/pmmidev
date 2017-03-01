@@ -126,10 +126,10 @@ class PMMISSOUserManager {
    * @return \Drupal\user\UserInterface
    *   The user entity of the newly registered user.
    */
-  public function register($authname, array $property_values = []) {
+  public function register($authname, array $property_values = [], array $user_data = []) {
     try {
       $property_values['pass'] = $this->randomPassword();
-      $user = $this->externalAuth->register($authname, $this->provider, $property_values);
+      $user = $this->externalAuth->register($authname, $this->provider, $property_values, $user_data);
     } catch (ExternalAuthRegisterException $e) {
       throw new PMMISSOLoginException($e->getMessage());
     }
@@ -162,8 +162,19 @@ class PMMISSOUserManager {
       $sso_pre_register_event = new PMMISSOPreRegisterEvent($property_bag);
 //      $sso_pre_register_event->setPropertyValue('mail', $this->getEmailForNewAccount($property_bag));
       $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_PRE_REGISTER, $sso_pre_register_event);
+      // Dispatch an event that allows modules to retrieve additional data
+      // for this userID.
+//      $data_service_event = new PMMISSODataServiceEvent($property_bag);
+//      $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_DATA_SERVICE_LOAD, $data_service_event);
+
+
       if ($sso_pre_register_event->getAllowAutomaticRegistration()) {
-        $account = $this->register($sso_pre_register_event->getDrupalUsername(), $sso_pre_register_event->getPropertyValues());
+        $property_values = $sso_pre_register_event->getPropertyValues();
+//        $user_data = $this->
+        //      $data_service_event = new PMMISSODataServiceEvent($property_bag);
+//      $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_DATA_SERVICE_LOAD, $data_service_event);
+        $account = $this->register($sso_pre_register_event->getUserId(), $sso_pre_register_event->getPropertyValues(), $sso_pre_register_event->getAuthData());
+
       }
       else {
         throw new PMMISSOLoginException("Cannot register user, an event listener denied access.");
