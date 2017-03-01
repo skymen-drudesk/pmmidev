@@ -3,20 +3,6 @@
 /**
  * @file
  * Includes PMMI Sales Agent Directory extensions.
- *
- * SALES AGENT DIRECTORY WORKFLOW (1 - authenticated user, 2 - privileged user):
- *   Register new company:
- *   [1,2] DRAFT -> DRAFT (create unpublished node)
- *     [1,2] DRAFT -> DRAFT (save changes, keep node unpublished)
- *     [2] DRAFT - reject -> NEEDS WORK (notify that changes are incorrect)
- *       [1,2] NEEDS WORK -> DRAFT (save changes, keep node unpublished)
- *     [2] DRAFT - approve -> PUBLISHED (publish new changes)
- *       [1,2] PUBLISHED -> DRAFT (create new unpublished revision)
- *
- *   Register existed company:
- *   [1,2] PUBLISHED -> DRAFT (create new unpublished revision)
- *     [2] DRAFT - reject -> DRAFT (don't publish, keep in revision)
- *     [2] DRAFT - approve -> PUBLISHED (publish new changes)
  */
 
 use Drupal\Core\Database\Database;
@@ -26,6 +12,8 @@ use Drupal\Core\Form\FormStateInterface;
 
 // Define sales agent content ID.
 define('PMMI_SALES_AGENT_CONTENT', 'company');
+// Define sales agent admin role.
+define('PMMI_SALES_AGENT_ADMIN_ROLE', 'sales_agent_admin');
 // Define PMMI sales agent mail types.
 define('PMMI_SALES_AGENT_MAIL_MASS_REMIND', 'mass_email_remind');
 define('PMMI_SALES_AGENT_MAIL_LISTING_NEW', 'mail_listing_new');
@@ -167,24 +155,39 @@ function pmmi_sales_agent_widget_moderation_state_process_actions($element, Form
     // additional flag to make sure that node is new.
     $form['#new'] = $node->isNew() ? TRUE : FALSE;
 
-    foreach ($form['actions'] as $key => &$action) {
-      switch ($key) {
-        case 'moderation_state_draft':
-          $action['#value'] = t('Register');
-          $action['#submit'][] = 'pmmi_sales_agent_notify_pmmi_admin';
-          break;
+    // Simple user will see 'Register' operation only (transition to the Draft
+    // state). For admin user, we do not need this transition, as admin should
+    // be able to publish changes immediately.
+    $is_admin = pmmi_sales_agent_is_admin();
+    if (!$is_admin) {
+      $form['actions']['moderation_state_draft']['#value'] = t('Register');
+      $form['actions']['moderation_state_draft']['#submit'][] = 'pmmi_sales_agent_notify_pmmi_admin';
+    }
+    else {
+      $form['actions']['moderation_state_draft']['#access'] = FALSE;
+    }
 
-        case 'moderation_state_needs_work':
-          $action['#value'] = t('Reject');
-          $action['#submit'][] = 'pmmi_sales_agent_notify_sales_agent';
-          break;
+    // If current state is 'Draft', it means that sales agent added new changes.
+    // PMMI should review and approve or reject his changes.
+    $current_state = $node->get('moderation_state')->getValue()[0]['target_id'] ?: '';
+    if (!$form['#new'] && $current_state == 'draft') {
+      $form['actions']['moderation_state_published']['#value'] = t('Approve');
+      $form['actions']['moderation_state_published']['#submit'][] = 'pmmi_sales_agent_notify_sales_agent';
 
-        case 'moderation_state_published':
-          $action['#value'] = t('Approve');
-          $action['#submit'][] = 'pmmi_sales_agent_notify_sales_agent';
-          break;
+      // Allow to 'Reject' a listing.
+      if ($is_admin) {
+        $form['actions']['reject_listing'] = [
+          '#type' => 'submit',
+          '#value' => t('Reject'),
+          '#submit' => [
+            'pmmi_sales_agent_reject_listing',
+            'pmmi_sales_agent_notify_sales_agent',
+          ],
+        ];
       }
+    }
 
+    foreach ($form['actions'] as $key => &$action) {
       if (strpos($key, 'moderation_state_') === 0) {
         unset($action['#dropbutton']);
       }
@@ -192,6 +195,25 @@ function pmmi_sales_agent_widget_moderation_state_process_actions($element, Form
   }
 
   return $element;
+}
+
+/**
+ * Submit handler to reject a listing.
+ */
+function pmmi_sales_agent_reject_listing(&$form, FormStateInterface $form_state) {
+  $moderation_info = \Drupal::service('content_moderation.moderation_information');
+  $node = $form_state->getBuildInfo()['callback_object']->getEntity();
+
+  if ($moderation_info->hasForwardRevision($node)) {
+    // Ignore forward unpublished revisions. Revert to default.
+    $def_revision_id = $moderation_info->getDefaultRevisionId('node', $node->id());
+    $def_revision = node_revision_load($def_revision_id);
+    $def_revision->save();
+  }
+  else {
+    // Remove a node immediately.
+    $node->delete();
+  }
 }
 
 /**
@@ -231,8 +253,12 @@ function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_sta
  * Notify sales agent that his changes have been approved.
  */
 function pmmi_sales_agent_notify_sales_agent(&$form, FormStateInterface $form_state) {
-  $triggering_element = $form_state->getTriggeringElement();
-  $approve = $triggering_element['#moderation_state'] == 'published' ? TRUE : FALSE;
+  $trig_element = $form_state->getTriggeringElement();
+
+  $approve = FALSE;
+  if (isset($trig_element['#moderation_state']) && $trig_element['#moderation_state'] == 'published') {
+    $approve = TRUE;
+  }
 
   $node = $form_state->getBuildInfo()['callback_object']->getEntity();
 
@@ -340,4 +366,12 @@ function pmmi_sales_agent_internal_admin_remind_send() {
       }
     }
   }
+}
+
+/**
+ * Checks if current user is internal PMMI admin.
+ */
+function pmmi_sales_agent_is_admin() {
+  $current_user = \Drupal::currentUser();
+  return in_array(PMMI_SALES_AGENT_ADMIN_ROLE, $current_user->getRoles()) || $current_user->id() === 1;
 }
