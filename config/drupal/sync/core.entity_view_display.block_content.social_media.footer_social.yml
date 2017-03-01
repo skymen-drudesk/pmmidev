@@ -5,9 +5,11 @@ dependencies:
   config:
     - block_content.type.social_media
     - core.entity_view_mode.block_content.footer_social
+    - field.field.block_content.social_media.body
     - field.field.block_content.social_media.field_facebook
     - field.field.block_content.social_media.field_google
     - field.field.block_content.social_media.field_head
+    - field.field.block_content.social_media.field_instagram
     - field.field.block_content.social_media.field_linkedin
     - field.field.block_content.social_media.field_twitter
     - field.field.block_content.social_media.field_youtube
@@ -34,13 +36,15 @@ third_party_settings:
         - field_google
       youtube:
         - field_youtube
+      instagram:
+        - field_instagram
 id: block_content.social_media.footer_social
 targetEntityType: block_content
 bundle: social_media
 mode: footer_social
 content:
   field_facebook:
-    weight: 1
+    weight: 0
     label: hidden
     settings:
       trim_length: 80
@@ -56,29 +60,6 @@ content:
             lb: ''
     type: link
   field_google:
-    weight: 4
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings:
-      ds:
-        ft:
-          id: reset
-          settings:
-            lb: ''
-    type: link
-  field_head:
-    weight: 0
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-  field_linkedin:
     weight: 3
     label: hidden
     settings:
@@ -94,7 +75,18 @@ content:
           settings:
             lb: ''
     type: link
-  field_twitter:
+  field_instagram:
+    type: link
+    weight: 5
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+  field_linkedin:
     weight: 2
     label: hidden
     settings:
@@ -110,8 +102,8 @@ content:
           settings:
             lb: ''
     type: link
-  field_youtube:
-    weight: 5
+  field_twitter:
+    weight: 1
     label: hidden
     settings:
       trim_length: 80
@@ -126,4 +118,22 @@ content:
           settings:
             lb: ''
     type: link
-hidden: {  }
+  field_youtube:
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: '0'
+      target: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: reset
+          settings:
+            lb: ''
+    type: link
+hidden:
+  body: true
+  field_head: true
