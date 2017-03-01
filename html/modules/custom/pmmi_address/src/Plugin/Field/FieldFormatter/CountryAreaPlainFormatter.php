@@ -109,7 +109,7 @@ class CountryAreaPlainFormatter extends  FormatterBase implements ContainerFacto
         '#type' => 'theme',
         '#theme' => 'pmmi_address_country_state',
         '#country' => $address_item['country'],
-        '#states' => !empty($address_item['states']) ? implode(',', $address_item['states']) : '',
+        '#states' => !empty($address_item['states']) ? implode(', ', $address_item['states']) : '',
       ];
     }
 
