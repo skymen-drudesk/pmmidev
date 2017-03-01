@@ -1,0 +1,41 @@
+uuid: c16121e4-d8ba-4d77-81fc-53e08c158f42
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.sales_agent_directory_usage_export
+    - views.view.export_list_of_users
+  module:
+    - panels
+    - views
+id: sales_agent_directory_usage_export-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    67c1fa49-7ff4-4c9a-abe7-f33a9595aeb4:
+      id: 'views_block:export_list_of_users-block_1'
+      label: ''
+      provider: views
+      label_display: visible
+      views_label: ''
+      items_per_page: none
+      region: middle
+      weight: 0
+      uuid: 67c1fa49-7ff4-4c9a-abe7-f33a9595aeb4
+      context_mapping: {  }
+  id: panels_variant
+  uuid: ab305b4c-495b-4277-9ff2-00fcb2331a0e
+  label: null
+  weight: 0
+  layout: onecol
+  layout_settings: {  }
+  page_title: 'Usage export'
+  storage_type: page_manager
+  storage_id: sales_agent_directory_usage_export-panels_variant-0
+  builder: standard
+page: sales_agent_directory_usage_export
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }
