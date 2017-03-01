@@ -1,8 +1,8 @@
 user_accounts:
-  restrict_password_management: false
-  restrict_email_management: false
+  login_link_enabled: true
+  login_link_label: 'Personify Login'
   auto_assigned_roles:
-    - sso_user
+    - pmmi_member
 gateway:
   check_frequency: -2
   paths:

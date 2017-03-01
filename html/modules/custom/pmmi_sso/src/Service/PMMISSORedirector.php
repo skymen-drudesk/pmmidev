@@ -56,35 +56,13 @@ class PMMISSORedirector {
    * @return TrustedRedirectResponse|PMMISSORedirectResponse|null
    *   The RedirectResponse or NULL if a redirect shouldn't be done.
    */
-  public function buildLoginRedirectResponse(PMMISSORedirectData $data, $force = FALSE) {
-    $response = NULL;
-    $login_url = $this->ssoHelper->getServerBaseUrl();
-
-    // Dispatch an event that allows modules to alter or prevent the redirect.
-    $pre_redirect_event = new PMMISSOPreRedirectEvent($data);
-    $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_PRE_REDIRECT, $pre_redirect_event);
-
-  }
-
-
-
-
-  /**
-   * Determine login URL response.
-   *
-   * @param PMMISSORedirectData $data
-   *   Data used to generate redirector.
-   * @param bool $force
-   *   True implies that you always want to generate a redirector as occurs with
-   *   the ForceRedirectController. False implies redirector is controlled by
-   *   the allow_redirect property in the PMMISSORedirectData object.
-   *
-   * @return TrustedRedirectResponse|PMMISSORedirectResponse|null
-   *   The RedirectResponse or NULL if a redirect shouldn't be done.
-   */
   public function buildRedirectResponse(PMMISSORedirectData $data, $force = FALSE) {
     $response = NULL;
 
+    if ($force) {
+      $login_url = $this->ssoHelper->generateLoginUrl($data->getServiceParameter('returnto'));
+      return new PMMISSORedirectResponse($login_url);
+    }
     // Generate login url.
     $login_url = $this->ssoHelper->getServerBaseUrl();
 

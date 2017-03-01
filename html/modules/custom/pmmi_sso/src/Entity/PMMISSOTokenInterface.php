@@ -25,4 +25,22 @@ interface PMMISSOTokenInterface extends ContentEntityInterface, EntityChangedInt
    */
   public function isRevoked();
 
+  /**
+   * Set a token.
+   *
+   * @param string $token
+   *   The token value.
+   * @param int $expire
+   *   The Unix timestamp when token expire.
+   */
+  public function setToken($token, $expire);
+
+  /**
+   * Return token value.
+   *
+   * @return string
+   *   The token value.
+   */
+  public function getToken();
+
 }

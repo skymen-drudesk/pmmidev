@@ -137,11 +137,10 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
       $event->setAllowAutomaticRegistration(FALSE);
       throw new PMMISSOServiceException("Error with request to get User Data: ", $response->getMessage());
     }
-//    $data = json_decode($response);
     // Check if user exist and active.
     if ($json_data = json_decode($response)) {
       $data = $json_data->d[0];
-      // Parse and set user name.
+      // Parse and set user LabelName.
       if ($label_name = $data->LabelName) {
         $event->setPropertyValue('name', $label_name);
         $event->setAuthData('label_name', $label_name);
@@ -150,12 +149,12 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
         $event->setAllowAutomaticRegistration(FALSE);
         throw new PMMISSOLoginException("User name not exist or disabled.");
       }
-      // Parse and set user email.
+      // Parse and set user FirstName.
       if ($first_name = $data->FirstName) {
         $event->setPropertyValue('field_first_name', $first_name);
         $event->setAuthData('first_name', $first_name);
       }
-      // Parse and set user email.
+      // Parse and set user LastName.
       if ($last_name = $data->LastName) {
         $event->setPropertyValue('field_last_name', $last_name);
         $event->setAuthData('last_name', $last_name);
@@ -168,7 +167,16 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * @inheritdoc
+   * Attempt to handle request to PMMI Personify Services.
+   *
+   * @param array $request_param
+   *   Parameters of the request.
+   *
+   * @throws RequestException
+   *   Thrown if there was a problem with request.
+   *
+   * @return string|RequestException
+   *   The response data from PMMI Personify Services.
    */
   protected function handleRequest(array $request_param) {
     $method = $request_param['method'];
@@ -179,7 +187,6 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
     else {
       $options = $request_param['params'];
     }
-
     try {
       $response = $this->httpClient->request($method, $uri, $options);
       $response_data = $response->getBody()->getContents();
@@ -192,18 +199,3 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
   }
 
 }
-
-
-//    try {
-//      $response = $this->httpClient->request(
-//        'POST',
-//        $query_options['uri'],
-//        ['form_params' => $query_options['params']]
-//      );
-//      $response_data = $response->getBody()->getContents();
-//      $this->ssoHelper->log("User Data received from PMMI SSO server: " . htmlspecialchars($response_data));
-//    }
-//    catch (RequestException $e) {
-//      $event->setAllowAutomaticRegistration(FALSE);
-//      throw new PMMISSOServiceException("Error with request to get User Data: " . $e->getMessage());
-//    }

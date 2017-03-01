@@ -47,12 +47,12 @@ pmmi_sso.settings:
           label: 'Auto assigned roles'
           sequence:
             type: string
-        restrict_password_management:
+        login_link_enabled:
           type: boolean
-          label: 'Restrict password management'
-        restrict_email_management:
-          type: boolean
-          label: 'Restrict email management'
+          label: 'Login Link Enabled'
+        login_link_label:
+          type: label
+          label: 'Login Link Label'
     gateway:
       type: mapping
       label: 'Gateway Feature'

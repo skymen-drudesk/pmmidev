@@ -11,8 +11,8 @@ use Drupal\user\Entity\Role;
  * Implements hook_install().
  */
 function pmmi_sso_install() {
-  if (Role::load('sso_user') == NULL) {
-    $role = Role::create(['id' => 'sso_user', 'label' => 'Personify SSO user']);
+  if (Role::load('pmmi_member') == NULL) {
+    $role = Role::create(['id' => 'pmmi_member', 'label' => 'PMMI Member']);
     $role->save();
   }
 }

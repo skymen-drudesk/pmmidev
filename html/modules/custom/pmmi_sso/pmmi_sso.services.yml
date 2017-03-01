@@ -1,9 +1,4 @@
 services:
-#  authentication.pmmi_sso:
-#    class: Drupal\pmmi_sso\Authentication\Provider\PMMISSOAuthProvider
-#    arguments: ['@config.factory', '@entity_type.manager']
-#    tags:
-#      - { name: authentication_provider, provider_id: pmmi_sso_auth_provider, global: TRUE, priority: 35 }
 
   pmmi_sso.subscriber:
     class: Drupal\pmmi_sso\EventSubscriber\PMMISSOSubscriber
@@ -45,7 +40,7 @@ services:
 
   pmmi_sso.user_manager:
     class: Drupal\pmmi_sso\Service\PMMISSOUserManager
-    arguments: ['@externalauth.externalauth', '@externalauth.authmap', '@config.factory', '@session', '@database', '@event_dispatcher']
+    arguments: ['@externalauth.externalauth', '@externalauth.authmap', '@config.factory', '@session', '@database', '@event_dispatcher', '@entity_type.manager']
 
   pmmi_sso.crypt:
     class: Drupal\pmmi_sso\Service\PMMISSOCrypt

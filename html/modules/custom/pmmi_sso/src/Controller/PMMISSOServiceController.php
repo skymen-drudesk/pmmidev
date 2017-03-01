@@ -2,8 +2,10 @@
 
 namespace Drupal\pmmi_sso\Controller;
 
+use Drupal\Component\Utility\UrlHelper;
 use Drupal\pmmi_sso\Exception\PMMISSOLoginException;
 use Drupal\pmmi_sso\Exception\PMMISSOSloException;
+use Drupal\pmmi_sso\PMMISSORedirectResponse;
 use Drupal\pmmi_sso\Service\PMMISSOHelper;
 use Drupal\pmmi_sso\Exception\PMMISSOValidateException;
 use Drupal\pmmi_sso\Service\PMMISSOUserManager;
@@ -143,6 +145,13 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
     // auto auth for that request.
     $request->getSession()->set('sso_temp_disable_auto_auth', TRUE);
 
+    // Our PMMI SSO service will need to reconstruct the original service URL
+    // when validating the token. We always know what the base URL for
+    // the service URL (it's this page), but there may be some query params
+    // attached as well (like a destination param) that we need to pass in
+    // as well. So, later, need detach the token param, and pass the rest off.
+    $service_params = $request->query->all();
+
     /* If there is no token parameter on the request, the browser either:
      * (a) is returning from a gateway request to the PMMI SSO server in which
      *     the user was not already authenticated to PMMI SSO, so there is no
@@ -150,26 +159,35 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
      * (b) has hit this URL for some other reason (crawler, curiosity, etc)
      *     and there is nothing to do.
      * In either case, we just want to redirect them away from this controller.
+     * $internal - represent, that token is Internal use.
+     *
+     * There is a token present, meaning PMMISSO server or internal request has
+     * returned the browser
+     * to the Drupal site so we can authenticate the user locally using the
+     * token.
      */
-    if (!$request->query->has('ct')) {
+
+    // There is a token present, meaning PMMISSO server has returned the browser
+    // to the Drupal site so we can authenticate the user locally using the
+    // token.
+    $internal = FALSE;
+    if ($request->query->has('ct')) {
+      $token = $request->query->get('ct');
+      unset($service_params['ct']);
+    }
+    elseif ($request->query->has('cti')) {
+      $token = $request->query->get('cti');
+      unset($service_params['cti']);
+      $internal = TRUE;
+    }
+    else {
       $this->ssoHelper->log("No token detected, move along.");
       $this->handleReturnToParameter($request);
       return RedirectResponse::create($this->urlGenerator->generate('<front>'));
     }
 
-    // There is a token present, meaning PMMISSO server has returned the browser
-    // to the Drupal site so we can authenticate the user locally using the
-    // token.
-    $token = $request->query->get('ct');
-    // Our PMMI SSO service will need to reconstruct the original service URL
-    // when validating the token. We always know what the base URL for
-    // the service URL (it's this page), but there may be some query params
-    // attached as well (like a destination param) that we need to pass in
-    // as well. So, detach the token param, and pass the rest off.
-    $service_params = $request->query->all();
-    unset($service_params['ct']);
     try {
-      $sso_validation_info = $this->ssoValidator->validateToken($token, FALSE);
+      $sso_validation_info = $this->ssoValidator->validateToken($token, $internal, $service_params);
     }
     catch (PMMISSOValidateException $e) {
       // Validation failed, redirect to homepage and set message.
@@ -183,10 +201,6 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
     // validation request to authenticate the user locally on the Drupal site.
     try {
       $this->ssoUserManager->login($sso_validation_info);
-//      if ($this->ssoHelper->isProxy() && $sso_validation_info->getPgt()) {
-//        $this->ssoHelper->log("Storing PGT information for this session.");
-//        $this->ssoHelper->storePgtSession($sso_validation_info->getPgt());
-//      }
       $this->setMessage($this->t('You have been logged in.'));
     }
     catch (PMMISSOLoginException $e) {
@@ -198,7 +212,13 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
     // destination found in the destination param (like the page they were on
     // prior to initiating authentication).
     $this->handleReturnToParameter($request);
-    return RedirectResponse::create($this->urlGenerator->generate('<front>'));
+    if (isset($this->decoded)) {
+      return new PMMISSORedirectResponse($this->decoded);
+    }
+    else {
+      return RedirectResponse::create($this->urlGenerator->generate('<front>'));
+    }
+
   }
 
   /**
@@ -228,6 +248,10 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
     if ($request->query->has('returnto')) {
       $this->ssoHelper->log("Converting returnto parameter to destination.");
       $request->query->set('destination', $request->query->get('returnto'));
+    }
+    if ($request->query->has('ue')) {
+      $decode = base64_decode($request->query->get('ue'));
+      $this->decoded = $decode;
     }
   }
 

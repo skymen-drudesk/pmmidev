@@ -153,9 +153,23 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
     $return_to = $this->requestStack->getCurrentRequest()->getUri();
     $redirect_data = new PMMISSORedirectData(['returnto' => $return_to]);
 
-    // Nothing to do if the user is already logged in.
+    // Additional check if the user is already logged in.
     if ($this->currentUser->isAuthenticated()) {
-      $redirect_data->preventRedirection();
+      if ($session->has('expiration')) {
+        // If token expired, redirect to internal uri /ssoservice
+        // to validate token.
+        if ($session->get('expiration') > time()) {
+          $redirect_data->preventRedirection();
+        }
+        else {
+          $redirect_data->forceRedirection();
+          $redirect_data->setParameter('token_expired', TRUE);
+          $this->ssoHelper->log('Validate Token Requested');
+        }
+      }
+      else {
+        $redirect_data->preventRedirection();
+      }
     }
     else {
       // Default assumption is that we don't want to redirect unless page
@@ -210,6 +224,22 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
     // variable to store the fact that we've already done the gateway check
     // so we don't keep doing it.
     if ($this->gatewayCheckFrequency === PMMISSOHelper::CHECK_ONCE) {
+      // If the session var is already set, we know to back out.
+      if ($this->requestStack->getCurrentRequest()
+        ->getSession()
+        ->has('sso_gateway_checked')
+      ) {
+        $this->ssoHelper->log("Gateway already checked, will not check again.");
+        return FALSE;
+      }
+      $this->requestStack->getCurrentRequest()
+        ->getSession()
+        ->set('sso_gateway_checked', TRUE);
+    }
+    // If set to only implement gateway once per token TTL, we use a session
+    // variable to store the fact that we've already done the gateway check
+    // so we don't keep doing it.
+    if ($this->gatewayCheckFrequency === PMMISSOHelper::CHECK_TOKEN_TTL) {
       // If the session var is already set, we know to back out.
       if ($this->requestStack->getCurrentRequest()
         ->getSession()
@@ -281,9 +311,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
   private function isIgnoreableRoute() {
     $routes_to_ignore = array(
       'pmmi_sso.service',
-      'pmmi_sso.proxyCallback',
       'pmmi_sso.login',
-      'pmmi_sso.legacy_login',
       'pmmi_sso.logout',
       'system.cron',
     );
@@ -335,6 +363,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
   public static function getSubscribedEvents() {
     // Priority is just before the Dynamic Page Cache subscriber, but after
     // important services like route matcher and maintenance mode subscribers.
+//    $events[KernelEvents::REQUEST][] = array('handle', 34);
     $events[KernelEvents::REQUEST][] = array('handle', 29);
     $events[KernelEvents::EXCEPTION][] = ['onException', 0];
     return $events;

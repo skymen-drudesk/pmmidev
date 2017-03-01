@@ -22,7 +22,7 @@ class AccessTokenAccessControlHandler extends EntityAccessControlHandler {
       return AccessResult::allowedIfHasPermission($account, $admin_permission);
     }
     // Permissions only apply to own entities.
-    $is_owner = $account->id() == $entity->get('auth_user_id')->target_id;
+    $is_owner = $account->id() == $entity->get('uid')->target_id;
     $is_owner_access = AccessResult::allowedIf($is_owner)
       ->addCacheableDependency($entity);
     if (!in_array($operation, ['view', 'update', 'delete'])) {

@@ -2,6 +2,8 @@
 
 namespace Drupal\pmmi_sso\Service;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\Render\Element\Date;
 use Drupal\pmmi_sso\Event\PMMISSOPreLoginEvent;
 use Drupal\pmmi_sso\Event\PMMISSOPreRegisterEvent;
 use Drupal\pmmi_sso\Event\PMMISSOPreUserLoadEvent;
@@ -51,9 +53,9 @@ class PMMISSOUserManager {
   protected $authmap;
 
   /**
-   * Stores settings object.
+   * The immutable configuration object.
    *
-   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   * @var \Drupal\Core\Config\ImmutableConfig
    */
   protected $settings;
 
@@ -78,6 +80,13 @@ class PMMISSOUserManager {
    */
   protected $eventDispatcher;
 
+  /**
+   * The PMMI SSO token Storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  protected $tokenStorage;
+
   protected $provider = 'pmmi_sso';
 
   /**
@@ -87,7 +96,7 @@ class PMMISSOUserManager {
    *   The external auth interface.
    * @param \Drupal\externalauth\AuthmapInterface $authmap
    *   The authmap interface.
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $settings
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $configFactory
    *   The settings.
    * @param \Symfony\Component\HttpFoundation\Session\SessionInterface $session
    *   The session.
@@ -95,21 +104,25 @@ class PMMISSOUserManager {
    *   The database connection.
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
    *   The event dispatcher.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager.
    */
   public function __construct(
     ExternalAuthInterface $external_auth,
     AuthmapInterface $authmap,
-    ConfigFactoryInterface $settings,
+    ConfigFactoryInterface $configFactory,
     SessionInterface $session,
     Connection $database_connection,
-    EventDispatcherInterface $event_dispatcher
+    EventDispatcherInterface $event_dispatcher,
+    EntityTypeManagerInterface $entityTypeManager
   ) {
     $this->externalAuth = $external_auth;
     $this->authmap = $authmap;
-    $this->settings = $settings;
+    $this->settings = $configFactory->get('pmmi_sso.settings');
     $this->session = $session;
     $this->connection = $database_connection;
     $this->eventDispatcher = $event_dispatcher;
+    $this->tokenStorage = $entityTypeManager->getStorage('pmmi_sso_token');
   }
 
   /**
@@ -130,7 +143,8 @@ class PMMISSOUserManager {
     try {
       $property_values['pass'] = $this->randomPassword();
       $user = $this->externalAuth->register($authname, $this->provider, $property_values, $user_data);
-    } catch (ExternalAuthRegisterException $e) {
+    }
+    catch (ExternalAuthRegisterException $e) {
       throw new PMMISSOLoginException($e->getMessage());
     }
     return $user;
@@ -154,27 +168,13 @@ class PMMISSOUserManager {
 
     $account = $this->externalAuth->load($property_bag->getUserId(), $this->provider);
     if ($account === FALSE) {
-      // Check if we should create the user or not.
-      $config = $this->settings->get('pmmi_sso.settings');
       // Dispatch an event that allows modules to deny automatic registration
       // for this user account or to set properties for the user that will
       // be created.
       $sso_pre_register_event = new PMMISSOPreRegisterEvent($property_bag);
-//      $sso_pre_register_event->setPropertyValue('mail', $this->getEmailForNewAccount($property_bag));
       $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_PRE_REGISTER, $sso_pre_register_event);
-      // Dispatch an event that allows modules to retrieve additional data
-      // for this userID.
-//      $data_service_event = new PMMISSODataServiceEvent($property_bag);
-//      $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_DATA_SERVICE_LOAD, $data_service_event);
-
-
       if ($sso_pre_register_event->getAllowAutomaticRegistration()) {
-        $property_values = $sso_pre_register_event->getPropertyValues();
-//        $user_data = $this->
-        //      $data_service_event = new PMMISSODataServiceEvent($property_bag);
-//      $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_DATA_SERVICE_LOAD, $data_service_event);
         $account = $this->register($sso_pre_register_event->getUserId(), $sso_pre_register_event->getPropertyValues(), $sso_pre_register_event->getAuthData());
-
       }
       else {
         throw new PMMISSOLoginException("Cannot register user, an event listener denied access.");
@@ -194,32 +194,62 @@ class PMMISSOUserManager {
     }
 
     $this->externalAuth->userLoginFinalize($account, $property_bag->getUsername(), $this->provider);
-    $this->storeLoginSessionData($this->session->getId(), $token);
+    $this->storeUserToken($account->id(), $property_bag->getUserId(), $property_bag->getToken());
+//    $this->storeLoginSessionData($this->session->getId(), $token);
   }
 
   /**
    * Store the Session ID and token for single-log-out purposes.
    *
-   * @param string $session_id
-   *   The session ID, to be used to kill the session later.
+   * @param int $uid
+   *   The User ID to be used as the lookup key.
+   * @param string $auth_id
+   *   The User Auth ID value.
    * @param string $token
-   *   The PMMI SSO service token to be used as the lookup key.
+   *   The Token value.
    */
-  protected function storeLoginSessionData($session_id, $token) {
-    if ($this->settings->get('pmmi_sso.settings')
-        ->get('logout.enable_single_logout') === TRUE
-    ) {
-      $this->connection->insert('pmmi_sso_login_data')
-        ->fields(
-          array('sid', 'plainsid', 'token', 'created'),
-          array(Crypt::hashBase64($session_id), $session_id, $token, time())
-        )
-        ->execute();
+  protected function storeUserToken($uid, $auth_id, $token) {
+    /** @var \Drupal\pmmi_sso\Entity\PMMISSOTokenInterface $token_entity */
+    $token_search = $this->tokenStorage->loadByProperties(['uid' => $uid]);
+    $expire_time = time() + $this->settings->get('expiration');
+    if ($token_entity = reset($token_search)) {
+      $token_entity->setToken($token, $expire_time);
     }
+    else {
+      $token_entity = $this->tokenStorage->create([
+        'uid' => $uid,
+        'auth_id' => $auth_id,
+        'value' => $token,
+        'expire' => $expire_time,
+      ]);
+    }
+    $this->session->set('expiration', $expire_time);
+    $token_entity->save();
   }
 
+//  /**
+//   * Store the Session ID and token for single-log-out purposes.
+//   *
+//   * @param string $session_id
+//   *   The session ID, to be used to kill the session later.
+//   * @param string $token
+//   *   The PMMI SSO service token to be used as the lookup key.
+//   */
+//  protected function storeLoginSessionData($session_id, $token) {
+//    if ($this->settings->get('pmmi_sso.settings')
+//        ->get('logout.enable_single_logout') === TRUE
+//    ) {
+//      $this->connection->insert('pmmi_sso_login_data')
+//        ->fields(
+//          array('sid', 'plainsid', 'token', 'created'),
+//          array(Crypt::hashBase64($session_id), $session_id, $token, time())
+//        )
+//        ->execute();
+//    }
+//  }
+
   /**
-   * Return PMMI SSO username for account, or FALSE if it doesn't have one.
+   * Return PMMI SSO user ID for account, or FALSE if it doesn't have one.
    *
    * @param int $uid
    *   The user ID.
@@ -227,21 +257,21 @@ class PMMISSOUserManager {
    * @return bool|string
    *   The PMMI SSO username if it exists, or FALSE otherwise.
    */
-  public function getSsoUsernameForAccount($uid) {
+  public function getSsoUserIdForAccount($uid) {
     return $this->authmap->get($uid, 'pmmi_sso');
   }
 
   /**
    * Return uid of account associated with passed in PMMI SSO username.
    *
-   * @param string $sso_username
-   *   The PMMI SSO username to lookup.
+   * @param string $sso_user_id
+   *   The PMMI SSO user ID to lookup.
    *
    * @return bool|int
-   *   The uid of the user associated with the $sso_username, FALSE otherwise.
+   *   The uid of the user associated with the $sso_user_id, FALSE otherwise.
    */
-  public function getUidForSsoUsername($sso_username) {
-    return $this->authmap->getUid($sso_username, 'pmmi_sso');
+  public function getUidForSsoUserId($sso_user_id) {
+    return $this->authmap->getUid($sso_user_id, 'pmmi_sso');
   }
 
   /**
@@ -249,20 +279,20 @@ class PMMISSOUserManager {
    *
    * @param \Drupal\user\UserInterface $account
    *   The user account entity.
-   * @param string $sso_username
-   *   The PMMI SSO username.
+   * @param string $sso_user_id
+   *   The PMMI SSO user ID.
    */
-  public function setSsoUsernameForAccount(UserInterface $account, $sso_username) {
-    $this->authmap->save($account, 'pmmi_sso', $sso_username);
+  public function setSsoUserIdForAccount(UserInterface $account, $sso_user_id) {
+    $this->authmap->save($account, 'pmmi_sso', $sso_user_id);
   }
 
   /**
-   * Remove the PMMI SSO username association with the provided user.
+   * Remove the PMMI SSO user ID association with the provided user.
    *
    * @param \Drupal\user\UserInterface $account
    *   The user account entity.
    */
-  public function removeSsoUsernameForAccount(UserInterface $account) {
+  public function removeSsoUserIdForAccount(UserInterface $account) {
     $this->authmap->delete($account->id());
   }
 

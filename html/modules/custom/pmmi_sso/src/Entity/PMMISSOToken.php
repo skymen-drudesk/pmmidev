@@ -11,12 +11,12 @@ use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\user\UserInterface;
 
 /**
- * Defines the Oauth2 Token entity.
+ * Defines the PMMI SSO Token entity.
  *
  * @ingroup pmmi_sso
  *
  * @ContentEntityType(
- *   id = "personify_sso_token",
+ *   id = "pmmi_sso_token",
  *   label = @Translation("Personify SSO token"),
  *   handlers = {
  *     "list_builder" = "Drupal\pmmi_sso\PMMISSOTokenListBuilder",
@@ -25,7 +25,7 @@ use Drupal\user\UserInterface;
  *     },
  *     "access" = "Drupal\pmmi_sso\AccessTokenAccessControlHandler",
  *   },
- *   base_table = "personify_sso_token",
+ *   base_table = "pmmi_sso_token",
  *   admin_permission = "administer pmmi personify sso token",
  *   entity_keys = {
  *     "id" = "id",
@@ -33,8 +33,8 @@ use Drupal\user\UserInterface;
  *     "uuid" = "uuid"
  *   },
  *   links = {
- *     "canonical" = "/admin/content/pmmi_sso/{personify_sso_token}",
- *     "delete-form" = "/admin/content/pmmi_sso/{personify_sso_token}/delete"
+ *     "canonical" = "/admin/content/pmmi_sso/{pmmi_sso_token}",
+ *     "delete-form" = "/admin/content/pmmi_sso/{pmmi_sso_token}/delete"
  *   }
  * )
  */
@@ -58,7 +58,7 @@ class PMMISSOToken extends ContentEntityBase implements PMMISSOTokenInterface {
       ->setDescription(t('The UUID of the Access Token entity.'))
       ->setReadOnly(TRUE);
 
-    $fields['auth_user_id'] = BaseFieldDefinition::create('entity_reference')
+    $fields['uid'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('User'))
       ->setDescription(t('The user ID of the user this access token is authenticating.'))
       ->setRevisionable(TRUE)
@@ -66,6 +66,7 @@ class PMMISSOToken extends ContentEntityBase implements PMMISSOTokenInterface {
       ->setSetting('handler', 'default')
       ->setDefaultValueCallback('Drupal\node\Entity\Node::getCurrentUserId')
       ->setTranslatable(FALSE)
+      ->setReadOnly(TRUE)
       ->setDisplayOptions('view', array(
         'label' => 'inline',
         'type' => 'author',
@@ -82,7 +83,11 @@ class PMMISSOToken extends ContentEntityBase implements PMMISSOTokenInterface {
           'placeholder' => '',
         ),
       ));
-
+    $fields['auth_id'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Auth User ID'))
+      ->setDescription(t('The Auth user ID of the user this access token is authenticating.'))
+      ->setTranslatable(FALSE)
+      ->setReadOnly(TRUE);
     $fields['scopes'] = BaseFieldDefinition::create('entity_reference')
       ->setLabel(t('Scopes'))
       ->setDescription(t('The scopes for this Access Token. OAuth2 scopes are implemented as Drupal roles.'))
@@ -161,7 +166,7 @@ class PMMISSOToken extends ContentEntityBase implements PMMISSOTokenInterface {
         'type' => 'boolean',
         'weight' => 8,
       ))
-      ->setRevisionable(TRUE)
+      ->setRevisionable(FALSE)
       ->setTranslatable(TRUE)
       ->setDefaultValue(TRUE);
 
@@ -186,7 +191,26 @@ class PMMISSOToken extends ContentEntityBase implements PMMISSOTokenInterface {
    * {@inheritdoc}
    */
   public function isRevoked() {
+    if ($this->get('expire') > time()) {
+      $this->revoke();
+    }
     return !$this->get('status')->value;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setToken($token, $expire) {
+    $this->set('status', TRUE);
+    $this->set('value', $token);
+    $this->set('expire', $expire);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getToken() {
+    return $this->get('value')->value;
   }
 
 }

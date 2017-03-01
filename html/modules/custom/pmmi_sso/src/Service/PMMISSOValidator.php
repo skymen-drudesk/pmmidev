@@ -58,6 +58,8 @@ class PMMISSOValidator {
    *
    * @param string $token
    *   The PMMI SSO authentication ticket to validate.
+   * @param bool $decrypted
+   *   Represent is token internal use.
    * @param array $service_params
    *   An array of query string parameters to add to the service URL.
    *
@@ -68,12 +70,12 @@ class PMMISSOValidator {
    *   Thrown if there was a problem making the validation request or
    *   if there was a local configuration issue.
    */
-  public function validateToken($token, $decrypted = FALSE) {
+  public function validateToken($token, $decrypted, array $service_params) {
 //    $options = array();
 //    $options['timeout'] = $this->ssoHelper->getConnectionTimeout();
 
     if ($decrypted) {
-      return new PMMISSOPropertyBag('');
+      return $this->validate($token, TRUE);
     }
     else {
       $options = $this->ssoHelper->getServerValidateOptions($token);
@@ -100,19 +102,27 @@ class PMMISSOValidator {
    *
    * @param string $data
    *   The raw validation response data from PMMI SSO server.
+   * @param bool $simple
+   *   The simple validation process.
    *
-   * @return PMMISSOPropertyBag
+   * @return \Drupal\pmmi_sso\PMMISSOPropertyBag
    *   Contains user info from the PMMI SSO server.
    *
-   * @throws PMMISSOValidateException
+   * @throws \Drupal\pmmi_sso\Exception\PMMISSOValidateException
    *   Thrown if there was a problem parsing the validation data.
    */
-  private function validate($data) {
+  private function validate($data, $simple = FALSE) {
     $parser = $this->parser;
     $parser->setData($data);
     if ($parser->validateBool('//m:Valid')) {
       if ($token = $parser->getSingleValue('//m:NewCustomerToken')) {
-        $property_bag = $this->getPropertyBag($token);
+        if ($simple) {
+          $property_bag = new PMMISSOPropertyBag();
+          $property_bag->setToken($token);
+        }
+        else {
+          $property_bag = $this->getPropertyBag($token);
+        }
       }
       else {
         throw new PMMISSOValidateException('XML from PMMI SSO server is not valid. No new token exist.');

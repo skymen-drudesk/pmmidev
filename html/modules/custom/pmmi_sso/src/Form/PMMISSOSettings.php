@@ -186,17 +186,22 @@ class PMMISSOSettings extends ConfigFormBase {
       '#default_value' => $auto_assigned_roles,
       '#options' => $roles,
     );
-    $form['user_accounts']['restrict_password_management'] = array(
+    $form['user_accounts']['login_link_enabled'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Restrict Password Management'),
-      '#description' => $this->t('Prevents SSO users from changing their Drupal password by removing the password fields on the user profile form and disabling the "forgot password" functionality. Admins will still be able to change Drupal passwords for SSO users.'),
-      '#default_value' => $config->get('user_accounts.restrict_password_management'),
+      '#title' => $this->t('Login Link Enabled'),
+      '#description' => $this->t('Display a link to login via SSO above the user login form.'),
+      '#default_value' => $config->get('user_accounts.login_link_enabled'),
     );
-    $form['user_accounts']['restrict_email_management'] = array(
-      '#type' => 'checkbox',
-      '#title' => t('Restrict Email Management'),
-      '#description' => $this->t("Prevents SSO users from changing their email by disabling the email field on the user profile form. Admins will still be able to change email addresses for SSO users. Note that Drupal requires a user enter their current password before changing their email, which your users may not know. Enable the restricted password management feature above to remove this password requirement."),
-      '#default_value' => $config->get('user_accounts.restrict_email_management'),
+    $form['user_accounts']['login_link_label'] = array(
+      '#type' => 'textfield',
+      '#title' => $this->t('Login Link Label'),
+      '#description' => $this->t('The text that makes up the login link to this SSO server.'),
+      '#default_value' => $config->get('user_accounts.login_link_label'),
+      '#states' => array(
+        'visible' => array(
+          ':input[name="user_accounts[login_link_enabled]"]' => array('checked' => TRUE),
+        ),
+      ),
     );
     $form['gateway'] = array(
       '#type' => 'details',
@@ -291,13 +296,13 @@ class PMMISSOSettings extends ConfigFormBase {
         'data_service',
         'password',
       ]))
-      ->set('user_accounts.restrict_password_management', $form_state->getValue([
+      ->set('user_accounts.login_link_enabled', $form_state->getValue([
         'user_accounts',
-        'restrict_password_management',
+        'login_link_enabled',
       ]))
-      ->set('user_accounts.restrict_email_management', $form_state->getValue([
+      ->set('user_accounts.login_link_label', $form_state->getValue([
         'user_accounts',
-        'restrict_email_management',
+        'login_link_label',
       ]));
     $auto_assigned_roles = [];
     if ($form_state->getValue(['user_accounts', 'auto_assigned_roles_enable'])) {

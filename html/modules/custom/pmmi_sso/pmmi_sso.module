@@ -5,7 +5,9 @@
  * Contains pmmi_sso.module.
  */
 
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_help().
@@ -33,4 +35,65 @@ function pmmi_sso_theme() {
       'render element' => 'children',
     ],
   ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alters the user entity form.
+ */
+function pmmi_sso_form_user_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+
+  $sso_user_manager = \Drupal::service('pmmi_sso.user_manager');
+  $account = $form_state->getFormObject()->getEntity();
+  $sso_username = $sso_user_manager->getSsoUserIdForAccount($account->id());
+
+  // If a SSO username was found for this user, then remove the password
+  // management fields.
+  if ($sso_username) {
+
+    if (!\Drupal::currentUser()->hasPermission('administer users')) {
+      $form['account']['pass']['#access'] = FALSE;
+
+      // Users are normally required to entier their current password when
+      // changing their password or email address. Since we are disabling
+      // access to change their password, and since a SSO user would not know
+      // their local Drupal password anyway, we remove this field as well.
+      if (isset($form['account']['current_pass'])) {
+        $form['account']['current_pass']['#access'] = FALSE;
+      }
+
+      if (isset($form['account']['mail'])) {
+        $form['account']['mail']['#disabled'] = TRUE;
+      }
+
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Add a link to login via CAS on the user login form.
+ */
+function pmmi_sso_form_user_login_form_alter(&$form, FormStateInterface $form_state) {
+  $config = Drupal::config('pmmi_sso.settings');
+
+  // Cached form must be busted if we alter CAS settings.
+  $form['#cache']['tags'] = array_merge($form['#cache']['tags'], $config->getCacheTags());
+
+  $enabled = $config->get('user_accounts.login_link_enabled');
+  if ($enabled) {
+    $url = new Url('pmmi_sso.login', array(), array(
+      'attributes' => array(
+        'class' => array('pmmi-sso-login-link'),
+      ),
+    ));
+    $form['pmmi_sso_login_link'] = [
+      '#type' => 'link',
+      '#url' => $url,
+      '#title' => $config->get('user_accounts.login_link_label'),
+      '#weight' => -1,
+    ];
+  }
 }

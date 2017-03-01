@@ -3,6 +3,7 @@
 namespace Drupal\pmmi_sso\Controller;
 
 use Drupal\pmmi_sso\PMMISSORedirectData;
+use Drupal\pmmi_sso\PMMISSORedirectResponse;
 use Drupal\pmmi_sso\Service\PMMISSORedirector;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -51,10 +52,28 @@ class PMMISSOForceLoginController implements ContainerInjectionInterface {
    */
   public function forceLogin() {
     // TODO: What if PMMISSO is not configured? need to handle that case.
-    $service_url_query_params = $this->requestStack->getCurrentRequest()->query->all();
-    $sso_redirect_data = new PMMISSORedirectData($service_url_query_params);
-    $sso_redirect_data->setIsCacheable(FALSE);
-    return $this->ssoRedirector->buildRedirectResponse($sso_redirect_data, TRUE);
+
+    // Check referer is external site.
+    $request = $this->requestStack->getCurrentRequest();
+    $referer = $request->headers->get('referer');
+    // 'https://pmmi.com' or 'http://pmmi.com/'
+    $base = $request->getSchemeAndHttpHost() . $request->getBaseUrl();
+    // Example '/about?er=343?'.
+    $path = preg_replace('/^' . preg_quote($base, '/') . '/', '', $referer);
+    $external = $path === $referer ? TRUE : FALSE;
+
+//    $service_url_query_params = $this->requestStack->getCurrentRequest()->query->all();
+//    $sso_redirect_data = new PMMISSORedirectData($service_url_query_params);
+    $sso_redirect_data = new PMMISSORedirectData();
+    // Set return URI for redirect after Login to SSO.
+    if ($external) {
+      return new PMMISSORedirectResponse('/');
+    }
+    else {
+      $sso_redirect_data->setServiceParameter('returnto', $path);
+      $sso_redirect_data->setIsCacheable(FALSE);
+      return $this->ssoRedirector->buildRedirectResponse($sso_redirect_data, TRUE);
+    }
   }
 
 }

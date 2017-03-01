@@ -171,7 +171,7 @@ class PMMISSOLoginBlock extends BlockBase implements ContainerFactoryPluginInter
     $url = Url::fromUri($this->personifySSOConfig->get('login_uri'));
     $url->setAbsolute(TRUE);
     $url->setOption('query', ['vi' => $vi, 'vt' => $token]);
-//    $url = Url::fromRoute('pmmi_sso.login');
+    $url = Url::fromRoute('pmmi_sso.login');
     $build = [
       '#type' => 'link',
       '#title' => $this->t('Login'),

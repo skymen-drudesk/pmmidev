@@ -2,6 +2,7 @@
 
 namespace Drupal\pmmi_sso\Service;
 
+use DateTime;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Routing\UrlGeneratorInterface;
@@ -9,6 +10,7 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Logger\RfcLogLevel;
+use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -258,7 +260,7 @@ class PMMISSOHelper {
    * @return string
    *   The fully constructed service URL to use for PMMI SSO server.
    */
-  public function getSsoServiceUrl($service_params = array()) {
+  public function getSsoServiceUrl(array $service_params = []) {
     return $this->urlGenerator->generate('pmmi_sso.service', $service_params, TRUE);
   }
 
@@ -274,14 +276,31 @@ class PMMISSOHelper {
   }
 
   /**
-   * Get the Login URL to the PMMI SSO server.
+   * Generate the Login URI to the PMMI SSO server.
+   *
+   * @param string $return_uri
+   *   The string with query parameters.
    *
    * @return string
-   *   The login URL.
+   *   The login URI as string.
    */
-  public function getLoginUrl() {
-    $url = $this->settings->get('login_uri');
-    return $url;
+  public function generateLoginUrl($return_uri) {
+    // Encode URI where need return user after correct token validation.
+    $uri_encoded = base64_encode($return_uri);
+
+    $now = DateTime::createFromFormat('U.u', microtime(TRUE));
+    $timestamp = $now->format('YmdHisv');
+    // Generate final redirect string to encode in Token.
+    $return_uri_sso = Url::fromUserInput('/ssoservice', ['absolute' => TRUE]);
+    $return_uri_sso->setOption('query', ['ue' => $uri_encoded]);
+    // Fill string to encode in the Token.
+    $string = $timestamp . '|' . $return_uri_sso->toString();
+    $token = $this->crypt->encrypt($string);
+    // Generate final login uri.
+    $url = Url::fromUri($this->settings->get('login_uri'));
+    $url->setAbsolute(TRUE);
+    $url->setOption('query', ['vi' => $this->getVi(), 'vt' => $token]);
+    return $url->toString();
   }
 
   /**
@@ -410,55 +429,55 @@ class PMMISSOHelper {
     return UrlHelper::isExternal($url);
   }
 
-  /**
-   * Check if the current logout request should be served by ssologout.
-   *
-   * @param \Symfony\Component\HttpFoundation\Request $request
-   *   The request instance.
-   *
-   * @return bool
-   *   Whether to process logout as ssologout.
-   */
-  public function provideSsoLogoutOverride(Request $request) {
-    if ($this->settings->get('logout.pmmi_sso_logout') == TRUE) {
-      if ($this->isSsoSession($request->getSession()->getId())) {
-        return TRUE;
-      }
-    }
-
-    return FALSE;
-  }
-
-  /**
-   * Check if the given session ID was authenticated with PMMI SSO.
-   *
-   * @param string $session_id
-   *   The session ID to look up.
-   *
-   * @return bool
-   *   Whether or not this session was authenticated with PMMI SSO.
-   *
-   * @codeCoverageIgnore
-   */
-  public function isSsoSession($session_id) {
-    $results = $this->connection->select('pmmi_sso_login_data')
-      ->fields('pmmi_sso_login_data', array('sid'))
-      ->condition('sid', Crypt::hashBase64($session_id))
-      ->execute()
-      ->fetchAll();
-
-    return !empty($results);
-  }
-
-  /**
-   * Whether or not session IDs are stored for single logout.
-   *
-   * @return bool
-   *   Whether or not single logout is enabled in the configuration.
-   */
-  public function getSingleLogOut() {
-    return $this->settings->get('logout.enable_single_logout');
-  }
+//  /**
+//   * Check if the current logout request should be served by ssologout.
+//   *
+//   * @param \Symfony\Component\HttpFoundation\Request $request
+//   *   The request instance.
+//   *
+//   * @return bool
+//   *   Whether to process logout as ssologout.
+//   */
+//  public function provideSsoLogoutOverride(Request $request) {
+//    if ($this->settings->get('logout.pmmi_sso_logout') == TRUE) {
+//      if ($this->isSsoSession($request->getSession()->getId())) {
+//        return TRUE;
+//      }
+//    }
+//
+//    return FALSE;
+//  }
+//
+//  /**
+//   * Check if the given session ID was authenticated with PMMI SSO.
+//   *
+//   * @param string $session_id
+//   *   The session ID to look up.
+//   *
+//   * @return bool
+//   *   Whether or not this session was authenticated with PMMI SSO.
+//   *
+//   * @codeCoverageIgnore
+//   */
+//  public function isSsoSession($session_id) {
+//    $results = $this->connection->select('pmmi_sso_login_data')
+//      ->fields('pmmi_sso_login_data', array('sid'))
+//      ->condition('sid', Crypt::hashBase64($session_id))
+//      ->execute()
+//      ->fetchAll();
+//
+//    return !empty($results);
+//  }
+//
+//  /**
+//   * Whether or not session IDs are stored for single logout.
+//   *
+//   * @return bool
+//   *   Whether or not single logout is enabled in the configuration.
+//   */
+//  public function getSingleLogOut() {
+//    return $this->settings->get('logout.enable_single_logout');
+//  }
 
   /**
    * The amount of time to allow a connection to the PMMI SSO server to take.
