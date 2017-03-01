@@ -13,7 +13,6 @@ dependencies:
     - field.field.block_content.social_media.field_twitter
     - field.field.block_content.social_media.field_youtube
   module:
-    - link
     - link_attributes
     - text
 id: block_content.social_media.default
@@ -69,8 +68,15 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+      enabled_attributes:
+        id: false
+        name: false
+        target: true
+        rel: true
+        class: true
+        accesskey: false
     third_party_settings: {  }
-    type: link_default
+    type: link_attributes
   field_linkedin:
     weight: 5
     settings:

@@ -728,6 +728,16 @@ block_icons:
     main:
       label: Main content
 
+block_box:
+  label: Box
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/box
+  regions:
+    head:
+      label: Head
+    main:
+      label: Main content
+
 panel_default:
   label: Default panel layout
   category: PMMI: Panels

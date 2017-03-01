@@ -230,7 +230,16 @@
         var $navContext = $(this);
         var $dropdownToggle = $('a.dropdown-toggle');
         $dropdownToggle.each(function () {
-          $(this).parent().find('.mega-nav').prepend($('<li>').addClass('only-mobile').append($(this).clone().toggleClass('dropdown-toggle')));
+          var $link = $(this);
+          if ($link.attr('href').length) {
+            $link.parent().find('.mega-nav').prepend($('<li>').addClass('only-mobile').append($(this).clone().toggleClass('dropdown-toggle')));
+          }
+          else {
+            $link.removeAttr('href').css('cursor', 'default')
+              .on('click', function (e) {
+                e.preventDefault();
+              });
+          }
         });
         // Search block.
         _this.searchBlock($navContext);
