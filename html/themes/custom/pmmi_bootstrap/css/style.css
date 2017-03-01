@@ -13716,6 +13716,8 @@ body.use-container .region-content:after {
 
 .block-image-header .img-header {
   min-height: 90px;
+  max-height: 133px;
+  overflow: hidden;
   background: #004e75;
 }
 
