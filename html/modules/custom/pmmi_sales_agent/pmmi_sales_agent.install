@@ -57,7 +57,7 @@ function pmmi_sales_agent_schema() {
 /**
  * Revert configuration to the value from extension storage.
  */
-function pmmi_sales_agent_update_8005() {
+function pmmi_sales_agent_update_8001() {
   \Drupal::service('module_installer')->install(['config_update'], TRUE);
   \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_settings');
   \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_mass_settings');
@@ -66,14 +66,14 @@ function pmmi_sales_agent_update_8005() {
 /**
  * Revert configuration to set default value for mail settings.
  */
-function pmmi_sales_agent_update_8006() {
+function pmmi_sales_agent_update_8002() {
   \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_settings');
 }
 
 /**
  * Creates the 'pmmi_sales_agent_mails' table.
  */
-function pmmi_sales_agent_update_8007() {
+function pmmi_sales_agent_update_8003() {
   $schema = Database::getConnection()->schema();
 
   if (!$schema->tableExists('pmmi_sales_agent_mails')) {
@@ -85,7 +85,7 @@ function pmmi_sales_agent_update_8007() {
 /**
  * Set default value for the 'pmmi_sales_agent.mail_settings' config.
  */
-function pmmi_sales_agent_update_8008() {
+function pmmi_sales_agent_update_8004() {
   \Drupal::service('config.factory')->getEditable('pmmi_sales_agent.mail_settings')
     ->set('remind_period', 604800)
     ->save();
@@ -94,12 +94,22 @@ function pmmi_sales_agent_update_8008() {
 /**
  * Remove 'field_mass_email_queue' field as it no longer needed.
  */
-function pmmi_sales_agent_update_8010() {
+function pmmi_sales_agent_update_8005() {
   $field_config =  \Drupal::entityTypeManager()->getStorage('field_config');
   $field = $field_config->load('node.company.field_mass_email_queue');
 
   if ($field) {
     $field->delete();
     field_purge_field($field);
+  }
+}
+
+/**
+ * Rerun previous updates.
+ */
+function pmmi_sales_agent_update_8013() {
+  for ($i = 1; $i <= 5; $i++) {
+    $function = 'pmmi_sales_agent_update_800' . $i;
+    $function();
   }
 }

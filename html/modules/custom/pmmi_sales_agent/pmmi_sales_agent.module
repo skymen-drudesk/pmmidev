@@ -134,7 +134,7 @@ function pmmi_sales_agent_widget_moderation_state_process_actions($element, Form
     }
 
     // If current state is 'Draft', it means that sales agent added new changes.
-    // PMMI should review and approve or reject his changes.
+    // PMMI should review and approve or reject the changes.
     $current_state = $node->get('moderation_state')->getValue()[0]['target_id'] ?: '';
     if (!$form['#new'] && $current_state == 'draft') {
       $form['actions']['moderation_state_published']['#value'] = t('Approve');
@@ -212,7 +212,9 @@ function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_sta
   ])->execute();
 
   // Show an alert to notify that listing should be reviewed.
-  drupal_set_message(t('Thank you for your interest in PMMI’s Agent Database. Your submission was submitted successfully. We will notify you by email when your profile has been approved or rejected.'));
+  if ($message = $ms->get('submission_alert')) {
+    drupal_set_message($message);
+  }
 
   // Force to redirect on the node view page.
   $url = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
@@ -261,10 +263,10 @@ function pmmi_sales_agent_remind_send() {
   $connection = Database::getConnection();
 
   // Select all companies which should receive remind message.
-  $query = $connection->select('pmmi_sales_agent_mails', 'sam');
-  $query->fields('sam', ['mid', 'nid']);
-  $query->condition('sam.type', PMMI_SALES_AGENT_MAIL_MASS_REMIND);
-  $query->condition('sam.sending_date', REQUEST_TIME, '<');
+  $query = $connection->select('pmmi_sales_agent_mails', 'sam')
+    ->fields('sam', ['mid', 'nid'])
+    ->condition('sam.type', PMMI_SALES_AGENT_MAIL_MASS_REMIND)
+    ->condition('sam.sending_date', REQUEST_TIME, '<');
   $nids = $query->execute()->fetchAllKeyed();
 
   foreach ($nids as $mid => $nid) {
@@ -305,10 +307,10 @@ function pmmi_sales_agent_internal_admin_remind_send() {
   ];
 
   // Select all companies which should should send an email.
-  $query = $connection->select('pmmi_sales_agent_mails', 'sam');
-  $query->fields('sam', ['mid', 'nid']);
-  $query->condition('sam.type', $mail_types, 'IN');
-  $query->condition('sam.sending_date', REQUEST_TIME, '<');
+  $query = $connection->select('pmmi_sales_agent_mails', 'sam')
+    ->fields('sam', ['mid', 'nid'])
+    ->condition('sam.type', $mail_types, 'IN')
+    ->condition('sam.sending_date', REQUEST_TIME, '<');
   $nids = $query->execute()->fetchAllKeyed();
 
   foreach ($nids as $mid => $nid) {
