@@ -1,0 +1,27 @@
+uuid: da288cd8-0b44-4615-9c4b-bf242d40d689
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_webforms
+    - node.type.membership_application
+  module:
+    - webform
+id: node.membership_application.field_webforms
+field_name: field_webforms
+entity_type: node
+bundle: membership_application
+label: Webforms
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:webform'
+  handler_settings:
+    target_bundles: null
+    auto_create: false
+  default_data: ''
+  status: true
+field_type: webform
