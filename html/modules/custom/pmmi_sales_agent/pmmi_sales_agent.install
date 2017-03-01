@@ -157,7 +157,7 @@ function pmmi_sales_agent_update_8006() {
 /**
  * Creates the 'pmmi_sales_agent_search_stats' table.
  */
-function pmmi_sales_agent_update_8009() {
+function pmmi_sales_agent_update_8007() {
   $schema = Database::getConnection()->schema();
 
   if (!$schema->tableExists('pmmi_sales_agent_search_stats')) {
