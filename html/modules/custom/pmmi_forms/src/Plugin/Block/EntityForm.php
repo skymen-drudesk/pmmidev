@@ -63,6 +63,13 @@ class EntityForm extends BlockBase implements ContainerFactoryPluginInterface {
         'type' => $entity->id(),
       ));
     }
+    elseif ($entity->getEntityTypeId() == 'node') {
+      // Use the latest node revision if 'content_moderation' is used.
+      if (\Drupal::service('module_handler')->moduleExists('content_moderation')) {
+        $moderation_info = \Drupal::service('content_moderation.moderation_information');
+        $entity = $moderation_info->getLatestRevision('node', $entity->id());
+      }
+    }
 
     $form = $this->entityFormBuilder->getForm($entity);
 

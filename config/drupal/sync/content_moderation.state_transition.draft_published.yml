@@ -1,0 +1,12 @@
+uuid: 17a67275-dfec-4c6b-9ea1-387285628d47
+langcode: en
+status: true
+dependencies:
+  config:
+    - content_moderation.state.draft
+    - content_moderation.state.published
+id: draft_published
+label: Publish
+stateFrom: draft
+stateTo: published
+weight: -3

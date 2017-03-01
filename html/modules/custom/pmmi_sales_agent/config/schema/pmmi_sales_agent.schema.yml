@@ -5,6 +5,12 @@ pmmi_sales_agent.mail_settings:
     mail_notification_address:
       type: email
       label: 'Notification email address'
+    remind_period:
+      type: integer
+      label: 'Remind period'
+    submission_alert:
+      type: text
+      label: 'Submission alert message'
     ss_update:
       type: mail
       label: 'Self-service update your listing'
