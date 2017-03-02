@@ -11,7 +11,7 @@
   <span class="icon-bar"></span>
   <span class="icon-bar"></span>
 </button>
-<div {{ attributes.setAttribute('id', menu_name).addClass('collapse') }}>
+<div {{ attributes.setAttribute('id', menu_name).addClass('collapse menu-container') }}>
   {% if section == 'frontend' %}
     <div class="nav-wrapper {{ block_config['always-show-submenu'] ? ' always-show' : '' }}">
   {% endif %}

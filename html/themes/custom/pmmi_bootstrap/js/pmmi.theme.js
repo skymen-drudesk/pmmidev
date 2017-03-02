@@ -230,11 +230,11 @@
         var $navContext = $(this);
         var $dropdownToggle = $('a.dropdown-toggle');
         $dropdownToggle.each(function () {
+          $(this).parent().find('.mega-nav').prepend($('<li>').addClass('only-mobile').append($(this).clone().toggleClass('dropdown-toggle')));
+        });
+        $(this).find('a').each(function () {
           var $link = $(this);
-          if ($link.attr('href').length) {
-            $link.parent().find('.mega-nav').prepend($('<li>').addClass('only-mobile').append($(this).clone().toggleClass('dropdown-toggle')));
-          }
-          else {
+          if (!$link.attr('href').length) {
             $link.removeAttr('href').css('cursor', 'default')
               .on('click', function (e) {
                 e.preventDefault();
@@ -247,13 +247,15 @@
         // Mobile toggler.
         $(window).on('breakpointActivated', function (e, breakpoint) {
           if (breakpoint === 'mobile') {
-            $dropdownToggle.on('click.mobile-toggler', function (e) {
-              e.preventDefault();
-              $(this).toggleClass('opened').parent().toggleClass('opened');
+            $dropdownToggle.once('click-toggler').each(function () {
+              $(this).on('click.mobile-toggler', function (e) {
+                e.preventDefault();
+                $(this).toggleClass('opened').parent().toggleClass('opened');
+              });
             });
           }
           else {
-            $dropdownToggle.off('click.mobile-toggler');
+            $dropdownToggle.off('click.mobile-toggler').removeOnce('click-toggler');
           }
         });
       });

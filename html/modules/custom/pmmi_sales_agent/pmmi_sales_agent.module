@@ -29,6 +29,19 @@ function pmmi_sales_agent_cron() {
 }
 
 /**
+ * Implements hook_file_download().
+ */
+function pmmi_sales_agent_file_download($uri) {
+  $scheme = file_uri_scheme($uri);
+  $target = file_uri_target($uri);
+
+  // Add some headers to download correct file.
+  if ($scheme == 'private' && $target == 'my-favorites.csv') {
+    return ['Content-disposition' => 'attachment; filename="' . $target . '"'];
+  }
+}
+
+/**
  * Implements hook_mail().
  */
 function pmmi_sales_agent_mail($key, &$message, $params) {
