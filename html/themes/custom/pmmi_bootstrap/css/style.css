@@ -12282,7 +12282,8 @@ fieldset[disabled] a.focus {
 
 .inherited-p p, .paragraph1 p, p p, .bullet-list ul p, .views-field-body ul p,
 .block-body ul p,
-.content ul p, .article-node .node-body p, .article-node .author-info p, .article-node .date p,
+.content ul p, table th p,
+table td p, .article-node .node-body p, .article-node .author-info p, .article-node .date p,
 .article-node .twitter-link p,
 .article-node .article-release p, .node-body p, .node-bold-label p,
 .featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .block-views-blocksearch-page-block-1 .views-field-body p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-box.mode-full .field-name-body p, .block-box.mode-default .field-name-body p, .block-box.mode-vertical-box .field-name-body p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand.mode-default .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
@@ -12298,7 +12299,8 @@ fieldset[disabled] a.focus {
 .paragraph1, p, .bullet-list ul, .views-field-body ul,
 .block-body ul,
 .node-body ul,
-.content ul, .article-node .node-body, .article-node .author-info, .article-node .date,
+.content ul, table th,
+table td, .article-node .node-body, .article-node .author-info, .article-node .date,
 .article-node .twitter-link,
 .article-node .article-release, .node-body, .node-bold-label,
 .featured-speaker, .school-node .focus, .school-node .content-verified {
@@ -12313,7 +12315,8 @@ fieldset[disabled] a.focus {
   .paragraph1, p, .bullet-list ul, .views-field-body ul,
   .block-body ul,
   .node-body ul,
-  .content ul, .article-node .node-body, .article-node .author-info, .article-node .date,
+  .content ul, table th,
+  table td, .article-node .node-body, .article-node .author-info, .article-node .date,
   .article-node .twitter-link,
   .article-node .article-release, .node-body, .node-bold-label,
   .featured-speaker, .school-node .focus, .school-node .content-verified {

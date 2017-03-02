@@ -102,6 +102,7 @@ table {
   td {
     border-color: $mdgrey;
     padding: 10px;
+    @extend .paragraph1;
   }
   th {
     background: $ltblue;
