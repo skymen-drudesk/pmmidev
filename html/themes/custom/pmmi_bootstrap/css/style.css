@@ -14157,6 +14157,10 @@ html, body {
   margin: 0 0 0 -90px;
 }
 
+.navbar div.logo .block {
+  margin: 0;
+}
+
 .front .navbar div.logo {
   width: 136px;
   height: 133px;
@@ -14955,7 +14959,7 @@ html, body {
 
 #panel-am .navbar-header {
   padding-left: 345px;
-  min-height: 141px;
+  min-height: 100px;
 }
 
 #panel-am .navbar-header div.logo {
@@ -14967,13 +14971,13 @@ html, body {
 #panel-am .navbar-header div.logo img {
   width: auto;
   max-width: 100%;
-  max-height: 141px;
+  max-height: 100px;
   height: auto;
   margin: 0;
 }
 
-#panel-am .microsite-info {
-  margin-top: 11px;
+#panel-am .navbar div.logo {
+  bottom: 0;
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
