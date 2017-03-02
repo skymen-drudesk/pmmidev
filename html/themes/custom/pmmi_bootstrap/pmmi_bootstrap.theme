@@ -356,6 +356,13 @@ function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array
  */
 function pmmi_bootstrap_preprocess_tb_megamenu_item(&$vars) {
   $vars['attributes']['class'][] = 'link-' . Html::getClass($vars['link']['title']);
+  if (isset($vars['link']['options']['attributes'])) {
+    foreach ($vars['link']['options']['attributes'] as $attr => $value) {
+      if (!empty($value)) {
+        $vars['link']['attributes']->setAttribute($attr, $value);
+      }
+    }
+  }
 }
 
 /**
