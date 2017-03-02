@@ -435,6 +435,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
       tags:
         - 'config:field.storage.node.field_manufacturers_represented'
@@ -476,6 +477,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
       tags:
         - 'config:field.storage.node.field_manufacturers_represented'
@@ -752,7 +754,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<a href="/node/{{ nid }}/edit">{{ ''Edit''|trans }}</a> | <a href="/admin/sales-agent-directory/contacts/{{ nid }}">{{ ''Show contacts''|trans }}</a>'
+            text: '<a href="/node/{{ nid }}/edit">{{ ''Edit''|trans }}</a> | <a href="/admin/config/sales-agent-directory/admin-panel/contacts/{{ nid }}">{{ ''Show contacts''|trans }}</a>'
             make_link: false
             path: ''
             absolute: false
@@ -987,6 +989,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
       tags: {  }
   data_export_1:
@@ -2814,6 +2817,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
+        - url
       tags:
         - 'config:field.storage.node.field_after_sales_service'
         - 'config:field.storage.node.field_business_lines'
