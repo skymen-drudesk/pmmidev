@@ -18,6 +18,9 @@
     padding: 0;
     position: absolute;
     margin: 0 0 0 -90px;
+    .block {
+      margin: 0;
+    }
     .front & {
       width: 136px;
       height: 133px;
@@ -734,9 +737,9 @@
 }
 
 #panel-am {
-  @include site-template-header(332px, 13px, 141px);
-  .microsite-info {
-    margin-top: 11px;
+  @include site-template-header(332px, 13px, 100px);
+  .navbar div.logo {
+    bottom: 0;
   }
   @include desktop {
     @include site-template-header(297px, 15px, 126px);
