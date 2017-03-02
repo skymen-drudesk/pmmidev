@@ -446,7 +446,7 @@ display:
           empty: false
           tokenize: false
           content:
-            value: '<a href="/sales-agent-directory/favorites.csv" class="pmmi-download-favorites">Download favorites (.csv)</a>'
+            value: '<a href="/sales-agent-directory/favorites.csv?destination=sales-agent-directory/favorites" class="pmmi-download-favorites">Download favorites (.csv)</a>'
             format: filtered_html
           plugin_id: text
       defaults:
@@ -469,7 +469,7 @@ display:
     display_options:
       display_extenders: {  }
       path: sales-agent-directory/favorites.csv
-      filename: ''
+      filename: my-favorites.csv
       fields:
         title:
           id: title
@@ -1941,6 +1941,9 @@ display:
               category: ''
               manager: ''
               company: ''
+      export_method: batch
+      export_batch_size: '100'
+      automatic_download: 0
     cache_metadata:
       max-age: -1
       contexts:
