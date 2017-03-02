@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - page_manager.page.site_template
+    - system.menu.emerging-leaders-nav
     - system.menu.footer
   content:
     - 'block_content:image:32a03c64-b529-40d6-915c-88ff08733fd8'
@@ -15,7 +16,6 @@ dependencies:
     - pmmi
     - pmmi_search
     - system
-    - tb_megamenu
 id: site_template-panels_everywhere_variant-4
 label: 'Emerging Leaders Network'
 variant: panels_everywhere_variant
@@ -115,14 +115,16 @@ variant_settings:
       weight: '0'
       uuid: 6ebcfd51-bdf9-40be-a969-0ba5d0fe2ea1
       context_mapping: {  }
-    d0f59d26-08df-4a60-8591-848338ffbe51:
-      id: 'tb_megamenu_menu_block:emerging-leaders-nav'
+    dbd69114-7ae3-499f-bba8-2c25334b1c83:
+      id: 'system_menu_block:emerging-leaders-nav'
       label: 'Emerging Leaders navigation'
-      provider: tb_megamenu
+      provider: system
       label_display: 0
+      level: '1'
+      depth: '0'
       region: header_main_nav
       weight: '0'
-      uuid: d0f59d26-08df-4a60-8591-848338ffbe51
+      uuid: dbd69114-7ae3-499f-bba8-2c25334b1c83
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: d50f3796-4d4b-40b6-a48b-ea0d3a051c16

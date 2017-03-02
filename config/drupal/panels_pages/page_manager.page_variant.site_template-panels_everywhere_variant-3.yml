@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - page_manager.page.site_template
+    - system.menu.annual-meeting-nav
     - system.menu.footer
   content:
     - 'block_content:event:789967f6-fe99-4014-8706-7a5096fcee60'
@@ -16,7 +17,6 @@ dependencies:
     - pmmi
     - pmmi_search
     - system
-    - tb_megamenu
 id: site_template-panels_everywhere_variant-3
 label: 'Annual Meeting'
 variant: panels_everywhere_variant
@@ -104,15 +104,6 @@ variant_settings:
       weight: '0'
       uuid: a0b1a50c-68b7-4554-8727-877ceba6c8fa
       context_mapping: {  }
-    32d8edc1-4fbb-4098-9321-bed93defc190:
-      id: 'tb_megamenu_menu_block:annual-meeting-nav'
-      label: 'Annual Meeting navigation'
-      provider: tb_megamenu
-      label_display: 0
-      region: header_main_nav
-      weight: '0'
-      uuid: 32d8edc1-4fbb-4098-9321-bed93defc190
-      context_mapping: {  }
     9fa4e4f2-4fa9-45ee-815c-f31384a1b54b:
       id: 'block_content:71a06013-5697-4abb-a415-9cf91ec30d0a'
       label: 'Annual Meeting Logo'
@@ -136,6 +127,17 @@ variant_settings:
       region: header_microsite_info
       weight: '0'
       uuid: f994f981-7dff-4a52-ac9d-79388ec2f7cf
+      context_mapping: {  }
+    82f442cb-70d3-450e-9923-85f2375a90fe:
+      id: 'system_menu_block:annual-meeting-nav'
+      label: 'Annual Meeting navigation'
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: header_main_nav
+      weight: '0'
+      uuid: 82f442cb-70d3-450e-9923-85f2375a90fe
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: d36c9fa4-a8b2-43c6-8608-56cb1f139d1c
