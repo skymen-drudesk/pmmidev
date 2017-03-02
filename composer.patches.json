@@ -7,7 +7,8 @@
       "Expose contextual filters of views blocks as context": "https://www.drupal.org/files/issues/2287073-148.patch",
       "Datetime Views plugins don't support timezones": "https://www.drupal.org/files/issues/2627512-139_0.patch",
       "Improve the views integration for daterange fields": "https://www.drupal.org/files/issues/improve_the_views-2786577-71.patch",
-      "Fix Datetime Timestamp widget issue": "https://www.drupal.org/files/issues/2802663-18.patch"
+      "Fix Datetime Timestamp widget issue": "https://www.drupal.org/files/issues/2802663-18.patch",
+      "Exposed date filter leads to a notice": "https://www.drupal.org/files/issues/2811887-19-fix-tests.patch"
     },
     "drupal/page_manager": {
       "Don't call getCacheTagsToInvalidate() when null": "https://www.drupal.org/files/issues/2696345-2.patch",
@@ -33,6 +34,9 @@
     },
     "drupal/selectize": {
       "AJAX issue": "https://www.drupal.org/files/issues/selectize-ajax-issue-2853540-2.patch"
+    },
+    "drupal/views_data_export": {
+      "Support for batch operations": "https://www.drupal.org/files/issues/views_data_export-batch_support-2789531-52-D8.patch"
     }
   }
 }

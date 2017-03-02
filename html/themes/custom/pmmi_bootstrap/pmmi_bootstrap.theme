@@ -154,15 +154,6 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
         );
         array_unshift($vars['content']['general_line_1'], $new_element);
       }
-
-      // 'Profile updated' section.
-      $changed = $node->getChangedTime();
-      $vars['content']['footer_reg'][] = array(
-        '#markup' => t('Profile last updated @date', array('@date' => date('M. j, Y', $changed))),
-        '#prefix' => '<div class="profile-updated">',
-        '#suffix' => '</div>',
-        '#weight' => 100,
-      );
       break;
 
     case 'icons':
@@ -365,6 +356,13 @@ function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array
  */
 function pmmi_bootstrap_preprocess_tb_megamenu_item(&$vars) {
   $vars['attributes']['class'][] = 'link-' . Html::getClass($vars['link']['title']);
+  if (isset($vars['link']['options']['attributes'])) {
+    foreach ($vars['link']['options']['attributes'] as $attr => $value) {
+      if (!empty($value)) {
+        $vars['link']['attributes']->setAttribute($attr, $value);
+      }
+    }
+  }
 }
 
 /**

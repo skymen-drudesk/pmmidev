@@ -5,20 +5,39 @@
  * Includes PMMI Sales Agent Directory extensions.
  */
 
-use Drupal\Component\Datetime\DateTimePlus;
+use Drupal\Core\Database\Database;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 
 // Define sales agent content ID.
 define('PMMI_SALES_AGENT_CONTENT', 'company');
+// Define sales agent admin role.
+define('PMMI_SALES_AGENT_ADMIN_ROLE', 'sales_agent_admin');
+// Define PMMI sales agent mail types.
+define('PMMI_SALES_AGENT_MAIL_MASS_REMIND', 'mass_email_remind');
+define('PMMI_SALES_AGENT_MAIL_LISTING_NEW', 'mail_listing_new');
+define('PMMI_SALES_AGENT_MAIL_LISTING_UPDATE', 'mail_listing_update');
 
 /**
  * Implements hook_cron().
  */
 function pmmi_sales_agent_cron() {
-  if ($nids = pmmi_sales_agent_remind_mail_get_contacts()) {
-    foreach ($nids as $nid) {
-      pmmi_sales_agent_remind_send($nid);
-    }
+  // Send mass email remind messages.
+  pmmi_sales_agent_remind_send();
+  // Notify internal PMMI admin that some companies is pending approval.
+  pmmi_sales_agent_internal_admin_remind_send();
+}
+
+/**
+ * Implements hook_file_download().
+ */
+function pmmi_sales_agent_file_download($uri) {
+  $scheme = file_uri_scheme($uri);
+  $target = file_uri_target($uri);
+
+  // Add some headers to download correct file.
+  if ($scheme == 'private' && $target == 'my-favorites.csv') {
+    return ['Content-disposition' => 'attachment; filename="' . $target . '"'];
   }
 }
 
@@ -28,7 +47,9 @@ function pmmi_sales_agent_cron() {
 function pmmi_sales_agent_mail($key, &$message, $params) {
   switch ($key) {
     case 'pmmi_sales_agent_mass':
-    case 'pmmi_sales_agent_mass_remind':
+    case 'mass_email_remind':
+    case 'pmmi_sales_agent_listing_agent':
+    case 'pmmi_sales_agent_listing_admin':
       $token_service = \Drupal::token();
       $variables = array('node' => $params['node']);
 
@@ -43,92 +64,258 @@ function pmmi_sales_agent_mail($key, &$message, $params) {
 }
 
 /**
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter()
+ */
+function pmmi_sales_agent_field_widget_moderation_state_default_form_alter(&$element, FormStateInterface $form_state, $context) {
+  // Add additional process callback to perform additional manipulation we need.
+  $element['#process'][] = 'pmmi_sales_agent_widget_moderation_state_process_actions';
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function pmmi_sales_agent_form_alter(array &$form, FormStateInterface $form_state, $form_id) {
+  switch ($form_id) {
+    case 'node_company_form':
+    case 'node_company_edit_form':
+      $build_info = $form_state->getBuildInfo();
+
+      // The field descriptions are converted into tooltips (in accordance with
+      foreach (['field_main_phone_number', 'field_fax_number'] as $field) {
+        if (isset($form[$field])) {
+          $form[$field]['widget'][0]['value']['#smart_description'] = FALSE;
+        }
+      }
+
+      // Add simple flag to make sure that company was changed using node form.
+      // It will trigger additional updates, which should be ignored if node was
+      // saved in other way.
+      $node = $build_info['callback_object']->getEntity();
+      $node->register = TRUE;
+      break;
+  }
+}
+
+/**
  * Implements hook_form_FORM_ID_alter().
  */
-function pmmi_sales_agent_form_node_company_form_alter(&$form, FormStateInterface $form_state, $form_id) {
-  // The field descriptions are converted into tooltips (in accordance with
-  // theme settings). But we need to have simple descriptions for some fields.
-  foreach (['field_main_phone_number', 'field_fax_number'] as $field) {
-    if (isset($form[$field])) {
-      $form[$field]['widget'][0]['value']['#smart_description'] = FALSE;
+function pmmi_sales_agent_form_pmmi_company_search_block_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add extra submit handler to log any usage of the search agent directory.
+  $form['#submit'][] = 'pmmi_sales_agent_log_search_stats';
+}
+
+/**
+ * Extra submit handler to save search statistic.
+ *
+ * @see pmmi_sales_agent_form_pmmi_company_search_block_form_alter()
+ */
+function pmmi_sales_agent_log_search_stats(&$form, FormStateInterface $form_state) {
+  $values = $form_state->getValues();
+
+  // Select the countries which were searched to add them to usage stats.
+  $countries_searched = [];
+  if ($values['country_code']) {
+    $countries = $form_state->getValue('country_list');
+    foreach ($values['country_code'] as $country_code) {
+      $countries_searched[] = $countries[$country_code];
     }
   }
 
-  // Someone has updated a company, which means we should update appropriate
-  // field (skip remind message).
-  $form['actions']['submit']['#submit'][] = 'pmmi_sales_agent_node_company_form_submit';
+  // Creates the statistic point.
+  $connection = Database::getConnection();
+  $connection->insert('pmmi_sales_agent_search_stats')->fields([
+    'uid' => \Drupal::currentUser()->id(),
+    'date' => REQUEST_TIME,
+    'countries_searched' => $countries_searched ? implode(', ', $countries_searched) : '',
+  ])->execute();
 }
 
 /**
- * Extra submit handler for the node_company_form form.
+ * Implements hook_ENTITY_TYPE_presave() for node entities.
  */
-function pmmi_sales_agent_node_company_form_submit($form, FormStateInterface $form_state) {
-  if ($nid = $form_state->getValue('nid')) {
-    $node = \Drupal\node\Entity\Node::load($nid);
-
-    // Update value of the "Last Updated On" field.
-    $new_date = DateTimePlus::createFromTimestamp(time())->format('Y-m-d');
-    $node->set('field_last_updated_on', $new_date);
-    // Reset mass mail status.
-    $node->set('field_mass_email_queue', NULL);
-    $node->save();
+function pmmi_sales_agent_node_presave(EntityInterface $node) {
+  if (!empty($node->register)) {
+    // Remove queue of mass email remind messages.
+    if (!$node->isNew()) {
+      $connection = Database::getConnection();
+      $connection->delete('pmmi_sales_agent_mails')
+        ->condition('nid', $node->id())
+        ->execute();
+    }
   }
 }
 
 /**
- * Helper function to get all companies, which should receive remind mass email.
+ * Process callback to alter action buttons.
  *
- * @return array
- *   An array of node ID's, which should receive remind message.
+ * @see pmmi_sales_agent_field_widget_moderation_state_default_form_alter()
  */
-function pmmi_sales_agent_remind_mail_get_contacts() {
-  $result = array();
+function pmmi_sales_agent_widget_moderation_state_process_actions($element, FormStateInterface $form_state, array &$form) {
+  $callback_obj = $form_state->getBuildInfo()['callback_object'] ?: NULL;
 
-  // Get all company ID's which have remind step and this step less or equal 3.
-  $query = \Drupal::entityQuery('node');
-  $query->condition('type', PMMI_SALES_AGENT_CONTENT);
-  $query->condition('field_mass_email_queue', 3, '<=');
-  $nids = $query->execute();
+  if (!$callback_obj || !($callback_obj instanceof \Drupal\node\NodeForm)) {
+    return $element;
+  }
 
-  if ($nids && ($nodes = \Drupal\node\Entity\Node::loadMultiple($nids))) {
-    $mm_config = \Drupal::service('config.factory')
-      ->getEditable('pmmi_sales_agent.mail_mass_settings');
+  // Override workflow states in accordance with own requirements.
+  $node = $callback_obj->getEntity();
+  if ($node && ($node->getType() == PMMI_SALES_AGENT_CONTENT)) {
+    // In some reason, the node after creation is not flagged as new. Let's add
+    // additional flag to make sure that node is new.
+    $form['#new'] = $node->isNew() ? TRUE : FALSE;
 
-    foreach ($nodes as $node) {
-      // @todo: do we need additional check here (looks like no, in accordance
-      // with the query above)?
-      $mm_status = $node->get('field_mass_email_queue')->getValue()[0]['value'];
+    // Simple user will see 'Register' operation only (transition to the Draft
+    // state). For admin user, we do not need this transition, as admin should
+    // be able to publish changes immediately.
+    $is_admin = pmmi_sales_agent_is_admin();
+    if (!$is_admin) {
+      $form['actions']['moderation_state_draft']['#value'] = t('Register');
+      $form['actions']['moderation_state_draft']['#submit'][] = 'pmmi_sales_agent_notify_pmmi_admin';
+    }
+    else {
+      $form['actions']['moderation_state_draft']['#access'] = FALSE;
+    }
 
-      // Use this simple formula to get companies which are ready to get remind
-      // message.
-      $formula = $mm_status * $mm_config->get('remind_period') + $mm_config->get('last_run');
+    // If current state is 'Draft', it means that sales agent added new changes.
+    // PMMI should review and approve or reject the changes.
+    $current_state = $node->get('moderation_state')->getValue()[0]['target_id'] ?: '';
+    if (!$form['#new'] && $current_state == 'draft') {
+      $form['actions']['moderation_state_published']['#value'] = t('Approve');
+      $form['actions']['moderation_state_published']['#submit'][] = 'pmmi_sales_agent_notify_sales_agent';
 
-      if ($formula < REQUEST_TIME) {
-        $result[] = $node->id();
+      // Allow to 'Reject' a listing.
+      if ($is_admin) {
+        $form['actions']['reject_listing'] = [
+          '#type' => 'submit',
+          '#value' => t('Reject'),
+          '#submit' => [
+            'pmmi_sales_agent_reject_listing',
+            'pmmi_sales_agent_notify_sales_agent',
+          ],
+        ];
+      }
+    }
+
+    foreach ($form['actions'] as $key => &$action) {
+      if (strpos($key, 'moderation_state_') === 0) {
+        unset($action['#dropbutton']);
       }
     }
   }
 
-  return $result;
+  return $element;
 }
 
 /**
- * Sends remind message.
- *
- * @param $nid
- *   The node ID.
+ * Submit handler to reject a listing.
  */
-function pmmi_sales_agent_remind_send($nid) {
-  $node = \Drupal\node\Entity\Node::load($nid);
-  if ($node && $node->hasField('field_primary_contact_email')) {
-    $to = $node->get('field_primary_contact_email')->getValue();
+function pmmi_sales_agent_reject_listing(&$form, FormStateInterface $form_state) {
+  $moderation_info = \Drupal::service('content_moderation.moderation_information');
+  $node = $form_state->getBuildInfo()['callback_object']->getEntity();
 
-    // Check if email is valid.
-    if (!empty($to[0]['value']) && \Drupal::service('email.validator')->isValid($to[0]['value'])) {
-      // Compose and send remind email.
-      $mailManager = \Drupal::service('plugin.manager.mail');
+  if ($moderation_info->hasForwardRevision($node)) {
+    // Ignore forward unpublished revisions. Revert to default.
+    $def_revision_id = $moderation_info->getDefaultRevisionId('node', $node->id());
+    $def_revision = node_revision_load($def_revision_id);
+    $def_revision->save();
+  }
+  else {
+    // Remove a node immediately.
+    $node->delete();
+  }
+}
+
+/**
+ * Notify internal PMMI admin about new changes.
+ */
+function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_state) {
+  $node = $form_state->getBuildInfo()['callback_object']->getEntity();
+  $ms = \Drupal::config('pmmi_sales_agent.mail_settings');
+  $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+  // Prepare a message and send it to the internal PMMI admin.
+  $params = [
+    'subject' => $form['#new'] ? $ms->get('listing_create.subject') : $ms->get('listing_review.subject'),
+    'body' => $form['#new'] ? $ms->get('listing_create.body') : $ms->get('listing_review.body'),
+    // Field "field_primary_contact_email" is required.
+    'from' => $node->get('field_primary_contact_email')->getValue()[0]['value'],
+    'node' => $node,
+  ];
+
+  $to = $ms->get('mail_notification_address');
+  \Drupal::service('plugin.manager.mail')
+    ->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_agent', $to, $current_langcode, $params);
+
+  // Add an email to the queue.
+  $connection = Database::getConnection();
+  $connection->insert('pmmi_sales_agent_mails')->fields([
+    'nid' => $node->id(),
+    'type' => $form['#new'] ? PMMI_SALES_AGENT_MAIL_LISTING_NEW : PMMI_SALES_AGENT_MAIL_LISTING_UPDATE,
+    'sending_date' => REQUEST_TIME + $ms->get('remind_period'),
+  ])->execute();
+
+  // Show an alert to notify that listing should be reviewed.
+  if ($message = $ms->get('submission_alert')) {
+    drupal_set_message($message);
+  }
+
+  // Force to redirect on the node view page.
+  $url = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
+  $form_state->setRedirectUrl($url);
+}
+
+/**
+ * Notify sales agent that his changes have been approved.
+ */
+function pmmi_sales_agent_notify_sales_agent(&$form, FormStateInterface $form_state) {
+  $trig_element = $form_state->getTriggeringElement();
+
+  $approve = FALSE;
+  if (isset($trig_element['#moderation_state']) && $trig_element['#moderation_state'] == 'published') {
+    $approve = TRUE;
+  }
+
+  $node = $form_state->getBuildInfo()['callback_object']->getEntity();
+
+  // PMMI has answered, so remove an email from the queue.
+  $connection = Database::getConnection();
+  $connection->delete('pmmi_sales_agent_mails')
+    ->condition('nid', $node->id())
+    ->execute();
+
+  $ms = \Drupal::config('pmmi_sales_agent.mail_settings');
+  $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+  // Prepare a message and send it to the sales agent.
+  $params = [
+    'subject' => $approve ? $ms->get('listing_approve.subject') : $ms->get('listing_reject.subject'),
+    'body' => $approve ? $ms->get('listing_approve.body') : $ms->get('listing_reject.body'),
+    'from' => $ms->get('mail_notification_address'),
+    'node' => $node,
+  ];
+
+  $to = $node->get('field_primary_contact_email')->getValue()[0]['value'];
+  \Drupal::service('plugin.manager.mail')
+    ->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_admin', $to, $current_langcode, $params);
+}
+
+/**
+ * Sends mass email remind messages.
+ */
+function pmmi_sales_agent_remind_send() {
+  $connection = Database::getConnection();
+
+  // Select all companies which should receive remind message.
+  $query = $connection->select('pmmi_sales_agent_mails', 'sam')
+    ->fields('sam', ['mid', 'nid'])
+    ->condition('sam.type', PMMI_SALES_AGENT_MAIL_MASS_REMIND)
+    ->condition('sam.sending_date', REQUEST_TIME, '<');
+  $nids = $query->execute()->fetchAllKeyed();
+
+  foreach ($nids as $mid => $nid) {
+    if ($node = \Drupal\node\Entity\Node::load($nid)) {
+      $mail_manager = \Drupal::service('plugin.manager.mail');
       $mail_settings = \Drupal::config('pmmi_sales_agent.mail_settings');
-      $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
       $params = [
         'subject' => $mail_settings->get('ss_update_reminder.subject'),
@@ -137,13 +324,69 @@ function pmmi_sales_agent_remind_send($nid) {
         'node' => $node,
       ];
 
-      $mailManager->mail('pmmi_sales_agent', 'pmmi_sales_agent_mass_remind', $to[0]['value'], $current_langcode, $params);
+      // Let's send remind message.
+      $to = $node->get('field_primary_contact_email')->getValue()[0]['value'];
+      $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
-      // Update mass mail status.
-      if ($mm_statue = $node->get('field_mass_email_queue')->getValue()) {
-        $node->set('field_mass_email_queue', ++$mm_statue[0]['value']);
-        $node->save();
+      $result = $mail_manager->mail('pmmi_sales_agent', 'mass_email_remind', $to, $langcode, $params, TRUE);
+      if ($result['result'] === TRUE) {
+        // Remove a record as mail has been sent successfully.
+        $connection->delete('pmmi_sales_agent_mails')
+          ->condition('mid', $mid)
+          ->execute();
       }
     }
   }
+}
+
+/**
+ * Sends a remind message to internal PMMI admin.
+ */
+function pmmi_sales_agent_internal_admin_remind_send() {
+  $connection = Database::getConnection();
+  $mail_types = [
+    PMMI_SALES_AGENT_MAIL_LISTING_NEW,
+    PMMI_SALES_AGENT_MAIL_LISTING_UPDATE,
+  ];
+
+  // Select all companies which should should send an email.
+  $query = $connection->select('pmmi_sales_agent_mails', 'sam')
+    ->fields('sam', ['mid', 'nid'])
+    ->condition('sam.type', $mail_types, 'IN')
+    ->condition('sam.sending_date', REQUEST_TIME, '<');
+  $nids = $query->execute()->fetchAllKeyed();
+
+  foreach ($nids as $mid => $nid) {
+    if ($node = \Drupal\node\Entity\Node::load($nid)) {
+      $mail_manager = \Drupal::service('plugin.manager.mail');
+      $mail_settings = \Drupal::config('pmmi_sales_agent.mail_settings');
+
+      $params = [
+        'subject' => $mail_settings->get('listing_review.subject'),
+        'body' => $mail_settings->get('listing_review.body'),
+        'node' => $node,
+      ];
+
+      // Let's send remind message.
+      $to = $mail_settings->get('mail_notification_address');
+      $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+      $result = $mail_manager->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_admin', $to, $langcode, $params, TRUE);
+      if ($result['result'] === TRUE) {
+        // Update a record as mail has been sent successfully.
+        $connection->update('pmmi_sales_agent_mails')
+          ->fields(['sending_date' => REQUEST_TIME + $mail_settings->get('remind_period')])
+          ->condition('mid', $mid)
+          ->execute();
+      }
+    }
+  }
+}
+
+/**
+ * Checks if current user is internal PMMI admin.
+ */
+function pmmi_sales_agent_is_admin() {
+  $current_user = \Drupal::currentUser();
+  return in_array(PMMI_SALES_AGENT_ADMIN_ROLE, $current_user->getRoles()) || $current_user->id() === 1;
 }

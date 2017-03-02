@@ -14,15 +14,16 @@ blacklist:
   - page_manager.page.sales_agent_directory_admin_panel
   - page_manager.page.sales_agent_directory_contacts_admin_panel
   - page_manager.page.sales_agent_directory_my_favorites
+  - page_manager.page.sales_agent_directory_usage_export
   - page_manager.page.search
   - page_manager.page.search_results_sales_agent_directory
   - page_manager.page.search_sales_agent_directory
   - page_manager.page.site_template
-  - page_manager.page_variant.node_add-http_status_code-0
   - page_manager.page_variant.node_edit-panels_variant-0
   - page_manager.page_variant.sales_agent_directory_admin_panel-panels_variant-0
   - page_manager.page_variant.sales_agent_directory_contacts_admin_panel-panels_variant-0
   - page_manager.page_variant.sales_agent_directory_my_favorites-panels_variant-0
+  - page_manager.page_variant.sales_agent_directory_usage_export-panels_variant-0
   - page_manager.page_variant.search-panels_variant-0
   - page_manager.page_variant.search_results_sales_agent_directory-panels_variant-0
   - page_manager.page_variant.search_sales_agent_directory-panels_variant-0
@@ -33,6 +34,7 @@ blacklist:
   - page_manager.page_variant.site_template-panels_everywhere_variant-4
   - page_manager.page_variant.site_template-panels_everywhere_variant-5
   - page_manager.page_variant.site_template-panels_everywhere_variant-6
+  - page_manager.page_variant.node_addhttp_status_code0
 graylist: {  }
 graylist_dependents: true
 graylist_skip_equal: true

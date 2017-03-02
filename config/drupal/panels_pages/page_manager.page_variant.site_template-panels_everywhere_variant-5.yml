@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - page_manager.page.site_template
+    - system.menu.executive-leadership-nav
     - system.menu.footer
   content:
     - 'block_content:event:5fb18233-3dd3-4cae-bbc6-d6480cc96531'
@@ -16,7 +17,6 @@ dependencies:
     - pmmi
     - pmmi_search
     - system
-    - tb_megamenu
 id: site_template-panels_everywhere_variant-5
 label: 'Executive Leadership Network'
 variant: panels_everywhere_variant
@@ -116,15 +116,6 @@ variant_settings:
       weight: '0'
       uuid: ff934d57-21ee-438f-9657-7952719c771b
       context_mapping: {  }
-    7b8d8b17-7645-4720-a4af-fdfa66cefff4:
-      id: 'tb_megamenu_menu_block:executive-leadership-nav'
-      label: 'Executive Leadership navigation'
-      provider: tb_megamenu
-      label_display: 0
-      region: header_main_nav
-      weight: '0'
-      uuid: 7b8d8b17-7645-4720-a4af-fdfa66cefff4
-      context_mapping: {  }
     a865d4c5-ee4e-44cc-bbf7-286046091477:
       id: 'block_content:5fb18233-3dd3-4cae-bbc6-d6480cc96531'
       label: 'Event (July 13-16, 2017) - Summer Executive Committee Meeting'
@@ -136,6 +127,17 @@ variant_settings:
       region: header_microsite_info
       weight: '0'
       uuid: a865d4c5-ee4e-44cc-bbf7-286046091477
+      context_mapping: {  }
+    9dcaf19e-202d-491e-8c21-6bc299bc9dc9:
+      id: 'system_menu_block:executive-leadership-nav'
+      label: 'Executive Leadership navigation'
+      provider: system
+      label_display: 0
+      level: '1'
+      depth: '0'
+      region: header_main_nav
+      weight: '0'
+      uuid: 9dcaf19e-202d-491e-8c21-6bc299bc9dc9
       context_mapping: {  }
   id: panels_everywhere_variant
   uuid: 1ef5137e-9b08-4ff4-abe7-6ad64f8dc770

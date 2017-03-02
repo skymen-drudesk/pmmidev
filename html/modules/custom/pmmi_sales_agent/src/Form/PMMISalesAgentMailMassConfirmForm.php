@@ -6,6 +6,7 @@ use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\Core\Database\Database;
 
 /**
  * Defines a confirmation form for sending mass email.
@@ -64,7 +65,7 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
       ->getEditable('pmmi_sales_agent.mail_mass_settings');
 
     // Save info about last run.
-    $mm_config->set('last_run', time())->save();
+    $mm_config->set('last_run', REQUEST_TIME)->save();
     // Get all companies, which should receive mass email.
     $nids = $this->massMailGetContacts($mm_config->get('filter'));
 
@@ -132,10 +133,7 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
 
         if ($result['result'] == true) {
           $context['results']['processed']++;
-
-          // We should force to review this node later (i.e. remind message).
-          $node->set('field_mass_email_queue', 1);
-          $node->save();
+          self::saveRemindMailsInfo($node->id());
         }
         else {
           \Drupal::logger('pmmi_sales_agent')->error(t("Can't send an email to @address"), ['@address' => $to[0]['value']]);
@@ -167,7 +165,13 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
   }
 
   /**
-   * Helper function to get all companies, which will receive remind mass email.
+   * Get companies which should receive remind mass email.
+   *
+   * @param string $filter
+   *   The 'last update on' filter.
+   *
+   * @return array
+   *   The company ID's.
    */
   protected function massMailGetContacts($filter) {
     $query = \Drupal::entityQuery('node');
@@ -183,5 +187,27 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
     }
 
     return $query->execute();
+  }
+
+  /**
+   * Save information about future remind messages.
+   *
+   * @param int $nid
+   *   The company ID.
+   */
+  protected function saveRemindMailsInfo($nid) {
+    $mm_config = \Drupal::service('config.factory')
+      ->getEditable('pmmi_sales_agent.mail_mass_settings');
+
+    // The 3 drip emails should be sent during specific period of time. So,
+    // insert necessary count of records.
+    $connection = Database::getConnection();
+    for ($i = 1; $i <= 3; $i++) {
+      $connection->insert('pmmi_sales_agent_mails')->fields([
+        'nid' => $nid,
+        'type' => PMMI_SALES_AGENT_MAIL_MASS_REMIND,
+        'sending_date' => $mm_config->get('remind_period') * $i + REQUEST_TIME,
+      ])->execute();
+    }
   }
 }
