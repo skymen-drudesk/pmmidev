@@ -202,8 +202,8 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
   public static function validateElement(array $element, FormStateInterface $form_state) {
     $items = array();
 
-    $countries = $element['country_code']['#value'] ? $element['country_code']['#value'] : array();
-    $areas = $element['administrative_area']['#value'] ? $element['administrative_area']['#value'] : array();
+    $countries = !empty($element['country_code']['#value']) ? $element['country_code']['#value'] : array();
+    $areas = !empty($element['administrative_area']['#value']) ? $element['administrative_area']['#value'] : array();
 
     // Validation error for required field, if there are no any countries.
     if ($element['#required'] && !$countries) {

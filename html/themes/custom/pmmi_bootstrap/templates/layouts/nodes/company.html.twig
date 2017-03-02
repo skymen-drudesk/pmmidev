@@ -18,18 +18,32 @@
 
     {{ field_render([content.content_row_blue, 'content-row-blue']) }}
     <div class="row-wrapper row">
-        <div class="territory-served col-md-4">
+      {% set countries = 0 %}
+      {% set left_class, right_class = 'col-md-4', 'col-md-8' %}
+      {% for key, child in content.territory_covered[0] if key|first != '#' %}
+        {% set countries = countries + 1 %}
+      {% endfor %}
+      {% if countries > 3 %}
+        {% set left_class, right_class = 'col-md-8', 'col-md-4' %}
+      {% endif %}
+      <div class="left-col {{ left_class }}">
+        <div class="territory-served ">
           <div class="block-label">{{ 'Territory covered'|trans }}</div>
           {{ field_render([content.territory_covered, 'territory-covered']) }}
         </div>
-        <div class="lines-of-business col-md-4">
-          <div class="block-label">{{ 'Lines of business'|trans }}</div>
-          {{ field_render([content.business, 'lines-of-business']) }}
+      </div>
+      <div class="right-col {{ right_class }}">
+        <div class="row">
+          <div class="lines-of-business col-md-6">
+            <div class="block-label">{{ 'Lines of business'|trans }}</div>
+            {{ field_render([content.business, 'lines-of-business']) }}
+          </div>
+          <div class="manufactures col-md-6">
+            <div class="block-label">{{ 'Manufacturers represented'|trans }}</div>
+            {{ field_render([content.manufactures, 'manufactures']) }}
+          </div>
         </div>
-        <div class="manufactures col-md-4">
-          <div class="block-label">{{ 'Manufacturers represented'|trans }}</div>
-          {{ field_render([content.manufactures, 'manufactures']) }}
-        </div>
+      </div>
     </div>
     <div class="contacts row">
       <div class="primary-wrapper col-md-4">
@@ -63,7 +77,10 @@
     </div>
 
     {{ field_render([content.footer_reg, 'footer-reg']) }}
-
+    {% set changedDate = node.getChangedTime|date('M. j, Y') %}
+    <div class="profile-updated">
+      {% trans %}Profile last updated {{ changedDate }} {% endtrans %}
+    </div>
   </div>
   </div>
 </div>

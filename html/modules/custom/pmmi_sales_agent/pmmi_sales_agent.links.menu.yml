@@ -1,5 +1,19 @@
-pmmi_sales_agent.mail_settings:
-  title: 'PMMI Sales Agent Mail Settings'
-  route_name: pmmi_sales_agent.mail_settings
-  parent: system.admin_config_services
+# Sales agent directory configuration page.
+pmmi_sales_agent.sales_agent_directory:
+  title: Sales agent directory
+  route_name: pmmi_sales_agent.sales_agent_directory
+  parent: system.admin_config
   weight: 99
+
+# Sales agent directory mail settings.
+pmmi_sales_agent.mail_settings:
+  title: Mail settings
+  route_name: pmmi_sales_agent.mail_settings
+  parent: pmmi_sales_agent.sales_agent_directory
+  weight: 99
+
+# Panel page: Sales Agent Directory - Usage Export.
+pmmi_sales_agent.usage_export:
+  title: Usage export
+  route_name: page_manager.page_view_sales_agent_directory_usage_export_sales_agent_directory_usage_export-panels_variant-0
+  parent: pmmi_sales_agent.sales_agent_directory

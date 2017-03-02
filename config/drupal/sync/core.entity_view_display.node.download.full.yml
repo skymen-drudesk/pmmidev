@@ -10,13 +10,13 @@ dependencies:
     - field.field.node.download.field_image
     - field.field.node.download.field_image_header
     - field.field.node.download.field_links
+    - image.style.download_page
     - node.type.download
-    - responsive_image.styles.block_style_4
     - views.view.file_download_button
   module:
     - ds
+    - image
     - link
-    - responsive_image
     - text
     - user
     - views_field_formatter
@@ -32,8 +32,6 @@ third_party_settings:
     regions:
       image_header:
         - field_image_header
-      left_block:
-        - 'dynamic_block_field:node-other_reports_block'
       title:
         - node_title
       body:
@@ -45,11 +43,6 @@ third_party_settings:
       file_download_button:
         - field_file_download_button
     fields:
-      'dynamic_block_field:node-other_reports_block':
-        plugin_id: 'dynamic_block_field:node-other_reports_block'
-        weight: 1
-        label: above
-        formatter: default
       node_title:
         plugin_id: node_title
         weight: 2
@@ -96,7 +89,7 @@ content:
     weight: 4
     label: hidden
     settings:
-      responsive_image_style: block_style_4
+      image_style: download_page
       image_link: ''
     third_party_settings:
       ds:
@@ -106,7 +99,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
+    type: image
   field_image_header:
     type: entity_reference_entity_view
     weight: 0

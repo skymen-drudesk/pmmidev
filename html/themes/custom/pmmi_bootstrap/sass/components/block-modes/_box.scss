@@ -64,4 +64,34 @@
       @extend .inherited-p;
     }
   }
+  &.mode-vertical-box {
+    padding: 20px 20px 60px 20px;
+    position: relative;
+    border: 1px solid $mdgrey;
+    text-align: center;
+    .field-name-field-image {
+      margin-bottom: 15px;
+      img {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+    .field-name-field-head {
+      @extend .default-headline-3;
+    }
+    .field-name-body {
+      @extend .paragraph2;
+      margin-bottom: 13px;
+    }
+    .field-name-field-buttons {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+      a {
+        @extend .button-primary;
+        margin: 0 5px 10px;
+      }
+    }
+  }
 }

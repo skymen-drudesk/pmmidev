@@ -4,6 +4,7 @@ namespace Drupal\pmmi_search\Form;
 
 use CommerceGuys\Addressing\Country\CountryRepositoryInterface;
 use CommerceGuys\Addressing\Subdivision\SubdivisionRepositoryInterface;
+use Drupal\Core\Database\Database;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -172,6 +173,11 @@ class PMMICompanySearchBlockForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Keyword'),
       '#placeholder' => $this->t('Enter keyword'),
+    ];
+
+    $form['country_list'] = [
+      '#type' => 'value',
+      '#value' => $this->countryRepository->getList(),
     ];
 
     $form['submit'] = [
