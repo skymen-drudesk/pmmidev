@@ -7,7 +7,6 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
 use Drupal\Core\Routing\UrlGeneratorInterface;
 use Drupal\Component\Utility\UrlHelper;
-use Drupal\Component\Utility\Crypt;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Logger\RfcLogLevel;
 use Drupal\Core\Url;
@@ -41,11 +40,32 @@ class PMMISSOHelper {
   const CHECK_ALWAYS = 0;
 
   /**
-   * Gateway config: TokenTTL check preemptively to see if the user is logged in.
+   * Token config: TokenTTL check preemptively to see if the user is logged in.
    *
    * @var int
    */
-  const CHECK_TOKEN_TTL = 1;
+  const TOKEN_DISABLED = 0;
+
+  /**
+   * Token config: TokenTTL check preemptively to see if the user is logged in.
+   *
+   * @var int
+   */
+  const TOKEN_TTL = 1;
+
+  /**
+   * Token config: TokenTTL check preemptively to see if the user is logged in.
+   *
+   * @var int
+   */
+  const TOKEN_ACTION_LOGOUT = 0;
+
+  /**
+   * Token config: TokenTTL check preemptively to see if the user is logged in.
+   *
+   * @var int
+   */
+  const TOKEN_ACTION_FORCE_LOGIN = 1;
 
   /**
    * Event type identifier for the PMMISSOPreUserLoadEvent.
@@ -165,19 +185,31 @@ class PMMISSOHelper {
    * @return array
    *   The options for building validation Request.
    */
-  public function getServerValidateOptions($raw_token) {
+  public function getServerValidateOptions($raw_token, $internal) {
     $token_data = $this->crypt->decrypt($raw_token);
     $options['decrypt'] = FALSE;
-    $query = array();
-    if (is_string($token_data)) {
-      $data = explode('|', $token_data);
+    $token = '';
+    if (is_string($token_data) || is_numeric($token_data)) {
       $options['decrypt'] = TRUE;
-      $query = $this->buildSsoServiceQuery(
-        'SSOCustomerTokenIsValid',
-        ['vu', 'vp'],
-        ['customerToken' => $data[1]]
-      );
+      if ($internal) {
+        $token_search = \Drupal::entityTypeManager()
+          ->getStorage('pmmi_sso_token')
+          ->loadByProperties(['uid' => $token_data]);
+        /** @var \Drupal\pmmi_sso\Entity\PMMISSOToken $token_entity */
+        if ($token_entity = reset($token_search)) {
+          $token = $token_entity->getToken();
+        }
+      }
+      else {
+        $data = explode('|', $token_data);
+        $token = $data[1];
+      }
     }
+    $query = $this->buildSsoServiceQuery(
+      'SSOCustomerTokenIsValid',
+      ['vu', 'vp'],
+      ['customerToken' => $token]
+    );
     return $options + $query;
   }
 
@@ -252,19 +284,6 @@ class PMMISSOHelper {
   }
 
   /**
-   * Return the service URL.
-   *
-   * @param array $service_params
-   *   An array of query string parameters to append to the service URL.
-   *
-   * @return string
-   *   The fully constructed service URL to use for PMMI SSO server.
-   */
-  public function getSsoServiceUrl(array $service_params = []) {
-    return $this->urlGenerator->generate('pmmi_sso.service', $service_params, TRUE);
-  }
-
-  /**
    * Construct the base URL to the PMMI SSO server.
    *
    * @return string
@@ -273,6 +292,26 @@ class PMMISSOHelper {
   public function getServerBaseUrl() {
     $url = $this->settings->get('login_uri');
     return $url;
+  }
+
+  /**
+   * Return the service URL with query string.
+   *
+   * @param array $service_params
+   *   An array of query string parameters to append to the service URL.
+   *
+   * @return string
+   *   The fully constructed service URL to use for PMMI SSO server.
+   */
+  public function generateSsoServiceUrl(array $service_params = []) {
+    if (isset($service_params['returnto'])) {
+      if (!empty($service_params['returnto'])) {
+        $service_params['ue'] = base64_encode($service_params['returnto']);
+      }
+      unset($service_params['returnto']);
+    }
+    $service_params['cti'] = $this->crypt->encrypt($service_params['cti']);
+    return $this->urlGenerator->generate('pmmi_sso.service', $service_params, FALSE);
   }
 
   /**
@@ -291,15 +330,18 @@ class PMMISSOHelper {
     $now = DateTime::createFromFormat('U.u', microtime(TRUE));
     $timestamp = $now->format('YmdHisv');
     // Generate final redirect string to encode in Token.
-    $return_uri_sso = Url::fromUserInput('/ssoservice', ['absolute' => TRUE]);
-    $return_uri_sso->setOption('query', ['ue' => $uri_encoded]);
+    $return_parameters = ['ue' => $uri_encoded];
+    $return_uri_sso = $this->urlGenerator->generate('pmmi_sso.service', $return_parameters, TRUE);
+
     // Fill string to encode in the Token.
-    $string = $timestamp . '|' . $return_uri_sso->toString();
+    $string = $timestamp . '|' . $return_uri_sso;
     $token = $this->crypt->encrypt($string);
+
     // Generate final login uri.
-    $url = Url::fromUri($this->settings->get('login_uri'));
+    $url = Url::fromUri($this->getServerBaseUrl());
     $url->setAbsolute(TRUE);
     $url->setOption('query', ['vi' => $this->getVi(), 'vt' => $token]);
+
     return $url->toString();
   }
 
@@ -354,8 +396,27 @@ class PMMISSOHelper {
    *   The Vendor initilization block (HEX).
    */
   public function getVib() {
-    $vib = $this->settings->get('vib');
-    return $vib;
+    return $this->settings->get('vib');
+  }
+
+  /**
+   * Get the Vendor initilization block (HEX) to the PMMI SSO server.
+   *
+   * @return string
+   *   The Vendor initilization block (HEX).
+   */
+  public function getTokenFrequency() {
+    return $this->settings->get('gateway.token_frequency');
+  }
+
+  /**
+   * Get the Vendor initilization block (HEX) to the PMMI SSO server.
+   *
+   * @return string
+   *   The Vendor initilization block (HEX).
+   */
+  public function getTokenAction() {
+    return $this->settings->get('gateway.token_action');
   }
 
   /**

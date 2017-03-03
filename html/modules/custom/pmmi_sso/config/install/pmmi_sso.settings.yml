@@ -5,6 +5,8 @@ user_accounts:
     - pmmi_member
 gateway:
   check_frequency: -2
+  token_frequency: 0
+  token_action: 0
   paths:
     id: request_path
     pages: ''

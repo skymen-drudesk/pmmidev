@@ -5,6 +5,7 @@ namespace Drupal\pmmi_sso\Controller;
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\pmmi_sso\Exception\PMMISSOLoginException;
 use Drupal\pmmi_sso\Exception\PMMISSOSloException;
+use Drupal\pmmi_sso\PMMISSOPropertyBag;
 use Drupal\pmmi_sso\PMMISSORedirectResponse;
 use Drupal\pmmi_sso\Service\PMMISSOHelper;
 use Drupal\pmmi_sso\Exception\PMMISSOValidateException;
@@ -68,6 +69,13 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
    * @var \Drupal\Core\Routing\UrlGeneratorInterface
    */
   protected $urlGenerator;
+
+  /**
+   * Variable to store redirect Path.
+   *
+   * @var string
+   */
+  protected $decodedPath = '';
 
   /**
    * Constructor.
@@ -187,33 +195,51 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
     }
 
     try {
+      /** @var PMMISSOPropertyBag $sso_validation_info */
       $sso_validation_info = $this->ssoValidator->validateToken($token, $internal, $service_params);
     }
     catch (PMMISSOValidateException $e) {
-      // Validation failed, redirect to homepage and set message.
-      $this->ssoHelper->log($e->getMessage());
-      $this->setMessage($this->t('There was a problem validating your login, please contact a site administrator.'), 'error');
-      $this->handleReturnToParameter($request);
-      return RedirectResponse::create($this->urlGenerator->generate('<front>'));
-    }
+      if (PMMISSOHelper::TOKEN_ACTION_FORCE_LOGIN) {
+        // Validation failed, redirect to homepage and set message.
+        $this->ssoHelper->log($e->getMessage());
+        $this->setMessage($this->t('There was a problem validating your login, please contact a site administrator.'), 'error');
+        $this->handleReturnToParameter($request);
+//        return new PMMISSORedirectResponse($this->decodedPath);
 
-    // Now that the token has been validated, we can use the information from
-    // validation request to authenticate the user locally on the Drupal site.
-    try {
-      $this->ssoUserManager->login($sso_validation_info);
-      $this->setMessage($this->t('You have been logged in.'));
+        return RedirectResponse::create($this->urlGenerator->generate('<front>'));
+      }
+      else {
+        // Validation failed, redirect to homepage and set message.
+        $this->ssoHelper->log($e->getMessage());
+        $this->setMessage($this->t('There was a problem validating your login, please contact a site administrator.'), 'error');
+        $this->handleReturnToParameter($request);
+        return RedirectResponse::create($this->urlGenerator->generate('<front>'));
+      }
     }
-    catch (PMMISSOLoginException $e) {
-      $this->ssoHelper->log($e->getMessage());
-      $this->setMessage($this->t('There was a problem logging in, please contact a site administrator.'), 'error');
+    if ($internal) {
+      $uid = $this->requestStack->getCurrentRequest()->getSession()->get('uid');
+      $auth_id = $this->ssoUserManager->getSsoUserIdForAccount($uid);
+      $this->ssoUserManager->storeUserToken($sso_validation_info->getToken(), $uid, $auth_id);
     }
-
+    else {
+      // Now that the token has been validated, we can use the information from
+      // validation request to authenticate the user locally on the Drupal site.
+      try {
+        $this->ssoUserManager->login($sso_validation_info);
+        $this->setMessage($this->t('You have been logged in.'));
+      } catch (PMMISSOLoginException $e) {
+        $this->ssoHelper->log($e->getMessage());
+        $this->setMessage($this->t('There was a problem logging in, please contact a site administrator.'), 'error');
+      }
+    }
     // And finally redirect the user to the homepage, or so a specific
     // destination found in the destination param (like the page they were on
     // prior to initiating authentication).
     $this->handleReturnToParameter($request);
-    if (isset($this->decoded)) {
-      return new PMMISSORedirectResponse($this->decoded);
+
+
+    if (!empty($this->decodedPath)) {
+      return new PMMISSORedirectResponse($this->decodedPath);
     }
     else {
       return RedirectResponse::create($this->urlGenerator->generate('<front>'));
@@ -250,8 +276,10 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
       $request->query->set('destination', $request->query->get('returnto'));
     }
     if ($request->query->has('ue')) {
-      $decode = base64_decode($request->query->get('ue'));
-      $this->decoded = $decode;
+      $decoded_path = base64_decode($request->query->get('ue'));
+      $this->decodedPath = $decoded_path;
+
+
     }
   }
 

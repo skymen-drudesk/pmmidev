@@ -73,9 +73,23 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
   /**
    * Frequency to check for gateway login.
    *
-   * @var array
+   * @var integer
    */
   protected $gatewayCheckFrequency;
+
+  /**
+   * Frequency to check validation of a token.
+   *
+   * @var array
+   */
+  protected $tokenCheckFrequency;
+
+  /**
+   * The token action after validation.
+   *
+   * @var array
+   */
+  protected $tokenAction;
 
   /**
    * Paths to check for gateway login.
@@ -120,6 +134,8 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
     $this->ssoRedirector = $sso_redirector;
     $settings = $this->configFactory->get('pmmi_sso.settings');
     $this->gatewayCheckFrequency = $settings->get('gateway.check_frequency');
+    $this->tokenCheckFrequency = $settings->get('gateway.token_frequency');
+    $this->tokenAction = $settings->get('gateway.token_action');
     $this->gatewayPaths = $settings->get('gateway.paths');
   }
 
@@ -155,7 +171,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
 
     // Additional check if the user is already logged in.
     if ($this->currentUser->isAuthenticated()) {
-      if ($session->has('expiration')) {
+      if ($session->has('expiration') && $this->handleTokenPage()) {
         // If token expired, redirect to internal uri /ssoservice
         // to validate token.
         if ($session->get('expiration') > time()) {
@@ -163,8 +179,10 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
         }
         else {
           $redirect_data->forceRedirection();
+          $redirect_data->setServiceParameter('cti', $session->get('uid'));
           $redirect_data->setParameter('token_expired', TRUE);
-          $this->ssoHelper->log('Validate Token Requested');
+          $redirect_data->setParameter('token_action', $this->tokenAction);
+          $this->ssoHelper->log('Token expired: redirect user.');
         }
       }
       else {
@@ -198,6 +216,11 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
    *   TRUE if current path is a gateway path, FALSE otherwise.
    */
   private function handleGateway() {
+    // Don't do anything if this feature is disabled.
+    if ($this->gatewayCheckFrequency === PMMISSOHelper::CHECK_NEVER) {
+      return FALSE;
+    }
+
     // Don't do anything if this is a request from cron, drush, crawler, etc.
     if ($this->isCrawlerRequest()) {
       return FALSE;
@@ -206,17 +229,6 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
     // Only implement gateway feature for GET requests, to prevent users from
     // being redirected to PMMI SSO server for things like form submissions.
     if (!$this->requestStack->getCurrentRequest()->isMethod('GET')) {
-      return FALSE;
-    }
-
-    if ($this->gatewayCheckFrequency === PMMISSOHelper::CHECK_NEVER) {
-      return FALSE;
-    }
-
-    // User can indicate specific paths to enable (or disable) gateway mode.
-    $condition = $this->conditionManager->createInstance('request_path');
-    $condition->setConfiguration($this->gatewayPaths);
-    if (!$this->conditionManager->execute($condition)) {
       return FALSE;
     }
 
@@ -236,23 +248,48 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
         ->getSession()
         ->set('sso_gateway_checked', TRUE);
     }
-    // If set to only implement gateway once per token TTL, we use a session
-    // variable to store the fact that we've already done the gateway check
-    // so we don't keep doing it.
-    if ($this->gatewayCheckFrequency === PMMISSOHelper::CHECK_TOKEN_TTL) {
-      // If the session var is already set, we know to back out.
-      if ($this->requestStack->getCurrentRequest()
-        ->getSession()
-        ->has('sso_gateway_checked')
-      ) {
-        $this->ssoHelper->log("Gateway already checked, will not check again.");
-        return FALSE;
-      }
-      $this->requestStack->getCurrentRequest()
-        ->getSession()
-        ->set('sso_gateway_checked', TRUE);
+
+    return $this->checkCondition();
+  }
+
+  /**
+   * Check is the current path is restricted by a token and feature enabled.
+   *
+   * @return bool
+   *   TRUE if current path is a restricted by token path, FALSE otherwise.
+   */
+  private function handleTokenPage() {
+    // Don't do anything if this feature is disabled.
+    if ($this->tokenCheckFrequency === PMMISSOHelper::TOKEN_DISABLED) {
+      return FALSE;
     }
-    return TRUE;
+
+    // Only implement token feature for GET requests, to prevent users from
+    // being redirected to PMMI SSO server for things like form submissions.
+    if (!$this->requestStack->getCurrentRequest()->isMethod('GET')) {
+      return FALSE;
+    }
+
+    // Don't do anything if this is a request from cron, drush, crawler, etc.
+    if ($this->isCrawlerRequest()) {
+      return FALSE;
+    }
+
+    // User can indicate specific paths to enable (or disable) token check mode.
+    return $this->checkCondition();
+  }
+
+  /**
+   * Check is the current path is restricted by a token.
+   *
+   * @return bool
+   *   TRUE if current path is a restricted by token path, FALSE otherwise.
+   */
+  private function checkCondition() {
+    // User can indicate specific paths to enable (or disable) token check mode.
+    $condition = $this->conditionManager->createInstance('request_path');
+    $condition->setConfiguration($this->gatewayPaths);
+    return $this->conditionManager->execute($condition);
   }
 
   /**
@@ -363,7 +400,6 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
   public static function getSubscribedEvents() {
     // Priority is just before the Dynamic Page Cache subscriber, but after
     // important services like route matcher and maintenance mode subscribers.
-//    $events[KernelEvents::REQUEST][] = array('handle', 34);
     $events[KernelEvents::REQUEST][] = array('handle', 29);
     $events[KernelEvents::EXCEPTION][] = ['onException', 0];
     return $events;

@@ -7,6 +7,7 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormState;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
 use Drupal\pmmi_sso\Service\PMMISSOHelper;
 use Drupal\user\RoleInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -160,7 +161,7 @@ class PMMISSOSettings extends ConfigFormBase {
     ];
     $form['user_accounts'] = array(
       '#type' => 'details',
-      '#title' => $this->t('User Account Handling'),
+      '#title' => $this->t('SSO User Account Management'),
       '#open' => TRUE,
       '#tree' => TRUE,
     );
@@ -205,7 +206,7 @@ class PMMISSOSettings extends ConfigFormBase {
     );
     $form['gateway'] = array(
       '#type' => 'details',
-      '#title' => $this->t('Gateway Feature (Auto Login)'),
+      '#title' => $this->t('Gateway Feature (Auto Login) & Token Handling'),
       '#open' => FALSE,
       '#tree' => TRUE,
       '#description' => $this->t('This implements the Gateway feature from the Personify SSO.' .
@@ -215,7 +216,7 @@ class PMMISSOSettings extends ConfigFormBase {
         'active session check, and then redirecting them back to page they initially requested.<br/><br/>' .
         'If enabled, all pages on your site will trigger this feature by default. It is strongly recommended that ' .
         'you specify specific pages to trigger this feature below.<br/><br/>' .
-        '<strong>WARNING:</strong> This feature will disable page caching on pages it is active on.'),
+        '<strong>WARNING:</strong> This feature will disable page caching  for anonymous users on pages it is active on.'),
     );
     $form['gateway']['check_frequency'] = array(
       '#type' => 'radios',
@@ -225,7 +226,48 @@ class PMMISSOSettings extends ConfigFormBase {
         PMMISSOHelper::CHECK_NEVER => 'Disable gateway feature',
         PMMISSOHelper::CHECK_ONCE => 'Once per browser session',
         PMMISSOHelper::CHECK_ALWAYS => 'Every page load (not recommended)',
-        PMMISSOHelper::CHECK_TOKEN_TTL => 'Every page load, if token TTL not expired',
+      ),
+    );
+    $form['gateway']['token_frequency'] = array(
+      '#type' => 'radios',
+      '#title' => $this->t('Check Token Frequency'),
+      '#default_value' => $config->get('gateway.token_frequency'),
+      '#options' => array(
+        PMMISSOHelper::TOKEN_DISABLED => 'Disable feature',
+        PMMISSOHelper::TOKEN_TTL => 'Every page load, if token TTL expired',
+      ),
+      '#description' => $this->t(
+        'This implements the Token TTL feature for Drupal. When enabled, Drupal 
+         will check if a visitor have valid token, in the time interval, 
+         specified on this page: <a href="@link">Token settings page</a>.<br/>
+         If enabled, all pages on your site will trigger this feature by 
+         default. It is strongly recommended that you specify specific pages 
+         to trigger this feature below.<br/>
+         <strong>WARNING:</strong> This feature will disable page caching on 
+         pages it is active on.', ['@link' => Url::fromRoute('pmmi_sso.token.settings')->toString()]
+      ),
+    );
+    $form['gateway']['token_action'] = array(
+      '#type' => 'radios',
+      '#title' => $this->t('Default action for the failed Token validation result'),
+      '#default_value' => $config->get('gateway.token_action'),
+      '#options' => array(
+        PMMISSOHelper::TOKEN_ACTION_LOGOUT => 'Logout from Drupal',
+        PMMISSOHelper::TOKEN_ACTION_FORCE_LOGIN => 'Forced redirect to Personify Login Page',
+      ),
+      '#states' => array(
+        'invisible' => array(
+          ':input[name="gateway[token_frequency]"]' => array('value' => PMMISSOHelper::TOKEN_DISABLED),
+        ),
+      ),
+      '#description' => $this->t(
+        'This feature only implemented on selected pages below or for all pages, 
+         if  no selected.<br/>
+         If selected action Logout: If token is expired and not valid, after 
+         verification, users will be logged out and stay on site.<br/>
+         If selected action Forced Redirect: If token is expired and not valid, 
+         after verification, users will be redirected to the Personify site.
+         <br/>'
       ),
     );
     $this->gatewayPaths->setConfiguration($config->get('gateway.paths'));
@@ -305,8 +347,15 @@ class PMMISSOSettings extends ConfigFormBase {
         'login_link_label',
       ]));
     $auto_assigned_roles = [];
-    if ($form_state->getValue(['user_accounts', 'auto_assigned_roles_enable'])) {
-      $auto_assigned_roles = array_keys($form_state->getValue(['user_accounts', 'auto_assigned_roles']));
+    if ($form_state->getValue([
+      'user_accounts',
+      'auto_assigned_roles_enable'
+    ])
+    ) {
+      $auto_assigned_roles = array_keys($form_state->getValue([
+        'user_accounts',
+        'auto_assigned_roles'
+      ]));
     }
     $config
       ->set('user_accounts.auto_assigned_roles', $auto_assigned_roles);
@@ -317,6 +366,14 @@ class PMMISSOSettings extends ConfigFormBase {
       ->set('gateway.check_frequency', $form_state->getValue([
         'gateway',
         'check_frequency',
+      ]))
+      ->set('gateway.token_frequency', $form_state->getValue([
+        'gateway',
+        'token_frequency',
+      ]))
+      ->set('gateway.token_action', $form_state->getValue([
+        'gateway',
+        'token_action',
       ]))
       ->set('gateway.paths', $this->gatewayPaths->getConfiguration());
     $config

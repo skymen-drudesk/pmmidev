@@ -25,20 +25,6 @@ use Drupal\Component\Utility\Crypt;
 class PMMISSOUserManager {
 
   /**
-   * Email address for new users is combo of username + custom hostname.
-   *
-   * @var int
-   */
-  const EMAIL_ASSIGNMENT_STANDARD = 0;
-
-  /**
-   * Email address for new users is derived from a PMMI SSO attirbute.
-   *
-   * @var int
-   */
-  const EMAIL_ASSIGNMENT_ATTRIBUTE = 1;
-
-  /**
    * Used to include the externalauth service from the external_auth module.
    *
    * @var \Drupal\externalauth\ExternalAuthInterface
@@ -194,21 +180,21 @@ class PMMISSOUserManager {
     }
 
     $this->externalAuth->userLoginFinalize($account, $property_bag->getUsername(), $this->provider);
-    $this->storeUserToken($account->id(), $property_bag->getUserId(), $property_bag->getToken());
+    $this->storeUserToken( $property_bag->getToken(), $account->id(), $property_bag->getUserId());
 //    $this->storeLoginSessionData($this->session->getId(), $token);
   }
 
   /**
    * Store the Session ID and token for single-log-out purposes.
    *
+   * @param string $token
+   *   The Token value.
    * @param int $uid
    *   The User ID to be used as the lookup key.
    * @param string $auth_id
    *   The User Auth ID value.
-   * @param string $token
-   *   The Token value.
    */
-  protected function storeUserToken($uid, $auth_id, $token) {
+  public function storeUserToken($token, $uid, $auth_id) {
     /** @var \Drupal\pmmi_sso\Entity\PMMISSOTokenInterface $token_entity */
     $token_search = $this->tokenStorage->loadByProperties(['uid' => $uid]);
     $expire_time = time() + $this->settings->get('expiration');

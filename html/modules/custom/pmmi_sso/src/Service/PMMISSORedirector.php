@@ -59,45 +59,65 @@ class PMMISSORedirector {
   public function buildRedirectResponse(PMMISSORedirectData $data, $force = FALSE) {
     $response = NULL;
 
-    if ($force) {
-      $login_url = $this->ssoHelper->generateLoginUrl($data->getServiceParameter('returnto'));
-      return new PMMISSORedirectResponse($login_url);
-    }
-    // Generate login url.
-    $login_url = $this->ssoHelper->getServerBaseUrl();
+
+//    $login_url = $this->ssoHelper->getServerBaseUrl();
 
     // Dispatch an event that allows modules to alter or prevent the redirect.
     $pre_redirect_event = new PMMISSOPreRedirectEvent($data);
     $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_PRE_REDIRECT, $pre_redirect_event);
 
-    // Determine the service URL.
-    $service_parameters = $data->getAllServiceParameters();
-    $parameters = $data->getAllParameters();
-    $parameters['service'] = $this->ssoHelper->getSsoServiceUrl($service_parameters);
-
-    $login_url .= '?' . UrlHelper::buildQuery($parameters);
-
-    // Get the redirection response.
-    if ($force || $data->willRedirect()) {
-      // $force implies we are on the /sso url or equivalent, so we
-      // always want to redirect and data is always cacheable.
-      if (!$force && !$data->getIsCacheable()) {
-        return new PMMISSORedirectResponse($login_url);
-      }
-      else {
-        $cacheable_metadata = new CacheableMetadata();
-        // Add caching metadata from PMMISSORedirectData.
-        if (!empty($data->getCacheTags())) {
-          $cacheable_metadata->addCacheTags($data->getCacheTags());
-        }
-        if (!empty($data->getCacheContexts())) {
-          $cacheable_metadata->addCacheContexts($data->getCacheContexts());
-        }
-        $response = new TrustedRedirectResponse($login_url);
-        $response->addCacheableDependency($cacheable_metadata);
-      }
-      $this->ssoHelper->log("PMMI SSO redirecting to: $login_url");
+    // $force implies we are on the /ssologin url, so we always want to redirect
+    // and data is always not cacheable.
+    if ($force) {
+      // Generate login url.
+      $login_url = $this->ssoHelper->generateLoginUrl($data->getServiceParameter('returnto'));
+      return new PMMISSORedirectResponse($login_url);
     }
+
+    if ($data->willRedirect() && $data->getParameter('token_expired') == TRUE) {
+      $service_url = $this->ssoHelper->generateSsoServiceUrl($data->getAllServiceParameters());
+      return new PMMISSORedirectResponse($service_url);
+
+//      if ($data->getParameter('token_action') == PMMISSOHelper::TOKEN_ACTION_LOGOUT) {
+//        drupal_set_message('You have been logged out.');
+//        user_logout();
+//      }
+//      else {
+//
+//      }
+    }
+    if ($data->willRedirect()) {
+
+    }
+
+//    // Determine the service URL.
+//    $service_parameters = $data->getAllServiceParameters();
+//    $parameters = $data->getAllParameters();
+//    $parameters['service'] = $this->ssoHelper->getSsoServiceUrl($service_parameters);
+//
+//    $login_url .= '?' . UrlHelper::buildQuery($parameters);
+//
+//    // Get the redirection response.
+//    if ($force || $data->willRedirect()) {
+//      // $force implies we are on the /sso url or equivalent, so we
+//      // always want to redirect and data is always cacheable.
+//      if (!$force && !$data->getIsCacheable()) {
+//        return new PMMISSORedirectResponse($login_url);
+//      }
+//      else {
+//        $cacheable_metadata = new CacheableMetadata();
+//        // Add caching metadata from PMMISSORedirectData.
+//        if (!empty($data->getCacheTags())) {
+//          $cacheable_metadata->addCacheTags($data->getCacheTags());
+//        }
+//        if (!empty($data->getCacheContexts())) {
+//          $cacheable_metadata->addCacheContexts($data->getCacheContexts());
+//        }
+//        $response = new TrustedRedirectResponse($login_url);
+//        $response->addCacheableDependency($cacheable_metadata);
+//      }
+//      $this->ssoHelper->log("PMMI SSO redirecting to: $login_url");
+//    }
     return $response;
   }
 

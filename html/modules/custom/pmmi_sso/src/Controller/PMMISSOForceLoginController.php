@@ -53,7 +53,7 @@ class PMMISSOForceLoginController implements ContainerInjectionInterface {
   public function forceLogin() {
     // TODO: What if PMMISSO is not configured? need to handle that case.
 
-    // Check referer is external site.
+    // Check referer is an external site.
     $request = $this->requestStack->getCurrentRequest();
     $referer = $request->headers->get('referer');
     // 'https://pmmi.com' or 'http://pmmi.com/'
@@ -62,8 +62,6 @@ class PMMISSOForceLoginController implements ContainerInjectionInterface {
     $path = preg_replace('/^' . preg_quote($base, '/') . '/', '', $referer);
     $external = $path === $referer ? TRUE : FALSE;
 
-//    $service_url_query_params = $this->requestStack->getCurrentRequest()->query->all();
-//    $sso_redirect_data = new PMMISSORedirectData($service_url_query_params);
     $sso_redirect_data = new PMMISSORedirectData();
     // Set return URI for redirect after Login to SSO.
     if ($external) {

@@ -55,11 +55,17 @@ pmmi_sso.settings:
           label: 'Login Link Label'
     gateway:
       type: mapping
-      label: 'Gateway Feature'
+      label: 'Gateway & Token Feature'
       mapping:
         check_frequency:
           type: integer
           label: 'Check Frequency'
+        token_frequency:
+          type: integer
+          label: 'Check Token Frequency'
+        token_action:
+          type: integer
+          label: 'Default action for the Token validation result'
         paths:
           type: condition.plugin.request_path
           label: 'Paths'

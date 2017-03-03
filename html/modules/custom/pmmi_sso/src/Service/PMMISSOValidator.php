@@ -70,31 +70,35 @@ class PMMISSOValidator {
    *   Thrown if there was a problem making the validation request or
    *   if there was a local configuration issue.
    */
-  public function validateToken($token, $decrypted, array $service_params) {
+  public function validateToken($token, $internal, array $service_params) {
 //    $options = array();
 //    $options['timeout'] = $this->ssoHelper->getConnectionTimeout();
 
-    if ($decrypted) {
-      return $this->validate($token, TRUE);
-    }
-    else {
-      $options = $this->ssoHelper->getServerValidateOptions($token);
-      if ($options['decrypt']) {
-        $this->ssoHelper->log('Attempting to validate service ticket using URL: ' . $options['uri']);
-        try {
-          $response = $this->httpClient->request('POST', $options['uri'], ['form_params' => $options['params']]);
-          $response_data = $response->getBody()->getContents();
-          $this->ssoHelper->log("Validation response received from PMMI SSO server: " . htmlspecialchars($response_data));
-        }
-        catch (RequestException $e) {
-          throw new PMMISSOValidateException("Error with request to validate token: " . $e->getMessage());
-        }
-        return $this->validate($response_data);
+    $options = $this->ssoHelper->getServerValidateOptions($token, $internal);
+    if ($options['decrypt']) {
+      $this->ssoHelper->log('Attempting to validate service token using URL: ' . $options['uri']);
+      try {
+        $response = $this->httpClient->request('POST', $options['uri'], ['form_params' => $options['params']]);
+        $response_data = $response->getBody()->getContents();
+        $this->ssoHelper->log("Validation response received from PMMI SSO server: " . htmlspecialchars($response_data));
+      }
+      catch (RequestException $e) {
+        throw new PMMISSOValidateException("Error with request to validate token: " . $e->getMessage());
+      }
+
+      if ($internal) {
+        return $this->validate($response_data, TRUE);
       }
       else {
-        throw new PMMISSOValidateException('Token do not decrypted!!!');
+        return $this->validate($response_data);
       }
+
+
     }
+    else {
+      throw new PMMISSOValidateException('Token do not decrypted!!!');
+    }
+
   }
 
   /**
@@ -129,7 +133,7 @@ class PMMISSOValidator {
       }
     }
     else {
-      throw new PMMISSOValidateException("XML from PMMI SSO server is not valid.");
+      throw new PMMISSOValidateException("Token from PMMI SSO server is not valid.");
     }
 
     return $property_bag;
@@ -158,8 +162,7 @@ class PMMISSOValidator {
       $response = $this->httpClient->request('POST', $query_options['uri'], ['form_params' => $query_options['params']]);
       $response_data = $response->getBody()->getContents();
       $this->ssoHelper->log("User ID received from PMMI SSO server: " . htmlspecialchars($response_data));
-    }
-    catch (RequestException $e) {
+    } catch (RequestException $e) {
       throw new PMMISSOValidateException("Error with request to get User ID: " . $e->getMessage());
     }
     $parser = $this->parser;
