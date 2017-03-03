@@ -7,7 +7,7 @@ pmmi_sales_agent.sales_agent_directory:
     _permission: 'pmmi sales agent administration'
 
 pmmi_sales_agent.mail_settings:
-  path: '/admin/config/services/pmmi-sales-agent-mail-settings'
+  path: '/admin/config/sales-agent-directory/mail-settings'
   defaults:
     _form: '\Drupal\pmmi_sales_agent\Form\PMMISalesAgentMailSettingsForm'
     _title: 'PMMI Sales Agent Mail Settings'
@@ -15,7 +15,7 @@ pmmi_sales_agent.mail_settings:
     _permission: 'pmmi sales agent administration'
 
 pmmi_sales_agent.mass_email:
-  path: '/admin/config/services/pmmi-sales-agent-mail-settings/mass-email'
+  path: '/admin/config/sales-agent-directory/mail-settings/mass'
   defaults:
     _form: '\Drupal\pmmi_sales_agent\Form\PMMISalesAgentMailMassForm'
     _title: 'PMMI Mass Email'
@@ -23,7 +23,7 @@ pmmi_sales_agent.mass_email:
     _permission: 'pmmi sales agent administration'
 
 pmmi_sales_agent.mass_email_confirm:
-  path: '/admin/config/services/pmmi-sales-agent-mail-settings/mass-email/confirm'
+  path: '/admin/config/sales-agent-directory/mail-settings/mass/confirm'
   defaults:
     _form: '\Drupal\pmmi_sales_agent\Form\PMMISalesAgentMailMassConfirmForm'
     _title: 'PMMI Mass Email Confirm'

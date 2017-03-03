@@ -738,6 +738,31 @@ block_box:
     main:
       label: Main content
 
+
+block_countdown:
+  label: Countdown
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/countdown
+  library: pmmi_bootstrap/countdown
+  regions:
+    head:
+      label: Head
+    countdown:
+      label: Countdown
+    button:
+      label: Button
+
+block_countdown_circle:
+  label: Countdown circle
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/countdown-circle
+  library: pmmi_bootstrap/countdown
+  regions:
+    countdown:
+      label: Countdown
+    button:
+      label: Button
+
 panel_default:
   label: Default panel layout
   category: PMMI: Panels

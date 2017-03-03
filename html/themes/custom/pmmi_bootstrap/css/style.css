@@ -12528,7 +12528,7 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
   color: #053248;
   font-weight: 800;
   padding-bottom: 6px;
-  border-bottom: 1px solid #c2c2c2;
+  border-bottom: 2px solid #c2c2c2;
   margin-bottom: 10px;
 }
 
@@ -12549,7 +12549,7 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
   text-transform: uppercase;
 }
 
-.sidehead3, .mode-default.school .field-name-node-title h3, .mode-event-left-rail .field-name-field-head {
+.sidehead3, .mode-default.school .field-name-node-title h3, .block-countdown .countdown .part .unit, .mode-event-left-rail .field-name-field-head {
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 18px;
@@ -17149,6 +17149,194 @@ div.view {
 @media screen and (max-width: 767px) {
   .block .containers .region-bottom .field-name-field-button a {
     width: 233px;
+  }
+}
+
+.block-countdown {
+  margin-bottom: 30px;
+}
+
+.block-countdown .title {
+  color: #000;
+}
+
+.block-countdown .countdown {
+  margin-bottom: 15px;
+}
+
+.block-countdown .countdown .part {
+  display: inline-block;
+  text-align: center;
+  padding: 0 22px 0 0;
+}
+
+.block-countdown .countdown .part .time {
+  display: block;
+  color: #004e75;
+  font-weight: 700;
+  font-size: 30px;
+  font-size: 1.875rem;
+  line-height: 36px;
+  line-height: 2.25rem;
+  position: relative;
+}
+
+.block-countdown .countdown .part .time:after {
+  content: ':';
+  right: -12px;
+  position: absolute;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .block-countdown .countdown .part {
+    padding-right: 20px;
+  }
+  .block-countdown .countdown .part .time {
+    font-size: 1.5625rem;
+    line-height: 1.8125rem;
+  }
+  .block-countdown .countdown .part .time:after {
+    right: -10px;
+  }
+}
+
+.block-countdown .countdown .part .unit {
+  display: block;
+  color: #8c8888;
+}
+
+.block-countdown .countdown .part.sec {
+  padding-right: 0;
+}
+
+.block-countdown .countdown .part.sec .time:after {
+  display: none;
+}
+
+.block-countdown-circle {
+  background: #004e75;
+}
+
+.block-countdown-circle .button {
+  float: right;
+  margin: 30px 60px;
+}
+
+.block-countdown-circle .button a {
+  font-size: 24px;
+  font-size: 1.5rem;
+  line-height: 24px;
+  line-height: 1.5rem;
+  padding-left: 45px;
+  padding-right: 45px;
+  height: 40px;
+}
+
+.block-countdown-circle .countdown {
+  color: #fff;
+  float: left;
+  pointer-events: none;
+}
+
+.block-countdown-circle .countdown .part {
+  display: inline-block;
+  text-align: center;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  background: #004e75;
+  width: 125px;
+  height: 125px;
+  line-height: 1;
+  margin: -63px 20px 30px 0;
+}
+
+.block-countdown-circle .countdown .part.days {
+  background: #053248;
+}
+
+.block-countdown-circle .countdown .part.min {
+  background: #038dc0;
+}
+
+.block-countdown-circle .countdown .part.sec {
+  background: #55acee;
+}
+
+.block-countdown-circle .countdown .time {
+  font-size: 52px;
+  font-size: 3.25rem;
+  font-weight: 700;
+  display: block;
+  margin: 22px 0 0 0;
+}
+
+.block-countdown-circle .countdown .unit {
+  font-size: 22px;
+  font-size: 1.375rem;
+  display: block;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .block-countdown-circle .countdown .part {
+    height: 115px;
+    width: 115px;
+    margin: -58px 10px 30px 0;
+  }
+  .block-countdown-circle .countdown .time {
+    font-size: 2.8125rem;
+  }
+  .block-countdown-circle .countdown .unit {
+    font-size: 1.125rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .block-countdown-circle .button {
+    margin: 37px 0;
+  }
+  .block-countdown-circle .countdown {
+    margin-bottom: 0;
+  }
+  .block-countdown-circle .countdown .part {
+    height: 100px;
+    width: 100px;
+    margin: 10px 10px 10px 0;
+    border-width: 4px;
+  }
+  .block-countdown-circle .countdown .time {
+    font-size: 2.1875rem;
+  }
+  .block-countdown-circle .countdown .unit {
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .block-countdown-circle {
+    text-align: center;
+    padding: 10px 0;
+    white-space: nowrap;
+  }
+  .block-countdown-circle .button {
+    margin: 10px 0 15px;
+    float: none;
+    clear: both;
+  }
+  .block-countdown-circle .countdown {
+    float: none;
+  }
+  .block-countdown-circle .countdown .part {
+    height: 65px;
+    width: 65px;
+    margin: 10px 4px;
+    border-width: 2px;
+  }
+  .block-countdown-circle .countdown .time {
+    margin-top: 13px;
+    font-size: 1.75rem;
+  }
+  .block-countdown-circle .countdown .unit {
+    font-size: 0.75rem;
   }
 }
 
