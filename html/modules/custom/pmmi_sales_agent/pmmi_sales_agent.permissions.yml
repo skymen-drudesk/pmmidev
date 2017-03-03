@@ -1,3 +1,11 @@
 pmmi sales agent administration:
   title: 'Administer sales agent directory'
   'restrict access': TRUE
+
+pmmi sales agent favorites:
+  title: "Access to 'My favorites' page"
+  'restrict access': TRUE
+
+pmmi sales agent search:
+  title: 'Use sales agent directory search'
+  'restrict access': TRUE
