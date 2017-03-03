@@ -52,7 +52,7 @@ class CurrentSalesAgentPerm extends ConditionPluginBase {
     $permission_name = $permissions[$this->configuration['permission']];
 
     if ($this->configuration['negate']) {
-      return $this->t('Current user has not "@permission" permission.', ['@permission' => $permission_name]);
+      return $this->t('Current user does not have "@permission" permission.', ['@permission' => $permission_name]);
     }
     else {
       return $this->t('Current user has "@permission" permission.', ['@permission' => $permission_name]);
