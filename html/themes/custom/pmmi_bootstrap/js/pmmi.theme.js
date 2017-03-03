@@ -245,7 +245,7 @@
         _this.searchBlock($navContext);
 
         // Mobile toggler.
-        $(window).on('breakpointActivated', function (e, breakpoint) {
+        var applyToggler = function (breakpoint) {
           if (breakpoint === 'mobile') {
             $dropdownToggle.once('click-toggler').each(function () {
               $(this).on('click.mobile-toggler', function (e) {
@@ -257,6 +257,9 @@
           else {
             $dropdownToggle.off('click.mobile-toggler').removeOnce('click-toggler');
           }
+        };
+        $(window).on('breakpointActivated', function (e, breakpoint) {
+          applyToggler(breakpoint);
         });
       });
     }
