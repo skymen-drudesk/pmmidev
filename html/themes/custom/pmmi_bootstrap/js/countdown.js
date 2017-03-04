@@ -20,7 +20,7 @@
           $time.countdown(time.toDate(), {elapse: true}).on('update.countdown', function (event) {
             $(this).html(event.strftime(''
               + '<div class="part days">' +
-                  '<span class="time">%d</span><span class="unit">day%!d</span>' +
+                  '<span class="time">%D</span><span class="unit">day%!D</span>' +
                 '</div>'
               + '<div class="part hrs">' +
                   '<span class="time">%H</span><span class="unit">hr%!H</span>' +
