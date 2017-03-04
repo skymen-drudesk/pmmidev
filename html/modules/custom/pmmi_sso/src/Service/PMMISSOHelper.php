@@ -221,13 +221,16 @@ class PMMISSOHelper {
    * @param array $options
    *   The array of options to add to the query.
    * @param array $parameter
-   *   The service parameter to add to query.
+   *   The service parameter to add to the query.
+   * @param bool $ims
+   *   The boolean flag indicates is query for IM Service.
    *
    * @return array
-   *   The options for building SSO Service Request.
+   *   The options for building SSO Service's Request.
    */
-  public function buildSsoServiceQuery($path, array $options, array $parameter) {
-    $service_url = $this->settings->get('service_uri') . '/' . $path;
+  public function buildSsoServiceQuery($path, array $options, array $parameter, $ims = FALSE) {
+    $service_uri = $ims ? $this->getImsUri() : $this->getServiceUri();
+    $service_url = $service_uri . '/' . $path;
     $query = array();
     $result = array();
     foreach ($options as $option) {
@@ -237,16 +240,17 @@ class PMMISSOHelper {
           break;
 
         case 'vu':
-          $query['vendorUsername'] = $this->getVu();
+          $query['vendorUsername'] = $ims ? $this->getImsVu() : $this->getVu();
           break;
 
         case 'vp':
-          $query['vendorPassword'] = $this->getVp();
+          $query['vendorPassword'] = $ims ? $this->getImsVp() : $this->getVp();
           break;
 
         case 'vib':
           $query['vendorBlock'] = $this->getVib();
           break;
+
       }
     }
     $result['uri'] = $service_url;
@@ -284,14 +288,68 @@ class PMMISSOHelper {
   }
 
   /**
-   * Construct the base URL to the PMMI SSO server.
+   * Get the login URI to the PMMI SSO server.
    *
    * @return string
-   *   The base URL.
+   *   The base URI.
    */
-  public function getServerBaseUrl() {
+  public function getServerLoginUri() {
     $url = $this->settings->get('login_uri');
     return $url;
+  }
+
+  /**
+   * Get the Service URI to the PMMI SSO server.
+   *
+   * @return string
+   *   The service URI.
+   */
+  public function getServiceUri() {
+    $url = $this->settings->get('service_uri');
+    return $url;
+  }
+
+  /**
+   * Get the IMS URI to the PMMI SSO server.
+   *
+   * @return string
+   *   The service URI.
+   */
+  public function getImsUri() {
+    $url = $this->settings->get('ims_uri');
+    return $url;
+  }
+
+  /**
+   * Construct the Login URL to the PMMI SSO server.
+   *
+   * @param string $return_uri
+   *   The string with query parameters.
+   *
+   * @return string
+   *   The login URL as string.
+   */
+  public function generateLoginUrl($return_uri) {
+    // Encode URI where we need to redirect user after user login to the SSO
+    // Service.
+    $uri_encoded = base64_encode($return_uri);
+
+    $now = DateTime::createFromFormat('U.u', microtime(TRUE));
+    $timestamp = $now->format('YmdHisv');
+    // Generate final redirect string to encode in Token.
+    $return_parameters = ['ue' => $uri_encoded];
+    $return_uri_sso = $this->urlGenerator->generate('pmmi_sso.service', $return_parameters, TRUE);
+
+    // Fill string to encode in the Token.
+    $string = $timestamp . '|' . $return_uri_sso;
+    $token = $this->crypt->encrypt($string);
+
+    // Generate final login uri.
+    $url = Url::fromUri($this->getServerLoginUri());
+    $url->setAbsolute(TRUE);
+    $url->setOption('query', ['vi' => $this->getVi(), 'vt' => $token]);
+
+    return $url->toString();
   }
 
   /**
@@ -312,48 +370,6 @@ class PMMISSOHelper {
     }
     $service_params['cti'] = $this->crypt->encrypt($service_params['cti']);
     return $this->urlGenerator->generate('pmmi_sso.service', $service_params, FALSE);
-  }
-
-  /**
-   * Generate the Login URI to the PMMI SSO server.
-   *
-   * @param string $return_uri
-   *   The string with query parameters.
-   *
-   * @return string
-   *   The login URI as string.
-   */
-  public function generateLoginUrl($return_uri) {
-    // Encode URI where need return user after correct token validation.
-    $uri_encoded = base64_encode($return_uri);
-
-    $now = DateTime::createFromFormat('U.u', microtime(TRUE));
-    $timestamp = $now->format('YmdHisv');
-    // Generate final redirect string to encode in Token.
-    $return_parameters = ['ue' => $uri_encoded];
-    $return_uri_sso = $this->urlGenerator->generate('pmmi_sso.service', $return_parameters, TRUE);
-
-    // Fill string to encode in the Token.
-    $string = $timestamp . '|' . $return_uri_sso;
-    $token = $this->crypt->encrypt($string);
-
-    // Generate final login uri.
-    $url = Url::fromUri($this->getServerBaseUrl());
-    $url->setAbsolute(TRUE);
-    $url->setOption('query', ['vi' => $this->getVi(), 'vt' => $token]);
-
-    return $url->toString();
-  }
-
-  /**
-   * Get the Service URL to the PMMI SSO server.
-   *
-   * @return string
-   *   The service URL.
-   */
-  public function getServiceUrl() {
-    $url = $this->settings->get('service_uri');
-    return $url;
   }
 
   /**
@@ -397,6 +413,28 @@ class PMMISSOHelper {
    */
   public function getVib() {
     return $this->settings->get('vib');
+  }
+
+  /**
+   * Get the Vendor username to the PMMI IMS server.
+   *
+   * @return string
+   *   The IMS vendor username.
+   */
+  public function getImsVu() {
+    $vu = $this->settings->get('ims_vu');
+    return $vu;
+  }
+
+  /**
+   * Get the Vendor password (HEX) to the PMMI IMS server.
+   *
+   * @return string
+   *   The IMS vendor password (HEX).
+   */
+  public function getImsVp() {
+    $vp = $this->settings->get('ims_vp');
+    return $vp;
   }
 
   /**

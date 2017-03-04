@@ -60,6 +60,7 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
   public static function getSubscribedEvents() {
     $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getSsoData', 100];
     $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getServiceData', 99];
+    $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getIMSServiceData', 98];
     return $events;
   }
 

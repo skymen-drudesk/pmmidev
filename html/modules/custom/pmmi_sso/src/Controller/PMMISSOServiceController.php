@@ -199,21 +199,29 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
       $sso_validation_info = $this->ssoValidator->validateToken($token, $internal, $service_params);
     }
     catch (PMMISSOValidateException $e) {
-      if (PMMISSOHelper::TOKEN_ACTION_FORCE_LOGIN) {
+      if ($this->ssoHelper->getTokenAction() == PMMISSOHelper::TOKEN_ACTION_FORCE_LOGIN) {
         // Validation failed, redirect to homepage and set message.
         $this->ssoHelper->log($e->getMessage());
-        $this->setMessage($this->t('There was a problem validating your login, please contact a site administrator.'), 'error');
+//        $this->setMessage($this->t('Your token expired.'), 'status');
         $this->handleReturnToParameter($request);
-//        return new PMMISSORedirectResponse($this->decodedPath);
+        user_logout();
+        $login_url = $this->ssoHelper->generateLoginUrl($this->decodedPath);
+        return new PMMISSORedirectResponse($login_url);
 
-        return RedirectResponse::create($this->urlGenerator->generate('<front>'));
+//        return new PMMISSORedirectResponse($this->urlGenerator->generate('<front>'));
       }
       else {
         // Validation failed, redirect to homepage and set message.
         $this->ssoHelper->log($e->getMessage());
-        $this->setMessage($this->t('There was a problem validating your login, please contact a site administrator.'), 'error');
+        $this->setMessage($this->t(
+          'Your session is expired. You have been logged out. Please, log in, 
+          to see restricted information.'
+        ), 'status');
         $this->handleReturnToParameter($request);
-        return RedirectResponse::create($this->urlGenerator->generate('<front>'));
+        user_logout();
+        return new PMMISSORedirectResponse($this->decodedPath);
+//        return RedirectResponse::create($this->urlGenerator->generate('<front>'));
+//        return RedirectResponse::create($this->urlGenerator->generate('<front>'));
       }
     }
     if ($internal) {

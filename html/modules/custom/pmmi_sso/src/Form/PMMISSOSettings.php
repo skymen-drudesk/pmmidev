@@ -72,7 +72,7 @@ class PMMISSOSettings extends ConfigFormBase {
     $config = $this->config('pmmi_sso.settings');
     $form['sso'] = array(
       '#type' => 'fieldset',
-      '#title' => 'Personify SSO Data',
+      '#title' => 'Personify SSO Services Data',
       '#description' => $this->t("Personify SSO service URI's and authentication data"),
     );
     $form['login_uri'] = [
@@ -129,6 +129,39 @@ class PMMISSOSettings extends ConfigFormBase {
       '#required' => TRUE,
       '#default_value' => $config->get('vib'),
     ];
+    $form['ims'] = array(
+      '#type' => 'fieldset',
+      '#title' => 'Personify SSO IMS Data',
+      '#group' => 'sso',
+      '#description' => $this->t("Personify IM service URI and authentication data"),
+    );
+    $form['ims_uri'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('IM Service URI'),
+      '#maxlength' => 128,
+      '#group' => 'ims',
+      '#required' => TRUE,
+      '#size' => 64,
+      '#default_value' => $config->get('ims_uri'),
+    ];
+    $form['ims_vu'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('IMS vendor username'),
+      '#maxlength' => 64,
+      '#size' => 64,
+      '#group' => 'ims',
+      '#required' => TRUE,
+      '#default_value' => $config->get('ims_vu'),
+    ];
+    $form['ims_vp'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('IMS vendor password (HEX)'),
+      '#maxlength' => 32,
+      '#size' => 64,
+      '#group' => 'ims',
+      '#required' => TRUE,
+      '#default_value' => $config->get('ims_vp'),
+    ];
     $form['data_service'] = array(
       '#type' => 'fieldset',
       '#title' => $this->t('Personify Data Service Information'),
@@ -165,7 +198,6 @@ class PMMISSOSettings extends ConfigFormBase {
       '#open' => TRUE,
       '#tree' => TRUE,
     );
-
     $auto_assigned_roles = $config->get('user_accounts.auto_assigned_roles');
     $form['user_accounts']['auto_assigned_roles_enable'] = array(
       '#type' => 'checkbox',
@@ -326,6 +358,9 @@ class PMMISSOSettings extends ConfigFormBase {
       ->set('vu', $form_state->getValue('vu'))
       ->set('vp', $form_state->getValue('vp'))
       ->set('vib', $form_state->getValue('vib'))
+      ->set('ims_uri', $form_state->getValue('ims_uri'))
+      ->set('ims_vu', $form_state->getValue('ims_vu'))
+      ->set('ims_vp', $form_state->getValue('ims_vp'))
       ->set('data_service.endpoint', $form_state->getValue([
         'data_service',
         'endpoint',

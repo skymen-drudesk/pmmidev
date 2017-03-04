@@ -196,7 +196,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
 
       // Check to see if we should initiate a gateway auth check.
       if ($this->handleGateway()) {
-        $redirect_data->setParameter('gateway', 'true');
+        $redirect_data->setParameter('gateway', TRUE);
         $this->ssoHelper->log('Gateway Login Requested');
         $redirect_data->forceRedirection();
       };

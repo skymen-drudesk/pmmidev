@@ -22,6 +22,15 @@ pmmi_sso.settings:
     vib:
       type: string
       label: 'Vendor initilization block (HEX)'
+    ims_uri:
+      type: string
+      label: 'IM Service URI'
+    ims_vu:
+      type: string
+      label: 'IMS vendor username'
+    ims_vp:
+      type: string
+      label: 'IMS vendor password (HEX)'
     expiration:
       type: number
       label: 'Token expiration time'
