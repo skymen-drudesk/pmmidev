@@ -17340,7 +17340,7 @@ div.view {
   }
 }
 
-/* TEXT VIEW MODES */
+/* Enticement VIEW MODES */
 .block-enticement .button {
   margin: 10px 0;
 }
@@ -17380,6 +17380,7 @@ div.view {
     float: none;
     display: inline-block;
     margin: 0 0 15px;
+    max-width: 100%;
   }
   .block-enticement .button a {
     min-width: 210px;
@@ -17392,7 +17393,7 @@ div.view {
 }
 
 .block-enticement.mode-enticement-full-width .image {
-  max-width: 204px;
+  max-width: 170px;
   margin-top: -27px;
   margin-bottom: -27px;
 }
@@ -17406,16 +17407,17 @@ div.view {
 
 .block-enticement.mode-enticement-full-width .title-body {
   margin-right: 305px;
-  padding: 30px 0;
+  padding: 30px 0 10px;
 }
 
 .block-enticement.mode-enticement-full-width .right {
+  padding: 0;
   position: relative;
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
   .block-enticement.mode-enticement-full-width .image {
-    max-width: 170px;
+    max-width: 143px;
     margin: -10px 10px -10px 0;
   }
   .block-enticement.mode-enticement-full-width .button {
@@ -17425,7 +17427,7 @@ div.view {
     min-width: 225px;
   }
   .block-enticement.mode-enticement-full-width .title-body {
-    padding: 20px 0;
+    padding: 20px 0 10px;
     margin-right: 230px;
   }
 }
@@ -17453,6 +17455,7 @@ div.view {
     margin: 6px 0 20px;
   }
   .block-enticement.mode-enticement-full-width .image {
+    max-width: 100%;
     margin: 0 0 10px;
   }
   .block-enticement.mode-enticement-full-width .right {
@@ -17464,7 +17467,7 @@ div.view {
 }
 
 .container .block-enticement.mode-enticement-full-width .image {
-  margin: -17px 15px -17px 15px;
+  margin-left: 15px;
 }
 
 .container .block-enticement.mode-enticement-full-width .title-body {
@@ -17482,12 +17485,18 @@ div.view {
   padding: 0;
 }
 
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .container .block-enticement.mode-enticement-full-width .image {
+    max-width: 170px;
+  }
+}
+
 @media screen and (max-width: 1023px) {
   .container .block-enticement.mode-enticement-full-width {
-    padding: 0;
+    padding: 15px;
   }
   .container .block-enticement.mode-enticement-full-width .image {
-    margin: -17px 15px -17px 15px;
+    margin: 0 15px 0 0;
   }
   .container .block-enticement.mode-enticement-full-width .title-body {
     margin: 0;
@@ -17499,12 +17508,16 @@ div.view {
   .container .block-enticement.mode-enticement-full-width .image {
     margin: 0 0 10px;
   }
-  .container .block-enticement.mode-enticement-full-width .wrapper {
-    padding: 15px 15px 0;
+  .container .block-enticement.mode-enticement-full-width .button {
+    margin-bottom: 0;
   }
   .container .block-enticement.mode-enticement-full-width .title-body {
     padding: 0;
   }
+}
+
+.enticement-region .block {
+  margin-bottom: 0;
 }
 
 /* EVENT VIEW MODES. */

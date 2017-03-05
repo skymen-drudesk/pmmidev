@@ -9,7 +9,7 @@ dependencies:
     - field.field.block_content.enticement.field_head
     - field.field.block_content.enticement.field_image
     - field.field.block_content.enticement.field_teaser
-    - image.style.block_style_1
+    - image.style.enticement_style
   module:
     - ds
     - image
@@ -59,7 +59,7 @@ content:
     weight: 1
     label: hidden
     settings:
-      image_style: block_style_1
+      image_style: enticement_style
       image_link: ''
     third_party_settings:
       ds:
