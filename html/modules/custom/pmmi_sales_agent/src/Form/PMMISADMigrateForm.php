@@ -26,10 +26,9 @@ class PMMISADMigrateForm extends FormBase implements MigrateMessageInterface {
       '#type' => 'fieldset',
       '#title' => $this->t('Before import:'),
       '#description' => $this->t('Your import file should include only
-        companies, which you want to import. If some item has been failed, you
-        can find a reason of failing on the "Messages" tab. After that, you can
-        fix it and re-import (only failed items will be imported at a second
-        time).'
+        companies which you want to import. If items have failed, you can find
+        the reason on the "Messages" tab. After that, you can fix it and
+        re-import (only failed items will be imported at a second time).'
       ),
     ];
 
@@ -39,8 +38,8 @@ class PMMISADMigrateForm extends FormBase implements MigrateMessageInterface {
       '#maxlength' => 40,
     ];
 
-    // @todo: at the moment we allow import process only. The next features
-    // Rollback/Stop/Reset are not available. Do we need them?
+    // @todo: at the moment we allow import process only. Do we need 'Reset'
+    // feature?
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Start import'),
@@ -57,7 +56,7 @@ class PMMISADMigrateForm extends FormBase implements MigrateMessageInterface {
 
     $validators = ['file_validate_extensions' => ['xlsx']];
 
-    // Check for a new uploaded logo.
+    // Check for a new uploaded import file.
     $file = file_save_upload('company_migrate_upload', $validators, FALSE, 0);
     if (isset($file)) {
       // File upload was attempted.
@@ -125,7 +124,6 @@ class PMMISADMigrateForm extends FormBase implements MigrateMessageInterface {
   public function batchProcess($migration, &$context) {
     if (empty($context['sandbox'])) {
       $context['sandbox']['progress'] = 0;
-      $context['sandbox']['offset'] = 0;
       $total = $source_plugin = $migration->getSourcePlugin()->count();
       $context['sandbox']['max'] = $total;
     }
@@ -135,7 +133,6 @@ class PMMISADMigrateForm extends FormBase implements MigrateMessageInterface {
 
     $context['sandbox']['results'] = 'OK';
     $context['sandbox']['progress'] = $context['sandbox']['max'];
-    $context['sandbox']['offset'] = $context['sandbox']['max'];
     $context['message'] = 'Processed ' . $migration->id();
 
     if ($context['sandbox']['progress'] != $context['sandbox']['max']) {
