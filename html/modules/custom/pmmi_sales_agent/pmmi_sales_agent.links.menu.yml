@@ -5,12 +5,17 @@ pmmi_sales_agent.sales_agent_directory:
   parent: system.admin_config
   weight: 99
 
+pmmi_sales_agent.migrate:
+  title: Import new companies
+  description: 'Upload a file and import new companies.'
+  route_name: pmmi_sales_agent.migrate
+  parent: pmmi_sales_agent.sales_agent_directory
+
 # Sales agent directory mail settings.
 pmmi_sales_agent.mail_settings:
   title: Mail settings
   route_name: pmmi_sales_agent.mail_settings
   parent: pmmi_sales_agent.sales_agent_directory
-  weight: 99
 
 # Panel page: Sales Agent Directory - Usage Export.
 pmmi_sales_agent.usage_export:

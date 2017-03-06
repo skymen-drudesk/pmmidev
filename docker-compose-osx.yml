@@ -65,6 +65,11 @@ services:
       - "8004:6081" # HTTP Proxy for testing purposes. On production we need to change this line to 80:6081
       - "8005:6082" # Control terminal
 
+  pmmimail:
+    extends:
+      file: docker-compose.yml
+      service: pmmimail
+
 volumes:
   pmmi-unison-sync:
     external: true
