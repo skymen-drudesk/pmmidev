@@ -4,6 +4,7 @@ description: 'Includes PMMI Sales Agent Directory extensions.'
 package: PMMI
 core: 8.x
 dependencies:
-  - token
   - config_update
   - content_moderation
+  - pmmi_import
+  - token

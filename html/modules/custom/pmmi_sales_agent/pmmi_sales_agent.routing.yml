@@ -6,6 +6,26 @@ pmmi_sales_agent.sales_agent_directory:
   requirements:
     _permission: 'pmmi sales agent administration'
 
+# Company migrate: import form.
+pmmi_sales_agent.migrate:
+  path: '/admin/config/sales-agent-directory/migrate'
+  defaults:
+    _form: '\Drupal\pmmi_sales_agent\Form\PMMISADMigrateForm'
+    _title: 'Company migration'
+  requirements:
+    _permission: 'pmmi sales agent administration'
+
+# Company migrate: result messages.
+pmmi_sales_agent.migrate_messages:
+  path: '/admin/config/sales-agent-directory/migrate/messages'
+  defaults:
+    _controller: '\Drupal\migrate_tools\Controller\MessageController::overview'
+    _title: 'Migrate result messages'
+    migration_group: 'PMMI import'
+    migration: 'company_migrate'
+  requirements:
+    _permission: 'pmmi sales agent administration'
+
 pmmi_sales_agent.mail_settings:
   path: '/admin/config/sales-agent-directory/mail-settings'
   defaults:
