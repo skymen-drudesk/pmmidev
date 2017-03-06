@@ -28,3 +28,19 @@ pmmi_sales_agent.admin_panel:
   title: Admin Panel
   route_name: page_manager.page_view_sales_agent_directory_admin_panel_sales_agent_directory_admin_panel-panels_variant-0
   parent: pmmi_sales_agent.sales_agent_directory
+
+# Sales agent user stat menu items definition.
+entity.sad_user_stat.collection:
+  title: 'Sales agent user stat list'
+  route_name: entity.sad_user_stat.collection
+  description: 'List Sales agent user stat entities'
+  parent: system.admin_structure
+  weight: 100
+
+# Sales agent user stat type menu items definition.
+entity.sad_user_stat_type.collection:
+  title: 'Sales agent user stat type'
+  route_name: entity.sad_user_stat_type.collection
+  description: 'List Sales agent user stat type (bundles)'
+  parent: system.admin_structure
+  weight: 99

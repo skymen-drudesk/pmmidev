@@ -1,0 +1,11 @@
+entity.sad_user_stat.add_form:
+  route_name: 'entity.sad_user_stat.add_page'
+  title: 'Add Sales agent user stat'
+  appears_on:
+    - entity.sad_user_stat.collection
+entity.sad_user_stat_type.add_form:
+  route_name: 'entity.sad_user_stat_type.add_form'
+  title: 'Add Sales agent user stat type'
+  appears_on:
+    - entity.sad_user_stat_type.collection
+
