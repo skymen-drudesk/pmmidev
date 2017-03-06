@@ -1,3 +1,13 @@
+# Sales agent directory - migration tasks.
+pmmi_sales_agent.migrate:
+  route_name: pmmi_sales_agent.migrate
+  base_route: pmmi_sales_agent.migrate
+  title: 'Import'
+pmmi_sales_agent.migrate_messages:
+  route_name: pmmi_sales_agent.migrate_messages
+  base_route: pmmi_sales_agent.migrate
+  title: 'Messages'
+
 pmmi_sales_agent.mail_settings:
   route_name: pmmi_sales_agent.mail_settings
   base_route: pmmi_sales_agent.mail_settings
