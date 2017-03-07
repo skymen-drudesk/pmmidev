@@ -22,7 +22,7 @@ services:
     container_name: pmmi_test_web
     build:
       context: .
-      dockerfile: Dockerfile-dev
+      dockerfile: Dockerfile-test
     depends_on:
       - pmmidb
       - pmmisolr
