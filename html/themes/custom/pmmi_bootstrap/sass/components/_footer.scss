@@ -79,7 +79,7 @@ body > .page-wrapper,
     }
   }
   .block-copyright-block {
-    @extend .col-md-1;
+    @extend .col-sm-1;
     width: auto;
     padding-right: 0;
   }
@@ -136,6 +136,7 @@ body > .page-wrapper,
   @include tablet {
     nav,
     .block-copyright-block {
+      float: none;
       display: inline-block;
     }
   }
