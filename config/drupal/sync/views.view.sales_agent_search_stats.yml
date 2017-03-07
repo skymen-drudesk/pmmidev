@@ -1,19 +1,24 @@
-uuid: 354ef7c5-fb7c-4811-b29b-50322ca80280
+uuid: e0a8eefb-c82f-46f8-abe3-b5c3e2bb6ec8
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.storage.sad_user_stat.field_countries_searched
+    - pmmi_sales_agent.sad_user_stat_type.search
   module:
+    - country
     - csv_serialization
+    - pmmi_sales_agent
     - rest
     - serialization
     - user
     - views_data_export
-id: export_list_of_users
-label: 'Export list of users'
+id: sales_agent_search_stats
+label: 'Sales agent search stats'
 module: views
 description: ''
 tag: ''
-base_table: pmmi_sales_agent_search_stats
+base_table: sad_user_stat
 base_field: id
 core: 8.x
 display:
@@ -48,7 +53,7 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: full
+        type: mini
         options:
           items_per_page: 100
           offset: 0
@@ -57,8 +62,6 @@ display:
           tags:
             previous: ‹‹
             next: ››
-            first: '« First'
-            last: 'Last »'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -67,7 +70,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          quantity: 9
       style:
         type: table
         options:
@@ -80,19 +82,9 @@ display:
           summary: ''
           description: ''
           columns:
-            id: id
-            date: date
+            field_countries_searched: field_countries_searched
           info:
-            id:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            date:
-              sortable: false
-              default_sort_order: asc
+            field_countries_searched:
               align: ''
               separator: ''
               empty_column: false
@@ -107,10 +99,10 @@ display:
           hide_empty: false
           default_field_elements: true
       fields:
-        date:
-          id: date
-          table: pmmi_sales_agent_search_stats
-          field: date
+        created:
+          id: created
+          table: sad_user_stat
+          field: created
           relationship: none
           group_type: group
           admin_label: ''
@@ -155,15 +147,30 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          date_format: fallback
-          custom_date_format: ''
-          timezone: ''
-          plugin_id: date
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: medium
+            custom_date_format: ''
+            timezone: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: sad_user_stat
+          entity_field: created
+          plugin_id: field
         name:
           id: name
           table: users_field_data
           field: name
-          relationship: uid
+          relationship: user_id
           group_type: group
           admin_label: ''
           label: Name
@@ -208,7 +215,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
+          type: user_name
           settings:
             link_to_entity: false
           group_column: value
@@ -228,361 +235,7 @@ display:
           id: mail
           table: users_field_data
           field: mail
-          relationship: uid
-          group_type: group
-          admin_label: ''
-          label: 'Email address'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: email_mailto
-          settings: {  }
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: user
-          entity_field: mail
-          plugin_id: field
-        countries_searched:
-          id: countries_searched
-          table: pmmi_sales_agent_search_stats
-          field: countries_searched
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Countries searched'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          plugin_id: standard
-      filters:
-        date:
-          id: date
-          table: pmmi_sales_agent_search_stats
-          field: date
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: between
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-          group: 1
-          exposed: true
-          expose:
-            operator_id: date_op
-            label: Date
-            description: 'A date in any machine readable format. CCYY-MM-DD HH:MM:SS is preferred.'
-            use_operator: false
-            operator: date_op
-            identifier: date
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              editor: '0'
-              manager: '0'
-              sales_agent_admin: '0'
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: date
-      sorts: {  }
-      header: {  }
-      footer: {  }
-      empty: {  }
-      relationships:
-        uid:
-          id: uid
-          table: pmmi_sales_agent_search_stats
-          field: uid
-          relationship: none
-          group_type: group
-          admin_label: uid
-          required: false
-          plugin_id: standard
-      arguments: {  }
-      display_extenders: {  }
-    cache_metadata:
-      max-age: 0
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-      tags: {  }
-  block_1:
-    display_plugin: block
-    id: block_1
-    display_title: Block
-    position: 1
-    display_options:
-      display_extenders: {  }
-      exposed_block: false
-      block_category: 'PMMI (Views)'
-    cache_metadata:
-      max-age: 0
-      contexts:
-        - 'languages:language_content'
-        - 'languages:language_interface'
-        - url
-        - url.query_args
-      tags: {  }
-  data_export_1:
-    display_plugin: data_export
-    id: data_export_1
-    display_title: 'Data export'
-    position: 2
-    display_options:
-      display_extenders: {  }
-      path: admin/config/sales-agent-directory/usage-export.csv
-      filename: ''
-      style:
-        type: data_export
-        options:
-          formats:
-            csv: csv
-          csv_settings:
-            delimiter: ','
-            enclosure: '"'
-            escape_char: \
-            strip_tags: true
-            trim: true
-            encoding: utf8
-          xls_settings:
-            xls_format: Excel2007
-            metadata:
-              creator: ''
-              last_modified_by: ''
-              title: ''
-              description: ''
-              subject: ''
-              keywords: ''
-              category: ''
-              manager: ''
-              company: ''
-      displays:
-        block_1: block_1
-        default: '0'
-      fields:
-        date:
-          id: date
-          table: pmmi_sales_agent_search_stats
-          field: date
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Date searched'
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          date_format: fallback
-          custom_date_format: ''
-          timezone: ''
-          plugin_id: date
-        name:
-          id: name
-          table: users_field_data
-          field: name
-          relationship: uid
-          group_type: group
-          admin_label: ''
-          label: Name
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: user
-          entity_field: name
-          plugin_id: field
-        mail:
-          id: mail
-          table: users_field_data
-          field: mail
-          relationship: uid
+          relationship: user_id
           group_type: group
           admin_label: ''
           label: 'Email address'
@@ -642,10 +295,10 @@ display:
           entity_type: user
           entity_field: mail
           plugin_id: field
-        countries_searched:
-          id: countries_searched
-          table: pmmi_sales_agent_search_stats
-          field: countries_searched
+        field_countries_searched:
+          id: field_countries_searched
+          table: sad_user_stat__field_countries_searched
+          field: field_countries_searched
           relationship: none
           group_type: group
           admin_label: ''
@@ -682,7 +335,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: true
+          element_label_colon: false
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -690,13 +343,158 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
+          click_sort_column: value
+          type: country_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+      filters:
+        type:
+          id: type
+          table: sad_user_stat
+          field: type
+          value:
+            search: search
+          entity_type: sad_user_stat
+          entity_field: type
+          plugin_id: bundle
+        created:
+          id: created
+          table: sad_user_stat
+          field: created
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: between
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: created_op
+            label: 'Date range'
+            description: 'CCYY-MM-DD HH:MM:SS is preferred.'
+            use_operator: false
+            operator: created_op
+            identifier: created
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              manager: '0'
+              sales_agent_admin: '0'
+              pmmi_member: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: sad_user_stat
+          entity_field: created
+          plugin_id: date
+      sorts: {  }
+      header: {  }
+      footer: {  }
+      empty: {  }
+      relationships:
+        user_id:
+          id: user_id
+          table: sad_user_stat
+          field: user_id
+          relationship: none
+          group_type: group
+          admin_label: User
+          required: false
+          entity_type: sad_user_stat
+          entity_field: user_id
           plugin_id: standard
-      defaults:
-        fields: false
-      pager:
-        type: none
+      arguments: {  }
+      display_extenders: {  }
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+      tags:
+        - 'config:field.storage.sad_user_stat.field_countries_searched'
+  block_1:
+    display_plugin: block
+    id: block_1
+    display_title: Block
+    position: 1
+    display_options:
+      display_extenders: {  }
+    cache_metadata:
+      max-age: 0
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+      tags:
+        - 'config:field.storage.sad_user_stat.field_countries_searched'
+  data_export_1:
+    display_plugin: data_export
+    id: data_export_1
+    display_title: 'Data export'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      path: admin/config/sales-agent-directory/usage-export.csv
+      filename: ''
+      automatic_download: 0
+      style:
+        type: data_export
         options:
-          offset: 0
+          formats:
+            csv: csv
+          csv_settings:
+            delimiter: ','
+            enclosure: '"'
+            escape_char: \
+            strip_tags: true
+            trim: true
+            encoding: utf8
+          xls_settings:
+            xls_format: Excel2007
+            metadata:
+              creator: ''
+              last_modified_by: ''
+              title: ''
+              description: ''
+              subject: ''
+              keywords: ''
+              category: ''
+              manager: ''
+              company: ''
+      displays:
+        block_1: block_1
+        default: '0'
     cache_metadata:
       max-age: -1
       contexts:
@@ -704,4 +502,5 @@ display:
         - 'languages:language_interface'
         - request_format
         - url
-      tags: {  }
+      tags:
+        - 'config:field.storage.sad_user_stat.field_countries_searched'

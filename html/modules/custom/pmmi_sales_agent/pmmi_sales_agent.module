@@ -146,22 +146,15 @@ function pmmi_sales_agent_form_pmmi_company_search_block_form_alter(&$form, Form
 function pmmi_sales_agent_log_search_stats(&$form, FormStateInterface $form_state) {
   $values = $form_state->getValues();
 
-  // Select the countries which were searched to add them to usage stats.
-  $countries_searched = [];
-  if ($values['country_code']) {
-    $countries = $form_state->getValue('country_list');
-    foreach ($values['country_code'] as $country_code) {
-      $countries_searched[] = $countries[$country_code];
-    }
+  // Create new user stat entity.
+  if (!empty($values['country_code'])) {
+    \Drupal::entityTypeManager()->getStorage('sad_user_stat')
+      ->create([
+        'uid' => \Drupal::currentUser()->id(),
+        'type' => 'search',
+        'field_countries_searched' => $values['country_code'],
+      ])->save();
   }
-
-  // Creates the statistic point.
-  $connection = Database::getConnection();
-  $connection->insert('pmmi_sales_agent_search_stats')->fields([
-    'uid' => \Drupal::currentUser()->id(),
-    'date' => REQUEST_TIME,
-    'countries_searched' => $countries_searched ? implode(', ', $countries_searched) : '',
-  ])->execute();
 }
 
 /**

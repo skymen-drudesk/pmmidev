@@ -175,11 +175,6 @@ class PMMICompanySearchBlockForm extends FormBase {
       '#placeholder' => $this->t('Enter keyword'),
     ];
 
-    $form['country_list'] = [
-      '#type' => 'value',
-      '#value' => $this->countryRepository->getList(),
-    ];
-
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Search'),
