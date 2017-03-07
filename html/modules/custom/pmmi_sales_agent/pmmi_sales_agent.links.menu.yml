@@ -11,6 +11,12 @@ pmmi_sales_agent.migrate:
   route_name: pmmi_sales_agent.migrate
   parent: pmmi_sales_agent.sales_agent_directory
 
+pmmi_sales_agent.reporting:
+  title: Reporting
+  description: 'The sales agent directory reportings.'
+  route_name: pmmi_sales_agent.report_settings
+  parent: pmmi_sales_agent.sales_agent_directory
+
 # Sales agent directory mail settings.
 pmmi_sales_agent.mail_settings:
   title: Mail settings

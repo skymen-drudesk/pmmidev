@@ -23,11 +23,11 @@ define('PMMI_SALES_AGENT_MAIL_LISTING_UPDATE', 'mail_listing_update');
  */
 function pmmi_sales_agent_theme() {
   $theme = [];
-  $theme['sad_user_stat'] = array(
+  $theme['sad_user_stat'] = [
     'render element' => 'elements',
     'file' => 'sad_user_stat.page.inc',
     'template' => 'sad_user_stat',
-  );
+  ];
   $theme['sad_user_stat_content_add_list'] = [
     'render element' => 'content',
     'variables' => ['content' => NULL],

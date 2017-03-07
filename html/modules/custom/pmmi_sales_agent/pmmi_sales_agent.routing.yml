@@ -26,6 +26,31 @@ pmmi_sales_agent.migrate_messages:
   requirements:
     _permission: 'pmmi sales agent administration'
 
+# Reporting: general settings.
+pmmi_sales_agent.report_settings:
+  path: '/admin/config/sales-agent-directory/report-settings'
+  defaults:
+    _form: '\Drupal\pmmi_sales_agent\Form\PMMISADReportSettingsForm'
+    _title: 'Reporting settings'
+  requirements:
+    _permission: 'pmmi sales agent administration'
+
+entity.sad_downloads_quota.collection:
+  path: '/admin/config/sales-agent-directory/report-settings/per-user'
+  defaults:
+    _entity_list: 'sad_downloads_quota'
+    _title: 'Downloads user quota'
+  requirements:
+    _permission: 'pmmi sales agent administration'
+
+entity.sad_downloads_quota.add_form:
+  path: '/admin/config/sales-agent-directory/report-settings/per-user/add'
+  defaults:
+    _entity_form: 'sad_downloads_quota.default'
+    _title: 'sasasa'
+  requirements:
+    _permission: 'pmmi sales agent administration'
+
 pmmi_sales_agent.mail_settings:
   path: '/admin/config/sales-agent-directory/mail-settings'
   defaults:

@@ -143,3 +143,12 @@ function pmmi_sales_agent_update_8009() {
     $schema->dropTable('pmmi_sales_agent_search_stats');
   }
 }
+
+/**
+ * Revert configuration of the reporting configs.
+ */
+function pmmi_sales_agent_update_8010() {
+  \Drupal::service('module_installer')->install(['config_update'], TRUE);
+  \Drupal::service('config_update.config_update')
+    ->revert('system.simple', 'pmmi_sales_agent.reporting_settings');
+}

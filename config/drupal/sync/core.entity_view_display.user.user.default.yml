@@ -1,0 +1,24 @@
+uuid: 02fa412f-929e-4eba-b6cc-b67fa649215b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.field_user_level_quota
+  module:
+    - user
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  field_user_level_quota:
+    weight: 6
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  member_for:
+    weight: 5
+hidden: {  }

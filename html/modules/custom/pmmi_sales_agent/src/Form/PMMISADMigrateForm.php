@@ -11,6 +11,7 @@ use Drupal\migrate_tools\MigrateExecutable;
  * Provide a form to upload .xslx file in order to import new companies.
  */
 class PMMISADMigrateForm extends FormBase implements MigrateMessageInterface {
+
   /**
    * {@inheritdoc}
    */
