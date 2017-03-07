@@ -1,3 +1,6 @@
+.menu-container.collapse {
+  display: block;
+}
 .navbar {
   padding: 0;
   @include desktop {
@@ -18,6 +21,9 @@
     padding: 0;
     position: absolute;
     margin: 0 0 0 -90px;
+    .block {
+      margin: 0;
+    }
     .front & {
       width: 136px;
       height: 133px;
@@ -113,11 +119,12 @@
         background: #fff;
       }
     }
+    .block-nav-wrapper,
     .block-tb-megamenu {
       display: inline-block;
       margin: 0;
     }
-    .tb-megamenu.collapse {
+    .menu-container.collapse {
       display: block;
       height: auto !important;
     }
@@ -142,6 +149,12 @@
           letter-spacing: 1px;
           text-transform: uppercase;
           position: relative;
+          &.register {
+            background-color: $blueopacity;
+            &:after {
+              border-right: none;
+            }
+          }
           .caret {
             display: none;
           }
@@ -198,13 +211,14 @@
     }
     @include mobile {
       margin: 4px 0 0;
+      .block-nav-wrapper,
       .block-tb-megamenu {
         float: right;
         position: relative;
         display: block;
         margin: 0;
       }
-      .tb-megamenu {
+      .menu-container {
         clear: both;
         position: absolute;
         right: 0;
@@ -305,36 +319,42 @@
       box-shadow: none;
       border-radius: 0;
       margin: 0;
-      min-width: 624px;
-      padding: 25px 30px 10px;
+      font-family: $lato;
+      min-width: 200px;
+      padding: 15px 15px 10px;
+      &.tb-megamenu-submenu {
+        @include desktop-min {
+          min-width: 624px;
+          padding: 25px 30px 10px;
+        }
+      }
       .mega-nav {
-        font-family: $lato;
         list-style: none;
         padding: 0;
-        li {
-          font-size: $r13;
-          line-height: $r15;
-          margin-bottom: 10px;
-          &.only-mobile {
-            display: none;
-          }
-          a {
-            font-weight: 800;
-            color: $dkgrey;
-          }
+      }
+      li {
+        font-size: $r13;
+        line-height: $r15;
+        margin-bottom: 10px;
+        &.only-mobile {
+          display: none;
+        }
+        a {
+          font-weight: 800;
+          color: $dkgrey;
+        }
+        &:after {
+          display: block;
+          content: "";
+          height: 0;
+          max-width: 200px;
+          margin: 7px 0 0;
+          border-bottom: 1px solid $ltgrey;
+        }
+        &:last-child {
+          margin-bottom: 0;
           &:after {
-            display: block;
-            content: "";
-            height: 0;
-            max-width: 200px;
-            margin: 7px 0 0;
-            border-bottom: 1px solid $ltgrey;
-          }
-          &:last-child {
-            margin-bottom: 0;
-            &:after {
-              display: none;
-            }
+            display: none;
           }
         }
       }
@@ -345,7 +365,7 @@
         padding: 0;
         min-width: 165px;
         white-space: nowrap;
-        .mega-nav li {
+        li {
           margin: 0;
           font-size: $r12;
           line-height: $r15;
@@ -386,25 +406,23 @@
         padding: 0;
         min-width: 0;
         border: none;
-        .mega-nav {
-          li {
-            margin-bottom: 0;
-            &.only-mobile {
-              display: block;
+        li {
+          margin-bottom: 0;
+          &.only-mobile {
+            display: block;
+          }
+          a {
+            color: $ltblue;
+            font-size: $r12;
+            line-height: $r15;
+            font-weight: 500;
+            padding-left: 40px;
+            &:hover {
+              color: #fff;
             }
-            a {
-              color: $ltblue;
-              font-size: $r12;
-              line-height: $r15;
-              font-weight: 500;
-              padding-left: 40px;
-              &:hover {
-                color: #fff;
-              }
-            }
-            &:after {
-              display: none;
-            }
+          }
+          &:after {
+            display: none;
           }
         }
       }
@@ -734,9 +752,9 @@
 }
 
 #panel-am {
-  @include site-template-header(332px, 13px, 141px);
-  .microsite-info {
-    margin-top: 11px;
+  @include site-template-header(332px, 13px, 100px);
+  .navbar div.logo {
+    bottom: 0;
   }
   @include desktop {
     @include site-template-header(297px, 15px, 126px);
@@ -761,8 +779,11 @@
 }
 #panel-exln {
   @include site-template-header(425px, 17px, 150px);
+  .navbar div.logo {
+    bottom: 0;
+  }
   .microsite-info {
-    margin-top: 17px;
+    margin-top: 20px;
   }
   @include desktop {
     @include site-template-header(312px, 6px, 110px);

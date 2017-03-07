@@ -20,7 +20,9 @@ services:
 
   pmmiweb:
     container_name: pmmi_test_web
-    image: pmguser/drupal-php7.0-apache:1.0.2
+    build:
+      context: .
+      dockerfile: Dockerfile-test
     depends_on:
       - pmmidb
       - pmmisolr
@@ -70,6 +72,12 @@ services:
     ports:
       - "80:6081"
       - "8005:6082" # Control terminal
+
+  pmmimail:
+    container_name: pmmi_test_mailhog
+    image: mailhog/mailhog
+    ports:
+      - "8006:8025"
 
 networks:
   back:

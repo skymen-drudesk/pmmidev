@@ -527,7 +527,9 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
+        - user
       tags:
         - 'config:field.storage.pmmi_company_contact.field_email'
         - 'config:field.storage.pmmi_company_contact.field_name'
@@ -547,7 +549,9 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
+        - user
       tags:
         - 'config:field.storage.pmmi_company_contact.field_email'
         - 'config:field.storage.pmmi_company_contact.field_name'
@@ -560,7 +564,7 @@ display:
     position: 2
     display_options:
       display_extenders: {  }
-      path: admin/sales-agent-directory/contacts/%node/agent_contacts.csv
+      path: admin/config/sales-agent-directory/admin-panel/contacts/%node/agent_contacts.csv
       filename: ''
       pager:
         type: none
@@ -2508,6 +2512,8 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - request_format
+        - url
+        - user
       tags:
         - 'config:field.storage.node.field_after_sales_service'
         - 'config:field.storage.node.field_business_lines'
