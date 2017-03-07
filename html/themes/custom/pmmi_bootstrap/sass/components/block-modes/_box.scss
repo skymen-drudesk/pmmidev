@@ -65,10 +65,12 @@
     }
   }
   &.mode-vertical-box {
-    padding: 20px 20px 60px 20px;
+    padding: 20px;
     position: relative;
     border: 1px solid $mdgrey;
-    text-align: center;
+    &.with-buttons {
+      padding-bottom: 60px;
+    }
     .field-name-field-image {
       margin-bottom: 15px;
       img {
@@ -78,6 +80,7 @@
     }
     .field-name-field-head {
       @extend .default-headline-3;
+      text-align: center;
     }
     .field-name-body {
       @extend .paragraph2;
@@ -88,8 +91,8 @@
       left: 0;
       right: 0;
       bottom: 10px;
+      text-align: center;
       a {
-        @extend .button-primary;
         margin: 0 5px 10px;
       }
     }

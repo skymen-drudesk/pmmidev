@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_form_alter().
@@ -138,5 +139,35 @@ function pmmi_forms_webform_options_create_access(\Drupal\Core\Session\AccountIn
 function pmmi_forms_webform_options_access(EntityInterface $entity, $operation, AccountInterface $account) {
   if (in_array($operation, ['update', 'delete'])) {
     return AccessResult::allowedIf($account->hasPermission('create webform'))->cachePerPermissions()->cachePerUser();
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function pmmi_forms_menu_local_tasks_alter(&$data, $route_name) {
+  $user = \Drupal::currentUser();
+  $roles = $user->getRoles();
+  $routes = [
+    'entity.webform.collection',
+    'entity.webform_options.collection',
+    'entity.webform_submission.collection',
+  ];
+
+  if (!in_array('administrator', $roles) && $user->hasPermission('create webform')
+  && in_array($route_name, $routes)) {
+    $data['tabs'][0]['webform.options'] = array(
+      '#theme' => 'menu_local_task',
+      '#link' => array(
+        'title' => t('Manage options'),
+        'url' => Url::fromRoute('entity.webform_options.collection'),
+        'localized_options' => array(
+          'attributes' => array(
+            'title' => t('Manage options'),
+          ),
+        ),
+      ),
+      '#active' => $route_name == 'entity.webform_options.collection',
+    );
   }
 }

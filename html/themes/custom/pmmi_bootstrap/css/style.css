@@ -4014,7 +4014,7 @@ pre code {
   clear: both;
 }
 
-.col-xs-1, .col-sm-1, .col-md-1, .footer .block-copyright-block, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .footer .block-block-content, .col-lg-2, .col-xs-3, .col-sm-3, .events-block-3 .views-row,
+.col-xs-1, .col-sm-1, .footer .block-copyright-block, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .footer .block-block-content, .col-lg-2, .col-xs-3, .col-sm-3, .events-block-3 .views-row,
 .block-views-blockevents-block-3 .views-row, .col-md-3, .footer nav, .block-icons.cols-4 .column > .field, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .block-icons.cols-3 .column > .field, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .footer .block-audience-switcher, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .block-icons.cols-2 .column > .field, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
   position: relative;
   min-height: 1px;
@@ -4231,11 +4231,11 @@ pre code {
 }
 
 @media (min-width: 768px) {
-  .col-sm-1, .col-sm-2, .col-sm-3, .events-block-3 .views-row,
+  .col-sm-1, .footer .block-copyright-block, .col-sm-2, .col-sm-3, .events-block-3 .views-row,
   .block-views-blockevents-block-3 .views-row, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
     float: left;
   }
-  .col-sm-1 {
+  .col-sm-1, .footer .block-copyright-block {
     width: 8.33333%;
   }
   .col-sm-2 {
@@ -4392,10 +4392,10 @@ pre code {
 }
 
 @media (min-width: 1024px) {
-  .col-md-1, .footer .block-copyright-block, .col-md-2, .footer .block-block-content, .col-md-3, .footer nav, .block-icons.cols-4 .column > .field, .col-md-4, .block-icons.cols-3 .column > .field, .col-md-5, .footer .block-audience-switcher, .col-md-6, .block-icons.cols-2 .column > .field, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+  .col-md-1, .col-md-2, .footer .block-block-content, .col-md-3, .footer nav, .block-icons.cols-4 .column > .field, .col-md-4, .block-icons.cols-3 .column > .field, .col-md-5, .footer .block-audience-switcher, .col-md-6, .block-icons.cols-2 .column > .field, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
     float: left;
   }
-  .col-md-1, .footer .block-copyright-block {
+  .col-md-1 {
     width: 8.33333%;
   }
   .col-md-2, .footer .block-block-content {
@@ -11605,7 +11605,7 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
   width: 24rem;
 }
 
-.button-primary-defaults, .button-primary, .btn-prm-wrap a, .mode-event-left-rail .field-name-field-button a, .page-sales-agent-directory-my-favorites .view-header, .mode-default.video .field-name-node-link a, .mode-default.certification-test .field-name-field-link a, .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a, .block-box.mode-vertical-box .field-name-field-buttons a, .containers .region-bottom .field-name-field-button a, .accordion-item .field-name-field-button a, .btn-primary-opacity, .mode-default.video .field-name-field-link a, .mode-default.certification-test .field-name-node-link a, .block-box.mode-full .field-name-field-buttons a:not(:first-child), .block-box.mode-default .field-name-field-buttons a:not(:first-child), .block-event-default .link a, .button-secondary, .btn-scnd-wrap a, .default-exposed-form form button, .region-top .block.views-exposed-form form button, .block-pmmi-search-library-block form button, .events-block-3 .more-link a,
+.button-primary-defaults, .button-primary, .btn-prm-wrap a, .mode-event-left-rail .field-name-field-button a, .page-sales-agent-directory-my-favorites .view-header, .mode-default.video .field-name-node-link a, .mode-default.certification-test .field-name-field-link a, .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a, .containers .region-bottom .field-name-field-button a, .accordion-item .field-name-field-button a, .btn-primary-opacity, .mode-default.video .field-name-field-link a, .mode-default.certification-test .field-name-node-link a, .block-box.mode-full .field-name-field-buttons a:not(:first-child), .block-box.mode-default .field-name-field-buttons a:not(:first-child), .block-event-default .link a, .button-secondary, .btn-scnd-wrap a, .default-exposed-form form button, .region-top .block.views-exposed-form form button, .block-pmmi-search-library-block form button, .events-block-3 .more-link a,
 .block-views-blockevents-block-3 .more-link a, .blue-region .containers .region-bottom .field-name-field-button a {
   display: inline-block;
   margin-bottom: 0;
@@ -11636,36 +11636,36 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
   text-transform: uppercase;
 }
 
-.button-primary-defaults:focus, .button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .block-box.mode-vertical-box .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .btn-primary-opacity:focus, .mode-default.video .field-name-field-link a:focus, .mode-default.certification-test .field-name-node-link a:focus, .block-event-default .link a:focus, .button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
-.block-views-blockevents-block-3 .more-link a:focus, .button-primary-defaults.focus, .focus.button-primary, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .focus.view-header, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .block-box.mode-vertical-box .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus, .focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.focus, .mode-default.certification-test .field-name-node-link a.focus, .block-event-default .link a.focus, .focus.button-secondary, .btn-scnd-wrap a.focus, .default-exposed-form form button.focus, .region-top .block.views-exposed-form form button.focus, .block-pmmi-search-library-block form button.focus, .events-block-3 .more-link a.focus,
-.block-views-blockevents-block-3 .more-link a.focus, .button-primary-defaults:active:focus, .button-primary:active:focus, .btn-prm-wrap a:active:focus, .mode-event-left-rail .field-name-field-button a:active:focus, .page-sales-agent-directory-my-favorites .view-header:active:focus, .mode-default.video .field-name-node-link a:active:focus, .mode-default.certification-test .field-name-field-link a:active:focus, .block-box.mode-full .field-name-field-buttons a:active:focus, .block-box.mode-default .field-name-field-buttons a:active:focus, .block-box.mode-vertical-box .field-name-field-buttons a:active:focus, .containers .region-bottom .field-name-field-button a:active:focus, .accordion-item .field-name-field-button a:active:focus, .btn-primary-opacity:active:focus, .mode-default.video .field-name-field-link a:active:focus, .mode-default.certification-test .field-name-node-link a:active:focus, .block-event-default .link a:active:focus, .button-secondary:active:focus, .btn-scnd-wrap a:active:focus, .default-exposed-form form button:active:focus, .region-top .block.views-exposed-form form button:active:focus, .block-pmmi-search-library-block form button:active:focus, .events-block-3 .more-link a:active:focus,
-.block-views-blockevents-block-3 .more-link a:active:focus, .button-primary-defaults:active.focus, .button-primary:active.focus, .btn-prm-wrap a:active.focus, .mode-event-left-rail .field-name-field-button a:active.focus, .page-sales-agent-directory-my-favorites .view-header:active.focus, .mode-default.video .field-name-node-link a:active.focus, .mode-default.certification-test .field-name-field-link a:active.focus, .block-box.mode-full .field-name-field-buttons a:active.focus, .block-box.mode-default .field-name-field-buttons a:active.focus, .block-box.mode-vertical-box .field-name-field-buttons a:active.focus, .containers .region-bottom .field-name-field-button a:active.focus, .accordion-item .field-name-field-button a:active.focus, .btn-primary-opacity:active.focus, .mode-default.video .field-name-field-link a:active.focus, .mode-default.certification-test .field-name-node-link a:active.focus, .block-event-default .link a:active.focus, .button-secondary:active.focus, .btn-scnd-wrap a:active.focus, .default-exposed-form form button:active.focus, .region-top .block.views-exposed-form form button:active.focus, .block-pmmi-search-library-block form button:active.focus, .events-block-3 .more-link a:active.focus,
-.block-views-blockevents-block-3 .more-link a:active.focus, .button-primary-defaults.active:focus, .active.button-primary:focus, .btn-prm-wrap a.active:focus, .mode-event-left-rail .field-name-field-button a.active:focus, .page-sales-agent-directory-my-favorites .active.view-header:focus, .mode-default.video .field-name-node-link a.active:focus, .mode-default.certification-test .field-name-field-link a.active:focus, .block-box.mode-full .field-name-field-buttons a.active:focus, .block-box.mode-default .field-name-field-buttons a.active:focus, .block-box.mode-vertical-box .field-name-field-buttons a.active:focus, .containers .region-bottom .field-name-field-button a.active:focus, .accordion-item .field-name-field-button a.active:focus, .active.btn-primary-opacity:focus, .mode-default.video .field-name-field-link a.active:focus, .mode-default.certification-test .field-name-node-link a.active:focus, .block-event-default .link a.active:focus, .active.button-secondary:focus, .btn-scnd-wrap a.active:focus, .default-exposed-form form button.active:focus, .region-top .block.views-exposed-form form button.active:focus, .block-pmmi-search-library-block form button.active:focus, .events-block-3 .more-link a.active:focus,
-.block-views-blockevents-block-3 .more-link a.active:focus, .button-primary-defaults.active.focus, .active.focus.button-primary, .btn-prm-wrap a.active.focus, .mode-event-left-rail .field-name-field-button a.active.focus, .page-sales-agent-directory-my-favorites .active.focus.view-header, .mode-default.video .field-name-node-link a.active.focus, .mode-default.certification-test .field-name-field-link a.active.focus, .block-box.mode-full .field-name-field-buttons a.active.focus, .block-box.mode-default .field-name-field-buttons a.active.focus, .block-box.mode-vertical-box .field-name-field-buttons a.active.focus, .containers .region-bottom .field-name-field-button a.active.focus, .accordion-item .field-name-field-button a.active.focus, .active.focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.active.focus, .mode-default.certification-test .field-name-node-link a.active.focus, .block-event-default .link a.active.focus, .active.focus.button-secondary, .btn-scnd-wrap a.active.focus, .default-exposed-form form button.active.focus, .region-top .block.views-exposed-form form button.active.focus, .block-pmmi-search-library-block form button.active.focus, .events-block-3 .more-link a.active.focus,
+.button-primary-defaults:focus, .button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .btn-primary-opacity:focus, .mode-default.video .field-name-field-link a:focus, .mode-default.certification-test .field-name-node-link a:focus, .block-event-default .link a:focus, .button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
+.block-views-blockevents-block-3 .more-link a:focus, .button-primary-defaults.focus, .focus.button-primary, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .focus.view-header, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus, .focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.focus, .mode-default.certification-test .field-name-node-link a.focus, .block-event-default .link a.focus, .focus.button-secondary, .btn-scnd-wrap a.focus, .default-exposed-form form button.focus, .region-top .block.views-exposed-form form button.focus, .block-pmmi-search-library-block form button.focus, .events-block-3 .more-link a.focus,
+.block-views-blockevents-block-3 .more-link a.focus, .button-primary-defaults:active:focus, .button-primary:active:focus, .btn-prm-wrap a:active:focus, .mode-event-left-rail .field-name-field-button a:active:focus, .page-sales-agent-directory-my-favorites .view-header:active:focus, .mode-default.video .field-name-node-link a:active:focus, .mode-default.certification-test .field-name-field-link a:active:focus, .block-box.mode-full .field-name-field-buttons a:active:focus, .block-box.mode-default .field-name-field-buttons a:active:focus, .containers .region-bottom .field-name-field-button a:active:focus, .accordion-item .field-name-field-button a:active:focus, .btn-primary-opacity:active:focus, .mode-default.video .field-name-field-link a:active:focus, .mode-default.certification-test .field-name-node-link a:active:focus, .block-event-default .link a:active:focus, .button-secondary:active:focus, .btn-scnd-wrap a:active:focus, .default-exposed-form form button:active:focus, .region-top .block.views-exposed-form form button:active:focus, .block-pmmi-search-library-block form button:active:focus, .events-block-3 .more-link a:active:focus,
+.block-views-blockevents-block-3 .more-link a:active:focus, .button-primary-defaults:active.focus, .button-primary:active.focus, .btn-prm-wrap a:active.focus, .mode-event-left-rail .field-name-field-button a:active.focus, .page-sales-agent-directory-my-favorites .view-header:active.focus, .mode-default.video .field-name-node-link a:active.focus, .mode-default.certification-test .field-name-field-link a:active.focus, .block-box.mode-full .field-name-field-buttons a:active.focus, .block-box.mode-default .field-name-field-buttons a:active.focus, .containers .region-bottom .field-name-field-button a:active.focus, .accordion-item .field-name-field-button a:active.focus, .btn-primary-opacity:active.focus, .mode-default.video .field-name-field-link a:active.focus, .mode-default.certification-test .field-name-node-link a:active.focus, .block-event-default .link a:active.focus, .button-secondary:active.focus, .btn-scnd-wrap a:active.focus, .default-exposed-form form button:active.focus, .region-top .block.views-exposed-form form button:active.focus, .block-pmmi-search-library-block form button:active.focus, .events-block-3 .more-link a:active.focus,
+.block-views-blockevents-block-3 .more-link a:active.focus, .button-primary-defaults.active:focus, .active.button-primary:focus, .btn-prm-wrap a.active:focus, .mode-event-left-rail .field-name-field-button a.active:focus, .page-sales-agent-directory-my-favorites .active.view-header:focus, .mode-default.video .field-name-node-link a.active:focus, .mode-default.certification-test .field-name-field-link a.active:focus, .block-box.mode-full .field-name-field-buttons a.active:focus, .block-box.mode-default .field-name-field-buttons a.active:focus, .containers .region-bottom .field-name-field-button a.active:focus, .accordion-item .field-name-field-button a.active:focus, .active.btn-primary-opacity:focus, .mode-default.video .field-name-field-link a.active:focus, .mode-default.certification-test .field-name-node-link a.active:focus, .block-event-default .link a.active:focus, .active.button-secondary:focus, .btn-scnd-wrap a.active:focus, .default-exposed-form form button.active:focus, .region-top .block.views-exposed-form form button.active:focus, .block-pmmi-search-library-block form button.active:focus, .events-block-3 .more-link a.active:focus,
+.block-views-blockevents-block-3 .more-link a.active:focus, .button-primary-defaults.active.focus, .active.focus.button-primary, .btn-prm-wrap a.active.focus, .mode-event-left-rail .field-name-field-button a.active.focus, .page-sales-agent-directory-my-favorites .active.focus.view-header, .mode-default.video .field-name-node-link a.active.focus, .mode-default.certification-test .field-name-field-link a.active.focus, .block-box.mode-full .field-name-field-buttons a.active.focus, .block-box.mode-default .field-name-field-buttons a.active.focus, .containers .region-bottom .field-name-field-button a.active.focus, .accordion-item .field-name-field-button a.active.focus, .active.focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.active.focus, .mode-default.certification-test .field-name-node-link a.active.focus, .block-event-default .link a.active.focus, .active.focus.button-secondary, .btn-scnd-wrap a.active.focus, .default-exposed-form form button.active.focus, .region-top .block.views-exposed-form form button.active.focus, .block-pmmi-search-library-block form button.active.focus, .events-block-3 .more-link a.active.focus,
 .block-views-blockevents-block-3 .more-link a.active.focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 
-.button-primary-defaults:hover, .button-primary:hover, .btn-prm-wrap a:hover, .mode-event-left-rail .field-name-field-button a:hover, .page-sales-agent-directory-my-favorites .view-header:hover, .mode-default.video .field-name-node-link a:hover, .mode-default.certification-test .field-name-field-link a:hover, .block-box.mode-full .field-name-field-buttons a:hover, .block-box.mode-default .field-name-field-buttons a:hover, .block-box.mode-vertical-box .field-name-field-buttons a:hover, .containers .region-bottom .field-name-field-button a:hover, .accordion-item .field-name-field-button a:hover, .btn-primary-opacity:hover, .mode-default.video .field-name-field-link a:hover, .mode-default.certification-test .field-name-node-link a:hover, .block-event-default .link a:hover, .button-secondary:hover, .btn-scnd-wrap a:hover, .default-exposed-form form button:hover, .region-top .block.views-exposed-form form button:hover, .block-pmmi-search-library-block form button:hover, .events-block-3 .more-link a:hover,
-.block-views-blockevents-block-3 .more-link a:hover, .button-primary-defaults:focus, .button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .block-box.mode-vertical-box .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .btn-primary-opacity:focus, .mode-default.video .field-name-field-link a:focus, .mode-default.certification-test .field-name-node-link a:focus, .block-event-default .link a:focus, .button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
-.block-views-blockevents-block-3 .more-link a:focus, .button-primary-defaults.focus, .focus.button-primary, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .focus.view-header, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .block-box.mode-vertical-box .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus, .focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.focus, .mode-default.certification-test .field-name-node-link a.focus, .block-event-default .link a.focus, .focus.button-secondary, .btn-scnd-wrap a.focus, .default-exposed-form form button.focus, .region-top .block.views-exposed-form form button.focus, .block-pmmi-search-library-block form button.focus, .events-block-3 .more-link a.focus,
+.button-primary-defaults:hover, .button-primary:hover, .btn-prm-wrap a:hover, .mode-event-left-rail .field-name-field-button a:hover, .page-sales-agent-directory-my-favorites .view-header:hover, .mode-default.video .field-name-node-link a:hover, .mode-default.certification-test .field-name-field-link a:hover, .block-box.mode-full .field-name-field-buttons a:hover, .block-box.mode-default .field-name-field-buttons a:hover, .containers .region-bottom .field-name-field-button a:hover, .accordion-item .field-name-field-button a:hover, .btn-primary-opacity:hover, .mode-default.video .field-name-field-link a:hover, .mode-default.certification-test .field-name-node-link a:hover, .block-event-default .link a:hover, .button-secondary:hover, .btn-scnd-wrap a:hover, .default-exposed-form form button:hover, .region-top .block.views-exposed-form form button:hover, .block-pmmi-search-library-block form button:hover, .events-block-3 .more-link a:hover,
+.block-views-blockevents-block-3 .more-link a:hover, .button-primary-defaults:focus, .button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .btn-primary-opacity:focus, .mode-default.video .field-name-field-link a:focus, .mode-default.certification-test .field-name-node-link a:focus, .block-event-default .link a:focus, .button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
+.block-views-blockevents-block-3 .more-link a:focus, .button-primary-defaults.focus, .focus.button-primary, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .focus.view-header, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus, .focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.focus, .mode-default.certification-test .field-name-node-link a.focus, .block-event-default .link a.focus, .focus.button-secondary, .btn-scnd-wrap a.focus, .default-exposed-form form button.focus, .region-top .block.views-exposed-form form button.focus, .block-pmmi-search-library-block form button.focus, .events-block-3 .more-link a.focus,
 .block-views-blockevents-block-3 .more-link a.focus {
   color: #333;
   text-decoration: none;
 }
 
-.button-primary-defaults:active, .button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .page-sales-agent-directory-my-favorites .view-header:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .block-box.mode-vertical-box .field-name-field-buttons a:active, .containers .region-bottom .field-name-field-button a:active, .accordion-item .field-name-field-button a:active, .btn-primary-opacity:active, .mode-default.video .field-name-field-link a:active, .mode-default.certification-test .field-name-node-link a:active, .block-event-default .link a:active, .button-secondary:active, .btn-scnd-wrap a:active, .default-exposed-form form button:active, .region-top .block.views-exposed-form form button:active, .block-pmmi-search-library-block form button:active, .events-block-3 .more-link a:active,
-.block-views-blockevents-block-3 .more-link a:active, .button-primary-defaults.active, .active.button-primary, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .page-sales-agent-directory-my-favorites .active.view-header, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .block-box.mode-vertical-box .field-name-field-buttons a.active, .containers .region-bottom .field-name-field-button a.active, .accordion-item .field-name-field-button a.active, .active.btn-primary-opacity, .mode-default.video .field-name-field-link a.active, .mode-default.certification-test .field-name-node-link a.active, .block-event-default .link a.active, .active.button-secondary, .btn-scnd-wrap a.active, .default-exposed-form form button.active, .region-top .block.views-exposed-form form button.active, .block-pmmi-search-library-block form button.active, .events-block-3 .more-link a.active,
+.button-primary-defaults:active, .button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .page-sales-agent-directory-my-favorites .view-header:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .containers .region-bottom .field-name-field-button a:active, .accordion-item .field-name-field-button a:active, .btn-primary-opacity:active, .mode-default.video .field-name-field-link a:active, .mode-default.certification-test .field-name-node-link a:active, .block-event-default .link a:active, .button-secondary:active, .btn-scnd-wrap a:active, .default-exposed-form form button:active, .region-top .block.views-exposed-form form button:active, .block-pmmi-search-library-block form button:active, .events-block-3 .more-link a:active,
+.block-views-blockevents-block-3 .more-link a:active, .button-primary-defaults.active, .active.button-primary, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .page-sales-agent-directory-my-favorites .active.view-header, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .containers .region-bottom .field-name-field-button a.active, .accordion-item .field-name-field-button a.active, .active.btn-primary-opacity, .mode-default.video .field-name-field-link a.active, .mode-default.certification-test .field-name-node-link a.active, .block-event-default .link a.active, .active.button-secondary, .btn-scnd-wrap a.active, .default-exposed-form form button.active, .region-top .block.views-exposed-form form button.active, .block-pmmi-search-library-block form button.active, .events-block-3 .more-link a.active,
 .block-views-blockevents-block-3 .more-link a.active {
   outline: 0;
   background-image: none;
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 
-.button-primary-defaults.disabled, .disabled.button-primary, .btn-prm-wrap a.disabled, .mode-event-left-rail .field-name-field-button a.disabled, .page-sales-agent-directory-my-favorites .disabled.view-header, .mode-default.video .field-name-node-link a.disabled, .mode-default.certification-test .field-name-field-link a.disabled, .block-box.mode-full .field-name-field-buttons a.disabled, .block-box.mode-default .field-name-field-buttons a.disabled, .block-box.mode-vertical-box .field-name-field-buttons a.disabled, .containers .region-bottom .field-name-field-button a.disabled, .accordion-item .field-name-field-button a.disabled, .disabled.btn-primary-opacity, .mode-default.video .field-name-field-link a.disabled, .mode-default.certification-test .field-name-node-link a.disabled, .block-event-default .link a.disabled, .disabled.button-secondary, .btn-scnd-wrap a.disabled, .default-exposed-form form button.disabled, .region-top .block.views-exposed-form form button.disabled, .block-pmmi-search-library-block form button.disabled, .events-block-3 .more-link a.disabled,
-.block-views-blockevents-block-3 .more-link a.disabled, .button-primary-defaults[disabled], [disabled].button-primary, .btn-prm-wrap a[disabled], .mode-event-left-rail .field-name-field-button a[disabled], .page-sales-agent-directory-my-favorites [disabled].view-header, .mode-default.video .field-name-node-link a[disabled], .mode-default.certification-test .field-name-field-link a[disabled], .block-box.mode-full .field-name-field-buttons a[disabled], .block-box.mode-default .field-name-field-buttons a[disabled], .block-box.mode-vertical-box .field-name-field-buttons a[disabled], .containers .region-bottom .field-name-field-button a[disabled], .accordion-item .field-name-field-button a[disabled], [disabled].btn-primary-opacity, .mode-default.video .field-name-field-link a[disabled], .mode-default.certification-test .field-name-node-link a[disabled], .block-event-default .link a[disabled], [disabled].button-secondary, .btn-scnd-wrap a[disabled], .default-exposed-form form button[disabled], .region-top .block.views-exposed-form form button[disabled], .block-pmmi-search-library-block form button[disabled], .events-block-3 .more-link a[disabled],
+.button-primary-defaults.disabled, .disabled.button-primary, .btn-prm-wrap a.disabled, .mode-event-left-rail .field-name-field-button a.disabled, .page-sales-agent-directory-my-favorites .disabled.view-header, .mode-default.video .field-name-node-link a.disabled, .mode-default.certification-test .field-name-field-link a.disabled, .block-box.mode-full .field-name-field-buttons a.disabled, .block-box.mode-default .field-name-field-buttons a.disabled, .containers .region-bottom .field-name-field-button a.disabled, .accordion-item .field-name-field-button a.disabled, .disabled.btn-primary-opacity, .mode-default.video .field-name-field-link a.disabled, .mode-default.certification-test .field-name-node-link a.disabled, .block-event-default .link a.disabled, .disabled.button-secondary, .btn-scnd-wrap a.disabled, .default-exposed-form form button.disabled, .region-top .block.views-exposed-form form button.disabled, .block-pmmi-search-library-block form button.disabled, .events-block-3 .more-link a.disabled,
+.block-views-blockevents-block-3 .more-link a.disabled, .button-primary-defaults[disabled], [disabled].button-primary, .btn-prm-wrap a[disabled], .mode-event-left-rail .field-name-field-button a[disabled], .page-sales-agent-directory-my-favorites [disabled].view-header, .mode-default.video .field-name-node-link a[disabled], .mode-default.certification-test .field-name-field-link a[disabled], .block-box.mode-full .field-name-field-buttons a[disabled], .block-box.mode-default .field-name-field-buttons a[disabled], .containers .region-bottom .field-name-field-button a[disabled], .accordion-item .field-name-field-button a[disabled], [disabled].btn-primary-opacity, .mode-default.video .field-name-field-link a[disabled], .mode-default.certification-test .field-name-node-link a[disabled], .block-event-default .link a[disabled], [disabled].button-secondary, .btn-scnd-wrap a[disabled], .default-exposed-form form button[disabled], .region-top .block.views-exposed-form form button[disabled], .block-pmmi-search-library-block form button[disabled], .events-block-3 .more-link a[disabled],
 .block-views-blockevents-block-3 .more-link a[disabled],
 fieldset[disabled] .button-primary-defaults,
 fieldset[disabled] .button-primary,
@@ -11682,8 +11682,6 @@ fieldset[disabled] a,
 fieldset[disabled] .block-box.mode-full .field-name-field-buttons a, .block-box.mode-full .field-name-field-buttons
 fieldset[disabled] a,
 fieldset[disabled] .block-box.mode-default .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons
-fieldset[disabled] a,
-fieldset[disabled] .block-box.mode-vertical-box .field-name-field-buttons a, .block-box.mode-vertical-box .field-name-field-buttons
 fieldset[disabled] a,
 fieldset[disabled] .containers .region-bottom .field-name-field-button a, .containers .region-bottom .field-name-field-button
 fieldset[disabled] a,
@@ -11717,25 +11715,25 @@ fieldset[disabled] a {
   box-shadow: none;
 }
 
-.button-primary, .btn-prm-wrap a, .mode-event-left-rail .field-name-field-button a, .page-sales-agent-directory-my-favorites .view-header, .mode-default.video .field-name-node-link a, .mode-default.certification-test .field-name-field-link a, .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a, .block-box.mode-vertical-box .field-name-field-buttons a, .containers .region-bottom .field-name-field-button a, .accordion-item .field-name-field-button a {
+.button-primary, .btn-prm-wrap a, .mode-event-left-rail .field-name-field-button a, .page-sales-agent-directory-my-favorites .view-header, .mode-default.video .field-name-node-link a, .mode-default.certification-test .field-name-field-link a, .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a, .containers .region-bottom .field-name-field-button a, .accordion-item .field-name-field-button a {
   color: #fff;
   background-color: #004e75;
   border-color: #004e75;
 }
 
-.button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .block-box.mode-vertical-box .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .button-primary.focus, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .focus.view-header, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .block-box.mode-vertical-box .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus {
+.button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .button-primary.focus, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .focus.view-header, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus {
   color: #fff;
   background-color: #002c42;
   border-color: black;
 }
 
-.button-primary:hover, .btn-prm-wrap a:hover, .mode-event-left-rail .field-name-field-button a:hover, .page-sales-agent-directory-my-favorites .view-header:hover, .mode-default.video .field-name-node-link a:hover, .mode-default.certification-test .field-name-field-link a:hover, .block-box.mode-full .field-name-field-buttons a:hover, .block-box.mode-default .field-name-field-buttons a:hover, .block-box.mode-vertical-box .field-name-field-buttons a:hover, .containers .region-bottom .field-name-field-button a:hover, .accordion-item .field-name-field-button a:hover {
+.button-primary:hover, .btn-prm-wrap a:hover, .mode-event-left-rail .field-name-field-button a:hover, .page-sales-agent-directory-my-favorites .view-header:hover, .mode-default.video .field-name-node-link a:hover, .mode-default.certification-test .field-name-field-link a:hover, .block-box.mode-full .field-name-field-buttons a:hover, .block-box.mode-default .field-name-field-buttons a:hover, .containers .region-bottom .field-name-field-button a:hover, .accordion-item .field-name-field-button a:hover {
   color: #fff;
   background-color: #002c42;
   border-color: #002538;
 }
 
-.button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .page-sales-agent-directory-my-favorites .view-header:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .block-box.mode-vertical-box .field-name-field-buttons a:active, .containers .region-bottom .field-name-field-button a:active, .accordion-item .field-name-field-button a:active, .button-primary.active, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .page-sales-agent-directory-my-favorites .active.view-header, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .block-box.mode-vertical-box .field-name-field-buttons a.active, .containers .region-bottom .field-name-field-button a.active, .accordion-item .field-name-field-button a.active,
+.button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .page-sales-agent-directory-my-favorites .view-header:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .containers .region-bottom .field-name-field-button a:active, .accordion-item .field-name-field-button a:active, .button-primary.active, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .page-sales-agent-directory-my-favorites .active.view-header, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .containers .region-bottom .field-name-field-button a.active, .accordion-item .field-name-field-button a.active,
 .open > .button-primary.dropdown-toggle, .btn-prm-wrap
 .open > a.dropdown-toggle, .mode-event-left-rail .field-name-field-button
 .open > a.dropdown-toggle, .page-sales-agent-directory-my-favorites
@@ -11743,7 +11741,6 @@ fieldset[disabled] a {
 .open > a.dropdown-toggle, .mode-default.certification-test .field-name-field-link
 .open > a.dropdown-toggle, .block-box.mode-full .field-name-field-buttons
 .open > a.dropdown-toggle, .block-box.mode-default .field-name-field-buttons
-.open > a.dropdown-toggle, .block-box.mode-vertical-box .field-name-field-buttons
 .open > a.dropdown-toggle, .containers .region-bottom .field-name-field-button
 .open > a.dropdown-toggle, .accordion-item .field-name-field-button
 .open > a.dropdown-toggle {
@@ -11752,7 +11749,7 @@ fieldset[disabled] a {
   border-color: #002538;
 }
 
-.button-primary:active:hover, .btn-prm-wrap a:active:hover, .mode-event-left-rail .field-name-field-button a:active:hover, .page-sales-agent-directory-my-favorites .view-header:active:hover, .mode-default.video .field-name-node-link a:active:hover, .mode-default.certification-test .field-name-field-link a:active:hover, .block-box.mode-full .field-name-field-buttons a:active:hover, .block-box.mode-default .field-name-field-buttons a:active:hover, .block-box.mode-vertical-box .field-name-field-buttons a:active:hover, .containers .region-bottom .field-name-field-button a:active:hover, .accordion-item .field-name-field-button a:active:hover, .button-primary:active:focus, .btn-prm-wrap a:active:focus, .mode-event-left-rail .field-name-field-button a:active:focus, .page-sales-agent-directory-my-favorites .view-header:active:focus, .mode-default.video .field-name-node-link a:active:focus, .mode-default.certification-test .field-name-field-link a:active:focus, .block-box.mode-full .field-name-field-buttons a:active:focus, .block-box.mode-default .field-name-field-buttons a:active:focus, .block-box.mode-vertical-box .field-name-field-buttons a:active:focus, .containers .region-bottom .field-name-field-button a:active:focus, .accordion-item .field-name-field-button a:active:focus, .button-primary:active.focus, .btn-prm-wrap a:active.focus, .mode-event-left-rail .field-name-field-button a:active.focus, .page-sales-agent-directory-my-favorites .view-header:active.focus, .mode-default.video .field-name-node-link a:active.focus, .mode-default.certification-test .field-name-field-link a:active.focus, .block-box.mode-full .field-name-field-buttons a:active.focus, .block-box.mode-default .field-name-field-buttons a:active.focus, .block-box.mode-vertical-box .field-name-field-buttons a:active.focus, .containers .region-bottom .field-name-field-button a:active.focus, .accordion-item .field-name-field-button a:active.focus, .button-primary.active:hover, .btn-prm-wrap a.active:hover, .mode-event-left-rail .field-name-field-button a.active:hover, .page-sales-agent-directory-my-favorites .active.view-header:hover, .mode-default.video .field-name-node-link a.active:hover, .mode-default.certification-test .field-name-field-link a.active:hover, .block-box.mode-full .field-name-field-buttons a.active:hover, .block-box.mode-default .field-name-field-buttons a.active:hover, .block-box.mode-vertical-box .field-name-field-buttons a.active:hover, .containers .region-bottom .field-name-field-button a.active:hover, .accordion-item .field-name-field-button a.active:hover, .button-primary.active:focus, .btn-prm-wrap a.active:focus, .mode-event-left-rail .field-name-field-button a.active:focus, .page-sales-agent-directory-my-favorites .active.view-header:focus, .mode-default.video .field-name-node-link a.active:focus, .mode-default.certification-test .field-name-field-link a.active:focus, .block-box.mode-full .field-name-field-buttons a.active:focus, .block-box.mode-default .field-name-field-buttons a.active:focus, .block-box.mode-vertical-box .field-name-field-buttons a.active:focus, .containers .region-bottom .field-name-field-button a.active:focus, .accordion-item .field-name-field-button a.active:focus, .button-primary.active.focus, .btn-prm-wrap a.active.focus, .mode-event-left-rail .field-name-field-button a.active.focus, .page-sales-agent-directory-my-favorites .active.focus.view-header, .mode-default.video .field-name-node-link a.active.focus, .mode-default.certification-test .field-name-field-link a.active.focus, .block-box.mode-full .field-name-field-buttons a.active.focus, .block-box.mode-default .field-name-field-buttons a.active.focus, .block-box.mode-vertical-box .field-name-field-buttons a.active.focus, .containers .region-bottom .field-name-field-button a.active.focus, .accordion-item .field-name-field-button a.active.focus,
+.button-primary:active:hover, .btn-prm-wrap a:active:hover, .mode-event-left-rail .field-name-field-button a:active:hover, .page-sales-agent-directory-my-favorites .view-header:active:hover, .mode-default.video .field-name-node-link a:active:hover, .mode-default.certification-test .field-name-field-link a:active:hover, .block-box.mode-full .field-name-field-buttons a:active:hover, .block-box.mode-default .field-name-field-buttons a:active:hover, .containers .region-bottom .field-name-field-button a:active:hover, .accordion-item .field-name-field-button a:active:hover, .button-primary:active:focus, .btn-prm-wrap a:active:focus, .mode-event-left-rail .field-name-field-button a:active:focus, .page-sales-agent-directory-my-favorites .view-header:active:focus, .mode-default.video .field-name-node-link a:active:focus, .mode-default.certification-test .field-name-field-link a:active:focus, .block-box.mode-full .field-name-field-buttons a:active:focus, .block-box.mode-default .field-name-field-buttons a:active:focus, .containers .region-bottom .field-name-field-button a:active:focus, .accordion-item .field-name-field-button a:active:focus, .button-primary:active.focus, .btn-prm-wrap a:active.focus, .mode-event-left-rail .field-name-field-button a:active.focus, .page-sales-agent-directory-my-favorites .view-header:active.focus, .mode-default.video .field-name-node-link a:active.focus, .mode-default.certification-test .field-name-field-link a:active.focus, .block-box.mode-full .field-name-field-buttons a:active.focus, .block-box.mode-default .field-name-field-buttons a:active.focus, .containers .region-bottom .field-name-field-button a:active.focus, .accordion-item .field-name-field-button a:active.focus, .button-primary.active:hover, .btn-prm-wrap a.active:hover, .mode-event-left-rail .field-name-field-button a.active:hover, .page-sales-agent-directory-my-favorites .active.view-header:hover, .mode-default.video .field-name-node-link a.active:hover, .mode-default.certification-test .field-name-field-link a.active:hover, .block-box.mode-full .field-name-field-buttons a.active:hover, .block-box.mode-default .field-name-field-buttons a.active:hover, .containers .region-bottom .field-name-field-button a.active:hover, .accordion-item .field-name-field-button a.active:hover, .button-primary.active:focus, .btn-prm-wrap a.active:focus, .mode-event-left-rail .field-name-field-button a.active:focus, .page-sales-agent-directory-my-favorites .active.view-header:focus, .mode-default.video .field-name-node-link a.active:focus, .mode-default.certification-test .field-name-field-link a.active:focus, .block-box.mode-full .field-name-field-buttons a.active:focus, .block-box.mode-default .field-name-field-buttons a.active:focus, .containers .region-bottom .field-name-field-button a.active:focus, .accordion-item .field-name-field-button a.active:focus, .button-primary.active.focus, .btn-prm-wrap a.active.focus, .mode-event-left-rail .field-name-field-button a.active.focus, .page-sales-agent-directory-my-favorites .active.focus.view-header, .mode-default.video .field-name-node-link a.active.focus, .mode-default.certification-test .field-name-field-link a.active.focus, .block-box.mode-full .field-name-field-buttons a.active.focus, .block-box.mode-default .field-name-field-buttons a.active.focus, .containers .region-bottom .field-name-field-button a.active.focus, .accordion-item .field-name-field-button a.active.focus,
 .open > .button-primary.dropdown-toggle:hover, .btn-prm-wrap
 .open > a.dropdown-toggle:hover, .mode-event-left-rail .field-name-field-button
 .open > a.dropdown-toggle:hover, .page-sales-agent-directory-my-favorites
@@ -11760,7 +11757,6 @@ fieldset[disabled] a {
 .open > a.dropdown-toggle:hover, .mode-default.certification-test .field-name-field-link
 .open > a.dropdown-toggle:hover, .block-box.mode-full .field-name-field-buttons
 .open > a.dropdown-toggle:hover, .block-box.mode-default .field-name-field-buttons
-.open > a.dropdown-toggle:hover, .block-box.mode-vertical-box .field-name-field-buttons
 .open > a.dropdown-toggle:hover, .containers .region-bottom .field-name-field-button
 .open > a.dropdown-toggle:hover, .accordion-item .field-name-field-button
 .open > a.dropdown-toggle:hover,
@@ -11771,7 +11767,6 @@ fieldset[disabled] a {
 .open > a.dropdown-toggle:focus, .mode-default.certification-test .field-name-field-link
 .open > a.dropdown-toggle:focus, .block-box.mode-full .field-name-field-buttons
 .open > a.dropdown-toggle:focus, .block-box.mode-default .field-name-field-buttons
-.open > a.dropdown-toggle:focus, .block-box.mode-vertical-box .field-name-field-buttons
 .open > a.dropdown-toggle:focus, .containers .region-bottom .field-name-field-button
 .open > a.dropdown-toggle:focus, .accordion-item .field-name-field-button
 .open > a.dropdown-toggle:focus,
@@ -11782,7 +11777,6 @@ fieldset[disabled] a {
 .open > a.dropdown-toggle.focus, .mode-default.certification-test .field-name-field-link
 .open > a.dropdown-toggle.focus, .block-box.mode-full .field-name-field-buttons
 .open > a.dropdown-toggle.focus, .block-box.mode-default .field-name-field-buttons
-.open > a.dropdown-toggle.focus, .block-box.mode-vertical-box .field-name-field-buttons
 .open > a.dropdown-toggle.focus, .containers .region-bottom .field-name-field-button
 .open > a.dropdown-toggle.focus, .accordion-item .field-name-field-button
 .open > a.dropdown-toggle.focus {
@@ -11791,7 +11785,7 @@ fieldset[disabled] a {
   border-color: black;
 }
 
-.button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .page-sales-agent-directory-my-favorites .view-header:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .block-box.mode-vertical-box .field-name-field-buttons a:active, .containers .region-bottom .field-name-field-button a:active, .accordion-item .field-name-field-button a:active, .button-primary.active, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .page-sales-agent-directory-my-favorites .active.view-header, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .block-box.mode-vertical-box .field-name-field-buttons a.active, .containers .region-bottom .field-name-field-button a.active, .accordion-item .field-name-field-button a.active,
+.button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .page-sales-agent-directory-my-favorites .view-header:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .containers .region-bottom .field-name-field-button a:active, .accordion-item .field-name-field-button a:active, .button-primary.active, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .page-sales-agent-directory-my-favorites .active.view-header, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .containers .region-bottom .field-name-field-button a.active, .accordion-item .field-name-field-button a.active,
 .open > .button-primary.dropdown-toggle, .btn-prm-wrap
 .open > a.dropdown-toggle, .mode-event-left-rail .field-name-field-button
 .open > a.dropdown-toggle, .page-sales-agent-directory-my-favorites
@@ -11799,14 +11793,13 @@ fieldset[disabled] a {
 .open > a.dropdown-toggle, .mode-default.certification-test .field-name-field-link
 .open > a.dropdown-toggle, .block-box.mode-full .field-name-field-buttons
 .open > a.dropdown-toggle, .block-box.mode-default .field-name-field-buttons
-.open > a.dropdown-toggle, .block-box.mode-vertical-box .field-name-field-buttons
 .open > a.dropdown-toggle, .containers .region-bottom .field-name-field-button
 .open > a.dropdown-toggle, .accordion-item .field-name-field-button
 .open > a.dropdown-toggle {
   background-image: none;
 }
 
-.button-primary.disabled:hover, .btn-prm-wrap a.disabled:hover, .mode-event-left-rail .field-name-field-button a.disabled:hover, .page-sales-agent-directory-my-favorites .disabled.view-header:hover, .mode-default.video .field-name-node-link a.disabled:hover, .mode-default.certification-test .field-name-field-link a.disabled:hover, .block-box.mode-full .field-name-field-buttons a.disabled:hover, .block-box.mode-default .field-name-field-buttons a.disabled:hover, .block-box.mode-vertical-box .field-name-field-buttons a.disabled:hover, .containers .region-bottom .field-name-field-button a.disabled:hover, .accordion-item .field-name-field-button a.disabled:hover, .button-primary.disabled:focus, .btn-prm-wrap a.disabled:focus, .mode-event-left-rail .field-name-field-button a.disabled:focus, .page-sales-agent-directory-my-favorites .disabled.view-header:focus, .mode-default.video .field-name-node-link a.disabled:focus, .mode-default.certification-test .field-name-field-link a.disabled:focus, .block-box.mode-full .field-name-field-buttons a.disabled:focus, .block-box.mode-default .field-name-field-buttons a.disabled:focus, .block-box.mode-vertical-box .field-name-field-buttons a.disabled:focus, .containers .region-bottom .field-name-field-button a.disabled:focus, .accordion-item .field-name-field-button a.disabled:focus, .button-primary.disabled.focus, .btn-prm-wrap a.disabled.focus, .mode-event-left-rail .field-name-field-button a.disabled.focus, .page-sales-agent-directory-my-favorites .disabled.focus.view-header, .mode-default.video .field-name-node-link a.disabled.focus, .mode-default.certification-test .field-name-field-link a.disabled.focus, .block-box.mode-full .field-name-field-buttons a.disabled.focus, .block-box.mode-default .field-name-field-buttons a.disabled.focus, .block-box.mode-vertical-box .field-name-field-buttons a.disabled.focus, .containers .region-bottom .field-name-field-button a.disabled.focus, .accordion-item .field-name-field-button a.disabled.focus, .button-primary[disabled]:hover, .btn-prm-wrap a[disabled]:hover, .mode-event-left-rail .field-name-field-button a[disabled]:hover, .page-sales-agent-directory-my-favorites [disabled].view-header:hover, .mode-default.video .field-name-node-link a[disabled]:hover, .mode-default.certification-test .field-name-field-link a[disabled]:hover, .block-box.mode-full .field-name-field-buttons a[disabled]:hover, .block-box.mode-default .field-name-field-buttons a[disabled]:hover, .block-box.mode-vertical-box .field-name-field-buttons a[disabled]:hover, .containers .region-bottom .field-name-field-button a[disabled]:hover, .accordion-item .field-name-field-button a[disabled]:hover, .button-primary[disabled]:focus, .btn-prm-wrap a[disabled]:focus, .mode-event-left-rail .field-name-field-button a[disabled]:focus, .page-sales-agent-directory-my-favorites [disabled].view-header:focus, .mode-default.video .field-name-node-link a[disabled]:focus, .mode-default.certification-test .field-name-field-link a[disabled]:focus, .block-box.mode-full .field-name-field-buttons a[disabled]:focus, .block-box.mode-default .field-name-field-buttons a[disabled]:focus, .block-box.mode-vertical-box .field-name-field-buttons a[disabled]:focus, .containers .region-bottom .field-name-field-button a[disabled]:focus, .accordion-item .field-name-field-button a[disabled]:focus, .button-primary[disabled].focus, .btn-prm-wrap a[disabled].focus, .mode-event-left-rail .field-name-field-button a[disabled].focus, .page-sales-agent-directory-my-favorites [disabled].focus.view-header, .mode-default.video .field-name-node-link a[disabled].focus, .mode-default.certification-test .field-name-field-link a[disabled].focus, .block-box.mode-full .field-name-field-buttons a[disabled].focus, .block-box.mode-default .field-name-field-buttons a[disabled].focus, .block-box.mode-vertical-box .field-name-field-buttons a[disabled].focus, .containers .region-bottom .field-name-field-button a[disabled].focus, .accordion-item .field-name-field-button a[disabled].focus,
+.button-primary.disabled:hover, .btn-prm-wrap a.disabled:hover, .mode-event-left-rail .field-name-field-button a.disabled:hover, .page-sales-agent-directory-my-favorites .disabled.view-header:hover, .mode-default.video .field-name-node-link a.disabled:hover, .mode-default.certification-test .field-name-field-link a.disabled:hover, .block-box.mode-full .field-name-field-buttons a.disabled:hover, .block-box.mode-default .field-name-field-buttons a.disabled:hover, .containers .region-bottom .field-name-field-button a.disabled:hover, .accordion-item .field-name-field-button a.disabled:hover, .button-primary.disabled:focus, .btn-prm-wrap a.disabled:focus, .mode-event-left-rail .field-name-field-button a.disabled:focus, .page-sales-agent-directory-my-favorites .disabled.view-header:focus, .mode-default.video .field-name-node-link a.disabled:focus, .mode-default.certification-test .field-name-field-link a.disabled:focus, .block-box.mode-full .field-name-field-buttons a.disabled:focus, .block-box.mode-default .field-name-field-buttons a.disabled:focus, .containers .region-bottom .field-name-field-button a.disabled:focus, .accordion-item .field-name-field-button a.disabled:focus, .button-primary.disabled.focus, .btn-prm-wrap a.disabled.focus, .mode-event-left-rail .field-name-field-button a.disabled.focus, .page-sales-agent-directory-my-favorites .disabled.focus.view-header, .mode-default.video .field-name-node-link a.disabled.focus, .mode-default.certification-test .field-name-field-link a.disabled.focus, .block-box.mode-full .field-name-field-buttons a.disabled.focus, .block-box.mode-default .field-name-field-buttons a.disabled.focus, .containers .region-bottom .field-name-field-button a.disabled.focus, .accordion-item .field-name-field-button a.disabled.focus, .button-primary[disabled]:hover, .btn-prm-wrap a[disabled]:hover, .mode-event-left-rail .field-name-field-button a[disabled]:hover, .page-sales-agent-directory-my-favorites [disabled].view-header:hover, .mode-default.video .field-name-node-link a[disabled]:hover, .mode-default.certification-test .field-name-field-link a[disabled]:hover, .block-box.mode-full .field-name-field-buttons a[disabled]:hover, .block-box.mode-default .field-name-field-buttons a[disabled]:hover, .containers .region-bottom .field-name-field-button a[disabled]:hover, .accordion-item .field-name-field-button a[disabled]:hover, .button-primary[disabled]:focus, .btn-prm-wrap a[disabled]:focus, .mode-event-left-rail .field-name-field-button a[disabled]:focus, .page-sales-agent-directory-my-favorites [disabled].view-header:focus, .mode-default.video .field-name-node-link a[disabled]:focus, .mode-default.certification-test .field-name-field-link a[disabled]:focus, .block-box.mode-full .field-name-field-buttons a[disabled]:focus, .block-box.mode-default .field-name-field-buttons a[disabled]:focus, .containers .region-bottom .field-name-field-button a[disabled]:focus, .accordion-item .field-name-field-button a[disabled]:focus, .button-primary[disabled].focus, .btn-prm-wrap a[disabled].focus, .mode-event-left-rail .field-name-field-button a[disabled].focus, .page-sales-agent-directory-my-favorites [disabled].focus.view-header, .mode-default.video .field-name-node-link a[disabled].focus, .mode-default.certification-test .field-name-field-link a[disabled].focus, .block-box.mode-full .field-name-field-buttons a[disabled].focus, .block-box.mode-default .field-name-field-buttons a[disabled].focus, .containers .region-bottom .field-name-field-button a[disabled].focus, .accordion-item .field-name-field-button a[disabled].focus,
 fieldset[disabled] .button-primary:hover,
 fieldset[disabled] .btn-prm-wrap a:hover, .btn-prm-wrap
 fieldset[disabled] a:hover,
@@ -11821,8 +11814,6 @@ fieldset[disabled] a:hover,
 fieldset[disabled] .block-box.mode-full .field-name-field-buttons a:hover, .block-box.mode-full .field-name-field-buttons
 fieldset[disabled] a:hover,
 fieldset[disabled] .block-box.mode-default .field-name-field-buttons a:hover, .block-box.mode-default .field-name-field-buttons
-fieldset[disabled] a:hover,
-fieldset[disabled] .block-box.mode-vertical-box .field-name-field-buttons a:hover, .block-box.mode-vertical-box .field-name-field-buttons
 fieldset[disabled] a:hover,
 fieldset[disabled] .containers .region-bottom .field-name-field-button a:hover, .containers .region-bottom .field-name-field-button
 fieldset[disabled] a:hover,
@@ -11843,8 +11834,6 @@ fieldset[disabled] .block-box.mode-full .field-name-field-buttons a:focus, .bloc
 fieldset[disabled] a:focus,
 fieldset[disabled] .block-box.mode-default .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons
 fieldset[disabled] a:focus,
-fieldset[disabled] .block-box.mode-vertical-box .field-name-field-buttons a:focus, .block-box.mode-vertical-box .field-name-field-buttons
-fieldset[disabled] a:focus,
 fieldset[disabled] .containers .region-bottom .field-name-field-button a:focus, .containers .region-bottom .field-name-field-button
 fieldset[disabled] a:focus,
 fieldset[disabled] .accordion-item .field-name-field-button a:focus, .accordion-item .field-name-field-button
@@ -11864,8 +11853,6 @@ fieldset[disabled] .block-box.mode-full .field-name-field-buttons a.focus, .bloc
 fieldset[disabled] a.focus,
 fieldset[disabled] .block-box.mode-default .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons
 fieldset[disabled] a.focus,
-fieldset[disabled] .block-box.mode-vertical-box .field-name-field-buttons a.focus, .block-box.mode-vertical-box .field-name-field-buttons
-fieldset[disabled] a.focus,
 fieldset[disabled] .containers .region-bottom .field-name-field-button a.focus, .containers .region-bottom .field-name-field-button
 fieldset[disabled] a.focus,
 fieldset[disabled] .accordion-item .field-name-field-button a.focus, .accordion-item .field-name-field-button
@@ -11874,7 +11861,7 @@ fieldset[disabled] a.focus {
   border-color: #004e75;
 }
 
-.button-primary .badge, .btn-prm-wrap a .badge, .mode-event-left-rail .field-name-field-button a .badge, .page-sales-agent-directory-my-favorites .view-header .badge, .mode-default.video .field-name-node-link a .badge, .mode-default.certification-test .field-name-field-link a .badge, .block-box.mode-full .field-name-field-buttons a .badge, .block-box.mode-default .field-name-field-buttons a .badge, .block-box.mode-vertical-box .field-name-field-buttons a .badge, .containers .region-bottom .field-name-field-button a .badge, .accordion-item .field-name-field-button a .badge {
+.button-primary .badge, .btn-prm-wrap a .badge, .mode-event-left-rail .field-name-field-button a .badge, .page-sales-agent-directory-my-favorites .view-header .badge, .mode-default.video .field-name-node-link a .badge, .mode-default.certification-test .field-name-field-link a .badge, .block-box.mode-full .field-name-field-buttons a .badge, .block-box.mode-default .field-name-field-buttons a .badge, .containers .region-bottom .field-name-field-button a .badge, .accordion-item .field-name-field-button a .badge {
   color: #004e75;
   background-color: #fff;
 }
@@ -12289,7 +12276,7 @@ table td p, .article-node .node-body p, .article-node .author-info p, .article-n
 .featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .block-views-blocksearch-page-block-1 .views-field-body p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-box.mode-full .field-name-body p, .block-box.mode-default .field-name-body p, .block-box.mode-vertical-box .field-name-body p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand.mode-default .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
 .layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .mode-event-left-rail .field-name-field-location p, .block-pricing .pricings p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .block-text.mode-container-mode .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-box.mode-mega-menu .field-name-body p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
 .block-pack-expo-show .date p, .brand.mode-mega-menu p,
-.pack-expo-show.mode-mega-menu p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p {
+.pack-expo-show.mode-mega-menu p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p, .page-gateway .block-text.centered .block-body p {
   font-size: inherit;
   line-height: inherit;
   font-weight: inherit;
@@ -13030,9 +13017,10 @@ table th {
     margin-left: -10px;
     margin-right: -10px;
   }
-  .col-md-1, .footer .block-copyright-block,
+  .col-md-1,
   .col-lg-1,
-  .col-sm-1 {
+  .col-sm-1,
+  .footer .block-copyright-block {
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -13121,9 +13109,10 @@ table th {
     margin-left: -25px;
     margin-right: -25px;
   }
-  .col-md-1, .footer .block-copyright-block,
+  .col-md-1,
   .col-lg-1,
-  .col-sm-1 {
+  .col-sm-1,
+  .footer .block-copyright-block {
     padding-left: 25px;
     padding-right: 25px;
   }
@@ -13214,9 +13203,11 @@ table th {
     margin-left: -7px;
     margin-right: -7px;
   }
-  .container .containers .container .col-md-1, .container .containers .container .footer .block-copyright-block, .footer .container .containers .container .block-copyright-block,
+  .container .containers .container .col-md-1,
   .container .containers .container .col-lg-1,
-  .container .containers .container .col-sm-1 {
+  .container .containers .container .col-sm-1,
+  .container .containers .container .footer .block-copyright-block, .footer
+  .container .containers .container .block-copyright-block {
     padding-left: 7px;
     padding-right: 7px;
   }
@@ -14081,6 +14072,7 @@ body > .page-wrapper:after,
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .footer nav,
   .footer .block-copyright-block {
+    float: none;
     display: inline-block;
   }
 }
@@ -16752,10 +16744,13 @@ div.view {
 }
 
 .block-box.mode-vertical-box {
-  padding: 20px 20px 60px 20px;
+  padding: 20px;
   position: relative;
   border: 1px solid #c2c2c2;
-  text-align: center;
+}
+
+.block-box.mode-vertical-box.with-buttons {
+  padding-bottom: 60px;
 }
 
 .block-box.mode-vertical-box .field-name-field-image {
@@ -16767,6 +16762,10 @@ div.view {
   margin-right: auto;
 }
 
+.block-box.mode-vertical-box .field-name-field-head {
+  text-align: center;
+}
+
 .block-box.mode-vertical-box .field-name-body {
   margin-bottom: 13px;
 }
@@ -16776,6 +16775,7 @@ div.view {
   left: 0;
   right: 0;
   bottom: 10px;
+  text-align: center;
 }
 
 .block-box.mode-vertical-box .field-name-field-buttons a {
@@ -17154,6 +17154,11 @@ div.view {
   .block .containers .region-bottom .field-name-field-button a {
     width: 233px;
   }
+}
+
+.countdown.block {
+  position: relative;
+  z-index: 2;
 }
 
 .block-countdown {
@@ -19717,14 +19722,33 @@ div.view {
 .page-gateway .block-text.centered .block-body {
   font-size: 21px;
   font-size: 1.3125rem;
+  line-height: 25px;
+  line-height: 1.5625rem;
+}
+
+.page-gateway .block-text.centered .block-body br {
+  display: none;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
+  .page-gateway .page-wrapper {
+    padding-top: 48px;
+  }
   .page-gateway .block-text.centered .title {
     font-size: 3.4375rem;
   }
+  .page-gateway .block-text.centered .block-body {
+    font-size: 1.125rem;
+    line-height: 1.375rem;
+  }
   .page-gateway .panel-gateway .col-sm-4 {
     width: 50%;
+  }
+  .page-gateway .panel-gateway .col-1 {
+    padding-right: 6px;
+  }
+  .page-gateway .panel-gateway .col-2 {
+    padding-left: 6px;
   }
   .page-gateway .panel-gateway .col-3 {
     clear: both;
@@ -19735,6 +19759,9 @@ div.view {
 }
 
 @media screen and (max-width: 767px) {
+  .page-gateway .page-wrapper {
+    padding-top: 20px;
+  }
   .page-gateway .block-text.centered .title {
     font-size: 2.1875rem;
     line-height: 1;
@@ -19742,6 +19769,9 @@ div.view {
   .page-gateway .block-text.centered .block-body {
     font-size: 1.0625rem;
     line-height: 1.1875rem;
+  }
+  .page-gateway .block-text.centered .block-body br {
+    display: block;
   }
   .page-gateway .panel-gateway {
     max-width: 310px;
