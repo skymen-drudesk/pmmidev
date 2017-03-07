@@ -10,16 +10,16 @@ dependencies:
     - field.field.block_content.box.field_buttons
     - field.field.block_content.box.field_head
     - field.field.block_content.box.field_image
-    - responsive_image.styles.block_style_3
+    - image.style.left_image_block
   module:
     - ds
+    - image
     - link
-    - responsive_image
     - text
 third_party_settings:
   ds:
     layout:
-      id: block_box
+      id: block_box_vetical
       path: themes/custom/pmmi_bootstrap
       library: ''
       disable_css: false
@@ -30,6 +30,7 @@ third_party_settings:
         - field_image
         - field_head
         - body
+      button:
         - field_buttons
 id: block_content.box.vertical_box
 targetEntityType: block_content
@@ -86,7 +87,7 @@ content:
     weight: 0
     label: hidden
     settings:
-      responsive_image_style: block_style_3
+      image_style: left_image_block
       image_link: ''
     third_party_settings:
       ds:
@@ -96,6 +97,6 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
+    type: image
 hidden:
   field_box_type: true

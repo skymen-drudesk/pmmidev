@@ -737,7 +737,15 @@ block_box:
       label: Head
     main:
       label: Main content
-
+block_box_vetical:
+  label: Box vertical
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/box-vertical
+  regions:
+    main:
+      label: Main content
+    button:
+      label: Button
 
 block_countdown:
   label: Countdown
