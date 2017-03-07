@@ -21,8 +21,10 @@ class SADDownloadsQuotaListBuilder extends DraggableListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['quota'] = $this->t('Quota');
-    return $header + parent::buildHeader();
+    return [
+      'username' => $this->t('Username'),
+      'quota' => $this->t('Downloads quota'),
+    ] + parent::buildHeader();
   }
 
   /**
@@ -30,7 +32,9 @@ class SADDownloadsQuotaListBuilder extends DraggableListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /* @var \Drupal\pmmi_sales_agent\SADDownloadsQuotaInterface $entity */
-    $row['quota'] = $entity->getQuota();
-    return $row + parent::buildRow($entity);
+    return [
+      'usernmae' => $entity->getUser()->getUserName(),
+      'quota' => $entity->getQuota(),
+    ] + parent::buildRow($entity);
   }
 }

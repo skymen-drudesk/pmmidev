@@ -15,7 +15,7 @@ use Drupal\pmmi_sales_agent\SADDownloadsQuotaInterface;
  *     "list_builder" = "Drupal\pmmi_sales_agent\SADDownloadsQuotaListBuilder",
  *     "form" = {
  *       "default" = "Drupal\pmmi_sales_agent\Form\SADDownloadsQuotaEditForm",
- *       "delete" = "Drupal\Core\Entity\SADDownloadsQuotaEditForm"
+ *       "delete" = "Drupal\Core\Entity\EntityDeleteForm"
  *     },
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider",
@@ -39,6 +39,13 @@ use Drupal\pmmi_sales_agent\SADDownloadsQuotaInterface;
 class SADDownloadsQuota extends ConfigEntityBase implements SADDownloadsQuotaInterface {
 
   /**
+   * The Downloads quota ID.
+   *
+   * @var string
+   */
+  protected $id;
+
+  /**
    * The quota value.
    *
    * @var string
@@ -58,5 +65,13 @@ class SADDownloadsQuota extends ConfigEntityBase implements SADDownloadsQuotaInt
   public function setQuota($quota) {
     $this->quota = $quota;
     return $this;
+  }
+
+  /**
+   * Get user which is related to quota entity.
+   */
+  public function getUser() {
+    $id = $this->id();
+    return $id ? \Drupal\user\Entity\User::load($id) : NULL;
   }
 }

@@ -13,29 +13,21 @@ class SADDownloadsQuotaEditForm extends EntityForm {
   /**
    * {@inheritdoc}
    */
-  public function buildEntity(array $form, FormStateInterface $form_state) {
-    /** @var \Drupal\pmmi_sales_agent\SADDownloadsQuotaInterface $entity */
-    $entity = parent::buildEntity($form, $form_state);
-
-    return $entity;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['id'] = [
       '#type' => 'entity_autocomplete',
       '#target_type' => 'user',
       '#title' => $this->t('User'),
       '#required' => TRUE,
-      '#selection_settings' => array('role_target_id' => array('pmmi_member')),
+      '#disabled' => !$this->entity->isNew(),
+      '#default_value' => $this->entity->getUser(),
     ];
     $form['quota'] = [
       '#type' => 'number',
       '#title' => $this->t('Records per year'),
       '#required' => TRUE,
       '#min' => 1,
+      '#default_value' => $this->entity->getQuota(),
     ];
 
     return parent::buildForm($form, $form_state);
@@ -45,15 +37,15 @@ class SADDownloadsQuotaEditForm extends EntityForm {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    $uid = $form_state->getValue('path');
+    $entity = \Drupal::entityTypeManager()
+      ->getStorage('sad_downloads_quota')
+      ->load($form_state->getValue('id'));
 
-    // User-level quota already added!
-    // @todo: add validation!
-//    $path = $form_state->getValue('path');
-//
-//    if (!\Drupal::service('path.validator')->isValid($path)) {
-//      $form_state->setErrorByName('path', t("The path '@path' is either invalid or you do not have access to it.", ['@path' => $path]));
-//    }
+    if ($entity) {
+      $form_state->setErrorByName('id', t('The downloads quota already added to user @username', [
+        '@username' => $entity->getUser()->getUserName(),
+      ]));
+    }
   }
 
   /**

@@ -47,7 +47,7 @@ entity.sad_downloads_quota.add_form:
   path: '/admin/config/sales-agent-directory/report-settings/per-user/add'
   defaults:
     _entity_form: 'sad_downloads_quota.default'
-    _title: 'sasasa'
+    _title: 'Add downloads user quota'
   requirements:
     _permission: 'pmmi sales agent administration'
 
