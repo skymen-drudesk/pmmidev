@@ -17156,6 +17156,11 @@ div.view {
   }
 }
 
+.countdown.block {
+  position: relative;
+  z-index: 2;
+}
+
 .block-countdown {
   margin-bottom: 30px;
 }
