@@ -198,35 +198,167 @@ class PMMISSOSettings extends ConfigFormBase {
       '#open' => TRUE,
       '#tree' => TRUE,
     );
-    $form['user_accounts']['sso_roles'] = array(
-      '#type' => 'textfield',
-      '#cardinality' => 5,
-      '#title' => $this->t('Allowed SSO Roles'),
-      '#description' => $this->t('A comma separated list of SSO user roles. The selected roles will be allowed to registering through SSO.'),
-      '#required' => TRUE,
-      '#default_value' => implode(',', $config->get('user_accounts.sso_roles')),
-    );
-    $auto_assigned_roles = $config->get('user_accounts.auto_assigned_roles');
-    $form['user_accounts']['auto_assigned_roles_enable'] = array(
-      '#type' => 'checkbox',
-      '#title' => $this->t('Automatically assign roles on user registration'),
-      '#default_value' => count($auto_assigned_roles) > 0,
-    );
+//    $auto_assigned_roles = $config->get('user_accounts.auto_assigned_roles');
+//    $form['user_accounts']['auto_assigned_roles_enable'] = array(
+//      '#type' => 'checkbox',
+//      '#title' => $this->t('Automatically assign roles on user registration'),
+//      '#default_value' => count($auto_assigned_roles) > 0,
+//    );
     $roles = user_role_names(TRUE);
     unset($roles[RoleInterface::AUTHENTICATED_ID]);
-    $form['user_accounts']['auto_assigned_roles'] = array(
-      '#type' => 'select',
-      '#multiple' => TRUE,
-      '#title' => $this->t('Roles'),
-      '#description' => $this->t('The selected roles will be automatically assigned to each SSO user on login. Use this to automatically give SSO users additional privileges or to identify SSO users to other modules.'),
-      '#default_value' => $auto_assigned_roles,
-      '#options' => $roles,
-      '#states' => array(
-        'invisible' => array(
-          'input[name="user_accounts[auto_assigned_roles_enable]"]' => array('checked' => FALSE),
+
+
+    $form['user_accounts']['role_mapping'] = [
+      '#type' => 'table',
+      '#description' => $this->t('Role mapping'),
+      '#header' => [
+        $this->t('SSO Role'),
+        $this->t('Drupal Role'),
+        $this->t('Service Provider'),
+        $this->t('Committee ID'),
+        $this->t('Role Operations'),
+      ],
+      '#attributes' => ['id' => 'pmmi-sso-roles-table'],
+      '#empty' => $this->t('No mapping available.'),
+      '#caption' => $this->t('You can`t delete all role mappings.'),
+    ];
+    $services = array(
+      PMMISSOHelper::IMS => 'IMS Service',
+      PMMISSOHelper::DATA => 'Data Service',
+    );
+    if ($roles_map = $config->get('user_accounts.role_mapping')) {
+      $roles_count = count($roles_map);
+      foreach ($roles_map as $role_id => $role) {
+        $form['user_accounts']['role_mapping'][$role_id] = array(
+          'sso_role' => array(
+            '#title' => $this->t('SSO Role'),
+            '#title_display' => 'invisible',
+            '#type' => 'textfield',
+            '#default_value' => $role['sso_role'],
+            '#size' => 20,
+            '#required' => TRUE,
+          ),
+          'drupal_role' => array(
+            '#title' => $this->t('Drupal Role'),
+            '#title_display' => 'invisible',
+            '#type' => 'select',
+            '#multiple' => FALSE,
+            '#default_value' => $role_id,
+            '#required' => TRUE,
+            '#options' => $roles,
+          ),
+          'service' => array(
+            '#title' => $this->t('Service Provider'),
+            '#title_display' => 'invisible',
+            '#type' => 'select',
+            '#multiple' => FALSE,
+            '#default_value' => $role['service'],
+            '#required' => TRUE,
+            '#options' => $services,
+          ),
+          'committee_id' => array(
+            '#title' => $this->t('SSO Role'),
+            '#title_display' => 'invisible',
+            '#type' => 'textfield',
+            '#default_value' => $role['committee_id'],
+            '#size' => 20,
+            '#maxlength' => 8,
+            '#pattern' => '[A-Z][0-9]{7}',
+            '#states' => array(
+              'disabled' => array(
+                'select[name="user_accounts[role_mapping][' . $role_id . '][service]"]' => array('value' => PMMISSOHelper::IMS),
+              ),
+              'required' => array(
+                'select[name="user_accounts[role_mapping][' . $role_id . '][service]"]' => array('value' => PMMISSOHelper::DATA),
+              ),
+            ),
+          ),
+        );
+        $form['user_accounts']['role_mapping'][$role_id]['operations'] = [
+          '#type' => 'operations',
+          '#links' => [],
+          '#access' => $roles_count == 1 ? FALSE : TRUE,
+        ];
+        $form['user_accounts']['role_mapping'][$role_id]['operations']['#links']['delete'] = [
+          'title' => $this->t('Delete'),
+          'url' => Url::fromRoute('pmmi_sso.role_map_delete_form', ['role_id' => $role_id]),
+        ];
+      }
+
+    }
+
+    $form['user_accounts']['new_mapping'] = array(
+      '#type' => 'details',
+      '#title' => $this->t('Add a new role mapping'),
+      '#open' => FALSE,
+      '#tree' => TRUE,
+      'sso_role' => array(
+        '#title' => $this->t('SSO Role'),
+        '#type' => 'textfield',
+        '#size' => 20,
+      ),
+      'drupal_role' => array(
+        '#title' => $this->t('Drupal Role'),
+        '#type' => 'select',
+        '#multiple' => FALSE,
+        '#options' => $roles,
+        '#states' => array(
+          'required' => array(
+            ':input[name="user_accounts[new_mapping][sso_role]"]' => array('filled' => TRUE),
+          ),
+        ),
+      ),
+      'service' => array(
+        '#title' => $this->t('Service Provider'),
+        '#type' => 'select',
+        '#multiple' => FALSE,
+        '#options' => $services,
+        '#states' => array(
+          'required' => array(
+            ':input[name="user_accounts[new_mapping][sso_role]"]' => array('filled' => TRUE),
+          ),
+        ),
+      ),
+      'committee_id' => array(
+        '#title' => $this->t('SSO CommitteeMasterCustomer'),
+        '#type' => 'textfield',
+        '#size' => 20,
+        '#pattern' => '[A-Z][0-9]{7}',
+        '#maxlength' => 8,
+        '#states' => array(
+          'disabled' => array(
+            'select[name="user_accounts[new_mapping][service]"]' => array('value' => PMMISSOHelper::IMS),
+          ),
+          'required' => array(
+            'select[name="user_accounts[new_mapping][service]"]' => array('value' => PMMISSOHelper::DATA),
+          ),
         ),
       ),
     );
+    // Store temporary roles array.
+    $form_state->setTemporaryValue('drupal_roles', $roles);
+
+
+//
+//    $form['user_accounts']['auto_assigned_roles'] = array(
+//      '#type' => 'select',
+//      '#multiple' => TRUE,
+//      '#title' => $this->t('Allowed Roles'),
+//      '#description' => $this->t(
+//        'The selected roles will be allowed to automatically assigned to SSO
+//        user on login (Only if user have the same SSO Role). Use this to
+//        automatically give SSO users additional privileges or to identify SSO
+//        users to other modules.'
+//      ),
+//      '#default_value' => $auto_assigned_roles,
+//      '#options' => $roles,
+//      '#states' => array(
+//        'invisible' => array(
+//          'input[name="user_accounts[auto_assigned_roles_enable]"]' => array('checked' => FALSE),
+//        ),
+//      ),
+//    );
+
     $form['user_accounts']['login_link_enabled'] = array(
       '#type' => 'checkbox',
       '#title' => $this->t('Login Link Enabled'),
@@ -244,6 +376,7 @@ class PMMISSOSettings extends ConfigFormBase {
         ),
       ),
     );
+
     $form['gateway'] = array(
       '#type' => 'details',
       '#title' => $this->t('Gateway Feature (Auto Login) & Token Handling'),
@@ -284,7 +417,10 @@ class PMMISSOSettings extends ConfigFormBase {
          default. It is strongly recommended that you specify specific pages 
          to trigger this feature below.<br/>
          <strong>WARNING:</strong> This feature will disable page caching on 
-         pages it is active on.', ['@link' => Url::fromRoute('pmmi_sso.token.settings')->toString()]
+         pages it is active on.', [
+          '@link' => Url::fromRoute('pmmi_sso.token.settings')
+            ->toString()
+        ]
       ),
     );
     $form['gateway']['token_action'] = array(
@@ -350,6 +486,56 @@ class PMMISSOSettings extends ConfigFormBase {
     $this->gatewayPaths->validateConfigurationForm($form, $condition_values);
 
     parent::validateForm($form, $form_state);
+
+    $unique_values = array();
+    $temporary_roles = $form_state->getTemporaryValue('drupal_roles');
+
+    // Check all mappings.
+    if ($form_state->hasValue(array('user_accounts', 'role_mapping'))) {
+      $roles_map = $form_state->getValue(array(
+        'user_accounts',
+        'role_mapping',
+      ));
+      if (!empty($roles_map)) {
+        foreach ($roles_map as $key => $data) {
+          if (array_key_exists($key, $temporary_roles)) {
+            $unique_values[$data['drupal_role']]['sso_role'] = $data['sso_role'];
+            $unique_values[$data['drupal_role']]['service'] = $data['service'];
+            $unique_values[$data['drupal_role']]['committee_id'] = $data['committee_id'];
+            $unique_values[$data['drupal_role']]['drupal_role_label'] = $temporary_roles[$data['drupal_role']];
+          }
+          else {
+            $form_state->setErrorByName('user_accounts][role_mapping][' . $key . '][drupal_role', $this->t('Drupal role does not exist.'));
+          }
+        }
+      }
+    }
+    // Check new role mapping.
+    $data = $form_state->getValue(['user_accounts', 'new_mapping']);
+
+    if (!empty($data['drupal_role'])) {
+      $temp_value = [];
+      foreach ($data as $key => $value) {
+        if ($key == 'drupal_role' && array_key_exists($value, $unique_values)) {
+          $form_state->setErrorByName('user_accounts][role_mapping][' . $key . '][drupal_role', $this->t('Role mapping must be unique.'));
+        }
+        elseif (
+          (empty($value) && $key != 'committee_id') ||
+          (empty($value) && $key == 'committee_id' && $data['service'] == PMMISSOHelper::DATA)
+        ) {
+          $form_state->setErrorByName('user_accounts][new_mapping][' . $key, $this->t('This field is required.'));
+        }
+        else {
+          $temp_value[$key] = $value;
+        }
+      }
+      $temp_value['drupal_role_label'] = $temporary_roles[$data['drupal_role']];
+      $unique_values[$data['drupal_role']] = $temp_value;
+      unset($unique_values[$data['drupal_role']]['drupal_role']);
+    }
+    $all_values = $form_state->getValues();
+    $all_values['user_accounts']['role_mapping'] = $unique_values;
+    $form_state->setValues($all_values);
   }
 
   /**
@@ -388,25 +574,25 @@ class PMMISSOSettings extends ConfigFormBase {
       ->set('user_accounts.login_link_label', $form_state->getValue([
         'user_accounts',
         'login_link_label',
+      ]))
+      ->set('user_accounts.role_mapping', $form_state->getValue([
+        'user_accounts',
+        'role_mapping',
       ]));
-    $sso_roles = $form_state->getValue([
-      'user_accounts',
-      'sso_roles',
-    ]);
 
     $auto_assigned_roles = [];
-    if ($form_state->getValue([
-      'user_accounts',
-      'auto_assigned_roles_enable'
-    ])
-    ) {
-      $auto_assigned_roles = array_keys($form_state->getValue([
-        'user_accounts',
-        'auto_assigned_roles'
-      ]));
-    }
-    $config
-      ->set('user_accounts.auto_assigned_roles', $auto_assigned_roles);
+//    if ($form_state->getValue([
+//      'user_accounts',
+//      'auto_assigned_roles_enable'
+//    ])
+//    ) {
+//      $auto_assigned_roles = array_keys($form_state->getValue([
+//        'user_accounts',
+//        'auto_assigned_roles'
+//      ]));
+//    }
+
+//      ->set('user_accounts.auto_assigned_roles', $auto_assigned_roles);
     $condition_values = (new FormState())
       ->setValues($form_state->getValue(['gateway', 'paths']));
     $this->gatewayPaths->submitConfigurationForm($form, $condition_values);

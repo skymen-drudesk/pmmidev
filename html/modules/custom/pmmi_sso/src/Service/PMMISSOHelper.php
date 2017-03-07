@@ -21,6 +21,27 @@ class PMMISSOHelper {
   /**
    * Gateway config: never check preemptively to see if the user is logged in.
    *
+   * @var string
+   */
+  const SSO = 'sso';
+
+  /**
+   * Gateway config: check once per session to see if the user is logged in.
+   *
+   * @var string
+   */
+  const IMS = 'ims';
+
+  /**
+   * Gateway config: check once per session to see if the user is logged in.
+   *
+   * @var string
+   */
+  const DATA = 'data';
+
+  /**
+   * Gateway config: never check preemptively to see if the user is logged in.
+   *
    * @var int
    */
   const CHECK_NEVER = -2;
@@ -373,23 +394,20 @@ class PMMISSOHelper {
   }
 
   /**
-   * Get the Vendor Identifier to the PMMI SSO server.
+   * Get the IMS URI to the PMMI SSO server.
    *
-   * @return array
-   *   The Vendor Identifier.
+   * @return string
+   *   The service URI.
    */
-  public function getAllowedSsoRoles() {
-    return $this->settings->get('user_accounts.sso_roles');
+  public function getRoleMapping() {
+    $map = $this->settings->get('user_accounts.role_mapping');
+    if (!empty($map)) {
+      foreach ($map as &$roles) {
+        $audience['audience_redirect_url'] = !empty($audience['audience_redirect_url']) ? $this->getUriAsDisplayableString($audience['audience_redirect_url']) : '/';
+      }
+    }
+    return $roles;
   }
-//  /**
-//   * Get the Vendor Identifier to the PMMI SSO server.
-//   *
-//   * @return string
-//   *   The Vendor Identifier.
-//   */
-//  public function checkSsoAllowedRoles() {
-//    return $this->settings->get('user_accounts.sso_roles');
-//  }
 
   /**
    * Get the Vendor Identifier to the PMMI SSO server.

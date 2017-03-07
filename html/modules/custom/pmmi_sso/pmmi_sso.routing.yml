@@ -9,6 +9,16 @@ pmmi_sso.settings:
   options:
     _admin_route: TRUE
 
+pmmi_sso.role_map_delete_form:
+  path: '/admin/config/pmmi_sso/delete/{role_id}'
+  defaults:
+    _form: '\Drupal\pmmi_sso\Form\PMMISSORoleMapDeleteForm'
+    _title: 'Delete'
+  requirements:
+    _permission: 'administer pmmi personify sso settings'
+  options:
+    _admin_route: TRUE
+
 #pmmi_sso.login:
 #  path: '/sso/login'
 #  defaults:

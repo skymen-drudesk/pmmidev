@@ -51,16 +51,24 @@ pmmi_sso.settings:
       type: mapping
       label: 'User Accounts'
       mapping:
-        sso_roles:
+        role_mapping:
           type: sequence
-          label: 'Auto assigned roles'
+          label: 'Role mapping'
           sequence:
-            type: string
-        auto_assigned_roles:
-          type: sequence
-          label: 'Auto assigned roles'
-          sequence:
-            type: string
+            type: mapping
+            mapping:
+              sso_role:
+                type: string
+                label: 'SSO User Role'
+              drupal_role_label:
+                type: string
+                label: 'Drupal Role label'
+              service:
+                type: string
+                label: 'Personify Service'
+              committee_id:
+                type: string
+                label: 'SSO CommitteeMasterCustomer'
         login_link_enabled:
           type: boolean
           label: 'Login Link Enabled'

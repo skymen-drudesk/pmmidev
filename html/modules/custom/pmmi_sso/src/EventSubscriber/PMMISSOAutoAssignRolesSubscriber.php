@@ -46,8 +46,10 @@ class PMMISSOAutoAssignRolesSubscriber implements EventSubscriberInterface {
    *   The event object.
    */
   public function assignRolesOnRegistration(PMMISSOPreRegisterEvent $event) {
-    $auto_assigned_roles = $this->settings->get('user_accounts.auto_assigned_roles');
+    $allowed_auto_assigned_roles = $this->settings->get('user_accounts.auto_assigned_roles');
     if (!empty($auto_assigned_roles)) {
+      $sso_roles = $event->getSsoRoles();
+      $auto_assigned_roles = array_intersect($sso_roles, $allowed_auto_assigned_roles);
       $event->setPropertyValue('roles', $auto_assigned_roles);
     }
   }
