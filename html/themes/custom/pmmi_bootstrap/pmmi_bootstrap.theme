@@ -73,8 +73,9 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
       break;
 
     case 'system_branding_block':
+      $current_path = \Drupal::service('path.current')->getPath();
       if ($variables['content']['site_logo']['#access']
-      && \Drupal::service('path.matcher')->isFrontPage()
+      && (\Drupal::service('path.matcher')->isFrontPage() || $current_path == '/gateway')
       && $front_logo_path = theme_get_setting('front_logo_path')) {
         $front_logo_uri = file_url_transform_relative(file_create_url($front_logo_path));
         $variables['site_logo'] = $front_logo_uri;
@@ -351,6 +352,10 @@ function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array
       case 'pmmi_search_block':
         $suggestions[] = 'block__header_search';
         break;
+    }
+    if ($variables['elements']['#base_plugin_id'] == 'system_menu_block'
+    && $variables['elements']['#configuration']['region'] == 'header_main_nav') {
+      $suggestions[] = 'block__collapsible_menu';
     }
   }
   return $suggestions;
