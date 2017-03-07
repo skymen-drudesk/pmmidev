@@ -375,12 +375,30 @@ class PMMISSOHelper {
   /**
    * Get the Vendor Identifier to the PMMI SSO server.
    *
+   * @return array
+   *   The Vendor Identifier.
+   */
+  public function getAllowedSsoRoles() {
+    return $this->settings->get('user_accounts.sso_roles');
+  }
+//  /**
+//   * Get the Vendor Identifier to the PMMI SSO server.
+//   *
+//   * @return string
+//   *   The Vendor Identifier.
+//   */
+//  public function checkSsoAllowedRoles() {
+//    return $this->settings->get('user_accounts.sso_roles');
+//  }
+
+  /**
+   * Get the Vendor Identifier to the PMMI SSO server.
+   *
    * @return string
    *   The Vendor Identifier.
    */
   public function getVi() {
-    $vi = $this->settings->get('vi');
-    return $vi;
+    return $this->settings->get('vi');
   }
 
   /**
@@ -390,8 +408,7 @@ class PMMISSOHelper {
    *   The Vendor username.
    */
   public function getVu() {
-    $vu = $this->settings->get('vu');
-    return $vu;
+    return $this->settings->get('vu');
   }
 
   /**
@@ -401,8 +418,7 @@ class PMMISSOHelper {
    *   The Vendor password (HEX).
    */
   public function getVp() {
-    $vp = $this->settings->get('vp');
-    return $vp;
+    return $this->settings->get('vp');
   }
 
   /**
@@ -422,8 +438,7 @@ class PMMISSOHelper {
    *   The IMS vendor username.
    */
   public function getImsVu() {
-    $vu = $this->settings->get('ims_vu');
-    return $vu;
+    return $this->settings->get('ims_vu');
   }
 
   /**
@@ -433,8 +448,7 @@ class PMMISSOHelper {
    *   The IMS vendor password (HEX).
    */
   public function getImsVp() {
-    $vp = $this->settings->get('ims_vp');
-    return $vp;
+    return $this->settings->get('ims_vp');
   }
 
   /**

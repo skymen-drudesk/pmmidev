@@ -283,6 +283,19 @@ class PMMISSOUserManager {
   }
 
   /**
+   * Return PMMI SSO user ID for account, or FALSE if it doesn't have one.
+   *
+   * @param int $uid
+   *   The user ID.
+   *
+   * @return bool|string
+   *   The PMMI SSO username if it exists, or FALSE otherwise.
+   */
+  public function getSsoUserRoleForAccount($uid) {
+    return $this->authmap->getAuthData($uid, 'pmmi_sso')[''];
+  }
+
+  /**
    * Generate a random password for new user registrations.
    *
    * @return string

@@ -51,6 +51,11 @@ pmmi_sso.settings:
       type: mapping
       label: 'User Accounts'
       mapping:
+        sso_roles:
+          type: sequence
+          label: 'Auto assigned roles'
+          sequence:
+            type: string
         auto_assigned_roles:
           type: sequence
           label: 'Auto assigned roles'

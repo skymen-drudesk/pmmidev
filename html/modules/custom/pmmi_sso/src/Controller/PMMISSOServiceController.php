@@ -202,13 +202,10 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
       if ($this->ssoHelper->getTokenAction() == PMMISSOHelper::TOKEN_ACTION_FORCE_LOGIN) {
         // Validation failed, redirect to homepage and set message.
         $this->ssoHelper->log($e->getMessage());
-//        $this->setMessage($this->t('Your token expired.'), 'status');
         $this->handleReturnToParameter($request);
         user_logout();
         $login_url = $this->ssoHelper->generateLoginUrl($this->decodedPath);
         return new PMMISSORedirectResponse($login_url);
-
-//        return new PMMISSORedirectResponse($this->urlGenerator->generate('<front>'));
       }
       else {
         // Validation failed, redirect to homepage and set message.
@@ -220,8 +217,6 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
         $this->handleReturnToParameter($request);
         user_logout();
         return new PMMISSORedirectResponse($this->decodedPath);
-//        return RedirectResponse::create($this->urlGenerator->generate('<front>'));
-//        return RedirectResponse::create($this->urlGenerator->generate('<front>'));
       }
     }
     if ($internal) {

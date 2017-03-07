@@ -107,4 +107,30 @@ class PMMISSOXmlParser {
     return $value->item(0)->nodeValue;
   }
 
+  /**
+   * Get single value from XML Markup.
+   *
+   * @param string $query
+   *   The XPath query for XML Document.
+   *
+   * @return string
+   *   The value.
+   *
+   * @throws PMMISSOValidateException
+   *   If one or more of the arguments are not valid.
+   */
+  public function getMultiplyValues($query) {
+    /** @var \DOMNodeList $value */
+    $values = $this->xmlPath->query($query);
+    if ($values->length == 0) {
+      throw new PMMISSOValidateException("Response XML from PMMI SSO server is not valid.");
+    }
+    $result = array();
+    /** @var \DOMElement $item */
+    foreach ($values as $item) {
+      $result[] = $item->nodeValue;
+    }
+    return $result;
+  }
+
 }

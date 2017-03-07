@@ -55,8 +55,11 @@ services:
 #    class: Drupal\pmmi_sso\Service\PMMISSOManager
 #    arguments: ['@externalauth.externalauth', '@config.factory', '@entity_type.manager', '@logger.channel.externalauth', '@pmmi_sso.service']
 
-
-
+  cache_context.user.pmmi_sso_roles:
+    class: Drupal\Core\Cache\Context\PMMISSORolesCacheContext
+    arguments: ['@current_user', '@user.data']
+    tags:
+      - { name: cache.context}
 
   pmmi_sso.page_cache_response_policy.deny_sso:
     class: Drupal\pmmi_sso\PageCache\DenySSO

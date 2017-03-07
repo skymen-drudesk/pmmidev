@@ -198,26 +198,34 @@ class PMMISSOSettings extends ConfigFormBase {
       '#open' => TRUE,
       '#tree' => TRUE,
     );
+    $form['user_accounts']['sso_roles'] = array(
+      '#type' => 'textfield',
+      '#cardinality' => 5,
+      '#title' => $this->t('Allowed SSO Roles'),
+      '#description' => $this->t('A comma separated list of SSO user roles. The selected roles will be allowed to registering through SSO.'),
+      '#required' => TRUE,
+      '#default_value' => implode(',', $config->get('user_accounts.sso_roles')),
+    );
     $auto_assigned_roles = $config->get('user_accounts.auto_assigned_roles');
     $form['user_accounts']['auto_assigned_roles_enable'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Automatically assign roles on user registration'),
+      '#title' => $this->t('Automatically assign roles on user registration'),
       '#default_value' => count($auto_assigned_roles) > 0,
-      '#states' => array(
-        'invisible' => array(
-          'input[name="user_accounts[auto_register]"]' => array('checked' => FALSE),
-        ),
-      ),
     );
     $roles = user_role_names(TRUE);
     unset($roles[RoleInterface::AUTHENTICATED_ID]);
     $form['user_accounts']['auto_assigned_roles'] = array(
       '#type' => 'select',
       '#multiple' => TRUE,
-      '#title' => t('Roles'),
-      '#description' => t('The selected roles will be automatically assigned to each SSO user on login. Use this to automatically give SSO users additional privileges or to identify SSO users to other modules.'),
+      '#title' => $this->t('Roles'),
+      '#description' => $this->t('The selected roles will be automatically assigned to each SSO user on login. Use this to automatically give SSO users additional privileges or to identify SSO users to other modules.'),
       '#default_value' => $auto_assigned_roles,
       '#options' => $roles,
+      '#states' => array(
+        'invisible' => array(
+          'input[name="user_accounts[auto_assigned_roles_enable]"]' => array('checked' => FALSE),
+        ),
+      ),
     );
     $form['user_accounts']['login_link_enabled'] = array(
       '#type' => 'checkbox',
@@ -381,6 +389,11 @@ class PMMISSOSettings extends ConfigFormBase {
         'user_accounts',
         'login_link_label',
       ]));
+    $sso_roles = $form_state->getValue([
+      'user_accounts',
+      'sso_roles',
+    ]);
+
     $auto_assigned_roles = [];
     if ($form_state->getValue([
       'user_accounts',

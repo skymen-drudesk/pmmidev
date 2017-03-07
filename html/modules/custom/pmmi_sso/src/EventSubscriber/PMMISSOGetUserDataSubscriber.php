@@ -59,8 +59,8 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getSsoData', 100];
-    $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getServiceData', 99];
-    $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getIMSServiceData', 98];
+    $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getImsData', 99];
+    $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getServiceData', 98];
     return $events;
   }
 
@@ -106,6 +106,49 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
       if ($email = $this->parser->getSingleValue('//m:Email')) {
         $event->setPropertyValue('mail', $email);
       }
+    }
+    else {
+      $event->setAllowAutomaticRegistration(FALSE);
+      throw new PMMISSOLoginException("User does not exist or disabled.");
+    }
+  }
+
+  /**
+   * The entry point for our subscriber.
+   *
+   * Get User Data that just registered via PMMI SSO.
+   *
+   * @param PMMISSOPreRegisterEvent $event
+   *   The event object.
+   *
+   * @throws PMMISSOLoginException
+   *   Thrown if there was a problem with login.
+   * @throws PMMISSOServiceException
+   *   Thrown if there was a problem with request.
+   */
+  public function getImsData(PMMISSOPreRegisterEvent $event) {
+    $raw_user_id = $event->getSsoPropertyBag()->getRawUserId();
+    $request_options = $this->ssoHelper->buildSsoServiceQuery(
+      'IMSCustomerRoleGetByTimssCustomerId',
+      ['vu', 'vp'],
+      ['TIMSSCustomerId' => $raw_user_id],
+      TRUE
+    );
+    $request_options['method'] = 'POST';
+    $response = $this->handleRequest($request_options);
+    if ($response instanceof RequestException) {
+      $event->setAllowAutomaticRegistration(FALSE);
+      throw new PMMISSOServiceException("Error with request to get IMS User Data: ", $response->getMessage());
+    }
+    $this->parser->setData($response);
+    // Check if user exist and active.
+    if ($this->parser->getNodeList('//m:CustomerRoles')->length > 0) {
+      // Get the SSO roles that are allowed to register.
+      $allowed_roles = $this->ssoHelper->getSsoAllowedRoles();
+      // Parse and set user Roles.
+      $roles = $this->parser->getMultiplyValues('//m:CustomerRoles/m:Role/m:Value');
+      $event->setAuthData('sso_roles', $roles);
+      $event->setPropertyValue('data', $roles);
     }
     else {
       $event->setAllowAutomaticRegistration(FALSE);
