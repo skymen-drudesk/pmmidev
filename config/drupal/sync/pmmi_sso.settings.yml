@@ -4,13 +4,15 @@ vi: '14'
 vu: PMG
 vp: B5996798E5428FDC01DAD7BFC972D73E
 vib: CE32886246107DA7747ED3D55553CD6C
-expiration: '3600'
+expiration: '30'
 gateway:
   check_frequency: -2
   paths:
     id: request_path
-    pages: "/about\r\n/about/*"
+    pages: "/about\r\n/about/*\r\n/calendar\r\n/calendar/*"
     negate: false
+  token_frequency: 1
+  token_action: 0
 advanced:
   debug_log: true
   connection_timeout: 10
@@ -18,3 +20,13 @@ data_service:
   endpoint: 'https://pmmiprod3ebiz.personifycloud.com/PersonifyDataServices/personifydatapmmi.svc'
   username: SUMMIT
   password: pmg@123
+user_accounts:
+  login_link_enabled: true
+  login_link_label: 'Member Login'
+  auto_assigned_roles:
+    - pmmi_member
+  sso_allowed_roles: ''
+ims_service_uri: 'https://pmmiprod3ebiz.personifycloud.com/IMS/IMService.asmx'
+ims_uri: 'http://pmmiprod3ebiz.personifycloud.com/IMS/IMService.asmx'
+ims_vu: resultsdirect
+ims_vp: D2DB541D9E6FB8E91ADF6C1C9BEB6009

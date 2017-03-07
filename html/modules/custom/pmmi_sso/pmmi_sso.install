@@ -15,4 +15,12 @@ function pmmi_sso_install() {
     $role = Role::create(['id' => 'pmmi_member', 'label' => 'PMMI Member']);
     $role->save();
   }
+  if (Role::load('staff') == NULL) {
+    $role = Role::create(['id' => 'staff', 'label' => 'Staff']);
+    $role->save();
+  }
+  if (Role::load('membership_committee') == NULL) {
+    $role = Role::create(['id' => 'membership_committee', 'label' => 'Membership Committee']);
+    $role->save();
+  }
 }
