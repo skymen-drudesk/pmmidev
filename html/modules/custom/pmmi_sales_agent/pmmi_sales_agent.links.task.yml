@@ -1,4 +1,4 @@
-# Sales agent directory - migration tasks.
+# Sales agent directory - migration.
 pmmi_sales_agent.migrate:
   route_name: pmmi_sales_agent.migrate
   base_route: pmmi_sales_agent.migrate
@@ -8,20 +8,17 @@ pmmi_sales_agent.migrate_messages:
   base_route: pmmi_sales_agent.migrate
   title: 'Messages'
 
-# Sales agent directory - reporting tasks.
-pmmi_sales_agent.reporting:
-  route_name: pmmi_sales_agent.report_settings
-  base_route: pmmi_sales_agent.report_settings
-  title: 'Reporting'
+# Sales agent directory - reporting setings.
 pmmi_sales_agent.reporting_settings:
   route_name: pmmi_sales_agent.report_settings
-  parent_id: pmmi_sales_agent.reporting
+  base_route: pmmi_sales_agent.report_settings
   title: 'Reporting settings'
-pmmi_sales_agent.downloads_per_user:
+pmmi_sales_agent.downloads_quota:
   route_name: entity.sad_downloads_quota.collection
-  parent_id: pmmi_sales_agent.reporting
-  title: 'Downloads per user'
+  base_route: pmmi_sales_agent.report_settings
+  title: 'User-level quota'
 
+# Sales agent directory - mail settings.
 pmmi_sales_agent.mail_settings:
   route_name: pmmi_sales_agent.mail_settings
   base_route: pmmi_sales_agent.mail_settings

@@ -30,9 +30,9 @@ use Drupal\pmmi_sales_agent\SADDownloadsQuotaInterface;
  *     "quota",
  *   },
  *   links = {
- *     "collection" = "/admin/config/sales-agent-directory/report-settings/per-user",
- *     "edit-form" = "/admin/config/sales-agent-directory/report-settings/per-user/{sad_downloads_quota}",
- *     "delete-form" = "/admin/config/sales-agent-directory/report-settings/per-user/{sad_downloads_quota}/delete"
+ *     "collection" = "/admin/config/sad/report-settings/downloads-quota",
+ *     "edit-form" = "/admin/config/sad/report-settings/downloads-quota/{sad_downloads_quota}",
+ *     "delete-form" = "/admin/config/sad/report-settings/downloads-quota/{sad_downloads_quota}/delete"
  *   }
  * )
  */

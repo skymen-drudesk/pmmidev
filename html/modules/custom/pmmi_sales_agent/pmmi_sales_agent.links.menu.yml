@@ -14,6 +14,12 @@ pmmi_sales_agent.migrate:
 pmmi_sales_agent.reporting:
   title: Reporting
   description: 'The sales agent directory reportings.'
+  route_name: page_manager.page_view_sales_agent_directory_usage_export_sales_agent_directory_usage_export-panels_variant-0
+  parent: pmmi_sales_agent.sales_agent_directory
+
+pmmi_sales_agent.reporting_settings:
+  title: Reporting settings
+  description: 'The sales agent directory reporting settings.'
   route_name: pmmi_sales_agent.report_settings
   parent: pmmi_sales_agent.sales_agent_directory
 
@@ -21,12 +27,6 @@ pmmi_sales_agent.reporting:
 pmmi_sales_agent.mail_settings:
   title: Mail settings
   route_name: pmmi_sales_agent.mail_settings
-  parent: pmmi_sales_agent.sales_agent_directory
-
-# Panel page: Sales Agent Directory - Usage Export.
-pmmi_sales_agent.usage_export:
-  title: Usage export
-  route_name: page_manager.page_view_sales_agent_directory_usage_export_sales_agent_directory_usage_export-panels_variant-0
   parent: pmmi_sales_agent.sales_agent_directory
 
 # Panel page: Sales Agent Directory - Admin Panel.

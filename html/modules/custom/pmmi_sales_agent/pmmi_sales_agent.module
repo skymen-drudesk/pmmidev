@@ -70,7 +70,7 @@ function pmmi_sales_agent_file_download($uri) {
   $target = file_uri_target($uri);
 
   // Add some headers to download correct file.
-  if ($scheme == 'private' && $target == 'my-favorites.csv') {
+  if ($scheme == 'private' && preg_match("/^\d+-favourites\.csv$/", $target)) {
     return ['Content-disposition' => 'attachment; filename="' . $target . '"'];
   }
 }
