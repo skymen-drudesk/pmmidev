@@ -254,9 +254,12 @@
         var applyToggler = function (breakpoint) {
           if (breakpoint === 'mobile') {
             $dropdownToggle.once('click-toggler').each(function () {
-              $(this).on('click.mobile-toggler', function (e) {
+              var $dropdownLink = $(this);
+              $dropdownLink.on('click.mobile-toggler', function (e) {
                 e.preventDefault();
-                $(this).toggleClass('opened').parent().toggleClass('opened');
+                $dropdownLink.toggleClass('opened').parent().toggleClass('opened')
+                  .siblings().removeClass('opened')
+                  .find('>a').removeClass('opened');
               });
             });
           }

@@ -73,12 +73,15 @@
       color: $dkgrey;
     }
     .field-name-field-logo {
-      height: 105px;
-      line-height: 103px;
-      border: 1px solid $mdgrey;
-      text-align: center;
-      padding: 0 5px;
-      margin: 0 0 5px;
+      a {
+        display: block;
+        height: 105px;
+        line-height: 103px;
+        border: 1px solid $mdgrey;
+        text-align: center;
+        padding: 0 5px;
+        margin: 0 0 5px;
+      }
       img {
         margin: 0 auto;
         display: inline-block;

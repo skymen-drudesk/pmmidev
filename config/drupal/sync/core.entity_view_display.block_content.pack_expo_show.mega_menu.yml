@@ -58,7 +58,19 @@ content:
     weight: 3
     label: hidden
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      linked_field:
+        linked: '1'
+        type: field
+        destination: field_buttons
+        advanced: {  }
   field_logo:
     type: responsive_image
     weight: 0
@@ -98,6 +110,11 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+      linked_field:
+        linked: '1'
+        type: field
+        destination: field_buttons
+        advanced: {  }
 hidden:
   body: true
   field_buttons: true
