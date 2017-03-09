@@ -30,17 +30,35 @@
     }
     .block-body {
       font-size: $r21;
+      line-height: $r25;
+      @extend .inherited-p;
+      br {
+        display: none;
+      }
     }
   }
   @include tablet {
+    .page-wrapper {
+      padding-top: 48px;
+    }
     .block-text.centered {
       .title {
         font-size: $r55;
+      }
+      .block-body {
+        font-size: $r18;
+        line-height: $r22;
       }
     }
     .panel-gateway {
       .col-sm-4 {
         width: 50%;
+      }
+      .col-1 {
+        padding-right: 6px;
+      }
+      .col-2 {
+        padding-left: 6px;
       }
       .col-3 {
         clear: both;
@@ -51,6 +69,9 @@
     }
   }
   @include mobile {
+    .page-wrapper {
+      padding-top: 20px;
+    }
     .block-text.centered {
       .title {
         font-size: $r35;
@@ -59,6 +80,9 @@
       .block-body {
         font-size: $r17;
         line-height: $r19;
+        br {
+          display: block;
+        }
       }
     }
     .panel-gateway {

@@ -159,6 +159,12 @@
           });
         };
       });
+      // Apple Safari 8 svg issue workaround.
+      if (navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i)) {
+        $('.logo img[src*=".svg"]').once('svg-issue').each(function () {
+          $(this).after('<object data="' + $(this).attr('src') + '" type="image/svg+xml"></object>').next('object').hide();
+        });
+      }
     }
   };
 

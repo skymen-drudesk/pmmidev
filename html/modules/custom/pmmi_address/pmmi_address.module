@@ -5,6 +5,8 @@
  * Extends functionality of address module.
  */
 
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Element;
 
 /**
  * Implements hook_theme().
@@ -26,4 +28,41 @@ function pmmi_address_field_widget_form_alter(&$element, \Drupal\Core\Form\FormS
     $element['country_code']['#title'] = t('You can select as many countries as you want:');
     $element['administrative_area']['#title'] = t('You can select as many states/regions as you want:');
   }
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter().
+ */
+function pmmi_address_form_block_content_form_alter(&$form, FormStateInterface $form_state) {
+  $block_type = $form_state->getFormObject()->getEntity()->bundle();
+  switch ($block_type) {
+    case 'event':
+      if (isset($form['field_location'])) {
+        $form['field_location']['widget']['#after_build'][] = 'pmmi_address_location_required_fields';
+      }
+      break;
+  }
+}
+
+/**
+ * Implements the form after_build().
+ *
+ * Remove required fields from address widget.
+ *
+ * @see pmmi_address_form_block_content_form_alter()
+ */
+function pmmi_address_location_required_fields(array $element, FormStateInterface $form_state) {
+  foreach (Element::children($element) as $delta) {
+    foreach (Element::children($element[$delta]['address']) as $field_name) {
+      $element[$delta]['address'][$field_name]['#required'] = FALSE;
+    }
+  }
+  return $element;
+}
+
+/**
+ * Alter validation constraint plugin definitions.
+ */
+function pmmi_address_validation_constraint_alter(array &$definitions) {
+  $definitions['AddressFormat']['class'] = 'Drupal\pmmi_address\Plugin\Validation\Constraint\PmmiAddressFormatConstraint';
 }
