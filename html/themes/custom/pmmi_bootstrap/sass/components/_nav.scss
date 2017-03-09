@@ -809,12 +809,12 @@
 #panel-eln {
   @include site-template-header(266px, 8px, 86px);
   .navbar .main-nav {
-    margin-top: 46px;
+    margin-top: 24px;
   }
   @include tablet {
     @include site-template-header(170px, 5px, 55px);
     .navbar .main-nav {
-      margin-top: 25px;
+      margin-top: 13px;
     }
   }
   @include mobile {
