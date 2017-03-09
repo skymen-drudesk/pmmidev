@@ -47,12 +47,14 @@ class DownloadsFavouritesButton extends TokenizeAreaPluginBase {
       $uid = \Drupal::currentUser()->id();
       $dq = \Drupal::service('pmmi_sales_agent.downloads_quota');
 
-      if ($dq->getUserLevelQuota($uid) < $dq->getDownloadsByYear($uid)) {
+      if (!$dq->availableDownloadsNumber($uid)) {
         $reporting_settings = \Drupal::service('config.factory')
           ->getEditable('pmmi_sales_agent.reporting_settings');
 
         return [
           '#markup' => $reporting_settings->get('exceeded_message'),
+          '#prefix' => '<div class="quota-exceeded-message">',
+          '#suffix' => '</div>',
         ];
       }
 

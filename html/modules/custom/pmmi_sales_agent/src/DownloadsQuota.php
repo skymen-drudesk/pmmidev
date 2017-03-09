@@ -45,11 +45,25 @@ class DownloadsQuota {
       ->condition('sus.created', strtotime('-1 year'), '>')
       ->condition('user_id', $uid);
 
-    $query->join('sad_user_stat__field_number_of_records', 'rn', 'rn.entity_id=sus.id');
+    $query->join('sad_user_stat__field_records_number', 'rn', 'rn.entity_id=sus.id');
     $query->condition('rn.bundle', 'records_download');
-    $query->addExpression('SUM(rn.field_number_of_records_value)', 'downloads');
+    $query->addExpression('SUM(rn.field_records_number_value)', 'downloads');
 
     $sum = $query->execute()->fetchField();
     return $sum ?: 0;
+  }
+
+  /**
+   * Get available number of downloads.
+   *
+   * @param integer $uid
+   *   The user ID.
+   *
+   * @return integer
+   *   The number of available downloads.
+   */
+  public function availableDownloadsNumber($uid) {
+    $num = $this->getUserLevelQuota($uid) - $this->getDownloadsByYear($uid);
+    return $num > 0 ? $num : 0;
   }
 }

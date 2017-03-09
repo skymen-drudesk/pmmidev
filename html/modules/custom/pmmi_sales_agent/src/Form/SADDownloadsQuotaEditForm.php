@@ -30,6 +30,15 @@ class SADDownloadsQuotaEditForm extends EntityForm {
       '#default_value' => $this->entity->getQuota(),
     ];
 
+    $build_info = $form_state->getBuildInfo();
+    $entity = $build_info['callback_object']->getEntity();
+
+    // Is entity new?
+    $form['new'] = [
+      '#type' => 'value',
+      '#value' => $entity->id() ? FALSE : TRUE,
+    ];
+
     return parent::buildForm($form, $form_state);
   }
 
@@ -41,8 +50,8 @@ class SADDownloadsQuotaEditForm extends EntityForm {
       ->getStorage('sad_downloads_quota')
       ->load($form_state->getValue('id'));
 
-    if ($entity) {
-      $form_state->setErrorByName('id', t('The downloads quota already added to user @username', [
+    if ($entity && $form_state->getValue('new')) {
+      $form_state->setErrorByName('id', t('The downloads quota already added to user @username.', [
         '@username' => $entity->getUser()->getUserName(),
       ]));
     }
@@ -53,7 +62,13 @@ class SADDownloadsQuotaEditForm extends EntityForm {
    */
   public function save(array $form, FormStateInterface $form_state) {
     parent::save($form, $form_state);
-    drupal_set_message($this->t('Downloads quota has been changed for @user.'));
     $form_state->setRedirectUrl($this->entity->toUrl('collection'));
+
+    $build_info = $form_state->getBuildInfo();
+    $entity = $build_info['callback_object']->getEntity();
+
+    drupal_set_message($this->t('Downloads quota has been changed for @username.', [
+      '@username' => $entity->getUser()->getUserName(),
+    ]));
   }
 }

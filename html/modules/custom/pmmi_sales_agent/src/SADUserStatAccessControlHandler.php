@@ -21,10 +21,7 @@ class SADUserStatAccessControlHandler extends EntityAccessControlHandler {
     /** @var \Drupal\pmmi_sales_agent\Entity\SADUserStatInterface $entity */
     switch ($operation) {
       case 'view':
-        // if (!$entity->isPublished()) {
-        //   return AccessResult::allowedIfHasPermission($account, 'view unpublished sales agent user stat entities');
-        // }
-        return AccessResult::allowedIfHasPermission($account, 'view published sales agent user stat entities');
+        return AccessResult::allowedIfHasPermission($account, 'view sales agent user stat entities');
 
       case 'update':
         return AccessResult::allowedIfHasPermission($account, 'edit sales agent user stat entities');
