@@ -350,7 +350,9 @@ function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array
   if (!empty($variables['elements']['#plugin_id'])) {
     switch ($variables['elements']['#plugin_id']) {
       case 'pmmi_search_block':
-        $suggestions[] = 'block__header_search';
+        if ($variables['elements']['#configuration']['region'] == 'header_main_nav') {
+          $suggestions[] = 'block__header_search';
+        }
         break;
     }
     if ($variables['elements']['#base_plugin_id'] == 'system_menu_block'

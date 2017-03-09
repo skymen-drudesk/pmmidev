@@ -373,3 +373,49 @@
     }
   }
 }
+
+// Search block in main region.
+.block-region-main .pmmi-search-block-form {
+  max-width: 270px;
+  padding-right: 35px;
+  position: relative;
+  .form-search {
+    border-radius: 3px 0 0 3px;
+    height: 32px;
+    border: 1px solid #c2c2c2;
+  }
+  .form-submit {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 32px;
+    overflow: hidden;
+    width: 35px;
+    line-height: 100px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0 3px 3px 0;
+    span {
+      display: block;
+      text-indent: 0;
+      line-height: 32px;
+    }
+  }
+}
+
+// Panels text block.
+.block-panels-text-block {
+  h2 {
+    margin: 0 0 20px;
+  }
+  p {
+    margin-bottom: 15px;
+  }
+  a {
+    text-decoration: underline;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
