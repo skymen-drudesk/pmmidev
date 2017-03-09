@@ -2,6 +2,7 @@
 
 namespace Drupal\pmmi_sso\EventSubscriber;
 
+use Drupal\Component\Utility\NestedArray;
 use Drupal\pmmi_sso\Event\PMMISSOPreRegisterEvent;
 use Drupal\pmmi_sso\Exception\PMMISSOLoginException;
 use Drupal\pmmi_sso\Exception\PMMISSOServiceException;
@@ -59,8 +60,10 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
    */
   public static function getSubscribedEvents() {
     $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getSsoData', 100];
-    $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getImsData', 99];
-    $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getServiceData', 98];
+    $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getServiceData', 99];
+    $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['getImsRole', 98];
+    $events[PMMISSOHelper::EVENT_PRE_REGISTER][] = ['checkDataServiceRole', 97];
+
     return $events;
   }
 
@@ -126,33 +129,41 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
    * @throws PMMISSOServiceException
    *   Thrown if there was a problem with request.
    */
-  public function getImsData(PMMISSOPreRegisterEvent $event) {
-    $raw_user_id = $event->getSsoPropertyBag()->getRawUserId();
-    $request_options = $this->ssoHelper->buildSsoServiceQuery(
-      'IMSCustomerRoleGetByTimssCustomerId',
-      ['vu', 'vp'],
-      ['TIMSSCustomerId' => $raw_user_id],
-      TRUE
+  public function getServiceData(PMMISSOPreRegisterEvent $event) {
+    $user_id = $event->getSsoPropertyBag()->getUserId();
+    $request_options = $this->ssoHelper->buildDataServiceQuery(
+      'CustomerInfos',
+      ['$filter' => "MasterCustomerId eq '$user_id'"]
     );
-    $request_options['method'] = 'POST';
+    $request_options['method'] = 'GET';
     $response = $this->handleRequest($request_options);
     if ($response instanceof RequestException) {
       $event->setAllowAutomaticRegistration(FALSE);
-      throw new PMMISSOServiceException("Error with request to get IMS User Data: ", $response->getMessage());
+      throw new PMMISSOServiceException("Error with request to get User Data: ", $response->getMessage());
     }
-    $this->parser->setData($response);
-    // Check if user exist and active.
-    if ($this->parser->getNodeList('//m:CustomerRoles')->length > 0) {
-      // Get the SSO roles that are allowed to register.
-      $allowed_roles = $this->ssoHelper->getSsoAllowedRoles();
-      // Parse and set user Roles.
-      $roles = $this->parser->getMultiplyValues('//m:CustomerRoles/m:Role/m:Value');
-      $event->setAuthData('sso_roles', $roles);
-      $event->setPropertyValue('data', $roles);
+    // Check if user data exist.
+    if ($json_data = json_decode($response)) {
+      $data = $json_data->d[0];
+      // Parse and set user LabelName.
+      if ($label_name = $data->LabelName) {
+        $event->setPropertyValue('name', $label_name);
+      }
+      else {
+        $event->setAllowAutomaticRegistration(FALSE);
+        throw new PMMISSOLoginException("User name not exist or disabled.");
+      }
+      // Parse and set user FirstName.
+      if ($first_name = $data->FirstName) {
+        $event->setPropertyValue('field_first_name', $first_name);
+      }
+      // Parse and set user LastName.
+      if ($last_name = $data->LastName) {
+        $event->setPropertyValue('field_last_name', $last_name);
+      }
     }
     else {
       $event->setAllowAutomaticRegistration(FALSE);
-      throw new PMMISSOLoginException("User does not exist or disabled.");
+      throw new PMMISSOLoginException("Invalid response from SSO Service.");
     }
   }
 
@@ -169,44 +180,100 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
    * @throws PMMISSOServiceException
    *   Thrown if there was a problem with request.
    */
-  public function getServiceData(PMMISSOPreRegisterEvent $event) {
-    $user_id = $event->getSsoPropertyBag()->getUserId();
-    $request_options = $this->ssoHelper->buildDataServiceQuery(
-      'CustomerInfos',
-      ['$filter' => "MasterCustomerId eq '$user_id'"]
+  public function getImsRole(PMMISSOPreRegisterEvent $event) {
+    // Get the IMS roles that are allowed to register.
+    $ims_role_mapping = array_map('strtolower', $this->ssoHelper->getAllowedRoles(PMMISSOHelper::IMS));
+    if (empty($ims_role_mapping)) {
+      return;
+    }
+    $raw_user_id = $event->getSsoPropertyBag()->getRawUserId();
+    $request_options = $this->ssoHelper->buildSsoServiceQuery(
+      'IMSCustomerRoleGetByTimssCustomerId',
+      ['vu', 'vp'],
+      ['TIMSSCustomerId' => $raw_user_id],
+      TRUE
     );
-    $request_options['method'] = 'GET';
+    $request_options['method'] = 'POST';
     $response = $this->handleRequest($request_options);
     if ($response instanceof RequestException) {
-      $event->setAllowAutomaticRegistration(FALSE);
-      throw new PMMISSOServiceException("Error with request to get User Data: ", $response->getMessage());
+      throw new PMMISSOServiceException("Error with request to get IMS User Data: ", $response->getMessage());
     }
-    // Check if user exist and active.
-    if ($json_data = json_decode($response)) {
-      $data = $json_data->d[0];
-      // Parse and set user LabelName.
-      if ($label_name = $data->LabelName) {
-        $event->setPropertyValue('name', $label_name);
-        $event->setAuthData('label_name', $label_name);
+    $this->parser->setData($response);
+    // Check if user have IMS Role.
+    if ($this->parser->getNodeList('//m:CustomerRoles')->length > 0) {
+      // Parse existing user Roles.
+      $roles = array_map('strtolower', $this->parser->getMultiplyValues('//m:CustomerRoles/m:Role/m:Value'));
+      $exist_roles = array_intersect($ims_role_mapping, $roles);
+      if (count($exist_roles) > 0) {
+        $user_roles = $this->ssoHelper->filterAllowedRoles(PMMISSOHelper::IMS, $exist_roles);
+        $event->setDrupalRoles($user_roles);
       }
       else {
-        $event->setAllowAutomaticRegistration(FALSE);
-        throw new PMMISSOLoginException("User name not exist or disabled.");
+        $this->ssoHelper->log('User does not have allowed IMS Role.');
       }
-      // Parse and set user FirstName.
-      if ($first_name = $data->FirstName) {
-        $event->setPropertyValue('field_first_name', $first_name);
-        $event->setAuthData('first_name', $first_name);
+    }
+  }
+
+  /**
+   * Check if the user is on the committee.
+   *
+   * @param PMMISSOPreRegisterEvent $event
+   *   The event object.
+   *
+   * @throws PMMISSOLoginException
+   *   Thrown if there was a problem with login.
+   * @throws PMMISSOServiceException
+   *   Thrown if there was a problem with request.
+   */
+  public function checkDataServiceRole(PMMISSOPreRegisterEvent $event) {
+    // Get the Data Service committee_id that are allowed to register.
+    $role_id_mapping = $this->ssoHelper->getAllowedRoles(PMMISSOHelper::DATA);
+    if (empty($role_id_mapping) && empty($event->getDrupalRoles())) {
+      $event->setAllowAutomaticRegistration(FALSE);
+      throw new PMMISSOLoginException("User does not have any allowed roles.");
+    }
+    $user_id = $event->getSsoPropertyBag()->getUserId();
+    $date = new \DateTime();
+    foreach ($role_id_mapping as $committee_id) {
+      $query = [
+        '$filter' => 'MemberMasterCustomer eq \'' . $user_id . '\' and ' .
+        'CommitteeMasterCustomer eq \'' . $committee_id . '\' and ' .
+        'EndDate ge datetime\'' . $date->format('Y-m-d') . '\' and ' .
+        'ParticipationStatusCodeString eq \'ACTIVE\'',
+      ];
+      $request_options = $this->ssoHelper->buildDataServiceQuery(
+        'CommitteeMembers',
+        $query
+      );
+      $request_options['method'] = 'GET';
+      $response = $this->handleRequest($request_options);
+      if ($response instanceof RequestException) {
+        throw new PMMISSOServiceException("Error with request to check Data Service User role: ", $response->getMessage());
       }
-      // Parse and set user LastName.
-      if ($last_name = $data->LastName) {
-        $event->setPropertyValue('field_last_name', $last_name);
-        $event->setAuthData('last_name', $last_name);
+      elseif ($json_data = json_decode($response)) {
+        $data = $json_data->d;
+        if (!empty($data) && $data[0]->MemberMasterCustomer == $committee_id) {
+          $roles[] = $committee_id;
+        }
+        else {
+          $this->ssoHelper->log('Wrong response from Data Service.');
+        }
       }
+      else {
+        $this->ssoHelper->log('User does not have allowed Data Service Role.');
+      }
+    }
+    if (!empty($roles)) {
+      $roles = $this->ssoHelper->filterAllowedRoles(PMMISSOHelper::DATA, $roles);
+      $event->setDrupalRoles($roles);
+    }
+    $roles_to_register = $event->getDrupalRoles();
+    if (!empty($roles_to_register)) {
+      $event->setPropertyValue('roles', $roles_to_register);
     }
     else {
       $event->setAllowAutomaticRegistration(FALSE);
-      throw new PMMISSOLoginException("User does not exist or disabled.");
+      throw new PMMISSOLoginException("User does not have any allowed roles.");
     }
   }
 

@@ -10,7 +10,6 @@ use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Logger\RfcLogLevel;
 use Drupal\Core\Url;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
@@ -394,16 +393,80 @@ class PMMISSOHelper {
   }
 
   /**
-   * Get the IMS URI to the PMMI SSO server.
+   * Get allowed Drupal user role array.
    *
-   * @return string
-   *   The service URI.
+   * @return array
+   *   The allowed Drupal user role array.
    */
   public function getRoleMapping() {
     $map = $this->settings->get('user_accounts.role_mapping');
+    $roles = array();
     if (!empty($map)) {
-      foreach ($map as &$roles) {
-        $audience['audience_redirect_url'] = !empty($audience['audience_redirect_url']) ? $this->getUriAsDisplayableString($audience['audience_redirect_url']) : '/';
+      foreach ($map as $role_id => $role) {
+        $roles[$role_id] = $role['drupal_role_label'];
+      }
+    }
+    return $roles;
+  }
+
+  /**
+   * Get the IMS allowed roles or Data Service allowed Committee IDs.
+   *
+   * @param string $service
+   *   A service ID.
+   *
+   * @return array
+   *   The IMS Roles or CommitteeMasterCustomer IDs.
+   */
+  public function getAllowedRoles($service) {
+    $map = $this->settings->get('user_accounts.role_mapping');
+    $roles = array();
+    if (!empty($map)) {
+      foreach ($map as $role_id => $role) {
+        if ($service == PMMISSOHelper::IMS && $role['service'] == PMMISSOHelper::IMS) {
+          $roles[] = $role['sso_role'];
+        }
+        elseif ($service == PMMISSOHelper::DATA && $role['service'] == PMMISSOHelper::DATA) {
+          $roles[] = $role['committee_id'];
+        }
+      }
+    }
+    return $roles;
+  }
+
+  /**
+   * Get the Drupal user role id.
+   *
+   * Get the Drupal allowed user role array based on IMS allowed roles or
+   * allowed Data Service Committee IDs.
+   *
+   * @param string $service
+   *   A service ID.
+   * @param array $roles_param
+   *   An array of parameters to filter Roles Mapping.
+   *
+   * @return array
+   *   The Drupal Roles ID formated as array. Example: ['pmmi_member', 'staff'].
+   */
+  public function filterAllowedRoles($service, array $roles_param) {
+    $map = $this->settings->get('user_accounts.role_mapping');
+    $roles = array();
+    if (!empty($map)) {
+      foreach ($map as $role_id => $role) {
+        if (
+          $service == PMMISSOHelper::IMS &&
+          $role['service'] == PMMISSOHelper::IMS &&
+          in_array(strtolower($role['sso_role']), $roles_param)
+        ) {
+          $roles[] = $role_id;
+        }
+        elseif (
+          $service == PMMISSOHelper::DATA &&
+          $role['service'] == PMMISSOHelper::DATA &&
+          in_array($role['committee_id'], $roles_param)
+        ) {
+          $roles[] = $role_id;
+        }
       }
     }
     return $roles;

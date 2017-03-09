@@ -6,7 +6,9 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * @internal
+ * Class PMMISSOTokenSettingsForm.
+ *
+ * @package Drupal\pmmi_sso
  */
 class PMMISSOTokenSettingsForm extends FormBase {
 

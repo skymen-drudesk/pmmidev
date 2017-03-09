@@ -180,8 +180,7 @@ class PMMISSOUserManager {
     }
 
     $this->externalAuth->userLoginFinalize($account, $property_bag->getUsername(), $this->provider);
-    $this->storeUserToken( $property_bag->getToken(), $account->id(), $property_bag->getUserId());
-//    $this->storeLoginSessionData($this->session->getId(), $token);
+    $this->storeUserToken($property_bag->getToken(), $account->id(), $property_bag->getUserId());
   }
 
   /**

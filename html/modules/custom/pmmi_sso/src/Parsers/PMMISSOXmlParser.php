@@ -113,7 +113,7 @@ class PMMISSOXmlParser {
    * @param string $query
    *   The XPath query for XML Document.
    *
-   * @return string
+   * @return array
    *   The value.
    *
    * @throws PMMISSOValidateException

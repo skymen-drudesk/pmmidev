@@ -65,7 +65,6 @@ class PMMISSORoleMapDeleteForm extends ConfirmFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     $config = $this->config('pmmi_sso.settings');
-    $deleted_role_map = $config->get('user_accounts.role_mapping.' . $this->roleId);
     $config->clear('user_accounts.role_mapping.' . $this->roleId);
     $config->save();
     $args = array(

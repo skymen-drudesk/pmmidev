@@ -59,11 +59,11 @@ class PMMISSOPreRegisterEvent extends Event {
   protected $drupalUsername;
 
   /**
-   * The roles that assigned to the SSO user account.
+   * The Drupal roles that will be assigned to the SSO user account.
    *
    * @var array
    */
-  protected $ssoRoles;
+  protected $drupalRoles = array();
 
   /**
    * An array of property values to assign to the user account on registration.
@@ -177,18 +177,18 @@ class PMMISSOPreRegisterEvent extends Event {
    * @return array
    *   The roles.
    */
-  public function getSsoRoles() {
-    return $this->ssoRoles;
+  public function getDrupalRoles() {
+    return $this->drupalRoles;
   }
 
   /**
-   * Assign a SSO roles to the Drupal account that is to be registered.
+   * Assign a roles to the Drupal account that is to be registered.
    *
    * @param array $roles
    *   The roles.
    */
-  public function setSsoRoles(array $roles) {
-    $this->ssoRoles = $roles;
+  public function setDrupalRoles(array $roles) {
+    $this->drupalRoles = array_merge($this->drupalRoles, $roles);
   }
 
   /**

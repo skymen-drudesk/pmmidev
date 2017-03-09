@@ -198,16 +198,8 @@ class PMMISSOSettings extends ConfigFormBase {
       '#open' => TRUE,
       '#tree' => TRUE,
     );
-//    $auto_assigned_roles = $config->get('user_accounts.auto_assigned_roles');
-//    $form['user_accounts']['auto_assigned_roles_enable'] = array(
-//      '#type' => 'checkbox',
-//      '#title' => $this->t('Automatically assign roles on user registration'),
-//      '#default_value' => count($auto_assigned_roles) > 0,
-//    );
     $roles = user_role_names(TRUE);
     unset($roles[RoleInterface::AUTHENTICATED_ID]);
-
-
     $form['user_accounts']['role_mapping'] = [
       '#type' => 'table',
       '#description' => $this->t('Role mapping'),
@@ -337,27 +329,6 @@ class PMMISSOSettings extends ConfigFormBase {
     );
     // Store temporary roles array.
     $form_state->setTemporaryValue('drupal_roles', $roles);
-
-
-//
-//    $form['user_accounts']['auto_assigned_roles'] = array(
-//      '#type' => 'select',
-//      '#multiple' => TRUE,
-//      '#title' => $this->t('Allowed Roles'),
-//      '#description' => $this->t(
-//        'The selected roles will be allowed to automatically assigned to SSO
-//        user on login (Only if user have the same SSO Role). Use this to
-//        automatically give SSO users additional privileges or to identify SSO
-//        users to other modules.'
-//      ),
-//      '#default_value' => $auto_assigned_roles,
-//      '#options' => $roles,
-//      '#states' => array(
-//        'invisible' => array(
-//          'input[name="user_accounts[auto_assigned_roles_enable]"]' => array('checked' => FALSE),
-//        ),
-//      ),
-//    );
 
     $form['user_accounts']['login_link_enabled'] = array(
       '#type' => 'checkbox',
@@ -580,19 +551,6 @@ class PMMISSOSettings extends ConfigFormBase {
         'role_mapping',
       ]));
 
-    $auto_assigned_roles = [];
-//    if ($form_state->getValue([
-//      'user_accounts',
-//      'auto_assigned_roles_enable'
-//    ])
-//    ) {
-//      $auto_assigned_roles = array_keys($form_state->getValue([
-//        'user_accounts',
-//        'auto_assigned_roles'
-//      ]));
-//    }
-
-//      ->set('user_accounts.auto_assigned_roles', $auto_assigned_roles);
     $condition_values = (new FormState())
       ->setValues($form_state->getValue(['gateway', 'paths']));
     $this->gatewayPaths->submitConfigurationForm($form, $condition_values);
