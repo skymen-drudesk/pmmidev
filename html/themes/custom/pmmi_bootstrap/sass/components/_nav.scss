@@ -240,7 +240,7 @@
         li {
           display: block;
           font-family: $lato;
-          a {
+          > a {
             display: block;
             color: $ltblue;
             font-size: $r12;
@@ -829,6 +829,7 @@
 // Megamenu subnav.
 .tb-megamenu-block {
   font-family: $lato;
+  white-space: normal;
   .col-md-3 {
     padding: 0 12px;
   }
@@ -836,8 +837,22 @@
     padding: 0;
     float: none;
   }
+  @include tablet {
+    min-width: 400px;
+    padding: 25px 25px 10px
+  }
+  @include mobile {
+    padding: 10px 0;
+    .row {
+      margin: 0;
+    }
+  }
 }
 .tb-megamenu-submenu {
+  .block,
+  div.view {
+    margin-bottom: 0;
+  }
   .desktop-hidden {
     display: none;
     @include mobile {
