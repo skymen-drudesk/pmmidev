@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "71f6890988850ee172c94a495356b65d",
-    "content-hash": "bd7a914b1b7f73ab1e35d20f4092570a",
+    "hash": "c437ee795ac3cec5b7aa34237cefdbba",
+    "content-hash": "d49db7056dbb26067c358a3abd50997c",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -3681,6 +3681,58 @@
             "homepage": "https://www.drupal.org/project/flag",
             "support": {
                 "source": "http://cgit.drupalcode.org/flag"
+            }
+        },
+        {
+            "name": "drupal/google_analytics",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/google_analytics",
+                "reference": "8.x-2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/google_analytics-8.x-2.1.zip",
+                "reference": null,
+                "shasum": "9b5c76802ca28d5072bb9bb552bbfeb660b0734a"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/php": "*",
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.1",
+                    "datestamp": "1470845408"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "hass",
+                    "homepage": "https://www.drupal.org/u/hass"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/49388/committers"
+                }
+            ],
+            "description": "Allows your site to be tracked by Google Analytics by adding a Javascript tracking code to every page.",
+            "homepage": "https://www.drupal.org/project/google_analytics",
+            "support": {
+                "source": "http://git.drupal.org/project/google_analytics.git",
+                "issues": "https://www.drupal.org/project/issues/google_analytics"
             }
         },
         {
