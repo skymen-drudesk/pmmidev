@@ -21,10 +21,13 @@ function pmmi_ga_module_implements_alter(&$implementations, $hook) {
  * Implements hook_page_attachments().
  */
 function pmmi_ga_page_attachments(array &$attachments) {
-  $script = '';
+  $account = \Drupal::currentUser();
 
-  // Attach sales agent directory tracking script.
-  $script .= pmmi_ga_sad_search_tracking_script();
+  $script = '';
+  if (_google_analytics_visibility_roles($account)) {
+    // Attach sales agent directory tracking script.
+    $script .= pmmi_ga_sad_search_tracking_script();
+  }
 
   // Add JS headers.
   if (!empty($script)) {

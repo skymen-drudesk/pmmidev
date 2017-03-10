@@ -5,7 +5,8 @@ visibility:
   request_path_mode: 0
   request_path_pages: "/admin\r\n/admin/*\r\n/batch\r\n/node/add*\r\n/node/*/*\r\n/user/*/*"
   user_role_mode: 0
-  user_role_roles: {  }
+  user_role_roles:
+    pmmi_member: pmmi_member
   user_account_mode: 0
 track:
   outbound: true
@@ -31,6 +32,6 @@ codesnippet:
   after: ''
 translation_set: false
 cache: false
-debug: true
+debug: false
 _core:
   default_config_hash: 5YkLBJiAXgH9BDLkDIb1ozqfCXWwvZggf4XfcXgfjzc
