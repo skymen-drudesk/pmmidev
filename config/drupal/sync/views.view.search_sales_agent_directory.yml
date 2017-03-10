@@ -754,7 +754,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '<a href="/node/{{ nid }}/edit">{{ ''Edit''|trans }}</a> | <a href="/admin/config/sales-agent-directory/admin-panel/contacts/{{ nid }}">{{ ''Show contacts''|trans }}</a>'
+            text: '<a href="/node/{{ nid }}/edit">{{ ''Edit''|trans }}</a> | <a href="/admin/config/sad/admin-panel/contacts/{{ nid }}">{{ ''Show contacts''|trans }}</a>'
             make_link: false
             path: ''
             absolute: false

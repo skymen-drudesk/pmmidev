@@ -8,7 +8,7 @@ id: sales_agent_directory_contacts_admin_panel
 label: 'Sales Agent Directory Contacts - Admin Panel'
 description: ''
 use_admin_theme: true
-path: '/admin/config/sales-agent-directory/admin-panel/contacts/{node}'
+path: '/admin/config/sad/admin-panel/contacts/{node}'
 access_logic: and
 access_conditions:
   -
