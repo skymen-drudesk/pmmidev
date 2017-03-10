@@ -46,8 +46,8 @@ class DownloadsQuota {
       ->condition('user_id', $uid);
 
     $query->join('sad_user_stat__field_records_number', 'rn', 'rn.entity_id=sus.id');
-    $query->condition('rn.bundle', 'records_download');
-    $query->addExpression('SUM(rn.field_records_number_value)', 'downloads');
+    $query->condition('rn.bundle', 'records_download')
+      ->addExpression('SUM(rn.field_records_number_value)', 'downloads');
 
     $sum = $query->execute()->fetchField();
     return $sum ?: 0;

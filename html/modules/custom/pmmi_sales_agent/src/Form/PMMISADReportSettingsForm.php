@@ -31,19 +31,19 @@ class PMMISADReportSettingsForm extends ConfigFormBase {
     $form = parent::buildForm($form, $form_state);
     $config = $this->config('pmmi_sales_agent.reporting_settings');
 
-    $form['download_favourites'] = [
+    $form['download_favorites'] = [
       '#type' => 'details',
       '#open' => TRUE,
-      '#title' => $this->t('Download favourites'),
+      '#title' => $this->t('Download favorites'),
     ];
-    $form['download_favourites']['records_per_year'] = [
+    $form['download_favorites']['records_per_year'] = [
       '#type' => 'number',
       '#title' => $this->t('Records per year'),
       '#default_value' => $config->get('records_per_year'),
-      '#description' => $this->t('Default number of records per year which are available for downloading.'),
+      '#description' => $this->t('Default number of records per year an user can download..'),
       '#required' => TRUE,
     ];
-    $form['download_favourites']['exceeded_message'] = [
+    $form['download_favorites']['exceeded_message'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Exceeded limit message'),
       '#default_value' => $config->get('exceeded_message'),

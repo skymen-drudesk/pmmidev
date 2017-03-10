@@ -37,8 +37,6 @@ class SADUserStatTypeForm extends EntityForm {
       '#disabled' => !$sad_user_stat_type->isNew(),
     ];
 
-    /* You will need additional form elements for your custom properties. */
-
     return $form;
   }
 

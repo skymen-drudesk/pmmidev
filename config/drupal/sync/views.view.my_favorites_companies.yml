@@ -437,17 +437,17 @@ display:
     display_options:
       display_extenders: {  }
       header:
-        downloads_favourites_button:
-          id: downloads_favourites_button
+        downloads_favorites_button:
+          id: downloads_favorites_button
           table: views
-          field: downloads_favourites_button
+          field: downloads_favorites_button
           relationship: none
           group_type: group
           admin_label: ''
           empty: false
           tokenize: 0
           text: 'Download favorites (.csv)'
-          plugin_id: downloads_favourites_button
+          plugin_id: downloads_favorites_button
       defaults:
         header: false
     cache_metadata:

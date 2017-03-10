@@ -9,11 +9,11 @@
  * Implements hook_views_data_alter().
  */
 function pmmi_sales_agent_views_data_alter(&$data) {
-  $data['views']['downloads_favourites_button'] = array(
-    'title' => t('Downloads favourites button'),
-    'help' => t('Displays the download favourites button.'),
+  $data['views']['downloads_favorites_button'] = array(
+    'title' => t('Downloads favorites button'),
+    'help' => t('Displays the download favorites button.'),
     'area' => array(
-      'id' => 'downloads_favourites_button',
+      'id' => 'downloads_favorites_button',
     ),
   );
 }

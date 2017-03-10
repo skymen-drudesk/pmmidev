@@ -12,9 +12,6 @@ use Drupal\user\EntityOwnerInterface;
  * @ingroup pmmi_sales_agent
  */
 interface SADUserStatInterface extends ContentEntityInterface, EntityOwnerInterface {
-
-  // Add get/set methods for your configuration properties here.
-
   /**
    * Gets the Sales agent user stat type.
    *

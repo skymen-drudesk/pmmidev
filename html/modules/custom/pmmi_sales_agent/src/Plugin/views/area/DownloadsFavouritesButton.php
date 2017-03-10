@@ -8,13 +8,13 @@ use Drupal\Core\Url;
 use Drupal\views\Plugin\views\area\TokenizeAreaPluginBase;
 
 /**
- * Downloads favourites button.
+ * Downloads favorites button.
  *
  * @ingroup views_area_handlers
  *
- * @ViewsArea("downloads_favourites_button")
+ * @ViewsArea("downloads_favorites_button")
  */
-class DownloadsFavouritesButton extends TokenizeAreaPluginBase {
+class DownloadsFavoritesButton extends TokenizeAreaPluginBase {
 
   /**
    * {@inheritdoc}

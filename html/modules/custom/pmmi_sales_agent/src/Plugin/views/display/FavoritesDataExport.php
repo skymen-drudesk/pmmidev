@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\ServiceUnavailableHttpException;
 
 /**
- * Provides specific data export display plugin for user favourites.
+ * Provides specific data export display plugin for user favorites.
  *
  * This overrides the REST Export display to make labeling clearer on the admin
  * UI, and to allow attaching of these to other displays.
@@ -79,7 +79,7 @@ class FavoritesDataExport extends RestExport {
       $total_rows = $export_limit;
     }
 
-    // Create new user stat as user has used download favourites feature.
+    // Create new user stat as user has used download favorites feature.
     // @todo: we create new entity on view rendering. Do we need to do this when
     // file is downloaded?
     // @todo: restrict direct access to the views display?
@@ -380,7 +380,7 @@ class FavoritesDataExport extends RestExport {
 
     $display_handler = $view->display_handler;
 
-    // Build the View so the query parameters and offset get applied. so our
+    // Build the View so the query parameters and offset get applied.
     // This is necessary for the total to be calculated accurately and the call
     // to $view->render() to return the items we expect to process in the
     // current batch (i.e. not the same set of N, where N is the number of
