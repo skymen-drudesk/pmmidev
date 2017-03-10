@@ -79,17 +79,6 @@ class FavoritesDataExport extends RestExport {
       $total_rows = $export_limit;
     }
 
-    // Create new user stat as user has used download favorites feature.
-    // @todo: we create new entity on view rendering. Do we need to do this when
-    // file is downloaded?
-    // @todo: restrict direct access to the views display?
-    \Drupal::entityTypeManager()->getStorage('sad_user_stat')
-      ->create([
-        'uid' => $uid,
-        'type' => 'records_download',
-        'field_records_number' => $total_rows,
-      ])->save();
-
     $batch_definition = [
       'operations' => [
         [
@@ -467,6 +456,7 @@ class FavoritesDataExport extends RestExport {
       $context['results'] = [
         'vde_file' => $context['sandbox']['vde_file'],
         'automatic_download' => $view->display_handler->options['automatic_download'],
+        'total' => $total_rows,
       ];
     }
   }
@@ -490,6 +480,16 @@ class FavoritesDataExport extends RestExport {
     // The 'success' parameter means no fatal PHP errors were detected.
     // All other error management should be handled using 'results'.
     if ($success && isset($results['vde_file']) && file_exists($results['vde_file'])) {
+      $uid = \Drupal::currentUser()->id();
+
+      // Create new user stat as user has used download favorites feature.
+      \Drupal::entityTypeManager()->getStorage('sad_user_stat')
+        ->create([
+          'uid' => $uid,
+          'type' => 'records_download',
+          'field_records_number' => $results['total'],
+        ])->save();
+
       // Check the permissions of the file to grant access and allow
       // modules to hook into permissions via hook_file_download().
       $headers = \Drupal::moduleHandler()->invokeAll('file_download', [$results['vde_file']]);
