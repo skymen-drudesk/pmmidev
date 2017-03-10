@@ -19,6 +19,40 @@ define('PMMI_SALES_AGENT_MAIL_LISTING_NEW', 'mail_listing_new');
 define('PMMI_SALES_AGENT_MAIL_LISTING_UPDATE', 'mail_listing_update');
 
 /**
+ * Implements hook_theme().
+ */
+function pmmi_sales_agent_theme() {
+  $theme = [];
+  $theme['sad_user_stat'] = [
+    'render element' => 'elements',
+    'file' => 'sad_user_stat.page.inc',
+    'template' => 'sad_user_stat',
+  ];
+  $theme['sad_user_stat_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'sad_user_stat.page.inc',
+  ];
+  return $theme;
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function pmmi_sales_agent_theme_suggestions_sad_user_stat(array $variables) {
+  $suggestions = array();
+  $entity = $variables['elements']['#sad_user_stat'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'sad_user_stat__' . $sanitized_view_mode;
+  $suggestions[] = 'sad_user_stat__' . $entity->bundle();
+  $suggestions[] = 'sad_user_stat__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'sad_user_stat__' . $entity->id();
+  $suggestions[] = 'sad_user_stat__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
+}
+
+/**
  * Implements hook_cron().
  */
 function pmmi_sales_agent_cron() {
@@ -36,7 +70,7 @@ function pmmi_sales_agent_file_download($uri) {
   $target = file_uri_target($uri);
 
   // Add some headers to download correct file.
-  if ($scheme == 'private' && $target == 'my-favorites.csv') {
+  if ($scheme == 'private' && preg_match("/^\d+-favourites\.csv$/", $target)) {
     return ['Content-disposition' => 'attachment; filename="' . $target . '"'];
   }
 }
@@ -112,22 +146,15 @@ function pmmi_sales_agent_form_pmmi_company_search_block_form_alter(&$form, Form
 function pmmi_sales_agent_log_search_stats(&$form, FormStateInterface $form_state) {
   $values = $form_state->getValues();
 
-  // Select the countries which were searched to add them to usage stats.
-  $countries_searched = [];
-  if ($values['country_code']) {
-    $countries = $form_state->getValue('country_list');
-    foreach ($values['country_code'] as $country_code) {
-      $countries_searched[] = $countries[$country_code];
-    }
+  // Create new user stat entity.
+  if (!empty($values['country_code'])) {
+    \Drupal::entityTypeManager()->getStorage('sad_user_stat')
+      ->create([
+        'uid' => \Drupal::currentUser()->id(),
+        'type' => 'search',
+        'field_countries_searched' => $values['country_code'],
+      ])->save();
   }
-
-  // Creates the statistic point.
-  $connection = Database::getConnection();
-  $connection->insert('pmmi_sales_agent_search_stats')->fields([
-    'uid' => \Drupal::currentUser()->id(),
-    'date' => REQUEST_TIME,
-    'countries_searched' => $countries_searched ? implode(', ', $countries_searched) : '',
-  ])->execute();
 }
 
 /**

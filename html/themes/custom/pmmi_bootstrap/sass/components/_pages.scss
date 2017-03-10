@@ -38,3 +38,12 @@
     }
   }
 }
+.panel-404-page {
+  @include mobile {
+    .block-panels-text-block {
+      .text br {
+        display: none;
+      }
+    }
+  }
+}

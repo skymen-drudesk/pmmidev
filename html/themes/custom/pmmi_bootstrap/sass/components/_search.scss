@@ -380,7 +380,6 @@
   }
 }
 
-
 /**
  * Sales Agent Directory Favorites Page.
  */
@@ -388,7 +387,7 @@
   h2 {
     @extend .headline2;
   }
-  .view-header {
+  .view-header a {
     margin: -45px 0 30px 250px;
     height: auto;
     @extend .button-primary;

@@ -43,3 +43,14 @@ pmmi_sales_agent.mail_mass_settings:
     last_run:
       type: integer
       label: 'Last run'
+
+pmmi_sales_agent.reporting_settings:
+  type: config_object
+  label: 'PMMI Sales Agent Reporting Settings'
+  mapping:
+    records_per_year:
+      type: string
+      label: 'Default number of records per year'
+    exceeded_message:
+      type: text
+      label: 'Exceeded limit message'

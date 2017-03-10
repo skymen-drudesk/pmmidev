@@ -71,3 +71,8 @@ jquery.countdown:
     libraries/moment/min/moment.min.js: {}
     libraries/moment-timezone/builds/moment-timezone-with-data.min.js: {}
     libraries/jquery.countdown/dist/jquery.countdown.min.js: {}
+
+blueconic:
+  header: true
+  js:
+    '//cdn.blueconic.net/pmmi.js': { type: external, weight: -22 }

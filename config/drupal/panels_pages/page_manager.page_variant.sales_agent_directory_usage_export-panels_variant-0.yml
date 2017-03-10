@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - page_manager.page.sales_agent_directory_usage_export
-    - views.view.export_list_of_users
+    - views.view.sales_agent_search_stats
   module:
     - panels
     - views
@@ -13,16 +13,16 @@ label: Panels
 variant: panels_variant
 variant_settings:
   blocks:
-    67c1fa49-7ff4-4c9a-abe7-f33a9595aeb4:
-      id: 'views_block:export_list_of_users-block_1'
+    83c80c8c-3c5f-494e-a6fe-4bf5705e9c46:
+      id: 'views_block:sales_agent_search_stats-block_1'
       label: ''
       provider: views
-      label_display: visible
+      label_display: '0'
       views_label: ''
       items_per_page: none
       region: middle
       weight: 0
-      uuid: 67c1fa49-7ff4-4c9a-abe7-f33a9595aeb4
+      uuid: 83c80c8c-3c5f-494e-a6fe-4bf5705e9c46
       context_mapping: {  }
   id: panels_variant
   uuid: ab305b4c-495b-4277-9ff2-00fcb2331a0e

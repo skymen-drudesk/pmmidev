@@ -224,3 +224,12 @@ div.view {
     }
   }
 }
+
+.block-views-blockmembership-application-submissions-block-all {
+  .block-title {
+    @extend .headline2;
+  }
+  .views-row + h3 {
+    margin-top: 30px;
+  }
+}

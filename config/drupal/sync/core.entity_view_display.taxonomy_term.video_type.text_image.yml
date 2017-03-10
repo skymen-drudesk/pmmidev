@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.taxonomy_term.text_image
+    - field.field.taxonomy_term.video_type.field_head
     - field.field.taxonomy_term.video_type.field_logo
     - image.style.brand_block_dhd
     - taxonomy.vocabulary.video_type
@@ -22,27 +23,11 @@ third_party_settings:
       settings: {  }
     regions:
       head:
-        - taxonomy_term_title
+        - field_head
       body:
         - description
       image:
         - field_logo
-    fields:
-      taxonomy_term_title:
-        plugin_id: taxonomy_term_title
-        weight: 0
-        label: inline
-        formatter: default
-        settings:
-          wrapper: ''
-          class: ''
-          link: false
-        ft:
-          id: minimal
-          settings:
-            lb: 'About PMMI '
-            lb-col: false
-            classes: {  }
 id: taxonomy_term.video_type.text_image
 targetEntityType: taxonomy_term
 bundle: video_type
@@ -54,6 +39,20 @@ content:
     weight: 1
     settings: {  }
     third_party_settings: {  }
+  field_head:
+    type: string
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_logo:
     weight: 2
     label: hidden
