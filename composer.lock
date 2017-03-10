@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "48ef42b6d4858c43bfa975d324c13eec",
-    "content-hash": "8d8adc47921c3b6a06d55272d8d5d2ed",
+    "hash": "c437ee795ac3cec5b7aa34237cefdbba",
+    "content-hash": "d49db7056dbb26067c358a3abd50997c",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -2075,7 +2075,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.3",
-                    "datestamp": "1462466939"
+                    "datestamp": "1488072484"
                 },
                 "patches_applied": {
                     "config_installer_install_uninstalled_profile_dependencies() assumes too much": "https://www.drupal.org/files/issues/config_installer_2729243_2.patch"
@@ -2672,7 +2672,8 @@
                     "Expose contextual filters of views blocks as context": "https://www.drupal.org/files/issues/2287073-148.patch",
                     "Datetime Views plugins don't support timezones": "https://www.drupal.org/files/issues/2627512-139_0.patch",
                     "Improve the views integration for daterange fields": "https://www.drupal.org/files/issues/improve_the_views-2786577-71.patch",
-                    "Fix Datetime Timestamp widget issue": "https://www.drupal.org/files/issues/2802663-18.patch"
+                    "Fix Datetime Timestamp widget issue": "https://www.drupal.org/files/issues/2802663-18.patch",
+                    "Exposed date filter leads to a notice": "https://www.drupal.org/files/issues/2811887-19-fix-tests.patch"
                 }
             },
             "autoload": {
@@ -3634,6 +3635,58 @@
             "homepage": "https://www.drupal.org/project/flag",
             "support": {
                 "source": "http://cgit.drupalcode.org/flag"
+            }
+        },
+        {
+            "name": "drupal/google_analytics",
+            "version": "2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/google_analytics",
+                "reference": "8.x-2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/google_analytics-8.x-2.1.zip",
+                "reference": null,
+                "shasum": "9b5c76802ca28d5072bb9bb552bbfeb660b0734a"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/php": "*",
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.1",
+                    "datestamp": "1470845408"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "hass",
+                    "homepage": "https://www.drupal.org/u/hass"
+                },
+                {
+                    "name": "See other contributors",
+                    "homepage": "https://www.drupal.org/node/49388/committers"
+                }
+            ],
+            "description": "Allows your site to be tracked by Google Analytics by adding a Javascript tracking code to every page.",
+            "homepage": "https://www.drupal.org/project/google_analytics",
+            "support": {
+                "source": "http://git.drupal.org/project/google_analytics.git",
+                "issues": "https://www.drupal.org/project/issues/google_analytics"
             }
         },
         {
@@ -4908,7 +4961,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/view_unpublished-8.x-1.0-alpha1.zip",
-                "reference": null,
+                "reference": "8.x-1.0-alpha1",
                 "shasum": "6c5928295162027cd4da8f45aba6111d11e899f0"
             },
             "require": {
@@ -5023,6 +5076,9 @@
                 "drupal": {
                     "version": "8.x-1.0-alpha4",
                     "datestamp": "1482169083"
+                },
+                "patches_applied": {
+                    "Support for batch operations": "https://www.drupal.org/files/issues/views_data_export-batch_support-2789531-52-D8.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
