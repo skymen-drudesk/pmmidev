@@ -3,6 +3,7 @@
 namespace Drupal\pmmi_sales_agent\Plugin\views\display;
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 use Drupal\rest\Plugin\views\display\RestExport;
 use Drupal\views\Views;
@@ -429,9 +430,13 @@ class FavoritesDataExport extends RestExport {
     if (file_put_contents($context['sandbox']['vde_file'], $string, FILE_APPEND) === FALSE) {
       // Write to output file failed - log in logger and in ResponseText on
       // batch execution page user will end up on if write to file fails.
-      $message = t('Could not write to temporary output file for result export (@file). Check permissions.', ['@file' => $context['sandbox']['vde_file']]);
-      \Drupal::logger('views_data_export')->error($message);
-      throw new ServiceUnavailableHttpException(NULL, $message);
+      $message = \Drupal::service('config.factory')
+        ->getEditable('pmmi_sales_agent.reporting_settings')
+        ->get('write_failed_message');
+
+      $rendered_message = Markup::create($message);
+      \Drupal::logger('views_data_export')->error($rendered_message);
+      throw new ServiceUnavailableHttpException(NULL, $rendered_message);
     };
 
     // Update the progress of our batch export operation (i.e. number of
@@ -475,6 +480,8 @@ class FavoritesDataExport extends RestExport {
    *    Where to redirect when batching ended.
    */
   public static function finishBatch($success, array $results, array $operations) {
+    $config = \Drupal::service('config.factory')
+      ->getEditable('pmmi_sales_agent.reporting_settings');
 
     // Set Drupal status message to let the user know the results of the export.
     // The 'success' parameter means no fatal PHP errors were detected.
@@ -506,12 +513,14 @@ class FavoritesDataExport extends RestExport {
           return new RedirectResponse($url);
         }
 
-        drupal_set_message(t('Export complete. Download the file <a href=":download_url">here</a>.', [':download_url' => $url]));
+        $message = str_replace('[:download_url]', $url, $config->get('success_message'));
+        $rendered_message = Markup::create($message);
+        drupal_set_message($rendered_message);
       }
     }
     else {
-      drupal_set_message(t('Export failed. Make sure the private file system is configured and check the error log.'), 'error');
+      $rendered_message = Markup::create($config->get('failed_message'));
+      drupal_set_message($rendered_message, 'error');
     }
   }
-
 }

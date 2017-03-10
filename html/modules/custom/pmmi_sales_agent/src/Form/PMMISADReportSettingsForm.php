@@ -50,6 +50,27 @@ class PMMISADReportSettingsForm extends ConfigFormBase {
       '#description' => $this->t('A message which is appear if download limit has been exceeded.'),
       '#required' => TRUE,
     ];
+    $form['download_favorites']['success_message'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Success export message'),
+      '#default_value' => $config->get('success_message'),
+      '#description' => $this->t('A message which is appear if download has been success. Use [:download_url] token to set a generated file URI.'),
+      '#required' => TRUE,
+    ];
+    $form['download_favorites']['failed_message'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Failed export message'),
+      '#default_value' => $config->get('failed_message'),
+      '#description' => $this->t('A message which is appear if download has been failed.'),
+      '#required' => TRUE,
+    ];
+    $form['download_favorites']['write_failed_message'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('File directory is not writable'),
+      '#default_value' => $config->get('write_failed_message'),
+      '#description' => $this->t('A message which is appear if file directory is not writable.'),
+      '#required' => TRUE,
+    ];
 
     return $form;
   }
@@ -68,6 +89,9 @@ class PMMISADReportSettingsForm extends ConfigFormBase {
     $this->configFactory()->getEditable('pmmi_sales_agent.reporting_settings')
       ->set('records_per_year', $form_state->getValue('records_per_year'))
       ->set('exceeded_message', $form_state->getValue('exceeded_message'))
+      ->set('success_message', $form_state->getValue('success_message'))
+      ->set('failed_message', $form_state->getValue('failed_message'))
+      ->set('write_failed_message', $form_state->getValue('write_failed_message'))
       ->save();
 
     parent::submitForm($form, $form_state);

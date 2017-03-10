@@ -54,3 +54,12 @@ pmmi_sales_agent.reporting_settings:
     exceeded_message:
       type: text
       label: 'Exceeded limit message'
+    success_message:
+      type: text
+      label: 'Success export message'
+    failed_message:
+      type: text
+      label: 'Failed export message'
+    write_failed_message:
+      type: text
+      label: 'File directory is not writable'
