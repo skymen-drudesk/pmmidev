@@ -10,3 +10,17 @@ pmmi_sso_token.admin.config.people.settings:
   description: 'Personify SSO Token Settings and manage entity.'
   route_name: pmmi_sso.token.settings
   parent: user.admin_index
+
+# Personify company menu items definition
+entity.pmmi_personify_company.collection:
+  title: 'Personify company'
+  route_name: entity.pmmi_personify_company.collection
+  description: 'List Personify company entities'
+  parent: system.admin_structure
+  weight: 100
+
+pmmi_personify_company.admin.structure.settings:
+  title: 'Settings'
+  description: 'Configure Personify company entities'
+  route_name: pmmi_personify_company.settings
+  parent: entity.pmmi_personify_company.collection

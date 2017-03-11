@@ -45,6 +45,16 @@ class PMMISSOPreLoginEvent extends Event {
   protected $allowLogin = TRUE;
 
   /**
+   * Controls whether or not we need update the relationship to the company.
+   *
+   * Controls whether or not we need update the relationship beetween user and
+   * company.
+   *
+   * @var bool
+   */
+  protected $updateCompany = TRUE;
+
+  /**
    * Constructor.
    *
    * @param \Drupal\user\UserInterface $account
@@ -100,6 +110,26 @@ class PMMISSOPreLoginEvent extends Event {
    */
   public function getAllowLogin() {
     return $this->allowLogin;
+  }
+
+  /**
+   * Set the $updateCompany property.
+   *
+   * @param bool $updateCompany
+   *   TRUE need update, FALSE otherwise.
+   */
+  public function setUpdateCompany($updateCompany) {
+    $this->updateCompany = $updateCompany ? TRUE : FALSE;
+  }
+
+  /**
+   * Return if this user is need to update relationship.
+   *
+   * @return bool
+   *   TRUE if the user is  need to update, FALSE otherwise.
+   */
+  public function getUpdateCompany() {
+    return $this->updateCompany;
   }
 
 }

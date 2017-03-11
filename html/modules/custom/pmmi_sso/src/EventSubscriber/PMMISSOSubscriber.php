@@ -73,7 +73,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
   /**
    * Frequency to check for gateway login.
    *
-   * @var integer
+   * @var int
    */
   protected $gatewayCheckFrequency;
 

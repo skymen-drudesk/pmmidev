@@ -2,7 +2,6 @@
 
 namespace Drupal\pmmi_sso\EventSubscriber;
 
-use Drupal\Component\Utility\NestedArray;
 use Drupal\pmmi_sso\Event\PMMISSOPreRegisterEvent;
 use Drupal\pmmi_sso\Exception\PMMISSOLoginException;
 use Drupal\pmmi_sso\Exception\PMMISSOServiceException;

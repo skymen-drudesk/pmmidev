@@ -1,22 +1,19 @@
-uuid: 91e27561-afeb-4c7a-9720-c79dceeb93ac
+uuid: 6c3d93b6-c2cf-4cd3-9c99-3cacb353a114
 langcode: en
 status: true
 dependencies:
   module:
+    - pmmi_sso
     - user
-_core:
-  default_config_hash: Sei9dP6DRLjMZXelCDdUg28VcFVfd5SxiOEJA3LggjU
 id: user.field_company
 field_name: field_company
 entity_type: user
-type: string
+type: entity_reference
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+  target_type: pmmi_personify_company
 module: core
 locked: false
-cardinality: 1
+cardinality: -1
 translatable: true
 indexes: {  }
 persist_with_no_fields: false

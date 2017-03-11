@@ -19,3 +19,25 @@ entity.pmmi_sso_token.delete_form:
   base_route:  entity.pmmi_sso_token.canonical
   title: 'Delete'
   weight: 10
+
+# Personify company routing definition
+pmmi_personify_company.settings_tab:
+  route_name: pmmi_personify_company.settings
+  title: 'Settings'
+  base_route: pmmi_personify_company.settings
+
+entity.pmmi_personify_company.canonical:
+  route_name: entity.pmmi_personify_company.canonical
+  base_route: entity.pmmi_personify_company.canonical
+  title: 'View'
+
+entity.pmmi_personify_company.edit_form:
+  route_name: entity.pmmi_personify_company.edit_form
+  base_route: entity.pmmi_personify_company.canonical
+  title: 'Edit'
+
+entity.pmmi_personify_company.delete_form:
+  route_name:  entity.pmmi_personify_company.delete_form
+  base_route:  entity.pmmi_personify_company.canonical
+  title: 'Delete'
+  weight: 10

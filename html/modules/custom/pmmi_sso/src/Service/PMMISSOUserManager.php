@@ -3,7 +3,6 @@
 namespace Drupal\pmmi_sso\Service;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Render\Element\Date;
 use Drupal\pmmi_sso\Event\PMMISSOPreLoginEvent;
 use Drupal\pmmi_sso\Event\PMMISSOPreRegisterEvent;
 use Drupal\pmmi_sso\Event\PMMISSOPreUserLoadEvent;
@@ -179,6 +178,15 @@ class PMMISSOUserManager {
       throw new PMMISSOLoginException("Cannot login, an event listener denied access.");
     }
 
+    if ($pre_login_event->updateCompanies()) {
+
+      $data = unserialize($this->authmap->getAuthData($account->id(), 'pmmi_sso'));
+      $this->authmap->save($account, 'pmmi_sso', $property_bag->getUserId(), serialize($data));
+      $account->set('company', '1');
+      $this->storeUserCompanies();
+      throw new PMMISSOLoginException("Cannot login, an event listener denied access.");
+    }
+
     $this->externalAuth->userLoginFinalize($account, $property_bag->getUsername(), $this->provider);
     $this->storeUserToken($property_bag->getToken(), $account->id(), $property_bag->getUserId());
   }
@@ -194,6 +202,35 @@ class PMMISSOUserManager {
    *   The User Auth ID value.
    */
   public function storeUserToken($token, $uid, $auth_id) {
+    /** @var \Drupal\pmmi_sso\Entity\PMMISSOTokenInterface $token_entity */
+    $token_search = $this->tokenStorage->loadByProperties(['uid' => $uid]);
+    $expire_time = time() + $this->settings->get('expiration');
+    if ($token_entity = reset($token_search)) {
+      $token_entity->setToken($token, $expire_time);
+    }
+    else {
+      $token_entity = $this->tokenStorage->create([
+        'uid' => $uid,
+        'auth_id' => $auth_id,
+        'value' => $token,
+        'expire' => $expire_time,
+      ]);
+    }
+    $this->session->set('expiration', $expire_time);
+    $token_entity->save();
+  }
+
+  /**
+   * Store user companies.
+   *
+   * @param array $companies
+   *   The array of companies.
+   * @param int $uid
+   *   The User ID to be used as the lookup key.
+   * @param string $auth_id
+   *   The User Auth ID value.
+   */
+  public function storeUserCompanies($token, $uid, $auth_id) {
     /** @var \Drupal\pmmi_sso\Entity\PMMISSOTokenInterface $token_entity */
     $token_search = $this->tokenStorage->loadByProperties(['uid' => $uid]);
     $expire_time = time() + $this->settings->get('expiration');
@@ -281,18 +318,18 @@ class PMMISSOUserManager {
     $this->authmap->delete($account->id());
   }
 
-  /**
-   * Return PMMI SSO user ID for account, or FALSE if it doesn't have one.
-   *
-   * @param int $uid
-   *   The user ID.
-   *
-   * @return bool|string
-   *   The PMMI SSO username if it exists, or FALSE otherwise.
-   */
-  public function getSsoUserRoleForAccount($uid) {
-    return $this->authmap->getAuthData($uid, 'pmmi_sso')[''];
-  }
+//  /**
+//   * Return PMMI SSO user ID for account, or FALSE if it doesn't have one.
+//   *
+//   * @param int $uid
+//   *   The user ID.
+//   *
+//   * @return bool|string
+//   *   The PMMI SSO username if it exists, or FALSE otherwise.
+//   */
+//  public function getSsoUserRoleForAccount($uid) {
+//    return $this->authmap->getAuthData($uid, 'pmmi_sso')[''];
+//  }
 
   /**
    * Generate a random password for new user registrations.

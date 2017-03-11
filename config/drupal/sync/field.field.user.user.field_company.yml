@@ -1,4 +1,4 @@
-uuid: d024b113-a993-46cc-bad4-36e5b2664735
+uuid: 1c26d321-5af7-497b-bb77-50dd6b1c7be5
 langcode: en
 status: true
 dependencies:
@@ -6,8 +6,6 @@ dependencies:
     - field.storage.user.field_company
   module:
     - user
-_core:
-  default_config_hash: Doss_w7-EZSZKhYlqRhQo5LyLelGxPVgR5AbwoNZepk
 id: user.user.field_company
 field_name: field_company
 entity_type: user
@@ -18,5 +16,11 @@ required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: string
+settings:
+  handler: 'default:pmmi_personify_company'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference
