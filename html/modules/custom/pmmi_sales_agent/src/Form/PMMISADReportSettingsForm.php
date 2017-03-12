@@ -54,21 +54,21 @@ class PMMISADReportSettingsForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('Success export message'),
       '#default_value' => $config->get('success_message'),
-      '#description' => $this->t('A message which is appear if download has been success. Use [:download_url] token to set a generated file URI.'),
+      '#description' => $this->t('The message which will appear if download was successful. Use the [:download_url] token to add a link to the file.'),
       '#required' => TRUE,
     ];
     $form['download_favorites']['failed_message'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Failed export message'),
       '#default_value' => $config->get('failed_message'),
-      '#description' => $this->t('A message which is appear if download has been failed.'),
+      '#description' => $this->t('The message which will appear if download has failed.'),
       '#required' => TRUE,
     ];
     $form['download_favorites']['write_failed_message'] = [
       '#type' => 'textarea',
       '#title' => $this->t('File directory is not writable'),
       '#default_value' => $config->get('write_failed_message'),
-      '#description' => $this->t('A message which is appear if file directory is not writable.'),
+      '#description' => $this->t('The message which will appear if the file directory is not writable.'),
       '#required' => TRUE,
     ];
 

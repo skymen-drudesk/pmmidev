@@ -520,6 +520,7 @@ class FavoritesDataExport extends RestExport {
     }
     else {
       $rendered_message = Markup::create($config->get('failed_message'));
+      \Drupal::logger('views_data_export')->error($rendered_message);
       drupal_set_message($rendered_message, 'error');
     }
   }
