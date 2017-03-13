@@ -11,8 +11,8 @@ dependencies:
     - pmmi_sales_agent
     - user
     - views_field_view
-id: reporting_usage_by_month
-label: 'Reporting - Usage by month'
+id: reporting_usage_by_user_log
+label: 'Reporting - Usage by user log'
 module: views
 description: ''
 tag: ''
@@ -663,7 +663,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: admin/config/sad/reporting/month-usage
+      path: admin/config/sad/reporting/user-log-usage
       fields:
         user_id:
           id: user_id
@@ -848,7 +848,7 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          view: reporting_usage_by_month
+          view: reporting_usage_by_user_log
           display: block_1
           arguments: '{{ raw_fields.user_id }}'
           plugin_id: view
