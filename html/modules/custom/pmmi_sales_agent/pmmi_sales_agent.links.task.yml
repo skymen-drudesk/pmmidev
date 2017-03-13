@@ -17,6 +17,10 @@ pmmi_sales_agent.reporting_user_log_usage:
   route_name: view.reporting_usage_by_user_log.page_1
   base_route: page_manager.page_view_sales_agent_directory_usage_export_sales_agent_directory_usage_export-panels_variant-0
   title: 'Usage by user log'
+pmmi_sales_agent.reporting_month_usage:
+  route_name: view.reporting_usage_by_month.page_1
+  base_route: page_manager.page_view_sales_agent_directory_usage_export_sales_agent_directory_usage_export-panels_variant-0
+  title: 'Usage by month'
 
 # Sales agent directory - reporting settings.
 pmmi_sales_agent.reporting_settings:
