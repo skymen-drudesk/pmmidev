@@ -14106,6 +14106,13 @@ body > .page-wrapper:after,
   margin: 0;
 }
 
+@media screen and (min-width: 1200px) {
+  .footer .block-block-content {
+    float: right;
+    width: auto;
+  }
+}
+
 .footer .social-links {
   text-align: right;
 }
@@ -16866,8 +16873,6 @@ div.view {
 
 /* CARD BLOCK. */
 .block-card {
-  -webkit-perspective: 1000;
-          perspective: 1000;
   margin: 0 0 20px;
   max-width: 370px;
 }
@@ -16891,12 +16896,16 @@ div.view {
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 1;
   padding: 10px;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   overflow: hidden;
   box-shadow: 0 1px 6px #8c8888;
+}
+
+.ie11 .block-card .side {
+  -webkit-transition-duration: 0s;
+          transition-duration: 0s;
 }
 
 .block-card .image {
@@ -16937,11 +16946,6 @@ div.view {
   }
 }
 
-.block-card .front-side {
-  -webkit-transform: rotateY(0deg);
-          transform: rotateY(0deg);
-}
-
 .block-card .back-side {
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
@@ -16978,6 +16982,10 @@ div.view {
 .block-card:hover .back-side {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg);
+}
+
+.ie11 .block-card:hover .back-side {
+  -ms-backface-visibility: visible;
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
@@ -18489,6 +18497,12 @@ div.view {
 
 .block-social-media-footer .social-links span:last-child {
   margin: 0;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .block-social-media-footer .social-links span {
+    font-size: 1.25rem;
+  }
 }
 
 .block-social-media.mode-media-social-with-text .block-body {
