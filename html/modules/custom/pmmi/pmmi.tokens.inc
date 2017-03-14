@@ -17,6 +17,14 @@ function pmmi_token_info_alter(&$info) {
       'description' => t('Video type path based on parent term'),
     );
   }
+
+  // Add simple token to allow using current user ID as a global views
+  // replacement pattern.
+  // @todo: it should be in core, but let's use this solution for now.
+  $info['tokens']['view']['cu-uid'] = [
+    'name' => t('User ID'),
+    'description' => t("The unique ID of the current user account."),
+  ];
 }
 
 /**
@@ -47,6 +55,10 @@ function pmmi_tokens($type, $tokens, array $data, array $options, BubbleableMeta
           break;
       }
     }
+  }
+
+  if ($type == 'view' && !empty($data['view'])) {
+    $replacements[$tokens['cu-uid']] = \Drupal::currentUser()->id();
   }
 
   return $replacements;

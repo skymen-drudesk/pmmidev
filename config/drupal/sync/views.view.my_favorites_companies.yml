@@ -29,6 +29,7 @@ dependencies:
     - node
     - options
     - pmmi_address
+    - pmmi_sales_agent
     - rest
     - serialization
     - user
@@ -53,7 +54,7 @@ display:
         options:
           perm: 'access content'
       cache:
-        type: tag
+        type: none
         options: {  }
       query:
         type: views_query
@@ -436,19 +437,17 @@ display:
     display_options:
       display_extenders: {  }
       header:
-        area:
-          id: area
+        downloads_favorites_button:
+          id: downloads_favorites_button
           table: views
-          field: area
+          field: downloads_favorites_button
           relationship: none
           group_type: group
           admin_label: ''
           empty: false
-          tokenize: false
-          content:
-            value: '<a href="/sales-agent-directory/favorites.csv?destination=sales-agent-directory/favorites" class="pmmi-download-favorites">Download favorites (.csv)</a>'
-            format: filtered_html
-          plugin_id: text
+          tokenize: 0
+          text: 'Download favorites (.csv)'
+          plugin_id: downloads_favorites_button
       defaults:
         header: false
     cache_metadata:
@@ -461,15 +460,15 @@ display:
         - user.permissions
       tags:
         - 'config:field.storage.node.field_manufacturers_represented'
-  data_export_1:
-    display_plugin: data_export
-    id: data_export_1
+  favorites_data_export_1:
+    display_plugin: favorites_data_export
+    id: favorites_data_export_1
     display_title: 'Data export'
     position: 2
     display_options:
       display_extenders: {  }
       path: sales-agent-directory/favorites.csv
-      filename: my-favorites.csv
+      filename: '[view:cu-uid]-favorites.csv'
       fields:
         title:
           id: title
@@ -1842,7 +1841,7 @@ display:
       pager:
         type: some
         options:
-          items_per_page: 250
+          items_per_page: '0'
           offset: 0
       row:
         type: data_field
@@ -1944,6 +1943,7 @@ display:
       export_method: batch
       export_batch_size: '100'
       automatic_download: 0
+      export_limit: 0
     cache_metadata:
       max-age: -1
       contexts:

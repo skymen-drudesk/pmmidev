@@ -90,3 +90,29 @@ function pmmi_panels_build_alter(array &$build, PanelsDisplayVariant $panels_dis
     $build['#attrs'] = $attributes;
   }
 }
+
+/**
+ * Implements hook_webform_element_info_alter().
+ */
+function pmmi_webform_element_info_alter(array &$elements) {
+  foreach ($elements as $k => $v) {
+    switch ($k) {
+      case 'checkbox':
+        $elements[$k]['webform_views_handler'] = \Drupal\pmmi\WebformElementViews\WebformBooleanViews::class;
+        break;
+    }
+  }
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function pmmi_module_implements_alter(&$implementations, $hook) {
+  switch ($hook) {
+    case 'webform_element_info_alter':
+      $group = $implementations['pmmi'];
+      unset($implementations['pmmi']);
+      $implementations['pmmi'] = $group;
+      break;
+  }
+}
