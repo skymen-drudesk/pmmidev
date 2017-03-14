@@ -52,7 +52,14 @@ class PMMISSOPreLoginEvent extends Event {
    *
    * @var bool
    */
-  protected $updateCompany = TRUE;
+  protected $updateCompanyFlag = FALSE;
+
+  /**
+   * Related companies with current user.
+   *
+   * @var array
+   */
+  protected $companiesId = array();
 
   /**
    * Constructor.
@@ -113,13 +120,13 @@ class PMMISSOPreLoginEvent extends Event {
   }
 
   /**
-   * Set the $updateCompany property.
+   * Set the $updateCompanyFlag property.
    *
-   * @param bool $updateCompany
+   * @param bool $updateCompanyFlag
    *   TRUE need update, FALSE otherwise.
    */
-  public function setUpdateCompany($updateCompany) {
-    $this->updateCompany = $updateCompany ? TRUE : FALSE;
+  public function setUpdateCompanyFlag($updateCompanyFlag) {
+    $this->updateCompanyFlag = $updateCompanyFlag ? TRUE : FALSE;
   }
 
   /**
@@ -128,8 +135,28 @@ class PMMISSOPreLoginEvent extends Event {
    * @return bool
    *   TRUE if the user is  need to update, FALSE otherwise.
    */
-  public function getUpdateCompany() {
-    return $this->updateCompany;
+  public function getUpdateCompanyFlag() {
+    return $this->updateCompanyFlag;
+  }
+
+  /**
+   * Sets the IDs of the related companies.
+   *
+   * @param array $companies_id
+   *   Array of company IDs.
+   */
+  public function setCompanies($companies_id) {
+    $this->companiesId = $companies_id;
+  }
+
+  /**
+   * Return an array of related companies IDs.
+   *
+   * @return array
+   *   Array of company IDs.
+   */
+  public function getCompanies() {
+    return $this->companiesId;
   }
 
 }

@@ -73,11 +73,6 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
    *
    * @param PMMISSOPreRegisterEvent $event
    *   The event object.
-   *
-   * @throws PMMISSOLoginException
-   *   Thrown if there was a problem with login.
-   * @throws PMMISSOServiceException
-   *   Thrown if there was a problem with request.
    */
   public function getSsoData(PMMISSOPreRegisterEvent $event) {
     $raw_user_id = $event->getSsoPropertyBag()->getRawUserId();
@@ -90,7 +85,8 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
     $response = $this->handleRequest($request_options);
     if ($response instanceof RequestException) {
       $event->setAllowAutomaticRegistration(FALSE);
-      throw new PMMISSOServiceException("Error with request to get User Data: ", $response->getMessage());
+      $this->ssoHelper->log("Error with request to get User Data: " . $response->getMessage());
+      return;
     }
     $this->parser->setData($response);
     // Check if user exist and active.
@@ -102,7 +98,8 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
       }
       else {
         $event->setAllowAutomaticRegistration(FALSE);
-        throw new PMMISSOLoginException("User name not exist or disabled.");
+        $this->ssoHelper->log('User name not exist or disabled.');
+        return;
       }
       // Parse and set user email.
       if ($email = $this->parser->getSingleValue('//m:Email')) {
@@ -111,7 +108,8 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
     }
     else {
       $event->setAllowAutomaticRegistration(FALSE);
-      throw new PMMISSOLoginException("User does not exist or disabled.");
+      $this->ssoHelper->log('User does not exist or disabled.');
+      return;
     }
   }
 
@@ -138,7 +136,8 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
     $response = $this->handleRequest($request_options);
     if ($response instanceof RequestException) {
       $event->setAllowAutomaticRegistration(FALSE);
-      throw new PMMISSOServiceException("Error with request to get User Data: ", $response->getMessage());
+      $this->ssoHelper->log("Error with request to get User Data: " . $response->getMessage());
+      return;
     }
     // Check if user data exist.
     if ($json_data = json_decode($response)) {
@@ -149,7 +148,8 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
       }
       else {
         $event->setAllowAutomaticRegistration(FALSE);
-        throw new PMMISSOLoginException("User name not exist or disabled.");
+        $this->ssoHelper->log('User name not exist or disabled.');
+        return;
       }
       // Parse and set user FirstName.
       if ($first_name = $data->FirstName) {
@@ -162,7 +162,8 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
     }
     else {
       $event->setAllowAutomaticRegistration(FALSE);
-      throw new PMMISSOLoginException("Invalid response from SSO Service.");
+      $this->ssoHelper->log('Invalid response from SSO Service.');
+      return;
     }
   }
 
@@ -195,7 +196,8 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
     $request_options['method'] = 'POST';
     $response = $this->handleRequest($request_options);
     if ($response instanceof RequestException) {
-      throw new PMMISSOServiceException("Error with request to get IMS User Data: ", $response->getMessage());
+      $this->ssoHelper->log("Error with request to get IMS User Data: " . $response->getMessage());
+      return;
     }
     $this->parser->setData($response);
     // Check if user have IMS Role.
@@ -229,7 +231,8 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
     $role_id_mapping = $this->ssoHelper->getAllowedRoles(PMMISSOHelper::DATA);
     if (empty($role_id_mapping) && empty($event->getDrupalRoles())) {
       $event->setAllowAutomaticRegistration(FALSE);
-      throw new PMMISSOLoginException("User does not have any allowed roles.");
+      $this->ssoHelper->log("User does not have any allowed roles.");
+      return;
     }
     $user_id = $event->getSsoPropertyBag()->getUserId();
     $date = new \DateTime();
@@ -247,7 +250,8 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
       $request_options['method'] = 'GET';
       $response = $this->handleRequest($request_options);
       if ($response instanceof RequestException) {
-        throw new PMMISSOServiceException("Error with request to check Data Service User role: ", $response->getMessage());
+        $this->ssoHelper->log("Error with request to check Data Service User role: " . $response->getMessage());
+        return;
       }
       elseif ($json_data = json_decode($response)) {
         $data = $json_data->d;
@@ -272,7 +276,8 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
     }
     else {
       $event->setAllowAutomaticRegistration(FALSE);
-      throw new PMMISSOLoginException("User does not have any allowed roles.");
+      $this->ssoHelper->log('User does not have any allowed roles.');
+      return;
     }
   }
 
@@ -281,9 +286,6 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
    *
    * @param array $request_param
    *   Parameters of the request.
-   *
-   * @throws RequestException
-   *   Thrown if there was a problem with request.
    *
    * @return string|RequestException
    *   The response data from PMMI Personify Services.

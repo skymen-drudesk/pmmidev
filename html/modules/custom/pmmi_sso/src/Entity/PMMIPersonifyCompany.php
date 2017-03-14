@@ -18,6 +18,7 @@ use Drupal\user\UserInterface;
  *   id = "pmmi_personify_company",
  *   label = @Translation("Personify company"),
  *   handlers = {
+ *     "storage" = "Drupal\pmmi_sso\PMMIPersonifyCompanyStorage",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\pmmi_sso\PMMIPersonifyCompanyListBuilder",
  *     "views_data" = "Drupal\pmmi_sso\Entity\PMMIPersonifyCompanyViewsData",
@@ -37,6 +38,7 @@ use Drupal\user\UserInterface;
  *   admin_permission = "administer personify company entities",
  *   entity_keys = {
  *     "id" = "id",
+ *     "personify_id" = "personify_id",
  *     "label" = "name",
  *     "uuid" = "uuid",
  *   },

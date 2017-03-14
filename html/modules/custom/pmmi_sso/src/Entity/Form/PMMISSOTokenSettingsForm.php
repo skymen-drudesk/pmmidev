@@ -37,6 +37,8 @@ class PMMISSOTokenSettingsForm extends FormBase {
     $form['expiration'] = [
       '#type' => 'number',
       '#title' => $this->t('Token Session Expiration time'),
+      '#min' => 10,
+      '#step' => 10,
       '#description' => $this->t(
         'The default value, in seconds, to be used as expiration time when 
          creating or renewing tokens. For each user session be set up own 

@@ -137,6 +137,13 @@ class PMMISSOHelper {
   protected $settings;
 
   /**
+   * Stores settings object for the Personify Company Entity.
+   *
+   * @var \Drupal\Core\Config\Config
+   */
+  protected $companySettings;
+
+  /**
    * Stores URL generator.
    *
    * @var \Drupal\Core\Routing\UrlGeneratorInterface
@@ -192,6 +199,7 @@ class PMMISSOHelper {
     $this->connection = $database_connection;
     $this->session = $session;
     $this->settings = $config_factory->get('pmmi_sso.settings');
+    $this->companySettings = $config_factory->get('pmmi_sso_company.settings');
     $this->loggerChannel = $logger_factory->get('pmmi_sso');
     $this->crypt = $crypt;
   }
@@ -530,6 +538,16 @@ class PMMISSOHelper {
    */
   public function getImsVp() {
     return $this->settings->get('ims_vp');
+  }
+
+  /**
+   * Get the time duration setting for an update Personify company entity.
+   *
+   * @return int
+   *   The IMS vendor password (HEX).
+   */
+  public function getPceDurationTime() {
+    return $this->companySettings->get('time_duration');
   }
 
   /**

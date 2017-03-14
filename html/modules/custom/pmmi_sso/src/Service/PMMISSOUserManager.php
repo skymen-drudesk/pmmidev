@@ -177,14 +177,10 @@ class PMMISSOUserManager {
     if (!$pre_login_event->getAllowLogin()) {
       throw new PMMISSOLoginException("Cannot login, an event listener denied access.");
     }
-
-    if ($pre_login_event->updateCompanies()) {
-
-      $data = unserialize($this->authmap->getAuthData($account->id(), 'pmmi_sso'));
-      $this->authmap->save($account, 'pmmi_sso', $property_bag->getUserId(), serialize($data));
-      $account->set('company', '1');
-      $this->storeUserCompanies();
-      throw new PMMISSOLoginException("Cannot login, an event listener denied access.");
+    // Check and add relationship for user companies.
+    if ($pre_login_event->getUpdateCompanyFlag()) {
+      $account->set('field_company', $pre_login_event->getCompanies());
+      $account->save();
     }
 
     $this->externalAuth->userLoginFinalize($account, $property_bag->getUsername(), $this->provider);
@@ -202,35 +198,6 @@ class PMMISSOUserManager {
    *   The User Auth ID value.
    */
   public function storeUserToken($token, $uid, $auth_id) {
-    /** @var \Drupal\pmmi_sso\Entity\PMMISSOTokenInterface $token_entity */
-    $token_search = $this->tokenStorage->loadByProperties(['uid' => $uid]);
-    $expire_time = time() + $this->settings->get('expiration');
-    if ($token_entity = reset($token_search)) {
-      $token_entity->setToken($token, $expire_time);
-    }
-    else {
-      $token_entity = $this->tokenStorage->create([
-        'uid' => $uid,
-        'auth_id' => $auth_id,
-        'value' => $token,
-        'expire' => $expire_time,
-      ]);
-    }
-    $this->session->set('expiration', $expire_time);
-    $token_entity->save();
-  }
-
-  /**
-   * Store user companies.
-   *
-   * @param array $companies
-   *   The array of companies.
-   * @param int $uid
-   *   The User ID to be used as the lookup key.
-   * @param string $auth_id
-   *   The User Auth ID value.
-   */
-  public function storeUserCompanies($token, $uid, $auth_id) {
     /** @var \Drupal\pmmi_sso\Entity\PMMISSOTokenInterface $token_entity */
     $token_search = $this->tokenStorage->loadByProperties(['uid' => $uid]);
     $expire_time = time() + $this->settings->get('expiration');
@@ -318,19 +285,6 @@ class PMMISSOUserManager {
     $this->authmap->delete($account->id());
   }
 
-//  /**
-//   * Return PMMI SSO user ID for account, or FALSE if it doesn't have one.
-//   *
-//   * @param int $uid
-//   *   The user ID.
-//   *
-//   * @return bool|string
-//   *   The PMMI SSO username if it exists, or FALSE otherwise.
-//   */
-//  public function getSsoUserRoleForAccount($uid) {
-//    return $this->authmap->getAuthData($uid, 'pmmi_sso')[''];
-//  }
-
   /**
    * Generate a random password for new user registrations.
    *
@@ -341,53 +295,5 @@ class PMMISSOUserManager {
     // Default length is 10, use a higher number that's harder to brute force.
     return \user_password(30);
   }
-
-//  /**
-//   * Return the email address that should be assigned to an auto-register user.
-//   *
-//   * @param \Drupal\pmmi_sso\PMMISSOPropertyBag $sso_property_bag
-//   *   The PMMISSOPropertyBag associated with the user's login attempt.
-//   *
-//   * @return string
-//   *   The email address.
-//   *
-//   * @throws \Drupal\pmmi_sso\Exception\PMMISSOLoginException
-//   *   Thrown when the email address cannot be derived properly.
-//   */
-//  public function getEmailForNewAccount(PMMISSOPropertyBag $sso_property_bag) {
-//    $email_assignment_strategy = $this->settings->get('pmmi_sso.settings')
-//      ->get('user_accounts.email_assignment_strategy');
-//    if ($email_assignment_strategy === self::EMAIL_ASSIGNMENT_STANDARD) {
-//      return $sso_property_bag->getUsername() . '@' . $this->settings->get('pmmi_sso.settings')
-//          ->get('user_accounts.email_hostname');
-//    }
-//    elseif ($email_assignment_strategy === self::EMAIL_ASSIGNMENT_ATTRIBUTE) {
-//      $email_attribute = $this->settings->get('pmmi_sso.settings')
-//        ->get('user_accounts.email_attribute');
-//      if (empty($email_attribute) || !array_key_exists($email_attribute, $sso_property_bag->getAttributes())) {
-//        throw new PMMISSOLoginException('Specified PMMI SSO email attribute does not exist.');
-//      }
-//
-//      $val = $sso_property_bag->getAttributes()[$email_attribute];
-//      if (empty($val)) {
-//        throw new PMMISSOLoginException('Empty data found for PMMI SSO email attribute.');
-//      }
-//
-//      // The attribute value may actually be an array of values, but we need it
-//      // to only contain 1 value.
-//      if (is_array($val) && count($val) !== 1) {
-//        throw new PMMISSOLoginException('Specified PMMI SSO email attribute was formatted in an unexpected way.');
-//      }
-//
-//      if (is_array($val)) {
-//        $val = $val[0];
-//      }
-//
-//      return trim($val);
-//    }
-//    else {
-//      throw new PMMISSOLoginException('Invalid email address assignment type for auto user registration specified in settings.');
-//    }
-//  }
 
 }

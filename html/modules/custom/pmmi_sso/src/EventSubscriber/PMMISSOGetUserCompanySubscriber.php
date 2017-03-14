@@ -2,6 +2,7 @@
 
 namespace Drupal\pmmi_sso\EventSubscriber;
 
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\pmmi_sso\Event\PMMISSOPreLoginEvent;
 use Drupal\pmmi_sso\Event\PMMISSOPreRegisterEvent;
 use Drupal\pmmi_sso\Exception\PMMISSOLoginException;
@@ -25,6 +26,14 @@ class PMMISSOGetUserCompanySubscriber implements EventSubscriberInterface {
    */
   protected $httpClient;
 
+
+  /**
+   * The PMMI SSO token Storage.
+   *
+   * @var \Drupal\pmmi_sso\PMMIPersonifyCompanyStorageInterface
+   */
+  protected $companyStorage;
+
   /**
    * Stores PMMISSO helper.
    *
@@ -33,26 +42,19 @@ class PMMISSOGetUserCompanySubscriber implements EventSubscriberInterface {
   protected $ssoHelper;
 
   /**
-   * Stores PMMISSOXML parser.
-   *
-   * @var \Drupal\pmmi_sso\Parsers\PMMISSOXmlParser
-   */
-  protected $parser;
-
-  /**
    * PMMISSOAutoAssignRoleSubscriber constructor.
    *
    * @param Client $http_client
    *   The HTTP Client library.
+   * @param EntityTypeManagerInterface $entityTypeManager
+   *   The entity type manager.
    * @param PMMISSOHelper $sso_helper
    *   The PMMI SSO Helper service.
-   * @param PMMISSOXmlParser $parser
-   *   The PMMI SSO XML parser service.
    */
-  public function __construct(Client $http_client, PMMISSOHelper $sso_helper, PMMISSOXmlParser $parser) {
+  public function __construct(Client $http_client, EntityTypeManagerInterface $entityTypeManager, PMMISSOHelper $sso_helper) {
     $this->httpClient = $http_client;
+    $this->companyStorage = $entityTypeManager->getStorage('pmmi_personify_company');
     $this->ssoHelper = $sso_helper;
-    $this->parser = $parser;
   }
 
   /**
@@ -76,57 +78,100 @@ class PMMISSOGetUserCompanySubscriber implements EventSubscriberInterface {
    */
   public function getUserCompanies(PMMISSOPreLoginEvent $event) {
     $account = $event->getAccount();
-    if ($account->isNew()) {
-
-    }
-    // Get the Data Service committee_id that are allowed to register.
-    $role_id_mapping = $this->ssoHelper->getAllowedRoles(PMMISSOHelper::DATA);
-    if (empty($role_id_mapping) && empty($event->getDrupalRoles())) {
-      $event->setAllowAutomaticRegistration(FALSE);
-      throw new PMMISSOLoginException("User does not have any allowed roles.");
-    }
-    $user_id = $event->getSsoPropertyBag()->getUserId();
+    $related_companies = array();
     $date = new \DateTime();
-    foreach ($role_id_mapping as $committee_id) {
+    $event_time = $account->getLastLoginTime() + $this->ssoHelper->getPceDurationTime();
+    // Get releted company list for the new user.
+    if ($event_time < $date->getTimestamp()) {
+      $user_id = $event->getSsoPropertyBag()->getUserId();
       $query = [
-        '$filter' => 'MemberMasterCustomer eq \'' . $user_id . '\' and ' .
-        'CommitteeMasterCustomer eq \'' . $committee_id . '\' and ' .
-        'EndDate ge datetime\'' . $date->format('Y-m-d') . '\' and ' .
-        'ParticipationStatusCodeString eq \'ACTIVE\'',
+        '$filter' => "MasterCustomerId eq '$user_id'",
+
+
+//        '$filter' => 'MasterCustomerId eq \'' . $user_id . '\' and ' .
+//        'RelationshipCode eq \'Employee\' and RelationshipType eq' .
+//        ' \'EMPLoyment\' and (EndDate ge datetime\'' . $date->format('Y-m-d') .
+//        ' or EndDate eq null)',
       ];
       $request_options = $this->ssoHelper->buildDataServiceQuery(
-        'CommitteeMembers',
+        'CusRelationships',
         $query
       );
       $request_options['method'] = 'GET';
       $response = $this->handleRequest($request_options);
       if ($response instanceof RequestException) {
-        throw new PMMISSOServiceException("Error with request to check Data Service User role: ", $response->getMessage());
+        $this->ssoHelper->log("Error with request to check Data Service related user companies.");
+        return;
       }
       elseif ($json_data = json_decode($response)) {
         $data = $json_data->d;
-        if (!empty($data) && $data[0]->MemberMasterCustomer == $committee_id) {
-          $roles[] = $committee_id;
-        }
-        else {
-          $this->ssoHelper->log('Wrong response from Data Service.');
+        if (!empty($data)) {
+          foreach ($data as $relationship) {
+            if (is_object($relationship) && $relationship->MasterCustomerId == $user_id) {
+              $related_companies[] = $relationship->RelatedMasterCustomerId;
+            }
+            else {
+              $this->ssoHelper->log('Wrong response from Data Service.');
+            }
+          }
         }
       }
       else {
-        $this->ssoHelper->log('User does not have allowed Data Service Role.');
+        $this->ssoHelper->log('User does not have related Personify Companies.');
       }
     }
-    if (!empty($roles)) {
-      $roles = $this->ssoHelper->filterAllowedRoles(PMMISSOHelper::DATA, $roles);
-      $event->setDrupalRoles($roles);
-    }
-    $roles_to_register = $event->getDrupalRoles();
-    if (!empty($roles_to_register)) {
-      $event->setPropertyValue('roles', $roles_to_register);
+    // Check and get Company Information.
+    if (!empty($related_companies)) {
+      // Load already exist companies.
+      $exist_companies = $this->companyStorage->getExistCompanyByPersonifyId($related_companies);
+      // Array with Personify IDs for companies that need data.
+      $need_info_companies = array_diff_key(array_flip($related_companies), array_flip($exist_companies));
+      if (!empty($need_info_companies)) {
+        $first = TRUE;
+        $query = array();
+        foreach ($need_info_companies as $company_id => $value) {
+          $query['$filter'] = $first ? "MasterCustomerId eq '$company_id'" : $query['$filter'] . " or MasterCustomerId eq '$company_id'";
+          $first = FALSE;
+        }
+        $query['$select'] = 'MasterCustomerId, LabelName, CustomerClassCode';
+        $request_options = $this->ssoHelper->buildDataServiceQuery(
+          'CustomerInfos',
+          $query
+        );
+        $request_options['method'] = 'GET';
+        $response = $this->handleRequest($request_options);
+        if ($response instanceof RequestException) {
+          $this->ssoHelper->log("Error with request to get Data Service Companies.");
+          return;
+        }
+        elseif ($json_data = json_decode($response)) {
+          $data = $json_data->d;
+          if (!empty($data)) {
+            foreach ($data as $company) {
+              if (is_object($company)) {
+                $company_entity = $this->companyStorage->create([
+                  'personify_id' => $company->MasterCustomerId,
+                  'name' => $company->LabelName,
+                  'code' => $company->CustomerClassCode,
+                ]);
+                $company_entity->save();
+                $exist_companies[$company_entity->id()] = $company->MasterCustomerId;
+              }
+              else {
+                $this->ssoHelper->log('Response from the Data Service does not have a company object.');
+              }
+            }
+          }
+        }
+        else {
+          $this->ssoHelper->log('User does not have related Personify Companies.');
+        }
+      }
+      $event->setCompanies(array_keys($exist_companies));
+      $event->setUpdateCompanyFlag(TRUE);
     }
     else {
-      $event->setAllowAutomaticRegistration(FALSE);
-      throw new PMMISSOLoginException("User does not have any allowed roles.");
+      $this->ssoHelper->log('User does not have related Personify Companies.');
     }
   }
 

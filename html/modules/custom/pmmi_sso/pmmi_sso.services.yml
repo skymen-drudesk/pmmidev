@@ -12,6 +12,12 @@ services:
     tags:
       - { name: 'event_subscriber' }
 
+  pmmi_sso.sso_user_company_subscriber:
+    class: Drupal\pmmi_sso\EventSubscriber\PMMISSOGetUserCompanySubscriber
+    arguments: ['@http_client', '@entity_type.manager', '@pmmi_sso.helper']
+    tags:
+      - { name: 'event_subscriber' }
+
   pmmi_sso.external_auth_subscriber:
     class: Drupal\pmmi_sso\EventSubscriber\PMMISSOExternalAuthSubscriber
     tags:
