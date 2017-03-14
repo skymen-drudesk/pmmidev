@@ -54,3 +54,6 @@ pmmi_sales_agent.reporting_settings:
     exceeded_message:
       type: text
       label: 'Exceeded limit message'
+    img_header:
+      type: integer
+      label: 'Image header block ID'
