@@ -68,7 +68,7 @@ div.view {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 98px;
+    bottom: 80px;
     z-index: 2;
     li {
       display: inline-block;
@@ -118,6 +118,12 @@ div.view {
   .views-row {
     @extend .col-sm-3;
     margin-bottom: 30px;
+    @include mobile {
+      max-width: 234px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0;
+    }
   }
   .more-link {
     a {

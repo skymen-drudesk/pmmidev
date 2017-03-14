@@ -14106,6 +14106,13 @@ body > .page-wrapper:after,
   margin: 0;
 }
 
+@media screen and (min-width: 1200px) {
+  .footer .block-block-content {
+    float: right;
+    width: auto;
+  }
+}
+
 .footer .social-links {
   text-align: right;
 }
@@ -14181,6 +14188,7 @@ body > .page-wrapper:after,
 
 .navbar {
   padding: 0;
+  margin-bottom: 0;
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
@@ -14194,11 +14202,13 @@ body > .page-wrapper:after,
   position: relative;
   min-height: 78px;
   padding-left: 90px;
+  margin-bottom: 8px;
 }
 
 .front .navbar .navbar-header {
   padding-left: 136px;
   min-height: 133px;
+  margin-bottom: 15px;
 }
 
 .navbar div.logo {
@@ -16464,7 +16474,7 @@ div.view {
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 98px;
+  bottom: 80px;
   z-index: 2;
 }
 
@@ -16527,6 +16537,16 @@ div.view {
 .events-block-3 .views-row,
 .block-views-blockevents-block-3 .views-row {
   margin-bottom: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .events-block-3 .views-row,
+  .block-views-blockevents-block-3 .views-row {
+    max-width: 234px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+  }
 }
 
 @media screen and (min-width: 1200px) {
@@ -16866,8 +16886,6 @@ div.view {
 
 /* CARD BLOCK. */
 .block-card {
-  -webkit-perspective: 1000;
-          perspective: 1000;
   margin: 0 0 20px;
   max-width: 370px;
 }
@@ -16891,12 +16909,16 @@ div.view {
   right: 0;
   top: 0;
   bottom: 0;
-  z-index: 1;
   padding: 10px;
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   overflow: hidden;
   box-shadow: 0 1px 6px #8c8888;
+}
+
+.ie11 .block-card .side {
+  -webkit-transition-duration: 0s;
+          transition-duration: 0s;
 }
 
 .block-card .image {
@@ -16937,11 +16959,6 @@ div.view {
   }
 }
 
-.block-card .front-side {
-  -webkit-transform: rotateY(0deg);
-          transform: rotateY(0deg);
-}
-
 .block-card .back-side {
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
@@ -16978,6 +16995,10 @@ div.view {
 .block-card:hover .back-side {
   -webkit-transform: rotateY(0deg);
           transform: rotateY(0deg);
+}
+
+.ie11 .block-card:hover .back-side {
+  -ms-backface-visibility: visible;
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
@@ -18107,15 +18128,20 @@ div.view {
   min-height: 380px;
 }
 
-.block-image-slide-default .slide-info {
+.block-image-slide-default .slide-info-wrapper {
   position: absolute;
   left: 0;
   right: 0;
   top: 0;
   bottom: 0;
-  margin: 58px 135px;
+  margin-top: 58px;
+  margin-bottom: 58px;
+}
+
+.block-image-slide-default .slide-info {
+  height: 100%;
   background: rgba(255, 255, 255, 0.83);
-  padding: 34px 100px 60px;
+  padding: 34px 70px 60px;
   text-align: center;
 }
 
@@ -18139,9 +18165,26 @@ div.view {
   .block-image-slide-default .img {
     max-height: 277px;
   }
+  .block-image-slide-default .title {
+    margin-bottom: 10px;
+  }
+  .block-image-slide-default .field-name-body img {
+    max-height: 40px;
+  }
+  .block-image-slide-default .slide-info-wrapper {
+    margin: 28px auto 22px;
+  }
   .block-image-slide-default .slide-info {
-    margin: 28px 28px 22px;
-    padding: 23px 80px 35px;
+    padding: 23px 40px 35px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .block-image-slide-default .slide-info-wrapper {
+    margin: 15px auto;
+  }
+  .block-image-slide-default .field-name-body img {
+    display: none;
   }
 }
 
@@ -18153,8 +18196,7 @@ div.view {
     max-height: 209px;
   }
   .block-image-slide-default .slide-info {
-    margin: 15px 25px;
-    padding: 15px 60px 35px;
+    padding: 15px 30px 35px;
   }
 }
 
@@ -18165,16 +18207,17 @@ div.view {
   .block-image-slide-default .img {
     max-height: 328px;
   }
+  .block-image-slide-default .slide-info-wrapper {
+    max-width: 310px;
+  }
   .block-image-slide-default .slide-info {
     padding: 15px 25px 35px;
-    margin: 15px 24px 18px;
   }
 }
 
 .block-image-slide {
   color: #fff;
   position: relative;
-  min-height: 400px;
 }
 
 .block-image-slide .img {
@@ -18193,7 +18236,13 @@ div.view {
   top: 0;
   bottom: 0;
   background: rgba(5, 50, 72, 0.8);
-  padding: 70px 50px 20px 40px;
+  padding: 30px 50px 20px 40px;
+}
+
+@media screen and (min-width: 1300px) {
+  .block-image-slide .slide-info {
+    padding-top: 70px;
+  }
 }
 
 .block-image-slide .title {
@@ -18234,7 +18283,7 @@ div.view {
   .block-image-slide .slide-info {
     right: 27px;
     width: 393px;
-    padding: 24px 35px 20px 40px;
+    padding: 20px 20px 20px 40px;
   }
   .block-image-slide .block-body {
     margin-bottom: 20px;
@@ -18248,7 +18297,7 @@ div.view {
   .block-image-slide .slide-info {
     right: 25px;
     width: 350px;
-    padding: 10px 15px 20px 25px;
+    padding: 10px 10px 20px 10px;
   }
   .block-image-slide .img {
     max-height: 224px;
@@ -18268,13 +18317,13 @@ div.view {
 
 @media screen and (max-width: 767px) {
   .block-image-slide {
-    min-height: 220px;
+    min-height: 200px;
   }
   .block-image-slide .slide-info {
     right: 20px;
     left: 20px;
     width: auto;
-    padding: 10px 15px 20px 20px;
+    padding: 10px 15px 10px 20px;
   }
   .block-image-slide .img {
     max-height: 223px;
@@ -18291,6 +18340,28 @@ div.view {
   }
   .block-image-slide .block-body {
     margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 767px) and (min-width: 400px) {
+  .block-image-slide .slide-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 767px) and (max-width: 330px) {
+  .block-image-slide .slide-info {
+    left: 0;
+    right: 0;
   }
 }
 
@@ -18489,6 +18560,12 @@ div.view {
 
 .block-social-media-footer .social-links span:last-child {
   margin: 0;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .block-social-media-footer .social-links span {
+    font-size: 1.25rem;
+  }
 }
 
 .block-social-media.mode-media-social-with-text .block-body {

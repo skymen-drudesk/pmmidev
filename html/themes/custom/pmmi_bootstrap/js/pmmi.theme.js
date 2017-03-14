@@ -139,6 +139,11 @@
               $matchHeightBlock.matchHeight();
             }
           });
+        $.fn.matchHeight._beforeUpdate = function (event, groups) {
+          $socialBlock.each(function () {
+            $(this).removeAttr('style');
+          });
+        };
         $.fn.matchHeight._afterUpdate = function (event, groups) {
           $socialBlock.each(function () {
             var $block = $(this);
