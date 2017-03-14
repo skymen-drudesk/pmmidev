@@ -37,6 +37,7 @@ function pmmi_bootstrap_preprocess_html(&$variables) {
       $variables['head_title']['title'] = $conf['page_title'] . ' | ' .  $site_name;
     }
   }
+  _pmmi_bootstrap_detect_browsers($variables);
 }
 
 /**
@@ -410,4 +411,14 @@ function pmmi_bootstrap_element_info_alter(&$data, &$context1 = NULL, &$context2
 function pmmi_bootstrap_selectize_pre_render($element) {
   $element['#attached']['library'][] = 'pmmi_bootstrap/selectize-plugins';
   return $element;
+}
+
+/**
+ * Browser detection help funciton.
+ */
+function _pmmi_bootstrap_detect_browsers(&$variables) {
+  // Check Windows 10 with IE 11.
+  if (strpos($_SERVER['HTTP_USER_AGENT'], 'Windows NT 10') !== FALSE && strpos($_SERVER['HTTP_USER_AGENT'], 'rv:11') !== FALSE) {
+    $variables['attributes']['class'][] = 'ie11';
+  }
 }

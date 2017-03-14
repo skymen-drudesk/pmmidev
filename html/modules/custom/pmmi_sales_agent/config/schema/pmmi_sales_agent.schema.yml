@@ -57,3 +57,12 @@ pmmi_sales_agent.reporting_settings:
     img_header:
       type: integer
       label: 'Image header block ID'
+    success_message:
+      type: text
+      label: 'Success export message'
+    failed_message:
+      type: text
+      label: 'Failed export message'
+    write_failed_message:
+      type: text
+      label: 'File directory is not writable'

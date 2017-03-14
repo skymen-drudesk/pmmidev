@@ -68,6 +68,28 @@ class PMMISADReportSettingsForm extends ConfigFormBase {
       $form['download_favorites']['img_header']['#default_value'] = $block;
     }
 
+    $form['download_favorites']['success_message'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Success export message'),
+      '#default_value' => $config->get('success_message'),
+      '#description' => $this->t('The message which will appear if download was successful. Use the [:download_url] token to add a link to the file.'),
+      '#required' => TRUE,
+    ];
+    $form['download_favorites']['failed_message'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Failed export message'),
+      '#default_value' => $config->get('failed_message'),
+      '#description' => $this->t('The message which will appear if download has failed.'),
+      '#required' => TRUE,
+    ];
+    $form['download_favorites']['write_failed_message'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('File directory is not writable'),
+      '#default_value' => $config->get('write_failed_message'),
+      '#description' => $this->t('The message which will appear if the file directory is not writable.'),
+      '#required' => TRUE,
+    ];
+
     return $form;
   }
 
@@ -86,6 +108,9 @@ class PMMISADReportSettingsForm extends ConfigFormBase {
       ->set('records_per_year', $form_state->getValue('records_per_year'))
       ->set('exceeded_message', $form_state->getValue('exceeded_message'))
       ->set('img_header', $form_state->getValue('img_header'))
+      ->set('success_message', $form_state->getValue('success_message'))
+      ->set('failed_message', $form_state->getValue('failed_message'))
+      ->set('write_failed_message', $form_state->getValue('write_failed_message'))
       ->save();
 
     parent::submitForm($form, $form_state);
