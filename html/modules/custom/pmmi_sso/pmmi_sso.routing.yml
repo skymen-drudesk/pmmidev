@@ -37,16 +37,6 @@ pmmi_sso.role_map_delete_form:
   options:
     _admin_route: TRUE
 
-#pmmi_sso.logout:
-#  path: '/sso/logout'
-#  defaults:
-#    _controller: '\Drupal\pmmi_sso\Controller\PMMISSOController::logout'
-#    _title: 'Personify SSO Logout'
-#  requirements:
-#    _role: 'authenticated'
-#  options:
-#     no_cache: TRUE
-
 pmmi_sso.login:
   path: '/ssologin'
   defaults:

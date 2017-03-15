@@ -102,7 +102,7 @@ pmmi_sso.settings:
           type: integer
           label: 'Connection Timeout'
 
-pmmi_sso_company.settings:
+pmmi_sso.company.settings:
   type: config_object
   label: 'PMMI SSO Personify Company Settings'
   mapping:
@@ -110,7 +110,7 @@ pmmi_sso_company.settings:
       type: number
       label: 'Time duration'
 
-pmmi_sso_update.settings:
+pmmi_sso.update.settings:
   type: config_object
   label: 'PMMI SSO Update Settings'
   mapping:

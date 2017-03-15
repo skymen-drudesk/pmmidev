@@ -93,7 +93,7 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
    */
   protected function getEditableConfigNames() {
     return [
-      'pmmi_sso_update.settings',
+      'pmmi_sso.update.settings',
     ];
   }
 
@@ -101,14 +101,14 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
    * {@inheritdoc}
    */
   public function getFormId() {
-    return 'pmmi_sso_settings';
+    return 'pmmi_sso_update_settings';
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $config = $this->config('pmmi_sso_update.settings');
+    $config = $this->config('pmmi_sso.update.settings');
     $form['enabled'] = array(
       '#type' => 'checkbox',
       '#title' => $this->t('Enable cron jobs'),
@@ -359,7 +359,7 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
    * Allow user to directly execute cron, optionally forcing it.
    */
   public function cronRun(array &$form, FormStateInterface &$form_state) {
-    $config = $this->configFactory->getEditable('pmmi_sso_update.settings');
+    $config = $this->configFactory->getEditable('pmmi_sso.update.settings');
 
     $cron_reset = $form_state->getValue('cron_reset');
     if (!empty($cron_reset)) {
@@ -412,7 +412,7 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
     parent::submitForm($form, $form_state);
-    $config = $this->config('pmmi_sso_update.settings');
+    $config = $this->config('pmmi_sso.update.settings');
 
     $config
       ->set('enabled', $form_state->getValue('enabled'))

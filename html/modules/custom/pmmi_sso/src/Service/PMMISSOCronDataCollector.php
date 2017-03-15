@@ -74,7 +74,7 @@ class PMMISSOCronDataCollector {
     $this->entityTypeManager = $entity_type_manager;
     $this->userData = $user_data;
     $this->connection = $database_connection;
-    $this->settings = $config_factory->get('pmmi_sso_update.settings');
+    $this->settings = $config_factory->get('pmmi_sso.update.settings');
   }
 
   /**

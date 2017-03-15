@@ -7,7 +7,7 @@ gateway:
     pages: "/about\r\n/about/*\r\n/calendar\r\n/calendar/*"
     negate: false
 advanced:
-  debug_log: true
+  debug_log: false
   connection_timeout: 10
 login_uri: 'https://pmmiprod3ebiz.personifycloud.com/SSO/login.aspx'
 service_uri: 'https://pmmiprod3ebiz.personifycloud.com/sso/webservice/service.asmx'

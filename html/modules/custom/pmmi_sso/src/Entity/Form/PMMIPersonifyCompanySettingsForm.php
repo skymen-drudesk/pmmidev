@@ -33,7 +33,7 @@ class PMMIPersonifyCompanySettingsForm extends FormBase {
    *   The current state of the form.
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $settings = $this->configFactory()->getEditable('pmmi_sso_company.settings');
+    $settings = $this->configFactory()->getEditable('pmmi_sso.company.settings');
     $settings->set('time_duration', $form_state->getValue('time_duration'));
     $settings->save();
   }
@@ -59,7 +59,7 @@ class PMMIPersonifyCompanySettingsForm extends FormBase {
         "Time in seconds, from the user's last login. Used as an event to 
         update the relationships between the user and companies."
       ),
-      '#default_value' => $this->config('pmmi_sso_company.settings')->get('time_duration'),
+      '#default_value' => $this->config('pmmi_sso.company.settings')->get('time_duration'),
       '#required' => TRUE,
     ];
     $form['submit'] = [

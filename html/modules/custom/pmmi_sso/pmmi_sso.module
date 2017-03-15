@@ -106,7 +106,7 @@ function pmmi_sso_form_user_login_form_alter(&$form, FormStateInterface $form_st
 function pmmi_sso_cron() {
   // We access our configuration.
   $cron_config = \Drupal::configFactory()
-    ->getEditable('pmmi_sso_update.settings');
+    ->getEditable('pmmi_sso.update.settings');
   if ($cron_config->get('enabled')) {
     /** @var \Drupal\pmmi_sso\Service\PMMISSOCronDataCollector $data_collector */
     $data_collector = \Drupal::service('pmmi_sso.cron_data_collector');

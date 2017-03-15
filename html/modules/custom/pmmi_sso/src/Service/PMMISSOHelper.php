@@ -199,7 +199,7 @@ class PMMISSOHelper {
     $this->connection = $database_connection;
     $this->session = $session;
     $this->settings = $config_factory->get('pmmi_sso.settings');
-    $this->companySettings = $config_factory->get('pmmi_sso_company.settings');
+    $this->companySettings = $config_factory->get('pmmi_sso.company.settings');
     $this->loggerChannel = $logger_factory->get('pmmi_sso');
     $this->crypt = $crypt;
   }
