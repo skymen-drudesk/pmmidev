@@ -19,7 +19,23 @@ class CompanyListingUpdate extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $data = NULL) {
+  public function buildForm(array $form, FormStateInterface $form_state) {
+    $ms = \Drupal::config('pmmi_sales_agent.mail_settings');
+
+    // If user requested one-time update link - show simple message.
+    if ($form_state->getValue('nid') && $ms->get('one_time_alert')) {
+      $node = \Drupal::entityTypeManager()
+        ->getStorage('node')
+        ->load($form_state->getValue('nid'));
+
+      $form['success'] = [
+        '#markup' => \Drupal::token()->replace($ms->get('one_time_alert_message'), ['node' => $node]),
+        '#prefix' => '<div class="one-time-company-update-message">',
+        '#suffix' => '</div>',
+      ];
+      return $form;
+    }
+
     $form['nid'] = [
       '#type' => 'entity_autocomplete',
       '#title' => $this->t('Please enter your company name'),
@@ -32,7 +48,7 @@ class CompanyListingUpdate extends FormBase {
     ];
     $form['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Submit'),
+      '#value' => $this->t('Search'),
     ];
 
     return $form;
@@ -62,14 +78,10 @@ class CompanyListingUpdate extends FormBase {
           'node' => $node,
         ];
 
-        $result = \Drupal::service('plugin.manager.mail')
+        \Drupal::service('plugin.manager.mail')
           ->mail('pmmi_sales_agent', 'pmmi_one_time_update', $mail, $langcode, $params, TRUE);
 
-        if ($result['result'] === TRUE && $ms->get('one_time_alert')) {
-          $token_service = \Drupal::token();
-          $alert = $token_service->replace($ms->get('one_time_alert_message'), ['node' => $params['node']]);
-          drupal_set_message($alert);
-        }
+        $form_state->setRebuild();
       }
       // @todo: what should we do if primary contact email is not set?
     }
