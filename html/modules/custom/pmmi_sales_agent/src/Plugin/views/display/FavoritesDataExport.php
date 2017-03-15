@@ -97,6 +97,7 @@ class FavoritesDataExport extends RestExport {
       'progressive' => TRUE,
       'progress_message' => '@percentage% complete. Time elapsed: @elapsed',
       'finished' => [static::class, 'finishBatch'],
+      'type' => 'favorites',
     ];
     batch_set($batch_definition);
 
