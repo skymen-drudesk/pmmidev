@@ -125,6 +125,10 @@ body > .page-wrapper,
   .block-block-content {
     @extend .col-md-2;
     margin: 0;
+    @include dhd {
+      float: right;
+      width: auto;
+    }
   }
   .social-links {
     text-align: right;

@@ -7,3 +7,7 @@ services:
     class: Drupal\pmmi\Theme\PMMINegotiator
     tags:
       - { name: theme_negotiator, priority: 0 }
+  pmmi.route_subscriber:
+    class: Drupal\pmmi\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }

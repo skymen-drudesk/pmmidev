@@ -152,3 +152,19 @@ function pmmi_sales_agent_update_8010() {
   \Drupal::service('config_update.config_update')
     ->revert('system.simple', 'pmmi_sales_agent.reporting_settings');
 }
+
+/**
+ * Set default image header for the favorites batch page.
+ */
+function pmmi_sales_agent_update_8011() {
+  /** @var \Drupal\block_content\BlockContentInterface $block */
+  $block = \Drupal::entityManager()
+    ->loadEntityByUuid('block_content', '14fbe4e8-9d85-4988-93d1-f0b2e3a5b49f');
+
+  if ($block) {
+    \Drupal::service('config.factory')
+      ->getEditable('pmmi_sales_agent.reporting_settings')
+      ->set('img_header', $block->id())
+      ->save();
+  }
+}

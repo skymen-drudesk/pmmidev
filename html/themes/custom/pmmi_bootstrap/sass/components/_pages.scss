@@ -47,3 +47,20 @@
     }
   }
 }
+body.path-batch {
+  .pmmi-panel {
+    .block-region-main {
+      width: 100%;
+      padding: 0;
+      .batch-container {
+        max-width: 1200px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: 0 auto;
+        h2.favorites-block-title {
+          @extend .headline2;
+        }
+      }
+    }
+  }
+}

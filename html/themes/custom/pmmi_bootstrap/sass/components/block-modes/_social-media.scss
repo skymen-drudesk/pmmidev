@@ -35,6 +35,9 @@
       &:last-child {
         margin: 0;
       }
+      @include desktop {
+        font-size: $r20;
+      }
     }
   }
 }

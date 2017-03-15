@@ -3,6 +3,7 @@
 }
 .navbar {
   padding: 0;
+  margin-bottom: 0;
   @include desktop {
     padding: 0 10px;
   }
@@ -11,9 +12,11 @@
     position: relative;
     min-height: 78px;
     padding-left: 90px;
+    margin-bottom: 8px;
     .front & {
       padding-left: 136px;
       min-height: 133px;
+      margin-bottom: 15px;
     }
   }
   div.logo {
