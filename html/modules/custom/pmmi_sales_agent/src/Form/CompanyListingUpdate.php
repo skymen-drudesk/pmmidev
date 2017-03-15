@@ -63,9 +63,14 @@ class CompanyListingUpdate extends FormBase {
       ->load($form_state->getValue('nid'));
 
     if ($node) {
-      $mail = $node->get('field_primary_contact_email')->getValue()[0]['value'] ?: NULL;
+      $mail = $node->get('field_primary_contact_email')->getValue();
+      if (!$mail) {
+        // @todo: what should we do if primary contact email is not set?
+        return;
+      }
 
       // Send one-time update link to the primary contact email.
+      $mail = $mail[0]['value'];
       if ($mail && \Drupal::service('email.validator')->isValid($mail)) {
         $ms = \Drupal::config('pmmi_sales_agent.mail_settings');
         $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -83,7 +88,6 @@ class CompanyListingUpdate extends FormBase {
 
         $form_state->setRebuild();
       }
-      // @todo: what should we do if primary contact email is not set?
     }
   }
 }
