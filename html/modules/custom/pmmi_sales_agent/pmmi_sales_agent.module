@@ -5,9 +5,12 @@
  * Includes PMMI Sales Agent Directory extensions.
  */
 
+use Drupal\Component\Utility\Crypt;
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Site\Settings;
 
 // Define sales agent content ID.
 define('PMMI_SALES_AGENT_CONTENT', 'company');
@@ -84,6 +87,7 @@ function pmmi_sales_agent_mail($key, &$message, $params) {
     case 'mass_email_remind':
     case 'pmmi_sales_agent_listing_agent':
     case 'pmmi_sales_agent_listing_admin':
+    case 'pmmi_one_time_update':
       $token_service = \Drupal::token();
       $variables = array('node' => $params['node']);
 
@@ -260,6 +264,9 @@ function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_sta
   $ms = \Drupal::config('pmmi_sales_agent.mail_settings');
   $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
+  // Unset one-time update session token.
+  $_SESSION['sad_login_' . $node->id()];
+
   // Prepare a message and send it to the internal PMMI admin.
   $params = [
     'subject' => $form['#new'] ? $ms->get('listing_create.subject') : $ms->get('listing_review.subject'),
@@ -411,9 +418,66 @@ function pmmi_sales_agent_internal_admin_remind_send() {
 }
 
 /**
+ * Implements hook_node_access().
+ */
+function pmmi_sales_agent_node_access(\Drupal\node\NodeInterface $node, $op, \Drupal\Core\Session\AccountInterface $account) {
+  // Allow to update a company by specific one-time update link. Users with the
+  // "Bypass content access control" permission ignore this check.
+  // @todo: add specific permission to skip this check (for sales agent admins).
+  if ($node->bundle() == PMMI_SALES_AGENT_CONTENT && $op == 'update') {
+    $session_key = 'sad_login_' . $node->id();
+    $token = \Drupal::request()->get('sad-login-token');
+
+    // Forbid access to update a node if hash's are not equal.
+    if (!isset($_SESSION[$session_key]) || !Crypt::hashEquals($_SESSION[$session_key], $token)) {
+      // @todo: redirect to the request form?
+      return AccessResult::forbidden();
+    }
+  }
+}
+
+/**
  * Checks if current user is internal PMMI admin.
  */
 function pmmi_sales_agent_is_admin() {
   $current_user = \Drupal::currentUser();
   return in_array(PMMI_SALES_AGENT_ADMIN_ROLE, $current_user->getRoles()) || $current_user->id() === 1;
+}
+
+/**
+ * Generates a unique URL for a user to update a listing.
+ *
+ * @param $nid integer
+ *   The node ID.
+ *
+ * @return string
+ *   Unique URL for a user to update a listing.
+ */
+function pmmi_sales_agent_login_url($nid) {
+  $timestamp = REQUEST_TIME;
+
+  return \Drupal::url('pmmi_sales_agent.login', [
+    'nid' => $nid,
+    'timestamp' => REQUEST_TIME,
+    'hash' => pmmi_sales_agent_hash($timestamp, $nid),
+  ],
+  [
+    'absolute' => TRUE,
+    'language' =>  \Drupal::languageManager()->getCurrentLanguage()
+  ]);
+}
+
+/**
+ * Creates a unique hash value for use in time-dependent per-node URLs.
+ *
+ * @param $timestamp integer
+ *   The timestamp.
+ * @param $nid integer
+ *   The node ID.
+ *
+ * @return string
+ *   A base-64 encoded sha-256 hmac.
+ */
+function pmmi_sales_agent_hash($timestamp, $nid) {
+  return Crypt::hmacBase64($timestamp . $nid, Settings::getHashSalt());
 }

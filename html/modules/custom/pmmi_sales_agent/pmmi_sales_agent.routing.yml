@@ -74,3 +74,14 @@ pmmi_sales_agent.mass_email_confirm:
     _title: 'PMMI Mass Email Confirm'
   requirements:
     _permission: 'pmmi sales agent administration'
+
+pmmi_sales_agent.login:
+  path: '/sales_agent_directory/login/{nid}/{timestamp}/{hash}'
+  defaults:
+    _controller: '\Drupal\pmmi_sales_agent\Controller\SADController::updateListingLogin'
+    _title: 'Login to update a listing'
+  requirements:
+    _access: 'TRUE'
+  options:
+    _maintenance_access: TRUE
+    no_cache: TRUE

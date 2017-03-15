@@ -20,13 +20,14 @@ class CompanyListingUpdate extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $data = NULL) {
-    $form['company'] = [
+    $form['nid'] = [
       '#type' => 'entity_autocomplete',
       '#title' => $this->t('Please enter your company name'),
+      '#required' => TRUE,
       '#target_type' => 'node',
       '#selection_handler' => 'default:node',
       '#selection_settings' => [
-        'target_bundles' => ['company'],
+        'target_bundles' => [PMMI_SALES_AGENT_CONTENT],
       ],
     ];
     $form['submit'] = [
@@ -40,5 +41,37 @@ class CompanyListingUpdate extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {}
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    $node = \Drupal::entityTypeManager()
+      ->getStorage('node')
+      ->load($form_state->getValue('nid'));
+
+    if ($node) {
+      $mail = $node->get('field_primary_contact_email')->getValue()[0]['value'] ?: NULL;
+
+      // Send one-time update link to the primary contact email.
+      if ($mail && \Drupal::service('email.validator')->isValid($mail)) {
+        $ms = \Drupal::config('pmmi_sales_agent.mail_settings');
+        $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
+
+        // Prepare a message and send it to the primary contact email.
+        $params = [
+          'subject' => $ms->get('one_time.subject'),
+          'body' => $ms->get('one_time.body'),
+          'from' => $ms->get('mail_notification_address'),
+          'node' => $node,
+        ];
+
+        $result = \Drupal::service('plugin.manager.mail')
+          ->mail('pmmi_sales_agent', 'pmmi_one_time_update', $mail, $langcode, $params, TRUE);
+
+        if ($result['result'] === TRUE && $ms->get('one_time_alert')) {
+          $token_service = \Drupal::token();
+          $alert = $token_service->replace($ms->get('one_time_alert_message'), ['node' => $params['node']]);
+          drupal_set_message($alert);
+        }
+      }
+      // @todo: what should we do if primary contact email is not set?
+    }
+  }
 }
