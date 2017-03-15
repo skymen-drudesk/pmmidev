@@ -9,8 +9,8 @@ use Symfony\Component\Routing\Route;
 /**
  * Provides routes for Personify company entities.
  *
- * @see Drupal\Core\Entity\Routing\AdminHtmlRouteProvider
- * @see Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider
+ * @see \Drupal\Core\Entity\Routing\AdminHtmlRouteProvider
+ * @see \Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider
  */
 class PMMIPersonifyCompanyHtmlRouteProvider extends AdminHtmlRouteProvider {
 
@@ -72,7 +72,7 @@ class PMMIPersonifyCompanyHtmlRouteProvider extends AdminHtmlRouteProvider {
       $route = new Route("/admin/structure/personify_company/settings");
       $route
         ->setDefaults([
-          '_form' => 'Drupal\pmmi_sso\Form\PMMIPersonifyCompanySettingsForm',
+          '_form' => 'Drupal\pmmi_sso\Entity\Form\PMMIPersonifyCompanySettingsForm',
           '_title' => "{$entity_type->getLabel()} settings",
         ])
         ->setRequirement('_permission', $entity_type->getAdminPermission())

@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\pmmi_sso\Form;
+namespace Drupal\pmmi_sso\Entity\Form;
 
 use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;

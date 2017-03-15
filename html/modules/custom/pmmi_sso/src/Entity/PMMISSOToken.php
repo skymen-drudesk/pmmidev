@@ -88,30 +88,6 @@ class PMMISSOToken extends ContentEntityBase implements PMMISSOTokenInterface {
       ->setDescription(t('The Auth user ID of the user this access token is authenticating.'))
       ->setTranslatable(FALSE)
       ->setReadOnly(TRUE);
-    $fields['scopes'] = BaseFieldDefinition::create('entity_reference')
-      ->setLabel(t('Scopes'))
-      ->setDescription(t('The scopes for this Access Token. OAuth2 scopes are implemented as Drupal roles.'))
-      ->setRevisionable(TRUE)
-      ->setSetting('target_type', 'user_role')
-      ->setSetting('handler', 'default')
-      ->setCardinality(FieldStorageDefinitionInterface::CARDINALITY_UNLIMITED)
-      ->setTranslatable(FALSE)
-      ->setDisplayOptions('view', array(
-        'label' => 'inline',
-        'type' => 'entity_reference_label',
-        'weight' => 3,
-      ))
-      ->setDisplayOptions('form', array(
-        'type' => 'entity_reference_autocomplete',
-        'weight' => 3,
-        'settings' => array(
-          'match_operator' => 'CONTAINS',
-          'size' => '60',
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ),
-      ));
-
     $fields['value'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Token'))
       ->setDescription(t('The token value.'))
@@ -125,7 +101,6 @@ class PMMISSOToken extends ContentEntityBase implements PMMISSOTokenInterface {
         'type' => 'timestamp',
         'weight' => 4,
       ));
-
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
       ->setDescription(t('The time that the entity was created.'))
@@ -134,7 +109,6 @@ class PMMISSOToken extends ContentEntityBase implements PMMISSOTokenInterface {
         'type' => 'timestamp',
         'weight' => 5,
       ));
-
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the entity was last edited.'))
@@ -143,7 +117,6 @@ class PMMISSOToken extends ContentEntityBase implements PMMISSOTokenInterface {
         'type' => 'timestamp',
         'weight' => 6,
       ));
-
     $fields['expire'] = BaseFieldDefinition::create('timestamp')
       ->setLabel(t('Expire'))
       ->setDescription(t('The time when the token expires.'))
@@ -157,7 +130,6 @@ class PMMISSOToken extends ContentEntityBase implements PMMISSOTokenInterface {
         'weight' => 7,
       ))
       ->setRequired(TRUE);
-
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
       ->setDescription(t('A boolean indicating whether the token is available.'))

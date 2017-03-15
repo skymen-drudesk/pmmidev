@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\State\StateInterface;
+use Drupal\pmmi_sso\Service\PMMISSOCronDataCollector;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -47,6 +48,13 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
   protected $state;
 
   /**
+   * The Cron Data Collector Service.
+   *
+   * @var \Drupal\pmmi_sso\service\PMMISSOCronDataCollector
+   */
+  protected $dataCollector;
+
+  /**
    * {@inheritdoc}
    */
   public function __construct(
@@ -54,12 +62,15 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
     AccountInterface $current_user,
     CronInterface $cron,
     QueueFactory $queue,
-    StateInterface $state) {
+    StateInterface $state,
+    PMMISSOCronDataCollector $collector
+  ) {
     parent::__construct($config_factory);
     $this->currentUser = $current_user;
     $this->cron = $cron;
     $this->queue = $queue;
     $this->state = $state;
+    $this->dataCollector = $collector;
 
   }
 
@@ -72,7 +83,8 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
       $container->get('current_user'),
       $container->get('cron'),
       $container->get('queue'),
-      $container->get('state')
+      $container->get('state'),
+      $container->get('pmmi_sso.cron_data_collector')
     );
   }
 
@@ -118,7 +130,8 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
     $users_execution = !empty($users_execution) ? $users_execution : REQUEST_TIME;
 
     $args = array(
-      '%time' => date_iso8601(\Drupal::state()->get('cron_pmmi_sso.users_execution')),
+      '%time' => date_iso8601(\Drupal::state()
+        ->get('cron_pmmi_sso.users_execution')),
       '%seconds' => $users_execution - REQUEST_TIME,
     );
     $form['cron_users']['status'] = array(
@@ -208,7 +221,8 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
     $pc_execution = !empty($pc_execution) ? $pc_execution : REQUEST_TIME;
 
     $args = array(
-      '%time' => date_iso8601(\Drupal::state()->get('cron_pmmi_sso.pc_execution')),
+      '%time' => date_iso8601(\Drupal::state()
+        ->get('cron_pmmi_sso.pc_execution')),
       '%seconds' => $pc_execution - REQUEST_TIME,
     );
     $form['cron_pc'] = array(
@@ -305,6 +319,43 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
   }
 
   /**
+   * {@inheritdoc}
+   */
+  public function validateForm(array &$form, FormStateInterface $form_state) {
+    parent::validateForm($form, $form_state);
+    if ($form_state->getValue('enabled') == TRUE) {
+      if (
+        $form_state->hasValue('main_interval_users') &&
+        $main_interval_users = $form_state->getValue('main_interval_users')
+      ) {
+        // Check main_interval_users should be lower than users intervals.
+        $users_interval = array(
+          'interval_block',
+          'interval_info',
+          'interval_roles',
+        );
+        foreach ($users_interval as $interval) {
+          if (
+            $form_state->hasValue($interval) &&
+            $form_state->getValue($interval) < $main_interval_users
+          ) {
+            $form_state->setErrorByName($interval, $this->t("Can't be lower than Main users interval"));
+          }
+        }
+      }
+      // Check main_interval_companies should be lower than the company
+      // interval.
+      if (
+        $form_state->hasValue('main_interval_companies') &&
+        $form_state->hasValue('interval_company') &&
+        $form_state->getValue('main_interval_companies') > $form_state->getValue('interval_company')
+      ) {
+        $form_state->setErrorByName('interval_company', $this->t("Can't be lower than Main companies interval"));
+      }
+    }
+  }
+
+  /**
    * Allow user to directly execute cron, optionally forcing it.
    */
   public function cronRun(array &$form, FormStateInterface &$form_state) {
@@ -328,57 +379,32 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
    * Add the items to the queue when signaled by the form.
    */
   public function addUsers(array &$form, FormStateInterface &$form_state) {
-    $values = $form_state->getValues();
-    $queue_name = $form['cron_queue_setup']['queue'][$values['queue']]['#title'];
-    $num_items = $form_state->getValue('num_items');
-    // Queues are defined by a QueueWorker Plugin which are selected by their
-    // id attritbute.
-    // @see \Drupal\cron_example\Plugin\QueueWorker\ReportWorkerOne
-    $queue = $this->queue->get($values['queue']);
-
-    for ($i = 1; $i <= $num_items; $i++) {
-      // Create a new item, a new data object, which is passed to the
-      // QueueWorker's processItem() method.
-      $item = new \stdClass();
-      $item->created = REQUEST_TIME;
-      $item->sequence = $i;
-      $queue->createItem($item);
+    $items = $this->dataCollector->getUsersForUpdate();
+    if (!empty($items)) {
+      $queue = $this->queue->get('pmmi_sso_users');
+      $i = 0;
+      foreach ($items as $item) {
+        $queue->createItem($item);
+        $i++;
+      }
+      drupal_set_message($this->t('Added %num items to pmmi_sso_users', ['%num' => $i]));
     }
-
-    $args = [
-      '%num' => $num_items,
-      '%queue' => $queue_name,
-    ];
-    drupal_set_message($this->t('Added %num items to %queue', $args));
   }
 
   /**
    * Add the items to the queue when signaled by the form.
    */
   public function addCompanies(array &$form, FormStateInterface &$form_state) {
-    $queue_name = $this->t('PMMI Personify Company Queue');
-    $num_items = $form_state->getValue('num_items');
-    // Queues are defined by a QueueWorker Plugin which are selected by their
-    // id attritbute.
-    // @see \Drupal\cron_example\Plugin\QueueWorker\ReportWorkerOne
-    $queue = $this->queue->get('');
-
-
-
-    for ($i = 1; $i <= $num_items; $i++) {
-      // Create a new item, a new data object, which is passed to the
-      // QueueWorker's processItem() method.
-      $item = new \stdClass();
-      $item->created = REQUEST_TIME;
-      $item->sequence = $i;
-      $queue->createItem($item);
+    $items = $this->dataCollector->getCompaniesForUpdate();
+    if (!empty($items)) {
+      $queue = $this->queue->get('pmmi_sso_personify_companies');
+      $i = 0;
+      foreach ($items as $cid => $item) {
+        $queue->createItem(array('id' => $cid, 'pid' => $item));
+        $i++;
+      }
+      drupal_set_message($this->t('Added %num items to PMMI Personify Companies Queue', ['%num' => $i]));
     }
-
-    $args = [
-      '%num' => $num_items,
-      '%queue' => $queue_name,
-    ];
-    drupal_set_message($this->t('Added %num items to PMMI Personify Companies Queue', $args));
   }
 
   /**

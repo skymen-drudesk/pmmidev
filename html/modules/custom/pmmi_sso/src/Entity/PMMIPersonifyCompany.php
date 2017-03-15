@@ -2,12 +2,10 @@
 
 namespace Drupal\pmmi_sso\Entity;
 
-use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\user\UserInterface;
 
 /**
  * Defines the Personify company entity.
@@ -25,10 +23,10 @@ use Drupal\user\UserInterface;
  *     "views_data" = "Drupal\pmmi_sso\Entity\PMMIPersonifyCompanyViewsData",
  *
  *     "form" = {
- *       "default" = "Drupal\pmmi_sso\Form\PMMIPersonifyCompanyForm",
- *       "add" = "Drupal\pmmi_sso\Form\PMMIPersonifyCompanyForm",
- *       "edit" = "Drupal\pmmi_sso\Form\PMMIPersonifyCompanyForm",
- *       "delete" = "Drupal\pmmi_sso\Form\PMMIPersonifyCompanyDeleteForm",
+ *       "default" = "Drupal\pmmi_sso\Entity\Form\PMMIPersonifyCompanyForm",
+ *       "add" = "Drupal\pmmi_sso\Entity\Form\PMMIPersonifyCompanyForm",
+ *       "edit" = "Drupal\pmmi_sso\Entity\Form\PMMIPersonifyCompanyForm",
+ *       "delete" = "Drupal\pmmi_sso\Entity\Form\PMMIPersonifyCompanyDeleteForm",
  *     },
  *     "access" = "Drupal\pmmi_sso\PMMIPersonifyCompanyAccessControlHandler",
  *     "route_provider" = {

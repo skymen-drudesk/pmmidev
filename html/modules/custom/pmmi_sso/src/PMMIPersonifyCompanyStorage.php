@@ -22,4 +22,14 @@ class PMMIPersonifyCompanyStorage extends SqlContentEntityStorage implements PMM
     return $query->execute()->fetchAllKeyed();
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function getCompaniesForUpdate($interval) {
+    $query = $this->database->select($this->getBaseTable(), 'pc');
+    $query->fields('pc', ['id', 'personify_id']);
+    $query->condition('pc.changed', REQUEST_TIME - $interval, '<');
+    return $query->execute()->fetchAllKeyed();
+  }
+
 }

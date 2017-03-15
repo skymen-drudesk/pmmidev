@@ -48,7 +48,11 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
    * @param PMMISSOXmlParser $parser
    *   The PMMI SSO XML parser service.
    */
-  public function __construct(Client $http_client, PMMISSOHelper $sso_helper, PMMISSOXmlParser $parser) {
+  public function __construct(
+    Client $http_client,
+    PMMISSOHelper $sso_helper,
+    PMMISSOXmlParser $parser
+  ) {
     $this->httpClient = $http_client;
     $this->ssoHelper = $sso_helper;
     $this->parser = $parser;

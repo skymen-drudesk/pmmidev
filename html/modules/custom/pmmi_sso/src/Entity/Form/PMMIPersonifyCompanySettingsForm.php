@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\pmmi_sso\Form;
+namespace Drupal\pmmi_sso\Entity\Form;
 
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -8,7 +8,7 @@ use Drupal\Core\Form\FormStateInterface;
 /**
  * Class PMMIPersonifyCompanySettingsForm.
  *
- * @package Drupal\pmmi_sso\Form
+ * @package Drupal\pmmi_sso\Entity\Form
  *
  * @ingroup pmmi_sso
  */

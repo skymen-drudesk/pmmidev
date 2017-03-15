@@ -64,3 +64,7 @@ services:
     arguments: ['@config.factory']
     tags:
       - { name: 'event_subscriber' }
+
+  pmmi_sso.cron_data_collector:
+    class: Drupal\pmmi_sso\Service\PMMISSOCronDataCollector
+    arguments: ['@config.factory', '@entity_type.manager', '@user.data', '@database']

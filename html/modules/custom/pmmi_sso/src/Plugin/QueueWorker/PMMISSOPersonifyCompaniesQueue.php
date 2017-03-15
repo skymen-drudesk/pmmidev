@@ -17,7 +17,7 @@ class PMMISSOPersonifyCompaniesQueue extends PMMISSOBaseQueue {
    * {@inheritdoc}
    */
   public function processItem($data) {
-    $this->handleItem('personify_company', $data);
+    $this->handleItem('pc', $data);
   }
 
 }

@@ -161,9 +161,12 @@ class PMMISSOUserManager {
       $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_PRE_REGISTER, $sso_pre_register_event);
       if ($sso_pre_register_event->getAllowAutomaticRegistration()) {
         $account = $this->register($sso_pre_register_event->getUserId(), $sso_pre_register_event->getPropertyValues(), $sso_pre_register_event->getAuthData());
-        $this->userData->set('pmmi_sso', $account->id(), 'last_update_block', REQUEST_TIME);
-        $this->userData->set('pmmi_sso', $account->id(), 'last_update_info', REQUEST_TIME);
-        $this->userData->set('pmmi_sso', $account->id(), 'last_update_roles', REQUEST_TIME);
+        $update_data = [
+          'block' => REQUEST_TIME,
+          'info' => REQUEST_TIME,
+          'roles' => REQUEST_TIME,
+        ];
+        $this->userData->set('pmmi_sso', $account->id(), 'last_update_data', $update_data);
       }
       else {
         throw new PMMISSOLoginException("Cannot register user, an event listener denied access.");
