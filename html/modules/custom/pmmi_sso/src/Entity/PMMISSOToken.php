@@ -33,8 +33,8 @@ use Drupal\user\UserInterface;
  *     "uuid" = "uuid"
  *   },
  *   links = {
- *     "canonical" = "/admin/content/pmmi_sso/{pmmi_sso_token}",
- *     "delete-form" = "/admin/content/pmmi_sso/{pmmi_sso_token}/delete"
+ *     "canonical" = "/admin/config/pmmi_sso/token/{pmmi_sso_token}",
+ *     "delete-form" = "/admin/config/pmmi_sso/token/{pmmi_sso_token}/delete"
  *   }
  * )
  */

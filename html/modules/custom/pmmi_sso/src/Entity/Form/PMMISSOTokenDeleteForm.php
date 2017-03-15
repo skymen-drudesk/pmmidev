@@ -4,7 +4,6 @@ namespace Drupal\pmmi_sso\Entity\Form;
 
 use Drupal\Core\Entity\ContentEntityConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Url;
 
 /**
  * Provides a form for deleting Access Token entities.
@@ -45,7 +44,7 @@ class PMMISSOTokenDeleteForm extends ContentEntityConfirmFormBase {
         [
           '@label' => $this->entity->label(),
         ]
-        )
+      )
     );
 
     $form_state->setRedirect('entity.pmmi_sso_token.collection');

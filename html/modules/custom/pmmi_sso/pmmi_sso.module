@@ -97,3 +97,86 @@ function pmmi_sso_form_user_login_form_alter(&$form, FormStateInterface $form_st
     ];
   }
 }
+
+/**
+ * Implements hook_cron().
+ *
+ * Queues news feeds for updates once their refresh interval has elapsed.
+ */
+function pmmi_sso_cron() {
+  // We access our configuration.
+  $cron_config = \Drupal::configFactory()->getEditable('pmmi_sso_update.settings');
+  if ($cron_config->get('enabled')) {
+    // Default to an hourly interval. Of course, cron has to be running at least
+    // hourly for this to work.
+    $main_interval_users = $cron_config->get('main_interval_users');
+    $main_interval_users = !empty($main_interval_users) ? $main_interval_users : 3600;
+
+    $users_execution = \Drupal::state()->get('cron_pmmi_sso.users_execution');
+    $users_execution = !empty($users_execution) ? $users_execution : 0;
+    if (REQUEST_TIME >= $users_execution) {
+
+      \Drupal::state()->set('cron_pmmi_sso.users_execution', REQUEST_TIME + $main_interval_users);
+    }
+
+
+    $main_interval_pc = $cron_config->get('main_interval_companies');
+    $main_interval_pc = !empty($main_interval_pc) ? $main_interval_pc : 3600;
+
+    $pc_execution = \Drupal::state()->get('cron_pmmi_sso.pc_execution');
+    $pc_execution = !empty($pc_execution) ? $pc_execution : 0;
+    if (REQUEST_TIME >= $pc_execution) {
+
+      \Drupal::state()->set('cron_pmmi_sso.pc_execution', REQUEST_TIME + $main_interval_pc);
+    }
+    $queue_users = \Drupal::queue('pmmi_sso_users');
+    $queue_pc = \Drupal::queue('pmmi_sso_personify_companies');
+    /** @var \Drupal\user\UserData $user_data */
+    $user_data = \Drupal::service('user.data');
+    $data = $user_data->get('pmmi_sso');
+    if (\Drupal::config('pmmi_sso_update.settings')->get('enabled')) {
+      $query = \Drupal::database()->select('authmap', 'am');
+      $query->fields('am', array('uid'));
+      $query->condition('provider', 'pmmi_sso');
+//      $data = $query->execute()->fetchField();
+//      foreach ($data as $uid) {
+//        if ($queue->createItem($uid)) {
+//
+//        }
+//      }
+    }
+
+
+
+
+  }
+//  $eid = Drupal::service('')
+//  $ids = \Drupal::entityTypeManager()
+//    ->getStorage('aggregator_feed')
+//    ->getFeedIdsToRefresh();
+//  foreach (Feed::loadMultiple($ids) as $feed) {
+//    if ($queue->createItem($feed)) {
+//      // Add timestamp to avoid queueing item more than once.
+//      $feed->setQueuedTime(REQUEST_TIME);
+//      $feed->save();
+//    }
+//  }
+//
+//  // Delete queued timestamp after 6 hours assuming the update has failed.
+//  $ids = \Drupal::entityQuery('aggregator_feed')
+//    ->condition('queued', REQUEST_TIME - (3600 * 6), '<')
+//    ->execute();
+//
+//  if ($ids) {
+//    $feeds = Feed::loadMultiple($ids);
+//    foreach ($feeds as $feed) {
+//      $feed->setQueuedTime(0);
+//      $feed->save();
+//    }
+//  }
+}
+
+
+function pmmi_sso_get_users_items(){
+
+}

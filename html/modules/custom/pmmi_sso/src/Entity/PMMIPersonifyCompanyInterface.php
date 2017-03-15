@@ -89,4 +89,25 @@ interface PMMIPersonifyCompanyInterface extends ContentEntityInterface, EntityCh
    */
   public function setCreatedTime($timestamp);
 
+  /**
+   * Returns the Personify company published status indicator.
+   *
+   * Unpublished Personify company are only visible to restricted users.
+   *
+   * @return bool
+   *   TRUE if the Personify company is published.
+   */
+  public function isPublished();
+
+  /**
+   * Sets the published status of a Personify company.
+   *
+   * @param bool $published
+   *   TRUE to set this Personify company to published, FALSE to set it to unpublished.
+   *
+   * @return \Drupal\pmmi_sso\Entity\PMMIPersonifyCompanyInterface
+   *   The called Personify company entity.
+   */
+  public function setPublished($published);
+
 }

@@ -1,23 +1,38 @@
+#pmmi_sso.admin_tab:
+#  route_name: pmmi_sso.admin
+#  title: 'Main Settings'
+#  base_route: pmmi_sso.admin
+
+pmmi_sso.settings:
+  route_name: pmmi_sso.settings
+  title: 'Main Settings'
+  base_route: pmmi_sso.admin
+
+pmmi_sso_update.settings_tab:
+  route_name: pmmi_sso_update.settings
+  title: 'Update Settings'
+  base_route: pmmi_sso.admin
+
 # Access Token routing definition
 pmmi_sso_token.settings_tab:
   route_name: pmmi_sso.token.settings
-  title: 'Settings'
-  base_route: pmmi_sso.token.settings
+  title: 'Token Settings'
+  base_route: pmmi_sso.admin
 
 entity.pmmi_sso_token.collection:
   route_name: entity.pmmi_sso_token.collection
-  base_route: pmmi_sso.token.settings
-  title: 'Tokens'
+  title: 'Token List'
+  base_route: pmmi_sso.admin
 
 entity.pmmi_sso_token.canonical:
   route_name: entity.pmmi_sso_token.canonical
-  base_route: entity.pmmi_sso_token.canonical
   title: 'View'
+  base_route: entity.pmmi_sso_token.canonical
 
 entity.pmmi_sso_token.delete_form:
   route_name:  entity.pmmi_sso_token.delete_form
-  base_route:  entity.pmmi_sso_token.canonical
   title: 'Delete'
+  base_route:  entity.pmmi_sso_token.canonical
   weight: 10
 
 # Personify company routing definition

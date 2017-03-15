@@ -19,6 +19,7 @@ use Drupal\user\UserInterface;
  *   label = @Translation("Personify company"),
  *   handlers = {
  *     "storage" = "Drupal\pmmi_sso\PMMIPersonifyCompanyStorage",
+ *     "storage_schema" = "Drupal\pmmi_sso\PMMIPersonifyCompanyStorageSchema",
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\pmmi_sso\PMMIPersonifyCompanyListBuilder",
  *     "views_data" = "Drupal\pmmi_sso\Entity\PMMIPersonifyCompanyViewsData",
@@ -41,6 +42,7 @@ use Drupal\user\UserInterface;
  *     "personify_id" = "personify_id",
  *     "label" = "name",
  *     "uuid" = "uuid",
+ *     "status" = "status",
  *   },
  *   links = {
  *     "canonical" = "/admin/pmmi_sso/personify_company/{pmmi_personify_company}",
@@ -129,6 +131,21 @@ class PMMIPersonifyCompany extends ContentEntityBase implements PMMIPersonifyCom
   /**
    * {@inheritdoc}
    */
+  public function isPublished() {
+    return (bool) $this->getEntityKey('status');
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function setPublished($published) {
+    $this->set('status', $published ? TRUE : FALSE);
+    return $this;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
@@ -198,10 +215,10 @@ class PMMIPersonifyCompany extends ContentEntityBase implements PMMIPersonifyCom
 //      ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
-//    $fields['status'] = BaseFieldDefinition::create('boolean')
-//      ->setLabel(t('Publishing status'))
-//      ->setDescription(t('A boolean indicating whether the Personify company is published.'))
-//      ->setDefaultValue(TRUE);
+    $fields['status'] = BaseFieldDefinition::create('boolean')
+      ->setLabel(t('Publishing status'))
+      ->setDescription(t('A boolean indicating whether the Personify company is published.'))
+      ->setDefaultValue(TRUE);
 
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))

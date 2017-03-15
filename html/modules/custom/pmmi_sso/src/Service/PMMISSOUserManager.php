@@ -11,6 +11,7 @@ use Drupal\externalauth\Exception\ExternalAuthRegisterException;
 use Drupal\pmmi_sso\Exception\PMMISSOLoginException;
 use Drupal\externalauth\ExternalAuthInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\user\UserDataInterface;
 use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Drupal\Core\Database\Connection;
@@ -54,9 +55,9 @@ class PMMISSOUserManager {
   /**
    * Used when storing PMMI SSO login data.
    *
-   * @var \Drupal\Core\Database\Connection
+   * @var \Drupal\user\UserDataInterface
    */
-  protected $connection;
+  protected $userData;
 
   /**
    * Used to dispatch PMMI SSO login events.
@@ -85,8 +86,8 @@ class PMMISSOUserManager {
    *   The settings.
    * @param \Symfony\Component\HttpFoundation\Session\SessionInterface $session
    *   The session.
-   * @param \Drupal\Core\Database\Connection $database_connection
-   *   The database connection.
+   * @param \Drupal\user\UserDataInterface $user_data
+   *   The user data service.
    * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $event_dispatcher
    *   The event dispatcher.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
@@ -97,7 +98,7 @@ class PMMISSOUserManager {
     AuthmapInterface $authmap,
     ConfigFactoryInterface $configFactory,
     SessionInterface $session,
-    Connection $database_connection,
+    UserDataInterface $user_data,
     EventDispatcherInterface $event_dispatcher,
     EntityTypeManagerInterface $entityTypeManager
   ) {
@@ -105,7 +106,7 @@ class PMMISSOUserManager {
     $this->authmap = $authmap;
     $this->settings = $configFactory->get('pmmi_sso.settings');
     $this->session = $session;
-    $this->connection = $database_connection;
+    $this->userData = $user_data;
     $this->eventDispatcher = $event_dispatcher;
     $this->tokenStorage = $entityTypeManager->getStorage('pmmi_sso_token');
   }
@@ -160,6 +161,9 @@ class PMMISSOUserManager {
       $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_PRE_REGISTER, $sso_pre_register_event);
       if ($sso_pre_register_event->getAllowAutomaticRegistration()) {
         $account = $this->register($sso_pre_register_event->getUserId(), $sso_pre_register_event->getPropertyValues(), $sso_pre_register_event->getAuthData());
+        $this->userData->set('pmmi_sso', $account->id(), 'last_update_block', REQUEST_TIME);
+        $this->userData->set('pmmi_sso', $account->id(), 'last_update_info', REQUEST_TIME);
+        $this->userData->set('pmmi_sso', $account->id(), 'last_update_roles', REQUEST_TIME);
       }
       else {
         throw new PMMISSOLoginException("Cannot register user, an event listener denied access.");

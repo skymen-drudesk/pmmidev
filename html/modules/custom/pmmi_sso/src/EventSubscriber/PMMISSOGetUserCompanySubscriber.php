@@ -85,13 +85,10 @@ class PMMISSOGetUserCompanySubscriber implements EventSubscriberInterface {
     if ($event_time < $date->getTimestamp()) {
       $user_id = $event->getSsoPropertyBag()->getUserId();
       $query = [
-        '$filter' => "MasterCustomerId eq '$user_id'",
-
-
-//        '$filter' => 'MasterCustomerId eq \'' . $user_id . '\' and ' .
-//        'RelationshipCode eq \'Employee\' and RelationshipType eq' .
-//        ' \'EMPLoyment\' and (EndDate ge datetime\'' . $date->format('Y-m-d') .
-//        ' or EndDate eq null)',
+        '$filter' => 'MasterCustomerId eq \'' . $user_id . '\' and ' .
+        'RelationshipCode eq \'Employee\' and RelationshipType eq' .
+        ' \'Employment\' and (EndDate ge datetime\'' . $date->format('Y-m-d') .
+        '\' or EndDate eq null)',
       ];
       $request_options = $this->ssoHelper->buildDataServiceQuery(
         'CusRelationships',

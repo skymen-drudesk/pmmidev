@@ -76,7 +76,12 @@ class PMMISSOValidator {
 
     $options = $this->ssoHelper->getServerValidateOptions($token, $internal);
     if ($options['decrypt']) {
-      $this->ssoHelper->log('Attempting to validate service token using URL: ' . $options['uri']);
+      if ($internal) {
+        $this->ssoHelper->log('Attempting to validate service token using DB and service.');
+      }
+      else {
+        $this->ssoHelper->log('Attempting to validate service token using URL: ' . $options['uri']);
+      }
       try {
         $response = $this->httpClient->request('POST', $options['uri'], ['form_params' => $options['params']]);
         $response_data = $response->getBody()->getContents();
@@ -85,15 +90,12 @@ class PMMISSOValidator {
       catch (RequestException $e) {
         throw new PMMISSOValidateException("Error with request to validate token: " . $e->getMessage());
       }
-
       if ($internal) {
         return $this->validate($response_data, TRUE);
       }
       else {
         return $this->validate($response_data);
       }
-
-
     }
     else {
       throw new PMMISSOValidateException('Token do not decrypted!!!');

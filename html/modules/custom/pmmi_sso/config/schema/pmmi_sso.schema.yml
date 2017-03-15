@@ -109,3 +109,29 @@ pmmi_sso_company.settings:
     time_duration:
       type: number
       label: 'Time duration'
+
+pmmi_sso_update.settings:
+  type: config_object
+  label: 'PMMI SSO Update Settings'
+  mapping:
+    enabled:
+      type: boolean
+      label: 'Enable cron jobs'
+    main_interval_users:
+      type: number
+      label: 'Time through which to update the Users data'
+    interval_block:
+      type: number
+      label: 'Time through which to update the user block status'
+    interval_info:
+      type: number
+      label: 'Time through which to update the user information'
+    interval_roles:
+      type: number
+      label: 'Time through which to update the user roles'
+    main_interval_companies:
+      type: number
+      label: 'Time through which to update the Personify Company'
+    interval_company:
+      type: number
+      label: 'Time through which to update the Personify Company'

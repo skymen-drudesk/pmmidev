@@ -46,20 +46,11 @@ services:
 
   pmmi_sso.user_manager:
     class: Drupal\pmmi_sso\Service\PMMISSOUserManager
-    arguments: ['@externalauth.externalauth', '@externalauth.authmap', '@config.factory', '@session', '@database', '@event_dispatcher', '@entity_type.manager']
+    arguments: ['@externalauth.externalauth', '@externalauth.authmap', '@config.factory', '@session', '@user.data', '@event_dispatcher', '@entity_type.manager']
 
   pmmi_sso.crypt:
     class: Drupal\pmmi_sso\Service\PMMISSOCrypt
     arguments: ['@config.factory', '@logger.factory']
-
-
-#  pmmi_sso.service:
-#    class: Drupal\pmmi_sso\Service\PMMISSOService
-#    arguments: ['@http_client', '@config.factory', '@logger.factory']
-#
-#  pmmi_sso.manager:
-#    class: Drupal\pmmi_sso\Service\PMMISSOManager
-#    arguments: ['@externalauth.externalauth', '@config.factory', '@entity_type.manager', '@logger.channel.externalauth', '@pmmi_sso.service']
 
   pmmi_sso.page_cache_response_policy.deny_sso:
     class: Drupal\pmmi_sso\PageCache\DenySSO
