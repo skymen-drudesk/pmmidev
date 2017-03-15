@@ -423,15 +423,15 @@ function pmmi_sales_agent_internal_admin_remind_send() {
 function pmmi_sales_agent_node_access(\Drupal\node\NodeInterface $node, $op, \Drupal\Core\Session\AccountInterface $account) {
   // Allow to update a company by specific one-time update link. Users with the
   // "Bypass content access control" permission ignore this check.
-  // @todo: add specific permission to skip this check (for sales agent admins).
   if ($node->bundle() == PMMI_SALES_AGENT_CONTENT && $op == 'update') {
-    $session_key = 'sad_login_' . $node->id();
-    $token = \Drupal::request()->get('sad-login-token');
+    if (!$account->hasPermission('pmmi sales agent bypass one time access', $account)) {
+      $session_key = 'sad_login_' . $node->id();
+      $token = \Drupal::request()->get('sad-login-token');
 
-    // Forbid access to update a node if hash's are not equal.
-    if (!isset($_SESSION[$session_key]) || !Crypt::hashEquals($_SESSION[$session_key], $token)) {
-      // @todo: redirect to the request form?
-      return AccessResult::forbidden();
+      // Forbid access to update a node if hash's are not equal.
+      if (!isset($_SESSION[$session_key], $token) || !Crypt::hashEquals($_SESSION[$session_key], $token)) {
+        return AccessResult::forbidden();
+      }
     }
   }
 }
