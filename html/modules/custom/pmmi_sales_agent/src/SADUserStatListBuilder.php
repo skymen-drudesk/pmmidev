@@ -4,8 +4,6 @@ namespace Drupal\pmmi_sales_agent;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\Routing\LinkGeneratorTrait;
-use Drupal\Core\Url;
 
 /**
  * Defines a class to build a listing of Sales agent user stat entities.
@@ -13,16 +11,15 @@ use Drupal\Core\Url;
  * @ingroup pmmi_sales_agent
  */
 class SADUserStatListBuilder extends EntityListBuilder {
-
-  use LinkGeneratorTrait;
-
   /**
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['id'] = $this->t('Sales agent user stat ID');
-    $header['name'] = $this->t('Name');
-    return $header + parent::buildHeader();
+    return [
+      'id' => $this->t('ID'),
+      'type' => $this->t('Type'),
+      'created' => $this->t('Created'),
+    ] + parent::buildHeader();
   }
 
   /**
@@ -30,16 +27,10 @@ class SADUserStatListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\pmmi_sales_agent\Entity\SADUserStat */
-    $row['id'] = $entity->id();
-    $row['name'] = $this->l(
-      $entity->label(),
-      new Url(
-        'entity.sad_user_stat.edit_form', array(
-          'sad_user_stat' => $entity->id(),
-        )
-      )
-    );
-    return $row + parent::buildRow($entity);
+    return [
+      'id' => $entity->id(),
+      'type' => $entity->getType(),
+      'created' => date('Y-m-d H:i:s', $entity->getCreatedTime()),
+    ] + parent::buildRow($entity);
   }
-
 }

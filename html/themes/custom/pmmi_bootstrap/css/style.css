@@ -13910,38 +13910,6 @@ body.use-container .region-content:after {
   }
 }
 
-.block-region-main .pmmi-search-block-form {
-  max-width: 270px;
-  padding-right: 35px;
-  position: relative;
-}
-
-.block-region-main .pmmi-search-block-form .form-search {
-  border-radius: 3px 0 0 3px;
-  height: 32px;
-  border: 1px solid #c2c2c2;
-}
-
-.block-region-main .pmmi-search-block-form .form-submit {
-  position: absolute;
-  right: 0;
-  top: 0;
-  height: 32px;
-  overflow: hidden;
-  width: 35px;
-  line-height: 100px;
-  margin: 0;
-  padding: 0;
-  border: none;
-  border-radius: 0 3px 3px 0;
-}
-
-.block-region-main .pmmi-search-block-form .form-submit span {
-  display: block;
-  text-indent: 0;
-  line-height: 32px;
-}
-
 .block-panels-text-block h2 {
   margin: 0 0 20px;
 }
@@ -14836,6 +14804,15 @@ body > .page-wrapper:after,
     min-height: 20px;
     background: none;
   }
+}
+
+@media screen and (max-width: 767px) and (min-width: 1024px) {
+  .main-nav .header-search .block {
+    min-height: 24px;
+  }
+}
+
+@media screen and (max-width: 767px) {
   .main-nav .header-search .form-search,
   .main-nav .header-search .form-text {
     border: none;
@@ -14889,6 +14866,12 @@ body > .page-wrapper:after,
   border: none !important;
   min-height: 20px;
   background: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .main-nav .show-search .header-search .block {
+    min-height: 24px;
+  }
 }
 
 .main-nav .show-search .header-search .form-search,
@@ -15387,6 +15370,42 @@ body > .page-wrapper:after,
   .panel-404-page .block-panels-text-block .text br {
     display: none;
   }
+}
+
+.panel-404-page .block-region-main .pmmi-search-block-form,
+.panel-403-page .block-region-main .pmmi-search-block-form {
+  max-width: 270px;
+  padding-right: 35px;
+  position: relative;
+}
+
+.panel-404-page .block-region-main .pmmi-search-block-form .form-search,
+.panel-403-page .block-region-main .pmmi-search-block-form .form-search {
+  border-radius: 3px 0 0 3px;
+  height: 32px;
+  border: 1px solid #c2c2c2;
+}
+
+.panel-404-page .block-region-main .pmmi-search-block-form .form-submit,
+.panel-403-page .block-region-main .pmmi-search-block-form .form-submit {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 32px;
+  overflow: hidden;
+  width: 35px;
+  line-height: 100px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0 3px 3px 0;
+}
+
+.panel-404-page .block-region-main .pmmi-search-block-form .form-submit span,
+.panel-403-page .block-region-main .pmmi-search-block-form .form-submit span {
+  display: block;
+  text-indent: 0;
+  line-height: 32px;
 }
 
 body.path-batch .pmmi-panel .block-region-main {
@@ -17245,29 +17264,31 @@ div.view {
 
 .block .containers .region-bottom .field-name-field-button a {
   max-width: 100%;
+  white-space: normal;
+  height: auto;
 }
 
 @media screen and (min-width: 1200px) {
   .block .containers .region-bottom .field-name-field-button a {
-    width: 370px;
+    min-width: 370px;
   }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
   .block .containers .region-bottom .field-name-field-button a {
-    width: 310px;
+    min-width: 310px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .block .containers .region-bottom .field-name-field-button a {
-    width: 230px;
+    min-width: 230px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .block .containers .region-bottom .field-name-field-button a {
-    width: 233px;
+    min-width: 233px;
   }
 }
 
@@ -17477,6 +17498,13 @@ div.view {
   margin-bottom: 10px;
   float: left;
   margin-right: 32px;
+}
+
+@media screen and (max-width: 767px) {
+  .block-enticement .title {
+    font-size: 1.25rem;
+    margin-bottom: 7px;
+  }
 }
 
 .block-enticement .block-body {
