@@ -431,6 +431,8 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
       // Parse and set company Name.
       if ($label_name = $data->LabelName) {
         $label_name == $company->label() ?: $company->set('name', $label_name);
+        // Change status for the company to publish if company unpublished.
+        $company->isPublished() ?: $company->setPublished(TRUE);
       }
       else {
         $company->setPublished(FALSE);
