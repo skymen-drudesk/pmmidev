@@ -3,7 +3,7 @@
   margin-bottom: 40px;
 }
 .path-workforce-development {
-  .containers.mode-2-up {
+  .white-region .containers.mode-2-up {
     .col {
       margin-bottom: 40px;
     }
@@ -34,6 +34,32 @@
         padding-right: 15px;
         border: none;
         margin-left: 0;
+      }
+    }
+  }
+}
+.panel-404-page {
+  @include mobile {
+    .block-panels-text-block {
+      .text br {
+        display: none;
+      }
+    }
+  }
+}
+body.path-batch {
+  .pmmi-panel {
+    .block-region-main {
+      width: 100%;
+      padding: 0;
+      .batch-container {
+        max-width: 1200px;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin: 0 auto;
+        h2.favorites-block-title {
+          @extend .headline2;
+        }
       }
     }
   }

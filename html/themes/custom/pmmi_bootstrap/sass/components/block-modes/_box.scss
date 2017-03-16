@@ -8,6 +8,9 @@
     border-radius: 6px;
     .field-name-body {
       margin-bottom: 20px;
+      p {
+        display: block;
+      }
     }
     .field-name-field-image {
       float: left;
@@ -59,6 +62,39 @@
     .field-name-body {
       font-size: $r11;
       @extend .inherited-p;
+    }
+  }
+  &.mode-vertical-box {
+    padding: 20px;
+    position: relative;
+    border: 1px solid $mdgrey;
+    &.with-buttons {
+      padding-bottom: 60px;
+    }
+    .field-name-field-image {
+      margin-bottom: 15px;
+      img {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+    .field-name-field-head {
+      @extend .default-headline-3;
+      text-align: center;
+    }
+    .field-name-body {
+      @extend .paragraph2;
+      margin-bottom: 13px;
+    }
+    .field-name-field-buttons {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 10px;
+      text-align: center;
+      a {
+        margin: 0 5px 10px;
+      }
     }
   }
 }

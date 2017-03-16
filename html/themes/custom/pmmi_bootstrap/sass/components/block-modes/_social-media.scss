@@ -22,6 +22,7 @@
 }
 .block-social-media-footer {
   .social-links {
+    white-space: nowrap;
     span {
       font-weight: 400;
       font-size: $r25;
@@ -33,6 +34,9 @@
       }
       &:last-child {
         margin: 0;
+      }
+      @include desktop {
+        font-size: $r20;
       }
     }
   }

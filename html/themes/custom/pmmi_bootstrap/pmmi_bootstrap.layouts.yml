@@ -228,14 +228,8 @@ download:
       label: Image
     links:
       label: Links
-    member_price:
-      label: Member Price
-    non_member_price:
-      label: Non-Member Price
     file_download_button:
       label: File Download Button
-    disclaimer:
-      label: Disclaimer
 school:
   label: School
   category: PMMI: Nodes
@@ -649,6 +643,8 @@ block_social_media:
       label: Google+
     youtube:
       label: YouTube
+    instagram:
+      label: Instagram
 block_social_media_text:
   label: Social Media with text
   category: PMMI: Blocks
@@ -668,6 +664,8 @@ block_social_media_text:
       label: Google+
     youtube:
       label: YouTube
+    instagram:
+      label: Instagram
 block_social_footer:
   label: Social Media Footer
   category: PMMI: Blocks
@@ -683,6 +681,8 @@ block_social_footer:
       label: Google+
     youtube:
       label: YouTube
+    instagram:
+      label: Instagram
 block_enticement:
   label: Enticement
   category: PMMI: Blocks
@@ -727,6 +727,49 @@ block_icons:
         label: Head
     main:
       label: Main content
+
+block_box:
+  label: Box
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/box
+  regions:
+    head:
+      label: Head
+    main:
+      label: Main content
+block_box_vetical:
+  label: Box vertical
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/box-vertical
+  regions:
+    main:
+      label: Main content
+    button:
+      label: Button
+
+block_countdown:
+  label: Countdown
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/countdown
+  library: pmmi_bootstrap/countdown
+  regions:
+    head:
+      label: Head
+    countdown:
+      label: Countdown
+    button:
+      label: Button
+
+block_countdown_circle:
+  label: Countdown circle
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/countdown-circle
+  library: pmmi_bootstrap/countdown
+  regions:
+    countdown:
+      label: Countdown
+    button:
+      label: Button
 
 panel_default:
   label: Default panel layout

@@ -7,12 +7,17 @@ description: 'Custom PMMI.org theme based on Bootstrap.'
 package: 'PMMI'
 
 libraries:
+  - pmmi_bootstrap/blueconic
   - pmmi_bootstrap/fonts
   - pmmi_bootstrap/bootstrap-scripts
   - pmmi_bootstrap/theme
 
 libraries-override:
   tb_megamenu/theme.tb_megamenu: false
+  selectize/core:
+    css:
+      component:
+        /libraries/selectize/dist/css/selectize.default.css: false
 
 regions:
   navigation: 'Navigation'

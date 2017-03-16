@@ -37,6 +37,7 @@ function pmmi_bootstrap_preprocess_html(&$variables) {
       $variables['head_title']['title'] = $conf['page_title'] . ' | ' .  $site_name;
     }
   }
+  _pmmi_bootstrap_detect_browsers($variables);
 }
 
 /**
@@ -73,8 +74,9 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
       break;
 
     case 'system_branding_block':
+      $current_path = \Drupal::service('path.current')->getPath();
       if ($variables['content']['site_logo']['#access']
-      && \Drupal::service('path.matcher')->isFrontPage()
+      && (\Drupal::service('path.matcher')->isFrontPage() || $current_path == '/gateway')
       && $front_logo_path = theme_get_setting('front_logo_path')) {
         $front_logo_uri = file_url_transform_relative(file_create_url($front_logo_path));
         $variables['site_logo'] = $front_logo_uri;
@@ -154,15 +156,6 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
         );
         array_unshift($vars['content']['general_line_1'], $new_element);
       }
-
-      // 'Profile updated' section.
-      $changed = $node->getChangedTime();
-      $vars['content']['footer_reg'][] = array(
-        '#markup' => t('Profile last updated @date', array('@date' => date('M. j, Y', $changed))),
-        '#prefix' => '<div class="profile-updated">',
-        '#suffix' => '</div>',
-        '#weight' => 100,
-      );
       break;
 
     case 'icons':
@@ -173,6 +166,11 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
         }
       }
       $attributes['class'][] = 'cols-' . $cols;
+      break;
+
+    case 'countdown':
+      $config = \Drupal::config('system.date');
+      $timezone = $config->get('timezone.default');
       break;
   }
 
@@ -353,8 +351,14 @@ function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array
   if (!empty($variables['elements']['#plugin_id'])) {
     switch ($variables['elements']['#plugin_id']) {
       case 'pmmi_search_block':
-        $suggestions[] = 'block__header_search';
+        if ($variables['elements']['#configuration']['region'] == 'header_main_nav') {
+          $suggestions[] = 'block__header_search';
+        }
         break;
+    }
+    if ($variables['elements']['#base_plugin_id'] == 'system_menu_block'
+    && $variables['elements']['#configuration']['region'] == 'header_main_nav') {
+      $suggestions[] = 'block__collapsible_menu';
     }
   }
   return $suggestions;
@@ -365,6 +369,13 @@ function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array
  */
 function pmmi_bootstrap_preprocess_tb_megamenu_item(&$vars) {
   $vars['attributes']['class'][] = 'link-' . Html::getClass($vars['link']['title']);
+  if (isset($vars['link']['options']['attributes'])) {
+    foreach ($vars['link']['options']['attributes'] as $attr => $value) {
+      if (!empty($value)) {
+        $vars['link']['attributes']->setAttribute($attr, $value);
+      }
+    }
+  }
 }
 
 /**
@@ -382,5 +393,32 @@ function pmmi_bootstrap_preprocess_views_view_field(&$variables) {
         $variables['output'] = Markup::create($new_flag_link);
       }
       break;
+  }
+}
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function pmmi_bootstrap_element_info_alter(&$data, &$context1 = NULL, &$context2 = NULL) {
+  if (isset($data['selectize'])) {
+    $data['selectize']['#pre_render'][] = 'pmmi_bootstrap_selectize_pre_render';
+  }
+}
+
+/**
+ * Selectize pre_render.
+ */
+function pmmi_bootstrap_selectize_pre_render($element) {
+  $element['#attached']['library'][] = 'pmmi_bootstrap/selectize-plugins';
+  return $element;
+}
+
+/**
+ * Browser detection help funciton.
+ */
+function _pmmi_bootstrap_detect_browsers(&$variables) {
+  // Check Windows 10 with IE 11.
+  if (strpos($_SERVER['HTTP_USER_AGENT'], 'Windows NT 10') !== FALSE && strpos($_SERVER['HTTP_USER_AGENT'], 'rv:11') !== FALSE) {
+    $variables['attributes']['class'][] = 'ie11';
   }
 }

@@ -8,7 +8,6 @@ use Drupal\Core\Link;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\flag\FlagLinkBuilderInterface;
-use Drupal\flag\FlagServiceInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -111,6 +110,12 @@ class PMMISalesAgentActionToolbar extends BlockBase implements ContainerFactoryP
       switch ($link) {
         case 'favorites_add':
           $node = \Drupal::routeMatch()->getParameter('node');
+
+          // Load a node if we didn't get an object.
+          if (is_numeric($node)) {
+            $node = \Drupal\node\Entity\Node::load($node);
+          }
+
           $links_to_display[$link] = $this->flagLinkBuilder->build('node', $node->id(), 'favorites_content');
           $links_to_display[$link]['#cache']['max-age'] = 0;
           break;
@@ -124,20 +129,30 @@ class PMMISalesAgentActionToolbar extends BlockBase implements ContainerFactoryP
           break;
 
         case 'favorites_download':
-          $url = Url::fromUri('internal:/sales-agent-directory/favorites');
-          $link_options = ['attributes' => ['class' => ['pmmi-download-favorites']]];
-          $url->setOptions($link_options);
+          $hasPermission = \Drupal::currentUser()
+            ->hasPermission('pmmi sales agent favorites');
 
-          // @todo: replace link when the favorites page will be exist.
-          $links_to_display[$link] = Link::fromTextAndUrl($this->t('Download favorites'), $url)->toString();
+          if ($hasPermission) {
+            $url = Url::fromUri('internal:/sales-agent-directory/favorites');
+            $link_options = ['attributes' => ['class' => ['pmmi-download-favorites']]];
+            $url->setOptions($link_options);
+
+            // @todo: replace link when the favorites page will be exist.
+            $links_to_display[$link] = Link::fromTextAndUrl($this->t('Download favorites'), $url)->toString();
+          }
           break;
 
         case 'search_new':
-          $url = Url::fromUri('internal:/sales-agent-directory/search');
-          $link_options = ['attributes' => ['class' => ['pmmi-search-new']]];
-          $url->setOptions($link_options);
+          $hasPermission = \Drupal::currentUser()
+            ->hasPermission('pmmi sales agent search');
 
-          $links_to_display[$link] = Link::fromTextAndUrl($this->t('New search'), $url)->toString();
+          if ($hasPermission) {
+            $url = Url::fromUri('internal:/sales-agent-directory/search');
+            $link_options = ['attributes' => ['class' => ['pmmi-search-new']]];
+            $url->setOptions($link_options);
+
+            $links_to_display[$link] = Link::fromTextAndUrl($this->t('New search'), $url)->toString();
+          }
           break;
       }
     }

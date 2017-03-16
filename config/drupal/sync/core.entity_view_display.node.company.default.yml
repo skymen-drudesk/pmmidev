@@ -26,7 +26,6 @@ dependencies:
     - node.type.company
   module:
     - address
-    - datetime
     - ds
     - link
     - options
@@ -81,6 +80,11 @@ third_party_settings:
       footer_reg:
         - 'dynamic_block_field:node-company_trade_shows'
     fields:
+      node_title:
+        plugin_id: node_title
+        weight: 2
+        label: hidden
+        formatter: default
       'dynamic_block_field:node-company_trade_shows':
         plugin_id: 'dynamic_block_field:node-company_trade_shows'
         weight: 22
@@ -94,11 +98,6 @@ third_party_settings:
       'dynamic_block_field:node-sales_agent_directory_image_head':
         plugin_id: 'dynamic_block_field:node-sales_agent_directory_image_head'
         weight: 0
-        label: hidden
-        formatter: default
-      node_title:
-        plugin_id: node_title
-        weight: 2
         label: hidden
         formatter: default
 id: node.company.default
@@ -195,14 +194,6 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-  field_last_updated_on:
-    weight: 22
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
   field_main_phone_number:
     weight: 3
     label: hidden
@@ -275,12 +266,14 @@ content:
     third_party_settings: {  }
     type: link
 hidden:
+  content_moderation_control: true
   field_address_1: true
   field_address_2: true
   field_businbess_lines: true
   field_city: true
   field_country: true
   field_image_header: true
+  field_last_updated_on: true
   field_postal_code: true
   field_state: true
   field_trade_shows: true

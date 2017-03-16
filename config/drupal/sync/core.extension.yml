@@ -15,8 +15,12 @@ module:
   chosen_lib: 0
   ckeditor: 0
   config: 0
+  config_filter: 0
   config_split: 0
+  config_update: 0
+  content_moderation: 0
   contextual: 0
+  country: 0
   csv_serialization: 0
   ctools: 0
   datetime: 0
@@ -31,6 +35,7 @@ module:
   embed: 0
   entity_browser: 0
   entity_embed: 0
+  externalauth: 0
   field: 0
   field_group: 0
   file: 0
@@ -38,8 +43,11 @@ module:
   file_entity: 0
   filter: 0
   flag: 0
+  google_analytics: 0
   hal: 0
+  help: 0
   image: 0
+  imce: 0
   inline_entity_form: 0
   layout_plugin: 0
   link: 0
@@ -69,10 +77,12 @@ module:
   pmmi_facebook: 0
   pmmi_fields: 0
   pmmi_forms: 0
+  pmmi_ga: 0
   pmmi_import: 0
   pmmi_personify: 0
   pmmi_sales_agent: 0
   pmmi_search: 0
+  pmmi_sso: 0
   pmmi_taxonomy: 0
   pmmi_twitter: 0
   purge: 0
@@ -82,11 +92,14 @@ module:
   purge_tokens: 0
   purge_ui: 0
   quickedit: 0
+  redirect: 0
+  redirect_404: 0
   responsive_image: 0
   rest: 0
   search_api: 0
   search_api_solr: 0
   search_api_views_taxonomy: 0
+  selectize: 0
   serialization: 0
   slick: 0
   slick_ui: 0
@@ -105,13 +118,16 @@ module:
   varnish_purge_tags: 0
   varnish_purger: 0
   video: 0
+  view_unpublished: 0
   viewfield: 0
   views: 0
   views_block_filter_block: 0
   views_data_export: 0
   views_field_formatter: 0
+  views_field_view: 0
   webform: 0
   webform_ui: 0
+  webform_views: 0
   pathauto: 0
 theme:
   stable: 0

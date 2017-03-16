@@ -22,12 +22,6 @@
     font-weight: 800;
   }
 }
-// Node blue button.
-.node-button {
-  a {
-    @extend .button-primary;
-  }
-}
 .node-layout {
   .content-right {
     margin-bottom: 30px;
@@ -171,4 +165,7 @@
       }
     }
   }
+}
+.basic-page.mode-full {
+  margin-bottom: 30px;
 }

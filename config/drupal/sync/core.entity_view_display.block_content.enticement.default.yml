@@ -8,11 +8,11 @@ dependencies:
     - field.field.block_content.enticement.field_head
     - field.field.block_content.enticement.field_image
     - field.field.block_content.enticement.field_teaser
-    - responsive_image.styles.block_style_1
+    - image.style.enticement_style
   module:
     - ds
+    - image
     - link
-    - responsive_image
 third_party_settings:
   ds:
     layout:
@@ -58,7 +58,7 @@ content:
     weight: 1
     label: hidden
     settings:
-      responsive_image_style: block_style_1
+      image_style: enticement_style
       image_link: ''
     third_party_settings:
       ds:
@@ -68,7 +68,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
+    type: image
   field_teaser:
     weight: 2
     label: hidden

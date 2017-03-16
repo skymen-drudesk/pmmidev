@@ -10,13 +10,23 @@ p {
 h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 0;
 }
+strong {
+  font-weight: 800;
+}
 // Lists.
 ol, ul {
   padding-left: 20px;
 }
+body {
+  min-width: 310px;
+}
 .bullet-list {
   ul {
     overflow: hidden;
+    @extend .paragraph1;
+    @include desktop-min {
+      font-size: $r19;
+    }
     li {
       list-style: none;
       position: relative;
@@ -85,16 +95,41 @@ ol, ul {
     }
   }
 }
-table.responsive {
-  @include mobile {
-    td, th {
-      display: block;
-    }
-    td[style*="width"] {
-      width: auto !important;
+// TABLE
+table {
+  border: none;
+  th,
+  td {
+    border-color: $mdgrey;
+    padding: 10px;
+    @extend .paragraph1;
+  }
+  th {
+    background: $dkblue;
+    padding: 15px;
+    font-size: $r24;
+    font-weight: 500;
+    color: #fff;
+  }
+  &.responsive {
+    @include mobile {
+      td, th {
+        display: block;
+      }
+      td[style*="width"] {
+        width: auto !important;
+      }
     }
   }
 }
+
+.text-align-center {
+  img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+/** PAGER **/
 .pmmi-pager {
   display: block;
   color: $mdgrey;

@@ -124,11 +124,14 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
     ];
 
     $element['country_code'] = [
-      '#type' => 'select',
+      '#type' => 'selectize',
       '#title' => $this->t('Country'),
       '#options' => $this->countryRepository->getList(),
       '#multiple' => TRUE,
-      '#chosen' => TRUE,
+      '#settings' => [
+        'placeholder' => $this->t('Select Country'),
+        'plugins' => ['remove_button', 'prevent_items_backspace_delete'],
+      ],
       '#limit_validation_errors' => [],
       '#ajax' => [
         'callback' => [get_class($this), 'ajaxRefresh'],
@@ -137,10 +140,13 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
     ];
 
     $element['administrative_area'] = [
-      '#type' => 'select',
+      '#type' => 'selectize',
       '#title' => $this->t('State/Region'),
       '#multiple' => TRUE,
-      '#chosen' => TRUE,
+      '#settings' => [
+        'placeholder' => $this->t('Select State/Region'),
+        'plugins' => ['remove_button', 'prevent_items_backspace_delete'],
+      ],
       '#access' => FALSE,
     ];
 
@@ -182,9 +188,6 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
 
     $element['#element_validate'][] = array(get_class($this), 'validateElement');
 
-    // Attach chosen library.
-    $this->attachChosen($form);
-
     return $element;
   }
 
@@ -199,8 +202,8 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
   public static function validateElement(array $element, FormStateInterface $form_state) {
     $items = array();
 
-    $countries = $element['country_code']['#value'] ? $element['country_code']['#value'] : array();
-    $areas = $element['administrative_area']['#value'] ? $element['administrative_area']['#value'] : array();
+    $countries = !empty($element['country_code']['#value']) ? $element['country_code']['#value'] : array();
+    $areas = !empty($element['administrative_area']['#value']) ? $element['administrative_area']['#value'] : array();
 
     // Validation error for required field, if there are no any countries.
     if ($element['#required'] && !$countries) {
@@ -236,15 +239,6 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
     $address_element = NestedArray::getValue($form, array_slice($country_element['#array_parents'], 0, -1));
 
     return $address_element;
-  }
-
-  /**
-   * Attach chosen library.
-   */
-  protected function attachChosen(array &$form) {
-    $form['#attached']['library'][] = 'chosen/drupal.chosen';
-    $form['#attached']['library'][] = 'chosen_lib/chosen.css';
-    $form['#attached']['drupalSettings']['chosen']['selector'] = '.pmmi-autocomplete-address .form-select';
   }
 
   /**

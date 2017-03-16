@@ -8,6 +8,7 @@ dependencies:
     - field.field.block_content.social_media.field_facebook
     - field.field.block_content.social_media.field_google
     - field.field.block_content.social_media.field_head
+    - field.field.block_content.social_media.field_instagram
     - field.field.block_content.social_media.field_linkedin
     - field.field.block_content.social_media.field_twitter
     - field.field.block_content.social_media.field_youtube
@@ -62,6 +63,20 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+  field_instagram:
+    weight: 8
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      enabled_attributes:
+        id: false
+        name: false
+        target: true
+        rel: true
+        class: true
+        accesskey: false
+    third_party_settings: {  }
+    type: link_attributes
   field_linkedin:
     weight: 5
     settings:

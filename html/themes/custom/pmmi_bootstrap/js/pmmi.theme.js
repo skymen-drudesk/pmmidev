@@ -51,7 +51,19 @@
         $(this).find('.default-mode-node').once('ajax').each(function () {
           var $item = $(this);
           var nodeID = $item.data('item-id');
-          $item.find('.field-name-node-link a, .field-name-field-video a').prop('href', Drupal.url('pmmi-fields/replace-video/nojs/' + nodeID)).addClass('use-ajax');
+          var title = $item.find('.field-name-node-title').text();
+          $item.find('.field-name-node-link a, .field-name-field-video a').each(function () {
+            $(this).prop('data-href', $(this).attr('href'))
+              .prop('href', Drupal.url('pmmi-fields/replace-video/nojs/' + nodeID))
+              .addClass('use-ajax');
+          }).click(function () {
+            if (window.history.pushState) {
+              history.pushState({}, title, $(this).prop('data-href'));
+              var titleParts = $(document).prop('title').split('|');
+              titleParts[0] = title;
+              $(document).prop('title', titleParts.join('|'));
+            }
+          });
         });
         Drupal.behaviors.AJAX.attach(context, settings);
       });
@@ -103,7 +115,7 @@
           });
         });
       });
-      var $expandedList = $('.pmmi-company-search-block-form .js-form-wrapper');
+      var $expandedList = $('.pmmi-company-search-block-form .js-form-wrapper, .industries-served-details.js-form-wrapper, .equipment-sold-details.js-form-wrapper');
       var $clicker = $('.panel-heading a', $expandedList);
       $clicker.once('pmmiCommonTheme').click(function () {
         $(this).closest('.js-form-wrapper').toggleClass('active');
@@ -112,9 +124,14 @@
       $('.containers .row').once('matchHeight').each(function () {
         var $row = $(this);
         var $socialBlock = $row.find('.social-block');
+        var $containerBlocks = $socialBlock.add('.viewfield-wrapper, .match-height', $row);
+        if ($containerBlocks.length) {
+          var $textBlock = $row.find('.block-text');
+          $containerBlocks = $containerBlocks.add($textBlock);
+        }
         $row.imagesLoaded()
           .always(function () {
-            if ($socialBlock.length) {
+            if ($containerBlocks.length) {
               $('.col > .field > *', $row).matchHeight();
             }
             var $matchHeightBlock = $('.match-height', $row);
@@ -122,6 +139,11 @@
               $matchHeightBlock.matchHeight();
             }
           });
+        $.fn.matchHeight._beforeUpdate = function (event, groups) {
+          $socialBlock.each(function () {
+            $(this).removeAttr('style');
+          });
+        };
         $.fn.matchHeight._afterUpdate = function (event, groups) {
           $socialBlock.each(function () {
             var $block = $(this);
@@ -142,6 +164,12 @@
           });
         };
       });
+      // Apple Safari 8 svg issue workaround.
+      if (navigator.userAgent.match(/safari/i) && navigator.vendor.match(/apple/i)) {
+        $('.logo img[src*=".svg"]').once('svg-issue').each(function () {
+          $(this).hide().after('<object data="' + $(this).attr('src') + '" type="image/svg+xml"></object>');
+        });
+      }
     }
   };
 
@@ -215,20 +243,37 @@
         $dropdownToggle.each(function () {
           $(this).parent().find('.mega-nav').prepend($('<li>').addClass('only-mobile').append($(this).clone().toggleClass('dropdown-toggle')));
         });
+        $(this).find('a').each(function () {
+          var $link = $(this);
+          if (!$link.attr('href').length) {
+            $link.removeAttr('href').css('cursor', 'default')
+              .on('click', function (e) {
+                e.preventDefault();
+              });
+          }
+        });
         // Search block.
         _this.searchBlock($navContext);
 
         // Mobile toggler.
-        $(window).on('breakpointActivated', function (e, breakpoint) {
+        var applyToggler = function (breakpoint) {
           if (breakpoint === 'mobile') {
-            $dropdownToggle.on('click.mobile-toggler', function (e) {
-              e.preventDefault();
-              $(this).toggleClass('opened').parent().toggleClass('opened');
+            $dropdownToggle.once('click-toggler').each(function () {
+              var $dropdownLink = $(this);
+              $dropdownLink.on('click.mobile-toggler', function (e) {
+                e.preventDefault();
+                $dropdownLink.toggleClass('opened').parent().toggleClass('opened')
+                  .siblings().removeClass('opened')
+                  .find('>a').removeClass('opened');
+              });
             });
           }
           else {
-            $dropdownToggle.off('click.mobile-toggler');
+            $dropdownToggle.off('click.mobile-toggler').removeOnce('click-toggler');
           }
+        };
+        $(window).on('breakpointActivated', function (e, breakpoint) {
+          applyToggler(breakpoint);
         });
       });
     }

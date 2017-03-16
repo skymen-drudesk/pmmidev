@@ -10,13 +10,13 @@ dependencies:
     - field.field.node.download.field_image
     - field.field.node.download.field_image_header
     - field.field.node.download.field_links
+    - image.style.download_page
     - node.type.download
-    - responsive_image.styles.block_style_4
     - views.view.file_download_button
   module:
     - ds
+    - image
     - link
-    - responsive_image
     - text
     - user
     - views_field_formatter
@@ -40,18 +40,12 @@ third_party_settings:
         - field_image
       links:
         - field_links
-      member_price:
-        - field_member_price
-      non_member_price:
-        - field_non_member_price
       file_download_button:
         - field_file_download_button
-      disclaimer:
-        - field_disclaimer
     fields:
       node_title:
         plugin_id: node_title
-        weight: 1
+        weight: 2
         label: hidden
         formatter: default
 id: node.download.full
@@ -62,12 +56,12 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
   field_file_download_button:
     type: views_field_formatter
-    weight: 7
+    weight: 6
     label: hidden
     settings:
       view: 'file_download_button::block_embed'
@@ -92,10 +86,10 @@ content:
             lb-col: false
             classes: {  }
   field_image:
-    weight: 3
+    weight: 4
     label: hidden
     settings:
-      responsive_image_style: block_style_4
+      image_style: download_page
       image_link: ''
     third_party_settings:
       ds:
@@ -105,7 +99,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
+    type: image
   field_image_header:
     type: entity_reference_entity_view
     weight: 0
@@ -115,7 +109,7 @@ content:
       link: false
     third_party_settings: {  }
   field_links:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       trim_length: 80

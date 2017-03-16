@@ -1,0 +1,30 @@
+uuid: 6e08edeb-0765-438c-aa8f-dcd1594af777
+langcode: en
+status: true
+dependencies:
+  module:
+    - path
+    - user
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  account:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+  language:
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+  timezone:
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

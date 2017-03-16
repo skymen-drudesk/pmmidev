@@ -1,0 +1,170 @@
+<?php
+
+/**
+ * @file
+ * Update hooks for the 'PMMI Sales Agent Directory' module.
+ */
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_schema().
+ */
+function pmmi_sales_agent_schema() {
+  $schema['pmmi_sales_agent_mails'] = array(
+    'description' => 'Stores information about sales agent mails.',
+    'fields' => array(
+      'mid'  => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+        'description' => 'The mail ID.',
+      ),
+      'nid' => array(
+        'description' => 'The node ID.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'type' => array(
+        'type' => 'varchar',
+        'length' => 128,
+        'not null' => TRUE,
+        'default' => '',
+        'description' => 'The mails type.',
+      ),
+      'sending_date' => array(
+        'description' => 'The Unix timestamp when mail should be sent.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('mid'),
+    'indexes' => array(
+      'type' => array('type'),
+      'sending_date' => array('sending_date'),
+    ),
+    'foreign keys' => array(
+      'nid' => array('node' => 'nid'),
+    ),
+  );
+
+  return $schema;
+}
+
+/**
+ * Revert configuration to the value from extension storage.
+ */
+function pmmi_sales_agent_update_8001() {
+  \Drupal::service('module_installer')->install(['config_update'], TRUE);
+  \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_settings');
+  \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_mass_settings');
+}
+
+/**
+ * Revert configuration to set default value for mail settings.
+ */
+function pmmi_sales_agent_update_8002() {
+  \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_settings');
+}
+
+/**
+ * Creates the 'pmmi_sales_agent_mails' table.
+ */
+function pmmi_sales_agent_update_8003() {
+  $schema = Database::getConnection()->schema();
+
+  if (!$schema->tableExists('pmmi_sales_agent_mails')) {
+    $spec = drupal_get_module_schema('pmmi_sales_agent', 'pmmi_sales_agent_mails');
+    $schema->createTable('pmmi_sales_agent_mails', $spec);
+  }
+}
+
+/**
+ * Set default value for the 'pmmi_sales_agent.mail_settings' config.
+ */
+function pmmi_sales_agent_update_8004() {
+  \Drupal::service('config.factory')->getEditable('pmmi_sales_agent.mail_settings')
+    ->set('remind_period', 604800)
+    ->save();
+}
+
+/**
+ * Remove 'field_mass_email_queue' field as it no longer needed.
+ */
+function pmmi_sales_agent_update_8005() {
+  $field_config =  \Drupal::entityTypeManager()->getStorage('field_config');
+  $field = $field_config->load('node.company.field_mass_email_queue');
+
+  if ($field) {
+    $field->delete();
+    field_purge_field($field);
+  }
+}
+
+/**
+ * Rerun previous updates.
+ */
+function pmmi_sales_agent_update_8006() {
+  for ($i = 1; $i <= 5; $i++) {
+    $function = 'pmmi_sales_agent_update_800' . $i;
+    $function();
+  }
+}
+
+/**
+ * Create new "Sales agent user stat" entity type
+ */
+function pmmi_sales_agent_update_8007() {
+  $entity_type = \Drupal::entityTypeManager()->getDefinition('sad_user_stat');
+
+  if ($entity_type) {
+    $manager = \Drupal::entityDefinitionUpdateManager();
+    $manager->installEntityType($entity_type);
+  }
+}
+
+/**
+ * Re-run update function 8007.
+ */
+function pmmi_sales_agent_update_8008() {
+  pmmi_sales_agent_update_8007();
+}
+
+/**
+ * Drop the 'pmmi_sales_agent_search_stats' table.
+ */
+function pmmi_sales_agent_update_8009() {
+  $schema = Database::getConnection()->schema();
+
+  if ($schema->tableExists('pmmi_sales_agent_search_stats')) {
+    $schema->dropTable('pmmi_sales_agent_search_stats');
+  }
+}
+
+/**
+ * Revert configuration of the reporting configs.
+ */
+function pmmi_sales_agent_update_8010() {
+  \Drupal::service('module_installer')->install(['config_update'], TRUE);
+  \Drupal::service('config_update.config_update')
+    ->revert('system.simple', 'pmmi_sales_agent.reporting_settings');
+}
+
+/**
+ * Set default image header for the favorites batch page.
+ */
+function pmmi_sales_agent_update_8011() {
+  /** @var \Drupal\block_content\BlockContentInterface $block */
+  $block = \Drupal::entityManager()
+    ->loadEntityByUuid('block_content', '14fbe4e8-9d85-4988-93d1-f0b2e3a5b49f');
+
+  if ($block) {
+    \Drupal::service('config.factory')
+      ->getEditable('pmmi_sales_agent.reporting_settings')
+      ->set('img_header', $block->id())
+      ->save();
+  }
+}

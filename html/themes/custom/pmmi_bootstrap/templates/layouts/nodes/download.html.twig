@@ -2,25 +2,29 @@
   <div class="top-banner clearfix">
     {{ field_render([content.image_header, 'img-header']) }}
   </div>
-
   <div class="container">
-    <h2 class="node-title">
-      {{ content.title }}
-    </h2>
+    <div class="content-full">
+      <h2 class="node-title">
+        {{ content.title }}
+      </h2>
+      <div class="row">
 
-    {{ field_render([content.image, 'img']) }}
+        {% set image = field_render([content.image, 'img col-sm-4 col-md-3']) %}
 
-    {{ field_render([content.body, 'node-body']) }}
+        {{ image|raw }}
 
-    {{ field_render([content.links, 'links']) }}
+        {% set classes = image ? 'content col-sm-8 col-md-9' : 'content col-md-12' %}
 
-    {{ field_render([content.member_price, 'member-price price']) }}
+        <div class="{{ classes }}">
 
-    {{ field_render([content.non_member_price, 'non-member-price price']) }}
+          {{ field_render([content.body, 'node-body']) }}
 
-    {{ field_render([content.file_download_button, 'download-link']) }}
+          {{ field_render([content.links, 'links']) }}
 
-    {{ field_render([content.disclaimer, 'disclaimer']) }}
+          {{ field_render([content.file_download_button, 'download-link btn-prm-wrap']) }}
 
+        </div>
+      </div>
+    </div>
   </div>
 </div>

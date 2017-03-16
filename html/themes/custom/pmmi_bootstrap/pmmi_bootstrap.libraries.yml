@@ -19,6 +19,12 @@ theme:
       # Custom CSS file to be loaded in all media circumstances
       css/style.css: {}
 
+countdown:
+  js:
+    js/countdown.js: {}
+  dependencies:
+    - pmmi_bootstrap/jquery.countdown
+
 fonts:
   js:
     js/font.js: {}
@@ -55,3 +61,18 @@ matchheight:
 imagesloaded:
   js:
     libraries/imagesloaded/imagesloaded.pkgd.min.js: {}
+
+selectize-plugins:
+  js:
+    js/plugins/selectize/preventBackspaceSelectize.js: {}
+
+jquery.countdown:
+  js:
+    libraries/moment/min/moment.min.js: {}
+    libraries/moment-timezone/builds/moment-timezone-with-data.min.js: {}
+    libraries/jquery.countdown/dist/jquery.countdown.min.js: {}
+
+blueconic:
+  header: true
+  js:
+    '//cdn.blueconic.net/pmmi.js': { type: external, weight: -22 }

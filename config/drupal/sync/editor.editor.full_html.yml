@@ -65,10 +65,10 @@ settings:
             - PasteText
             - PasteFromWord
   plugins:
-    stylescombo:
-      styles: "h2.title|H2 block title\r\ntable.responsive|Responsive table"
     language:
       language_list: un
+    stylescombo:
+      styles: "h2.title|H2 block title\r\ntable.responsive|Responsive table\r\nh2.headline2|Headline 2\r\nh3.headline3|Headline 3\r\nh4.headline4|Headline 4\r\np.paragraph1|Paragraph 1\r\np.paragraph3|Paragraph 3\r\na.button-primary|Dark blue button\r\na.btn-primary-opacity|Light blue button"
 image_upload:
   status: false
   scheme: public

@@ -58,12 +58,12 @@ content:
     weight: 7
     settings:
       entity_browser: browse_files_modal
+      field_widget_edit: true
       field_widget_remove: true
       open: true
       selection_mode: selection_append
+      view_mode: thumbnail
       preview_image_style: thumbnail
-      field_widget_edit: true
-      view_mode: default
     third_party_settings: {  }
     type: entity_browser_file
   field_image_header:

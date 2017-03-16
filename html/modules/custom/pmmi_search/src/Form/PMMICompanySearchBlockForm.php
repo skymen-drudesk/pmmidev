@@ -4,6 +4,7 @@ namespace Drupal\pmmi_search\Form;
 
 use CommerceGuys\Addressing\Country\CountryRepositoryInterface;
 use CommerceGuys\Addressing\Subdivision\SubdivisionRepositoryInterface;
+use Drupal\Core\Database\Database;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
@@ -83,29 +84,30 @@ class PMMICompanySearchBlockForm extends FormBase {
       '#suffix' => '</div>',
     ];
     $form['address']['country_code'] = [
-      '#type' => 'select',
+      '#type' => 'selectize',
       '#title' => $this->t('Country'),
       '#options' => $this->countryRepository->getList(),
       '#multiple' => TRUE,
-      '#chosen' => TRUE,
+      '#settings' => [
+        'placeholder' => $this->t('Select Country'),
+        'plugins' => ['remove_button', 'prevent_items_backspace_delete'],
+      ],
       '#limit_validation_errors' => [],
       '#ajax' => [
         'callback' => [get_class($this), 'addressAjaxRefresh'],
         'wrapper' => $wrapper_id,
       ],
-      '#attributes' => [
-        'data-placeholder' => $this->t('Select country'),
-      ],
     ];
     $form['address']['administrative_area'] = [
-      '#type' => 'select',
+      '#type' => 'selectize',
       '#title' => $this->t('State/Region'),
       '#multiple' => TRUE,
-      '#chosen' => TRUE,
-      '#access' => FALSE,
-      '#attributes' => [
-        'data-placeholder' => $this->t('Select State/Region'),
+      '#settings' => [
+        'placeholder' => $this->t('Select State/Region'),
+        'plugins' => ['remove_button', 'prevent_items_backspace_delete'],
       ],
+      '#input_group' => TRUE,
+      '#access' => FALSE,
     ];
 
     $countries = [];
@@ -178,9 +180,6 @@ class PMMICompanySearchBlockForm extends FormBase {
       '#value' => $this->t('Search'),
     ];
 
-    // Attach chosen library.
-    $this->attachChosen($form);
-
     return $form;
   }
 
@@ -223,15 +222,6 @@ class PMMICompanySearchBlockForm extends FormBase {
     $url = Url::fromUri('internal:/sales-agent-directory/search/results');
     $url->setOption('query', $query);
     $form_state->setRedirectUrl($url);
-  }
-
-  /**
-   * Attach chosen library.
-   */
-  protected function attachChosen(array &$form) {
-    $form['#attached']['library'][] = 'chosen/drupal.chosen';
-    $form['#attached']['library'][] = 'chosen_lib/chosen.css';
-    $form['#attached']['drupalSettings']['chosen']['selector'] = '.form-select';
   }
 
   /**

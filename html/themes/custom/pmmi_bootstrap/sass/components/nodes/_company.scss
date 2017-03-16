@@ -20,27 +20,47 @@
   .general {
     font-size: $r20;
     margin-bottom: 20px;
-    .address-simple,
-    .field--name-field-website-url {
-      float: left;
-    }
-    .field--name-field-main-phone-number,
-    .field--name-field-general-company-email {
-      &:before {
-        content: ' \2022 \A0';
-        color: $blue;
-        margin-left: 5px;
-      }
-    }
+    .line-1,
     .line-2 {
       clear: left;
+      > div {
+        display: inline-block;
+        word-break: break-all;
+        &:before {
+          content: ' \2022 \A0';
+          color: $blue;
+          margin-left: 5px;
+        }
+        &:first-child {
+          &:before {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+  .territory-served {
+    .territory-covered .two-columns {
+      font-size: 0;
+      div.field--item {
+        width: 50%;
+        display: inline-block;
+        padding: 0 15px;
+        font-size: $r16;
+        &:nth-child(odd) {
+          padding-left: 0;
+        }
+      }
     }
   }
   .row-wrapper,
   .contacts,
   .services{
     margin: 20px 0;
-    padding-bottom: 20px;
+    > div,
+    .right-col .row > div {
+      margin-bottom: 20px;
+    }
   }
   .row-wrapper {
     background-color: $ltgrey;
@@ -50,6 +70,13 @@
     .block-label {
       color: $blue;
       font-size: $r20;
+      border-bottom: 2px solid $mdgrey;
+    }
+  }
+  .right-col.col-md-4 {
+    .col-md-6 {
+      width: auto;
+      float: none;
     }
   }
   .contacts, .services {
@@ -79,7 +106,7 @@
       }
     }
     .address {
-      margin-bottom: 0px;
+      margin-bottom: 0;
       font-size: $r16;
     }
   }
@@ -90,9 +117,6 @@
     font-weight: 800;
     font-size: $r18;
     margin-bottom: 4px;
-  }
-  .col-md-4 {
-    margin: 10px 0;
   }
   .footer-reg {
     .view-header p {
@@ -145,23 +169,29 @@
     clear: both;
   }
 
-  @include mobile {
+  @include tablet-max {
     .node-title {
       margin-bottom: 0;
       font-size: $r35;
     }
     .general {
-      .address-simple,
-      .field--name-field-website-url {
-        float: none;
-        &:after {
-          display: none;
+      .line-1,
+      .line-2 {
+        > div {
+          display: block;
+          &:before {
+            display: none;
+          }
         }
       }
-      .field--name-field-main-phone-number,
-      .field--name-field-general-company-email {
-        &:before {
-          display: none;
+    }
+    .territory-served {
+      max-width: 100%;
+      .territory-covered .two-columns {
+        div.field--item {
+          width: 100%;
+          display: block;
+          padding: 0;
         }
       }
     }
@@ -181,28 +211,11 @@
       }
     }
   }
-
-  @include tablet {
-    .contacts, .services {
-      > .col-md-4 {
-        padding-left: 0;
-      }
-    }
-  }
-
-  @include tablet-max {
-    .contacts, .services {
-      > .col-md-4 {
-        padding-left: 0;
-      }
-    }
-  }
 }
 
 /**
- * Company node edit form
+ * Company node edit form.
  */
-.page-node-type-company,
 .page-node-type-company {
   .block-block-content {
     .block-title {
@@ -222,8 +235,7 @@
     }
   }
 }
-form#node-company-edit-form,
-form#node-company-form {
+.node-company-form {
   max-width: 770px;
   .form-control,
   .selector {
@@ -235,7 +247,6 @@ form#node-company-form {
   .form-control {
     border-color: $blueopacity;
   }
-  //margin: auto;
   .panel-heading,
   .panel-default,
   legend {
@@ -252,62 +263,62 @@ form#node-company-form {
     font-weight: 800;
     font-size: $r20;
   }
+  .company-info,
+  .main-contact {
+    .panel-body {
+      label {
+        width: 230px;
+        text-align: right;
+        font-size: $r14;
+        text-transform: uppercase;
+        padding-right: 10px;
+      }
+      input {
+        max-width: 535px;
+        width: 100%;
+        display: inline-block;
+      }
+      .description {
+        text-align: left;
+        font-size: $r13;
+        color: $blue;
+        margin-bottom: 0;
+        padding-left: 232px;
+      }
+    }
+  }
   .field--name-field-address {
     .input-group-addon,
     .panel-heading {
       display: none;
     }
-    .form-group,
-    .address-container-inline > div {
-      float: right;
-      margin-right: 0;
-    }
     .input-group,
     .select-wrapper {
       display: inline-flex;
+      .selector {
+        border-color: $blueopacity;
+      }
     }
-    .selector {
-      width: 530px !important;
-      border-color: $blueopacity;
+    .address-container-inline > .form-item {
+      width: 100%;
+    }
+    .select-wrapper > .selector,
+    .form-item > .locality,
+    .form-item > .postal-code {
+      min-width: 290px;
       font-weight: inherit;
       &:before {
         display: none;
       }
+      & span {
+        text-align: left;
+        padding-left: 10px;
+      }
     }
-    .control-label.sr-only {
+    .control-label {
       position: relative;
       width: auto;
       height: auto;
-    }
-  }
-  .company-info,
-  .main-contact {
-    .form-wrapper {
-      float: right;
-      text-align: right;
-      label {
-        font-size: $r14;
-        text-transform: uppercase;
-        padding-right: 10px;
-      }
-    }
-    .form-tel,
-    .form-text,
-    .form-url,
-    .form-email {
-      max-width: 530px;
-      width: 530px;
-      display: inline;
-      min-width: 338px;
-    }
-    .description {
-      float: right;
-      text-align: left;
-      font-size: $r13;
-      color: $blue;
-      max-width: 530px;
-      width: 530px;
-      margin-bottom: 0;
     }
   }
   .checker {
@@ -334,71 +345,31 @@ form#node-company-form {
       font-weight: 400;
       color: $blue;
     }
-    .chosen-container {
-      height: auto;
-      border: none;
-      box-shadow: none;
-      max-width: 470px;
-      min-width: 470px;
-      padding-left: 0;
-    }
     .input-group-addon {
       &:last-child {
         display: none;
       }
     }
-    .search-choice {
-      background-image: none;
-      background-color: $ltblue;
-      border: none;
-      color: #fff;
-      height: 23px;
-      border-radius: 6px;
-      box-shadow: none;
-      span {
-        padding-left: 15px;
-        &:before {
-          font-family: FontAwesome;
-          content: '\f00d';
-          margin-left: -15px;
-          padding-right: 5px;
-        }
-      }
-      .search-choice-close {
-        position: relative;
-        top: -12px;
-        left: 1px;
-        opacity: 0;
-      }
-    }
+  }
+  .input-group {
+    display: block;
+  }
+  .selectize-control {
+    height: auto;
+    box-shadow: none;
+    max-width: 470px;
   }
   .equipment-sold,
   .industries-served {
     legend{
       display: none;
     }
-    .form-textarea-wrapper {
-      margin-right: 30px;
+    h3 {
+      @extend .panel-title;
+      padding: 20px 0;
     }
-    .panel-body {
-      padding: 15px 0px 15px 70px;
-      position: relative;
-      border: 1px solid $blueopacity;
-      &:before {
-        font-family: FontAwesome;
-        content: "\f068";
-        display: block;
-        width: 40px;
-        background: $ltblue;
-        position: absolute;
-        height: auto;
-        color: $ltgrey;
-        text-align: center;
-        font-size: 20px;
-        top: 0;
-        bottom: 0;
-        left: 0;
-      }
+    &-details {
+      @extend .details-wrapper;
     }
   }
   .field--name-field-manufacturers-represented .description {
@@ -444,16 +415,19 @@ form#node-company-form {
   #edit-trade-shows {
     .panel-body {
       max-width: 470px;
+      .form-group {
+        display: inline-block;
+      }
       .form-group > .form-item {
         float: right;
         label {
           display: inline-flex;
           text-transform: uppercase;
+          padding-right: 10px;
         }
         input {
           max-width: 370px;
           display: inline-flex;
-          margin-left: 10px;
         }
       }
       .checkbox label {
@@ -472,28 +446,26 @@ form#node-company-form {
     margin-bottom: 35px;
     margin-top: 30px;
   }
-  @include mobile {
-    max-width: 353px;
+  @include tablet-max {
+    max-width: 500px;
     .company-info,
     .main-contact {
-      .form-wrapper {
-        text-align: left;
-      }
-      .form-tel,
-      .form-text,
-      .form-url,
-      .form-email {
-        max-width: 338px;
-        min-width: 338px;
-        width: 338px;
-      }
-      .description {
-        width: auto;
+      .panel-body {
+        label {
+          text-align: left;
+        }
+        .description {
+          padding-left: 0;
+        }
       }
     }
+    .selectize-control {
+      max-width: 500px;
+    }
     .field--name-field-address {
-      .selector {
-        width: 338px !important;
+      .input-group,
+      .select-wrapper {
+        display: block;
       }
       .address-container-inline .form-item .select-wrapper {
         margin-left: auto;
@@ -512,11 +484,6 @@ form#node-company-form {
       }
     }
     #edit-trade-shows {
-      .panel-body {
-        .form-group > .form-item {
-          float: left;
-        }
-      }
       label {
         display: block;
       }
@@ -526,7 +493,8 @@ form#node-company-form {
       }
     }
     .button {
-      width: 338px;
+      width: 100%;
+      max-width: 350px;
       margin-bottom: 20px;
     }
   }
@@ -541,10 +509,10 @@ form#node-company-form {
   display: block;
   background-color: #d8e1e1;
   ul {
-    float: right;
-    margin-right: 135px;
+    margin: 0 auto;
+    max-width: 1200px;
+    text-align: right;
     height: 100%;
-    margin-bottom: 0;
     li {
       display: inline-block;
       margin: 15px 10px;
@@ -582,33 +550,30 @@ form#node-company-form {
     ul {
       margin-right: 0;
       padding: 4px 15px;
+      text-align: left;
       li:first-child {
         background-color: $blue;
         a {
           color: #fff;
         }
       }
-      li:nth-child(3) {
-        width: 340px;
-      }
-    }
-    li {
-      width: 160px;
-      text-align: center;
-      border: 2px solid $blue;
-      border-radius: 3px;
-      margin: 5px !important;
-      height: 30px;
-      padding-top: 2px;
-      a {
-        line-height: $r16;
-        font-size: $r13;
-      }
-      .pmmi-company-add:before,
-      .pmmi-download-favorites:before,
-      .pmmi-search-new:before,
-      .flag-favorites_content:before {
-        display: none;
+      li {
+        width: 100%;
+        text-align: center;
+        border: 2px solid $blue;
+        border-radius: 3px;
+        margin: 5px 0;
+        height: 30px;
+        padding-top: 2px;
+        a {
+          font-size: $r13;
+        }
+        .pmmi-company-add:before,
+        .pmmi-download-favorites:before,
+        .pmmi-search-new:before,
+        .flag-favorites_content:before {
+          display: none;
+        }
       }
     }
   }

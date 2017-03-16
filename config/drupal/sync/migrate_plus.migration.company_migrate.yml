@@ -71,6 +71,9 @@ process:
   type:
     plugin: default_value
     default_value: company
+  moderation_state:
+    plugin: default_value
+    default_value: published
   title: 'Company Name'
   field_main_phone_number: Phone1
   field_fax_number: Fax
