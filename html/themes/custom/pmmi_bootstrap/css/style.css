@@ -14804,6 +14804,15 @@ body > .page-wrapper:after,
     min-height: 20px;
     background: none;
   }
+}
+
+@media screen and (max-width: 767px) and (min-width: 1024px) {
+  .main-nav .header-search .block {
+    min-height: 24px;
+  }
+}
+
+@media screen and (max-width: 767px) {
   .main-nav .header-search .form-search,
   .main-nav .header-search .form-text {
     border: none;
@@ -14857,6 +14866,12 @@ body > .page-wrapper:after,
   border: none !important;
   min-height: 20px;
   background: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .main-nav .show-search .header-search .block {
+    min-height: 24px;
+  }
 }
 
 .main-nav .show-search .header-search .form-search,
@@ -17249,29 +17264,31 @@ div.view {
 
 .block .containers .region-bottom .field-name-field-button a {
   max-width: 100%;
+  white-space: normal;
+  height: auto;
 }
 
 @media screen and (min-width: 1200px) {
   .block .containers .region-bottom .field-name-field-button a {
-    width: 370px;
+    min-width: 370px;
   }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
   .block .containers .region-bottom .field-name-field-button a {
-    width: 310px;
+    min-width: 310px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .block .containers .region-bottom .field-name-field-button a {
-    width: 230px;
+    min-width: 230px;
   }
 }
 
 @media screen and (max-width: 767px) {
   .block .containers .region-bottom .field-name-field-button a {
-    width: 233px;
+    min-width: 233px;
   }
 }
 
@@ -17481,6 +17498,13 @@ div.view {
   margin-bottom: 10px;
   float: left;
   margin-right: 32px;
+}
+
+@media screen and (max-width: 767px) {
+  .block-enticement .title {
+    font-size: 1.25rem;
+    margin-bottom: 7px;
+  }
 }
 
 .block-enticement .block-body {

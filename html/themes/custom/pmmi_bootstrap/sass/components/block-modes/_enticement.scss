@@ -14,6 +14,10 @@
   }
   .title {
     @extend .headline3;
+    @include mobile {
+      font-size: $r20;
+      margin-bottom: 7px;
+    }
   }
   .block-body {
     @extend .paragraph2;
