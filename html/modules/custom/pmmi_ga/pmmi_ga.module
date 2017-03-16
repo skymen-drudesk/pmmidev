@@ -82,8 +82,8 @@ function pmmi_ga_sad_search_tracking_script() {
     // Searches for Industries / Type of equipment / Shows.
     $searches = [
       'field_industries_served' => t('Searches for Industries'),
-      'field_equipment_sold_type' => t('Searches for Type of equipment.'),
-      'pmmi_shows' => t('Searches for Shows.'),
+      'field_equipment_sold_type' => t('Searches for Type of equipment'),
+      'pmmi_shows' => t('Searches for Shows'),
     ];
 
     foreach ($searches as $key => $action) {
