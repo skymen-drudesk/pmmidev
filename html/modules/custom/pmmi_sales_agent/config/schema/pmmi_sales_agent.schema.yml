@@ -38,6 +38,15 @@ pmmi_sales_agent.mail_settings:
     one_time_alert_message:
       type: text
       label: 'One-time alert message'
+    one_time_expiration:
+      type: integer
+      label: 'Link expiration time'
+    one_time_wrong_mail_alert:
+      type: boolean
+      label: 'One-time wrong mail alert'
+    one_time_wrong_mail_alert_message:
+      type: text
+      label: 'One-time wrong mail alert message'
 
 pmmi_sales_agent.mail_mass_settings:
   type: config_object

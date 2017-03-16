@@ -22,6 +22,37 @@ class CompanyListingUpdate extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $ms = \Drupal::config('pmmi_sales_agent.mail_settings');
 
+    if ($form_state->getValue('nid')) {
+      // If user requested one-time update link and mail exists - show
+      // successful message.
+      if (!empty($form_state->mail) && $ms->get('one_time_alert')) {
+        $node = \Drupal::entityTypeManager()
+          ->getStorage('node')
+          ->load($form_state->getValue('nid'));
+
+        $form['success'] = [
+          '#markup' => \Drupal::token()->replace($ms->get('one_time_alert_message'), ['node' => $node]),
+          '#prefix' => '<div class="one-time-company-update-message">',
+          '#suffix' => '</div>',
+        ];
+        return $form;
+      }
+      // If user requested one-time update link and mail is not exist - show
+      // fail message.
+      elseif (empty($form_state->mail) && $ms->get('one_time_wrong_mail_alert')) {
+        $node = \Drupal::entityTypeManager()
+          ->getStorage('node')
+          ->load($form_state->getValue('nid'));
+
+        $form['warning'] = [
+          '#markup' => \Drupal::token()->replace($ms->get('one_time_wrong_mail_alert_message'), ['node' => $node]),
+          '#prefix' => '<div class="one-time-company-update-message">',
+          '#suffix' => '</div>',
+        ];
+        return $form;
+      }
+    }
+
     // If user requested one-time update link - show simple message.
     if ($form_state->getValue('nid') && $ms->get('one_time_alert')) {
       $node = \Drupal::entityTypeManager()
@@ -64,8 +95,10 @@ class CompanyListingUpdate extends FormBase {
 
     if ($node) {
       $mail = $node->get('field_primary_contact_email')->getValue();
-      if (!$mail) {
-        // @todo: what should we do if primary contact email is not set?
+      $form_state->mail = $mail;
+      $form_state->setRebuild();
+
+      if (!$form_state->mail) {
         return;
       }
 

@@ -148,6 +148,14 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       '#title' => $this->t('One-time company update'),
       '#group' => 'email_settings_send',
     ];
+    $form['one_time_update']['one_time_expiration'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Link expiration time'),
+      '#default_value' => $config->get('one_time_expiration'),
+      '#required' => TRUE,
+      '#min' => 1,
+      '#field_suffix' => $this->t('sec'),
+    ];
     $form['one_time_update']['one_time_subject'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Subject'),
@@ -162,16 +170,31 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
     ];
     $form['one_time_update']['one_time_alert'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Show alert message after one-time update link has generated.'),
+      '#title' => $this->t('Show message after one-time update link has generated.'),
       '#default_value' => $config->get('one_time_alert'),
     ];
     $form['one_time_update']['one_time_alert_message'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Alert message'),
+      '#title' => $this->t('Message'),
       '#default_value' => $config->get('one_time_alert_message'),
       '#states' => [
         'visible' => [
           ':input[name="one_time_alert"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['one_time_update']['one_time_wrong_mail_alert'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Show message if company mail is not exist.'),
+      '#default_value' => $config->get('one_time_wrong_mail_alert'),
+    ];
+    $form['one_time_update']['one_time_wrong_mail_alert_message'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Wrong mail message'),
+      '#default_value' => $config->get('one_time_wrong_mail_alert_message'),
+      '#states' => [
+        'visible' => [
+          ':input[name="one_time_wrong_mail_alert"]' => ['checked' => TRUE],
         ],
       ],
     ];
@@ -274,10 +297,13 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       ->set('listing_create.body', $form_state->getValue('lc_body'))
       ->set('listing_review.subject', $form_state->getValue('lrw_subject'))
       ->set('listing_review.body', $form_state->getValue('lrw_body'))
+      ->set('one_time_expiration', $form_state->getValue('one_time_expiration'))
       ->set('one_time.subject', $form_state->getValue('one_time_subject'))
       ->set('one_time.body', $form_state->getValue('one_time_body'))
       ->set('one_time_alert', $form_state->getValue('one_time_alert'))
       ->set('one_time_alert_message', $form_state->getValue('one_time_alert_message'))
+      ->set('one_time_wrong_mail_alert', $form_state->getValue('one_time_wrong_mail_alert'))
+      ->set('one_time_wrong_mail_alert_message', $form_state->getValue('one_time_wrong_mail_alert_message'))
       ->save();
 
     parent::submitForm($form, $form_state);

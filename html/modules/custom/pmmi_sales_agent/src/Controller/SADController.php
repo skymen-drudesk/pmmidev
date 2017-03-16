@@ -71,8 +71,9 @@ class SADController extends ControllerBase {
   public function updateListingLogin($nid, $timestamp, $hash) {
     $current = REQUEST_TIME;
 
-    // Time out, in seconds, until login URL expires (48 hours).
-    $timeout = 172800;
+    // Time out, in seconds, until login URL expires.
+    $timeout = \Drupal::config('pmmi_sales_agent.mail_settings')
+      ->get('one_time_expiration');
 
     // If one-time update link has expired - redirect back to a request form.
     if ($current - $timestamp > $timeout) {

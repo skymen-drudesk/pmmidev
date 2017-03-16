@@ -24,3 +24,6 @@ one_time:
   body: "You may now update your listing by clicking this link or copying and pasting it into your browser:\n\n[node:one-time-update-link]\n\nThis link can only be used once to update a listing. It expires after 48 hours and nothing will happen if it's not used."
 one_time_alert: 1
 one_time_alert_message: "An e-mail was sent to [node:field_primary_contact_email:value] with a link to update this form. If this is not the correct email, please contact pjarvi@pmmi.org."
+one_time_expiration: 172800
+one_time_wrong_mail_alert: 1
+one_time_wrong_mail_alert_message: "There is no primary contact email. Please contact pjarvi@pmmi.org"
