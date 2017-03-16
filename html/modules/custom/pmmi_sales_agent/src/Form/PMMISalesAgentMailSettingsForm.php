@@ -170,7 +170,7 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
     ];
     $form['one_time_update']['one_time_alert'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Show message after one-time update link has generated.'),
+      '#title' => $this->t('Message displayed after a one-time update link has been emailed.'),
       '#default_value' => $config->get('one_time_alert'),
     ];
     $form['one_time_update']['one_time_alert_message'] = [
@@ -185,12 +185,12 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
     ];
     $form['one_time_update']['one_time_wrong_mail_alert'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Show message if company mail is not exist.'),
+      '#title' => $this->t('Show message if there is no primary contact email.'),
       '#default_value' => $config->get('one_time_wrong_mail_alert'),
     ];
     $form['one_time_update']['one_time_wrong_mail_alert_message'] = [
       '#type' => 'textarea',
-      '#title' => $this->t('Wrong mail message'),
+      '#title' => $this->t('Message displayed if there is no primary contact email.'),
       '#default_value' => $config->get('one_time_wrong_mail_alert_message'),
       '#states' => [
         'visible' => [

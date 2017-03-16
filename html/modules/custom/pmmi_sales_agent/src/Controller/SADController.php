@@ -75,27 +75,22 @@ class SADController extends ControllerBase {
     $timeout = \Drupal::config('pmmi_sales_agent.mail_settings')
       ->get('one_time_expiration');
 
-    // If one-time update link has expired - redirect back to a request form.
-    if ($current - $timestamp > $timeout) {
-      drupal_set_message($this->t('You have tried to use a one-time update link that has expired. Please request a new one using the form below.'), 'error');
+    // If one-time update link is not valid - redirect back to a request form.
+    if ($current - $timestamp > $timeout || !Crypt::hashEquals($hash, pmmi_sales_agent_hash($timestamp, $nid))) {
+      drupal_set_message($this->t('You have tried to use a one-time update link that has either been used or is no longer valid. Please request a new one using the form below.'), 'error');
       $url = Url::fromUri('internal:/sales-agent-directory');
       return $this->redirect($url->getRouteName());
     }
-    elseif ($timestamp <= $current && Crypt::hashEquals($hash, pmmi_sales_agent_hash($timestamp, $nid))) {
-      $token = Crypt::randomBytesBase64(55);
-      $_SESSION["sad_login_{$nid}"] = $token;
-      return $this->redirect(
-        'entity.node.edit_form',
-        ['node' => $nid],
-        [
-          'query' => ['sad-login-token' => $token],
-          'absolute' => TRUE,
-        ]
-      );
-    }
 
-    drupal_set_message($this->t('You have tried to use a one-time update link that has either been used or is no longer valid. Please request a new one using the form below.'), 'error');
-    $url = Url::fromUri('internal:/sales-agent-directory');
-    return $this->redirect($url->getRouteName());
+    $token = Crypt::randomBytesBase64(55);
+    $_SESSION["sad_login_{$nid}"] = $token;
+    return $this->redirect(
+      'entity.node.edit_form',
+      ['node' => $nid],
+      [
+        'query' => ['sad-login-token' => $token],
+        'absolute' => TRUE,
+      ]
+    );
   }
 }
