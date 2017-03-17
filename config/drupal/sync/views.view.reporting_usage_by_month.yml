@@ -6,6 +6,7 @@ dependencies:
     - user.role.pmmi_member
   module:
     - pmmi_sales_agent
+    - pmmi_sso
     - user
 id: reporting_usage_by_month
 label: 'Reporting - Usage by month'
@@ -154,6 +155,75 @@ display:
           hide_alter_empty: true
           entity_type: sad_user_stat
           plugin_id: created_from_unixtime
+        field_company:
+          id: field_company
+          table: user__field_company
+          field: field_company
+          relationship: user_id
+          group_type: count_distinct
+          admin_label: ''
+          label: 'Number of member companies who used the directory'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          set_precision: false
+          precision: 0
+          decimal: .
+          separator: ', '
+          format_plural: 0
+          format_plural_string: "1\x03@count"
+          prefix: ''
+          suffix: ''
+          click_sort_column: target_id
+          type: entity_reference_label
+          settings: {  }
+          group_column: null
+          group_columns: null
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          field_api_classes: false
+          plugin_id: field
         field_countries_searched:
           id: field_countries_searched
           table: sad_user_stat__field_countries_searched
@@ -213,8 +283,8 @@ display:
           click_sort_column: value
           type: country_default
           settings: {  }
-          group_column: value
-          group_columns: {  }
+          group_column: null
+          group_columns: null
           group_rows: true
           delta_limit: 0
           delta_offset: 0
@@ -293,6 +363,52 @@ display:
           field_api_classes: false
           plugin_id: field
       filters:
+        name:
+          id: name
+          table: pmmi_personify_company
+          field: name
+          relationship: field_company
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: name_op
+            label: Company
+            description: ''
+            use_operator: false
+            operator: name_op
+            identifier: name
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              manager: '0'
+              sales_agent_admin: '0'
+              pmmi_member: '0'
+              staff: '0'
+              membership_committee: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: pmmi_personify_company
+          entity_field: name
+          plugin_id: string
         roles_target_id:
           id: roles_target_id
           table: user__roles
@@ -425,10 +541,23 @@ display:
           entity_type: sad_user_stat
           entity_field: user_id
           plugin_id: standard
+        field_company:
+          id: field_company
+          table: user__field_company
+          field: field_company
+          relationship: user_id
+          group_type: group
+          admin_label: 'field_company: Personify company'
+          required: false
+          plugin_id: standard
       arguments: {  }
       display_extenders: {  }
       group_by: true
       title: 'Usage by month'
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: 0
       contexts:
