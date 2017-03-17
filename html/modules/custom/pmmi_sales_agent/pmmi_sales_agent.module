@@ -265,7 +265,7 @@ function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_sta
   $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
   // Unset one-time update session token.
-  $_SESSION['sad_login_' . $node->id()];
+  unset($_SESSION['sad_login_' . $node->id()]);
 
   // Prepare a message and send it to the internal PMMI admin.
   $params = [
