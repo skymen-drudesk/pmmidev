@@ -88,7 +88,11 @@ sub vcl_recv {
         req.url ~ "^/admin/.*$" ||
         req.url ~ "^/flag/.*$" ||
         req.url ~ "^.*/ajax/.*$" ||
-        req.url ~ "^.*/ahah/.*$") {
+        req.url ~ "^.*/ahah/.*$" ||
+        req.url ~ "^/batch.*$" ||
+        req.url ~ "^/system$" ||
+        req.url ~ "^/system/.*$" ||
+        req.url ~ "^/sales-agent-directory/favorites\.csv.*$") {
            return (pass);
     }
 
