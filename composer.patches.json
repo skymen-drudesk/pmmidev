@@ -17,9 +17,6 @@
     "drupal/ctools": {
       "Avoid unserialization of blockPluginCollection in BlockDisplayVariant": "https://www.drupal.org/files/issues/ctools-unserialize-plugin-collection-2831521-1.patch"
     },
-    "drupal/config_installer": {
-      "config_installer_install_uninstalled_profile_dependencies() assumes too much": "https://www.drupal.org/files/issues/config_installer_2729243_2.patch"
-    },
     "drupal/views_block_filter_block": {
       "Empty exposed forms appeared in each view after installin module": "https://www.drupal.org/files/issues/empty_exposed_forms-2790505-2.patch"
     },
@@ -28,9 +25,6 @@
     },
     "derhasi/viewfield": {
       "Fix issue with empty argument and update https://github.com/derhasi/viewfield/pull/6 with added hook_update_N and column improvements.": "https://patch-diff.githubusercontent.com/raw/derhasi/viewfield/pull/9.patch"
-    },
-    "drupal/chosen": {
-      "Removing composer requirement on drmonty/chosen": "https://www.drupal.org/files/issues/composer_dist_problem-2706433-28.patch"
     },
     "drupal/selectize": {
       "AJAX issue": "https://www.drupal.org/files/issues/selectize-ajax-issue-2853540-2.patch"

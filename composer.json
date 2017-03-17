@@ -52,6 +52,19 @@
     {
       "type": "package",
       "package": {
+        "name": "drupal/tb_megamenu",
+        "version": "8.1.0-alpha1",
+        "type": "drupal-module",
+        "dist": {
+          "url": "git://git.drupal.org/project/tb_megamenu.git",
+          "type": "git",
+          "reference": "origin/master"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
         "name": "desandro/masonry",
         "version": "3.3.1",
         "type": "drupal-library",
@@ -79,7 +92,7 @@
         "name": "enyo/dropzone",
         "version": "4.2.0",
         "type": "drupal-library",
-        "source": {
+        "dist": {
           "url": "https://github.com/enyo/dropzone",
           "type": "git",
           "reference": "origin/master"
@@ -92,7 +105,7 @@
         "name": "douglascrockford/json2",
         "version": "2.0",
         "type": "drupal-library",
-        "source": {
+        "dist": {
           "url": "https://github.com/douglascrockford/JSON-js",
           "type": "git",
           "reference": "origin/master"
@@ -105,7 +118,7 @@
         "name": "briancherne/jquery.hoverIntent",
         "version": "v1.8.1",
         "type": "drupal-library",
-        "source": {
+        "dist": {
           "url": "https://github.com/briancherne/jquery-hoverIntent",
           "type": "git",
           "reference": "origin/master"
@@ -118,7 +131,7 @@
         "name": "tobia/jquery.pause",
         "version": "master",
         "type": "drupal-library",
-        "source": {
+        "dist": {
           "url": "https://github.com/tobia/Pause",
           "type": "git",
           "reference": "origin/master"
@@ -131,7 +144,7 @@
         "name": "kenwheeler/slick",
         "version": "1.6.0",
         "type": "drupal-library",
-        "source": {
+        "dist": {
           "url": "https://github.com/kenwheeler/slick",
           "type": "git",
           "reference": "origin/master"
@@ -168,7 +181,7 @@
         "name": "derhasi/viewfield",
         "version": "2.0",
         "type": "drupal-module",
-        "source": {
+        "dist": {
           "url": "https://github.com/derhasi/viewfield",
           "type": "git",
           "reference": "origin/8.x-2.x"
@@ -324,62 +337,63 @@
     "douglascrockford/json2": "^2.0",
     "drupal-composer/drupal-scaffold": "~1.3.1",
     "drupal/address": "^1.0@RC",
-    "drupal/admin_toolbar": "^8.1",
+    "drupal/admin_toolbar": "^1.0",
     "drupal/backup_migrate": "4.x-dev",
     "drupal/blazy": "^1.0@beta",
-    "drupal/bootstrap": "~3.0",
+    "drupal/bootstrap": "^3.0",
     "drupal/chosen": "^2.1",
-    "drupal/config_installer": "~1.3",
-    "drupal/config_readonly": "~1.0@beta",
+    "drupal/config_installer": "^1.3",
+    "drupal/config_readonly": "^1.0@beta",
     "drupal/config_split": "1.x-dev",
-    "drupal/config_update": "~1.2",
-    "drupal/console": "~1.0",
+    "drupal/config_update": "^1.2",
+    "drupal/console": "^1.0",
     "drupal/country": "^1.0-beta",
-    "drupal/core": "~8.2.1",
-    "drupal/ctools": "~3.0@alpha",
-    "drupal/date": "~1.0@dev",
-    "drupal/default_content": "^8.1@dev",
+    "drupal/core": "^8.2",
+    "drupal/ctools": "^3.0@alpha",
+    "drupal/date": "1.x-dev",
+    "drupal/default_content": "1.x-dev",
     "drupal/dropzonejs": "1.0-alpha3",
     "drupal/ds": "^2.6",
     "drupal/entity_browser": "^1.0@beta",
-    "drupal/facets": "8.x-1.x-dev",
+    "drupal/facets": "1.x-dev",
     "drupal/field_group": "^1.0@RC",
     "drupal/file_browser": "1.x-dev",
     "drupal/file_entity": "^2.0@beta",
     "drupal/flag": "^4.0@alpha",
     "drupal/google_analytics": "^2.1",
-    "drupal/imce": "^8.1",
+    "drupal/imce": "^1.0",
     "drupal/inline_entity_form": "^1.0@beta",
-    "drupal/job_scheduler": "~2.0@dev",
-    "drupal/layout_plugin": "~1.0@alpha",
+    "drupal/job_scheduler": "^2.0@dev",
+    "drupal/layout_plugin": "^1.0@alpha",
     "drupal/link_attributes": "^1.0@alpha",
     "drupal/linked_field": "1.x-dev",
     "drupal/maillog": "^1.0@dev",
     "drupal/metatag": "^1.0@beta",
     "drupal/migrate_plus": "^3.0@beta",
     "drupal/migrate_source_csv": "^2.0",
-    "drupal/migrate_spreadsheet": "8.1.0-alpha4",
+    "drupal/migrate_spreadsheet": "1.0-alpha4",
     "drupal/migrate_tools": "3.0-beta1",
     "drupal/page_manager": "dev-1.x",
     "drupal/panels": "3.x-dev",
-    "drupal/pathauto": "~1.0@alpha",
+    "drupal/pathauto": "^1.0@alpha",
+    "drupal/purge": "^3.0@beta",
     "drupal/redirect": "1.x-dev",
-    "drupal/search_api": "8.x-1.x-dev",
-    "drupal/search_api_page": "8.x-1.x-dev",
-    "drupal/search_api_solr": "8.x-1.x-dev",
-    "drupal/selectize": "^8.1@beta",
+    "drupal/search_api": "1.x-dev",
+    "drupal/search_api_page": "1.x-dev",
+    "drupal/search_api_solr": "1.x-dev",
+    "drupal/selectize": "^1.0@beta",
     "drupal/slick": "1.x-dev",
     "drupal/slick_views": "1.x-dev",
     "drupal/tb_megamenu": "8.1.0-alpha1",
-    "drupal/token": "~1.0@beta",
-    "drupal/varnish_purge": "^8.1",
+    "drupal/token": "^1.0@beta",
+    "drupal/varnish_purge": "^1.0",
     "drupal/video": "^1.2",
     "drupal/view_unpublished": "^1.0@alpha",
     "drupal/views_block_filter_block": "^1.0@dev",
     "drupal/views_data_export": "^1.0@alpha",
-    "drupal/views_field_formatter": "^8.1",
-    "drupal/views_field_view": "^1.0-beta",
-    "drupal/webform": "~5.0@beta",
+    "drupal/views_field_formatter": "^1.0",
+    "drupal/views_field_view": "^1.0@beta",
+    "drupal/webform": "^5.0@beta",
     "drupal/webform_views": "5.x-dev",
     "drush/drush": "^8.1.0",
     "enyo/dropzone": "4.2.0",
@@ -401,8 +415,8 @@
     "wikimedia/composer-merge-plugin": "^1.3"
   },
   "require-dev": {
-    "drupal/coder": "~2.7",
-    "drupal/config_devel": "~1.0@rc",
+    "drupal/coder": "^2.7",
+    "drupal/config_devel": "^1.0@rc",
     "drupal/devel": "1.x-dev",
     "drupal/devel_debug_log": "~1.0@beta",
     "drupal/diff": "~1.0@alpha",
