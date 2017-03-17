@@ -64,7 +64,7 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
    */
   protected $parser;
 
-  protected $provider = 'pmmi_sso';
+  protected $provider = PMMISSOHelper::PROVIDER;
 
   /**
    * ReportWorkerBase constructor.

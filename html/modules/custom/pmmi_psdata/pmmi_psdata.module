@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains pmmi_psdata.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function pmmi_psdata_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the pmmi_psdata module.
+    case 'help.page.pmmi_psdata':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('PMMI Personify Service Data') . '</p>';
+      return $output;
+
+    default:
+  }
+}

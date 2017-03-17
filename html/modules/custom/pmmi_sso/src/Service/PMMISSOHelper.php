@@ -18,6 +18,13 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class PMMISSOHelper {
 
   /**
+   * Provider name.
+   *
+   * @var string
+   */
+  const PROVIDER = 'pmmi_sso';
+
+  /**
    * Gateway config: never check preemptively to see if the user is logged in.
    *
    * @var string
