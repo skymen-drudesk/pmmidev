@@ -142,6 +142,63 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       '#required' => TRUE,
     ];
 
+    $form['one_time_update'] = [
+      '#type' => 'details',
+      '#open' => TRUE,
+      '#title' => $this->t('One-time company update'),
+      '#group' => 'email_settings_send',
+    ];
+    $form['one_time_update']['one_time_expiration'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Link expiration time'),
+      '#default_value' => $config->get('one_time_expiration'),
+      '#required' => TRUE,
+      '#min' => 1,
+      '#field_suffix' => $this->t('sec'),
+    ];
+    $form['one_time_update']['one_time_subject'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Subject'),
+      '#default_value' => $config->get('one_time.subject'),
+      '#required' => TRUE,
+    ];
+    $form['one_time_update']['one_time_body'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Body'),
+      '#default_value' => $config->get('one_time.body'),
+      '#required' => TRUE,
+    ];
+    $form['one_time_update']['one_time_alert'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Message displayed after a one-time update link has been emailed.'),
+      '#default_value' => $config->get('one_time_alert'),
+    ];
+    $form['one_time_update']['one_time_alert_message'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Message'),
+      '#default_value' => $config->get('one_time_alert_message'),
+      '#states' => [
+        'visible' => [
+          ':input[name="one_time_alert"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['one_time_update']['one_time_wrong_mail_alert'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Show message if there is no primary contact email.'),
+      '#default_value' => $config->get('one_time_wrong_mail_alert'),
+    ];
+    $form['one_time_update']['one_time_wrong_mail_alert_message'] = [
+      '#type' => 'textarea',
+      '#title' => $this->t('Message displayed if there is no primary contact email.'),
+      '#default_value' => $config->get('one_time_wrong_mail_alert_message'),
+      '#states' => [
+        'visible' => [
+          ':input[name="one_time_wrong_mail_alert"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+
     $form['email_settings_receive'] = [
       '#type' => 'vertical_tabs',
       '#title' => $this->t('Messages received by internal PMMI admin:'),
@@ -197,12 +254,13 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       'ss_update_reminder',
       'listing_create',
       'listing_review',
+      'one_time_update',
     ];
 
     foreach ($details as $detail) {
       $form[$detail]['token_tree'] = [
         '#theme' => 'token_tree_link',
-        '#token_types' => array('node'),
+        '#token_types' => ['node'],
         '#show_restricted' => TRUE,
         '#show_nested' => FALSE,
         '#weight' => 90,
@@ -239,6 +297,13 @@ class PMMISalesAgentMailSettingsForm extends ConfigFormBase {
       ->set('listing_create.body', $form_state->getValue('lc_body'))
       ->set('listing_review.subject', $form_state->getValue('lrw_subject'))
       ->set('listing_review.body', $form_state->getValue('lrw_body'))
+      ->set('one_time_expiration', $form_state->getValue('one_time_expiration'))
+      ->set('one_time.subject', $form_state->getValue('one_time_subject'))
+      ->set('one_time.body', $form_state->getValue('one_time_body'))
+      ->set('one_time_alert', $form_state->getValue('one_time_alert'))
+      ->set('one_time_alert_message', $form_state->getValue('one_time_alert_message'))
+      ->set('one_time_wrong_mail_alert', $form_state->getValue('one_time_wrong_mail_alert'))
+      ->set('one_time_wrong_mail_alert_message', $form_state->getValue('one_time_wrong_mail_alert_message'))
       ->save();
 
     parent::submitForm($form, $form_state);

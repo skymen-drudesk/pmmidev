@@ -14,7 +14,7 @@
 <div class="block audience-select" id="block--audience-select">
   <a href="{{ audience_redirect_url }}" class="audience-image-link">
     {% if audience_image %}
-      <img src="{{ audience_image }}" class="audience-image img-responsive" />
+      {{ audience_image }}
     {% endif %}
   </a>
   <a href="{{ audience_redirect_url }}" class="audience-link"><span>{{ audience_title }}</span></a>

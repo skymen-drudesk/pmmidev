@@ -168,3 +168,10 @@ function pmmi_sales_agent_update_8011() {
       ->save();
   }
 }
+
+/**
+ * Revert configuration to set default value for mail settings.
+ */
+function pmmi_sales_agent_update_8012() {
+  \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_settings');
+}

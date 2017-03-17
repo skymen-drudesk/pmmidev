@@ -2,8 +2,6 @@
 FROM pmguser/drupal-php7.0-apache:1.0.2
 ARG DEBIAN_FRONTEND=noninteractive
 
-# sSMTP: note php is configured to use ssmtp, which is configured to send to
-# pmmimail:1025, which is standard configuration for a mailhog/mailhog image
-# with hostname mail.
-RUN apt-get install ssmtp -y
-COPY ./config/ssmtp/ssmtp.conf /etc/ssmtp/ssmtp.conf
+
+# Set sendmail server.
+RUN echo 'sendmail_path = /usr/sbin/sendmail -t -i -S pmmimail:1025' > /usr/local/etc/php/conf.d/sendmail.ini

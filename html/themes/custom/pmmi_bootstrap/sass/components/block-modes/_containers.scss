@@ -83,17 +83,19 @@
     .field-name-field-button {
       a {
         max-width: 100%;
+        white-space: normal;
+        height: auto;
         @include dhd {
-          width: 370px;
+          min-width: 370px;
         }
         @include desktop {
-          width: 310px;
+          min-width: 310px;
         }
         @include tablet {
-          width: 230px;
+          min-width: 230px;
         }
         @include mobile {
-          width: 233px;
+          min-width: 233px;
         }
       }
     }
