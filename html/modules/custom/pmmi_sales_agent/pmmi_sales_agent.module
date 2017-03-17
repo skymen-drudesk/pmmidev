@@ -165,14 +165,9 @@ function pmmi_sales_agent_log_search_stats(&$form, FormStateInterface $form_stat
  * Implements hook_ENTITY_TYPE_presave() for node entities.
  */
 function pmmi_sales_agent_node_presave(EntityInterface $node) {
-  if (!empty($node->register)) {
-    // Remove queue of mass email remind messages.
-    if (!$node->isNew()) {
-      $connection = Database::getConnection();
-      $connection->delete('pmmi_sales_agent_mails')
-        ->condition('nid', $node->id())
-        ->execute();
-    }
+  // Remove the mails queue for this company.
+  if (!empty($node->register) && !$node->isNew()) {
+    \Drupal::service('pmmi_sales_agent.mails_queue')->deletePerCompany($node->id());
   }
 }
 
@@ -261,11 +256,13 @@ function pmmi_sales_agent_reject_listing(&$form, FormStateInterface $form_state)
  */
 function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_state) {
   $node = $form_state->getBuildInfo()['callback_object']->getEntity();
+  $nid = $node->id();
+
   $ms = \Drupal::config('pmmi_sales_agent.mail_settings');
   $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
   // Unset one-time update session token.
-  unset($_SESSION['sad_login_' . $node->id()]);
+  unset($_SESSION['sad_login_' . $nid]);
 
   // Prepare a message and send it to the internal PMMI admin.
   $params = [
@@ -281,12 +278,9 @@ function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_sta
     ->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_agent', $to, $current_langcode, $params);
 
   // Add an email to the queue.
-  $connection = Database::getConnection();
-  $connection->insert('pmmi_sales_agent_mails')->fields([
-    'nid' => $node->id(),
-    'type' => $form['#new'] ? PMMI_SALES_AGENT_MAIL_LISTING_NEW : PMMI_SALES_AGENT_MAIL_LISTING_UPDATE,
-    'sending_date' => REQUEST_TIME + $ms->get('remind_period'),
-  ])->execute();
+  $type = $form['#new'] ? PMMI_SALES_AGENT_MAIL_LISTING_NEW : PMMI_SALES_AGENT_MAIL_LISTING_UPDATE;
+  \Drupal::service('pmmi_sales_agent.mails_queue')
+    ->insertPerCompany($nid, $type, REQUEST_TIME + $ms->get('remind_period'));
 
   // Show an alert to notify that listing should be reviewed.
   if ($message = $ms->get('submission_alert')) {
@@ -294,7 +288,7 @@ function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_sta
   }
 
   // Force to redirect on the node view page.
-  $url = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
+  $url = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => $nid]);
   $form_state->setRedirectUrl($url);
 }
 
@@ -312,10 +306,7 @@ function pmmi_sales_agent_notify_sales_agent(&$form, FormStateInterface $form_st
   $node = $form_state->getBuildInfo()['callback_object']->getEntity();
 
   // PMMI has answered, so remove an email from the queue.
-  $connection = Database::getConnection();
-  $connection->delete('pmmi_sales_agent_mails')
-    ->condition('nid', $node->id())
-    ->execute();
+  \Drupal::service('pmmi_sales_agent.mails_queue')->deletePerCompany($node->id());
 
   $ms = \Drupal::config('pmmi_sales_agent.mail_settings');
   $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
@@ -337,14 +328,9 @@ function pmmi_sales_agent_notify_sales_agent(&$form, FormStateInterface $form_st
  * Sends mass email remind messages.
  */
 function pmmi_sales_agent_remind_send() {
-  $connection = Database::getConnection();
-
   // Select all companies which should receive remind message.
-  $query = $connection->select('pmmi_sales_agent_mails', 'sam')
-    ->fields('sam', ['mid', 'nid'])
-    ->condition('sam.type', PMMI_SALES_AGENT_MAIL_MASS_REMIND)
-    ->condition('sam.sending_date', REQUEST_TIME, '<');
-  $nids = $query->execute()->fetchAllKeyed();
+  $nids = \Drupal::service('pmmi_sales_agent.mails_queue')
+    ->selectQueueByTypes([PMMI_SALES_AGENT_MAIL_MASS_REMIND]);
 
   foreach ($nids as $mid => $nid) {
     if ($node = \Drupal\node\Entity\Node::load($nid)) {
@@ -363,11 +349,10 @@ function pmmi_sales_agent_remind_send() {
       $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
       $result = $mail_manager->mail('pmmi_sales_agent', 'mass_email_remind', $to, $langcode, $params, TRUE);
+
       if ($result['result'] === TRUE) {
-        // Remove a record as mail has been sent successfully.
-        $connection->delete('pmmi_sales_agent_mails')
-          ->condition('mid', $mid)
-          ->execute();
+        // Remove mails queue item as mail has been sent successfully.
+        \Drupal::service('pmmi_sales_agent.mails_queue')->delete($mid);
       }
     }
   }
@@ -377,18 +362,12 @@ function pmmi_sales_agent_remind_send() {
  * Sends a remind message to internal PMMI admin.
  */
 function pmmi_sales_agent_internal_admin_remind_send() {
-  $connection = Database::getConnection();
-  $mail_types = [
-    PMMI_SALES_AGENT_MAIL_LISTING_NEW,
-    PMMI_SALES_AGENT_MAIL_LISTING_UPDATE,
-  ];
-
   // Select all companies which should should send an email.
-  $query = $connection->select('pmmi_sales_agent_mails', 'sam')
-    ->fields('sam', ['mid', 'nid'])
-    ->condition('sam.type', $mail_types, 'IN')
-    ->condition('sam.sending_date', REQUEST_TIME, '<');
-  $nids = $query->execute()->fetchAllKeyed();
+  $nids = \Drupal::service('pmmi_sales_agent.mails_queue')
+    ->selectQueueByTypes([
+      PMMI_SALES_AGENT_MAIL_LISTING_NEW,
+      PMMI_SALES_AGENT_MAIL_LISTING_UPDATE,
+    ]);
 
   foreach ($nids as $mid => $nid) {
     if ($node = \Drupal\node\Entity\Node::load($nid)) {
@@ -406,12 +385,11 @@ function pmmi_sales_agent_internal_admin_remind_send() {
       $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
       $result = $mail_manager->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_admin', $to, $langcode, $params, TRUE);
+
+      // Update a record if mail has been sent successfully.
       if ($result['result'] === TRUE) {
-        // Update a record as mail has been sent successfully.
-        $connection->update('pmmi_sales_agent_mails')
-          ->fields(['sending_date' => REQUEST_TIME + $mail_settings->get('remind_period')])
-          ->condition('mid', $mid)
-          ->execute();
+        \Drupal::service('pmmi_sales_agent.mails_queue')
+          ->updateSendingDate($mid, REQUEST_TIME + $mail_settings->get('remind_period'));
       }
     }
   }
