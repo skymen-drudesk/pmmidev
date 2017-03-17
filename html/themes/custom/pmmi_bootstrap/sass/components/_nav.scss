@@ -494,6 +494,9 @@
     border: none !important;
     min-height: 20px;
     background: none;
+    @include desktop-min {
+      min-height: 24px;
+    }
   }
   .form-search,
   .form-text {

@@ -9,10 +9,10 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
 use Drupal\file\Entity\File;
-use Drupal\image\Entity\ImageStyle;
 use Drupal\link\Plugin\Field\FieldWidget\LinkWidget;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\audience_select\Service\AudienceManager;
+use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 
 
 /**
@@ -70,7 +70,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
   public function defaultConfiguration() {
     return [
         'audience_id' => '',
-        'image_style' => '',
+        'image_style' => 'block_style_1',
         'audience_overrides' => array(),
       ] + parent::defaultConfiguration();
 
@@ -82,7 +82,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
   public function blockForm($form, FormStateInterface $form_state) {
     $overrides = $this->configuration['audience_overrides'];
     $styleselect = [];
-    foreach (ImageStyle::loadMultiple() as $style) {
+    foreach (ResponsiveImageStyle::loadMultiple() as $style) {
       $styleselect[$style->id()] = $style->label();
     }
     $form['audience_id'] = [
@@ -96,7 +96,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     ];
     $form['image_style'] = [
       '#type' => 'select',
-      '#title' => $this->t('Audience Image style'),
+      '#title' => $this->t('Audience Responsive Image style'),
       '#description' => $this->t('Select Auidience Image style'),
       '#default_value' => $this->configuration['image_style'],
       '#options' => $styleselect,
@@ -167,7 +167,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     $dependencies = parent::calculateDependencies();
     $style_id = $this->configuration['image_style'];
     /** @var \Drupal\image\ImageStyleInterface $style */
-    if ($style_id && $style = ImageStyle::load($style_id)) {
+    if ($style_id && $style = ResponsiveImageStyle::load($style_id)) {
       // If this formatter uses a valid image style to display the image, add
       // the image style configuration entity as dependency of this formatter.
       $dependencies[$style->getConfigDependencyKey()][] = $style->getConfigDependencyName();
@@ -217,7 +217,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     $build = [];
     $audience_id = $this->configuration['audience_id'];
     /** @var \Drupal\image\Entity\ImageStyle $image_style */
-    $image_style = ImageStyle::load($this->configuration['image_style']);
+    $image_style = ResponsiveImageStyle::load($this->configuration['image_style'])->id();
     $audience = AudienceManager::load($audience_id);
     $overrides = $this->configuration['audience_overrides'];
     if (!empty($overrides)) {
@@ -225,18 +225,12 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
         $audience[$key] = $value;
       }
     }
-    $image_url = '';
+    $image_uri = '';
     if (array_key_exists('audience_image', $audience)) {
       if (!empty($audience['audience_image'])) {
         $image = File::load($audience['audience_image'][0]);
         if (!empty($image)) {
-          $image_style_uri = $image_style->buildUri($image->getFileUri());
-          $status = TRUE;
-          if (!file_exists($image_style_uri)) {
-            $status = $image_style->createDerivative($image->getFileUri(), $image_style_uri);
-          }
-          $image_uri = $status ? $image_style_uri : $image->getFileUri();
-          $image_url = file_url_transform_relative(file_create_url($image_uri));
+          $image_uri = $image->getFileUri();
         }
       }
     }
@@ -250,7 +244,11 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     $url = Url::fromUri($audience['audience_redirect_url'], $options);
     $build['#theme'] = 'audience_select_block';
     $build['#audience_title'] = $audience['audience_title'];
-    $build['#audience_image'] = $image_url;
+    $build['#audience_image'] = [
+      '#type' => 'responsive_image',
+      '#uri' => $image_uri,
+      '#responsive_image_style_id' => $image_style,
+    ];
     $build['#audience_redirect_url'] = $url;
     // Disable cache for this block.
     $build['#cache']['max-age'] = 0;

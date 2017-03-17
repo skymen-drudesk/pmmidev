@@ -124,7 +124,7 @@
       $('.containers .row').once('matchHeight').each(function () {
         var $row = $(this);
         var $socialBlock = $row.find('.social-block');
-        var $containerBlocks = $socialBlock.add('.viewfield-wrapper, .match-height', $row);
+        var $containerBlocks = $socialBlock.add('.viewfield-wrapper, .match-height, .mode-container-mode', $row);
         if ($containerBlocks.length) {
           var $textBlock = $row.find('.block-text');
           $containerBlocks = $containerBlocks.add($textBlock);
@@ -222,7 +222,7 @@
         var currentBp = _.invert(drupalSettings.responsive.activeBreakpoints, true)['true'];
         if (currentBp !== 'mobile') {
           var freeWidth = $menuParent.width() - $menu.width();
-          if (freeWidth >= 305) {
+          if (freeWidth >= 310) {
             $menuParent.addClass('show-search');
           }
           else {
