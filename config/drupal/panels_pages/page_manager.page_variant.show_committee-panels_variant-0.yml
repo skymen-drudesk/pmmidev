@@ -1,0 +1,42 @@
+uuid: 9d13df5d-7618-4ca2-87aa-4c2891165701
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.show_committee
+  module:
+    - panels
+    - pmmi_psdata
+id: show_committee-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    03df4753-e843-4693-8d05-3627cb6d274f:
+      id: pmmi_committee_block
+      label: 'Show Committee'
+      provider: pmmi_psdata
+      label_display: visible
+      committee_id: C0000008
+      columns: '3'
+      rows: '8'
+      sort_options: 'Chairman, Member'
+      region: main
+      weight: 0
+      uuid: 03df4753-e843-4693-8d05-3627cb6d274f
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 65126a79-b7a7-4c42-ac9a-d8d40a381ae1
+  label: null
+  weight: 0
+  layout: panel_landing_left_sidebar
+  layout_settings: {  }
+  page_title: 'Show Committee | PMMI'
+  storage_type: page_manager
+  storage_id: show_committee-panels_variant-0
+  builder: standard
+page: show_committee
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

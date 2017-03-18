@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8781f55266e08583c7383f4a546dfef1",
+    "content-hash": "b211c0e5283a68667f0243a3d1e776fb",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -4086,6 +4086,56 @@
             "time": "2017-02-05 23:52:03"
         },
         {
+            "name": "drupal/maillog",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/maillog",
+                "reference": "14fd24cd89e299ad271608cd52706c60b753c26d"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1470431939"
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Berdir",
+                    "homepage": "https://www.drupal.org/user/214652"
+                },
+                {
+                    "name": "DamienMcKenna",
+                    "homepage": "https://www.drupal.org/user/108450"
+                },
+                {
+                    "name": "miro_dietiker",
+                    "homepage": "https://www.drupal.org/user/227761"
+                },
+                {
+                    "name": "pluess",
+                    "homepage": "https://www.drupal.org/user/84659"
+                }
+            ],
+            "description": "Utility to log all Mails for debugging purposes. It is possible to suppress mail delivery for e.g. dev or staging systems.",
+            "homepage": "https://www.drupal.org/project/maillog",
+            "support": {
+                "source": "http://cgit.drupalcode.org/maillog"
+            },
+            "time": "2016-08-05 21:18:07"
+        },
+        {
             "name": "drupal/metatag",
             "version": "1.0.0",
             "source": {
@@ -4581,7 +4631,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/redirect",
-                "reference": "e5287e309eaabe1ec2dafebfbc5d87fd0f46c2e4"
+                "reference": "3c961df7fc9ee82f62b927b8f9efab1abf2d6e5f"
             },
             "require": {
                 "drupal/core": "~8"
@@ -4592,8 +4642,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha4+1-dev",
-                    "datestamp": "1489504084"
+                    "version": "8.x-1.0-alpha4+4-dev",
+                    "datestamp": "1489704483"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4615,7 +4665,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/redirect"
             },
-            "time": "2017-03-14 18:18:56"
+            "time": "2017-03-16 22:55:48"
         },
         {
             "name": "drupal/search_api",
@@ -11656,6 +11706,7 @@
         "drupal/layout_plugin": 15,
         "drupal/link_attributes": 15,
         "drupal/linked_field": 20,
+        "drupal/maillog": 20,
         "drupal/metatag": 10,
         "drupal/migrate_plus": 10,
         "drupal/page_manager": 20,

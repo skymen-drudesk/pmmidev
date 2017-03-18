@@ -1,0 +1,42 @@
+uuid: 9fcbe5e7-e0c7-4dd2-8262-0dc32057fa21
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.industry_relations_committee
+  module:
+    - panels
+    - pmmi_psdata
+id: industry_relations_committee-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    07120a00-0e55-42cd-8c25-0deaf52b932a:
+      id: pmmi_committee_block
+      label: 'Industry Relations Committee'
+      provider: pmmi_psdata
+      label_display: visible
+      committee_id: C0000006
+      columns: '3'
+      rows: '5'
+      sort_options: 'Chairman, Member'
+      region: main
+      weight: 0
+      uuid: 07120a00-0e55-42cd-8c25-0deaf52b932a
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 51be61dd-758a-42ff-abb1-fc1a1b7b6aa4
+  label: null
+  weight: 0
+  layout: panel_landing_left_sidebar
+  layout_settings: {  }
+  page_title: 'Industry Relations Committee | PMMI'
+  storage_type: page_manager
+  storage_id: industry_relations_committee-panels_variant-0
+  builder: standard
+page: industry_relations_committee
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

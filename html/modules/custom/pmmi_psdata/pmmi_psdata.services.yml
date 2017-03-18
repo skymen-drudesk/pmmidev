@@ -1,5 +1,5 @@
 services:
   pmmi_psdata.collector:
     class: Drupal\pmmi_psdata\Service\PMMIDataCollector
-    arguments: ['@http_client', '@config.factory', '@cache.default', '@pmmi_sso.helper']
+    arguments: ['@http_client', '@cache.default', '@pmmi_sso.helper']
 

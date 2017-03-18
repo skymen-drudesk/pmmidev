@@ -22,3 +22,27 @@ function pmmi_psdata_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+/**
+ * Implements hook_theme().
+ */
+function pmmi_psdata_theme($existing, $type, $theme, $path) {
+  return [
+    'pmmi_psdata_committee_block' => [
+      'variables' => [
+        'data' => '',
+        'columns' => '',
+        'rows' => '',
+      ],
+      'template' => 'pmmi-psdata-committee-block',
+    ],
+    'pmmi_psdata_staff_block' => [
+      'variables' => [
+        'data' => '',
+        'columns' => '',
+        'rows' => '',
+      ],
+      'template' => 'pmmi-psdata-staff-block',
+    ],
+  ];
+}
