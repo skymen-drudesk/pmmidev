@@ -16611,17 +16611,22 @@ div.view {
 
 .events-block-3 .view-content,
 .block-views-blockevents-block-3 .view-content {
-  text-align: left;
+  text-align: center;
 }
 
 .events-block-3 .views-row,
 .block-views-blockevents-block-3 .views-row {
+  text-align: left;
+  display: inline-block;
+  float: none;
+  vertical-align: top;
   margin-bottom: 30px;
 }
 
 @media screen and (max-width: 767px) {
   .events-block-3 .views-row,
   .block-views-blockevents-block-3 .views-row {
+    display: block;
     max-width: 234px;
     margin-left: auto;
     margin-right: auto;
