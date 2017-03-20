@@ -4,6 +4,11 @@
       <i class="{{ item_config['xicon'] }}"></i>
     {% endif %}
     {{ link['title']|t }}
+    {% if link['description'] %}
+      <span class="description">
+        {{ link['description'] }}
+      </span>
+    {% endif %}
     {% if item_config['caption'] %}
       <span class="mega-caption"> {{ item_config['caption']|t }}</span>
     {% endif %}
