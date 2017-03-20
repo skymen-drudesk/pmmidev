@@ -7,12 +7,14 @@ dependencies:
     - field.field.block_content.event.field_button
     - field.field.block_content.event.field_dates
     - field.field.block_content.event.field_event_types
+    - field.field.block_content.event.field_exclude_main_calendar
     - field.field.block_content.event.field_head
     - field.field.block_content.event.field_hosted_by
     - field.field.block_content.event.field_link
     - field.field.block_content.event.field_location
   module:
     - address
+    - content_moderation
     - datetime_range
     - link_attributes
 id: block_content.event.default
@@ -47,6 +49,11 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+  field_exclude_main_calendar:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
   field_head:
     weight: 1
     settings:
