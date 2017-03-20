@@ -41,7 +41,7 @@ class PMMISADReportSettingsForm extends ConfigFormBase {
       '#type' => 'number',
       '#title' => $this->t('Records per year'),
       '#default_value' => $config->get('records_per_year'),
-      '#description' => $this->t('Default number of records per year an user can download..'),
+      '#description' => $this->t('Default number of records per year that user can download.'),
       '#required' => TRUE,
     ];
     $form['download_favorites']['exceeded_message'] = [
