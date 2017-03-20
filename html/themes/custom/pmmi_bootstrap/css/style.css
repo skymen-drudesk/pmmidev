@@ -14543,6 +14543,15 @@ body > .page-wrapper:after,
   color: #656363;
 }
 
+.navbar .main-nav .dropdown-menu li a .description {
+  display: block;
+  font-size: 12px;
+  font-size: 0.75rem;
+  line-height: 16px;
+  line-height: 1rem;
+  font-weight: 500;
+}
+
 .navbar .main-nav .dropdown-menu li:after {
   display: block;
   content: "";

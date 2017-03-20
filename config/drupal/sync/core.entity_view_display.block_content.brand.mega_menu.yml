@@ -7,6 +7,7 @@ dependencies:
     - core.entity_view_mode.block_content.mega_menu
     - field.field.block_content.brand.body
     - field.field.block_content.brand.field_button
+    - field.field.block_content.brand.field_head
     - field.field.block_content.brand.field_logo
     - image.style.shows_block_desktop
   module:
@@ -26,6 +27,7 @@ third_party_settings:
     regions:
       main:
         - field_logo
+        - field_head
         - body
 id: block_content.brand.mega_menu
 targetEntityType: block_content
@@ -35,7 +37,7 @@ content:
   body:
     label: hidden
     type: pmmi_trimmed
-    weight: 1
+    weight: 2
     settings:
       trim_length: '90'
       word_boundary: '1'
@@ -44,6 +46,20 @@ content:
       ellipsis: 0
       html: 0
       nl2br: 0
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+  field_head:
+    type: string
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
     third_party_settings:
       ds:
         ft:
