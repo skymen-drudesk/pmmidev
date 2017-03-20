@@ -1,7 +1,0 @@
-# from https://www.drupal.org/requirements/php#drupalversions
-FROM pmguser/drupal-php7.0-apache:1.0.3
-ARG DEBIAN_FRONTEND=noninteractive
-
-
-# Set sendmail server.
-RUN echo 'sendmail_path = /usr/sbin/sendmail -t -i -S pmmimail:1025' > /usr/local/etc/php/conf.d/sendmail.ini

@@ -20,9 +20,7 @@ services:
 
   pmmiweb:
     container_name: pmmi_test_web
-    build:
-      context: .
-      dockerfile: Dockerfile-test
+    image: pmguser/drupal-php7.0-apache:1.0.3
     depends_on:
       - pmmidb
       - pmmisolr
