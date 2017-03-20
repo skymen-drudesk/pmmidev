@@ -383,10 +383,10 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
-        field_except_main_calendar_value:
-          id: field_except_main_calendar_value
-          table: block_content__field_except_main_calendar
-          field: field_except_main_calendar_value
+        field_exclude_main_calendar_value:
+          id: field_exclude_main_calendar_value
+          table: block_content__field_exclude_main_calendar
+          field: field_exclude_main_calendar_value
           relationship: none
           group_type: group
           admin_label: ''

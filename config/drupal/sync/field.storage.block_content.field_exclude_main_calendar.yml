@@ -5,8 +5,8 @@ dependencies:
   module:
     - block_content
     - options
-id: block_content.field_except_main_calendar
-field_name: field_except_main_calendar
+id: block_content.field_exclude_main_calendar
+field_name: field_exclude_main_calendar
 entity_type: block_content
 type: list_integer
 settings:
