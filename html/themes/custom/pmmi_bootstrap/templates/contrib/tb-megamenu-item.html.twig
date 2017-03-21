@@ -6,7 +6,7 @@
     {{ link['title']|t }}
     {% if link['description'] %}
       <span class="description">
-        {{ link['description'] }}
+        {{ link['description']|raw }}
       </span>
     {% endif %}
     {% if item_config['caption'] %}
