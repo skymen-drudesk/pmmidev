@@ -14,25 +14,18 @@ use Drupal\pmmi_sso\Exception\PMMISSOValidateException;
 class PMMISSOXmlParser {
 
   /**
-   * Stores database connection.
+   * A \DOMDocument that represents the loaded XML.
    *
    * @var \DOMDocument
    */
   protected $domDocument;
 
   /**
-   * Stores database connection.
+   * DOMXPath object.
    *
    * @var \DOMXPath
    */
   protected $xmlPath;
-
-  /**
-   * Stores database connection.
-   *
-   * @var \Drupal\Core\Database\Connection
-   */
-  protected $nameSpace;
 
   /**
    * Constructs an PMMISSOXmlParser.
@@ -97,7 +90,7 @@ class PMMISSOXmlParser {
    *   The value.
    *
    * @throws PMMISSOValidateException
-   *   If one or more of the arguments are not valid.
+   *   If one or more arguments are not valid.
    */
   public function getSingleValue($query) {
     $value = $this->xmlPath->query($query);
@@ -108,24 +101,24 @@ class PMMISSOXmlParser {
   }
 
   /**
-   * Get single value from XML Markup.
+   * Get multiple values from XML Markup.
    *
    * @param string $query
    *   The XPath query for XML Document.
    *
    * @return array
-   *   The value.
+   *   An indexed array of values.
    *
    * @throws PMMISSOValidateException
-   *   If one or more of the arguments are not valid.
+   *   If one or more arguments are not valid.
    */
-  public function getMultiplyValues($query) {
+  public function getMultipleValues($query) {
     /** @var \DOMNodeList $value */
     $values = $this->xmlPath->query($query);
     if ($values->length == 0) {
       throw new PMMISSOValidateException("Response XML from PMMI SSO server is not valid.");
     }
-    $result = array();
+    $result = [];
     /** @var \DOMElement $item */
     foreach ($values as $item) {
       $result[] = $item->nodeValue;

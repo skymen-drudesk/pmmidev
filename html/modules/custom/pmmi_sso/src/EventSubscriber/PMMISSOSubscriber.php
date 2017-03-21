@@ -2,9 +2,9 @@
 
 namespace Drupal\pmmi_sso\EventSubscriber;
 
+use Drupal\pmmi_crawler_detect\Service\CrawlerDetect;
 use Drupal\pmmi_sso\PMMISSORedirectData;
 use Drupal\pmmi_sso\Service\PMMISSORedirector;
-use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\EventSubscriber\HttpExceptionSubscriberBase;
 use Drupal\Core\Session\AccountInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
@@ -36,13 +36,6 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
   protected $routeMatcher;
 
   /**
-   * The config factory.
-   *
-   * @var \Drupal\Core\Config\ConfigFactoryInterface
-   */
-  protected $configFactory;
-
-  /**
    * The current user service.
    *
    * @var \Drupal\Core\Session\AccountInterface
@@ -69,6 +62,13 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
    * @var \Drupal\pmmi_sso\Service\PMMISSORedirector
    */
   protected $ssoRedirector;
+
+  /**
+   * The default web crawler detection object.
+   *
+   * @var \Drupal\pmmi_crawler_detect\Service\CrawlerDetect
+   */
+  protected $crawlerDetect;
 
   /**
    * Frequency to check for gateway login.
@@ -105,8 +105,6 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
    *   The request.
    * @param \Drupal\Core\Routing\RouteMatchInterface $route_matcher
    *   The route matcher.
-   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
-   *   The config factory.
    * @param \Drupal\Core\Session\AccountInterface $current_user
    *   The current user.
    * @param \Drupal\Core\Condition\ConditionManager $condition_manager
@@ -115,28 +113,30 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
    *   The PMMI SSO Helper service.
    * @param PMMISSORedirector $sso_redirector
    *   The PMMI SSO Redirector Service.
+   * @param \Drupal\pmmi_crawler_detect\Service\CrawlerDetect $crawler_detect
+   *   The default web crawler detection object.
    */
   public function __construct(
     RequestStack $request_stack,
     RouteMatchInterface $route_matcher,
-    ConfigFactoryInterface $config_factory,
     AccountInterface $current_user,
     ConditionManager $condition_manager,
     PMMISSOHelper $sso_helper,
-    PMMISSORedirector $sso_redirector
+    PMMISSORedirector $sso_redirector,
+    CrawlerDetect $crawler_detect
   ) {
     $this->requestStack = $request_stack;
     $this->routeMatcher = $route_matcher;
-    $this->configFactory = $config_factory;
     $this->currentUser = $current_user;
     $this->conditionManager = $condition_manager;
     $this->ssoHelper = $sso_helper;
     $this->ssoRedirector = $sso_redirector;
-    $settings = $this->configFactory->get('pmmi_sso.settings');
-    $this->gatewayCheckFrequency = $settings->get('gateway.check_frequency');
-    $this->tokenCheckFrequency = $settings->get('gateway.token_frequency');
-    $this->tokenAction = $settings->get('gateway.token_action');
-    $this->gatewayPaths = $settings->get('gateway.paths');
+    $this->ssoRedirector = $sso_redirector;
+    $this->crawlerDetect = $crawler_detect;
+    $this->gatewayCheckFrequency = $sso_helper->getGatewayFrequency();
+    $this->tokenCheckFrequency = $sso_helper->getTokenFrequency();
+    $this->tokenAction = $sso_helper->getTokenAction();
+    $this->gatewayPaths = $sso_helper->getGatewayPaths();
   }
 
   /**
@@ -222,7 +222,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
     }
 
     // Don't do anything if this is a request from cron, drush, crawler, etc.
-    if ($this->isCrawlerRequest()) {
+    if ($this->crawlerDetect->isCrawler()) {
       return FALSE;
     }
 
@@ -271,7 +271,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
     }
 
     // Don't do anything if this is a request from cron, drush, crawler, etc.
-    if ($this->isCrawlerRequest()) {
+    if ($this->crawlerDetect->isCrawler()) {
       return FALSE;
     }
 
@@ -280,7 +280,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
   }
 
   /**
-   * Check is the current path is restricted by a token.
+   * Check if the current path is restricted by a token.
    *
    * @return bool
    *   TRUE if current path is a restricted by token path, FALSE otherwise.
@@ -293,65 +293,17 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
   }
 
   /**
-   * Check is the current request is from a known list of web crawlers.
-   *
-   * We don't want to perform any PMMI SSO redirects in this case, because
-   * crawlers need to be able to index the pages.
-   *
-   * @return bool
-   *   True if the request is coming from a crawler, false otherwise.
-   */
-  private function isCrawlerRequest() {
-    $current_request = $this->requestStack->getCurrentRequest();
-    if ($current_request->server->get('HTTP_USER_AGENT')) {
-      $crawlers = array(
-        'Google',
-        'msnbot',
-        'Rambler',
-        'Yahoo',
-        'AbachoBOT',
-        'accoona',
-        'AcoiRobot',
-        'ASPSeek',
-        'CrocCrawler',
-        'Dumbot',
-        'FAST-WebCrawler',
-        'GeonaBot',
-        'Gigabot',
-        'Lycos',
-        'MSRBOT',
-        'Scooter',
-        'AltaVista',
-        'IDBot',
-        'eStyle',
-        'Scrubby',
-        'gsa-crawler',
-      );
-      // Return on the first find.
-      foreach ($crawlers as $c) {
-        if (stripos($current_request->server->get('HTTP_USER_AGENT'), $c) !== FALSE) {
-          $this->ssoHelper->log('PMMISSOSubscriber ignoring request from suspected crawler "$c"');
-          return TRUE;
-        }
-      }
-    }
-
-    return FALSE;
-  }
-
-  /**
    * Checks current request route against a list of routes we want to ignore.
    *
    * @return bool
    *   TRUE if we should ignore this request, FALSE otherwise.
    */
   private function isIgnoreableRoute() {
-    $routes_to_ignore = array(
+    $routes_to_ignore = [
       'pmmi_sso.service',
       'pmmi_sso.login',
-      'pmmi_sso.logout',
       'system.cron',
-    );
+    ];
 
     $current_route = $this->routeMatcher->getRouteName();
     if (in_array($current_route, $routes_to_ignore)) {
@@ -385,7 +337,6 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
       $redirect_data = new PMMISSORedirectData(['returnto' => $return_to]);
       $redirect_data->preventRedirection();
 
-
       // If we're still going to redirect, lets do it.
       $response = $this->ssoRedirector->buildRedirectResponse($redirect_data);
       if ($response) {
@@ -400,7 +351,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
   public static function getSubscribedEvents() {
     // Priority is just before the Dynamic Page Cache subscriber, but after
     // important services like route matcher and maintenance mode subscribers.
-    $events[KernelEvents::REQUEST][] = array('handle', 29);
+    $events[KernelEvents::REQUEST][] = ['handle', 29];
     $events[KernelEvents::EXCEPTION][] = ['onException', 0];
     return $events;
   }

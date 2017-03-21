@@ -345,6 +345,12 @@
         a {
           font-weight: 800;
           color: $dkgrey;
+          .description {
+            display: block;
+            font-size: $r12;
+            line-height: $r16;
+            font-weight: 500;
+          }
         }
         &:after {
           display: block;

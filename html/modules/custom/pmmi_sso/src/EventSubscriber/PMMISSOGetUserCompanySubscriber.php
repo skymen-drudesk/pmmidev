@@ -78,10 +78,10 @@ class PMMISSOGetUserCompanySubscriber implements EventSubscriberInterface {
    */
   public function getUserCompanies(PMMISSOPreLoginEvent $event) {
     $account = $event->getAccount();
-    $related_companies = array();
+    $related_companies = [];
     $date = new \DateTime();
     $event_time = $account->getLastLoginTime() + $this->ssoHelper->getPceDurationTime();
-    // Get releted company list for the new user.
+    // Get related company list for the new user.
     if ($event_time < $date->getTimestamp()) {
       $user_id = $event->getSsoPropertyBag()->getUserId();
       $query = [
@@ -108,24 +108,24 @@ class PMMISSOGetUserCompanySubscriber implements EventSubscriberInterface {
               $related_companies[] = $relationship->RelatedMasterCustomerId;
             }
             else {
-              $this->ssoHelper->log('Wrong response from Data Service.');
+              $this->ssoHelper->log('User does not have related Personify Companies.');
             }
           }
         }
       }
       else {
-        $this->ssoHelper->log('User does not have related Personify Companies.');
+        $this->ssoHelper->log('Wrong response from Data Service.');
       }
     }
     // Check and get Company Information.
     if (!empty($related_companies)) {
-      // Load already exist companies.
-      $exist_companies = $this->companyStorage->getExistCompanyByPersonifyId($related_companies);
+      // Load already existing companies.
+      $existing_companies = $this->companyStorage->getExistCompanyByPersonifyId($related_companies);
       // Array with Personify IDs for companies that need data.
-      $need_info_companies = array_diff_key(array_flip($related_companies), array_flip($exist_companies));
+      $need_info_companies = array_diff_key(array_flip($related_companies), array_flip($existing_companies));
       if (!empty($need_info_companies)) {
         $first = TRUE;
-        $query = array();
+        $query = [];
         foreach ($need_info_companies as $company_id => $value) {
           $query['$filter'] = $first ? "MasterCustomerId eq '$company_id'" : $query['$filter'] . " or MasterCustomerId eq '$company_id'";
           $first = FALSE;
@@ -152,7 +152,7 @@ class PMMISSOGetUserCompanySubscriber implements EventSubscriberInterface {
                   'code' => $company->CustomerClassCode,
                 ]);
                 $company_entity->save();
-                $exist_companies[$company_entity->id()] = $company->MasterCustomerId;
+                $existing_companies[$company_entity->id()] = $company->MasterCustomerId;
               }
               else {
                 $this->ssoHelper->log('Response from the Data Service does not have a company object.');
@@ -164,7 +164,7 @@ class PMMISSOGetUserCompanySubscriber implements EventSubscriberInterface {
           $this->ssoHelper->log('User does not have related Personify Companies.');
         }
       }
-      $event->setCompanies(array_keys($exist_companies));
+      $event->setCompanies(array_keys($existing_companies));
       $event->setUpdateCompanyFlag(TRUE);
     }
     else {

@@ -7,8 +7,7 @@ administer pmmi personify sso settings:
 administer pmmi personify sso token:
   title: 'Administer PMMI SSO Token'
   description: 'Allow access to PMMI SSO Token pages'
-  restrict access: trueadd personify company entities:
-  title: 'Create new Personify company entities'
+  restrict access: true
 
 administer personify company entities:
   title: 'Administer Personify company entities'
@@ -27,5 +26,5 @@ access personify company overview:
 view published personify company entities:
   title: 'View published Personify company entities'
 
-#view unpublished personify company entities:
-#  title: 'View unpublished Personify company entities'
+view unpublished personify company entities:
+  title: 'View unpublished Personify company entities'

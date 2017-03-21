@@ -6,6 +6,7 @@ use Drupal\Core\Form\ConfigFormBaseTrait;
 use Drupal\Core\Form\ConfirmFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
+use Drupal\pmmi_sso\Service\PMMISSOHelper;
 
 /**
  * Defines a confirmation form for deleting a Audience.
@@ -27,12 +28,11 @@ class PMMISSORoleMapDeleteForm extends ConfirmFormBase {
     return ['pmmi_sso.settings'];
   }
 
-
   /**
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to delete role mapping for the %role role?', array('%role' => $this->roleId));
+    return $this->t('Are you sure you want to delete role mapping for the %role role?', ['%role' => $this->roleId]);
   }
 
   /**
@@ -67,11 +67,11 @@ class PMMISSORoleMapDeleteForm extends ConfirmFormBase {
     $config = $this->config('pmmi_sso.settings');
     $config->clear('user_accounts.role_mapping.' . $this->roleId);
     $config->save();
-    $args = array(
+    $args = [
       '%role_id' => $this->roleId,
-    );
+    ];
 
-    $this->logger('pmmi_sso')
+    $this->logger(PMMISSOHelper::PROVIDER)
       ->notice('The %role_id map has been deleted.', $args);
 
     drupal_set_message($this->t('The %role_id map has been deleted.', $args));

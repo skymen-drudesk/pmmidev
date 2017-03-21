@@ -7,6 +7,7 @@ dependencies:
     - field.field.block_content.event.field_button
     - field.field.block_content.event.field_dates
     - field.field.block_content.event.field_event_types
+    - field.field.block_content.event.field_exclude_main_calendar
     - field.field.block_content.event.field_head
     - field.field.block_content.event.field_hosted_by
     - field.field.block_content.event.field_link
@@ -163,3 +164,4 @@ content:
     third_party_settings: {  }
 hidden:
   field_event_types: true
+  field_exclude_main_calendar: true

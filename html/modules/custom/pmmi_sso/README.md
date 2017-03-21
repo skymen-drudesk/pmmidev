@@ -31,7 +31,7 @@ This module requires the following modules:
 
 Download and install the module as you would with any other Drupal module:
 
-* Download this module and move the folder it the DRUPAL_ROOT/modules 
+* Download this module and move the folder to the DRUPAL_ROOT/modules 
   directory.
 * Enable the module in your Drupal admin interface.
 
@@ -76,7 +76,7 @@ your site will automatically be logged in IF they already have an active
 Personify SSO session with the Personify SSO server.
 
 If the user does not have an active session with the Personify SSO server, 
-they will see the Drupal page requested as normal if it have permission.
+they will see the Drupal page requested as normal, if they have permission.
 
 This feature works by quickly redirecting the user to the Personify SSO 
 server to check for an active session, and then redirecting back to the 

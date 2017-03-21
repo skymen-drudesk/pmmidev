@@ -1,8 +1,3 @@
-#pmmi_sso.admin_tab:
-#  route_name: pmmi_sso.admin
-#  title: 'Main Settings'
-#  base_route: pmmi_sso.admin
-
 pmmi_sso.settings:
   route_name: pmmi_sso.settings
   title: 'Main Settings'
@@ -33,7 +28,6 @@ entity.pmmi_sso_token.delete_form:
   route_name:  entity.pmmi_sso_token.delete_form
   title: 'Delete'
   base_route:  entity.pmmi_sso_token.canonical
-  weight: 10
 
 # Personify company routing definition
 pmmi_personify_company.settings_tab:

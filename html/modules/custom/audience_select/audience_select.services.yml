@@ -3,13 +3,10 @@ services:
     class: Drupal\audience_select\Cache\PageCache\AudienceRequestPolicy
     tags:
       - { name: page_cache_request_policy }
-  audience_select.crawler_detect:
-    class: Drupal\audience_select\Service\CrawlerDetect
-    arguments: ['@request_stack']
 
   audience_select.audience_manager:
     class: Drupal\audience_select\Service\AudienceManager
-    arguments: ['@audience_select.crawler_detect']
+    arguments: ['@pmmi_crawler_detect']
 
   audience_select.audience_select_subscriber:
     class: Drupal\audience_select\EventSubscriber\AudienceSelectSubscriber

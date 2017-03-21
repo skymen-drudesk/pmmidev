@@ -19,8 +19,6 @@ class PMMIPersonifyCompanyForm extends ContentEntityForm {
     /* @var $entity \Drupal\pmmi_sso\Entity\PMMIPersonifyCompany */
     $form = parent::buildForm($form, $form_state);
 
-    $entity = $this->entity;
-
     return $form;
   }
 

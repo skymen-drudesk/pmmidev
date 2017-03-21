@@ -17,7 +17,7 @@ use GuzzleHttp\Exception\RequestException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
- * Provides base functionality for the ReportWorkers.
+ * Provides base functionality for the Workers.
  */
 abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 
@@ -29,6 +29,7 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
    * @var \Drupal\Core\State\StateInterface
    */
   protected $state;
+
   /**
    * The entity type manager.
    *
@@ -64,6 +65,11 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
    */
   protected $parser;
 
+  /**
+   * Provider name.
+   *
+   * @var string
+   */
   protected $provider = PMMISSOHelper::PROVIDER;
 
   /**
@@ -201,7 +207,7 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
   }
 
   /**
-   * Get User Data that just registered via PMMI SSO.
+   * Get User Data(SSO Service) that already registered via PMMI SSO.
    *
    * @param string $personify_id
    *   The Personify user ID.
@@ -224,7 +230,7 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
       return;
     }
     $this->parser->setData($response);
-    // Check if user exist and active.
+    // Check if user exists and is active.
     if (
       $this->parser->validateBool('//m:UserExists') &&
       !$this->parser->validateBool('//m:DisableAccountFlag')
@@ -236,7 +242,7 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
       }
       else {
         $account->block();
-        $this->ssoHelper->log($this->t('User: @user not exist or disabled.', ['@user' => $account->getInitialEmail()]));
+        $this->ssoHelper->log($this->t('User: @user not exist or is disabled.', ['@user' => $account->getInitialEmail()]));
         return;
       }
       // Parse and set user email.
@@ -247,13 +253,13 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
     }
     else {
       $account->block();
-      $this->ssoHelper->log('User does not exist or disabled.');
+      $this->ssoHelper->log('User does not exist or is disabled.');
       return;
     }
   }
 
   /**
-   * Get User Data that just registered via PMMI SSO.
+   * Get User Data(Data Service) that already registered via PMMI SSO.
    *
    * @param string $personify_id
    *   The Personify user ID.
@@ -265,10 +271,10 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
   public function getServiceData($personify_id, User &$account, array &$user_data) {
     $request_options = $this->ssoHelper->buildDataServiceQuery(
       'CustomerInfos',
-      array(
+      [
         '$filter' => "MasterCustomerId eq '$personify_id'",
         '$select' => "LabelName, FirstName, LastName",
-      )
+      ]
     );
     $request_options['method'] = 'GET';
     $response = $this->handleRequest($request_options);
@@ -276,7 +282,7 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
       $this->ssoHelper->log("Error with request to get User Data: " . $response->getMessage());
       return;
     }
-    // Check if user data exist.
+    // Check if user data exists.
     if ($json_data = json_decode($response)) {
       $data = $json_data->d[0];
       // Parse and set user LabelName.
@@ -285,7 +291,7 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
       }
       else {
         $account->block();
-        $this->ssoHelper->log('User name not exist or disabled.');
+        $this->ssoHelper->log('User name not exist or is disabled.');
         return;
       }
       // Parse and set user FirstName.
@@ -305,7 +311,7 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
   }
 
   /**
-   * Get User Data that just registered via PMMI SSO.
+   * Get user roles (IM Service) that already registered via PMMI SSO.
    *
    * @param string $personify_id
    *   The Personify user ID.
@@ -318,7 +324,7 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
   public function getImsRole($personify_id, array $allowed_roles) {
     // Get the IMS roles that are allowed to register.
     $ims_role_mapping = array_map('strtolower', $allowed_roles);
-    $user_roles = array();
+    $user_roles = [];
     if (empty($ims_role_mapping)) {
       return $user_roles;
     }
@@ -332,14 +338,14 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
     $request_options['method'] = 'POST';
     $response = $this->handleRequest($request_options);
     if ($response instanceof RequestException) {
-      $this->ssoHelper->log("Error with request to get IMS User Data: " . $response->getMessage());
+      $this->ssoHelper->log("Error with request to get IMS User Roles: " . $response->getMessage());
       return $user_roles;
     }
     $this->parser->setData($response);
-    // Check if user have IMS Role.
+    // Check if user has IMS Role.
     if ($this->parser->getNodeList('//m:CustomerRoles')->length > 0) {
       // Parse existing user Roles.
-      $roles = array_map('strtolower', $this->parser->getMultiplyValues('//m:CustomerRoles/m:Role/m:Value'));
+      $roles = array_map('strtolower', $this->parser->getMultipleValues('//m:CustomerRoles/m:Role/m:Value'));
       $exist_roles = array_intersect($ims_role_mapping, $roles);
       if (count($exist_roles) > 0) {
         $user_roles = $this->ssoHelper->filterAllowedRoles(PMMISSOHelper::IMS, $exist_roles);
@@ -364,8 +370,8 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
    */
   public function checkDataServiceRole($personify_id, array $allowed_roles) {
     // Get the Data Service committee_id that are allowed to register.
-    $user_roles = array();
-    $roles = array();
+    $user_roles = [];
+    $roles = [];
     $date = new \DateTime();
     foreach ($allowed_roles as $committee_id) {
       $query = [
@@ -390,11 +396,11 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
           $roles[] = $committee_id;
         }
         else {
-          $this->ssoHelper->log('Wrong response from Data Service.');
+          $this->ssoHelper->log('User does not have allowed Data Service Role.');
         }
       }
       else {
-        $this->ssoHelper->log('User does not have allowed Data Service Role.');
+        $this->ssoHelper->log('Wrong response from Data Service.');
       }
     }
     if (!empty($roles)) {
@@ -414,10 +420,10 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
   public function getCompanyData($personify_id, PMMIPersonifyCompanyInterface &$company) {
     $request_options = $this->ssoHelper->buildDataServiceQuery(
       'CustomerInfos',
-      array(
+      [
         '$filter' => "MasterCustomerId eq '$personify_id'",
         '$select' => "MasterCustomerId, LabelName, CustomerClassCode",
-      )
+      ]
     );
     $request_options['method'] = 'GET';
     $response = $this->handleRequest($request_options);
@@ -425,7 +431,7 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
       $this->ssoHelper->log("Error with request to get Company Data: " . $response->getMessage());
       return;
     }
-    // Check if company data exist.
+    // Check if company data exists.
     if ($json_data = json_decode($response)) {
       $data = $json_data->d[0];
       // Parse and set company Name.
@@ -436,7 +442,7 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
       }
       else {
         $company->setPublished(FALSE);
-        $this->ssoHelper->log('Company name not exist or disabled.');
+        $this->ssoHelper->log('Company name does not exist or is disabled.');
         return;
       }
       // Parse and set company CustomerClassCode.
@@ -471,7 +477,7 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
     try {
       $response = $this->httpClient->request($method, $uri, $options);
       $response_data = $response->getBody()->getContents();
-      $this->ssoHelper->log("User Data received from PMMI Personify server: " . htmlspecialchars($response_data));
+      $this->ssoHelper->log("Data received from PMMI Personify server: " . htmlspecialchars($response_data));
     }
     catch (RequestException $e) {
       return $e;

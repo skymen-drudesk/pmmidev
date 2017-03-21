@@ -2,7 +2,6 @@
 
 namespace Drupal\pmmi_sso\Service;
 
-use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Database\Connection;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
@@ -20,8 +19,8 @@ class PMMISSOCronDataCollector {
    *
    * @var \Drupal\Core\Config\ConfigFactory
    */
-
   protected $configFactory;
+
   /**
    * Drupal\Core\Entity\EntityTypeManager definition.
    *
@@ -50,7 +49,12 @@ class PMMISSOCronDataCollector {
    */
   protected $settings;
 
-  protected $provider = 'pmmi_sso';
+  /**
+   * Provider name.
+   *
+   * @var string
+   */
+  protected $provider = PMMISSOHelper::PROVIDER;
 
   /**
    * PMMISSOCronDataCollector constructor.
@@ -86,7 +90,7 @@ class PMMISSOCronDataCollector {
   public function getUsersForUpdate() {
     $users_data = $this->userData->get($this->provider);
     if (empty($users_data)) {
-      return array();
+      return [];
     }
     $interval_block = $this->settings->get('interval_block');
     $interval_info = $this->settings->get('interval_info');
@@ -114,7 +118,7 @@ class PMMISSOCronDataCollector {
   }
 
   /**
-   * Return PMMI SSO user's IDs for Drupal accounts.
+   * Return PMMI SSO user IDs for Drupal accounts.
    *
    * @param array $uids
    *   User IDs.
@@ -124,7 +128,7 @@ class PMMISSOCronDataCollector {
    */
   protected function getPersonifyIds(array $uids) {
     return $this->connection->select('authmap', 'am')
-      ->fields('am', array('uid', 'authname'))
+      ->fields('am', ['uid', 'authname'])
       ->condition('uid', $uids, 'IN')
       ->condition('provider', $this->provider)
       ->execute()
@@ -132,7 +136,7 @@ class PMMISSOCronDataCollector {
   }
 
   /**
-   * Return PMMI SSO companies which needed update.
+   * Return PMMI SSO companies which need updating.
    *
    * @return array
    *   PMMI SSO Company keyed by $id.

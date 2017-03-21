@@ -2,6 +2,7 @@
 
 namespace Drupal\pmmi_sso\Entity;
 
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityChangedTrait;
@@ -24,7 +25,6 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *
  *     "form" = {
  *       "default" = "Drupal\pmmi_sso\Entity\Form\PMMIPersonifyCompanyForm",
- *       "add" = "Drupal\pmmi_sso\Entity\Form\PMMIPersonifyCompanyForm",
  *       "edit" = "Drupal\pmmi_sso\Entity\Form\PMMIPersonifyCompanyForm",
  *       "delete" = "Drupal\pmmi_sso\Entity\Form\PMMIPersonifyCompanyDeleteForm",
  *     },
@@ -44,7 +44,6 @@ use Drupal\Core\Entity\EntityTypeInterface;
  *   },
  *   links = {
  *     "canonical" = "/admin/pmmi_sso/personify_company/{pmmi_personify_company}",
- *     "add-form" = "/admin/pmmi_sso/personify_company/add",
  *     "edit-form" = "/admin/pmmi_sso/personify_company/{pmmi_personify_company}/edit",
  *     "delete-form" = "/admin/pmmi_sso/personify_company/{pmmi_personify_company}/delete",
  *     "collection" = "/admin/structure/personify_company",
@@ -55,16 +54,6 @@ use Drupal\Core\Entity\EntityTypeInterface;
 class PMMIPersonifyCompany extends ContentEntityBase implements PMMIPersonifyCompanyInterface {
 
   use EntityChangedTrait;
-
-//  /**
-//   * {@inheritdoc}
-//   */
-//  public static function preCreate(EntityStorageInterface $storage_controller, array &$values) {
-//    parent::preCreate($storage_controller, $values);
-//    $values += array(
-//      'user_id' => \Drupal::currentUser()->id(),
-//    );
-//  }
 
   /**
    * {@inheritdoc}
@@ -148,69 +137,50 @@ class PMMIPersonifyCompany extends ContentEntityBase implements PMMIPersonifyCom
     $fields = parent::baseFieldDefinitions($entity_type);
 
     $fields['personify_id'] = BaseFieldDefinition::create('string')
-//      ->setLabel(t('ID'))
       ->setReadOnly(TRUE)
-//      ->setSetting('unsigned', TRUE)
       ->setLabel(t('Master Customer Id'))
       ->setDescription(t('The Master Customer Id of the Personify company entity.'))
-      ->setSettings(array(
+      ->setSettings([
         'max_length' => 50,
         'text_processing' => 0,
-      ))
-//      ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
+      ])
+      ->setDisplayOptions('view', [
         'label' => 'above',
         'type' => 'string',
         'weight' => -4,
-      ))
-//      ->setDisplayOptions('form', array(
-//        'type' => 'string_textfield',
-//        'weight' => -4,
-//      ))
-//      ->setDisplayConfigurable('form', TRUE)
+      ])
       ->setDisplayConfigurable('view', TRUE);
-
 
     $fields['name'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Name'))
       ->setDescription(t('The Label Name of the Personify company entity.'))
-      ->setSettings(array(
+      ->setSettings([
         'max_length' => 128,
         'text_processing' => 0,
-      ))
+      ])
       ->setReadOnly(TRUE)
       ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
+      ->setDisplayOptions('view', [
         'label' => 'above',
         'type' => 'string',
         'weight' => -4,
-      ))
-//      ->setDisplayOptions('form', array(
-//        'type' => 'string_textfield',
-//        'weight' => -4,
-//      ))
-//      ->setDisplayConfigurable('form', TRUE)
+      ])
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['code'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Customer Class Code'))
       ->setDescription(t('The Customer Class Code of the Personify company entity.'))
       ->setReadOnly(TRUE)
-      ->setSettings(array(
+      ->setSettings([
         'max_length' => 50,
         'text_processing' => 0,
-      ))
+      ])
       ->setDefaultValue('')
-      ->setDisplayOptions('view', array(
+      ->setDisplayOptions('view', [
         'label' => 'above',
         'type' => 'string',
         'weight' => -4,
-      ))
-//      ->setDisplayOptions('form', array(
-//        'type' => 'string_textfield',
-//        'weight' => -4,
-//      ))
-//      ->setDisplayConfigurable('form', TRUE)
+      ])
       ->setDisplayConfigurable('view', TRUE);
 
     $fields['status'] = BaseFieldDefinition::create('boolean')

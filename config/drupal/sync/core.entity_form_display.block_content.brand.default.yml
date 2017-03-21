@@ -6,9 +6,11 @@ dependencies:
     - block_content.type.brand
     - field.field.block_content.brand.body
     - field.field.block_content.brand.field_button
+    - field.field.block_content.brand.field_head
     - field.field.block_content.brand.field_logo
     - image.style.thumbnail
   module:
+    - content_moderation
     - image
     - link_attributes
     - text
@@ -19,14 +21,14 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 3
+    weight: 1
     settings:
       rows: 9
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
   field_button:
-    weight: 5
+    weight: 4
     settings:
       placeholder_url: ''
       placeholder_title: ''
@@ -39,8 +41,15 @@ content:
         accesskey: false
     third_party_settings: {  }
     type: link_attributes
+  field_head:
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
   field_logo:
-    weight: 4
+    weight: 3
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
@@ -48,7 +57,7 @@ content:
     type: image_image
   info:
     type: string_textfield
-    weight: -5
+    weight: 0
     settings:
       size: 60
       placeholder: ''

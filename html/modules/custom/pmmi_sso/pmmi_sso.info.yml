@@ -5,5 +5,6 @@ core: 8.x
 package: PMMI
 dependencies:
   - pmmi
+  - pmmi_crawler_detect
   - externalauth
 configure: pmmi_sso.settings

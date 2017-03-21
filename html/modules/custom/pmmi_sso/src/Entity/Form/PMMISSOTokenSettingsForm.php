@@ -40,10 +40,9 @@ class PMMISSOTokenSettingsForm extends FormBase {
       '#min' => 10,
       '#step' => 10,
       '#description' => $this->t(
-        'The default value, in seconds, to be used as expiration time when 
-         creating or renewing tokens. For each user session be set up own 
-         expiration. If expire token time  for a session, should be running 
-         validation process.'
+        "The default value, in seconds, to be used as the expiration time when 
+        creating or renewing a user's token. If a user's token time is expired 
+        for a session, run the validation process for that user."
       ),
       '#default_value' => $this->config('pmmi_sso.settings')->get('expiration'),
       '#required' => TRUE,

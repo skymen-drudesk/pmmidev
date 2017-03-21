@@ -109,36 +109,36 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('pmmi_sso.update.settings');
-    $form['enabled'] = array(
+    $form['enabled'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Enable cron jobs'),
       '#description' => $this->t('Enable cron jobs to update information'),
       '#default_value' => $config->get('enabled'),
-    );
+    ];
 
 
-    $form['cron_users'] = array(
+    $form['cron_users'] = [
       '#type' => 'fieldset',
       '#title' => $this->t("User's cron options"),
-      '#states' => array(
-        'visible' => array(
-          ':input[name="enabled"]' => array('checked' => TRUE),
-        ),
-      ),
-    );
+      '#states' => [
+        'visible' => [
+          ':input[name="enabled"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
     $users_execution = \Drupal::state()->get('cron_pmmi_sso.users_execution');
     $users_execution = !empty($users_execution) ? $users_execution : REQUEST_TIME;
 
-    $args = array(
+    $args = [
       '%time' => date_iso8601(\Drupal::state()
         ->get('cron_pmmi_sso.users_execution')),
       '%seconds' => $users_execution - REQUEST_TIME,
-    );
-    $form['cron_users']['status'] = array(
+    ];
+    $form['cron_users']['status'] = [
       '#type' => 'item',
       '#markup' => $this->t('<p>PMMI SSO (Users) Cron will next execute the first time cron runs after %time (%seconds seconds from now)</p>', $args),
-    );
-    $options = array(
+    ];
+    $options = [
       60 => $this->t('1 minute'),
       300 => $this->t('5 minutes'),
       3600 => $this->t('1 hour'),
@@ -146,111 +146,111 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
       21600 => $this->t('6 hour'),
       43200 => $this->t('12 hour'),
       86400 => $this->t('1 day'),
-      172800 => $this->t('2 day'),
-    );
-    $form['cron_users']['main_interval_users'] = array(
+      172800 => $this->t('2 days'),
+    ];
+    $form['cron_users']['main_interval_users'] = [
       '#type' => 'select',
       '#title' => $this->t("Main interval"),
       '#description' => $this->t('Time after which pmmi_sso_users cron will respond to a processing request.'),
       '#default_value' => $config->get('main_interval_users'),
       '#options' => $options,
-      '#states' => array(
-        'required' => array(
-          ':input[name="enabled"]' => array('checked' => TRUE),
-        ),
-      ),
-    );
-    $form['cron_users']['interval_block'] = array(
+      '#states' => [
+        'required' => [
+          ':input[name="enabled"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['cron_users']['interval_block'] = [
       '#type' => 'number',
-      '#title' => $this->t("Interval: Block User's"),
+      '#title' => $this->t("Interval: Block Users"),
       '#min' => 100,
       '#step' => 100,
       '#description' => $this->t('Update time: checking, if user still active in the Personify Services.'),
       '#default_value' => $config->get('interval_block'),
       '#field_suffix' => $this->t('sec'),
-      '#states' => array(
-        'required' => array(
-          ':input[name="enabled"]' => array('checked' => TRUE),
-        ),
-      ),
-    );
-    $form['cron_users']['interval_info'] = array(
+      '#states' => [
+        'required' => [
+          ':input[name="enabled"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['cron_users']['interval_info'] = [
       '#type' => 'number',
-      '#title' => $this->t("Interval: User's Information"),
+      '#title' => $this->t("Interval: Users Information"),
       '#min' => 100,
       '#step' => 100,
       '#description' => $this->t('Update time: updating user information (FirstName, LastName, LabelName).'),
       '#default_value' => $config->get('interval_info'),
       '#field_suffix' => $this->t('sec'),
-      '#states' => array(
-        'required' => array(
-          ':input[name="enabled"]' => array('checked' => TRUE),
-        ),
-      ),
-    );
-    $form['cron_users']['interval_roles'] = array(
+      '#states' => [
+        'required' => [
+          ':input[name="enabled"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['cron_users']['interval_roles'] = [
       '#type' => 'number',
-      '#title' => $this->t("Interval: User's Roles"),
+      '#title' => $this->t("Interval: Users Roles"),
       '#min' => 100,
       '#step' => 100,
       '#description' => $this->t('Update time: updating allowed user roles.'),
       '#default_value' => $config->get('interval_roles'),
       '#field_suffix' => $this->t('sec'),
-      '#states' => array(
-        'required' => array(
-          ':input[name="enabled"]' => array('checked' => TRUE),
-        ),
-      ),
-    );
-    $form['cron_users']['actions']['submit'] = array(
+      '#states' => [
+        'required' => [
+          ':input[name="enabled"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['cron_users']['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Add jobs to queue users'),
       '#submit' => [[$this, 'addUsers']],
-      '#states' => array(
-        'visible' => array(
-          ':input[name="enabled"]' => array('checked' => TRUE),
-        ),
-        'disabled' => array(
-          ':input[name="enabled"]' => array('checked' => FALSE),
-        ),
-      ),
-    );
+      '#states' => [
+        'visible' => [
+          ':input[name="enabled"]' => ['checked' => TRUE],
+        ],
+        'disabled' => [
+          ':input[name="enabled"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
 
     // Personify Companies cron settings.
     $pc_execution = \Drupal::state()->get('cron_pmmi_sso.pc_execution');
     $pc_execution = !empty($pc_execution) ? $pc_execution : REQUEST_TIME;
 
-    $args = array(
+    $args = [
       '%time' => date_iso8601(\Drupal::state()
         ->get('cron_pmmi_sso.pc_execution')),
       '%seconds' => $pc_execution - REQUEST_TIME,
-    );
-    $form['cron_pc'] = array(
+    ];
+    $form['cron_pc'] = [
       '#type' => 'fieldset',
       '#title' => $this->t("Companies cron options"),
-      '#states' => array(
-        'visible' => array(
-          ':input[name="enabled"]' => array('checked' => TRUE),
-        ),
-      ),
-    );
-    $form['cron_pc']['status'] = array(
+      '#states' => [
+        'visible' => [
+          ':input[name="enabled"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['cron_pc']['status'] = [
       '#type' => 'item',
       '#markup' => $this->t('<p>PMMI SSO (Companies) Cron will next execute the first time cron runs after %time (%seconds seconds from now)</p>', $args),
-    );
-    $form['cron_pc']['main_interval_companies'] = array(
+    ];
+    $form['cron_pc']['main_interval_companies'] = [
       '#type' => 'select',
       '#title' => $this->t("Main interval"),
       '#description' => $this->t('Time after which pmmi_sso_personify_company cron will respond to a processing request.'),
       '#default_value' => $config->get('main_interval_companies'),
       '#options' => $options,
-      '#states' => array(
-        'required' => array(
-          ':input[name="enabled"]' => array('checked' => TRUE),
-        ),
-      ),
-    );
-    $form['cron_pc']['interval_company'] = array(
+      '#states' => [
+        'required' => [
+          ':input[name="enabled"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['cron_pc']['interval_company'] = [
       '#type' => 'number',
       '#title' => $this->t("Interval: Personify Company Entity"),
       '#min' => 100,
@@ -258,25 +258,25 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
       '#description' => $this->t('Update time: Personify Company Entity.'),
       '#default_value' => $config->get('interval_company'),
       '#field_suffix' => $this->t('sec'),
-      '#states' => array(
-        'required' => array(
-          ':input[name="enabled"]' => array('checked' => TRUE),
-        ),
-      ),
-    );
-    $form['cron_pc']['cron_queue_company']['actions']['submit'] = array(
+      '#states' => [
+        'required' => [
+          ':input[name="enabled"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['cron_pc']['cron_queue_company']['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Add jobs to queue Personify Company'),
       '#submit' => [[$this, 'addCompanies']],
-      '#states' => array(
-        'visible' => array(
-          ':input[name="enabled"]' => array('checked' => TRUE),
-        ),
-        'disabled' => array(
-          ':input[name="enabled"]' => array('checked' => FALSE),
-        ),
-      ),
-    );
+      '#states' => [
+        'visible' => [
+          ':input[name="enabled"]' => ['checked' => TRUE],
+        ],
+        'disabled' => [
+          ':input[name="enabled"]' => ['checked' => FALSE],
+        ],
+      ],
+    ];
 
     $queue_users = $this->queue->get('pmmi_sso_users');
     $queue_pc = $this->queue->get('pmmi_sso_personify_companies');
@@ -285,34 +285,34 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
       '%queue_users' => $queue_users->numberOfItems(),
       '%queue_pc' => $queue_pc->numberOfItems(),
     ];
-    $form['current_cron_queue_status'] = array(
+    $form['current_cron_queue_status'] = [
       '#type' => 'item',
       '#markup' => $this->t('There are currently %queue_users items in queue Users and %queue_pc items in queue Personify Company', $args),
-    );
+    ];
 
 
     if ($this->currentUser->hasPermission('administer site configuration')) {
-      $form['cron_run'] = array(
+      $form['cron_run'] = [
         '#type' => 'details',
         '#title' => $this->t('Run cron manually'),
         '#open' => TRUE,
-        '#states' => array(
-          'visible' => array(
-            ':input[name="enabled"]' => array('checked' => TRUE),
-          ),
-        ),
-      );
-      $form['cron_run']['cron_reset'] = array(
+        '#states' => [
+          'visible' => [
+            ':input[name="enabled"]' => ['checked' => TRUE],
+          ],
+        ],
+      ];
+      $form['cron_run']['cron_reset'] = [
         '#type' => 'checkbox',
         '#title' => $this->t("Run cron regardless of whether interval has expired."),
         '#default_value' => FALSE,
-      );
-      $form['cron_run']['cron_trigger']['actions'] = array('#type' => 'actions');
-      $form['cron_run']['cron_trigger']['actions']['sumbit'] = array(
+      ];
+      $form['cron_run']['cron_trigger']['actions'] = ['#type' => 'actions'];
+      $form['cron_run']['cron_trigger']['actions']['sumbit'] = [
         '#type' => 'submit',
         '#value' => $this->t('Run cron now'),
         '#submit' => [[$this, 'cronRun']],
-      );
+      ];
     }
 
     return parent::buildForm($form, $form_state);
@@ -329,11 +329,11 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
         $main_interval_users = $form_state->getValue('main_interval_users')
       ) {
         // Check main_interval_users should be lower than users intervals.
-        $users_interval = array(
+        $users_interval = [
           'interval_block',
           'interval_info',
           'interval_roles',
-        );
+        ];
         foreach ($users_interval as $interval) {
           if (
             $form_state->hasValue($interval) &&
@@ -359,8 +359,6 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
    * Allow user to directly execute cron, optionally forcing it.
    */
   public function cronRun(array &$form, FormStateInterface &$form_state) {
-    $config = $this->configFactory->getEditable('pmmi_sso.update.settings');
-
     $cron_reset = $form_state->getValue('cron_reset');
     if (!empty($cron_reset)) {
       \Drupal::state()->set('cron_pmmi_sso.users_execution', 0);
@@ -400,7 +398,7 @@ class PMMISSOUpdateSettings extends ConfigFormBase {
       $queue = $this->queue->get('pmmi_sso_personify_companies');
       $i = 0;
       foreach ($items as $cid => $item) {
-        $queue->createItem(array('id' => $cid, 'pid' => $item));
+        $queue->createItem(['id' => $cid, 'pid' => $item]);
         $i++;
       }
       drupal_set_message($this->t('Added %num items to PMMI Personify Companies Queue', ['%num' => $i]));

@@ -73,7 +73,7 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
   /**
    * The entry point for our subscriber.
    *
-   * Get User Data that just registered via PMMI SSO.
+   * Get User Data (SSO Service) that just registered via PMMI SSO.
    *
    * @param PMMISSOPreRegisterEvent $event
    *   The event object.
@@ -93,7 +93,7 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
       return;
     }
     $this->parser->setData($response);
-    // Check if user exist and active.
+    // Check if user exists and is active.
     if ($this->parser->validateBool('//m:UserExists') && !$this->parser->validateBool('//m:DisableAccountFlag')) {
       // Parse and set user name.
       if ($username = $this->parser->getSingleValue('//m:UserName')) {
@@ -102,7 +102,7 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
       }
       else {
         $event->setAllowAutomaticRegistration(FALSE);
-        $this->ssoHelper->log('User name not exist or disabled.');
+        $this->ssoHelper->log('User name does not exist or is disabled.');
         return;
       }
       // Parse and set user email.
@@ -112,15 +112,13 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
     }
     else {
       $event->setAllowAutomaticRegistration(FALSE);
-      $this->ssoHelper->log('User does not exist or disabled.');
+      $this->ssoHelper->log('User name does not exist or is disabled.');
       return;
     }
   }
 
   /**
-   * The entry point for our subscriber.
-   *
-   * Get User Data that just registered via PMMI SSO.
+   * Get User Data (Data Service) that just registered via PMMI SSO.
    *
    * @param PMMISSOPreRegisterEvent $event
    *   The event object.
@@ -143,7 +141,7 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
       $this->ssoHelper->log("Error with request to get User Data: " . $response->getMessage());
       return;
     }
-    // Check if user data exist.
+    // Check if user data exists.
     if ($json_data = json_decode($response)) {
       $data = $json_data->d[0];
       // Parse and set user LabelName.
@@ -152,7 +150,7 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
       }
       else {
         $event->setAllowAutomaticRegistration(FALSE);
-        $this->ssoHelper->log('User name not exist or disabled.');
+        $this->ssoHelper->log('User name does not exist or is disabled.');
         return;
       }
       // Parse and set user FirstName.
@@ -172,9 +170,7 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
   }
 
   /**
-   * The entry point for our subscriber.
-   *
-   * Get User Data that just registered via PMMI SSO.
+   * Get user roles (IM Service) that just registered via PMMI SSO.
    *
    * @param PMMISSOPreRegisterEvent $event
    *   The event object.
@@ -200,14 +196,14 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
     $request_options['method'] = 'POST';
     $response = $this->handleRequest($request_options);
     if ($response instanceof RequestException) {
-      $this->ssoHelper->log("Error with request to get IMS User Data: " . $response->getMessage());
+      $this->ssoHelper->log("Error with request to get IMS User Roles: " . $response->getMessage());
       return;
     }
     $this->parser->setData($response);
-    // Check if user have IMS Role.
+    // Check if user has IMS Role.
     if ($this->parser->getNodeList('//m:CustomerRoles')->length > 0) {
       // Parse existing user Roles.
-      $roles = array_map('strtolower', $this->parser->getMultiplyValues('//m:CustomerRoles/m:Role/m:Value'));
+      $roles = array_map('strtolower', $this->parser->getMultipleValues('//m:CustomerRoles/m:Role/m:Value'));
       $exist_roles = array_intersect($ims_role_mapping, $roles);
       if (count($exist_roles) > 0) {
         $user_roles = $this->ssoHelper->filterAllowedRoles(PMMISSOHelper::IMS, $exist_roles);
@@ -263,11 +259,11 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
           $roles[] = $committee_id;
         }
         else {
-          $this->ssoHelper->log('Wrong response from Data Service.');
+          $this->ssoHelper->log('User does not have allowed Data Service Role.');
         }
       }
       else {
-        $this->ssoHelper->log('User does not have allowed Data Service Role.');
+        $this->ssoHelper->log('Wrong response from Data Service.');
       }
     }
     if (!empty($roles)) {

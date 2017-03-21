@@ -1,8 +1,7 @@
 services:
-
   pmmi_sso.subscriber:
     class: Drupal\pmmi_sso\EventSubscriber\PMMISSOSubscriber
-    arguments: ['@request_stack', '@current_route_match', '@config.factory',  '@current_user', '@plugin.manager.condition', '@pmmi_sso.helper', '@pmmi_sso.redirector']
+    arguments: ['@request_stack', '@current_route_match', '@current_user', '@plugin.manager.condition', '@pmmi_sso.helper', '@pmmi_sso.redirector', '@pmmi_crawler_detect']
     tags:
       - { name: 'event_subscriber' }
 

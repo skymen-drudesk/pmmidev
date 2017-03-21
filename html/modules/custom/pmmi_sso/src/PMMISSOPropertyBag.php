@@ -42,13 +42,6 @@ class PMMISSOPropertyBag {
    */
   protected $token;
 
-//  /**
-//   * The proxy granting token, if supplied.
-//   *
-//   * @var string
-//   */
-//  protected $pgt;
-
   /**
    * An array containing attributes returned from the server.
    *
@@ -95,16 +88,6 @@ class PMMISSOPropertyBag {
   public function setSubCustomerId($subcustomer_id) {
     $this->subCustomerId = $subcustomer_id;
   }
-
-//  /**
-//   * Proxy granting token property setter.
-//   *
-//   * @param string $token
-//   *   The token to set as pgt.
-//   */
-//  public function setPgt($token) {
-//    $this->pgt = $token;
-//  }
 
   /**
    * Proxy granting token property setter.
@@ -165,16 +148,6 @@ class PMMISSOPropertyBag {
   public function getRawUserId() {
     return $this->userId . '|' . $this->subCustomerId;
   }
-
-  //  /**
-//   * Proxy granting token getter.
-//   *
-//   * @return string
-//   *   The pgt property.
-//   */
-//  public function getPgt() {
-//    return $this->pgt;
-//  }
 
   /**
    * Token getter.

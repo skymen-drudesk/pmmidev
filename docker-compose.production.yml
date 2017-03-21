@@ -20,7 +20,7 @@ services:
 
   pmmiweb:
     container_name: pmmi_prod_web
-    image: pmguser/drupal-php7.0-apache:1.0.2
+    image: pmguser/drupal-php7.0-apache:1.0.3
     depends_on:
       - pmmidb
       - pmmisolr
