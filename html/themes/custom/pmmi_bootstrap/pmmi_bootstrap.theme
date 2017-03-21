@@ -376,6 +376,9 @@ function pmmi_bootstrap_preprocess_tb_megamenu_item(&$vars) {
       }
     }
   }
+  if (!empty($vars['link']['description'])) {
+    $vars['link']['description'] = strip_tags($vars['link']['description'], '<br>');
+  }
 }
 
 /**
