@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "14080ebe81b95eed91c09be25f2d0170",
+    "content-hash": "a7f9e6ad2a79469205344bd34670a7f8",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -810,6 +810,11 @@
         {
             "name": "derhasi/viewfield",
             "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/derhasi/viewfield",
+                "reference": "origin/8.x-2.x"
+            },
             "type": "drupal-module",
             "extra": {
                 "patches_applied": {
@@ -1486,6 +1491,11 @@
         {
             "name": "douglascrockford/json2",
             "version": "2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/douglascrockford/JSON-js",
+                "reference": "origin/master"
+            },
             "type": "drupal-library"
         },
         {
@@ -3389,17 +3399,17 @@
         },
         {
             "name": "drupal/externalauth",
-            "version": "1.0.0-alpha4",
+            "version": "1.0.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/externalauth",
-                "reference": "8.x-1.0-alpha4"
+                "reference": "8.x-1.0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/externalauth-8.x-1.0-alpha4.zip",
+                "url": "https://ftp.drupal.org/files/projects/externalauth-8.x-1.0.zip",
                 "reference": null,
-                "shasum": "f7ff45c609ad2ac462f05c00c80340ba0de90f14"
+                "shasum": "f1298e1d34f5e1c4ebc130c2b90443b5167e405b"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -3410,8 +3420,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha4",
-                    "datestamp": "1474662540"
+                    "version": "8.x-1.0",
+                    "datestamp": "1490096883"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4835,7 +4845,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/search_api_solr",
-                "reference": "d6c2743a84c314b5e3704b34118f8b835a6e9b3a"
+                "reference": "43156067c6198621012bd60914906e1dbc37f6f6"
             },
             "require": {
                 "drupal/core": "~8.0",
@@ -4848,8 +4858,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1+33-dev",
-                    "datestamp": "1485847984"
+                    "version": "8.x-1.0-beta1+35-dev",
+                    "datestamp": "1488655684"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4889,7 +4899,7 @@
                 "issues": "https://www.drupal.org/project/issues/search_api_solr",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
             },
-            "time": "2017-03-04 19:11:29"
+            "time": "2017-03-21 08:23:24"
         },
         {
             "name": "drupal/selectize",
@@ -5037,6 +5047,11 @@
         {
             "name": "drupal/tb_megamenu",
             "version": "8.1.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "git://git.drupal.org/project/tb_megamenu.git",
+                "reference": "origin/master"
+            },
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/tb_megamenu-8.x-1.0-alpha1.zip",
@@ -6073,16 +6088,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.4.1",
+            "version": "1.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855"
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/0d6c7ca039329247e4f0f8f8f6506810e8248855",
-                "reference": "0d6c7ca039329247e4f0f8f8f6506810e8248855",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
+                "reference": "f5b8a8512e2b58b0071a7280e39f14f72e05d87c",
                 "shasum": ""
             },
             "require": {
@@ -6134,7 +6149,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2017-02-27T10:51:17+00:00"
+            "time": "2017-03-20T17:10:46+00:00"
         },
         {
             "name": "harvesthq/chosen",
@@ -6337,16 +6352,16 @@
         },
         {
             "name": "jaybizzle/crawler-detect",
-            "version": "v1.2.36",
+            "version": "v1.2.37",
             "source": {
                 "type": "git",
                 "url": "https://github.com/JayBizzle/Crawler-Detect.git",
-                "reference": "186cdc021f972a7e06963a84ef692d75f5b325c6"
+                "reference": "850e5fc85506f9bee623fd29936ceb044d63ad2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/186cdc021f972a7e06963a84ef692d75f5b325c6",
-                "reference": "186cdc021f972a7e06963a84ef692d75f5b325c6",
+                "url": "https://api.github.com/repos/JayBizzle/Crawler-Detect/zipball/850e5fc85506f9bee623fd29936ceb044d63ad2b",
+                "reference": "850e5fc85506f9bee623fd29936ceb044d63ad2b",
                 "shasum": ""
             },
             "require": {
@@ -6381,7 +6396,7 @@
                 "crawlerdetect",
                 "php crawler detect"
             ],
-            "time": "2017-03-03T21:13:00+00:00"
+            "time": "2017-03-21T09:17:34+00:00"
         },
         {
             "name": "jonthornton/jquery.timepicker",

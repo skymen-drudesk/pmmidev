@@ -8,6 +8,7 @@
 namespace Drupal\audience_select\Service;
 
 use Drupal\Core\Entity\Element\EntityAutocomplete;
+use Drupal\pmmi_crawler_detect\Service\CrawlerDetect;
 
 /**
  * Provides functions to manage audience.
@@ -19,18 +20,18 @@ class AudienceManager {
   /**
    * The default web crawler detection object.
    *
-   * @var \Drupal\audience_select\Service\CrawlerDetect
+   * @var \Drupal\pmmi_crawler_detect\Service\CrawlerDetect
    */
-  protected $CrawlerDetect;
+  protected $crawlerDetect;
 
   /**
    * Constructs the Audience manager.
    *
-   * @param \Drupal\audience_select\Service\CrawlerDetect $crawler_detect
+   * @param \Drupal\pmmi_crawler_detect\Service\CrawlerDetect $crawler_detect
    *   The default web crawler detection object.
    */
   public function __construct(CrawlerDetect $crawler_detect) {
-    $this->CrawlerDetect = $crawler_detect;
+    $this->crawlerDetect = $crawler_detect;
   }
 
   /**
@@ -53,7 +54,7 @@ class AudienceManager {
    *    Return all data from saved settings.
    */
   public function isCrawler($userAgent = NULL) {
-    return $this->CrawlerDetect->isCrawler($userAgent);
+    return $this->crawlerDetect->isCrawler($userAgent);
   }
 
   /**

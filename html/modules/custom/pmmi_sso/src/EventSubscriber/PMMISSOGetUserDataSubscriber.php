@@ -259,11 +259,11 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
           $roles[] = $committee_id;
         }
         else {
-          $this->ssoHelper->log('Wrong response from Data Service.');
+          $this->ssoHelper->log('User does not have allowed Data Service Role.');
         }
       }
       else {
-        $this->ssoHelper->log('User does not have allowed Data Service Role.');
+        $this->ssoHelper->log('Wrong response from Data Service.');
       }
     }
     if (!empty($roles)) {

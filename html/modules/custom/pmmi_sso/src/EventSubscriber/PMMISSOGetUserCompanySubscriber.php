@@ -108,13 +108,13 @@ class PMMISSOGetUserCompanySubscriber implements EventSubscriberInterface {
               $related_companies[] = $relationship->RelatedMasterCustomerId;
             }
             else {
-              $this->ssoHelper->log('Wrong response from Data Service.');
+              $this->ssoHelper->log('User does not have related Personify Companies.');
             }
           }
         }
       }
       else {
-        $this->ssoHelper->log('User does not have related Personify Companies.');
+        $this->ssoHelper->log('Wrong response from Data Service.');
       }
     }
     // Check and get Company Information.

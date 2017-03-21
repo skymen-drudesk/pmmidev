@@ -2,11 +2,11 @@
 
 namespace Drupal\pmmi_sso\EventSubscriber;
 
+use Drupal\pmmi_crawler_detect\Service\CrawlerDetect;
 use Drupal\pmmi_sso\PMMISSORedirectData;
 use Drupal\pmmi_sso\Service\PMMISSORedirector;
 use Drupal\Core\EventSubscriber\HttpExceptionSubscriberBase;
 use Drupal\Core\Session\AccountInterface;
-use Jaybizzle\CrawlerDetect\CrawlerDetect;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
@@ -64,6 +64,13 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
   protected $ssoRedirector;
 
   /**
+   * The default web crawler detection object.
+   *
+   * @var \Drupal\pmmi_crawler_detect\Service\CrawlerDetect
+   */
+  protected $crawlerDetect;
+
+  /**
    * Frequency to check for gateway login.
    *
    * @var int
@@ -106,6 +113,8 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
    *   The PMMI SSO Helper service.
    * @param PMMISSORedirector $sso_redirector
    *   The PMMI SSO Redirector Service.
+   * @param \Drupal\pmmi_crawler_detect\Service\CrawlerDetect $crawler_detect
+   *   The default web crawler detection object.
    */
   public function __construct(
     RequestStack $request_stack,
@@ -113,7 +122,8 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
     AccountInterface $current_user,
     ConditionManager $condition_manager,
     PMMISSOHelper $sso_helper,
-    PMMISSORedirector $sso_redirector
+    PMMISSORedirector $sso_redirector,
+    CrawlerDetect $crawler_detect
   ) {
     $this->requestStack = $request_stack;
     $this->routeMatcher = $route_matcher;
@@ -121,6 +131,8 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
     $this->conditionManager = $condition_manager;
     $this->ssoHelper = $sso_helper;
     $this->ssoRedirector = $sso_redirector;
+    $this->ssoRedirector = $sso_redirector;
+    $this->crawlerDetect = $crawler_detect;
     $this->gatewayCheckFrequency = $sso_helper->getGatewayFrequency();
     $this->tokenCheckFrequency = $sso_helper->getTokenFrequency();
     $this->tokenAction = $sso_helper->getTokenAction();
@@ -210,7 +222,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
     }
 
     // Don't do anything if this is a request from cron, drush, crawler, etc.
-    if ($this->isCrawlerRequest()) {
+    if ($this->crawlerDetect->isCrawler()) {
       return FALSE;
     }
 
@@ -259,7 +271,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
     }
 
     // Don't do anything if this is a request from cron, drush, crawler, etc.
-    if ($this->isCrawlerRequest()) {
+    if ($this->crawlerDetect->isCrawler()) {
       return FALSE;
     }
 
@@ -278,30 +290,6 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
     $condition = $this->conditionManager->createInstance('request_path');
     $condition->setConfiguration($this->gatewayPaths);
     return $this->conditionManager->execute($condition);
-  }
-
-  /**
-   * Check if the current request is from a known list of web crawlers.
-   *
-   * We don't want to perform any PMMI SSO redirects in this case, because
-   * crawlers need to be able to index the pages.
-   *
-   * @return bool
-   *   True if the request is coming from a crawler, false otherwise.
-   */
-  private function isCrawlerRequest() {
-    if (\Drupal::moduleHandler()->moduleExists('audience_select')) {
-      /** @var \Drupal\audience_select\Service\CrawlerDetect $crawler_service */
-      $crawler_service = \Drupal::service('audience_select.crawler_detect');
-      return $crawler_service->isCrawler();
-    }
-    else {
-      $current_request = $this->requestStack->getCurrentRequest();
-      $headers = $current_request->server->all();
-      $userAgent = $current_request->headers->get('User-Agent');
-      $crawler_service = new CrawlerDetect($headers, $userAgent);
-      return $crawler_service->isCrawler();
-    }
   }
 
   /**
