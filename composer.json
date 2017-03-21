@@ -55,7 +55,7 @@
         "name": "drupal/tb_megamenu",
         "version": "8.1.0-alpha1",
         "type": "drupal-module",
-        "dist": {
+        "source": {
           "url": "git://git.drupal.org/project/tb_megamenu.git",
           "type": "git",
           "reference": "origin/master"
@@ -93,9 +93,8 @@
         "version": "4.2.0",
         "type": "drupal-library",
         "dist": {
-          "url": "https://github.com/enyo/dropzone",
-          "type": "git",
-          "reference": "origin/master"
+          "url": "https://github.com/enyo/dropzone/archive/v4.2.0.zip",
+          "type": "zip"
         }
       }
     },
@@ -105,7 +104,7 @@
         "name": "douglascrockford/json2",
         "version": "2.0",
         "type": "drupal-library",
-        "dist": {
+        "source": {
           "url": "https://github.com/douglascrockford/JSON-js",
           "type": "git",
           "reference": "origin/master"
@@ -119,9 +118,8 @@
         "version": "v1.8.1",
         "type": "drupal-library",
         "dist": {
-          "url": "https://github.com/briancherne/jquery-hoverIntent",
-          "type": "git",
-          "reference": "origin/master"
+          "url": "https://github.com/briancherne/jquery-hoverIntent/archive/v1.8.1.zip",
+          "type": "zip"
         }
       }
     },
@@ -131,7 +129,7 @@
         "name": "tobia/jquery.pause",
         "version": "master",
         "type": "drupal-library",
-        "dist": {
+        "source": {
           "url": "https://github.com/tobia/Pause",
           "type": "git",
           "reference": "origin/master"
@@ -145,9 +143,8 @@
         "version": "1.6.0",
         "type": "drupal-library",
         "dist": {
-          "url": "https://github.com/kenwheeler/slick",
-          "type": "git",
-          "reference": "origin/master"
+          "url": "https://github.com/kenwheeler/slick/archive/1.6.0.zip",
+          "type": "zip"
         }
       }
     },
@@ -181,7 +178,7 @@
         "name": "derhasi/viewfield",
         "version": "2.0",
         "type": "drupal-module",
-        "dist": {
+        "source": {
           "url": "https://github.com/derhasi/viewfield",
           "type": "git",
           "reference": "origin/8.x-2.x"

@@ -112,13 +112,18 @@ div.view {
     margin-bottom: 50px;
   }
   .view-content {
-    text-align: left;
     @extend .row;
+    text-align: center;
   }
   .views-row {
     @extend .col-sm-3;
+    text-align: left;
+    display: inline-block;
+    float: none;
+    vertical-align: top;
     margin-bottom: 30px;
     @include mobile {
+      display: block;
       max-width: 234px;
       margin-left: auto;
       margin-right: auto;
