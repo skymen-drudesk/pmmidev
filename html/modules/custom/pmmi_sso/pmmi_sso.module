@@ -26,18 +26,6 @@ function pmmi_sso_help($route_name, RouteMatchInterface $route_match) {
 }
 
 /**
- * Implements hook_theme().
- */
-function pmmi_sso_theme() {
-  return [
-    'pmmi_sso' => [
-      'template' => 'pmmi_sso',
-      'render element' => 'children',
-    ],
-  ];
-}
-
-/**
  * Implements hook_form_FORM_ID_alter().
  *
  * Alters the user entity form.
@@ -84,11 +72,11 @@ function pmmi_sso_form_user_login_form_alter(&$form, FormStateInterface $form_st
 
   $enabled = $config->get('user_accounts.login_link_enabled');
   if ($enabled) {
-    $url = new Url('pmmi_sso.login', array(), array(
-      'attributes' => array(
-        'class' => array('pmmi-sso-login-link'),
-      ),
-    ));
+    $url = new Url('pmmi_sso.login', [], [
+      'attributes' => [
+        'class' => ['pmmi-sso-login-link'],
+      ],
+    ]);
     $form['pmmi_sso_login_link'] = [
       '#type' => 'link',
       '#url' => $url,
@@ -101,7 +89,8 @@ function pmmi_sso_form_user_login_form_alter(&$form, FormStateInterface $form_st
 /**
  * Implements hook_cron().
  *
- * Queues news feeds for updates once their refresh interval has elapsed.
+ * Queues Personify Service data for updates once their refresh interval has
+ * elapsed.
  */
 function pmmi_sso_cron() {
   // We access our configuration.
@@ -142,7 +131,7 @@ function pmmi_sso_cron() {
       if (!empty($companies)) {
         $queue = \Drupal::queue('pmmi_sso_personify_companies');
         foreach ($companies as $id => $company) {
-          $queue->createItem(array('id' => $id, 'pid' => $company));
+          $queue->createItem(['id' => $id, 'pid' => $company]);
         }
         \Drupal::state()
           ->set('cron_pmmi_sso.pc_execution', REQUEST_TIME + $main_interval_pc);

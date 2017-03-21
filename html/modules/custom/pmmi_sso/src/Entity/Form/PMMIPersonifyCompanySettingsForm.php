@@ -56,7 +56,7 @@ class PMMIPersonifyCompanySettingsForm extends FormBase {
       '#min' => 100,
       '#step' => 100,
       '#description' => $this->t(
-        "Time in seconds, from the user's last login. Used as an event to 
+        "Time in seconds from the user's last login. Used as an event to 
         update the relationships between the user and companies."
       ),
       '#default_value' => $this->config('pmmi_sso.company.settings')->get('time_duration'),

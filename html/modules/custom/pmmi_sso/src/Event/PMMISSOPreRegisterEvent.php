@@ -63,7 +63,7 @@ class PMMISSOPreRegisterEvent extends Event {
    *
    * @var array
    */
-  protected $drupalRoles = array();
+  protected $drupalRoles = [];
 
   /**
    * An array of property values to assign to the user account on registration.

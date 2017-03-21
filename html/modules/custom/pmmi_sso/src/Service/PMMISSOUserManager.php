@@ -73,7 +73,12 @@ class PMMISSOUserManager {
    */
   protected $tokenStorage;
 
-  protected $provider = 'pmmi_sso';
+  /**
+   * Provider name.
+   *
+   * @var string
+   */
+  protected $provider = PMMISSOHelper::PROVIDER;
 
   /**
    * PMMISSOUserManager constructor.
@@ -166,7 +171,7 @@ class PMMISSOUserManager {
           'info' => REQUEST_TIME,
           'roles' => REQUEST_TIME,
         ];
-        $this->userData->set('pmmi_sso', $account->id(), 'last_update_data', $update_data);
+        $this->userData->set(PMMISSOHelper::PROVIDER, $account->id(), 'last_update_data', $update_data);
       }
       else {
         throw new PMMISSOLoginException("Cannot register user, an event listener denied access.");
@@ -223,27 +228,6 @@ class PMMISSOUserManager {
     $token_entity->save();
   }
 
-//  /**
-//   * Store the Session ID and token for single-log-out purposes.
-//   *
-//   * @param string $session_id
-//   *   The session ID, to be used to kill the session later.
-//   * @param string $token
-//   *   The PMMI SSO service token to be used as the lookup key.
-//   */
-//  protected function storeLoginSessionData($session_id, $token) {
-//    if ($this->settings->get('pmmi_sso.settings')
-//        ->get('logout.enable_single_logout') === TRUE
-//    ) {
-//      $this->connection->insert('pmmi_sso_login_data')
-//        ->fields(
-//          array('sid', 'plainsid', 'token', 'created'),
-//          array(Crypt::hashBase64($session_id), $session_id, $token, time())
-//        )
-//        ->execute();
-//    }
-//  }
-
   /**
    * Return PMMI SSO user ID for account, or FALSE if it doesn't have one.
    *
@@ -254,7 +238,7 @@ class PMMISSOUserManager {
    *   The PMMI SSO username if it exists, or FALSE otherwise.
    */
   public function getSsoUserIdForAccount($uid) {
-    return $this->authmap->get($uid, 'pmmi_sso');
+    return $this->authmap->get($uid, $this->provider);
   }
 
   /**
@@ -267,7 +251,7 @@ class PMMISSOUserManager {
    *   The uid of the user associated with the $sso_user_id, FALSE otherwise.
    */
   public function getUidForSsoUserId($sso_user_id) {
-    return $this->authmap->getUid($sso_user_id, 'pmmi_sso');
+    return $this->authmap->getUid($sso_user_id, $this->provider);
   }
 
   /**
@@ -279,7 +263,7 @@ class PMMISSOUserManager {
    *   The PMMI SSO user ID.
    */
   public function setSsoUserIdForAccount(UserInterface $account, $sso_user_id) {
-    $this->authmap->save($account, 'pmmi_sso', $sso_user_id);
+    $this->authmap->save($account, $this->provider, $sso_user_id);
   }
 
   /**

@@ -15,10 +15,10 @@ class PMMIPersonifyCompanyStorageSchema extends SqlContentEntityStorageSchema {
    */
   protected function getEntitySchema(ContentEntityTypeInterface $entity_type, $reset = FALSE) {
     $schema = parent::getEntitySchema($entity_type, $reset = FALSE);
-    $schema['pmmi_personify_company']['unique keys'] += array('personify_id' => array('personify_id'));
-    $schema['pmmi_personify_company']['indexes'] += array(
-      'pmmi_personify_company__mapping' => array('id', 'personify_id'),
-    );
+    $schema['pmmi_personify_company']['unique keys'] += ['personify_id' => ['personify_id']];
+    $schema['pmmi_personify_company']['indexes'] += [
+      'pmmi_personify_company__mapping' => ['id', 'personify_id'],
+    ];
     return $schema;
   }
 

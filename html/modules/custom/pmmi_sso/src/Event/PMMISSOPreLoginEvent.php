@@ -59,7 +59,7 @@ class PMMISSOPreLoginEvent extends Event {
    *
    * @var array
    */
-  protected $companiesId = array();
+  protected $companiesId = [];
 
   /**
    * Constructor.
@@ -145,7 +145,7 @@ class PMMISSOPreLoginEvent extends Event {
    * @param array $companies_id
    *   Array of company IDs.
    */
-  public function setCompanies($companies_id) {
+  public function setCompanies(array $companies_id) {
     $this->companiesId = $companies_id;
   }
 

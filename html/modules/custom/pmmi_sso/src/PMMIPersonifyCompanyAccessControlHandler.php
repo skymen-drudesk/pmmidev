@@ -21,9 +21,9 @@ class PMMIPersonifyCompanyAccessControlHandler extends EntityAccessControlHandle
     /** @var \Drupal\pmmi_sso\Entity\PMMIPersonifyCompanyInterface $entity */
     switch ($operation) {
       case 'view':
-//        if (!$entity->isPublished()) {
-//          return AccessResult::allowedIfHasPermission($account, 'view unpublished personify company entities');
-//        }
+        if (!$entity->isPublished()) {
+          return AccessResult::allowedIfHasPermission($account, 'view unpublished personify company entities');
+        }
         return AccessResult::allowedIfHasPermission($account, 'view published personify company entities');
 
       case 'update':
@@ -35,13 +35,6 @@ class PMMIPersonifyCompanyAccessControlHandler extends EntityAccessControlHandle
 
     // Unknown operation, no opinion.
     return AccessResult::neutral();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function checkCreateAccess(AccountInterface $account, array $context, $entity_bundle = NULL) {
-    return AccessResult::allowedIfHasPermission($account, 'add personify company entities');
   }
 
 }

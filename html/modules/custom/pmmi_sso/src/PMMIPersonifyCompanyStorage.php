@@ -16,9 +16,9 @@ class PMMIPersonifyCompanyStorage extends SqlContentEntityStorage implements PMM
    * {@inheritdoc}
    */
   public function getExistCompanyByPersonifyId(array $ids) {
-    $query = $this->database->select($this->getBaseTable(), 'pc');
-    $query->fields('pc', ['id', 'personify_id']);
-    $query->condition('pc.personify_id', $ids, 'IN');
+    $query = $this->database->select($this->getBaseTable(), 'pc')
+      ->fields('pc', ['id', 'personify_id'])
+      ->condition('pc.personify_id', $ids, 'IN');
     return $query->execute()->fetchAllKeyed();
   }
 
@@ -26,9 +26,9 @@ class PMMIPersonifyCompanyStorage extends SqlContentEntityStorage implements PMM
    * {@inheritdoc}
    */
   public function getCompaniesForUpdate($interval) {
-    $query = $this->database->select($this->getBaseTable(), 'pc');
-    $query->fields('pc', ['id', 'personify_id']);
-    $query->condition('pc.changed', REQUEST_TIME - $interval, '<');
+    $query = $this->database->select($this->getBaseTable(), 'pc')
+      ->fields('pc', ['id', 'personify_id'])
+      ->condition('pc.changed', REQUEST_TIME - $interval, '<');
     return $query->execute()->fetchAllKeyed();
   }
 

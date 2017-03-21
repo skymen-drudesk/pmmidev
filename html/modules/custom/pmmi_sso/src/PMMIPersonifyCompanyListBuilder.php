@@ -4,8 +4,6 @@ namespace Drupal\pmmi_sso;
 
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Entity\EntityListBuilder;
-use Drupal\Core\Routing\LinkGeneratorTrait;
-use Drupal\Core\Url;
 
 /**
  * Defines a class to build a listing of Personify company entities.
@@ -14,16 +12,17 @@ use Drupal\Core\Url;
  */
 class PMMIPersonifyCompanyListBuilder extends EntityListBuilder {
 
-  use LinkGeneratorTrait;
-
   /**
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['id'] = $this->t('ID');
-    $header['personify_id'] = $this->t('Personify company ID');
-    $header['name'] = $this->t('Name');
-    $header['code'] = $this->t('Customer Class Code');
+    $header = [
+      'id' => $this->t('ID'),
+      'personify_id' => $this->t('Personify company ID'),
+      'name' => $this->t('Name'),
+      'code' => $this->t('Customer Class Code'),
+      'status' => $this->t('Status'),
+    ];
     return $header + parent::buildHeader();
   }
 
@@ -32,17 +31,13 @@ class PMMIPersonifyCompanyListBuilder extends EntityListBuilder {
    */
   public function buildRow(EntityInterface $entity) {
     /* @var $entity \Drupal\pmmi_sso\Entity\PMMIPersonifyCompany */
-    $row['id'] = $entity->id();
-    $row['personify_id'] = $entity->getPersonifyId();
-    $row['name'] = $this->l(
-      $entity->label(),
-      new Url(
-        'entity.pmmi_personify_company.edit_form', array(
-          'pmmi_personify_company' => $entity->id(),
-        )
-      )
-    );
-    $row['code'] = $entity->getCode();
+    $row = [
+      'id' => $entity->id(),
+      'personify_id' => $entity->getPersonifyId(),
+      'name' => $entity->toLink($entity->label()),
+      'code' => $entity->getCode(),
+      'status' => $entity->isPublished() ? $this->t('Published') : $this->t('Not published'),
+    ];
     return $row + parent::buildRow($entity);
   }
 

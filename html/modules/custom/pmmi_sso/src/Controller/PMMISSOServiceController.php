@@ -2,9 +2,7 @@
 
 namespace Drupal\pmmi_sso\Controller;
 
-use Drupal\Component\Utility\UrlHelper;
 use Drupal\pmmi_sso\Exception\PMMISSOLoginException;
-use Drupal\pmmi_sso\Exception\PMMISSOSloException;
 use Drupal\pmmi_sso\PMMISSOPropertyBag;
 use Drupal\pmmi_sso\PMMISSORedirectResponse;
 use Drupal\pmmi_sso\Service\PMMISSOHelper;
@@ -17,8 +15,6 @@ use Drupal\pmmi_sso\Service\PMMISSOValidator;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Drupal\pmmi_sso\Service\PMMISSOLogout;
-use Symfony\Component\HttpFoundation\Response;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 /**
@@ -50,13 +46,6 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
   protected $ssoUserManager;
 
   /**
-   * Used to log a user out due to a single log out request.
-   *
-   * @var \Drupal\pmmi_sso\Service\PMMISSOLogout
-   */
-  protected $ssoLogout;
-
-  /**
    * Used to retrieve request parameters.
    *
    * @var \Symfony\Component\HttpFoundation\RequestStack
@@ -86,8 +75,8 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
    *   The PMMI SSO Validator service.
    * @param PMMISSOUserManager $sso_user_manager
    *   The PMMI SSO User Manager service.
-   * @param PMMISSOLogout $sso_logout
-   *   The PMMI SSO Logout service.
+   * @param \Symfony\Component\HttpFoundation\RequestStack $request_stack
+   *   The request stack.
    * @param UrlGeneratorInterface $url_generator
    *   The URL generator.
    */
@@ -95,14 +84,12 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
     PMMISSOHelper $sso_helper,
     PMMISSOValidator $sso_validator,
     PMMISSOUserManager $sso_user_manager,
-//    PMMISSOLogout $sso_logout,
     RequestStack $request_stack,
     UrlGeneratorInterface $url_generator
   ) {
     $this->ssoHelper = $sso_helper;
     $this->ssoValidator = $sso_validator;
     $this->ssoUserManager = $sso_user_manager;
-//    $this->ssoLogout = $sso_logout;
     $this->requestStack = $request_stack;
     $this->urlGenerator = $url_generator;
   }
@@ -115,7 +102,6 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
       $container->get('pmmi_sso.helper'),
       $container->get('pmmi_sso.validator'),
       $container->get('pmmi_sso.user_manager'),
-//      $container->get('pmmi_sso.logout'),
       $container->get('request_stack'),
       $container->get('url_generator')
     );
@@ -124,7 +110,7 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
   /**
    * Main point of communication between PMMI SSO server and the Drupal site.
    *
-   * The path that this controller/action handle are always set to the "service"
+   * The path that this controller/action handles is always set to the "service"
    * url when authenticating with the PMMI SSO server, so PMMI SSO server
    * communicates back to the Drupal site using this controller action. That's
    * why there's so much going on in here - it needs to process a few different
@@ -133,29 +119,16 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
   public function handle() {
     $request = $this->requestStack->getCurrentRequest();
 
-//    // First, check if this is a single-log-out (SLO) request from the server.
-//    if ($request->request->has('logoutRequest')) {
-//      try {
-//        $this->ssoLogout->handleSlo($request->request->get('logoutRequest'));
-//      }
-//      catch (PMMISSOSloException $e) {
-//        $this->ssoHelper->log($e->getMessage());
-//      }
-//      // Always return a 200 code. PMMI SSO Server doesn’t care either way what
-//      // happens here, since it is a fire-and-forget approach taken.
-//      return Response::create('', 200);
-//    }
-
     // We will be redirecting the user below. To prevent the PMMISSOSubscriber
     // from initiating an automatic authentiation on the that request (like
     // gateway auth) and potentially creating an authentication loop,
-    // we set a session variable instructing the PMMISSOSubscriber skip
+    // we set a session variable instructing the PMMISSOSubscriber to skip
     // auto auth for that request.
     $request->getSession()->set('sso_temp_disable_auto_auth', TRUE);
 
     // Our PMMI SSO service will need to reconstruct the original service URL
     // when validating the token. We always know what the base URL for
-    // the service URL (it's this page), but there may be some query params
+    // the service URL (is this page), but there may be some query params
     // attached as well (like a destination param) that we need to pass in
     // as well. So, later, need detach the token param, and pass the rest off.
     $service_params = $request->query->all();
@@ -170,9 +143,8 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
      * $internal - represent, that token is Internal use.
      *
      * There is a token present, meaning PMMISSO server or internal request has
-     * returned the browser
-     * to the Drupal site so we can authenticate the user locally using the
-     * token.
+     * returned the browser to the Drupal site so we can authenticate the user
+     * locally using the token.
      */
 
     // There is a token present, meaning PMMISSO server has returned the browser
@@ -202,6 +174,9 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
       if ($this->ssoHelper->getTokenAction() == PMMISSOHelper::TOKEN_ACTION_FORCE_LOGIN) {
         // Validation failed, redirect to homepage and set message.
         $this->ssoHelper->log($e->getMessage());
+        $this->setMessage($this->t(
+          'Your session has expired, and you have been logged out.'
+        ), 'status');
         $this->handleReturnToParameter($request);
         user_logout();
         $login_url = $this->ssoHelper->generateLoginUrl($this->decodedPath);
@@ -211,7 +186,7 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
         // Validation failed, redirect to homepage and set message.
         $this->ssoHelper->log($e->getMessage());
         $this->setMessage($this->t(
-          'Your session is expired. You have been logged out. Please, log in, 
+          'Your session has expired, and you have been logged out. Please log in, 
           to see restricted information.'
         ), 'status');
         $this->handleReturnToParameter($request);
@@ -229,13 +204,14 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
       // validation request to authenticate the user locally on the Drupal site.
       try {
         $this->ssoUserManager->login($sso_validation_info);
-        $this->setMessage($this->t('You have been logged in.'));
-      } catch (PMMISSOLoginException $e) {
+        $this->setMessage($this->t('You have been logging in.'));
+      }
+      catch (PMMISSOLoginException $e) {
         $this->ssoHelper->log($e->getMessage());
         $this->setMessage($this->t('There was a problem logging in, please contact a site administrator.'), 'error');
       }
     }
-    // And finally redirect the user to the homepage, or so a specific
+    // And finally redirect the user to the homepage, or to a specific
     // destination found in the destination param (like the page they were on
     // prior to initiating authentication).
     $this->handleReturnToParameter($request);
@@ -281,8 +257,6 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
     if ($request->query->has('ue')) {
       $decoded_path = base64_decode($request->query->get('ue'));
       $this->decodedPath = $decoded_path;
-
-
     }
   }
 

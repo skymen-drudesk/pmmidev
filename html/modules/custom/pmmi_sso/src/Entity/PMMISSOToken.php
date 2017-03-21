@@ -33,8 +33,8 @@ use Drupal\user\UserInterface;
  *     "uuid" = "uuid"
  *   },
  *   links = {
- *     "canonical" = "/admin/config/pmmi_sso/token/{pmmi_sso_token}",
- *     "delete-form" = "/admin/config/pmmi_sso/token/{pmmi_sso_token}/delete"
+ *     "canonical" = "/admin/pmmi_sso/token/{pmmi_sso_token}",
+ *     "delete-form" = "/admin/pmmi_sso/token/{pmmi_sso_token}/delete"
  *   }
  * )
  */
@@ -67,22 +67,22 @@ class PMMISSOToken extends ContentEntityBase implements PMMISSOTokenInterface {
       ->setDefaultValueCallback('Drupal\node\Entity\Node::getCurrentUserId')
       ->setTranslatable(FALSE)
       ->setReadOnly(TRUE)
-      ->setDisplayOptions('view', array(
+      ->setDisplayOptions('view', [
         'label' => 'inline',
         'type' => 'author',
         'weight' => 1,
-      ))
+      ])
       ->setCardinality(1)
-      ->setDisplayOptions('form', array(
+      ->setDisplayOptions('form', [
         'type' => 'entity_reference_autocomplete',
         'weight' => 0,
-        'settings' => array(
+        'settings' => [
           'match_operator' => 'CONTAINS',
           'size' => '60',
           'autocomplete_type' => 'tags',
           'placeholder' => '',
-        ),
-      ));
+        ],
+      ]);
     $fields['auth_id'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Auth User ID'))
       ->setDescription(t('The Auth user ID of the user this access token is authenticating.'))
@@ -91,53 +91,53 @@ class PMMISSOToken extends ContentEntityBase implements PMMISSOTokenInterface {
     $fields['value'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Token'))
       ->setDescription(t('The token value.'))
-      ->setSettings(array(
+      ->setSettings([
         'max_length' => 128,
         'text_processing' => 0,
-      ))
+      ])
       ->setRequired(TRUE)
-      ->setDisplayOptions('view', array(
+      ->setDisplayOptions('view', [
         'label' => 'inline',
         'type' => 'timestamp',
         'weight' => 4,
-      ));
+      ]);
     $fields['created'] = BaseFieldDefinition::create('created')
       ->setLabel(t('Created'))
       ->setDescription(t('The time that the entity was created.'))
-      ->setDisplayOptions('view', array(
+      ->setDisplayOptions('view', [
         'label' => 'inline',
         'type' => 'timestamp',
         'weight' => 5,
-      ));
+      ]);
     $fields['changed'] = BaseFieldDefinition::create('changed')
       ->setLabel(t('Changed'))
       ->setDescription(t('The time that the entity was last edited.'))
-      ->setDisplayOptions('view', array(
+      ->setDisplayOptions('view', [
         'label' => 'inline',
         'type' => 'timestamp',
         'weight' => 6,
-      ));
+      ]);
     $fields['expire'] = BaseFieldDefinition::create('timestamp')
       ->setLabel(t('Expire'))
       ->setDescription(t('The time when the token expires.'))
-      ->setDisplayOptions('form', array(
+      ->setDisplayOptions('form', [
         'type' => 'datetime_timestamp',
         'weight' => 7,
-      ))
-      ->setDisplayOptions('view', array(
+      ])
+      ->setDisplayOptions('view', [
         'label' => 'inline',
         'type' => 'timestamp',
         'weight' => 7,
-      ))
+      ])
       ->setRequired(TRUE);
     $fields['status'] = BaseFieldDefinition::create('boolean')
       ->setLabel(t('Publishing status'))
       ->setDescription(t('A boolean indicating whether the token is available.'))
-      ->setDisplayOptions('view', array(
+      ->setDisplayOptions('view', [
         'label' => 'inline',
         'type' => 'boolean',
         'weight' => 8,
-      ))
+      ])
       ->setRevisionable(FALSE)
       ->setTranslatable(TRUE)
       ->setDefaultValue(TRUE);

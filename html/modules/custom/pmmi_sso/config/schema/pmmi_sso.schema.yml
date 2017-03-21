@@ -119,19 +119,19 @@ pmmi_sso.update.settings:
       label: 'Enable cron jobs'
     main_interval_users:
       type: number
-      label: 'Time through which to update the Users data'
+      label: 'Frequency at which to update the Users data'
     interval_block:
       type: number
-      label: 'Time through which to update the user block status'
+      label: 'Frequency at which to update the user block status'
     interval_info:
       type: number
-      label: 'Time through which to update the user information'
+      label: 'Frequency at which to update the user information'
     interval_roles:
       type: number
-      label: 'Time through which to update the user roles'
+      label: 'Frequency at which to update the user roles'
     main_interval_companies:
       type: number
-      label: 'Time through which to update the Personify Company'
+      label: 'Frequency of cron jobs for Personify Companies updates'
     interval_company:
       type: number
-      label: 'Time through which to update the Personify Company'
+      label: 'Frequency at which to update the Personify Company'

@@ -18,21 +18,28 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 class PMMISSOHelper {
 
   /**
-   * Gateway config: never check preemptively to see if the user is logged in.
+   * Provider name.
+   *
+   * @var string
+   */
+  const PROVIDER = 'pmmi_sso';
+
+  /**
+   * A String representation for the SSO service.
    *
    * @var string
    */
   const SSO = 'sso';
 
   /**
-   * Gateway config: check once per session to see if the user is logged in.
+   * A string representation for the SSO service.
    *
    * @var string
    */
   const IMS = 'ims';
 
   /**
-   * Gateway config: check once per session to see if the user is logged in.
+   * A string representation for the Data Service.
    *
    * @var string
    */
@@ -60,28 +67,28 @@ class PMMISSOHelper {
   const CHECK_ALWAYS = 0;
 
   /**
-   * Token config: TokenTTL check preemptively to see if the user is logged in.
+   * Token config: TokenTTL check disabled.
    *
    * @var int
    */
   const TOKEN_DISABLED = 0;
 
   /**
-   * Token config: TokenTTL check preemptively to see if the user is logged in.
+   * Token config: Frequency mode to check if token is valid..
    *
    * @var int
    */
   const TOKEN_TTL = 1;
 
   /**
-   * Token config: TokenTTL check preemptively to see if the user is logged in.
+   * Logs out if the user's token has expired.
    *
    * @var int
    */
   const TOKEN_ACTION_LOGOUT = 0;
 
   /**
-   * Token config: TokenTTL check preemptively to see if the user is logged in.
+   * Redirect to the SSO Login page if the user's token has expired.
    *
    * @var int
    */
@@ -109,7 +116,7 @@ class PMMISSOHelper {
   const EVENT_PRE_LOGIN = 'pmmi_sso.pre_login';
 
   /**
-   * Event type identifier for pre auth events.
+   * Event type identifier for pre redirect events.
    *
    * @var string
    */
@@ -200,7 +207,7 @@ class PMMISSOHelper {
     $this->session = $session;
     $this->settings = $config_factory->get('pmmi_sso.settings');
     $this->companySettings = $config_factory->get('pmmi_sso.company.settings');
-    $this->loggerChannel = $logger_factory->get('pmmi_sso');
+    $this->loggerChannel = $logger_factory->get(PMMISSOHelper::PROVIDER);
     $this->crypt = $crypt;
   }
 
@@ -259,12 +266,12 @@ class PMMISSOHelper {
   public function buildSsoServiceQuery($path, array $options, array $parameter, $ims = FALSE) {
     $service_uri = $ims ? $this->getImsUri() : $this->getServiceUri();
     $service_url = $service_uri . '/' . $path;
-    $query = array();
-    $result = array();
+    $query = [];
+    $result = [];
     foreach ($options as $option) {
       switch ($option) {
         case 'vi':
-          $query['vendorUsername'] = $this->getVu();
+          $query['vendorIdentifier'] = $this->getVi();
           break;
 
         case 'vu':
@@ -298,7 +305,7 @@ class PMMISSOHelper {
    *   The options for building Data Service Request.
    */
   public function buildDataServiceQuery($collection, array $query) {
-    $result = array();
+    $result = [];
     $query = UrlHelper::buildQuery($query);
     $service_url = $this->settings->get('data_service.endpoint') . '/' . $collection . '?' . $query;
     $auth_header = [
@@ -408,7 +415,7 @@ class PMMISSOHelper {
    */
   public function getRoleMapping() {
     $map = $this->settings->get('user_accounts.role_mapping');
-    $roles = array();
+    $roles = [];
     if (!empty($map)) {
       foreach ($map as $role_id => $role) {
         $roles[$role_id] = $role['drupal_role_label'];
@@ -428,7 +435,7 @@ class PMMISSOHelper {
    */
   public function getAllowedRoles($service) {
     $map = $this->settings->get('user_accounts.role_mapping');
-    $roles = array();
+    $roles = [];
     if (!empty($map)) {
       foreach ($map as $role_id => $role) {
         if ($service == PMMISSOHelper::IMS && $role['service'] == PMMISSOHelper::IMS) {
@@ -458,7 +465,7 @@ class PMMISSOHelper {
    */
   public function filterAllowedRoles($service, array $roles_param) {
     $map = $this->settings->get('user_accounts.role_mapping');
-    $roles = array();
+    $roles = [];
     if (!empty($map)) {
       foreach ($map as $role_id => $role) {
         if (
@@ -544,30 +551,50 @@ class PMMISSOHelper {
    * Get the time duration setting for an update Personify company entity.
    *
    * @return int
-   *   The IMS vendor password (HEX).
+   *   The time duration.
    */
   public function getPceDurationTime() {
     return $this->companySettings->get('time_duration');
   }
 
   /**
-   * Get the Vendor initilization block (HEX) to the PMMI SSO server.
+   * Get the Token check frequency mode.
    *
-   * @return string
-   *   The Vendor initilization block (HEX).
+   * @return int
+   *   The token frequency mode.
    */
   public function getTokenFrequency() {
     return $this->settings->get('gateway.token_frequency');
   }
 
   /**
-   * Get the Vendor initilization block (HEX) to the PMMI SSO server.
+   * Get action for the failed Token validation result.
    *
-   * @return string
-   *   The Vendor initilization block (HEX).
+   * @return int
+   *   The saved action setting.
    */
   public function getTokenAction() {
     return $this->settings->get('gateway.token_action');
+  }
+
+  /**
+   * Get the frequency mode for the Gateway feature.
+   *
+   * @return int
+   *   Frequency mode of the gateway feature.
+   */
+  public function getGatewayFrequency() {
+    return $this->settings->get('gateway.check_frequency');
+  }
+
+  /**
+   * Get the saved paths for the gateway & token feature.
+   *
+   * @return string
+   *   The paths.
+   */
+  public function getGatewayPaths() {
+    return $this->settings->get('gateway.paths');
   }
 
   /**
@@ -585,47 +612,6 @@ class PMMISSOHelper {
     }
   }
 
-//  /**
-//   * Return the logout URL for the PMMI SSO server.
-//   *
-//   * @param \Symfony\Component\HttpFoundation\Request $request
-//   *   The current request, to provide base url context.
-//   *
-//   * @return string
-//   *   The fully constructed server logout URL.
-//   */
-//  public function getServerLogoutUrl(Request $request) {
-//    $base_url = $this->getServerBaseUrl() . 'logout';
-//    if ($this->settings->get('logout.logout_destination') != '') {
-//      $destination = $this->settings->get('logout.logout_destination');
-//      if ($destination == '<front>') {
-//        // If we have '<front>', resolve the path.
-//        $return_url = $this->urlGenerator->generate($destination, array(), TRUE);
-//      }
-//      elseif ($this->isExternal($destination)) {
-//        // If we have an absolute URL, use that.
-//        $return_url = $destination;
-//      }
-//      else {
-//        // This is a regular Drupal path.
-//        $return_url = $request->getSchemeAndHttpHost() . '/' . ltrim($destination, '/');
-//      }
-//
-//      // PMMI SSO 2.0 uses 'url' param, while newer versions use 'service'.
-//      if ($this->getSsoProtocolVersion() == '2.0') {
-//        $params['url'] = $return_url;
-//      }
-//      else {
-//        $params['service'] = $return_url;
-//      }
-//
-//      return $base_url . '?' . UrlHelper::buildQuery($params);
-//    }
-//    else {
-//      return $base_url;
-//    }
-//  }
-
   /**
    * Encapsulate UrlHelper::isExternal.
    *
@@ -640,56 +626,6 @@ class PMMISSOHelper {
   protected function isExternal($url) {
     return UrlHelper::isExternal($url);
   }
-
-//  /**
-//   * Check if the current logout request should be served by ssologout.
-//   *
-//   * @param \Symfony\Component\HttpFoundation\Request $request
-//   *   The request instance.
-//   *
-//   * @return bool
-//   *   Whether to process logout as ssologout.
-//   */
-//  public function provideSsoLogoutOverride(Request $request) {
-//    if ($this->settings->get('logout.pmmi_sso_logout') == TRUE) {
-//      if ($this->isSsoSession($request->getSession()->getId())) {
-//        return TRUE;
-//      }
-//    }
-//
-//    return FALSE;
-//  }
-//
-//  /**
-//   * Check if the given session ID was authenticated with PMMI SSO.
-//   *
-//   * @param string $session_id
-//   *   The session ID to look up.
-//   *
-//   * @return bool
-//   *   Whether or not this session was authenticated with PMMI SSO.
-//   *
-//   * @codeCoverageIgnore
-//   */
-//  public function isSsoSession($session_id) {
-//    $results = $this->connection->select('pmmi_sso_login_data')
-//      ->fields('pmmi_sso_login_data', array('sid'))
-//      ->condition('sid', Crypt::hashBase64($session_id))
-//      ->execute()
-//      ->fetchAll();
-//
-//    return !empty($results);
-//  }
-//
-//  /**
-//   * Whether or not session IDs are stored for single logout.
-//   *
-//   * @return bool
-//   *   Whether or not single logout is enabled in the configuration.
-//   */
-//  public function getSingleLogOut() {
-//    return $this->settings->get('logout.enable_single_logout');
-//  }
 
   /**
    * The amount of time to allow a connection to the PMMI SSO server to take.

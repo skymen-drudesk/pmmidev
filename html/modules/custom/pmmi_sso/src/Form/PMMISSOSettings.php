@@ -70,11 +70,11 @@ class PMMISSOSettings extends ConfigFormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->config('pmmi_sso.settings');
-    $form['sso'] = array(
+    $form['sso'] = [
       '#type' => 'fieldset',
       '#title' => 'Personify SSO Services Data',
-      '#description' => $this->t("Personify SSO service URI's and authentication data"),
-    );
+      '#description' => $this->t("Personify SSO service URIs and authentication data"),
+    ];
     $form['login_uri'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Login URI'),
@@ -129,12 +129,12 @@ class PMMISSOSettings extends ConfigFormBase {
       '#required' => TRUE,
       '#default_value' => $config->get('vib'),
     ];
-    $form['ims'] = array(
+    $form['ims'] = [
       '#type' => 'fieldset',
       '#title' => 'Personify SSO IMS Data',
       '#group' => 'sso',
       '#description' => $this->t("Personify IM service URI and authentication data"),
-    );
+    ];
     $form['ims_uri'] = [
       '#type' => 'textfield',
       '#title' => $this->t('IM Service URI'),
@@ -162,12 +162,12 @@ class PMMISSOSettings extends ConfigFormBase {
       '#required' => TRUE,
       '#default_value' => $config->get('ims_vp'),
     ];
-    $form['data_service'] = array(
+    $form['data_service'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Personify Data Service Information'),
       '#tree' => TRUE,
-      '#description' => $this->t('Personify Endpoint and authentication data for the  PMMI Data Service'),
-    );
+      '#description' => $this->t('Personify Endpoint and authentication data for the PMMI Data Service'),
+    ];
     $form['data_service']['endpoint'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Personify endpoint'),
@@ -192,12 +192,12 @@ class PMMISSOSettings extends ConfigFormBase {
       '#required' => TRUE,
       '#default_value' => $config->get('data_service.password'),
     ];
-    $form['user_accounts'] = array(
+    $form['user_accounts'] = [
       '#type' => 'details',
       '#title' => $this->t('SSO User Account Management'),
       '#open' => TRUE,
       '#tree' => TRUE,
-    );
+    ];
     $roles = user_role_names(TRUE);
     unset($roles[RoleInterface::AUTHENTICATED_ID]);
     $form['user_accounts']['role_mapping'] = [
@@ -212,25 +212,25 @@ class PMMISSOSettings extends ConfigFormBase {
       ],
       '#attributes' => ['id' => 'pmmi-sso-roles-table'],
       '#empty' => $this->t('No mapping available.'),
-      '#caption' => $this->t('You can`t delete all role mappings.'),
+      '#caption' => $this->t("You can't delete all role mappings."),
     ];
-    $services = array(
+    $services = [
       PMMISSOHelper::IMS => 'IMS Service',
       PMMISSOHelper::DATA => 'Data Service',
-    );
+    ];
     if ($roles_map = $config->get('user_accounts.role_mapping')) {
       $roles_count = count($roles_map);
       foreach ($roles_map as $role_id => $role) {
-        $form['user_accounts']['role_mapping'][$role_id] = array(
-          'sso_role' => array(
+        $form['user_accounts']['role_mapping'][$role_id] = [
+          'sso_role' => [
             '#title' => $this->t('SSO Role'),
             '#title_display' => 'invisible',
             '#type' => 'textfield',
             '#default_value' => $role['sso_role'],
             '#size' => 20,
             '#required' => TRUE,
-          ),
-          'drupal_role' => array(
+          ],
+          'drupal_role' => [
             '#title' => $this->t('Drupal Role'),
             '#title_display' => 'invisible',
             '#type' => 'select',
@@ -238,8 +238,8 @@ class PMMISSOSettings extends ConfigFormBase {
             '#default_value' => $role_id,
             '#required' => TRUE,
             '#options' => $roles,
-          ),
-          'service' => array(
+          ],
+          'service' => [
             '#title' => $this->t('Service Provider'),
             '#title_display' => 'invisible',
             '#type' => 'select',
@@ -247,8 +247,8 @@ class PMMISSOSettings extends ConfigFormBase {
             '#default_value' => $role['service'],
             '#required' => TRUE,
             '#options' => $services,
-          ),
-          'committee_id' => array(
+          ],
+          'committee_id' => [
             '#title' => $this->t('SSO Role'),
             '#title_display' => 'invisible',
             '#type' => 'textfield',
@@ -256,16 +256,16 @@ class PMMISSOSettings extends ConfigFormBase {
             '#size' => 20,
             '#maxlength' => 8,
             '#pattern' => '[A-Z][0-9]{7}',
-            '#states' => array(
-              'disabled' => array(
-                'select[name="user_accounts[role_mapping][' . $role_id . '][service]"]' => array('value' => PMMISSOHelper::IMS),
-              ),
-              'required' => array(
-                'select[name="user_accounts[role_mapping][' . $role_id . '][service]"]' => array('value' => PMMISSOHelper::DATA),
-              ),
-            ),
-          ),
-        );
+            '#states' => [
+              'disabled' => [
+                'select[name="user_accounts[role_mapping][' . $role_id . '][service]"]' => ['value' => PMMISSOHelper::IMS],
+              ],
+              'required' => [
+                'select[name="user_accounts[role_mapping][' . $role_id . '][service]"]' => ['value' => PMMISSOHelper::DATA],
+              ],
+            ],
+          ],
+        ];
         $form['user_accounts']['role_mapping'][$role_id]['operations'] = [
           '#type' => 'operations',
           '#links' => [],
@@ -276,79 +276,78 @@ class PMMISSOSettings extends ConfigFormBase {
           'url' => Url::fromRoute('pmmi_sso.role_map_delete_form', ['role_id' => $role_id]),
         ];
       }
-
     }
 
-    $form['user_accounts']['new_mapping'] = array(
+    $form['user_accounts']['new_mapping'] = [
       '#type' => 'details',
       '#title' => $this->t('Add a new role mapping'),
       '#open' => FALSE,
       '#tree' => TRUE,
-      'sso_role' => array(
+      'sso_role' => [
         '#title' => $this->t('SSO Role'),
         '#type' => 'textfield',
         '#size' => 20,
-      ),
-      'drupal_role' => array(
+      ],
+      'drupal_role' => [
         '#title' => $this->t('Drupal Role'),
         '#type' => 'select',
         '#multiple' => FALSE,
         '#options' => $roles,
-        '#states' => array(
-          'required' => array(
-            ':input[name="user_accounts[new_mapping][sso_role]"]' => array('filled' => TRUE),
-          ),
-        ),
-      ),
-      'service' => array(
+        '#states' => [
+          'required' => [
+            ':input[name="user_accounts[new_mapping][sso_role]"]' => ['filled' => TRUE],
+          ],
+        ],
+      ],
+      'service' => [
         '#title' => $this->t('Service Provider'),
         '#type' => 'select',
         '#multiple' => FALSE,
         '#options' => $services,
-        '#states' => array(
-          'required' => array(
-            ':input[name="user_accounts[new_mapping][sso_role]"]' => array('filled' => TRUE),
-          ),
-        ),
-      ),
-      'committee_id' => array(
+        '#states' => [
+          'required' => [
+            ':input[name="user_accounts[new_mapping][sso_role]"]' => ['filled' => TRUE],
+          ],
+        ],
+      ],
+      'committee_id' => [
         '#title' => $this->t('SSO CommitteeMasterCustomer'),
         '#type' => 'textfield',
         '#size' => 20,
         '#pattern' => '[A-Z][0-9]{7}',
         '#maxlength' => 8,
-        '#states' => array(
-          'disabled' => array(
-            'select[name="user_accounts[new_mapping][service]"]' => array('value' => PMMISSOHelper::IMS),
-          ),
-          'required' => array(
-            'select[name="user_accounts[new_mapping][service]"]' => array('value' => PMMISSOHelper::DATA),
-          ),
-        ),
-      ),
-    );
+        '#states' => [
+          'disabled' => [
+            'select[name="user_accounts[new_mapping][service]"]' => ['value' => PMMISSOHelper::IMS],
+          ],
+          'required' => [
+            'select[name="user_accounts[new_mapping][service]"]' => ['value' => PMMISSOHelper::DATA],
+          ],
+        ],
+      ],
+    ];
     // Store temporary roles array.
     $form_state->setTemporaryValue('drupal_roles', $roles);
 
-    $form['user_accounts']['login_link_enabled'] = array(
+    $form['user_accounts']['login_link_enabled'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Login Link Enabled'),
       '#description' => $this->t('Display a link to login via SSO above the user login form.'),
       '#default_value' => $config->get('user_accounts.login_link_enabled'),
-    );
-    $form['user_accounts']['login_link_label'] = array(
+    ];
+    $form['user_accounts']['login_link_label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Login Link Label'),
       '#description' => $this->t('The text that makes up the login link to this SSO server.'),
       '#default_value' => $config->get('user_accounts.login_link_label'),
-      '#states' => array(
-        'visible' => array(
-          ':input[name="user_accounts[login_link_enabled]"]' => array('checked' => TRUE),
-        ),
-      ),
-    );
+      '#states' => [
+        'visible' => [
+          ':input[name="user_accounts[login_link_enabled]"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
 
-    $form['gateway'] = array(
+    $form['gateway'] = [
       '#type' => 'details',
       '#title' => $this->t('Gateway Feature (Auto Login) & Token Handling'),
       '#open' => FALSE,
@@ -360,72 +359,71 @@ class PMMISSOSettings extends ConfigFormBase {
         'active session check, and then redirecting them back to page they initially requested.<br/><br/>' .
         'If enabled, all pages on your site will trigger this feature by default. It is strongly recommended that ' .
         'you specify specific pages to trigger this feature below.<br/><br/>' .
-        '<strong>WARNING:</strong> This feature will disable page caching  for anonymous users on pages it is active on.'),
-    );
-    $form['gateway']['check_frequency'] = array(
+        '<strong>WARNING:</strong> This feature will disable page caching for anonymous users on pages it is active on.'),
+    ];
+    $form['gateway']['check_frequency'] = [
       '#type' => 'radios',
       '#title' => $this->t('Check Frequency'),
       '#default_value' => $config->get('gateway.check_frequency'),
-      '#options' => array(
+      '#options' => [
         PMMISSOHelper::CHECK_NEVER => 'Disable gateway feature',
         PMMISSOHelper::CHECK_ONCE => 'Once per browser session',
         PMMISSOHelper::CHECK_ALWAYS => 'Every page load (not recommended)',
-      ),
-    );
-    $form['gateway']['token_frequency'] = array(
+      ],
+    ];
+    $form['gateway']['token_frequency'] = [
       '#type' => 'radios',
       '#title' => $this->t('Check Token Frequency'),
       '#default_value' => $config->get('gateway.token_frequency'),
-      '#options' => array(
+      '#options' => [
         PMMISSOHelper::TOKEN_DISABLED => 'Disable feature',
         PMMISSOHelper::TOKEN_TTL => 'Every page load, if token TTL expired',
-      ),
+      ],
       '#description' => $this->t(
         'This implements the Token TTL feature for Drupal. When enabled, Drupal 
-         will check if a visitor have valid token, in the time interval, 
+         will check if a visitor has a valid token in the time interval, 
          specified on this page: <a href="@link">Token settings page</a>.<br/>
          If enabled, all pages on your site will trigger this feature by 
          default. It is strongly recommended that you specify specific pages 
          to trigger this feature below.<br/>
          <strong>WARNING:</strong> This feature will disable page caching on 
          pages it is active on.', [
-          '@link' => Url::fromRoute('pmmi_sso.token.settings')
-            ->toString()
+          '@link' => Url::fromRoute('pmmi_sso.token.settings')->toString(),
         ]
       ),
-    );
-    $form['gateway']['token_action'] = array(
+    ];
+    $form['gateway']['token_action'] = [
       '#type' => 'radios',
       '#title' => $this->t('Default action for the failed Token validation result'),
       '#default_value' => $config->get('gateway.token_action'),
-      '#options' => array(
+      '#options' => [
         PMMISSOHelper::TOKEN_ACTION_LOGOUT => 'Logout from Drupal',
         PMMISSOHelper::TOKEN_ACTION_FORCE_LOGIN => 'Forced redirect to Personify Login Page',
-      ),
-      '#states' => array(
-        'invisible' => array(
-          ':input[name="gateway[token_frequency]"]' => array('value' => PMMISSOHelper::TOKEN_DISABLED),
-        ),
-      ),
+      ],
+      '#states' => [
+        'invisible' => [
+          ':input[name="gateway[token_frequency]"]' => ['value' => PMMISSOHelper::TOKEN_DISABLED],
+        ],
+      ],
       '#description' => $this->t(
-        'This feature only implemented on selected pages below or for all pages, 
-         if  no selected.<br/>
+        'This feature is only implemented on selected pages below or for all pages, 
+         if no selection.<br/>
          If selected action Logout: If token is expired and not valid, after 
          verification, users will be logged out and stay on site.<br/>
          If selected action Forced Redirect: If token is expired and not valid, 
          after verification, users will be redirected to the Personify site.
          <br/>'
       ),
-    );
+    ];
     $this->gatewayPaths->setConfiguration($config->get('gateway.paths'));
-    $form['gateway']['paths'] = $this->gatewayPaths->buildConfigurationForm(array(), $form_state);
-    $form['advanced'] = array(
+    $form['gateway']['paths'] = $this->gatewayPaths->buildConfigurationForm([], $form_state);
+    $form['advanced'] = [
       '#type' => 'details',
       '#title' => $this->t('Advanced'),
       '#open' => FALSE,
       '#tree' => TRUE,
-    );
-    $form['advanced']['debug_log'] = array(
+    ];
+    $form['advanced']['debug_log'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Log debug information?'),
       '#description' => $this->t(
@@ -433,8 +431,8 @@ class PMMISSOSettings extends ConfigFormBase {
         information about the interactions with the PMMI SSO Server 
         to the Drupal log.'),
       '#default_value' => $config->get('advanced.debug_log'),
-    );
-    $form['advanced']['connection_timeout'] = array(
+    ];
+    $form['advanced']['connection_timeout'] = [
       '#type' => 'textfield',
       '#size' => 3,
       '#title' => $this->t('Connection timeout'),
@@ -444,7 +442,7 @@ class PMMISSOSettings extends ConfigFormBase {
         This value determines the maximum amount of time to wait
         on those requests before canceling them.'),
       '#default_value' => $config->get('advanced.connection_timeout'),
-    );
+    ];
     return parent::buildForm($form, $form_state);
   }
 
@@ -458,15 +456,15 @@ class PMMISSOSettings extends ConfigFormBase {
 
     parent::validateForm($form, $form_state);
 
-    $unique_values = array();
+    $unique_values = [];
     $temporary_roles = $form_state->getTemporaryValue('drupal_roles');
 
     // Check all mappings.
-    if ($form_state->hasValue(array('user_accounts', 'role_mapping'))) {
-      $roles_map = $form_state->getValue(array(
+    if ($form_state->hasValue(['user_accounts', 'role_mapping'])) {
+      $roles_map = $form_state->getValue([
         'user_accounts',
         'role_mapping',
-      ));
+      ]);
       if (!empty($roles_map)) {
         foreach ($roles_map as $key => $data) {
           if (array_key_exists($key, $temporary_roles)) {

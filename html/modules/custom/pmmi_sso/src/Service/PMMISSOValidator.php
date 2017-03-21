@@ -58,10 +58,8 @@ class PMMISSOValidator {
    *
    * @param string $token
    *   The PMMI SSO authentication ticket to validate.
-   * @param bool $decrypted
-   *   Represent is token internal use.
-   * @param array $service_params
-   *   An array of query string parameters to add to the service URL.
+   * @param bool $internal
+   *   Represent is token internal use..
    *
    * @return PMMISSOPropertyBag
    *   Contains user info from the PMMI SSO server.
@@ -70,10 +68,7 @@ class PMMISSOValidator {
    *   Thrown if there was a problem making the validation request or
    *   if there was a local configuration issue.
    */
-  public function validateToken($token, $internal, array $service_params) {
-//    $options = array();
-//    $options['timeout'] = $this->ssoHelper->getConnectionTimeout();
-
+  public function validateToken($token, $internal) {
     $options = $this->ssoHelper->getServerValidateOptions($token, $internal);
     if ($options['decrypt']) {
       if ($internal) {
@@ -98,13 +93,12 @@ class PMMISSOValidator {
       }
     }
     else {
-      throw new PMMISSOValidateException('Token do not decrypted!!!');
+      throw new PMMISSOValidateException('Token not decrypted!!!');
     }
-
   }
 
   /**
-   * Validation of a service ticket for Version 2 of the PMMI SSO protocol.
+   * Validation of a service ticket of the PMMI SSO protocol.
    *
    * @param string $data
    *   The raw validation response data from PMMI SSO server.
@@ -131,7 +125,7 @@ class PMMISSOValidator {
         }
       }
       else {
-        throw new PMMISSOValidateException('XML from PMMI SSO server is not valid. No new token exist.');
+        throw new PMMISSOValidateException('XML from PMMI SSO server is not valid. No new token exists.');
       }
     }
     else {
@@ -164,7 +158,8 @@ class PMMISSOValidator {
       $response = $this->httpClient->request('POST', $query_options['uri'], ['form_params' => $query_options['params']]);
       $response_data = $response->getBody()->getContents();
       $this->ssoHelper->log("User ID received from PMMI SSO server: " . htmlspecialchars($response_data));
-    } catch (RequestException $e) {
+    }
+    catch (RequestException $e) {
       throw new PMMISSOValidateException("Error with request to get User ID: " . $e->getMessage());
     }
     $parser = $this->parser;
