@@ -1,7 +1,0 @@
-services:
-  authentication.pmmi_personify:
-    class: Drupal\pmmi_personify\Authentication\Provider\PMMIPersonifyAuthenticationProvider
-    arguments: ['@config.factory', '@entity_type.manager']
-    tags:
-      - { name: authentication_provider, provider_id: pmmi_personify_authentication_provider, priority: 100 }
-

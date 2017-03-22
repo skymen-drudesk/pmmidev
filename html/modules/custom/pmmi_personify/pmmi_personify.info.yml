@@ -1,8 +1,0 @@
-name: PMMI Personify
-type: module
-description: PMMI Personify Integration
-core: 8.x
-package: PMMI
-dependencies:
-  - pmmi
-configure: pmmi_personify.admin_settings

@@ -3,7 +3,6 @@
 namespace Drupal\pmmi_psdata\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\pmmi_sso\Service\PMMISSOHelper;
@@ -11,15 +10,15 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\pmmi_psdata\Service\PMMIDataCollector;
 
 /**
- * Provides a 'PMMICommitteeBlock' block.
+ * Provides a 'PMMIStaffBlock' block.
  *
  * @Block(
- *  id = "pmmi_committee_block",
- *  admin_label = @Translation("PMMI Committee Block"),
+ *  id = "pmmi_staff_block",
+ *  admin_label = @Translation("PMMI Staff Block"),
  *  category = @Translation("PMMI Data Services")
  * )
  */
-class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInterface {
+class PMMIStaffBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
    * Drupal\pmmi_psdata\Service\PMMIDataCollector definition.
@@ -29,7 +28,7 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
   protected $dataCollector;
 
   /**
-   * Construct PMMICommitteeBlock.
+   * Construct.
    *
    * @param array $configuration
    *   A configuration array containing information about the plugin instance.
@@ -67,29 +66,16 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
    */
   public function defaultConfiguration() {
     return [
-        'committee_id' => '',
         'columns' => 3,
         'rows' => 3,
         'sort_options' => '',
       ] + parent::defaultConfiguration();
-
   }
 
   /**
    * {@inheritdoc}
    */
   public function blockForm($form, FormStateInterface $form_state) {
-    $form['committee_id'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('Committee ID'),
-      '#description' => $this->t('Personify Service CommitteeMasterCustomer'),
-      '#default_value' => $this->configuration['committee_id'],
-      '#required' => TRUE,
-      '#maxlength' => 8,
-      '#size' => 20,
-      '#pattern' => '[A-Z][0-9]{7}',
-      '#weight' => 1,
-    ];
     $form['columns'] = [
       '#type' => 'number',
       '#title' => $this->t('Columns'),
@@ -122,6 +108,7 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
       '#size' => 64,
       '#weight' => 4,
     ];
+
     return $form;
   }
 
@@ -129,7 +116,6 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
-    $this->configuration['committee_id'] = $form_state->getValue('committee_id');
     $this->configuration['columns'] = $form_state->getValue('columns');
     $this->configuration['rows'] = $form_state->getValue('rows');
     $this->configuration['sort_options'] = $form_state->getValue('sort_options');
@@ -140,7 +126,10 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
    */
   public function build() {
     $build = [];
-    $data = $this->dataCollector->getData('committee', $this->configuration['committee_id']);
+//    $route = \Drupal::routeMatch()->getRouteName();
+//    $path = \Drupal::request()->getPathInfo();
+//    $url = Url::fromRoute($route);
+    $data = $this->dataCollector->getData('staff', 'STAFF');
     if (!empty($data) && !empty($this->configuration['sort_options'])) {
       $this->sort($data);
     }
@@ -148,7 +137,7 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
     $build['#data'] = $data;
     $build['#columns'] = $this->configuration['columns'];
     $build['#rows'] = $this->configuration['rows'];
-    $build['#cache']['tags'] = [PMMISSOHelper::PROVIDER . ':committee_' . $this->configuration['committee_id']];
+    $build['#cache']['tags'] = [PMMISSOHelper::PROVIDER . ':staff_' . 'STAFF'];
     return $build;
   }
 
