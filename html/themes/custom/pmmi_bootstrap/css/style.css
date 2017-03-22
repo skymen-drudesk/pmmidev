@@ -14380,10 +14380,16 @@ body > .page-wrapper:after,
   display: block;
 }
 
+@media screen and (min-width: 1200px) {
+  .navbar .main-nav .nav > li > a {
+    font-size: 1.125rem;
+    padding: 6px 14px;
+  }
+}
+
 @media screen and (min-width: 1360px) {
   .navbar .main-nav .nav > li > a {
     font-size: 1.25rem;
-    padding: 6px 15px;
     letter-spacing: 1.5px;
   }
 }
