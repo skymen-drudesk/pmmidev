@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\pmmi_crawler_detect\Service;
+namespace Drupal\audience_select\Service;
 
 use Drupal\pmmi\CrawlerDetectInterface;
 use Jaybizzle\CrawlerDetect\CrawlerDetect as BaseCrawlerDetect;

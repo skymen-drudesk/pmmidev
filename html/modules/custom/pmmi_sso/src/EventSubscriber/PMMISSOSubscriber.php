@@ -2,7 +2,7 @@
 
 namespace Drupal\pmmi_sso\EventSubscriber;
 
-use Drupal\pmmi_crawler_detect\Service\CrawlerDetect;
+use Drupal\pmmi\CrawlerDetectInterface;
 use Drupal\pmmi_sso\PMMISSORedirectData;
 use Drupal\pmmi_sso\Service\PMMISSORedirector;
 use Drupal\Core\EventSubscriber\HttpExceptionSubscriberBase;
@@ -66,7 +66,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
   /**
    * The default web crawler detection object.
    *
-   * @var \Drupal\pmmi_crawler_detect\Service\CrawlerDetect
+   * @var \Drupal\pmmi\CrawlerDetectInterface
    */
   protected $crawlerDetect;
 
@@ -113,7 +113,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
    *   The PMMI SSO Helper service.
    * @param PMMISSORedirector $sso_redirector
    *   The PMMI SSO Redirector Service.
-   * @param \Drupal\pmmi_crawler_detect\Service\CrawlerDetect $crawler_detect
+   * @param \Drupal\pmmi\CrawlerDetectInterface $crawler_detect
    *   The default web crawler detection object.
    */
   public function __construct(
@@ -123,7 +123,7 @@ class PMMISSOSubscriber extends HttpExceptionSubscriberBase {
     ConditionManager $condition_manager,
     PMMISSOHelper $sso_helper,
     PMMISSORedirector $sso_redirector,
-    CrawlerDetect $crawler_detect
+    CrawlerDetectInterface $crawler_detect
   ) {
     $this->requestStack = $request_stack;
     $this->routeMatcher = $route_matcher;
