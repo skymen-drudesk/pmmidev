@@ -114,6 +114,7 @@ div.view {
   .view-content {
     @extend .row;
     text-align: center;
+    font-size: 0;
   }
   .views-row {
     @extend .col-sm-3;
@@ -122,6 +123,7 @@ div.view {
     float: none;
     vertical-align: top;
     margin-bottom: 30px;
+    font-size: $r16;
     @include mobile {
       display: block;
       max-width: 234px;
