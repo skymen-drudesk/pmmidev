@@ -59,7 +59,7 @@ class PMMISSOValidator {
    * @param string $token
    *   The PMMI SSO authentication ticket to validate.
    * @param bool $internal
-   *   Represent is token internal use..
+   *   Represent if token is internal use.
    *
    * @return PMMISSOPropertyBag
    *   Contains user info from the PMMI SSO server.
