@@ -204,7 +204,7 @@ class PMMISSOServiceController implements ContainerInjectionInterface {
       // validation request to authenticate the user locally on the Drupal site.
       try {
         $this->ssoUserManager->login($sso_validation_info);
-        $this->setMessage($this->t('You have been logging in.'));
+        $this->setMessage($this->t('You have been logged in.'));
       }
       catch (PMMISSOLoginException $e) {
         $this->ssoHelper->log($e->getMessage());

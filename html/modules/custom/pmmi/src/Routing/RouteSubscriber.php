@@ -21,7 +21,7 @@ class RouteSubscriber extends RouteSubscriberBase {
       $batch_route->setDefaults([
         '_controller' => '\Drupal\pmmi\Controller\BatchController::batchPage',
         '_title_callback' => '\Drupal\pmmi\Controller\BatchController::batchPageTitle',
-      ]);
+      ])->setOptions(['_admin_route' => FALSE]);
     }
   }
 }

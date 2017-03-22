@@ -14380,10 +14380,16 @@ body > .page-wrapper:after,
   display: block;
 }
 
+@media screen and (min-width: 1200px) {
+  .navbar .main-nav .nav > li > a {
+    font-size: 1.125rem;
+    padding: 6px 14px;
+  }
+}
+
 @media screen and (min-width: 1360px) {
   .navbar .main-nav .nav > li > a {
     font-size: 1.25rem;
-    padding: 6px 15px;
     letter-spacing: 1.5px;
   }
 }
@@ -14544,6 +14550,7 @@ body > .page-wrapper:after,
 }
 
 .navbar .main-nav .dropdown-menu li a .description {
+  color: #8c8888;
   display: block;
   font-size: 12px;
   font-size: 0.75rem;
@@ -16621,6 +16628,7 @@ div.view {
 .events-block-3 .view-content,
 .block-views-blockevents-block-3 .view-content {
   text-align: center;
+  font-size: 0;
 }
 
 .events-block-3 .views-row,
@@ -16630,6 +16638,8 @@ div.view {
   float: none;
   vertical-align: top;
   margin-bottom: 30px;
+  font-size: 16px;
+  font-size: 1rem;
 }
 
 @media screen and (max-width: 767px) {
