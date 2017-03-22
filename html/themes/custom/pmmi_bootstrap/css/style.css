@@ -16622,6 +16622,7 @@ div.view {
 .events-block-3 .view-content,
 .block-views-blockevents-block-3 .view-content {
   text-align: center;
+  font-size: 0;
 }
 
 .events-block-3 .views-row,
@@ -16631,6 +16632,8 @@ div.view {
   float: none;
   vertical-align: top;
   margin-bottom: 30px;
+  font-size: 16px;
+  font-size: 1rem;
 }
 
 @media screen and (max-width: 767px) {
