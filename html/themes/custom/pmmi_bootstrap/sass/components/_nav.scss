@@ -189,11 +189,16 @@
             display: block;
           }
         }
+        @include dhd {
+          > a {
+            font-size: $r18;
+            padding: 6px 14px;
+          }
+        }
         // Screen with min width of 1360px.
         @media screen and (min-width: 1360px) {
           > a {
             font-size: $r20;
-            padding: 6px 15px;
             letter-spacing: 1.5px;
           }
         }
