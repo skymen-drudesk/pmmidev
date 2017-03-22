@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\audience_select\Service;
+namespace Drupal\pmmi_crawler_detect\Service;
 
 use Jaybizzle\CrawlerDetect\CrawlerDetect as BaseCrawlerDetect;
 use Symfony\Component\HttpFoundation\RequestStack;

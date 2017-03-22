@@ -352,6 +352,7 @@
     "drupal/dropzonejs": "1.0-alpha3",
     "drupal/ds": "^2.6",
     "drupal/entity_browser": "^1.0@beta",
+    "drupal/externalauth": "^1.0@alpha",
     "drupal/facets": "1.x-dev",
     "drupal/field_group": "^1.0@RC",
     "drupal/file_browser": "1.x-dev",
@@ -391,7 +392,7 @@
     "drupal/views_field_formatter": "^1.0",
     "drupal/views_field_view": "^1.0@beta",
     "drupal/webform": "^5.0@beta",
-    "drupal/webform_views": "5.x-dev",
+    "drupal/webform_views": "5.x-dev#1b69ed9ee0c2a7e197f5558e2b4c00b832476e5f",
     "drush/drush": "^8.1.0",
     "enyo/dropzone": "4.2.0",
     "gjunge/jquery.rateit": "^1.1.1",
@@ -482,9 +483,10 @@
     ],
     "merge-plugin": {
       "include": [
-        "html/modules/custom/audience_select/composer.json",
+        "html/modules/custom/pmmi_crawler_detect/composer.json",
         "html/modules/custom/pmmi_twitter/composer.json",
-        "html/modules/custom/pmmi_facebook/composer.json"
+        "html/modules/custom/pmmi_facebook/composer.json",
+        "html/modules/custom/pmmi_sso/composer.json"
       ],
       "recurse": false,
       "replace": false,
