@@ -55,10 +55,9 @@
         "name": "drupal/tb_megamenu",
         "version": "8.1.0-alpha1",
         "type": "drupal-module",
-        "source": {
-          "url": "git://git.drupal.org/project/tb_megamenu.git",
-          "type": "git",
-          "reference": "origin/master"
+        "dist": {
+          "url": "https://github.com/summitmedia/tb_megamenu/archive/master.zip",
+          "type": "zip"
         }
       }
     },
@@ -115,7 +114,7 @@
       "type": "package",
       "package": {
         "name": "briancherne/jquery.hoverIntent",
-        "version": "v1.8.1",
+        "version": "1.8.1",
         "type": "drupal-library",
         "dist": {
           "url": "https://github.com/briancherne/jquery-hoverIntent/archive/v1.8.1.zip",
