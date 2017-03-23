@@ -28,6 +28,11 @@
     {% endif %}
     <div class="main-container" role="main">
       <div class="container topbar" role="heading">
+        {% if content['#title'] %}
+          <div class="hidden page-title">
+            <h1 class="headline2">{{ content['#title'] }}</h1>
+          </div>
+        {% endif %}
         {{ content.topbar }}
       </div>
       <section>

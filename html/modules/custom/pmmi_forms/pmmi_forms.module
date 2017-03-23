@@ -143,6 +143,20 @@ function pmmi_forms_webform_options_access(EntityInterface $entity, $operation, 
 }
 
 /**
+ * Implements hook_ENTITY_TYPE_access().
+ *
+ * Add access for viewing webform submission.
+ */
+function pmmi_forms_webform_submission_access(EntityInterface $entity, $operation, AccountInterface $account) {
+  if ($entity && $webform = $entity->getWebform()) {
+    if ($operation == 'view' && $webform->id() == 'membership_application_form'
+    && in_array('membership_committee', $account->getRoles())) {
+      return AccessResult::allowed()->cachePerPermissions()->cachePerUser();
+    }
+  }
+}
+
+/**
  * Implements hook_menu_local_tasks_alter().
  */
 function pmmi_forms_menu_local_tasks_alter(&$data, $route_name) {
