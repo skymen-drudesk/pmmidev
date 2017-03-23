@@ -173,6 +173,12 @@
         {
             "name": "briancherne/jquery.hoverIntent",
             "version": "v1.8.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/briancherne/jquery-hoverIntent/archive/v1.8.1.zip",
+                "reference": null,
+                "shasum": null
+            },
             "type": "drupal-library"
         },
         {
@@ -1787,7 +1793,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.2",
-                    "datestamp": "1487640876"
+                    "datestamp": "1487640788"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3140,9 +3146,9 @@
                 "drupal/core": "~8.0",
                 "drupal/layout_plugin": "*"
             },
-            "suggest": {
-                "drupal/devel": "Required by drupal/ds_devel",
-                "drupal/field_group": "Required by drupal/ds"
+            "require-dev": {
+                "drupal/devel": "*",
+                "drupal/field_group": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -3351,8 +3357,8 @@
                 "drupal/core": "*",
                 "drupal/embed": "*"
             },
-            "suggest": {
-                "drupal/entity_browser": "Required by drupal/entity_embed"
+            "require-dev": {
+                "drupal/entity_browser": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -3895,8 +3901,8 @@
             "require": {
                 "drupal/core": "~8.0"
             },
-            "suggest": {
-                "drupal/entity_reference_revisions": "Required by drupal/inline_entity_form"
+            "require-dev": {
+                "drupal/entity_reference_revisions": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -3995,9 +4001,11 @@
                     "homepage": "https://www.drupal.org/user/254778"
                 }
             ],
+            "description": "Scheduler API",
             "homepage": "https://www.drupal.org/project/job_scheduler",
             "support": {
-                "source": "http://cgit.drupalcode.org/job_scheduler"
+                "source": "http://cgit.drupalcode.org/job_scheduler",
+                "error": "Invalid dependency: \"trigger\" is an unknown drupal 8 package name"
             },
             "time": "2013-07-06 06:56:43"
         },
@@ -4025,7 +4033,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-alpha23",
-                    "datestamp": "1476238140"
+                    "datestamp": "1476269960"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4220,7 +4228,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0",
-                    "datestamp": "1485901983"
+                    "datestamp": "1485902197"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -5840,6 +5848,12 @@
         {
             "name": "enyo/dropzone",
             "version": "4.2.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/enyo/dropzone/archive/v4.2.0.zip",
+                "reference": null,
+                "shasum": null
+            },
             "type": "drupal-library"
         },
         {
@@ -6391,6 +6405,12 @@
         {
             "name": "kenwheeler/slick",
             "version": "1.6.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/kenwheeler/slick/archive/1.6.0.zip",
+                "reference": null,
+                "shasum": null
+            },
             "type": "drupal-library"
         },
         {
@@ -10059,8 +10079,16 @@
             ],
             "authors": [
                 {
+                    "name": "BarisW",
+                    "homepage": "https://www.drupal.org/user/107229"
+                },
+                {
                     "name": "greggles",
                     "homepage": "https://www.drupal.org/user/36762"
+                },
+                {
+                    "name": "markdorison",
+                    "homepage": "https://www.drupal.org/user/346106"
                 },
                 {
                     "name": "moshe weitzman",
