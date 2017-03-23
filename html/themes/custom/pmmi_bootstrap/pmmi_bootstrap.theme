@@ -34,7 +34,7 @@ function pmmi_bootstrap_preprocess_html(&$variables) {
     $pc = $page_variant->getPluginCollections();
     if (isset($pc['variant_settings']) && ($conf = $pc['variant_settings']->getConfiguration())) {
       $site_name = \Drupal::config('system.site')->get('name');
-      $variables['head_title']['title'] = $conf['page_title'] . ' | ' .  $site_name;
+      $variables['head_title']['title'] = $conf['page_title'] . ' | ' . $site_name;
     }
   }
   _pmmi_bootstrap_detect_browsers($variables);

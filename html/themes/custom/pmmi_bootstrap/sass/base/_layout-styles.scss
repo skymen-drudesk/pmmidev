@@ -10,6 +10,10 @@ body.use-container {
     @include container;
     margin-bottom: 20px;
   }
+  .page-title.hidden {
+    margin: 20px 0;
+    display: block !important;
+  }
 }
 .container {
   .containers .container {
