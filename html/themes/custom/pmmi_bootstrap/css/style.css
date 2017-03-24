@@ -15297,8 +15297,37 @@ body > .page-wrapper:after,
   white-space: normal;
 }
 
+.tb-megamenu-block .view-content {
+  margin: 0 -12px;
+  font-size: 0;
+}
+
+.tb-megamenu-block .views-row {
+  font-size: 16px;
+  font-size: 1rem;
+  width: 25%;
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
 .tb-megamenu-block .col-md-3, .tb-megamenu-block .footer nav, .footer .tb-megamenu-block nav, .tb-megamenu-block .block-icons.cols-4 .column > .field, .block-icons.cols-4 .tb-megamenu-block .column > .field {
   padding: 0 12px;
+  display: inline-block;
+  float: none;
+  vertical-align: top;
+}
+
+.cols-2 .tb-megamenu-block .views-row {
+  width: 50%;
+}
+
+.cols-3 .tb-megamenu-block .views-row {
+  width: 33.3%;
+}
+
+.cols-5 .tb-megamenu-block .views-row {
+  width: 20%;
 }
 
 .tb-megamenu-block .col-sm-12 {
