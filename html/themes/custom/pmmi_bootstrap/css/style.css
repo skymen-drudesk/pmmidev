@@ -12771,6 +12771,9 @@ ol, ul {
 
 body {
   min-width: 310px;
+  -ms-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
 }
 
 .bullet-list ul, .views-field-body ul,
@@ -18818,9 +18821,10 @@ div.view {
 
 .article.mode-default {
   border: 1px solid #c2c2c2;
-  padding: 15px;
+  padding: 15px 15px 45px;
   border-radius: 6px;
   margin-bottom: 40px;
+  position: relative;
 }
 
 .article.mode-default .press-date {
@@ -18845,6 +18849,12 @@ div.view {
     font-size: 0.9375rem;
     line-height: 1.1875rem;
   }
+}
+
+.article.mode-default .button {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
 }
 
 .article.mode-default .button a {
