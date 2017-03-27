@@ -1,0 +1,21 @@
+.block-resources {
+  h2.title {
+    @extend .headline3;
+  }
+  .resource-files {
+    .file-size {
+      margin: 0 3px;
+    }
+    .file--application-pdf {
+      .file-icon {
+        margin: 0 3px;
+        .glyphicon-file {
+          font-family: "FontAwesome";
+          &:before {
+            content: "\f1c1";
+          }
+        }
+      }
+    }
+  }
+}
