@@ -247,6 +247,8 @@ function pmmi_sales_agent_reject_listing(&$form, FormStateInterface $form_state)
   else {
     // Remove a node immediately.
     $node->delete();
+    // Redirect to the homepage, as our company no longer exists.
+    $form_state->setRedirect('<front>');
   }
 }
 
