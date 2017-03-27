@@ -4,8 +4,12 @@ status: true
 dependencies:
   config:
     - field.field.file.document.field_download_button_text
+    - field.field.file.document.field_prefix
+    - field.field.file.document.field_suffix
     - field.field.file.document.field_tags
     - file_entity.type.document
+  module:
+    - path
 id: file.document.default
 targetEntityType: file
 bundle: document
@@ -13,6 +17,20 @@ mode: default
 content:
   field_download_button_text:
     weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_prefix:
+    weight: 31
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_suffix:
+    weight: 32
     settings:
       size: 60
       placeholder: ''
@@ -32,5 +50,10 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    settings: {  }
     third_party_settings: {  }
 hidden: {  }

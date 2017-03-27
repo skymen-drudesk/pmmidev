@@ -11,11 +11,13 @@ dependencies:
     - field.field.block_content.accordion.field_head
     - field.field.block_content.accordion.field_image
     - field.field.block_content.accordion.field_link
+    - field.field.block_content.accordion.field_resources_block
     - field.field.block_content.accordion.field_video_node
     - responsive_image.styles.accordion_styles
   module:
     - ds
     - link
+    - pmmi_fields
     - responsive_image
     - text
 third_party_settings:
@@ -35,6 +37,7 @@ third_party_settings:
         - field_image
       body:
         - body
+        - field_resources_block
         - field_button
         - field_link
       nested_accordion:
@@ -52,7 +55,7 @@ content:
     third_party_settings: {  }
   field_accordions:
     type: entity_reference_entity_view
-    weight: 6
+    weight: 7
     label: hidden
     settings:
       view_mode: accordion
@@ -67,7 +70,7 @@ content:
             lb-col: false
             classes: {  }
   field_button:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       trim_length: 80
@@ -108,7 +111,7 @@ content:
     type: responsive_image
   field_link:
     type: link
-    weight: 5
+    weight: 6
     label: hidden
     settings:
       trim_length: 80
@@ -124,6 +127,14 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+  field_resources_block:
+    type: pmmi_entity_reference_entity_view
+    weight: 4
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
   field_video_node:
     weight: 1
     label: hidden

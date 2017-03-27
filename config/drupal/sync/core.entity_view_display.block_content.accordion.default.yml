@@ -10,6 +10,7 @@ dependencies:
     - field.field.block_content.accordion.field_head
     - field.field.block_content.accordion.field_image
     - field.field.block_content.accordion.field_link
+    - field.field.block_content.accordion.field_resources_block
     - field.field.block_content.accordion.field_video_node
     - responsive_image.styles.accordion_styles
   module:
@@ -27,20 +28,20 @@ third_party_settings:
       entity_classes: all_classes
       settings: {  }
     regions:
-      body:
-        - body
       head:
         - field_head
+      video:
+        - field_video_node
       image:
         - field_image
+      body:
+        - body
       button:
         - field_button
       link:
         - field_link
       accordions:
         - field_accordions
-      video:
-        - field_video_node
 id: block_content.accordion.default
 targetEntityType: block_content
 bundle: accordion
@@ -49,7 +50,7 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 0
+    weight: 3
     settings: {  }
     third_party_settings: {  }
   field_accordions:
@@ -80,7 +81,7 @@ content:
     third_party_settings: {  }
     type: link
   field_head:
-    weight: 1
+    weight: 0
     label: hidden
     settings:
       link_to_entity: false
@@ -113,7 +114,7 @@ content:
     third_party_settings: {  }
     type: link
   field_video_node:
-    weight: 7
+    weight: 1
     label: hidden
     settings:
       view_mode: video_thumbnail
@@ -127,4 +128,5 @@ content:
             lb-col: false
             classes: {  }
     type: entity_reference_entity_view
-hidden: {  }
+hidden:
+  field_resources_block: true

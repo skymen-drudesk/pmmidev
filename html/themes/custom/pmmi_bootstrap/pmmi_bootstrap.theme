@@ -425,3 +425,17 @@ function _pmmi_bootstrap_detect_browsers(&$variables) {
     $variables['attributes']['class'][] = 'ie11';
   }
 }
+
+/**
+ * Implements template_preprocess_preprocess_file_link().
+ */
+function pmmi_bootstrap_preprocess_file_link(&$variables) {
+  $file = $variables['file'];
+  foreach (['prefix', 'suffix'] as $element) {
+    $field_name = 'field_' . $element;
+    $variables[$element] = '';
+    if ($field = $file->get($field_name)) {
+      $variables[$element] = $file->{$field_name}->value;
+    }
+  }
+}
