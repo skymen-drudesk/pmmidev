@@ -16723,6 +16723,11 @@ div.view {
   display: none;
 }
 
+.events-block-4 .views-row {
+  clear: both;
+  overflow: hidden;
+}
+
 .view-partner-schools .views-view-grid.cols-2 {
   font-size: 0;
 }
@@ -17833,6 +17838,7 @@ div.view {
   font-weight: 500;
   line-height: 21px;
   line-height: 1.3125rem;
+  margin-bottom: 10px;
 }
 
 .block-event-default .location p {

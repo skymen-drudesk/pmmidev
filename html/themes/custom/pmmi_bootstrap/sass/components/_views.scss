@@ -153,6 +153,12 @@ div.view {
     }
   }
 }
+.events-block-4 {
+  .views-row {
+    clear: both;
+    overflow: hidden;
+  }
+}
 .view-partner-schools {
   .views-view-grid.cols-2 {
     font-size: 0;

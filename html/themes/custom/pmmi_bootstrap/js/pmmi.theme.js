@@ -134,7 +134,7 @@
             if ($containerBlocks.length) {
               $('.col > .field > *', $row).matchHeight();
             }
-            var $matchHeightBlock = $('.match-height', $row);
+            var $matchHeightBlock = $('.match-height, .match-height-parent > *', $row);
             if ($matchHeightBlock.length) {
               $matchHeightBlock.matchHeight();
             }
