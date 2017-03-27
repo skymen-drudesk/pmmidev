@@ -514,6 +514,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
+      exposed_block: true
     cache_metadata:
       max-age: 0
       contexts:
@@ -561,6 +562,25 @@ display:
       displays:
         block_1: block_1
         default: '0'
+      row:
+        type: data_field
+        options:
+          field_options:
+            created:
+              alias: ''
+              raw_output: false
+            field_company:
+              alias: company
+              raw_output: false
+            name:
+              alias: ''
+              raw_output: false
+            mail:
+              alias: ''
+              raw_output: false
+            field_countries_searched:
+              alias: countries_searched
+              raw_output: false
     cache_metadata:
       max-age: -1
       contexts:
