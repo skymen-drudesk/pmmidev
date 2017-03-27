@@ -18684,15 +18684,23 @@ div.view {
   margin: 0 3px;
 }
 
-.block-resources .resource-files .file--application-pdf .file-icon {
+.block-resources .resource-files .prefix {
+  padding-right: 3px;
+}
+
+.block-resources .resource-files .suffix {
+  padding-left: 3px;
+}
+
+.block-resources .resource-files .file-icon {
   margin: 0 3px;
 }
 
-.block-resources .resource-files .file--application-pdf .file-icon .glyphicon-file {
+.block-resources .resource-files .file--application-pdf .glyphicon-file {
   font-family: "FontAwesome";
 }
 
-.block-resources .resource-files .file--application-pdf .file-icon .glyphicon-file:before {
+.block-resources .resource-files .file--application-pdf .glyphicon-file:before {
   content: "\f1c1";
 }
 

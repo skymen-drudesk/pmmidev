@@ -4,10 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.file.document.field_download_button_text
+    - field.field.file.document.field_prefix
+    - field.field.file.document.field_suffix
     - field.field.file.document.field_tags
     - file_entity.type.document
   module:
     - file_entity
+    - user
 id: file.document.default
 targetEntityType: file
 bundle: document
@@ -16,6 +19,20 @@ content:
   field_download_button_text:
     weight: 4
     label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_prefix:
+    weight: 6
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_suffix:
+    weight: 7
+    label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -48,7 +65,7 @@ content:
     settings: {  }
     third_party_settings: {  }
   uid:
-    type: uri_link
+    type: author
     weight: 1
     label: above
     settings: {  }

@@ -4,6 +4,10 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.file.thumbnail
+    - field.field.file.document.field_download_button_text
+    - field.field.file.document.field_prefix
+    - field.field.file.document.field_suffix
+    - field.field.file.document.field_tags
     - file_entity.type.document
 _core:
   default_config_hash: zlB0VonOjJywsH9sIrMlYt9bIpPdi3QysmBkBUaV1YY
@@ -12,9 +16,23 @@ targetEntityType: file
 bundle: document
 mode: thumbnail
 content:
-  filename:
+  field_prefix:
     type: string
     weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  field_suffix:
+    type: string
+    weight: 2
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  filename:
+    type: string
+    weight: 1
     settings:
       link_to_entity: false
     third_party_settings: {  }

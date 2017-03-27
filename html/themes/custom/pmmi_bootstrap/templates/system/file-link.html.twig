@@ -30,7 +30,10 @@
         <span class="file-size">{{ file_size }}</span>
       </span>
     {% else %}
-      <span class="file-link">{{ link }}</span><span class="file-size">({{ file_size }})</span><span class="file-icon">{{ icon }}</span>
+      {{ field_render([prefix, 'prefix', 'span']) }}
+      <span class="file-link">{{ link }}</span>
+      {{ field_render([suffix, 'suffix', 'span']) }}
+      <span class="file-icon">{{ icon }}</span>
     {% endif %}
   </span>
 {% endspaceless %}
