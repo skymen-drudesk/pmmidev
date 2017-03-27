@@ -12,6 +12,7 @@ dependencies:
     - field.storage.node.field_general_company_email
     - field.storage.node.field_industries_served
     - field.storage.node.field_industries_served_other
+    - field.storage.node.field_last_updated_on
     - field.storage.node.field_main_phone_number
     - field.storage.node.field_manufacturers_represented
     - field.storage.node.field_primary_contact_email
@@ -22,6 +23,7 @@ dependencies:
     - search_api.index.agents_index
   module:
     - csv_serialization
+    - datetime
     - link
     - options
     - pmmi_address
@@ -691,14 +693,14 @@ display:
           multi_type: separator
           multi_separator: ', '
           plugin_id: search_api
-        state:
-          id: state
+        changed:
+          id: changed
           table: search_api_index_agents_index
-          field: state
+          field: changed
           relationship: none
           group_type: group
           admin_label: ''
-          label: State
+          label: 'Date updated'
           exclude: false
           alter:
             alter_text: false
@@ -739,10 +741,101 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          link_to_item: false
+          click_sort_column: value
+          type: timestamp
+          settings:
+            date_format: medium
+            custom_date_format: ''
+            timezone: ''
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
           multi_type: separator
-          multi_separator: ', '
-          plugin_id: search_api
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api_date
+          fallback_options:
+            date_format: custom_m_d_y
+            custom_date_format: ''
+            timezone: ''
+            link_to_item: false
+            multi_separator: ', '
+          plugin_id: search_api_field
+        field_last_updated_on:
+          id: field_last_updated_on
+          table: search_api_datasource_agents_index_entity_node
+          field: field_last_updated_on
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Date updated by company user'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: datetime_default
+          settings:
+            timezone_override: ''
+            format_type: medium
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            multi_separator: ', '
+          entity_type: node
+          plugin_id: search_api_field
         nothing:
           id: nothing
           table: views
@@ -991,7 +1084,8 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-      tags: {  }
+      tags:
+        - 'config:field.storage.node.field_last_updated_on'
   data_export_1:
     display_plugin: data_export
     id: data_export_1
@@ -2812,7 +2906,7 @@ display:
               alias: after_sales_service
               raw_output: false
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'

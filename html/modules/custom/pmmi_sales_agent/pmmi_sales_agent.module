@@ -6,6 +6,7 @@
  */
 
 use Drupal\Component\Utility\Crypt;
+use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -116,6 +117,7 @@ function pmmi_sales_agent_form_alter(array &$form, FormStateInterface $form_stat
     case 'node_company_form':
     case 'node_company_edit_form':
       $build_info = $form_state->getBuildInfo();
+      $node = $build_info['callback_object']->getEntity();
 
       // The field descriptions are converted into tooltips (in accordance with
       foreach (['field_main_phone_number', 'field_fax_number'] as $field) {
@@ -127,8 +129,9 @@ function pmmi_sales_agent_form_alter(array &$form, FormStateInterface $form_stat
       // Add simple flag to make sure that company was changed using node form.
       // It will trigger additional updates, which should be ignored if node was
       // saved in other way.
-      $node = $build_info['callback_object']->getEntity();
-      $node->register = TRUE;
+      $session_key = 'sad_login_' . $node->id();
+      $token = \Drupal::request()->get('sad-login-token');
+      $node->one_time_update = isset($_SESSION[$session_key], $token) && Crypt::hashEquals($_SESSION[$session_key], $token);
       break;
   }
 }
@@ -164,9 +167,12 @@ function pmmi_sales_agent_log_search_stats(&$form, FormStateInterface $form_stat
  * Implements hook_ENTITY_TYPE_presave() for node entities.
  */
 function pmmi_sales_agent_node_presave(EntityInterface $node) {
-  // Remove the mails queue for this company.
-  if (!empty($node->register) && !$node->isNew()) {
+  if (!empty($node->one_time_update)) {
+    // Remove the mails queue for this company.
     \Drupal::service('pmmi_sales_agent.mails_queue')->deletePerCompany($node->id());
+    // Update the "Last Update On" field value.
+    $new_date = DateTimePlus::createFromTimestamp(time())->format('Y-m-d');
+    $node->set('field_last_updated_on', $new_date);
   }
 }
 
