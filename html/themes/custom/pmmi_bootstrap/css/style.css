@@ -12444,7 +12444,7 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
 .mode-default.video .field-name-node-title, .mode-default.certification-test .field-name-field-head,
 .mode-default.certification-test .field-name-node-title, .block-box.mode-full .field-name-field-head,
 .block-box.mode-full .field-name-node-title, .block-box.mode-default .field-name-field-head,
-.block-box.mode-default .field-name-node-title, .block-box.mode-vertical-box .field-name-field-head, .block-event-default .title, .block-accordion > .title, .block-enticement .title, .block-social-media.mode-media-social-with-text .title, .block-text.mode-image-text .title, .article.mode-default .title, .node-accordion .field-label, .accordion-item .header a {
+.block-box.mode-default .field-name-node-title, .block-box.mode-vertical-box .field-name-field-head, .block-event-default .title, .block-accordion > .title, .block-enticement .title, .block-resources h2.title, .block-social-media.mode-media-social-with-text .title, .block-text.mode-image-text .title, .article.mode-default .title, .node-accordion .field-label, .accordion-item .header a {
   font-size: 22px;
   font-size: 1.375rem;
   line-height: 1.18;
@@ -12456,7 +12456,7 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
 .mode-default.video .field-name-node-title a, .mode-default.certification-test .field-name-field-head a,
 .mode-default.certification-test .field-name-node-title a, .block-box.mode-full .field-name-field-head a,
 .block-box.mode-full .field-name-node-title a, .block-box.mode-default .field-name-field-head a,
-.block-box.mode-default .field-name-node-title a, .block-box.mode-vertical-box .field-name-field-head a, .block-event-default .title a, .block-accordion > .title a, .block-enticement .title a, .block-social-media.mode-media-social-with-text .title a, .block-text.mode-image-text .title a, .article.mode-default .title a, .node-accordion .field-label a, .accordion-item .header a a {
+.block-box.mode-default .field-name-node-title a, .block-box.mode-vertical-box .field-name-field-head a, .block-event-default .title a, .block-accordion > .title a, .block-enticement .title a, .block-resources h2.title a, .block-social-media.mode-media-social-with-text .title a, .block-text.mode-image-text .title a, .article.mode-default .title a, .node-accordion .field-label a, .accordion-item .header a a {
   color: #004e75;
 }
 
@@ -12465,7 +12465,7 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
   .mode-default.video .field-name-node-title, .mode-default.certification-test .field-name-field-head,
   .mode-default.certification-test .field-name-node-title, .block-box.mode-full .field-name-field-head,
   .block-box.mode-full .field-name-node-title, .block-box.mode-default .field-name-field-head,
-  .block-box.mode-default .field-name-node-title, .block-box.mode-vertical-box .field-name-field-head, .block-event-default .title, .block-accordion > .title, .block-enticement .title, .block-social-media.mode-media-social-with-text .title, .block-text.mode-image-text .title, .article.mode-default .title, .node-accordion .field-label, .accordion-item .header a {
+  .block-box.mode-default .field-name-node-title, .block-box.mode-vertical-box .field-name-field-head, .block-event-default .title, .block-accordion > .title, .block-enticement .title, .block-resources h2.title, .block-social-media.mode-media-social-with-text .title, .block-text.mode-image-text .title, .article.mode-default .title, .node-accordion .field-label, .accordion-item .header a {
     font-size: 1.25rem;
   }
 }
@@ -12475,7 +12475,7 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
   .mode-default.video .field-name-node-title, .mode-default.certification-test .field-name-field-head,
   .mode-default.certification-test .field-name-node-title, .block-box.mode-full .field-name-field-head,
   .block-box.mode-full .field-name-node-title, .block-box.mode-default .field-name-field-head,
-  .block-box.mode-default .field-name-node-title, .block-box.mode-vertical-box .field-name-field-head, .block-event-default .title, .block-accordion > .title, .block-enticement .title, .block-social-media.mode-media-social-with-text .title, .block-text.mode-image-text .title, .article.mode-default .title, .node-accordion .field-label, .accordion-item .header a {
+  .block-box.mode-default .field-name-node-title, .block-box.mode-vertical-box .field-name-field-head, .block-event-default .title, .block-accordion > .title, .block-enticement .title, .block-resources h2.title, .block-social-media.mode-media-social-with-text .title, .block-text.mode-image-text .title, .article.mode-default .title, .node-accordion .field-label, .accordion-item .header a {
     font-size: 1.0625rem;
   }
 }
@@ -18684,6 +18684,30 @@ div.view {
   padding-bottom: 10px;
   border-bottom: 1px solid #c2c2c2;
   margin-bottom: 10px;
+}
+
+.block-resources .resource-files .file-size {
+  margin: 0 3px;
+}
+
+.block-resources .resource-files .prefix {
+  padding-right: 3px;
+}
+
+.block-resources .resource-files .suffix {
+  padding-left: 3px;
+}
+
+.block-resources .resource-files .file-icon {
+  margin: 0 3px;
+}
+
+.block-resources .resource-files .file--application-pdf .glyphicon-file {
+  font-family: "FontAwesome";
+}
+
+.block-resources .resource-files .file--application-pdf .glyphicon-file:before {
+  content: "\f1c1";
 }
 
 .block-social-media-footer .social-links span,

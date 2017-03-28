@@ -21,8 +21,18 @@ variant_settings:
       views_label: ''
       items_per_page: none
       region: middle
-      weight: 0
+      weight: 1
       uuid: 83c80c8c-3c5f-494e-a6fe-4bf5705e9c46
+      context_mapping: {  }
+    bdbb34cf-b32a-4576-847c-51e589d376f0:
+      id: 'views_exposed_filter_block:sales_agent_search_stats-block_1'
+      label: ''
+      provider: views
+      label_display: visible
+      views_label: ''
+      region: middle
+      weight: 0
+      uuid: bdbb34cf-b32a-4576-847c-51e589d376f0
       context_mapping: {  }
   id: panels_variant
   uuid: ab305b4c-495b-4277-9ff2-00fcb2331a0e
