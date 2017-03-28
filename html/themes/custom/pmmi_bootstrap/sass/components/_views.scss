@@ -9,6 +9,10 @@ div.view {
     padding-left: 0;
   }
 }
+.views-row-columns {
+  clear: both;
+  overflow: hidden;
+}
 .views-view-grid.cols-2 {
   .row {
     @include mobile {
@@ -101,8 +105,8 @@ div.view {
     }
   }
 }
-.events-block-3,
-.block-views-blockevents-block-3 {
+.events-block-upcoming-ribbon,
+.block-views-blockevents-block-upcoming-ribbon {
   text-align: center;
   margin: 0;
   .block-title {
