@@ -17,9 +17,9 @@ class PMMICommitteeQueue extends PMMIBaseDataQueue {
   /**
    * {@inheritdoc}
    */
-  public function processItem($data) {
-    $cid = $this->provider . ':' . $data['type'] . '_' . $data['id'];
-    $data = $this->getCommitteeData($data['id']);
+  public function processItem($item) {
+    $cid = $this->provider . ':' . $item->type . '_' . $item->id;
+    $data = $this->getCommitteeData($item->id);
     if ($data) {
       $this->cache->set($cid, $data);
     }

@@ -140,7 +140,10 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
    */
   public function build() {
     $build = [];
-    $data = $this->dataCollector->getData('committee', $this->configuration['committee_id']);
+    $options = new \stdClass();
+    $options->id = $this->configuration['committee_id'];
+    $options->type = 'committee';
+    $data = $this->dataCollector->getData($options);
     if (!empty($data) && !empty($this->configuration['sort_options'])) {
       $this->sort($data);
     }

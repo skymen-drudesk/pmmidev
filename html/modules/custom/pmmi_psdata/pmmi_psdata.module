@@ -36,13 +36,15 @@ function pmmi_psdata_theme($existing, $type, $theme, $path) {
       ],
       'template' => 'pmmi-psdata-committee-block',
     ],
-    'pmmi_psdata_staff_block' => [
+    'pmmi_psdata_company_staff_block' => [
       'variables' => [
         'data' => '',
+        'staff_enabled' => '',
+        'staff_label' => '',
         'columns' => '',
         'rows' => '',
       ],
-      'template' => 'pmmi-psdata-staff-block',
+      'template' => 'pmmi-psdata-company-staff-block',
     ],
   ];
 }
