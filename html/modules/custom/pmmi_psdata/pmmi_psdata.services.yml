@@ -1,4 +1,4 @@
 services:
   pmmi_psdata.collector:
     class: Drupal\pmmi_psdata\Service\PMMIDataCollector
-    arguments: ['@cache.default','@cache_tags.invalidator', '@pmmi_sso.helper', '@queue', '@plugin.manager.queue_worker']
+    arguments: ['@cache.default','@cache_tags.invalidator', '@queue', '@plugin.manager.queue_worker']

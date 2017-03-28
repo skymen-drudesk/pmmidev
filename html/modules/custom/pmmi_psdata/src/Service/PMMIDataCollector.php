@@ -18,7 +18,7 @@ use Drupal\pmmi_sso\Service\PMMISSOHelper;
 class PMMIDataCollector {
 
   /**
-   * The cache backend to use for the complete theme registry data.
+   * The cache backend.
    *
    * @var \Drupal\Core\Cache\CacheBackendInterface
    */
@@ -30,13 +30,6 @@ class PMMIDataCollector {
    * @var \Drupal\Core\Cache\CacheTagsInvalidatorInterface
    */
   protected $cacheTagsInvalidator;
-
-  /**
-   * Stores PMMISSO helper.
-   *
-   * @var \Drupal\pmmi_sso\Service\PMMISSOHelper
-   */
-  protected $ssoHelper;
 
   /**
    * The queue object.
@@ -59,8 +52,6 @@ class PMMIDataCollector {
    *   The cache backend interface to use for the complete theme registry data.
    * @param \Drupal\Core\Cache\CacheTagsInvalidatorInterface $cache_tags_invalidator
    *   The cache tags invalidator.
-   * @param PMMISSOHelper $sso_helper
-   *   The PMMI SSO Helper service.
    * @param \Drupal\Core\Queue\QueueFactory $queue
    *   The queue factory.
    * @param \Drupal\Core\Queue\QueueWorkerManagerInterface $queue_manager
@@ -69,13 +60,11 @@ class PMMIDataCollector {
   public function __construct(
     CacheBackendInterface $cache_default,
     CacheTagsInvalidatorInterface $cache_tags_invalidator,
-    PMMISSOHelper $sso_helper,
     QueueFactory $queue,
     QueueWorkerManagerInterface $queue_manager
   ) {
     $this->cache = $cache_default;
     $this->cacheTagsInvalidator = $cache_tags_invalidator;
-    $this->ssoHelper = $sso_helper;
     $this->queue = $queue;
     $this->queueManager = $queue_manager;
   }
@@ -137,12 +126,12 @@ class PMMIDataCollector {
       $company_data = $this->getCompanyData($options, $cid);
     }
     // Get staff data.
-    $cid = $this->buildCid($options, 'staff');
-    if ($this->cache->get($cid)) {
-      $staff_data = $this->cache->get($cid)->data;
+    $csid = $this->buildCid($options, 'staff');
+    if ($this->cache->get($csid)) {
+      $staff_data = $this->cache->get($csid)->data;
     }
     else {
-      $staff_data = $this->getCompanyStaffData($options, $cid);
+      $staff_data = $this->getCompanyStaffData($options, $csid);
     }
     if (!empty($company_data) && !empty($staff_data)) {
       $data = $this->sortCompanyData($options, $company_data, $staff_data);
@@ -151,10 +140,7 @@ class PMMIDataCollector {
     $data = array_map('array_filter', $data);
     $data = array_filter($data);
     if ($data) {
-      $tags = [
-        $this->buildCid($options, 'company'),
-        $this->buildCid($options, 'staff'),
-      ];
+      $tags = [$cid, $csid];
       $this->cache->set($main_cid, $data, Cache::PERMANENT, $tags);
     }
   }
@@ -219,7 +205,7 @@ class PMMIDataCollector {
     $result = [];
     foreach ($filter_by as $employee) {
       $last_first_name = explode(' ', trim($employee));
-      $result = array_merge($result, array_filter($array_to_filter, function ($row) use ($last_first_name) {
+      $result = array_replace($result, array_filter($array_to_filter, function ($row) use ($last_first_name) {
         return (
           strtolower(trim($row['first_name'])) == strtolower(trim($last_first_name[0])) &&
           strtolower(trim($row['last_name'])) == strtolower(trim($last_first_name[1]))
