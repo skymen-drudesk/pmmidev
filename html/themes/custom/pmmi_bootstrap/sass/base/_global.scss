@@ -86,15 +86,20 @@ body {
       margin: 0 15px 10px 0;
     }
   }
-  .align-left,
-  .align-right {
-    @include mobile {
-      margin: 25px 0;
+  @include mobile {
+    .align-left,
+    .align-right {
+      margin: 25px auto;
       float: none;
+      display: block;
       text-align: center;
       img {
         margin: 0 auto;
       }
+    }
+    img.align-left,
+    img.align-right {
+      margin: 10px auto;
     }
   }
 }

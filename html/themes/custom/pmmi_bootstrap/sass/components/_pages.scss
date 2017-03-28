@@ -16,6 +16,12 @@
       padding-left: 25px;
       margin-left: -1px;
     }
+    @include desktop-max {
+      .block-enticement .button a {
+        min-width: 0;
+        width: 270px;
+      }
+    }
     @include tablet {
       .col {
         width: 50%;

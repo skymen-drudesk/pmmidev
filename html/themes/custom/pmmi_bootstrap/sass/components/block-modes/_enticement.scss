@@ -26,6 +26,13 @@
   .right {
     overflow: hidden;
   }
+  @include desktop {
+    .button {
+      a {
+        min-width: 250px;
+      }
+    }
+  }
   @include tablet {
     .image {
       margin-right: 10px;

@@ -12859,13 +12859,18 @@ body {
 @media screen and (max-width: 767px) {
   .field--type-text-with-summary .align-left,
   .field--type-text-with-summary .align-right {
-    margin: 25px 0;
+    margin: 25px auto;
     float: none;
+    display: block;
     text-align: center;
   }
   .field--type-text-with-summary .align-left img,
   .field--type-text-with-summary .align-right img {
     margin: 0 auto;
+  }
+  .field--type-text-with-summary img.align-left,
+  .field--type-text-with-summary img.align-right {
+    margin: 10px auto;
   }
 }
 
@@ -15397,6 +15402,13 @@ body > .page-wrapper:after,
   margin-left: -1px;
 }
 
+@media screen and (max-width: 1199px) {
+  .path-workforce-development .white-region .containers.mode-2-up .block-enticement .button a {
+    min-width: 0;
+    width: 270px;
+  }
+}
+
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .path-workforce-development .white-region .containers.mode-2-up .col {
     width: 50%;
@@ -17634,6 +17646,12 @@ div.view {
 
 .block-enticement .right {
   overflow: hidden;
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .block-enticement .button a {
+    min-width: 250px;
+  }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
