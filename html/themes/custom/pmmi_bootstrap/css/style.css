@@ -3996,26 +3996,26 @@ pre code {
   clear: both;
 }
 
-.row, .footer .region-footer, .events-block-3 .view-content,
-.block-views-blockevents-block-3 .view-content, .block-icons .column {
+.row, .footer .region-footer, .events-block-upcoming-ribbon .view-content,
+.block-views-blockevents-block-upcoming-ribbon .view-content, .block-icons .column {
   margin-left: -15px;
   margin-right: -15px;
 }
 
-.row:before, .footer .region-footer:before, .events-block-3 .view-content:before,
-.block-views-blockevents-block-3 .view-content:before, .block-icons .column:before, .row:after, .footer .region-footer:after, .events-block-3 .view-content:after,
-.block-views-blockevents-block-3 .view-content:after, .block-icons .column:after {
+.row:before, .footer .region-footer:before, .events-block-upcoming-ribbon .view-content:before,
+.block-views-blockevents-block-upcoming-ribbon .view-content:before, .block-icons .column:before, .row:after, .footer .region-footer:after, .events-block-upcoming-ribbon .view-content:after,
+.block-views-blockevents-block-upcoming-ribbon .view-content:after, .block-icons .column:after {
   content: " ";
   display: table;
 }
 
-.row:after, .footer .region-footer:after, .events-block-3 .view-content:after,
-.block-views-blockevents-block-3 .view-content:after, .block-icons .column:after {
+.row:after, .footer .region-footer:after, .events-block-upcoming-ribbon .view-content:after,
+.block-views-blockevents-block-upcoming-ribbon .view-content:after, .block-icons .column:after {
   clear: both;
 }
 
-.col-xs-1, .col-sm-1, .footer .block-copyright-block, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .footer .block-block-content, .col-lg-2, .col-xs-3, .col-sm-3, .events-block-3 .views-row,
-.block-views-blockevents-block-3 .views-row, .col-md-3, .footer nav, .block-icons.cols-4 .column > .field, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .block-icons.cols-3 .column > .field, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .footer .block-audience-switcher, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .block-icons.cols-2 .column > .field, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+.col-xs-1, .col-sm-1, .footer .block-copyright-block, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .footer .block-block-content, .col-lg-2, .col-xs-3, .col-sm-3, .events-block-upcoming-ribbon .views-row,
+.block-views-blockevents-block-upcoming-ribbon .views-row, .col-md-3, .footer nav, .block-icons.cols-4 .column > .field, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .block-icons.cols-3 .column > .field, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .footer .block-audience-switcher, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .block-icons.cols-2 .column > .field, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
   position: relative;
   min-height: 1px;
   padding-left: 15px;
@@ -4231,8 +4231,8 @@ pre code {
 }
 
 @media (min-width: 768px) {
-  .col-sm-1, .footer .block-copyright-block, .col-sm-2, .col-sm-3, .events-block-3 .views-row,
-  .block-views-blockevents-block-3 .views-row, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
+  .col-sm-1, .footer .block-copyright-block, .col-sm-2, .col-sm-3, .events-block-upcoming-ribbon .views-row,
+  .block-views-blockevents-block-upcoming-ribbon .views-row, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12 {
     float: left;
   }
   .col-sm-1, .footer .block-copyright-block {
@@ -4241,8 +4241,8 @@ pre code {
   .col-sm-2 {
     width: 16.66667%;
   }
-  .col-sm-3, .events-block-3 .views-row,
-  .block-views-blockevents-block-3 .views-row {
+  .col-sm-3, .events-block-upcoming-ribbon .views-row,
+  .block-views-blockevents-block-upcoming-ribbon .views-row {
     width: 25%;
   }
   .col-sm-4 {
@@ -11605,8 +11605,8 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
   width: 24rem;
 }
 
-.button-primary-defaults, .button-primary, .btn-prm-wrap a, .mode-event-left-rail .field-name-field-button a, .page-sales-agent-directory-my-favorites .view-header a, .mode-default.video .field-name-node-link a, .mode-default.certification-test .field-name-field-link a, .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a, .containers .region-bottom .field-name-field-button a, .accordion-item .field-name-field-button a, .btn-primary-opacity, .mode-default.video .field-name-field-link a, .mode-default.certification-test .field-name-node-link a, .block-box.mode-full .field-name-field-buttons a:not(:first-child), .block-box.mode-default .field-name-field-buttons a:not(:first-child), .block-event-default .link a, .button-secondary, .btn-scnd-wrap a, .default-exposed-form form button, .region-top .block.views-exposed-form form button, .block-pmmi-search-library-block form button, .events-block-3 .more-link a,
-.block-views-blockevents-block-3 .more-link a, .blue-region .containers .region-bottom .field-name-field-button a {
+.button-primary-defaults, .button-primary, .btn-prm-wrap a, .mode-event-left-rail .field-name-field-button a, .page-sales-agent-directory-my-favorites .view-header a, .mode-default.video .field-name-node-link a, .mode-default.certification-test .field-name-field-link a, .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a, .containers .region-bottom .field-name-field-button a, .accordion-item .field-name-field-button a, .btn-primary-opacity, .mode-default.video .field-name-field-link a, .mode-default.certification-test .field-name-node-link a, .block-box.mode-full .field-name-field-buttons a:not(:first-child), .block-box.mode-default .field-name-field-buttons a:not(:first-child), .block-event-default .link a, .button-secondary, .btn-scnd-wrap a, .default-exposed-form form button, .region-top .block.views-exposed-form form button, .block-pmmi-search-library-block form button, .events-block-upcoming-ribbon .more-link a,
+.block-views-blockevents-block-upcoming-ribbon .more-link a, .blue-region .containers .region-bottom .field-name-field-button a {
   display: inline-block;
   margin-bottom: 0;
   text-align: center;
@@ -11636,37 +11636,37 @@ body.navbar-tray-open.navbar-vertical.navbar-fixed {
   text-transform: uppercase;
 }
 
-.button-primary-defaults:focus, .button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header a:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .btn-primary-opacity:focus, .mode-default.video .field-name-field-link a:focus, .mode-default.certification-test .field-name-node-link a:focus, .block-event-default .link a:focus, .button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
-.block-views-blockevents-block-3 .more-link a:focus, .button-primary-defaults.focus, .focus.button-primary, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .view-header a.focus, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus, .focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.focus, .mode-default.certification-test .field-name-node-link a.focus, .block-event-default .link a.focus, .focus.button-secondary, .btn-scnd-wrap a.focus, .default-exposed-form form button.focus, .region-top .block.views-exposed-form form button.focus, .block-pmmi-search-library-block form button.focus, .events-block-3 .more-link a.focus,
-.block-views-blockevents-block-3 .more-link a.focus, .button-primary-defaults:active:focus, .button-primary:active:focus, .btn-prm-wrap a:active:focus, .mode-event-left-rail .field-name-field-button a:active:focus, .page-sales-agent-directory-my-favorites .view-header a:active:focus, .mode-default.video .field-name-node-link a:active:focus, .mode-default.certification-test .field-name-field-link a:active:focus, .block-box.mode-full .field-name-field-buttons a:active:focus, .block-box.mode-default .field-name-field-buttons a:active:focus, .containers .region-bottom .field-name-field-button a:active:focus, .accordion-item .field-name-field-button a:active:focus, .btn-primary-opacity:active:focus, .mode-default.video .field-name-field-link a:active:focus, .mode-default.certification-test .field-name-node-link a:active:focus, .block-event-default .link a:active:focus, .button-secondary:active:focus, .btn-scnd-wrap a:active:focus, .default-exposed-form form button:active:focus, .region-top .block.views-exposed-form form button:active:focus, .block-pmmi-search-library-block form button:active:focus, .events-block-3 .more-link a:active:focus,
-.block-views-blockevents-block-3 .more-link a:active:focus, .button-primary-defaults:active.focus, .button-primary:active.focus, .btn-prm-wrap a:active.focus, .mode-event-left-rail .field-name-field-button a:active.focus, .page-sales-agent-directory-my-favorites .view-header a:active.focus, .mode-default.video .field-name-node-link a:active.focus, .mode-default.certification-test .field-name-field-link a:active.focus, .block-box.mode-full .field-name-field-buttons a:active.focus, .block-box.mode-default .field-name-field-buttons a:active.focus, .containers .region-bottom .field-name-field-button a:active.focus, .accordion-item .field-name-field-button a:active.focus, .btn-primary-opacity:active.focus, .mode-default.video .field-name-field-link a:active.focus, .mode-default.certification-test .field-name-node-link a:active.focus, .block-event-default .link a:active.focus, .button-secondary:active.focus, .btn-scnd-wrap a:active.focus, .default-exposed-form form button:active.focus, .region-top .block.views-exposed-form form button:active.focus, .block-pmmi-search-library-block form button:active.focus, .events-block-3 .more-link a:active.focus,
-.block-views-blockevents-block-3 .more-link a:active.focus, .button-primary-defaults.active:focus, .active.button-primary:focus, .btn-prm-wrap a.active:focus, .mode-event-left-rail .field-name-field-button a.active:focus, .page-sales-agent-directory-my-favorites .view-header a.active:focus, .mode-default.video .field-name-node-link a.active:focus, .mode-default.certification-test .field-name-field-link a.active:focus, .block-box.mode-full .field-name-field-buttons a.active:focus, .block-box.mode-default .field-name-field-buttons a.active:focus, .containers .region-bottom .field-name-field-button a.active:focus, .accordion-item .field-name-field-button a.active:focus, .active.btn-primary-opacity:focus, .mode-default.video .field-name-field-link a.active:focus, .mode-default.certification-test .field-name-node-link a.active:focus, .block-event-default .link a.active:focus, .active.button-secondary:focus, .btn-scnd-wrap a.active:focus, .default-exposed-form form button.active:focus, .region-top .block.views-exposed-form form button.active:focus, .block-pmmi-search-library-block form button.active:focus, .events-block-3 .more-link a.active:focus,
-.block-views-blockevents-block-3 .more-link a.active:focus, .button-primary-defaults.active.focus, .active.focus.button-primary, .btn-prm-wrap a.active.focus, .mode-event-left-rail .field-name-field-button a.active.focus, .page-sales-agent-directory-my-favorites .view-header a.active.focus, .mode-default.video .field-name-node-link a.active.focus, .mode-default.certification-test .field-name-field-link a.active.focus, .block-box.mode-full .field-name-field-buttons a.active.focus, .block-box.mode-default .field-name-field-buttons a.active.focus, .containers .region-bottom .field-name-field-button a.active.focus, .accordion-item .field-name-field-button a.active.focus, .active.focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.active.focus, .mode-default.certification-test .field-name-node-link a.active.focus, .block-event-default .link a.active.focus, .active.focus.button-secondary, .btn-scnd-wrap a.active.focus, .default-exposed-form form button.active.focus, .region-top .block.views-exposed-form form button.active.focus, .block-pmmi-search-library-block form button.active.focus, .events-block-3 .more-link a.active.focus,
-.block-views-blockevents-block-3 .more-link a.active.focus {
+.button-primary-defaults:focus, .button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header a:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .btn-primary-opacity:focus, .mode-default.video .field-name-field-link a:focus, .mode-default.certification-test .field-name-node-link a:focus, .block-event-default .link a:focus, .button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-upcoming-ribbon .more-link a:focus,
+.block-views-blockevents-block-upcoming-ribbon .more-link a:focus, .button-primary-defaults.focus, .focus.button-primary, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .view-header a.focus, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus, .focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.focus, .mode-default.certification-test .field-name-node-link a.focus, .block-event-default .link a.focus, .focus.button-secondary, .btn-scnd-wrap a.focus, .default-exposed-form form button.focus, .region-top .block.views-exposed-form form button.focus, .block-pmmi-search-library-block form button.focus, .events-block-upcoming-ribbon .more-link a.focus,
+.block-views-blockevents-block-upcoming-ribbon .more-link a.focus, .button-primary-defaults:active:focus, .button-primary:active:focus, .btn-prm-wrap a:active:focus, .mode-event-left-rail .field-name-field-button a:active:focus, .page-sales-agent-directory-my-favorites .view-header a:active:focus, .mode-default.video .field-name-node-link a:active:focus, .mode-default.certification-test .field-name-field-link a:active:focus, .block-box.mode-full .field-name-field-buttons a:active:focus, .block-box.mode-default .field-name-field-buttons a:active:focus, .containers .region-bottom .field-name-field-button a:active:focus, .accordion-item .field-name-field-button a:active:focus, .btn-primary-opacity:active:focus, .mode-default.video .field-name-field-link a:active:focus, .mode-default.certification-test .field-name-node-link a:active:focus, .block-event-default .link a:active:focus, .button-secondary:active:focus, .btn-scnd-wrap a:active:focus, .default-exposed-form form button:active:focus, .region-top .block.views-exposed-form form button:active:focus, .block-pmmi-search-library-block form button:active:focus, .events-block-upcoming-ribbon .more-link a:active:focus,
+.block-views-blockevents-block-upcoming-ribbon .more-link a:active:focus, .button-primary-defaults:active.focus, .button-primary:active.focus, .btn-prm-wrap a:active.focus, .mode-event-left-rail .field-name-field-button a:active.focus, .page-sales-agent-directory-my-favorites .view-header a:active.focus, .mode-default.video .field-name-node-link a:active.focus, .mode-default.certification-test .field-name-field-link a:active.focus, .block-box.mode-full .field-name-field-buttons a:active.focus, .block-box.mode-default .field-name-field-buttons a:active.focus, .containers .region-bottom .field-name-field-button a:active.focus, .accordion-item .field-name-field-button a:active.focus, .btn-primary-opacity:active.focus, .mode-default.video .field-name-field-link a:active.focus, .mode-default.certification-test .field-name-node-link a:active.focus, .block-event-default .link a:active.focus, .button-secondary:active.focus, .btn-scnd-wrap a:active.focus, .default-exposed-form form button:active.focus, .region-top .block.views-exposed-form form button:active.focus, .block-pmmi-search-library-block form button:active.focus, .events-block-upcoming-ribbon .more-link a:active.focus,
+.block-views-blockevents-block-upcoming-ribbon .more-link a:active.focus, .button-primary-defaults.active:focus, .active.button-primary:focus, .btn-prm-wrap a.active:focus, .mode-event-left-rail .field-name-field-button a.active:focus, .page-sales-agent-directory-my-favorites .view-header a.active:focus, .mode-default.video .field-name-node-link a.active:focus, .mode-default.certification-test .field-name-field-link a.active:focus, .block-box.mode-full .field-name-field-buttons a.active:focus, .block-box.mode-default .field-name-field-buttons a.active:focus, .containers .region-bottom .field-name-field-button a.active:focus, .accordion-item .field-name-field-button a.active:focus, .active.btn-primary-opacity:focus, .mode-default.video .field-name-field-link a.active:focus, .mode-default.certification-test .field-name-node-link a.active:focus, .block-event-default .link a.active:focus, .active.button-secondary:focus, .btn-scnd-wrap a.active:focus, .default-exposed-form form button.active:focus, .region-top .block.views-exposed-form form button.active:focus, .block-pmmi-search-library-block form button.active:focus, .events-block-upcoming-ribbon .more-link a.active:focus,
+.block-views-blockevents-block-upcoming-ribbon .more-link a.active:focus, .button-primary-defaults.active.focus, .active.focus.button-primary, .btn-prm-wrap a.active.focus, .mode-event-left-rail .field-name-field-button a.active.focus, .page-sales-agent-directory-my-favorites .view-header a.active.focus, .mode-default.video .field-name-node-link a.active.focus, .mode-default.certification-test .field-name-field-link a.active.focus, .block-box.mode-full .field-name-field-buttons a.active.focus, .block-box.mode-default .field-name-field-buttons a.active.focus, .containers .region-bottom .field-name-field-button a.active.focus, .accordion-item .field-name-field-button a.active.focus, .active.focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.active.focus, .mode-default.certification-test .field-name-node-link a.active.focus, .block-event-default .link a.active.focus, .active.focus.button-secondary, .btn-scnd-wrap a.active.focus, .default-exposed-form form button.active.focus, .region-top .block.views-exposed-form form button.active.focus, .block-pmmi-search-library-block form button.active.focus, .events-block-upcoming-ribbon .more-link a.active.focus,
+.block-views-blockevents-block-upcoming-ribbon .more-link a.active.focus {
   outline: thin dotted;
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
 
-.button-primary-defaults:hover, .button-primary:hover, .btn-prm-wrap a:hover, .mode-event-left-rail .field-name-field-button a:hover, .page-sales-agent-directory-my-favorites .view-header a:hover, .mode-default.video .field-name-node-link a:hover, .mode-default.certification-test .field-name-field-link a:hover, .block-box.mode-full .field-name-field-buttons a:hover, .block-box.mode-default .field-name-field-buttons a:hover, .containers .region-bottom .field-name-field-button a:hover, .accordion-item .field-name-field-button a:hover, .btn-primary-opacity:hover, .mode-default.video .field-name-field-link a:hover, .mode-default.certification-test .field-name-node-link a:hover, .block-event-default .link a:hover, .button-secondary:hover, .btn-scnd-wrap a:hover, .default-exposed-form form button:hover, .region-top .block.views-exposed-form form button:hover, .block-pmmi-search-library-block form button:hover, .events-block-3 .more-link a:hover,
-.block-views-blockevents-block-3 .more-link a:hover, .button-primary-defaults:focus, .button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header a:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .btn-primary-opacity:focus, .mode-default.video .field-name-field-link a:focus, .mode-default.certification-test .field-name-node-link a:focus, .block-event-default .link a:focus, .button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
-.block-views-blockevents-block-3 .more-link a:focus, .button-primary-defaults.focus, .focus.button-primary, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .view-header a.focus, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus, .focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.focus, .mode-default.certification-test .field-name-node-link a.focus, .block-event-default .link a.focus, .focus.button-secondary, .btn-scnd-wrap a.focus, .default-exposed-form form button.focus, .region-top .block.views-exposed-form form button.focus, .block-pmmi-search-library-block form button.focus, .events-block-3 .more-link a.focus,
-.block-views-blockevents-block-3 .more-link a.focus {
+.button-primary-defaults:hover, .button-primary:hover, .btn-prm-wrap a:hover, .mode-event-left-rail .field-name-field-button a:hover, .page-sales-agent-directory-my-favorites .view-header a:hover, .mode-default.video .field-name-node-link a:hover, .mode-default.certification-test .field-name-field-link a:hover, .block-box.mode-full .field-name-field-buttons a:hover, .block-box.mode-default .field-name-field-buttons a:hover, .containers .region-bottom .field-name-field-button a:hover, .accordion-item .field-name-field-button a:hover, .btn-primary-opacity:hover, .mode-default.video .field-name-field-link a:hover, .mode-default.certification-test .field-name-node-link a:hover, .block-event-default .link a:hover, .button-secondary:hover, .btn-scnd-wrap a:hover, .default-exposed-form form button:hover, .region-top .block.views-exposed-form form button:hover, .block-pmmi-search-library-block form button:hover, .events-block-upcoming-ribbon .more-link a:hover,
+.block-views-blockevents-block-upcoming-ribbon .more-link a:hover, .button-primary-defaults:focus, .button-primary:focus, .btn-prm-wrap a:focus, .mode-event-left-rail .field-name-field-button a:focus, .page-sales-agent-directory-my-favorites .view-header a:focus, .mode-default.video .field-name-node-link a:focus, .mode-default.certification-test .field-name-field-link a:focus, .block-box.mode-full .field-name-field-buttons a:focus, .block-box.mode-default .field-name-field-buttons a:focus, .containers .region-bottom .field-name-field-button a:focus, .accordion-item .field-name-field-button a:focus, .btn-primary-opacity:focus, .mode-default.video .field-name-field-link a:focus, .mode-default.certification-test .field-name-node-link a:focus, .block-event-default .link a:focus, .button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-upcoming-ribbon .more-link a:focus,
+.block-views-blockevents-block-upcoming-ribbon .more-link a:focus, .button-primary-defaults.focus, .focus.button-primary, .btn-prm-wrap a.focus, .mode-event-left-rail .field-name-field-button a.focus, .page-sales-agent-directory-my-favorites .view-header a.focus, .mode-default.video .field-name-node-link a.focus, .mode-default.certification-test .field-name-field-link a.focus, .block-box.mode-full .field-name-field-buttons a.focus, .block-box.mode-default .field-name-field-buttons a.focus, .containers .region-bottom .field-name-field-button a.focus, .accordion-item .field-name-field-button a.focus, .focus.btn-primary-opacity, .mode-default.video .field-name-field-link a.focus, .mode-default.certification-test .field-name-node-link a.focus, .block-event-default .link a.focus, .focus.button-secondary, .btn-scnd-wrap a.focus, .default-exposed-form form button.focus, .region-top .block.views-exposed-form form button.focus, .block-pmmi-search-library-block form button.focus, .events-block-upcoming-ribbon .more-link a.focus,
+.block-views-blockevents-block-upcoming-ribbon .more-link a.focus {
   color: #333;
   text-decoration: none;
 }
 
-.button-primary-defaults:active, .button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .page-sales-agent-directory-my-favorites .view-header a:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .containers .region-bottom .field-name-field-button a:active, .accordion-item .field-name-field-button a:active, .btn-primary-opacity:active, .mode-default.video .field-name-field-link a:active, .mode-default.certification-test .field-name-node-link a:active, .block-event-default .link a:active, .button-secondary:active, .btn-scnd-wrap a:active, .default-exposed-form form button:active, .region-top .block.views-exposed-form form button:active, .block-pmmi-search-library-block form button:active, .events-block-3 .more-link a:active,
-.block-views-blockevents-block-3 .more-link a:active, .button-primary-defaults.active, .active.button-primary, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .page-sales-agent-directory-my-favorites .view-header a.active, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .containers .region-bottom .field-name-field-button a.active, .accordion-item .field-name-field-button a.active, .active.btn-primary-opacity, .mode-default.video .field-name-field-link a.active, .mode-default.certification-test .field-name-node-link a.active, .block-event-default .link a.active, .active.button-secondary, .btn-scnd-wrap a.active, .default-exposed-form form button.active, .region-top .block.views-exposed-form form button.active, .block-pmmi-search-library-block form button.active, .events-block-3 .more-link a.active,
-.block-views-blockevents-block-3 .more-link a.active {
+.button-primary-defaults:active, .button-primary:active, .btn-prm-wrap a:active, .mode-event-left-rail .field-name-field-button a:active, .page-sales-agent-directory-my-favorites .view-header a:active, .mode-default.video .field-name-node-link a:active, .mode-default.certification-test .field-name-field-link a:active, .block-box.mode-full .field-name-field-buttons a:active, .block-box.mode-default .field-name-field-buttons a:active, .containers .region-bottom .field-name-field-button a:active, .accordion-item .field-name-field-button a:active, .btn-primary-opacity:active, .mode-default.video .field-name-field-link a:active, .mode-default.certification-test .field-name-node-link a:active, .block-event-default .link a:active, .button-secondary:active, .btn-scnd-wrap a:active, .default-exposed-form form button:active, .region-top .block.views-exposed-form form button:active, .block-pmmi-search-library-block form button:active, .events-block-upcoming-ribbon .more-link a:active,
+.block-views-blockevents-block-upcoming-ribbon .more-link a:active, .button-primary-defaults.active, .active.button-primary, .btn-prm-wrap a.active, .mode-event-left-rail .field-name-field-button a.active, .page-sales-agent-directory-my-favorites .view-header a.active, .mode-default.video .field-name-node-link a.active, .mode-default.certification-test .field-name-field-link a.active, .block-box.mode-full .field-name-field-buttons a.active, .block-box.mode-default .field-name-field-buttons a.active, .containers .region-bottom .field-name-field-button a.active, .accordion-item .field-name-field-button a.active, .active.btn-primary-opacity, .mode-default.video .field-name-field-link a.active, .mode-default.certification-test .field-name-node-link a.active, .block-event-default .link a.active, .active.button-secondary, .btn-scnd-wrap a.active, .default-exposed-form form button.active, .region-top .block.views-exposed-form form button.active, .block-pmmi-search-library-block form button.active, .events-block-upcoming-ribbon .more-link a.active,
+.block-views-blockevents-block-upcoming-ribbon .more-link a.active {
   outline: 0;
   background-image: none;
   box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
 }
 
-.button-primary-defaults.disabled, .disabled.button-primary, .btn-prm-wrap a.disabled, .mode-event-left-rail .field-name-field-button a.disabled, .page-sales-agent-directory-my-favorites .view-header a.disabled, .mode-default.video .field-name-node-link a.disabled, .mode-default.certification-test .field-name-field-link a.disabled, .block-box.mode-full .field-name-field-buttons a.disabled, .block-box.mode-default .field-name-field-buttons a.disabled, .containers .region-bottom .field-name-field-button a.disabled, .accordion-item .field-name-field-button a.disabled, .disabled.btn-primary-opacity, .mode-default.video .field-name-field-link a.disabled, .mode-default.certification-test .field-name-node-link a.disabled, .block-event-default .link a.disabled, .disabled.button-secondary, .btn-scnd-wrap a.disabled, .default-exposed-form form button.disabled, .region-top .block.views-exposed-form form button.disabled, .block-pmmi-search-library-block form button.disabled, .events-block-3 .more-link a.disabled,
-.block-views-blockevents-block-3 .more-link a.disabled, .button-primary-defaults[disabled], [disabled].button-primary, .btn-prm-wrap a[disabled], .mode-event-left-rail .field-name-field-button a[disabled], .page-sales-agent-directory-my-favorites .view-header a[disabled], .mode-default.video .field-name-node-link a[disabled], .mode-default.certification-test .field-name-field-link a[disabled], .block-box.mode-full .field-name-field-buttons a[disabled], .block-box.mode-default .field-name-field-buttons a[disabled], .containers .region-bottom .field-name-field-button a[disabled], .accordion-item .field-name-field-button a[disabled], [disabled].btn-primary-opacity, .mode-default.video .field-name-field-link a[disabled], .mode-default.certification-test .field-name-node-link a[disabled], .block-event-default .link a[disabled], [disabled].button-secondary, .btn-scnd-wrap a[disabled], .default-exposed-form form button[disabled], .region-top .block.views-exposed-form form button[disabled], .block-pmmi-search-library-block form button[disabled], .events-block-3 .more-link a[disabled],
-.block-views-blockevents-block-3 .more-link a[disabled],
+.button-primary-defaults.disabled, .disabled.button-primary, .btn-prm-wrap a.disabled, .mode-event-left-rail .field-name-field-button a.disabled, .page-sales-agent-directory-my-favorites .view-header a.disabled, .mode-default.video .field-name-node-link a.disabled, .mode-default.certification-test .field-name-field-link a.disabled, .block-box.mode-full .field-name-field-buttons a.disabled, .block-box.mode-default .field-name-field-buttons a.disabled, .containers .region-bottom .field-name-field-button a.disabled, .accordion-item .field-name-field-button a.disabled, .disabled.btn-primary-opacity, .mode-default.video .field-name-field-link a.disabled, .mode-default.certification-test .field-name-node-link a.disabled, .block-event-default .link a.disabled, .disabled.button-secondary, .btn-scnd-wrap a.disabled, .default-exposed-form form button.disabled, .region-top .block.views-exposed-form form button.disabled, .block-pmmi-search-library-block form button.disabled, .events-block-upcoming-ribbon .more-link a.disabled,
+.block-views-blockevents-block-upcoming-ribbon .more-link a.disabled, .button-primary-defaults[disabled], [disabled].button-primary, .btn-prm-wrap a[disabled], .mode-event-left-rail .field-name-field-button a[disabled], .page-sales-agent-directory-my-favorites .view-header a[disabled], .mode-default.video .field-name-node-link a[disabled], .mode-default.certification-test .field-name-field-link a[disabled], .block-box.mode-full .field-name-field-buttons a[disabled], .block-box.mode-default .field-name-field-buttons a[disabled], .containers .region-bottom .field-name-field-button a[disabled], .accordion-item .field-name-field-button a[disabled], [disabled].btn-primary-opacity, .mode-default.video .field-name-field-link a[disabled], .mode-default.certification-test .field-name-node-link a[disabled], .block-event-default .link a[disabled], [disabled].button-secondary, .btn-scnd-wrap a[disabled], .default-exposed-form form button[disabled], .region-top .block.views-exposed-form form button[disabled], .block-pmmi-search-library-block form button[disabled], .events-block-upcoming-ribbon .more-link a[disabled],
+.block-views-blockevents-block-upcoming-ribbon .more-link a[disabled],
 fieldset[disabled] .button-primary-defaults,
 fieldset[disabled] .button-primary,
 fieldset[disabled] .btn-prm-wrap a, .btn-prm-wrap
@@ -11703,11 +11703,11 @@ fieldset[disabled] .region-top .block.views-exposed-form form button, .region-to
 fieldset[disabled] button,
 fieldset[disabled] .block-pmmi-search-library-block form button, .block-pmmi-search-library-block form
 fieldset[disabled] button,
-fieldset[disabled] .events-block-3 .more-link a, .events-block-3 .more-link
+fieldset[disabled] .events-block-upcoming-ribbon .more-link a, .events-block-upcoming-ribbon .more-link
 fieldset[disabled] a,
 fieldset[disabled]
-.block-views-blockevents-block-3 .more-link a,
-.block-views-blockevents-block-3 .more-link
+.block-views-blockevents-block-upcoming-ribbon .more-link a,
+.block-views-blockevents-block-upcoming-ribbon .more-link
 fieldset[disabled] a {
   cursor: not-allowed;
   opacity: 0.65;
@@ -11973,8 +11973,8 @@ fieldset[disabled] a.focus {
   background-color: #fff;
 }
 
-.button-secondary, .btn-scnd-wrap a, .default-exposed-form form button, .region-top .block.views-exposed-form form button, .block-pmmi-search-library-block form button, .events-block-3 .more-link a,
-.block-views-blockevents-block-3 .more-link a, .blue-region .containers .region-bottom .field-name-field-button a {
+.button-secondary, .btn-scnd-wrap a, .default-exposed-form form button, .region-top .block.views-exposed-form form button, .block-pmmi-search-library-block form button, .events-block-upcoming-ribbon .more-link a,
+.block-views-blockevents-block-upcoming-ribbon .more-link a, .blue-region .containers .region-bottom .field-name-field-button a {
   min-width: 130px;
   background: none;
   border-width: 2px;
@@ -11984,9 +11984,9 @@ fieldset[disabled] a.focus {
   color: #fff;
 }
 
-.button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-3 .more-link a:focus,
-.block-views-blockevents-block-3 .more-link a:focus, .blue-region .containers .region-bottom .field-name-field-button a:focus, .button-secondary:hover, .btn-scnd-wrap a:hover, .default-exposed-form form button:hover, .region-top .block.views-exposed-form form button:hover, .block-pmmi-search-library-block form button:hover, .events-block-3 .more-link a:hover,
-.block-views-blockevents-block-3 .more-link a:hover, .blue-region .containers .region-bottom .field-name-field-button a:hover {
+.button-secondary:focus, .btn-scnd-wrap a:focus, .default-exposed-form form button:focus, .region-top .block.views-exposed-form form button:focus, .block-pmmi-search-library-block form button:focus, .events-block-upcoming-ribbon .more-link a:focus,
+.block-views-blockevents-block-upcoming-ribbon .more-link a:focus, .blue-region .containers .region-bottom .field-name-field-button a:focus, .button-secondary:hover, .btn-scnd-wrap a:hover, .default-exposed-form form button:hover, .region-top .block.views-exposed-form form button:hover, .block-pmmi-search-library-block form button:hover, .events-block-upcoming-ribbon .more-link a:hover,
+.block-views-blockevents-block-upcoming-ribbon .more-link a:hover, .blue-region .containers .region-bottom .field-name-field-button a:hover {
   border-color: #c2c2c2;
   color: #c2c2c2;
 }
@@ -12359,8 +12359,8 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
   font-weight: 500;
 }
 
-.headline1, .page-search-sales-agent-directory .main-container .block-title, .events-block-3 .block-title,
-.block-views-blockevents-block-3 .block-title, .block-views-blocknews-block-most-recent .block-title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .field-name-field-head, .block-icons > .title, .block-text.mode-default.centered .title {
+.headline1, .page-search-sales-agent-directory .main-container .block-title, .events-block-upcoming-ribbon .block-title,
+.block-views-blockevents-block-upcoming-ribbon .block-title, .block-views-blocknews-block-most-recent .block-title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .field-name-field-head, .block-icons > .title, .block-text.mode-default.centered .title {
   font-size: 60px;
   font-size: 3.75rem;
   line-height: 1.15;
@@ -12371,8 +12371,8 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
   letter-spacing: 3px;
 }
 
-.headline1:after, .page-search-sales-agent-directory .main-container .block-title:after, .events-block-3 .block-title:after,
-.block-views-blockevents-block-3 .block-title:after, .block-views-blocknews-block-most-recent .block-title:after, .blue-region .containers .region-top .field-name-field-head:after, .grey-region .containers .region-top .field-name-field-head:after, .block-icons > .title:after, .block-text.mode-default.centered .title:after {
+.headline1:after, .page-search-sales-agent-directory .main-container .block-title:after, .events-block-upcoming-ribbon .block-title:after,
+.block-views-blockevents-block-upcoming-ribbon .block-title:after, .block-views-blocknews-block-most-recent .block-title:after, .blue-region .containers .region-top .field-name-field-head:after, .grey-region .containers .region-top .field-name-field-head:after, .block-icons > .title:after, .block-text.mode-default.centered .title:after {
   display: block;
   border-bottom: 3px solid #004e75;
   content: "";
@@ -12380,40 +12380,40 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .headline1, .page-search-sales-agent-directory .main-container .block-title, .events-block-3 .block-title,
-  .block-views-blockevents-block-3 .block-title, .block-views-blocknews-block-most-recent .block-title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .field-name-field-head, .block-icons > .title, .block-text.mode-default.centered .title {
+  .headline1, .page-search-sales-agent-directory .main-container .block-title, .events-block-upcoming-ribbon .block-title,
+  .block-views-blockevents-block-upcoming-ribbon .block-title, .block-views-blocknews-block-most-recent .block-title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .field-name-field-head, .block-icons > .title, .block-text.mode-default.centered .title {
     font-size: 2.5rem;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .headline1, .page-search-sales-agent-directory .main-container .block-title, .events-block-3 .block-title,
-  .block-views-blockevents-block-3 .block-title, .block-views-blocknews-block-most-recent .block-title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .field-name-field-head, .block-icons > .title, .block-text.mode-default.centered .title {
+  .headline1, .page-search-sales-agent-directory .main-container .block-title, .events-block-upcoming-ribbon .block-title,
+  .block-views-blockevents-block-upcoming-ribbon .block-title, .block-views-blocknews-block-most-recent .block-title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .field-name-field-head, .block-icons > .title, .block-text.mode-default.centered .title {
     font-size: 2.1875rem;
   }
 }
 
-.headline1.white, .page-search-sales-agent-directory .main-container .white.block-title, .page-search-sales-agent-directory .main-container .events-block-3 .block-title, .events-block-3 .page-search-sales-agent-directory .main-container .block-title, .page-search-sales-agent-directory .main-container
-.block-views-blockevents-block-3 .block-title,
-.block-views-blockevents-block-3 .page-search-sales-agent-directory .main-container .block-title, .blue-region .page-search-sales-agent-directory .main-container .block-icons > .block-title.title, .events-block-3 .block-title,
-.block-views-blockevents-block-3 .block-title, .block-views-blocknews-block-most-recent .white.block-title, .blue-region .block-views-blocknews-block-most-recent .block-icons > .block-title.title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .white.field-name-field-head, .grey-region .containers .region-top .events-block-3 .field-name-field-head.block-title, .events-block-3 .grey-region .containers .region-top .field-name-field-head.block-title, .grey-region .containers .region-top
-.block-views-blockevents-block-3 .field-name-field-head.block-title,
-.block-views-blockevents-block-3 .grey-region .containers .region-top .field-name-field-head.block-title, .grey-region .containers .region-top .blue-region .block-icons > .field-name-field-head.title, .block-icons > .white.title, .blue-region .block-icons > .title, .blue-region .events-block-3 .block-icons > .title.block-title, .blue-region
-.block-views-blockevents-block-3 .block-icons > .title.block-title, .block-text.mode-default.centered .blue-region .block-icons > .title, .block-text.mode-default.centered .white.title, .block-text.mode-default.centered .events-block-3 .title.block-title, .events-block-3 .block-text.mode-default.centered .title.block-title, .block-text.mode-default.centered
-.block-views-blockevents-block-3 .title.block-title,
-.block-views-blockevents-block-3 .block-text.mode-default.centered .title.block-title, .blue-region .block-text.mode-default.centered .title {
+.headline1.white, .page-search-sales-agent-directory .main-container .white.block-title, .page-search-sales-agent-directory .main-container .events-block-upcoming-ribbon .block-title, .events-block-upcoming-ribbon .page-search-sales-agent-directory .main-container .block-title, .page-search-sales-agent-directory .main-container
+.block-views-blockevents-block-upcoming-ribbon .block-title,
+.block-views-blockevents-block-upcoming-ribbon .page-search-sales-agent-directory .main-container .block-title, .blue-region .page-search-sales-agent-directory .main-container .block-icons > .block-title.title, .events-block-upcoming-ribbon .block-title,
+.block-views-blockevents-block-upcoming-ribbon .block-title, .block-views-blocknews-block-most-recent .white.block-title, .blue-region .block-views-blocknews-block-most-recent .block-icons > .block-title.title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .white.field-name-field-head, .grey-region .containers .region-top .events-block-upcoming-ribbon .field-name-field-head.block-title, .events-block-upcoming-ribbon .grey-region .containers .region-top .field-name-field-head.block-title, .grey-region .containers .region-top
+.block-views-blockevents-block-upcoming-ribbon .field-name-field-head.block-title,
+.block-views-blockevents-block-upcoming-ribbon .grey-region .containers .region-top .field-name-field-head.block-title, .grey-region .containers .region-top .blue-region .block-icons > .field-name-field-head.title, .block-icons > .white.title, .blue-region .block-icons > .title, .blue-region .events-block-upcoming-ribbon .block-icons > .title.block-title, .blue-region
+.block-views-blockevents-block-upcoming-ribbon .block-icons > .title.block-title, .block-text.mode-default.centered .blue-region .block-icons > .title, .block-text.mode-default.centered .white.title, .block-text.mode-default.centered .events-block-upcoming-ribbon .title.block-title, .events-block-upcoming-ribbon .block-text.mode-default.centered .title.block-title, .block-text.mode-default.centered
+.block-views-blockevents-block-upcoming-ribbon .title.block-title,
+.block-views-blockevents-block-upcoming-ribbon .block-text.mode-default.centered .title.block-title, .blue-region .block-text.mode-default.centered .title {
   color: #fff;
 }
 
-.headline1.white:after, .page-search-sales-agent-directory .main-container .white.block-title:after, .page-search-sales-agent-directory .main-container .events-block-3 .block-title:after, .events-block-3 .page-search-sales-agent-directory .main-container .block-title:after, .page-search-sales-agent-directory .main-container
-.block-views-blockevents-block-3 .block-title:after,
-.block-views-blockevents-block-3 .page-search-sales-agent-directory .main-container .block-title:after, .blue-region .page-search-sales-agent-directory .main-container .block-icons > .block-title.title:after, .events-block-3 .block-title:after,
-.block-views-blockevents-block-3 .block-title:after, .block-views-blocknews-block-most-recent .white.block-title:after, .blue-region .block-views-blocknews-block-most-recent .block-icons > .block-title.title:after, .blue-region .containers .region-top .field-name-field-head:after, .grey-region .containers .region-top .white.field-name-field-head:after, .grey-region .containers .region-top .events-block-3 .field-name-field-head.block-title:after, .events-block-3 .grey-region .containers .region-top .field-name-field-head.block-title:after, .grey-region .containers .region-top
-.block-views-blockevents-block-3 .field-name-field-head.block-title:after,
-.block-views-blockevents-block-3 .grey-region .containers .region-top .field-name-field-head.block-title:after, .grey-region .containers .region-top .blue-region .block-icons > .field-name-field-head.title:after, .block-icons > .white.title:after, .blue-region .block-icons > .title:after, .blue-region .events-block-3 .block-icons > .title.block-title:after, .blue-region
-.block-views-blockevents-block-3 .block-icons > .title.block-title:after, .block-text.mode-default.centered .blue-region .block-icons > .title:after, .block-text.mode-default.centered .white.title:after, .block-text.mode-default.centered .events-block-3 .title.block-title:after, .events-block-3 .block-text.mode-default.centered .title.block-title:after, .block-text.mode-default.centered
-.block-views-blockevents-block-3 .title.block-title:after,
-.block-views-blockevents-block-3 .block-text.mode-default.centered .title.block-title:after, .blue-region .block-text.mode-default.centered .title:after {
+.headline1.white:after, .page-search-sales-agent-directory .main-container .white.block-title:after, .page-search-sales-agent-directory .main-container .events-block-upcoming-ribbon .block-title:after, .events-block-upcoming-ribbon .page-search-sales-agent-directory .main-container .block-title:after, .page-search-sales-agent-directory .main-container
+.block-views-blockevents-block-upcoming-ribbon .block-title:after,
+.block-views-blockevents-block-upcoming-ribbon .page-search-sales-agent-directory .main-container .block-title:after, .blue-region .page-search-sales-agent-directory .main-container .block-icons > .block-title.title:after, .events-block-upcoming-ribbon .block-title:after,
+.block-views-blockevents-block-upcoming-ribbon .block-title:after, .block-views-blocknews-block-most-recent .white.block-title:after, .blue-region .block-views-blocknews-block-most-recent .block-icons > .block-title.title:after, .blue-region .containers .region-top .field-name-field-head:after, .grey-region .containers .region-top .white.field-name-field-head:after, .grey-region .containers .region-top .events-block-upcoming-ribbon .field-name-field-head.block-title:after, .events-block-upcoming-ribbon .grey-region .containers .region-top .field-name-field-head.block-title:after, .grey-region .containers .region-top
+.block-views-blockevents-block-upcoming-ribbon .field-name-field-head.block-title:after,
+.block-views-blockevents-block-upcoming-ribbon .grey-region .containers .region-top .field-name-field-head.block-title:after, .grey-region .containers .region-top .blue-region .block-icons > .field-name-field-head.title:after, .block-icons > .white.title:after, .blue-region .block-icons > .title:after, .blue-region .events-block-upcoming-ribbon .block-icons > .title.block-title:after, .blue-region
+.block-views-blockevents-block-upcoming-ribbon .block-icons > .title.block-title:after, .block-text.mode-default.centered .blue-region .block-icons > .title:after, .block-text.mode-default.centered .white.title:after, .block-text.mode-default.centered .events-block-upcoming-ribbon .title.block-title:after, .events-block-upcoming-ribbon .block-text.mode-default.centered .title.block-title:after, .block-text.mode-default.centered
+.block-views-blockevents-block-upcoming-ribbon .title.block-title:after,
+.block-views-blockevents-block-upcoming-ribbon .block-text.mode-default.centered .title.block-title:after, .blue-region .block-text.mode-default.centered .title:after {
   border-color: #fff;
 }
 
@@ -13015,8 +13015,8 @@ table th {
     padding-left: 10px;
     padding-right: 10px;
   }
-  .row, .footer .region-footer, .events-block-3 .view-content,
-  .block-views-blockevents-block-3 .view-content, .block-icons .column {
+  .row, .footer .region-footer, .events-block-upcoming-ribbon .view-content,
+  .block-views-blockevents-block-upcoming-ribbon .view-content, .block-icons .column {
     margin-left: -10px;
     margin-right: -10px;
   }
@@ -13036,8 +13036,8 @@ table th {
   .col-md-3, .footer nav, .block-icons.cols-4 .column > .field,
   .col-lg-3,
   .col-sm-3,
-  .events-block-3 .views-row,
-  .block-views-blockevents-block-3 .views-row {
+  .events-block-upcoming-ribbon .views-row,
+  .block-views-blockevents-block-upcoming-ribbon .views-row {
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -13107,8 +13107,8 @@ table th {
     padding-left: 25px;
     padding-right: 25px;
   }
-  .row, .footer .region-footer, .events-block-3 .view-content,
-  .block-views-blockevents-block-3 .view-content, .block-icons .column {
+  .row, .footer .region-footer, .events-block-upcoming-ribbon .view-content,
+  .block-views-blockevents-block-upcoming-ribbon .view-content, .block-icons .column {
     margin-left: -25px;
     margin-right: -25px;
   }
@@ -13128,8 +13128,8 @@ table th {
   .col-md-3, .footer nav, .block-icons.cols-4 .column > .field,
   .col-lg-3,
   .col-sm-3,
-  .events-block-3 .views-row,
-  .block-views-blockevents-block-3 .views-row {
+  .events-block-upcoming-ribbon .views-row,
+  .block-views-blockevents-block-upcoming-ribbon .views-row {
     padding-left: 25px;
     padding-right: 25px;
   }
@@ -13200,9 +13200,9 @@ table th {
     padding-left: 7px;
     padding-right: 7px;
   }
-  .container .containers .container .row, .container .containers .container .footer .region-footer, .footer .container .containers .container .region-footer, .container .containers .container .events-block-3 .view-content, .events-block-3 .container .containers .container .view-content, .container .containers .container
-  .block-views-blockevents-block-3 .view-content,
-  .block-views-blockevents-block-3 .container .containers .container .view-content, .container .containers .container .block-icons .column, .block-icons .container .containers .container .column {
+  .container .containers .container .row, .container .containers .container .footer .region-footer, .footer .container .containers .container .region-footer, .container .containers .container .events-block-upcoming-ribbon .view-content, .events-block-upcoming-ribbon .container .containers .container .view-content, .container .containers .container
+  .block-views-blockevents-block-upcoming-ribbon .view-content,
+  .block-views-blockevents-block-upcoming-ribbon .container .containers .container .view-content, .container .containers .container .block-icons .column, .block-icons .container .containers .container .column {
     margin-left: -7px;
     margin-right: -7px;
   }
@@ -13223,11 +13223,11 @@ table th {
   .container .containers .container .col-md-3, .container .containers .container .footer nav, .footer .container .containers .container nav, .container .containers .container .block-icons.cols-4 .column > .field, .block-icons.cols-4 .container .containers .container .column > .field,
   .container .containers .container .col-lg-3,
   .container .containers .container .col-sm-3,
-  .container .containers .container .events-block-3 .views-row, .events-block-3
+  .container .containers .container .events-block-upcoming-ribbon .views-row, .events-block-upcoming-ribbon
   .container .containers .container .views-row,
   .container .containers .container
-  .block-views-blockevents-block-3 .views-row,
-  .block-views-blockevents-block-3
+  .block-views-blockevents-block-upcoming-ribbon .views-row,
+  .block-views-blockevents-block-upcoming-ribbon
   .container .containers .container .views-row {
     padding-left: 7px;
     padding-right: 7px;
@@ -15349,9 +15349,9 @@ body > .page-wrapper:after,
   .tb-megamenu-block {
     padding: 10px 0;
   }
-  .tb-megamenu-block .row, .tb-megamenu-block .footer .region-footer, .footer .tb-megamenu-block .region-footer, .tb-megamenu-block .events-block-3 .view-content, .events-block-3 .tb-megamenu-block .view-content, .tb-megamenu-block
-  .block-views-blockevents-block-3 .view-content,
-  .block-views-blockevents-block-3 .tb-megamenu-block .view-content, .tb-megamenu-block .block-icons .column, .block-icons .tb-megamenu-block .column {
+  .tb-megamenu-block .row, .tb-megamenu-block .footer .region-footer, .footer .tb-megamenu-block .region-footer, .tb-megamenu-block .events-block-upcoming-ribbon .view-content, .events-block-upcoming-ribbon .tb-megamenu-block .view-content, .tb-megamenu-block
+  .block-views-blockevents-block-upcoming-ribbon .view-content,
+  .block-views-blockevents-block-upcoming-ribbon .tb-megamenu-block .view-content, .tb-megamenu-block .block-icons .column, .block-icons .tb-megamenu-block .column {
     margin: 0;
   }
 }
@@ -15529,9 +15529,9 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   color: #004e75;
 }
 
-.page-search-sales-agent-directory .main-container .row, .page-search-sales-agent-directory .main-container .footer .region-footer, .footer .page-search-sales-agent-directory .main-container .region-footer, .page-search-sales-agent-directory .main-container .events-block-3 .view-content, .events-block-3 .page-search-sales-agent-directory .main-container .view-content, .page-search-sales-agent-directory .main-container
-.block-views-blockevents-block-3 .view-content,
-.block-views-blockevents-block-3 .page-search-sales-agent-directory .main-container .view-content, .page-search-sales-agent-directory .main-container .block-icons .column, .block-icons .page-search-sales-agent-directory .main-container .column {
+.page-search-sales-agent-directory .main-container .row, .page-search-sales-agent-directory .main-container .footer .region-footer, .footer .page-search-sales-agent-directory .main-container .region-footer, .page-search-sales-agent-directory .main-container .events-block-upcoming-ribbon .view-content, .events-block-upcoming-ribbon .page-search-sales-agent-directory .main-container .view-content, .page-search-sales-agent-directory .main-container
+.block-views-blockevents-block-upcoming-ribbon .view-content,
+.block-views-blockevents-block-upcoming-ribbon .page-search-sales-agent-directory .main-container .view-content, .page-search-sales-agent-directory .main-container .block-icons .column, .block-icons .page-search-sales-agent-directory .main-container .column {
   margin-left: 0;
   margin-right: 0;
 }
@@ -16535,18 +16535,23 @@ div.view {
   padding-left: 0;
 }
 
+.views-row-columns {
+  clear: both;
+  overflow: hidden;
+}
+
 @media screen and (max-width: 767px) {
-  .views-view-grid.cols-2 .row, .views-view-grid.cols-2 .footer .region-footer, .footer .views-view-grid.cols-2 .region-footer, .views-view-grid.cols-2 .events-block-3 .view-content, .events-block-3 .views-view-grid.cols-2 .view-content, .views-view-grid.cols-2
-  .block-views-blockevents-block-3 .view-content,
-  .block-views-blockevents-block-3 .views-view-grid.cols-2 .view-content, .views-view-grid.cols-2 .block-icons .column, .block-icons .views-view-grid.cols-2 .column {
+  .views-view-grid.cols-2 .row, .views-view-grid.cols-2 .footer .region-footer, .footer .views-view-grid.cols-2 .region-footer, .views-view-grid.cols-2 .events-block-upcoming-ribbon .view-content, .events-block-upcoming-ribbon .views-view-grid.cols-2 .view-content, .views-view-grid.cols-2
+  .block-views-blockevents-block-upcoming-ribbon .view-content,
+  .block-views-blockevents-block-upcoming-ribbon .views-view-grid.cols-2 .view-content, .views-view-grid.cols-2 .block-icons .column, .block-icons .views-view-grid.cols-2 .column {
     margin-left: 0;
     margin-right: 0;
   }
-  .views-view-grid.cols-2 .row .col-md-6, .views-view-grid.cols-2 .footer .region-footer .col-md-6, .footer .views-view-grid.cols-2 .region-footer .col-md-6, .views-view-grid.cols-2 .events-block-3 .view-content .col-md-6, .events-block-3 .views-view-grid.cols-2 .view-content .col-md-6, .views-view-grid.cols-2
-  .block-views-blockevents-block-3 .view-content .col-md-6,
-  .block-views-blockevents-block-3 .views-view-grid.cols-2 .view-content .col-md-6, .views-view-grid.cols-2 .block-icons .column .col-md-6, .block-icons .views-view-grid.cols-2 .column .col-md-6, .block-icons.cols-2 .views-view-grid.cols-2 .row .column > .field, .block-icons.cols-2 .views-view-grid.cols-2 .footer .region-footer .column > .field, .block-icons.cols-2 .footer .views-view-grid.cols-2 .region-footer .column > .field, .block-icons.cols-2 .views-view-grid.cols-2 .events-block-3 .view-content .column > .field, .block-icons.cols-2 .events-block-3 .views-view-grid.cols-2 .view-content .column > .field, .block-icons.cols-2 .views-view-grid.cols-2
-  .block-views-blockevents-block-3 .view-content .column > .field, .block-icons.cols-2
-  .block-views-blockevents-block-3 .views-view-grid.cols-2 .view-content .column > .field, .views-view-grid.cols-2 .block-icons.cols-2 .column > .field, .block-icons.cols-2 .views-view-grid.cols-2 .column > .field {
+  .views-view-grid.cols-2 .row .col-md-6, .views-view-grid.cols-2 .footer .region-footer .col-md-6, .footer .views-view-grid.cols-2 .region-footer .col-md-6, .views-view-grid.cols-2 .events-block-upcoming-ribbon .view-content .col-md-6, .events-block-upcoming-ribbon .views-view-grid.cols-2 .view-content .col-md-6, .views-view-grid.cols-2
+  .block-views-blockevents-block-upcoming-ribbon .view-content .col-md-6,
+  .block-views-blockevents-block-upcoming-ribbon .views-view-grid.cols-2 .view-content .col-md-6, .views-view-grid.cols-2 .block-icons .column .col-md-6, .block-icons .views-view-grid.cols-2 .column .col-md-6, .block-icons.cols-2 .views-view-grid.cols-2 .row .column > .field, .block-icons.cols-2 .views-view-grid.cols-2 .footer .region-footer .column > .field, .block-icons.cols-2 .footer .views-view-grid.cols-2 .region-footer .column > .field, .block-icons.cols-2 .views-view-grid.cols-2 .events-block-upcoming-ribbon .view-content .column > .field, .block-icons.cols-2 .events-block-upcoming-ribbon .views-view-grid.cols-2 .view-content .column > .field, .block-icons.cols-2 .views-view-grid.cols-2
+  .block-views-blockevents-block-upcoming-ribbon .view-content .column > .field, .block-icons.cols-2
+  .block-views-blockevents-block-upcoming-ribbon .views-view-grid.cols-2 .view-content .column > .field, .views-view-grid.cols-2 .block-icons.cols-2 .column > .field, .block-icons.cols-2 .views-view-grid.cols-2 .column > .field {
     padding-left: 0;
     padding-right: 0;
   }
@@ -16556,9 +16561,9 @@ div.view {
   display: none;
 }
 
-.view-events .views-view-grid.cols-2 .row, .view-events .views-view-grid.cols-2 .footer .region-footer, .footer .view-events .views-view-grid.cols-2 .region-footer, .view-events .views-view-grid.cols-2 .events-block-3 .view-content, .events-block-3 .view-events .views-view-grid.cols-2 .view-content, .view-events .views-view-grid.cols-2
-.block-views-blockevents-block-3 .view-content,
-.block-views-blockevents-block-3 .view-events .views-view-grid.cols-2 .view-content, .view-events .views-view-grid.cols-2 .block-icons .column, .block-icons .view-events .views-view-grid.cols-2 .column {
+.view-events .views-view-grid.cols-2 .row, .view-events .views-view-grid.cols-2 .footer .region-footer, .footer .view-events .views-view-grid.cols-2 .region-footer, .view-events .views-view-grid.cols-2 .events-block-upcoming-ribbon .view-content, .events-block-upcoming-ribbon .view-events .views-view-grid.cols-2 .view-content, .view-events .views-view-grid.cols-2
+.block-views-blockevents-block-upcoming-ribbon .view-content,
+.block-views-blockevents-block-upcoming-ribbon .view-events .views-view-grid.cols-2 .view-content, .view-events .views-view-grid.cols-2 .block-icons .column, .block-icons .view-events .views-view-grid.cols-2 .column {
   font-size: 0;
 }
 
@@ -16650,26 +16655,26 @@ div.view {
   }
 }
 
-.events-block-3,
-.block-views-blockevents-block-3 {
+.events-block-upcoming-ribbon,
+.block-views-blockevents-block-upcoming-ribbon {
   text-align: center;
   margin: 0;
 }
 
-.events-block-3 .block-title,
-.block-views-blockevents-block-3 .block-title {
+.events-block-upcoming-ribbon .block-title,
+.block-views-blockevents-block-upcoming-ribbon .block-title {
   display: inline-block;
   margin-bottom: 50px;
 }
 
-.events-block-3 .view-content,
-.block-views-blockevents-block-3 .view-content {
+.events-block-upcoming-ribbon .view-content,
+.block-views-blockevents-block-upcoming-ribbon .view-content {
   text-align: center;
   font-size: 0;
 }
 
-.events-block-3 .views-row,
-.block-views-blockevents-block-3 .views-row {
+.events-block-upcoming-ribbon .views-row,
+.block-views-blockevents-block-upcoming-ribbon .views-row {
   text-align: left;
   display: inline-block;
   float: none;
@@ -16680,8 +16685,8 @@ div.view {
 }
 
 @media screen and (max-width: 767px) {
-  .events-block-3 .views-row,
-  .block-views-blockevents-block-3 .views-row {
+  .events-block-upcoming-ribbon .views-row,
+  .block-views-blockevents-block-upcoming-ribbon .views-row {
     display: block;
     max-width: 234px;
     margin-left: auto;
@@ -16691,41 +16696,36 @@ div.view {
 }
 
 @media screen and (min-width: 1200px) {
-  .events-block-3 .more-link a,
-  .block-views-blockevents-block-3 .more-link a {
+  .events-block-upcoming-ribbon .more-link a,
+  .block-views-blockevents-block-upcoming-ribbon .more-link a {
     min-width: 370px;
   }
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
-  .events-block-3 .more-link a,
-  .block-views-blockevents-block-3 .more-link a {
+  .events-block-upcoming-ribbon .more-link a,
+  .block-views-blockevents-block-upcoming-ribbon .more-link a {
     min-width: 310px;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .events-block-3 .more-link a,
-  .block-views-blockevents-block-3 .more-link a {
+  .events-block-upcoming-ribbon .more-link a,
+  .block-views-blockevents-block-upcoming-ribbon .more-link a {
     min-width: 230px;
   }
 }
 
 @media screen and (max-width: 767px) {
-  .events-block-3 .more-link a,
-  .block-views-blockevents-block-3 .more-link a {
+  .events-block-upcoming-ribbon .more-link a,
+  .block-views-blockevents-block-upcoming-ribbon .more-link a {
     min-width: 233px;
   }
 }
 
-.containers .field--type-viewfield .events-block-3 .more-link, .containers .field--type-viewfield
-.block-views-blockevents-block-3 .more-link {
+.containers .field--type-viewfield .events-block-upcoming-ribbon .more-link, .containers .field--type-viewfield
+.block-views-blockevents-block-upcoming-ribbon .more-link {
   display: none;
-}
-
-.events-block-4 .views-row {
-  clear: both;
-  overflow: hidden;
 }
 
 .view-partner-schools .views-view-grid.cols-2 {
@@ -17329,9 +17329,9 @@ div.view {
     max-width: 594px;
     margin: 0 auto;
   }
-  .containers.mode-4-up .col-sm-3, .containers.mode-4-up .events-block-3 .views-row, .events-block-3 .containers.mode-4-up .views-row, .containers.mode-4-up
-  .block-views-blockevents-block-3 .views-row,
-  .block-views-blockevents-block-3 .containers.mode-4-up .views-row {
+  .containers.mode-4-up .col-sm-3, .containers.mode-4-up .events-block-upcoming-ribbon .views-row, .events-block-upcoming-ribbon .containers.mode-4-up .views-row, .containers.mode-4-up
+  .block-views-blockevents-block-upcoming-ribbon .views-row,
+  .block-views-blockevents-block-upcoming-ribbon .containers.mode-4-up .views-row {
     width: 50%;
   }
 }
@@ -17346,9 +17346,9 @@ div.view {
   text-align: center;
 }
 
-.containers.centered .row, .containers.centered .footer .region-footer, .footer .containers.centered .region-footer, .containers.centered .events-block-3 .view-content, .events-block-3 .containers.centered .view-content, .containers.centered
-.block-views-blockevents-block-3 .view-content,
-.block-views-blockevents-block-3 .containers.centered .view-content, .containers.centered .block-icons .column, .block-icons .containers.centered .column {
+.containers.centered .row, .containers.centered .footer .region-footer, .footer .containers.centered .region-footer, .containers.centered .events-block-upcoming-ribbon .view-content, .events-block-upcoming-ribbon .containers.centered .view-content, .containers.centered
+.block-views-blockevents-block-upcoming-ribbon .view-content,
+.block-views-blockevents-block-upcoming-ribbon .containers.centered .view-content, .containers.centered .block-icons .column, .block-icons .containers.centered .column {
   font-size: 0;
   text-align: center;
 }
@@ -19079,11 +19079,11 @@ div.view {
 .company-node .row-wrapper .right-col .row > div,
 .company-node .row-wrapper .right-col .footer .region-footer > div, .footer
 .company-node .row-wrapper .right-col .region-footer > div,
-.company-node .row-wrapper .right-col .events-block-3 .view-content > div, .events-block-3
+.company-node .row-wrapper .right-col .events-block-upcoming-ribbon .view-content > div, .events-block-upcoming-ribbon
 .company-node .row-wrapper .right-col .view-content > div,
 .company-node .row-wrapper .right-col
-.block-views-blockevents-block-3 .view-content > div,
-.block-views-blockevents-block-3
+.block-views-blockevents-block-upcoming-ribbon .view-content > div,
+.block-views-blockevents-block-upcoming-ribbon
 .company-node .row-wrapper .right-col .view-content > div,
 .company-node .row-wrapper .right-col .block-icons .column > div, .block-icons
 .company-node .row-wrapper .right-col .column > div,
@@ -19091,11 +19091,11 @@ div.view {
 .company-node .contacts .right-col .row > div,
 .company-node .contacts .right-col .footer .region-footer > div, .footer
 .company-node .contacts .right-col .region-footer > div,
-.company-node .contacts .right-col .events-block-3 .view-content > div, .events-block-3
+.company-node .contacts .right-col .events-block-upcoming-ribbon .view-content > div, .events-block-upcoming-ribbon
 .company-node .contacts .right-col .view-content > div,
 .company-node .contacts .right-col
-.block-views-blockevents-block-3 .view-content > div,
-.block-views-blockevents-block-3
+.block-views-blockevents-block-upcoming-ribbon .view-content > div,
+.block-views-blockevents-block-upcoming-ribbon
 .company-node .contacts .right-col .view-content > div,
 .company-node .contacts .right-col .block-icons .column > div, .block-icons
 .company-node .contacts .right-col .column > div,
@@ -19103,11 +19103,11 @@ div.view {
 .company-node .services .right-col .row > div,
 .company-node .services .right-col .footer .region-footer > div, .footer
 .company-node .services .right-col .region-footer > div,
-.company-node .services .right-col .events-block-3 .view-content > div, .events-block-3
+.company-node .services .right-col .events-block-upcoming-ribbon .view-content > div, .events-block-upcoming-ribbon
 .company-node .services .right-col .view-content > div,
 .company-node .services .right-col
-.block-views-blockevents-block-3 .view-content > div,
-.block-views-blockevents-block-3
+.block-views-blockevents-block-upcoming-ribbon .view-content > div,
+.block-views-blockevents-block-upcoming-ribbon
 .company-node .services .right-col .view-content > div,
 .company-node .services .right-col .block-icons .column > div, .block-icons
 .company-node .services .right-col .column > div {

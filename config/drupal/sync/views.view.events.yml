@@ -265,10 +265,10 @@ display:
         - url
         - url.query_args
       tags: {  }
-  block_1:
+  block_all:
     display_plugin: block
-    id: block_1
-    display_title: 'Grid - Default'
+    id: block_all
+    display_title: All
     position: 1
     display_options:
       display_extenders: {  }
@@ -439,10 +439,10 @@ display:
         - url.query_args
         - user
       tags: {  }
-  block_2:
+  block_upcoming:
     display_plugin: block
-    id: block_2
-    display_title: 'Unformatted - Default'
+    id: block_upcoming
+    display_title: Upcoming
     position: 2
     display_options:
       display_extenders: {  }
@@ -468,67 +468,112 @@ display:
         - url
         - url.query_args
       tags: {  }
-  block_3:
+  block_upcoming_2_columns:
     display_plugin: block
-    id: block_3
-    display_title: 'Unformatted - Ribbon'
-    position: 3
+    id: block_upcoming_2_columns
+    display_title: 'Upcoming - 2 columns'
+    position: 2
     display_options:
       display_extenders: {  }
       display_description: ''
-      pager:
-        type: some
+      style:
+        type: grid
         options:
-          items_per_page: 4
-          offset: 0
+          uses_fields: false
+          columns: 2
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: 'col-sm-6 match-height-parent'
+          row_class_default: false
+          row_class_custom: views-row-columns
       defaults:
-        pager: false
         style: false
         row: false
-        use_more: false
-        use_more_always: false
-        use_more_text: false
-        link_display: false
-        link_url: false
-      style:
-        type: default
-        options:
-          row_class: ''
-          default_row_class: true
-          uses_fields: false
+        cache: false
       row:
         type: 'ds_entity:block_content'
         options:
-          relationship: none
-          view_mode: ribbon
+          view_mode: default
           alternating_fieldset:
             alternating: false
             allpages: false
-            item_0: default
-            item_1: default
-            item_2: default
-            item_3: default
+            item: {  }
           grouping_fieldset:
             group: false
+            group_field: ''
+            group_field_function: ''
           advanced_fieldset:
             advanced: false
+          switch_fieldset:
+            switch: false
       block_category: 'PMMI (Views)'
-      use_more: true
-      use_more_always: true
-      use_more_text: 'View all upcoming events'
-      link_display: custom_url
-      link_url: calendar
+      cache:
+        type: tag
+        options: {  }
     cache_metadata:
       max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
+        - url.query_args
       tags: {  }
-  block_4:
+  block_upcoming_3_columns:
     display_plugin: block
-    id: block_4
-    display_title: 'Unformatted - Columns'
+    id: block_upcoming_3_columns
+    display_title: 'Upcoming - 3 columns'
+    position: 2
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      style:
+        type: grid
+        options:
+          uses_fields: false
+          columns: 3
+          automatic_width: false
+          alignment: horizontal
+          col_class_default: false
+          col_class_custom: 'col-sm-4 match-height-parent'
+          row_class_default: false
+          row_class_custom: views-row-columns
+      defaults:
+        style: false
+        row: false
+        cache: false
+      row:
+        type: 'ds_entity:block_content'
+        options:
+          view_mode: default
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+            item: {  }
+          grouping_fieldset:
+            group: false
+            group_field: ''
+            group_field_function: ''
+          advanced_fieldset:
+            advanced: false
+          switch_fieldset:
+            switch: false
+      block_category: 'PMMI (Views)'
+      cache:
+        type: tag
+        options: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+      tags: {  }
+  block_upcoming_4_columns:
+    display_plugin: block
+    id: block_upcoming_4_columns
+    display_title: 'Upcoming - 4 columns'
     position: 2
     display_options:
       display_extenders: {  }
@@ -542,8 +587,8 @@ display:
           alignment: horizontal
           col_class_default: false
           col_class_custom: 'col-sm-6 col-lg-3 match-height-parent'
-          row_class_default: true
-          row_class_custom: ''
+          row_class_default: false
+          row_class_custom: views-row-columns
       defaults:
         style: false
         row: false
@@ -619,6 +664,63 @@ display:
         options:
           items_per_page: 4
           offset: 0
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+      tags: {  }
+  block_upcoming_ribbon:
+    display_plugin: block
+    id: block_upcoming_ribbon
+    display_title: 'Upcoming - Ribbon'
+    position: 3
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      pager:
+        type: some
+        options:
+          items_per_page: 4
+          offset: 0
+      defaults:
+        pager: false
+        style: false
+        row: false
+        use_more: false
+        use_more_always: false
+        use_more_text: false
+        link_display: false
+        link_url: false
+      style:
+        type: default
+        options:
+          row_class: ''
+          default_row_class: true
+          uses_fields: false
+      row:
+        type: 'ds_entity:block_content'
+        options:
+          relationship: none
+          view_mode: ribbon
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+            item_0: default
+            item_1: default
+            item_2: default
+            item_3: default
+          grouping_fieldset:
+            group: false
+          advanced_fieldset:
+            advanced: false
+      block_category: 'PMMI (Views)'
+      use_more: true
+      use_more_always: true
+      use_more_text: 'View all upcoming events'
+      link_display: custom_url
+      link_url: calendar
     cache_metadata:
       max-age: -1
       contexts:

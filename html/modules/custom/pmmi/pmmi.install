@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * @file
+ * Update hooks for the pmmi module.
+ */
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Update events view display names in panels and containers configs.
+ */
+function pmmi_update_8001() {
+  $entity_manage = \Drupal::entityTypeManager();
+  // Mapping view displays names.
+  $view_display_mapping = [
+    'block_1' => 'block_all',
+    'block_2' => 'block_upcoming',
+    'block_3' => 'block_upcoming_ribbon',
+    'block_4' => 'block_upcoming_4_columns',
+  ];
+
+  // Update page_variant entities.
+  $page_variant_storage = $entity_manage->getStorage('page_variant');
+  $query = Database::getConnection()->select('config', 'cnf')
+    ->fields('cnf', ['name'])
+    ->condition('data', '%views_block:events%', 'LIKE')
+    ->execute()->fetchAll(\PDO::FETCH_COLUMN, 0);
+  foreach ($query as $key => $variant) {
+    $id = str_replace('page_manager.page_variant.', '', $variant);
+    $variant = $page_variant_storage->load($id);
+    $variant_settings = $variant->get('variant_settings');
+    $save = FALSE;
+    foreach ($variant_settings['blocks'] as &$block) {
+      $pos = strpos($block['id'], '_block:events-');
+      if ($pos !== FALSE) {
+        $old_display = substr($block['id'], $pos + 14);
+        if (isset($view_display_mapping[$old_display])) {
+          $block['id'] = str_replace($old_display, $view_display_mapping[$old_display], $block['id']);
+          $save = TRUE;
+        }
+      }
+    }
+    if ($save) {
+      $variant->set('variant_settings', $variant_settings);
+      $variant->save();
+    }
+  }
+
+  // Update "Containers" block_content entities.
+  $block_ids = [];
+  for ($i = 1; $i < 7; $i++) {
+    $field = 'field_block_views_' . $i;
+    $table = 'block_content__' . $field;
+    $table_field = $field . '_vname';
+    $query = Database::getConnection()->select($table, 't')
+      ->fields('t', ['entity_id'])
+      ->condition($table_field, '%events|block_%', 'LIKE')
+      ->execute()->fetchAllKeyed(0, 0);
+    $block_ids += array_fill_keys($query, $field);
+  }
+  $blocks = $entity_manage->getStorage('block_content')->loadMultiple(array_keys($block_ids));
+  foreach ($blocks as $block) {
+    $field_name = $block_ids[$block->id()];
+    $block_field = $block->get($field_name);
+    $values = $block_field->getValue();
+    $view_display_id = str_replace('events|', '', $values[0]['vname']);
+    if (isset($view_display_mapping[$view_display_id])) {
+      $new_name = $view_display_mapping[$view_display_id];
+      $values[0]['vname'] = 'events|' . $new_name;
+      if (!empty($values[0]['settings'])) {
+        $settings = unserialize($values[0]['settings']);
+        if (isset($settings['more']) && isset($settings['more'][$view_display_id])) {
+          $settings['more'][$new_name] = $settings['more'][$view_display_id];
+          unset($settings['more'][$view_display_id]);
+        }
+        $values[0]['settings']  = serialize($settings);
+      }
+      $block_field->setValue($values);
+      $block->save();
+    }
+  }
+}
