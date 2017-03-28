@@ -1,14 +1,16 @@
 {#
 /**
  * @file
- * Theme implementation to display the PMMI Personify Committee block.
+ * Theme implementation to display the PMMI Personify Company Staff block.
  *
  * Available variables:
  *
- * Committee block variables:
+ * Company Staff block variables:
  * - data: The array of data.
- * - columns: Number of columns.
- * - rows: Number of rows.
+ * - staff_enabled: The flag indicates that the staff section is enabled.
+ * - staff_label: The label for the Staff section.
+ * - columns: Number of columns in the Staff section.
+ * - rows: Number of rows in the Staff section.
 
  * @ingroup themeable
  */
@@ -18,7 +20,9 @@
     {% set result_class =  main_class ~ "-" ~ type %}
     {% if type == 'phone' %}
         <a href="tel:{{ value }}" class="{{ result_class }}">{{ value }}</a>
-    {% elseif type == 'email' %}
+    {% elseif type == 'email' and title is not empty %}
+        <a href="mailto:{{ value }}" class="{{ result_class }}">{{ title }}</a>
+    {% elseif type == 'email' and title is empty %}
         <a href="mailto:{{ value }}" class="{{ result_class }}">{{ value }}</a>
     {% else %}
         <span class="{{ result_class }}">{{ value }}</span>
@@ -70,10 +74,16 @@
                         {% if member.job_title %}
                             <span>{{ member.job_title }}</span><br/>
                         {% endif %}
-                        <strong>{{ member.label_name }}</strong><br/>
-                        {% if member.comm %}
-                            {{ func.fill_multiply(member.comm, 'communication', false) }}
+                        {% if member.comm.email %}
+                            <strong>{{ func.format_link(member.comm.email, 'communication', 'email', member.label_name) }}</strong><br/>
+                            {{ func.fill_multiply(member.comm|without('email'), 'communication', false) }}
+                        {% else %}
+                            <strong>{{ member.label_name }}</strong><br/>
+                            {% if member.comm %}
+                                {{ func.fill_multiply(member.comm, 'communication', false) }}
+                            {% endif %}
                         {% endif %}
+
                     </div>
                 {% endfor %}
             </div>

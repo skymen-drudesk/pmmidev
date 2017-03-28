@@ -19,18 +19,20 @@ class PMMIStaffQueue extends PMMIBaseDataQueue {
    * {@inheritdoc}
    */
   public function processItem($item) {
-    $cid = $this->provider . ':staff_' . $item->data['company']['method'] . '_' . $item->id;
-    $staff_data = $this->getStaffData($item);
-    if ($staff_data) {
-      $this->cache->set($cid, $staff_data);
+    $cid = $this->dataCollector->buildCid($item, 'staff');
+    $data = $this->getStaffData($item);
+    if ($data) {
+      $this->dataCollector->invalidateTags([$cid]);
+      $expiration_time = REQUEST_TIME + $item->data['staff']['expiration'];
+      $this->cache->set($cid, $data, $expiration_time);
     }
   }
 
   /**
-   * Get Committee Data.
+   * Get Company Staff Data.
    *
    * @param object $item
-   *   The ID of requested committee.
+   *   An object representing the current block settings.
    *
    * @return array
    *   The array of data.
@@ -80,10 +82,13 @@ class PMMIStaffQueue extends PMMIBaseDataQueue {
           $data[$address->MasterCustomerId]['job_title'] = $address->JobTitle;
         }
       }
+      $company_sec_comm = array_map('strtoupper', $item->data['company']['comm_empl']);
+      $staff_sec_comm = array_map('strtoupper', $item->data['staff']['comm_empl']);
+      $communications = array_unique(array_merge($company_sec_comm, $staff_sec_comm));
       $comm_requests = $this->separateRequest(
         array_keys($data),
         'communication',
-        $item->data['staff']['comm_empl']
+        $communications
       );
       if ($comm_data = $this->handleAsyncRequests($comm_requests)) {
         foreach ($comm_data as $comm) {
@@ -98,10 +103,21 @@ class PMMIStaffQueue extends PMMIBaseDataQueue {
     return $data;
   }
 
+  /**
+   * Build Company Staff request.
+   *
+   * @param object $item
+   *   An object representing the current block settings.
+   * @param string $method
+   *   Setting - Type of method.
+   *
+   * @return array
+   *   The request options array.
+   */
   private function buildStaffRequest($item, $method) {
     $company_id = $item->data['company']['id'];
     $company_sub_id = $item->data['company']['sub_id'];
-    switch ($item->data['company']['method']) {
+    switch ($method) {
       // By CustomerClassCode.
       case 'code':
         // /CustomerInfos?$filter=CustomerClassCode    eq 'STAFF' .

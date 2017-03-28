@@ -7,6 +7,7 @@ use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
 use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use Drupal\pmmi_psdata\Service\PMMIDataCollector;
 use Drupal\pmmi_sso\Service\PMMISSOHelper;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ConnectException;
@@ -50,6 +51,13 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
   protected $ssoHelper;
 
   /**
+   * Drupal\pmmi_psdata\Service\PMMIDataCollector definition.
+   *
+   * @var \Drupal\pmmi_psdata\Service\PMMIDataCollector
+   */
+  protected $dataCollector;
+
+  /**
    * Provider name.
    *
    * @var string
@@ -73,6 +81,8 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
    *   A cache backend interface.
    * @param PMMISSOHelper $sso_helper
    *   The PMMI SSO Helper service.
+   * @param PMMIDataCollector $psdata_collector
+   *   The PMMIDataCollector service.
    */
   public function __construct(
     array $configuration,
@@ -81,13 +91,15 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
     StateInterface $state,
     ClientInterface $http_client,
     CacheBackendInterface $cache,
-    PMMISSOHelper $sso_helper
+    PMMISSOHelper $sso_helper,
+    PMMIDataCollector $psdata_collector
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->state = $state;
     $this->httpClient = $http_client;
     $this->cache = $cache;
     $this->ssoHelper = $sso_helper;
+    $this->dataCollector = $psdata_collector;
   }
 
   /**
@@ -106,7 +118,8 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
       $container->get('state'),
       $container->get('http_client'),
       $container->get('cache.default'),
-      $container->get('pmmi_sso.helper')
+      $container->get('pmmi_sso.helper'),
+      $container->get('pmmi_psdata.collector')
     );
   }
 
@@ -139,18 +152,23 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
   }
 
   /**
-   * Helper function for sorting data.
+   * Helper function for adding filter to the query.
    *
+   * @param string $operator
+   *   The comparison operator.
    * @param string $property
-   *   The Data array.
+   *   The property of the added filter.
    * @param array $values
-   *   The Data array.
+   *   The array of values.
+   * @param bool $first
+   *   Indicates, that this is the first element of the query.
+   * @param bool $wrap
+   *   Wrap in quotation marks.
    *
    * @return string
    *   The query string for property.
    */
-  protected function addFilter($operator, $property, array $values, $first = FALSE, $bool = FALSE) {
-//    $values = array_unique($values);
+  protected function addFilter($operator, $property, array $values, $first = FALSE, $wrap = FALSE) {
     $count = count($values);
     if ($count == 0) {
       return '';
@@ -161,7 +179,7 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
       $counter = 0;
       foreach ($values as $value) {
         $counter++;
-        $bool ?: $value = "'$value'";
+        $wrap ?: $value = "'$value'";
         if ($counter == $count) {
           $query .= "$property $operator $value) ";
         }
@@ -172,43 +190,71 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
     }
     else {
       $query .= $first ? '' : 'and ';
-      $value = $bool ? $values[0] : "'$values[0]'";
+      $value = $wrap ? $values[0] : "'$values[0]'";
       $query .= "$property eq $value ";
     }
     return $query;
   }
 
+  /**
+   * Helper function for creating a request for information about employees.
+   *
+   * @param array $ids
+   *   An array of member IDs.
+   *
+   * @return array
+   *   The request options array.
+   */
   protected function buildMembersInfoRequest(array $ids) {
-    // AddressInfos?$select=MasterCustomerId,LabelName,JobTitle&$filter=
-    // (MasterCustomerId eq '00000159' or MasterCustomerId eq '00000357' or
-    // MasterCustomerId eq '00000375') and PrioritySeq eq 0 .
+    // CustomerInfos?$filter=(MasterCustomerId eq '00026974' or MasterCustomerId
+    // eq '12081383') &$select=MasterCustomerId,LabelName,FirstName,LastName .
     $path_element = 'CustomerInfos';
     $filter = $this->addFilter('eq', 'MasterCustomerId', $ids, TRUE);
-//    $filter .= $this->addFilter('eq', 'PrioritySeq', [0], FALSE, TRUE); // 'and PrioritySeq eq 0';
     $query = [
       '$filter' => $filter,
       '$select' => 'MasterCustomerId,LabelName,FirstName,LastName',
     ];
-//    $request_options = $this->buildGetRequest($path_element, $query);
     return $this->buildGetRequest($path_element, $query);
   }
 
+  /**
+   * Helper function for creating a request for a job title for employees.
+   *
+   * @param array $ids
+   *   An array of member IDs.
+   *
+   * @return array
+   *   The request options array.
+   */
   protected function buildAddressRequest(array $ids) {
     // AddressInfos?$select=MasterCustomerId,JobTitle&$filter=
     // (MasterCustomerId eq '00000159' or MasterCustomerId eq '00000357' or
     // MasterCustomerId eq '00000375') and PrioritySeq eq 0 .
     $path_element = 'AddressInfos';
     $filter = $this->addFilter('eq', 'MasterCustomerId', $ids, TRUE);
-    $filter .= $this->addFilter('eq', 'PrioritySeq', [0], FALSE, TRUE); // 'and PrioritySeq eq 0';
+    $filter .= $this->addFilter('eq', 'PrioritySeq', [0], FALSE, TRUE);
     $query = [
       '$filter' => $filter,
       '$select' => 'MasterCustomerId,JobTitle,CountryCode',
     ];
-//    $request_options = $this->buildGetRequest($path_element, $query);
     return $this->buildGetRequest($path_element, $query);
   }
 
-  protected function buildCommunicationRequest(array $ids, $types) {
+  /**
+   * Helper function for creating a request for information about employees.
+   *
+   * Helper function for creating a request for communication information about
+   * employees.
+   *
+   * @param array $ids
+   *   An array of member IDs.
+   * @param array $types
+   *   An array of required types of communications.
+   *
+   * @return array
+   *   The request options array.
+   */
+  protected function buildCommunicationRequest(array $ids, array $types) {
     // CusCommunications?$filter=(MasterCustomerId eq '00000357' or
     // MasterCustomerId eq '00000159') and CommLocationCodeString eq 'WORK' and
     // (CommTypeCodeString eq 'EMAIL' or CommTypeCodeString eq 'PHONE')
@@ -224,6 +270,19 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
     return $this->buildGetRequest($path_element, $query);
   }
 
+  /**
+   * Helper function for separating requests.
+   *
+   * @param array $ids
+   *   An array of member IDs.
+   * @param string $collection
+   *   The requested collection.
+   * @param array $options
+   *   An additional array of requested options.
+   *
+   * @return array
+   *   The requests options array.
+   */
   protected function separateRequest(array $ids, $collection, $options = []) {
     $requests_options = [];
     $chunked = array_chunk($ids, 20);
@@ -252,6 +311,8 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
    *   The MemberMasterCustomer ID.
    * @param int $member_sub_id
    *   The MemberSubCustomer ID.
+   * @param object $item
+   *   The MemberSubCustomer ID.
    * @param string $collection
    *   Requested collection.
    *
@@ -261,18 +322,6 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
   protected function getCustomerInfo($member_id, $member_sub_id, $item, $collection, $type = 'member') {
     $filter = '';
     switch ($collection) {
-      case 'addresses':
-        // Example path: /CustomerInfos(MasterCustomerId='00094039',
-        // SubCustomerId=0)/Addresses?$filter=AddressStatusCode eq 'GOOD'
-        // and PrioritySeq eq 0&$select=JobTitle,CountryCode .
-        $path_element = "CustomerInfos(MasterCustomerId='" . $member_id .
-          "',SubCustomerId=" . $member_sub_id . ")/Addresses";
-        $query = [
-          '$filter' => "AddressStatusCode eq 'GOOD' and PrioritySeq eq 0",
-          '$select' => 'JobTitle,CountryCode',
-        ];
-        break;
-
       case 'communications':
         // Example path: /CustomerInfos(MasterCustomerId='00094039',
         // SubCustomerId=0)/Communications?$filter=CommLocationCodeString eq
@@ -363,13 +412,13 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
   }
 
   /**
-   * Attempt to handle request to PMMI Personify Services.
+   * Attempt to handle requests to PMMI Personify Services.
    *
-   * @param array $request_param
-   *   Parameters of the request.
+   * @param array $requests
+   *   An array of queries parameters.
    *
    * @return array
-   *   The JSON decoded array of response from PMMI Personify Services.
+   *   The JSON decoded array of responses from PMMI Personify Services.
    */
   protected function handleAsyncRequests(array $requests) {
     $data = [];
@@ -385,7 +434,8 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
       // if any of the requests fail.
       $results = Promise\unwrap($promises);
       $this->ssoHelper->log("Response received from PMMI Personify server.");
-    } catch (ConnectException $e) {
+    }
+    catch (ConnectException $e) {
       $this->ssoHelper->log('Invalid response from Data Service.');
       return $data;
     }
@@ -417,7 +467,6 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
     $data = [];
     try {
       $response = $this->httpClient->get($uri, $options);
-//      $response = $this->httpClient->request('GET', $uri, $options);
       $response_data = $response->getBody()->getContents();
       $this->ssoHelper->log("Response received from PMMI Personify server: " . htmlspecialchars($response_data));
       if ($json_data = json_decode($response_data)) {
@@ -426,7 +475,8 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
       else {
         $this->ssoHelper->log("Can't parse Json data from Data Service.");
       }
-    } catch (RequestException $e) {
+    }
+    catch (RequestException $e) {
       $this->ssoHelper->log('Invalid response from Data Service.');
       return $data;
     }

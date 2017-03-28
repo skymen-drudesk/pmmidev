@@ -89,6 +89,7 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
           'method_data' => '',
           'sort_empl' => [],
           'comm_empl' => ['EMAIL', 'PHONE', 'FAX'],
+          'expiration' => 86400,
         ],
         'staff' => [
           'enabled' => TRUE,
@@ -96,6 +97,7 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
           'comm_empl' => ['EMAIL', 'PHONE', 'FAX'],
           'columns' => 3,
           'rows' => 3,
+          'expiration' => 86400,
         ],
 
       ] + parent::defaultConfiguration();
@@ -117,7 +119,6 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
       '#description' => $this->t('Label for company section'),
       '#default_value' => $this->configuration['company']['label'],
       '#size' => 20,
-//      '#pattern' => '[0-9]{8}',
       '#weight' => 1,
     ];
     $form['company']['id'] = [
@@ -223,6 +224,19 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
       '#size' => 64,
       '#weight' => 9,
     ];
+    $form['company']['expiration'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Company section Expiration time'),
+      '#min' => 10,
+      '#step' => 10,
+      '#description' => $this->t(
+        "The default value, in seconds, to be used as the expiration time for 
+        the Company section."
+      ),
+      '#default_value' => $this->configuration['company']['expiration'],
+      '#required' => TRUE,
+      '#weight' => 10,
+    ];
     $form['staff'] = [
       '#type' => 'fieldset',
       '#title' => 'Staff section',
@@ -304,7 +318,19 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
         ],
       ],
     ];
-
+    $form['staff']['expiration'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Staff section Expiration time'),
+      '#min' => 10,
+      '#step' => 10,
+      '#description' => $this->t(
+        "The default value, in seconds, to be used as the expiration time for 
+        the Staff section."
+      ),
+      '#default_value' => $this->configuration['staff']['expiration'],
+      '#required' => TRUE,
+      '#weight' => 5,
+    ];
     return $form;
   }
 
@@ -349,6 +375,7 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
           'company',
           'comm_empl',
         ])),
+        'expiration' => $form_state->getValue(['company', 'expiration']),
       ],
       'staff' => [
         'enabled' => $form_state->getValue(['staff', 'enabled']),
@@ -359,9 +386,12 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
         ])),
         'columns' => $form_state->getValue(['staff', 'columns']),
         'rows' => $form_state->getValue(['staff', 'rows']),
+        'expiration' => $form_state->getValue(['staff', 'expiration']),
       ],
     ];
     $this->configuration = array_merge($this->configuration, $settings);
+    $cid = PMMISSOHelper::PROVIDER . ':' . $this->configuration['uuid'];
+    \Drupal::cache()->invalidate($cid);
   }
 
   /**
@@ -378,9 +408,6 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
       'staff' => $this->configuration['staff'],
     ];
     $data = $this->dataCollector->getData($options);
-//    if (!empty($data) && !empty($this->configuration['sort_options'])) {
-//      $this->sort($data);
-//    }
     $build['#theme'] = 'pmmi_psdata_company_staff_block';
     $build['#data'] = $data;
     $build['#staff_enabled'] = $this->configuration['staff']['enabled'];
@@ -388,6 +415,7 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
     $build['#columns'] = $this->configuration['staff']['columns'];
     $build['#rows'] = $this->configuration['staff']['rows'];
     $tag = PMMISSOHelper::PROVIDER . ':' . $this->configuration['uuid'];
+
     $build['#cache']['tags'] = [$tag];
     return $build;
   }
@@ -414,21 +442,6 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
       $data = array_unique($data);
       return array_filter($data);
     }
-  }
-
-  /**
-   * Sort helper function.
-   *
-   * @param array $data
-   *   The data array to sort.
-   */
-  protected function sort(array &$data) {
-    $sort_options = explode(',', $this->configuration['sort_options']);
-    $sort_options = array_map('strtolower', $sort_options);
-    $sort_options = array_filter(array_map('trim', $sort_options));
-    uksort($data, function ($key1, $key2) use ($sort_options) {
-      return (array_search(strtolower($key1), $sort_options) > array_search(strtolower($key2), $sort_options));
-    });
   }
 
 }

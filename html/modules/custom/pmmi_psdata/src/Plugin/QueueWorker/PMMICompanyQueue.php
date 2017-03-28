@@ -2,8 +2,6 @@
 
 namespace Drupal\pmmi_psdata\Plugin\QueueWorker;
 
-use Drupal\pmmi_psdata\Plugin\QueueWorker\PMMIBaseDataQueue;
-
 /**
  * Updates a user's data.
  *
@@ -19,29 +17,25 @@ class PMMICompanyQueue extends PMMIBaseDataQueue {
    * {@inheritdoc}
    */
   public function processItem($item) {
-    $country = '_' . strtolower($item->data['company']['country_code']);
-    $cid = $this->provider . ':' . $item->type . '_' . $item->id . $country;
+    $cid = $this->dataCollector->buildCid($item, 'company');
     $data = $this->getCompanyData($item);
-//    $staff_data = $this->getStaffData($item->id);
-//    $data = $this->sort($company_data, $staff_data);
-
     if ($data) {
-      $this->cache->set($cid, $data);
+      $this->dataCollector->invalidateTags([$cid]);
+      $expiration_time = REQUEST_TIME + $item->data['company']['expiration'];
+      $this->cache->set($cid, $data, $expiration_time);
     }
   }
 
   /**
-   * Get member Job Title.
+   * Get main information about the company.
    *
-   * @param string $company_ids
-   *   The MemberMasterCustomer IDs.
-   * @param int $member_sub_id
-   *   The MemberSubCustomer ID.
+   * @param object $item
+   *   The type of requested data.
    *
-   * @return string
-   *   The job title.
+   * @return array
+   *   Information about the company.
    */
-  public function getCompanyData($item) {
+  private function getCompanyData($item) {
     $company_data = [];
     $company_id = $item->data['company']['id'];
     $company_sub_id = $item->data['company']['sub_id'];
@@ -82,78 +76,5 @@ class PMMICompanyQueue extends PMMIBaseDataQueue {
     }
     return $company_data;
   }
-
-//  /**
-//   * Helper function for sorting data.
-//   *
-//   * @param array $data
-//   *   The Data array.
-//   *
-//   * @return array
-//   *   The Data array.
-//   */
-//  protected function sort(array $company_data, array $staff_data) {
-//
-//    foreach ($data as &$value) {
-//      ksort($value);
-//    }
-//    return ksort($data);
-//  }
-
-
-
-
-//  /**
-//   * Get Customer Info.
-//   *
-//   * @param string $member_id
-//   *   The MemberMasterCustomer ID.
-//   * @param int $member_sub_id
-//   *   The MemberSubCustomer ID.
-//   * @param string $collection
-//   *   Requested collection.
-//   *
-//   * @return string
-//   *   The job title.
-//   */
-//  protected function getCustomerInfo($member_id, $member_sub_id, $collection, $type = 'member') {
-//    switch ($collection) {
-//      case 'addresses':
-//        // Example path: /CustomerInfos(MasterCustomerId='00094039',
-//        // SubCustomerId=0)/Addresses?$filter=AddressStatusCode eq 'GOOD'
-//        // and PrioritySeq eq 0&$select=JobTitle,CountryCode .
-//        $path_element = "CustomerInfos(MasterCustomerId='" . $member_id .
-//          "',SubCustomerId=" . $member_sub_id . ")/Addresses";
-//        $query = [
-//          '$filter' => "AddressStatusCode eq 'GOOD' and PrioritySeq eq 0",
-//          '$select' => 'JobTitle,CountryCode',
-//        ];
-//        break;
-//
-//      case 'communications':
-//        // Example path: /CustomerInfos(MasterCustomerId='00094039',
-//        // SubCustomerId=0)/Communications?$filter=CommLocationCodeString eq
-//        // 'WORK' and (CommTypeCodeString eq 'EMAIL' or CommTypeCodeString eq
-//        // 'PHONE' )&$select=CommTypeCodeString,FormattedPhoneAddress .
-//        $path_element = "CustomerInfos(MasterCustomerId='" . $member_id .
-//          "',SubCustomerId=" . $member_sub_id . ")/Communications";
-//        $query = [
-//          '$select' => 'CommTypeCodeString,FormattedPhoneAddress',
-//        ];
-//        if ($type == 'company') {
-//          $query['$filter'] = "(CommLocationCodeString eq 'WORK' or CommLocationCodeString eq 'WORK2') and (CommTypeCodeString eq 'EMAIL' or CommTypeCodeString eq 'PHONE' or CommTypeCodeString eq 'FAX')";
-//        }
-//        else {
-//          $query['$filter'] = "CommLocationCodeString eq 'WORK' and (CommTypeCodeString eq 'EMAIL' or CommTypeCodeString eq 'PHONE')";
-//        }
-//        break;
-//    }
-//
-//    $request_options = $this->buildGetRequest($path_element, $query);
-//    if ($item = $this->handleRequest($request_options)) {
-//      return $item;
-//    }
-//    return NULL;
-//  }
 
 }
