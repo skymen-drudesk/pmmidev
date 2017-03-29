@@ -125,7 +125,7 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
     $form['company']['id'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Company MasterCustomerId'),
-      '#description' => $this->t('Personify Service MasterCustomerIds for a companies (02010445)'),
+      '#description' => $this->t('Personify Service MasterCustomerIds for the company (02010445)'),
       '#default_value' => $this->configuration['company']['id'],
       '#required' => TRUE,
       '#size' => 20,
@@ -135,7 +135,7 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
     $form['company']['sub_id'] = [
       '#type' => 'number',
       '#title' => $this->t('Company SubCustomerId'),
-      '#description' => $this->t('Personify Service MasterCustomerIds for a companies (0)'),
+      '#description' => $this->t('Personify Service MasterCustomerIds for the company (0)'),
       '#default_value' => $this->configuration['company']['sub_id'],
       '#required' => TRUE,
       '#min' => 0,
@@ -210,7 +210,7 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
     $form['company']['sort_empl'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Company section: People'),
-      '#description' => $this->t('Company section: Sort and display visible peoples (Format: FirstName LastName, delimeter - comma)'),
+      '#description' => $this->t('Company section: Sort and display visible people (Format: FirstName LastName, delimeter - comma)'),
       '#default_value' => $this->formatValue($this->configuration['company']['sort_empl'], TRUE),
       '#visible' => FALSE,
       '#size' => 64,

@@ -5,7 +5,7 @@ namespace Drupal\pmmi_psdata\Plugin\QueueWorker;
 use Drupal\pmmi_psdata\Plugin\QueueWorker\PMMIBaseDataQueue;
 
 /**
- * Updates a user's data.
+ * Updates a staff data.
  *
  * @QueueWorker(
  *   id = "pmmi_psdata_staff",

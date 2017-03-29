@@ -161,7 +161,7 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
    * @param array $values
    *   The array of values.
    * @param bool $first
-   *   Indicates, that this is the first element of the query.
+   *   Indicates that this is the first element of the query.
    * @param bool $wrap
    *   Wrap in quotation marks.
    *
@@ -241,10 +241,7 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
   }
 
   /**
-   * Helper function for creating a request for information about employees.
-   *
-   * Helper function for creating a request for communication information about
-   * employees.
+   * Building a request for communication information about employees.
    *
    * @param array $ids
    *   An array of member IDs.
@@ -302,62 +299,6 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
       }
     }
     return $requests_options;
-  }
-
-  /**
-   * Get Customer Info.
-   *
-   * @param string $member_id
-   *   The MemberMasterCustomer ID.
-   * @param int $member_sub_id
-   *   The MemberSubCustomer ID.
-   * @param object $item
-   *   The MemberSubCustomer ID.
-   * @param string $collection
-   *   Requested collection.
-   *
-   * @return string
-   *   The job title.
-   */
-  protected function getCustomerInfo($member_id, $member_sub_id, $item, $collection, $type = 'member') {
-    $filter = '';
-    switch ($collection) {
-      case 'communications':
-        // Example path: /CustomerInfos(MasterCustomerId='00094039',
-        // SubCustomerId=0)/Communications?$filter=CommLocationCodeString eq
-        // 'WORK' and (CommTypeCodeString eq 'EMAIL' or CommTypeCodeString eq
-        // 'PHONE' )&$select=CommTypeCodeString,FormattedPhoneAddress .
-        if ($type == 'company') {
-          $filter = $this->addFilter(
-            'eq',
-            'CommLocationCodeString',
-            $item->data['company']['comm_location'],
-            TRUE
-          );
-          $filter .= $this->addFilter(
-            'eq',
-            'CommTypeCodeString',
-            $item->data['company']['comm_type']
-          );
-          $query['$filter'] = $filter;
-        }
-        else {
-          $query['$filter'] = "CommLocationCodeString eq 'WORK' and (CommTypeCodeString eq 'EMAIL' or CommTypeCodeString eq 'PHONE')";
-        }
-        $path_element = "CustomerInfos(MasterCustomerId='" . $member_id .
-          "',SubCustomerId=" . $member_sub_id . ")/Communications";
-        $query = [
-          '$select' => 'CommTypeCodeString,CountryCode,CommLocationCodeString,FormattedPhoneAddress',
-          '$filter' => $filter,
-        ];
-        break;
-    }
-
-    $request_options = $this->buildGetRequest($path_element, $query);
-    if ($data = $this->handleRequest($request_options)) {
-      return $data;
-    }
-    return NULL;
   }
 
   /**
