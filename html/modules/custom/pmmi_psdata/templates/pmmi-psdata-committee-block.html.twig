@@ -33,8 +33,8 @@
                     {% endif %}
 
                     {% if new_column == true %}
-                    {% set new_column = false %}
-                    <div class="col-sm-{{ 12 / columns }} member-column-{{ c }}">
+                        {% set new_column = false %}
+                        <div class="col-sm-{{ 12 / columns }} member-column-{{ c }}">
                     {% endif %}
 
                     <div class="{{ class_key }} member-row-{{ r }}">
@@ -59,7 +59,7 @@
                     {% endif %}
 
                     {% if new_column == true %}
-                    </div>
+                        </div>
                     {% endif %}
                     {% if new_row == true %}
                         </div>

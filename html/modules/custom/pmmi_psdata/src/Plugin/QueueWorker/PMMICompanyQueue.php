@@ -3,7 +3,7 @@
 namespace Drupal\pmmi_psdata\Plugin\QueueWorker;
 
 /**
- * Updates a user's data.
+ * Updates a company's data.
  *
  * @QueueWorker(
  *   id = "pmmi_psdata_company",
@@ -48,8 +48,7 @@ class PMMICompanyQueue extends PMMIBaseDataQueue {
       "',SubCustomerId=" . $company_sub_id . ")/Addresses";
     $query = [
       '$filter' => $filter,
-// @todo: Select only needed fields
-//        '$select' => 'JobTitle',
+      '$select' => 'Address1,Address2,Address3,Address4,City,CompanyName,CountryCode,PostalCode,State,FormattedCityStatePostal',
     ];
     $request_options = $this->buildGetRequest($path_element, $query);
     if ($addresses = $this->handleRequest($request_options)) {
@@ -66,12 +65,34 @@ class PMMICompanyQueue extends PMMIBaseDataQueue {
           'formatted_postal' => $address->FormattedCityStatePostal,
         ];
       }
-      if ($comm_data = $this->getCustomerInfo($company_id, $company_sub_id, $item, 'communications', 'company')) {
-        foreach ($comm_data as $comm) {
-          $type = strtolower($comm->CommTypeCodeString);
-          $location = strtolower($comm->CommLocationCodeString);
-          $company_data[$company_id][$comm->CountryCode]['comm'][$location][$type] = $comm->FormattedPhoneAddress;
-        }
+    }
+    // Example path: /CustomerInfos(MasterCustomerId='00094039',
+    // SubCustomerId=0)/Communications?$filter=CommLocationCodeString eq
+    // 'WORK' and (CommTypeCodeString eq 'EMAIL' or CommTypeCodeString eq
+    // 'PHONE' )&$select=CommTypeCodeString,FormattedPhoneAddress .
+    $filter = $this->addFilter(
+      'eq',
+      'CommLocationCodeString',
+      $item->data['company']['comm_location'],
+      TRUE
+    );
+    $filter .= $this->addFilter(
+      'eq',
+      'CommTypeCodeString',
+      $item->data['company']['comm_type']
+    );
+    $path_element = "CustomerInfos(MasterCustomerId='" . $company_id .
+      "',SubCustomerId=" . $company_sub_id . ")/Communications";
+    $query = [
+      '$select' => 'CommTypeCodeString,CountryCode,CommLocationCodeString,FormattedPhoneAddress',
+      '$filter' => $filter,
+    ];
+    $request_options = $this->buildGetRequest($path_element, $query);
+    if ($comm_data = $this->handleRequest($request_options)) {
+      foreach ($comm_data as $comm) {
+        $type = strtolower($comm->CommTypeCodeString);
+        $location = strtolower($comm->CommLocationCodeString);
+        $company_data[$company_id][$comm->CountryCode]['comm'][$location][$type] = $comm->FormattedPhoneAddress;
       }
     }
     return $company_data;

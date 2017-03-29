@@ -4,7 +4,7 @@ namespace Drupal\pmmi_psdata\Plugin\QueueWorker;
 
 
 /**
- * Updates a Personify company data.
+ * Updates Personify Committee data.
  *
  * @QueueWorker(
  *   id = "pmmi_psdata_committee",

@@ -65,7 +65,7 @@
             {% endif %}
             <div class="company-section-info">
                 {{ func.fill_section(data.company, 'addresse', 'address', false) }}
-                {{ func.fill_section(data.company, 'formated-address', 'formated_postal', false) }}
+                {{ func.fill_section(data.company, 'formatted-address', 'formatted_postal', false) }}
                 {{ func.fill_multidim(data.company.comm, 'communications', true) }}
             </div>
             <div class="company-section-info-staff">
@@ -97,8 +97,8 @@
                             <div class="row">
                         {% endif %}
                         {% if new_column == true %}
-                        {% set new_column = false %}
-                        <div class="col-sm-{{ 12 / columns }} member-column-{{ c }}">
+                            {% set new_column = false %}
+                            <div class="col-sm-{{ 12 / columns }} member-column-{{ c }}">
                         {% endif %}
 
                         <div class="{{ class_key }} member-row-{{ r }}">
@@ -126,7 +126,7 @@
                         {% endif %}
 
                         {% if new_column == true %}
-                        </div>
+                            </div>
                         {% endif %}
                         {% if new_row == true %}
                             </div>
