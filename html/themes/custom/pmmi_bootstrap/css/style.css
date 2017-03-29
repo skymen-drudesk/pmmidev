@@ -16476,6 +16476,10 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
     float: none;
     width: auto;
     margin: 0 0 15px;
+    text-align: center;
+  }
+  .mode-default.certification-test .field-name-field-image img {
+    margin: 0 auto;
   }
   .mode-default.certification-test .field-name-field-link a,
   .mode-default.certification-test .field-name-node-link a {
@@ -16978,6 +16982,10 @@ div.view {
     float: none;
     width: auto;
     margin: 0 0 15px;
+    text-align: center;
+  }
+  .block-box.mode-full .field-name-field-image img, .block-box.mode-default .field-name-field-image img {
+    margin: 0 auto;
   }
   .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a {
     width: 100%;
