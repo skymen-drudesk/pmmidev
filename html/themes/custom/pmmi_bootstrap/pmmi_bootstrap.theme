@@ -76,10 +76,9 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
     case 'system_branding_block':
       $current_path = \Drupal::service('path.current')->getPath();
       if ($variables['content']['site_logo']['#access']
-      && (\Drupal::service('path.matcher')->isFrontPage() || $current_path == '/gateway')
-      && $front_logo_path = theme_get_setting('front_logo_path')) {
-        $front_logo_uri = file_url_transform_relative(file_create_url($front_logo_path));
-        $variables['site_logo'] = $front_logo_uri;
+      && $fold_logo_path = theme_get_setting('fold_logo_path')) {
+        $fold_logo_uri = file_url_transform_relative(file_create_url($fold_logo_path));
+        $variables['site_logo_fold'] = $fold_logo_uri;
       }
       break;
 
@@ -239,33 +238,33 @@ function pmmi_bootstrap_preprocess_tb_megamenu_submenu(&$vars) {
 function pmmi_bootstrap_form_system_theme_settings_alter(&$form, &$form_state) {
   // Front logo settings, only available when $form['logo'] element exists.
   if (isset($form['logo'])) {
-    $form['front_logo'] = array(
+    $form['fold_logo'] = array(
       '#type' => 'details',
-      '#title' => t('Front page logo image'),
+      '#title' => t('Fold logo image'),
       '#open' => TRUE,
       '#group' => 'global',
     );
-    $form['front_logo']['front_default_logo'] = array(
+    $form['fold_logo']['fold_default_logo'] = array(
       '#type' => 'checkbox',
       '#title' => t('Use the logo supplied by the theme'),
-      '#default_value' => theme_get_setting('front_default_logo', 'pmmi_bootstrap'),
+      '#default_value' => theme_get_setting('fold_default_logo', 'pmmi_bootstrap'),
       '#tree' => FALSE,
     );
-    $form['front_logo']['settings'] = array(
+    $form['fold_logo']['settings'] = array(
       '#type' => 'container',
       '#states' => array(
         // Hide the logo settings when using the default logo.
         'invisible' => array(
-          'input[name="front_default_logo"]' => array('checked' => TRUE),
+          'input[name="fold_default_logo"]' => array('checked' => TRUE),
         ),
       ),
     );
-    $form['front_logo']['settings']['front_logo_path'] = array(
+    $form['fold_logo']['settings']['fold_logo_path'] = array(
       '#type' => 'textfield',
       '#title' => t('Path to custom logo'),
-      '#default_value' => theme_get_setting('front_logo_path', 'pmmi_bootstrap'),
+      '#default_value' => theme_get_setting('fold_logo_path', 'pmmi_bootstrap'),
     );
-    $form['front_logo']['settings']['front_logo_upload'] = array(
+    $form['fold_logo']['settings']['fold_logo_upload'] = array(
       '#type' => 'file',
       '#title' => t('Upload logo image'),
       '#maxlength' => 40,
@@ -286,16 +285,16 @@ function pmmi_bootstrap_form_system_theme_settings_validate(array &$form, FormSt
   $validators = array('file_validate_is_image' => array());
 
   // Check for a new uploaded logo.
-  $file = file_save_upload('front_logo_upload', $validators, FALSE, 0);
+  $file = file_save_upload('fold_logo_upload', $validators, FALSE, 0);
   if (isset($file)) {
     // File upload was attempted.
     if ($file) {
       // Put the temporary file in form_values so we can save it on submit.
-      $form_state->setValue('front_logo_upload', $file);
+      $form_state->setValue('fold_logo_upload', $file);
     }
     else {
       // File upload failed.
-      $form_state->setErrorByName('front_logo_upload', $this->t('The logo could not be uploaded.'));
+      $form_state->setErrorByName('fold_logo_upload', $this->t('The logo could not be uploaded.'));
     }
   }
 }
@@ -311,12 +310,12 @@ function pmmi_bootstrap_form_system_theme_settings_submit(array &$form, FormStat
 
   // If the user uploaded a new logo or favicon, save it to a permanent location
   // and use it in place of the default theme-provided file.
-  if (!empty($values['front_logo_upload'])) {
-    $filename = file_unmanaged_copy($values['front_logo_upload']->getFileUri());
-    $values['front_default_logo'] = 0;
-    $values['front_logo_path'] = $filename;
+  if (!empty($values['fold_logo_upload'])) {
+    $filename = file_unmanaged_copy($values['fold_logo_upload']->getFileUri());
+    $values['fold_default_logo'] = 0;
+    $values['fold_logo_path'] = $filename;
   }
-  unset($values['front_logo_upload']);
+  unset($values['fold_logo_upload']);
 }
 
 /**

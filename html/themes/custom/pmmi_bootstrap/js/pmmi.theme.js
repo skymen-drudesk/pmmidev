@@ -279,4 +279,33 @@
     }
   };
 
+  /**
+   * Persistent navigation behavior.
+   */
+  Drupal.behaviors.pmmiPersistentNav = {
+    fixHeader: function ($header, scrollTop) {
+      var headerH = $header.outerHeight(true);
+      if (scrollTop > headerH) {
+        $header
+          .addClass('below-fold')
+          .parent().css('padding-top', headerH);
+      }
+      else {
+        $header
+          .removeClass('below-fold')
+          .parent().css('padding-top', 0);
+      }
+    },
+    attach: function (context, settings) {
+      var _this = this;
+      $('.header-wrapper').once('persistent').each(function () {
+        var $header = $(this);
+        _this.fixHeader($header, $(window).scrollTop());
+        $(window).on('scroll', function (e) {
+          _this.fixHeader($header, $(this).scrollTop());
+        });
+      });
+    }
+  };
+
 })(jQuery, window, Drupal);
