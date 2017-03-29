@@ -77,6 +77,11 @@
       .link a {
         @extend .text-link;
       }
+      @include tablet-max {
+        img {
+          max-width: 191px;
+        }
+      }
     }
   }
   &.centered {
