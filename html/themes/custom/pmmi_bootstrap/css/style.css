@@ -18845,6 +18845,12 @@ div.view {
   margin-bottom: 10px;
 }
 
+@media screen and (max-width: 1023px) {
+  .content-left .block-text.mode-default img {
+    max-width: 191px;
+  }
+}
+
 .block-text.centered {
   text-align: center;
 }
