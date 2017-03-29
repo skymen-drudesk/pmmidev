@@ -220,9 +220,16 @@
           background: $dkblue;
           color: #fff;
         }
-        &:hover {
+        &:not(.touch):hover {
           .dropdown-menu {
             display: block;
+          }
+        }
+        &.touch {
+          &.open {
+            .dropdown-menu {
+              display: block;
+            }
           }
         }
         @include dhd {

@@ -275,6 +275,23 @@
         $(window).on('breakpointActivated', function (e, breakpoint) {
           applyToggler(breakpoint);
         });
+
+        // Fix menu for touch devices.
+        if ('ontouchstart' in window || navigator.maxTouchPoints) {
+          var $dropDownLinks = $('li.dropdown', $(this));
+          $dropDownLinks.addClass('touch').on('click', function (e) {
+            $dropDownLinks.not(this).removeClass('open');
+            $(this).toggleClass('open');
+            if ($(this).is('.open')) {
+              e.preventDefault();
+            }
+          });
+          $(document).on('click touchstart', function (e) {
+            if (!$(e.target).is('.touch') && !$(e.target).closest('.touch').length) {
+              $dropDownLinks.removeClass('open');
+            }
+          });
+        }
       });
     }
   };

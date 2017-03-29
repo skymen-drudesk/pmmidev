@@ -14437,7 +14437,11 @@ body > .page-wrapper:after,
   color: #fff;
 }
 
-.navbar .main-nav .nav > li:hover .dropdown-menu {
+.navbar .main-nav .nav > li:not(.touch):hover .dropdown-menu {
+  display: block;
+}
+
+.navbar .main-nav .nav > li.touch.open .dropdown-menu {
   display: block;
 }
 
