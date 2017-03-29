@@ -2,9 +2,12 @@
 
 namespace Drupal\pmmi_psdata\Service;
 
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueWorkerManagerInterface;
 use Drupal\Core\Queue\SuspendQueueException;
@@ -39,6 +42,13 @@ class PMMIDataCollector {
   protected $queue;
 
   /**
+   * The configuration factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
    * Provider name.
    *
    * @var string
@@ -56,17 +66,21 @@ class PMMIDataCollector {
    *   The queue factory.
    * @param \Drupal\Core\Queue\QueueWorkerManagerInterface $queue_manager
    *   The queue plugin manager.
+   * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
+   *   The config factory to get the installed themes.
    */
   public function __construct(
     CacheBackendInterface $cache_default,
     CacheTagsInvalidatorInterface $cache_tags_invalidator,
     QueueFactory $queue,
-    QueueWorkerManagerInterface $queue_manager
+    QueueWorkerManagerInterface $queue_manager,
+    ConfigFactoryInterface $config_factory
   ) {
     $this->cache = $cache_default;
     $this->cacheTagsInvalidator = $cache_tags_invalidator;
     $this->queue = $queue;
     $this->queueManager = $queue_manager;
+    $this->configFactory = $config_factory;
   }
 
   /**
@@ -82,6 +96,7 @@ class PMMIDataCollector {
     $data = NULL;
     $cid = $this->buildCid($options, 'main');
     if ($cache = $this->cache->get($cid)) {
+//    if ($cache = $this->cache->get('sds')) {
       return $cache->data;
     }
     else {
@@ -362,6 +377,33 @@ class PMMIDataCollector {
         watchdog_exception('pmmi_psdata', $e);
       }
     }
+  }
+
+  /**
+   *
+   */
+  public function collectConfigsToUpdate() {
+
+    $conf = $this->configFactory->listAll('block.block.pmmicompanystaffblock');
+    $conf_all = $this->configFactory->listAll();
+
+
+    $conf2 = $this->configFactory->listAll('page_manager.page');
+    $multiply = $this->configFactory->loadMultiple($conf2);
+    $result = [];
+    /** @var ImmutableConfig $config */
+    foreach ($multiply as $config){
+      $dependency = $config->get('dependencies.module');
+      if (is_array($dependency) && in_array('pmmi_psdata', $dependency)) {
+        foreach ($config->get('variant_settings.blocks') as $uuid => $block) {
+          if ($block['provider'] == 'pmmi_psdata') {
+            $result[$block['id']][$uuid] = $block;
+          }
+        }
+      }
+    }
+
+    return $result;
   }
 
 }

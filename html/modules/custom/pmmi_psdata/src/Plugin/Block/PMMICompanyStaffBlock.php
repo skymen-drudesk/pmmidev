@@ -3,6 +3,7 @@
 namespace Drupal\pmmi_psdata\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\pmmi_sso\Service\PMMISSOHelper;
@@ -338,6 +339,9 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
+    if (!array_key_exists('uuid', $this->configuration)) {
+      $old_cid = PMMISSOHelper::PROVIDER . ':' . md5(serialize($this->configuration));
+    }
     if (
       $form_state->getValue(['company', 'method']) == 'code' &&
       $form_state->hasValue(['company', 'method_data'])
@@ -390,19 +394,32 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
       ],
     ];
     $this->configuration = array_merge($this->configuration, $settings);
-    $cid = PMMISSOHelper::PROVIDER . ':' . $this->configuration['uuid'];
-    \Drupal::cache()->invalidate($cid);
+    if (array_key_exists('uuid', $this->configuration)) {
+      $cid = PMMISSOHelper::PROVIDER . ':' . $this->configuration['uuid'];
+      \Drupal::cache()->invalidate($cid);
+    }
+    else {
+      $cid = PMMISSOHelper::PROVIDER . ':' . md5(serialize($this->configuration));
+      $old_cid == $cid ?: \Drupal::cache()->delete($old_cid);
+    }
   }
 
   /**
    * {@inheritdoc}
    */
   public function build() {
+    $getee = $this->dataCollector->collectConfigsToUpdate();
     $build = [];
     $options = new \stdClass();
     $options->id = $this->configuration['company']['id'];
     $options->type = 'company';
-    $options->uuid = $this->configuration['uuid'];
+    if (array_key_exists('uuid', $this->configuration)) {
+      $uuid = $this->configuration['uuid'];
+    }
+    else {
+      $uuid = md5(serialize($this->configuration));
+    }
+    $options->uuid = $uuid;
     $options->data = [
       'company' => $this->configuration['company'],
       'staff' => $this->configuration['staff'],
