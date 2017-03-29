@@ -1,0 +1,43 @@
+uuid: d9a58d75-add8-4601-a3bc-48dd07a4243f
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.board_of_directors
+  module:
+    - panels
+    - pmmi_psdata
+id: board_of_directors-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    e9ff6fa8-6e28-4456-b629-52ee1ea1fce0:
+      id: pmmi_committee_block
+      label: 'Board of Directors'
+      provider: pmmi_psdata
+      label_display: visible
+      committee_id: C0000010
+      columns: '3'
+      rows: '5'
+      sort_options: 'Chairman, Immediate Past Chairman, Vice Chairman, Member'
+      region: main
+      weight: 0
+      sort: ''
+      uuid: e9ff6fa8-6e28-4456-b629-52ee1ea1fce0
+      context_mapping: {  }
+  id: panels_variant
+  uuid: a42ea097-108b-4fa5-95c2-ba32514b68e9
+  label: null
+  weight: 0
+  layout: panel_landing_left_sidebar
+  layout_settings: {  }
+  page_title: 'Board of Directors | PMMI'
+  storage_type: page_manager
+  storage_id: board_of_directors-panels_variant-0
+  builder: standard
+page: board_of_directors
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

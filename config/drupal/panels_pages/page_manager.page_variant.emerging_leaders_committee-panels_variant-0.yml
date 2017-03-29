@@ -1,0 +1,42 @@
+uuid: 84e65086-89cc-44d6-9eee-ab0f03136f0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.emerging_leaders_committee
+  module:
+    - panels
+    - pmmi_psdata
+id: emerging_leaders_committee-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    cfdf237b-ca4a-4262-89aa-16be0a930cbf:
+      id: pmmi_committee_block
+      label: 'Emerging Leaders Committee'
+      provider: pmmi_psdata
+      label_display: visible
+      committee_id: C0000022
+      columns: '3'
+      rows: '4'
+      sort_options: 'Chairman, Member'
+      region: main
+      weight: 0
+      uuid: cfdf237b-ca4a-4262-89aa-16be0a930cbf
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 4b7ae346-bee4-4ceb-aa3c-6c1a45c00b98
+  label: null
+  weight: 0
+  layout: panel_landing_left_sidebar
+  layout_settings: {  }
+  page_title: 'Emerging Leaders Committee | PMMI'
+  storage_type: page_manager
+  storage_id: emerging_leaders_committee-panels_variant-0
+  builder: standard
+page: emerging_leaders_committee
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

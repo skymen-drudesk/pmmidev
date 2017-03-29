@@ -1,0 +1,42 @@
+uuid: 07719746-a6d2-42ce-9264-9274d43ad0df
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.business_intelligence_committee
+  module:
+    - panels
+    - pmmi_psdata
+id: business_intelligence_committee-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    f0341dce-5698-479f-abea-1b1c647490dc:
+      id: pmmi_committee_block
+      label: 'Business Intelligence Committee'
+      provider: pmmi_psdata
+      label_display: visible
+      committee_id: C0000011
+      columns: '3'
+      rows: '8'
+      sort_options: 'Chairman, Member'
+      region: main
+      weight: 0
+      uuid: f0341dce-5698-479f-abea-1b1c647490dc
+      context_mapping: {  }
+  id: panels_variant
+  uuid: d09dcde8-5163-4f03-a953-815604eed915
+  label: null
+  weight: 0
+  layout: panel_landing_left_sidebar
+  layout_settings: {  }
+  page_title: 'Business Intelligence Committee | PMMI'
+  storage_type: page_manager
+  storage_id: business_intelligence_committee-panels_variant-0
+  builder: standard
+page: business_intelligence_committee
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

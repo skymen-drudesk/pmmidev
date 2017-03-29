@@ -1,0 +1,71 @@
+{#
+/**
+ * @file
+ * Theme implementation to display the PMMI Personify Committee block.
+ *
+ * Available variables:
+ *
+ * Committee block variables:
+ * - data: The array of data.
+ * - columns: Number of columns.
+ * - rows: Number of rows.
+
+ * @ingroup themeable
+ */
+#}
+{% set c, r, new_row, new_column = 1, 1, true, true %}
+<div class="block committee-block" id="block--committee-block">
+    {% if data %}
+        {% for key, collection in data %}
+            {% set class_key = key | lower | replace(' ', '-') %}
+            {% if temp_key is not defined %}
+                {% set temp_key = key %}
+            {% endif %}
+            {% if temp_key != key %}
+                {% set c, r, temp_key,new_row, new_column  = 1, 1, key, true, true %}
+            {% endif %}
+            <div class="committee-block-{{ class_key }} member-columns-{{ columns }} member-rows-{{ rows }}">
+                <h3>{{ key }}</h3>
+                {% for member in collection %}
+                    {% if new_row == true %}
+                        {% set new_row = false %}
+                        <div class="row">
+                    {% endif %}
+
+                    {% if new_column == true %}
+                        {% set new_column = false %}
+                        <div class="col-sm-{{ 12 / columns }} member-column-{{ c }}">
+                    {% endif %}
+
+                    <div class="{{ class_key }} member-row-{{ r }}">
+                        <strong>{{ member.label_name }} ({{ member.end_date }})</strong><br/>
+                        {% if member.job_title %}
+                            <span>{{ member.job_title }}</span><br/>
+                        {% endif %}
+                        <strong>{{ member.company_name }}</strong>
+                        <br/><br/>
+                    </div>
+
+                    {% if c <= columns and r <= rows %}
+                        {% set r = r + 1 %}
+                    {% endif %}
+
+                    {% if r > rows %}
+                        {% set c, r, new_column = c + 1, 1, true %}
+                    {% endif %}
+
+                    {% if c > columns or loop.last %}
+                        {% set c, new_column, new_row = 1, true, true %}
+                    {% endif %}
+
+                    {% if new_column == true %}
+                        </div>
+                    {% endif %}
+                    {% if new_row == true %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>
