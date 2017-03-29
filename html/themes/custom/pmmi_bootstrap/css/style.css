@@ -10863,7 +10863,7 @@ body #admin-menu .dropdown li {
 }
 
 .navbar.container, .navbar.container-fluid {
-  margin-top: 20px;
+  margin-top: 0;
 }
 
 .navbar.container > .container,
@@ -14167,8 +14167,38 @@ body > .page-wrapper:after,
   display: block;
 }
 
+.logo-fold {
+  display: none;
+}
+
+.header-wrapper {
+  top: -200px;
+  position: static;
+  padding-top: 20px;
+  -webkit-transition: top 1.5s ease-in;
+  transition: top 1.5s ease-in;
+}
+
+@media screen and (max-width: 1023px) {
+  .header-wrapper {
+    padding-top: 10px;
+  }
+}
+
+.header-wrapper.below-fold {
+  position: fixed;
+  background: #fff;
+  top: 0;
+  width: 100%;
+  margin: 0;
+  z-index: 100;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  padding-top: 10px;
+}
+
 .navbar {
   padding: 0;
+  margin-top: 0;
   margin-bottom: 0;
 }
 
@@ -14181,32 +14211,35 @@ body > .page-wrapper:after,
 .navbar .navbar-header {
   float: none;
   position: relative;
-  min-height: 78px;
-  padding-left: 90px;
-  margin-bottom: 8px;
-}
-
-.front .navbar .navbar-header {
   padding-left: 136px;
   min-height: 133px;
   margin-bottom: 15px;
 }
 
+.below-fold .navbar .navbar-header {
+  min-height: 78px;
+  padding-left: 90px;
+  margin-bottom: 5px;
+}
+
+.below-fold .navbar .navbar-header + * {
+  padding-top: 200px;
+}
+
 .navbar div.logo {
-  width: 73px;
   padding: 0;
   position: absolute;
-  margin: 0 0 0 -90px;
+  width: 136px;
+  height: 133px;
+  margin: -10px 0 0 -136px;
+}
+
+.navbar div.logo .logo-fold {
+  display: none;
 }
 
 .navbar div.logo .block {
   margin: 0;
-}
-
-.front .navbar div.logo {
-  width: 136px;
-  height: 133px;
-  margin: -10px 0 0 -136px;
 }
 
 .navbar div.logo a {
@@ -14218,10 +14251,33 @@ body > .page-wrapper:after,
   width: 100%;
 }
 
+.below-fold .navbar div.logo {
+  width: 73px;
+  margin: 0 0 0 -90px;
+}
+
+.below-fold .navbar div.logo .logo-fold {
+  display: block;
+}
+
+.below-fold .navbar div.logo .logo-main {
+  display: none;
+}
+
 @media screen and (min-width: 1200px) {
   .navbar {
     width: auto;
     max-width: 1360px;
+    padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  .navbar div.logo .logo-fold {
+    display: block;
+  }
+  .navbar div.logo .logo-main {
+    display: none;
   }
 }
 
@@ -14229,21 +14285,17 @@ body > .page-wrapper:after,
   .navbar {
     max-width: 718px;
   }
-  .front .navbar .navbar-header,
-  .not-front .navbar .navbar-header {
+  .navbar .navbar-header,
+  .below-fold .navbar .navbar-header {
     padding-left: 65px;
     min-height: 59px;
   }
-  .front .navbar div.logo,
-  .not-front .navbar div.logo {
+  .navbar div.logo,
+  .below-fold .navbar div.logo {
     width: 55px;
     height: 59px;
     overflow: hidden;
     margin: 0 0 0 -65px;
-  }
-  .front .navbar div.logo img {
-    margin: 0px -10px 0;
-    width: 75px;
   }
 }
 
@@ -14259,21 +14311,17 @@ body > .page-wrapper:after,
     margin-left: 0;
     margin-right: 0;
   }
-  .front .navbar .navbar-header,
-  .not-front .navbar .navbar-header {
+  .navbar .navbar-header,
+  .below-fold .navbar .navbar-header {
     padding-left: 50px;
     min-height: 43px;
   }
-  .front .navbar div.logo,
-  .not-front .navbar div.logo {
+  .navbar div.logo,
+  .below-fold .navbar div.logo {
     width: 41px;
     height: 45px;
     overflow: hidden;
     margin: 0 0 0 -50px;
-  }
-  .front .navbar div.logo img {
-    margin: 0 -7px 0;
-    width: 54px;
   }
 }
 
@@ -14424,7 +14472,7 @@ body > .page-wrapper:after,
 
 @media screen and (max-width: 767px) {
   .navbar .main-nav {
-    margin: 4px 0 0;
+    margin: 6px 0 0;
   }
   .navbar .main-nav .block-nav-wrapper,
   .navbar .main-nav .block-tb-megamenu {
@@ -14583,6 +14631,10 @@ body > .page-wrapper:after,
 
 .navbar .main-nav .dropdown-menu li:last-child {
   margin-bottom: 0;
+}
+
+.navbar .main-nav .dropdown-menu li:last-child > a {
+  border-bottom: none;
 }
 
 .navbar .main-nav .dropdown-menu li:last-child:after {
@@ -20073,7 +20125,7 @@ div.view {
   margin: 0 auto 20px;
 }
 
-.page-gateway .logo {
+.page-gateway .logo-main {
   display: block;
   width: 140px;
   float: none !important;

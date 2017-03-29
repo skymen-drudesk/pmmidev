@@ -68,6 +68,7 @@
           theme.settings.navbar_position ? 'navbar-' ~ theme.settings.navbar_position|clean_class : container,
         ]
       %}
+    <div class="header-wrapper">
       <header{{ navbar_attributes.addClass(navbar_classes) }} id="navbar" role="banner">
         {% if not navbar_attributes.hasClass('container') %}
           <div class="{{ container }}">
@@ -95,6 +96,7 @@
           </div>
         {% endif %}
       </header>
+    </div>
     {% endblock %}
   {% endif %}
 
