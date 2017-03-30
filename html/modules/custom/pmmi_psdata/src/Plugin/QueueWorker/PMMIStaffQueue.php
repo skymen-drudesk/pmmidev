@@ -2,8 +2,6 @@
 
 namespace Drupal\pmmi_psdata\Plugin\QueueWorker;
 
-use Drupal\pmmi_psdata\Plugin\QueueWorker\PMMIBaseDataQueue;
-
 /**
  * Updates a staff data.
  *
@@ -120,7 +118,7 @@ class PMMIStaffQueue extends PMMIBaseDataQueue {
     switch ($method) {
       // By CustomerClassCode.
       case 'code':
-        // /CustomerInfos?$filter=CustomerClassCode    eq 'STAFF' .
+        // /CustomerInfos?$filter=CustomerClassCode eq 'STAFF' .
         $path = 'CustomerInfos';
         $filter = $this->addFilter(
           'eq',

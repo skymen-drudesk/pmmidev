@@ -338,6 +338,9 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
+    if (!array_key_exists('uuid', $this->configuration)) {
+      $old_cid = PMMISSOHelper::PROVIDER . ':' . md5(serialize($this->configuration));
+    }
     if (
       $form_state->getValue(['company', 'method']) == 'code' &&
       $form_state->hasValue(['company', 'method_data'])
@@ -390,23 +393,21 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
       ],
     ];
     $this->configuration = array_merge($this->configuration, $settings);
-    $cid = PMMISSOHelper::PROVIDER . ':' . $this->configuration['uuid'];
-    \Drupal::cache()->invalidate($cid);
+    if (array_key_exists('uuid', $this->configuration)) {
+      $cid = PMMISSOHelper::PROVIDER . ':' . $this->configuration['uuid'];
+      \Drupal::cache()->invalidate($cid);
+    }
+    else {
+      $cid = PMMISSOHelper::PROVIDER . ':' . md5(serialize($this->configuration));
+      $old_cid == $cid ?: \Drupal::cache()->delete($old_cid);
+    }
   }
 
   /**
    * {@inheritdoc}
    */
   public function build() {
-    $build = [];
-    $options = new \stdClass();
-    $options->id = $this->configuration['company']['id'];
-    $options->type = 'company';
-    $options->uuid = $this->configuration['uuid'];
-    $options->data = [
-      'company' => $this->configuration['company'],
-      'staff' => $this->configuration['staff'],
-    ];
+    $options = $this->dataCollector->createObjectFromOptions($this->configuration, 'company');
     $data = $this->dataCollector->getData($options);
     $build['#theme'] = 'pmmi_psdata_company_staff_block';
     $build['#data'] = $data;
@@ -414,9 +415,7 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
     $build['#staff_label'] = $this->configuration['staff']['label'];
     $build['#columns'] = $this->configuration['staff']['columns'];
     $build['#rows'] = $this->configuration['staff']['rows'];
-    $tag = PMMISSOHelper::PROVIDER . ':' . $this->configuration['uuid'];
-
-    $build['#cache']['tags'] = [$tag];
+    $build['#cache']['tags'] = [$this->dataCollector->buildCid($options, 'main')];
     return $build;
   }
 

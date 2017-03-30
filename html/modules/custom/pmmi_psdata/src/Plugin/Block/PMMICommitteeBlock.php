@@ -3,10 +3,8 @@
 namespace Drupal\pmmi_psdata\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\pmmi_sso\Service\PMMISSOHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\pmmi_psdata\Service\PMMIDataCollector;
 
@@ -139,10 +137,7 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
    * {@inheritdoc}
    */
   public function build() {
-    $build = [];
-    $options = new \stdClass();
-    $options->id = $this->configuration['committee_id'];
-    $options->type = 'committee';
+    $options = $this->dataCollector->createObjectFromOptions($this->configuration, 'committee');
     $data = $this->dataCollector->getData($options);
     if (!empty($data) && !empty($this->configuration['sort_options'])) {
       $this->sort($data);
@@ -151,7 +146,7 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
     $build['#data'] = $data;
     $build['#columns'] = $this->configuration['columns'];
     $build['#rows'] = $this->configuration['rows'];
-    $build['#cache']['tags'] = [PMMISSOHelper::PROVIDER . ':committee_' . $this->configuration['committee_id']];
+    $build['#cache']['tags'] = [$this->dataCollector->buildCid($options, 'main')];
     return $build;
   }
 

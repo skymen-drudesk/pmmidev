@@ -47,7 +47,7 @@ variant_settings:
         rows: '13'
         expiration: '86400'
       region: oneone
-      weight: 0
+      weight: -1
       uuid: 6309ff84-1806-4b6d-9004-cb3936cb6552
       context_mapping: {  }
     f229f713-8b33-4e23-8037-283de87faaa1:
@@ -75,17 +75,16 @@ variant_settings:
           - 'Dolores Valdovinos'
         comm_empl:
           - EMAIL
-        expiration: '10'
+        expiration: '86400'
       staff:
         enabled: 1
         label: STAFF/CONTACTS
         comm_empl:
           - PHONE
           - EMAIL
-          - FAX
         columns: '3'
         rows: '1'
-        expiration: '10'
+        expiration: '86400'
       region: oneone
       weight: 0
       uuid: f229f713-8b33-4e23-8037-283de87faaa1
@@ -108,20 +107,25 @@ variant_settings:
           - EMAIL
         comm_location:
           - WORK
-        method: ci_rel
-        method_data: ''
+        method: code
+        method_data: PMG_STAFF
         sort_empl:
           - 'Joe Angel'
           - 'Jim Chrzan'
           - 'David Newcorn'
           - 'Rhonda O''Brien'
+          - 'Patrick Reynolds'
+          - 'Renee Bassett'
+          - 'Kurt Belisle'
+          - 'Liz Tierney'
+          - 'Patrick Young'
         comm_empl:
           - EMAIL
           - PHONE
           - FAX
         expiration: '86400'
       staff:
-        enabled: 1
+        enabled: 0
         label: STAFF/CONTACTS
         comm_empl:
           - EMAIL
@@ -131,7 +135,7 @@ variant_settings:
         rows: '13'
         expiration: '86400'
       region: oneone
-      weight: 0
+      weight: 1
       uuid: 1a480f6c-78d6-4814-8b0b-cb35b214b84f
       context_mapping: {  }
   id: panels_variant
