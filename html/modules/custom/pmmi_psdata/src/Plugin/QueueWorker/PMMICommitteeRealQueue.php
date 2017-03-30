@@ -2,7 +2,6 @@
 
 namespace Drupal\pmmi_psdata\Plugin\QueueWorker;
 
-
 /**
  * Updates a Personify company data.
  *

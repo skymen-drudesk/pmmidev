@@ -5,7 +5,6 @@ namespace Drupal\pmmi_psdata\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\pmmi_sso\Service\PMMISSOHelper;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\pmmi_psdata\Service\PMMIDataCollector;
 
@@ -138,8 +137,7 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
    * {@inheritdoc}
    */
   public function build() {
-    $build = [];
-    $options = $this->dataCollector->buildOptionsObject($this->configuration, 'committee');
+    $options = $this->dataCollector->createObjectFromOptions($this->configuration, 'committee');
     $data = $this->dataCollector->getData($options);
     if (!empty($data) && !empty($this->configuration['sort_options'])) {
       $this->sort($data);

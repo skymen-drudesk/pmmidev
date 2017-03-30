@@ -5,7 +5,6 @@ namespace Drupal\pmmi_psdata\Plugin\QueueWorker;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Queue\QueueWorkerBase;
-use Drupal\Core\State\StateInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\pmmi_psdata\Service\PMMIDataCollector;
 use Drupal\pmmi_sso\Service\PMMISSOHelper;
@@ -21,13 +20,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFactoryPluginInterface {
 
   use StringTranslationTrait;
-
-  /**
-   * The state.
-   *
-   * @var \Drupal\Core\State\StateInterface
-   */
-  protected $state;
 
   /**
    * Stores the Guzzle HTTP client used when validating service tickets.
@@ -73,8 +65,6 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
    *   The plugin id.
    * @param mixed $plugin_definition
    *   The plugin definition.
-   * @param \Drupal\Core\State\StateInterface $state
-   *   The state service the instance should use.
    * @param ClientInterface $http_client
    *   The HTTP Client library.
    * @param \Drupal\Core\Cache\CacheBackendInterface $cache
@@ -88,14 +78,12 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
     array $configuration,
     $plugin_id,
     $plugin_definition,
-    StateInterface $state,
     ClientInterface $http_client,
     CacheBackendInterface $cache,
     PMMISSOHelper $sso_helper,
     PMMIDataCollector $psdata_collector
   ) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->state = $state;
     $this->httpClient = $http_client;
     $this->cache = $cache;
     $this->ssoHelper = $sso_helper;
@@ -115,40 +103,11 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('state'),
       $container->get('http_client'),
       $container->get('cache.default'),
       $container->get('pmmi_sso.helper'),
       $container->get('pmmi_psdata.collector')
     );
-  }
-
-  /**
-   * Get member Job Title.
-   *
-   * @param string $member_id
-   *   The MemberMasterCustomer ID.
-   * @param int $member_sub_id
-   *   The MemberSubCustomer ID.
-   *
-   * @return string
-   *   The job title.
-   */
-  public function getMemberJobTitle($member_id, $member_sub_id) {
-    $job_title = '';
-    // Example path: CustomerInfos(MasterCustomerId='00094039',SubCustomerId=0)
-    // /Addresses?$filter=AddressStatusCode eq 'GOOD'&$select=JobTitle .
-    $path_element = "CustomerInfos(MasterCustomerId='" . $member_id .
-      "',SubCustomerId=" . $member_sub_id . ")/Addresses";
-    $query = [
-      '$filter' => "AddressStatusCode eq 'GOOD' and PrioritySeq eq 0",
-      '$select' => 'JobTitle',
-    ];
-    $request_options = $this->buildGetRequest($path_element, $query);
-    if ($job_data = $this->handleRequest($request_options)) {
-      empty($job_data[0]->JobTitle) ?: $job_title = $job_data[0]->JobTitle;
-    }
-    return $job_title;
   }
 
   /**
@@ -194,6 +153,31 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
       $query .= "$property eq $value ";
     }
     return $query;
+  }
+
+  /**
+   * Building a request for a job title for committee members.
+   *
+   * @param array $ids
+   *   An array of Committee member IDs.
+   *
+   * @return array
+   *   The request options array.
+   */
+  protected function buildCommitteeRequest(array $ids) {
+    // AddressInfos?$select=MasterCustomerId,JobTitle&$filter=
+    // (MasterCustomerId eq '00000159' or MasterCustomerId eq '00000357' or
+    // MasterCustomerId eq '00000375') and AddressStatusCode eq 'GOOD' and
+    // PrioritySeq eq 0 .
+    $path_element = 'AddressInfos';
+    $filter = $this->addFilter('eq', 'MasterCustomerId', $ids, TRUE);
+    $filter .= $this->addFilter('eq', 'AddressStatusCode', ['GOOD']);
+    $filter .= $this->addFilter('eq', 'PrioritySeq', [0], FALSE, TRUE);
+    $query = [
+      '$filter' => $filter,
+      '$select' => 'MasterCustomerId,JobTitle',
+    ];
+    return $this->buildGetRequest($path_element, $query);
   }
 
   /**
@@ -280,11 +264,15 @@ abstract class PMMIBaseDataQueue extends QueueWorkerBase implements ContainerFac
    * @return array
    *   The requests options array.
    */
-  protected function separateRequest(array $ids, $collection, $options = []) {
+  protected function separateRequest(array $ids, $collection, array $options = []) {
     $requests_options = [];
     $chunked = array_chunk($ids, 20);
     foreach ($chunked as $chunk) {
       switch ($collection) {
+        case 'job_title':
+          $requests_options[] = $this->buildCommitteeRequest($chunk);
+          break;
+
         case 'info':
           $requests_options[] = $this->buildMembersInfoRequest($chunk);
           break;

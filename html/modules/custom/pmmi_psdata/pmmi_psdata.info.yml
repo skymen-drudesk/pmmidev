@@ -6,3 +6,4 @@ package: PMMI
 dependencies:
   - pmmi
   - pmmi_sso
+configure: pmmi_psdata.update_settings

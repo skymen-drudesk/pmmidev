@@ -407,9 +407,7 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
    * {@inheritdoc}
    */
   public function build() {
-    $getee = $this->dataCollector->collectConfigsToUpdate();
-    $build = [];
-    $options = $this->dataCollector->buildOptionsObject($this->configuration, 'company');
+    $options = $this->dataCollector->createObjectFromOptions($this->configuration, 'company');
     $data = $this->dataCollector->getData($options);
     $build['#theme'] = 'pmmi_psdata_company_staff_block';
     $build['#data'] = $data;

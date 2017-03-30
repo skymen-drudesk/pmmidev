@@ -2,7 +2,6 @@
 
 namespace Drupal\pmmi_psdata\Plugin\QueueWorker;
 
-
 /**
  * Updates Personify Committee data.
  *
@@ -21,7 +20,9 @@ class PMMICommitteeQueue extends PMMIBaseDataQueue {
     $cid = $this->provider . ':' . $item->type . '_' . $item->id;
     $data = $this->getCommitteeData($item->id);
     if ($data) {
-      $this->cache->set($cid, $data);
+      $this->dataCollector->invalidateTags([$cid]);
+      $expiration_time = $item->expiration > 0 ? REQUEST_TIME + $item->expiration : $item->expiration;
+      $this->cache->set($cid, $data, $expiration_time);
     }
   }
 
@@ -43,14 +44,12 @@ class PMMICommitteeQueue extends PMMIBaseDataQueue {
         $date->format('Y-m-d') . "'",
     ];
     $request_options = $this->buildGetRequest('CommitteeMembers', $query);
-
+    $members = [];
     if ($committee_data = $this->handleRequest($request_options)) {
       foreach ($committee_data as $customer) {
         $last_first_name = $customer->CommitteeMemberLastFirstName;
         $member_id = $customer->MemberMasterCustomer;
-        $member_sub_id = $customer->MemberSubCustomer;
         $position = $customer->PositionCodeDescriptionDisplay;
-
         $data[$position][$last_first_name] = [
           'label_name' => $customer->CommitteeMemberLabelName,
           'end_date' => $this->formatDate($customer->EndDate, 'Y'),
@@ -58,11 +57,20 @@ class PMMICommitteeQueue extends PMMIBaseDataQueue {
           'company_id' => $customer->RepresentingMasterCustomer,
           'company_name' => $customer->RepresentingLabelName,
         ];
-        if ($job_title = $this->getMemberJobTitle($member_id, $member_sub_id)) {
-          $data[$position][$last_first_name]['job_title'] = $job_title;
-        }
-        $this->sort($data);
+        $members[$member_id] = [
+          'position' => $position,
+          'label_name' => $last_first_name,
+        ];
       }
+      $job_title_requests = $this->separateRequest(array_keys($members), 'job_title');
+      if ($job_title_data = $this->handleAsyncRequests($job_title_requests)) {
+        foreach ($job_title_data as $member_data) {
+          $position = $members[$member_data->MasterCustomerId]['position'];
+          $label_name = $members[$member_data->MasterCustomerId]['label_name'];
+          $data[$position][$label_name]['job_title'] = $member_data->JobTitle;
+        }
+      }
+      $this->sort($data);
     }
     else {
       $this->ssoHelper->log("Error with request to get Data Service Committee Members.");

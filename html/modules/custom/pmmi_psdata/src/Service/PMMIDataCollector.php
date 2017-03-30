@@ -2,12 +2,9 @@
 
 namespace Drupal\pmmi_psdata\Service;
 
-use Drupal\Component\Utility\NestedArray;
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheBackendInterface;
 use Drupal\Core\Cache\CacheTagsInvalidatorInterface;
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueWorkerManagerInterface;
 use Drupal\Core\Queue\SuspendQueueException;
@@ -96,7 +93,6 @@ class PMMIDataCollector {
     $data = NULL;
     $cid = $this->buildCid($options, 'main');
     if ($cache = $this->cache->get($cid)) {
-//    if ($cache = $this->cache->get('sds')) {
       return $cache->data;
     }
     else {
@@ -156,7 +152,7 @@ class PMMIDataCollector {
     $data = array_filter($data);
     if ($data) {
       $tags = [$cid, $csid];
-      $this->cache->set($main_cid, $data, Cache::PERMANENT, $tags);
+      $this->cache->set($main_cid, $data, CacheBackendInterface::CACHE_PERMANENT, $tags);
     }
   }
 
@@ -345,10 +341,6 @@ class PMMIDataCollector {
 
       case 'staff':
         $method = $options->data['company']['method'];
-//        $company_sec_comm = array_map('strtolower', $options->data['company']['comm_empl']);
-//        $staff_sec_comm = array_map('strtolower', $options->data['staff']['comm_empl']);
-//        $communications = array_unique(array_merge($company_sec_comm, $staff_sec_comm));
-//        $comm_str = implode('_', $communications);
         $comm_str = $this->convertOptions($options->data['company']['comm_empl'], $options->data['staff']['comm_empl']);
         $cid = $this->provider . ':' . $type . '_' . $method . '_' . $comm_str . '_' . $id;
         break;
@@ -357,7 +349,18 @@ class PMMIDataCollector {
     return $cid;
   }
 
-  private function convertOptions (array $first, array $second = []) {
+  /**
+   * Helper function: converting arrays to a string.
+   *
+   * @param array $first
+   *    The array of parameters.
+   * @param array $second
+   *    The array of parameters.
+   *
+   * @return string
+   *    Values from arrays as a string.
+   */
+  private function convertOptions(array $first, array $second = []) {
     $first = array_map('strtolower', $first);
     $second = array_map('strtolower', $second);
     $result = array_merge($first, $second);
@@ -374,7 +377,7 @@ class PMMIDataCollector {
    * @param object $data_item
    *   The item to process.
    */
-  private function processQueue($qid, $data_item) {
+  public function processQueue($qid, $data_item) {
     $queue = $this->queue->get($qid);
     $queue->createItem($data_item);
     $queue_worker = $this->queueManager->createInstance($qid);
@@ -394,10 +397,15 @@ class PMMIDataCollector {
   }
 
   /**
-   * @param $config
+   * Get the block type.
+   *
+   * @param array $config
+   *   The array with block settings.
+   *
    * @return string
+   *   The block type.
    */
-  public function getBlockType($config) {
+  public function getBlockType(array $config) {
     $type = '';
     switch ($config['id']) {
       case 'pmmi_committee_block':
@@ -411,17 +419,63 @@ class PMMIDataCollector {
   }
 
   /**
+   * Get out-of-date configurations for blocks.
    *
+   * @param array $configs
+   *   The array with blocks settings.
+   *
+   * @return array
+   *   The array with out-of-date configurations for blocks.
+   */
+  public function getExpiredData(array $configs) {
+    $result = [];
+    $settings = $this->configFactory->get('pmmi_psdata.updatesettings');
+    $committee_interval = $settings->get('committee.interval');
+    $company_interval = $settings->get('company.interval');
+    if (!$settings->get('committee.enabled')) {
+      unset($configs['committee']);
+    }
+    if (!$settings->get('company.enabled')) {
+      unset($configs['company']);
+      unset($configs['company']);
+    }
+    foreach ($configs as $type => $collection) {
+      $cache_coll = array_keys($collection);
+      $cache_items = $this->cache->getMultiple($cache_coll);
+      $result[$type] = array_intersect_key($collection, array_flip($cache_coll));
+      foreach ($cache_items as $cid => $item) {
+        switch ($type) {
+          case 'committee':
+            if (REQUEST_TIME >= ($item->expire - $committee_interval)) {
+              $result[$type][$cid] = $collection[$cid];
+            }
+            break;
+
+          case 'company';
+          case 'staff';
+            if (REQUEST_TIME >= ($item->expire - $company_interval)) {
+              $result[$type][$cid] = $collection[$cid];
+            }
+            break;
+        }
+      }
+    }
+    return array_filter($result);
+  }
+
+  /**
+   * Collect all configs for the blocks that need to be updated.
+   *
+   * @return array
+   *   The array with blocks settings.
    */
   public function collectConfigsToUpdate() {
-
     $company_block_config = $this->configFactory->listAll('block.block.pmmicompanystaffblock');
     $committee_block_config = $this->configFactory->listAll('block.block.pmmicommitteeblock');
     $panels_variant_config = $this->configFactory->listAll('page_manager.page_variant');
     $all_configs = array_merge($company_block_config, $committee_block_config, $panels_variant_config);
     $configs = $this->configFactory->loadMultiple($all_configs);
     $result = [];
-
     foreach ($configs as $config) {
       $dependency = $config->get('dependencies.module');
       if (!empty($dependency)) {
@@ -429,7 +483,6 @@ class PMMIDataCollector {
           foreach ($config->get('variant_settings.blocks') as $uuid => $block) {
             $type = $this->getBlockType($block);
             $this->fillArray($result, $block, $type);
-
           }
         }
         elseif (in_array('pmmi_psdata', $dependency)) {
@@ -439,20 +492,34 @@ class PMMIDataCollector {
         }
       }
     }
-
     return $result;
   }
 
   /**
+   * Create object from options.
+   *
    * @param array $config
+   *   The array with block settings.
    * @param string $type
+   *   The block type.
+   *
+   * @return object
+   *   The object (used in Queue workers).
    */
-  public function buildOptionsObject(array $config, $type) {
+  public function createObjectFromOptions(array $config, $type) {
     $item = new \stdClass();
     switch ($type) {
       case 'committee':
         $item->id = $config['committee_id'];
         $item->type = 'committee';
+        $config = $this->configFactory->get('pmmi_psdata.updatesettings');
+        if ($config->get('committee.enabled')) {
+          $expiration = $config->get('committee.interval');
+        }
+        else {
+          $expiration = CacheBackendInterface::CACHE_PERMANENT;
+        }
+        $item->expiration = $expiration;
         break;
 
       case 'company':
@@ -475,12 +542,17 @@ class PMMIDataCollector {
   }
 
   /**
+   * Helper function: To populate the result array with values.
+   *
    * @param array $result
+   *   The array to fill.
    * @param array $config
+   *   The array with block settings.
    * @param string $type
+   *   The block type.
    */
   public function fillArray(array &$result, array $config, $type) {
-    $item = $this->buildOptionsObject($config, $type);
+    $item = $this->createObjectFromOptions($config, $type);
     switch ($type) {
       case 'committee':
         $cid = $this->buildCid($item, 'main');
