@@ -9,10 +9,7 @@ namespace Drupal\pmmi_fields\Plugin\Field\FieldWidget;
 
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
-use Drupal\Core\Form\FormState;
-use Drupal\Component\Utility\Html;
 use Drupal\Component\Serialization\Json;
-use Drupal\views\Views;
 use Drupal\Component\Utility\Crypt;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\viewfield\Plugin\Field\FieldWidget\ViewfieldWidget;
@@ -112,7 +109,7 @@ class ViewfieldWidgetWithMore extends ViewfieldWidget {
   protected function getSavedSettings() {
     $settings = array();
     if ($values = $this->items[$this->delta]->settings) {
-      $settings = unserialize($values);
+      $settings = Json::decode($values);
     }
     return $settings;
   }
@@ -138,7 +135,7 @@ class ViewfieldWidgetWithMore extends ViewfieldWidget {
           $settings_array += array($setting => $value[$setting]);
         }
       }
-      $values[$key]['settings'] .= serialize($settings_array);
+      $values[$key]['settings'] .= Json::encode($settings_array);
     }
     return $values;
   }
