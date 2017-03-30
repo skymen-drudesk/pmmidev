@@ -143,9 +143,25 @@
     position: relative;
     margin: 0;
   }
+  .name-container {
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 0);
+    @include dhd {
+      width: 100%;
+      max-width: 1360px;
+    }
+    @include mobile {
+      left: 0;
+      right: 0;
+      transform: none;
+    }
+  }
   .page-name {
     background: rgba($dkblue, 0.8);
-    left: 40px;
+    left: 10px;
     top: 0;
     bottom: 0;
     position: absolute;
