@@ -13666,9 +13666,34 @@ body.use-container .page-title.hidden {
   margin: 0;
 }
 
+.block-image-header .name-container {
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  position: absolute;
+  -webkit-transform: translate(-50%, 0);
+          transform: translate(-50%, 0);
+}
+
+@media screen and (min-width: 1200px) {
+  .block-image-header .name-container {
+    width: 100%;
+    max-width: 1360px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .block-image-header .name-container {
+    left: 0;
+    right: 0;
+    -webkit-transform: none;
+            transform: none;
+  }
+}
+
 .block-image-header .page-name {
   background: rgba(5, 50, 72, 0.8);
-  left: 40px;
+  left: 10px;
   top: 0;
   bottom: 0;
   position: absolute;
