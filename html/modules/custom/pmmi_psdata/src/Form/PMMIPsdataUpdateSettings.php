@@ -68,9 +68,9 @@ class PMMIPsdataUpdateSettings extends ConfigFormBase {
       60 => $this->t('1 minute'),
       300 => $this->t('5 minutes'),
       3600 => $this->t('1 hour'),
-      10800 => $this->t('3 hour'),
-      21600 => $this->t('6 hour'),
-      43200 => $this->t('12 hour'),
+      10800 => $this->t('3 hours'),
+      21600 => $this->t('6 hours'),
+      43200 => $this->t('12 hours'),
       86400 => $this->t('1 day'),
       172800 => $this->t('2 days'),
     ];
