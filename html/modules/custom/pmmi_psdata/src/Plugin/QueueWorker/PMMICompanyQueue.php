@@ -64,6 +64,10 @@ class PMMICompanyQueue extends PMMIBaseDataQueue {
           'state' => $address->State,
           'formatted_postal' => $address->FormattedCityStatePostal,
         ];
+        if (empty($address->FormattedCityStatePostal)) {
+          $postal = $address->City . ', ' . $address->State . ' ' . $address->PostalCode;
+          $company_data[$company_id][$address->CountryCode]['formatted_postal'] = $postal;
+        }
       }
     }
     // Example path: /CustomerInfos(MasterCustomerId='00094039',
