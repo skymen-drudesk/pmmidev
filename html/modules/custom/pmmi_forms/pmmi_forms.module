@@ -105,7 +105,7 @@ function block_content_containers_form_submit($form, FormStateInterface $form_st
       'field_block_views_' . $delta,
     ];
     // Remove selected field from list.
-    $selected_field = $select_field[0]['value'];
+    $selected_field = !empty($select_field) ? $select_field[0]['value'] : '';
     $fields = array_diff($fields, [$selected_field]);
 
     // Clean values from unselected fields.
