@@ -48,3 +48,18 @@ function pmmi_psdata_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+/**
+ * Implements hook_cron().
+ */
+function pmmi_psdata_cron() {
+  // We access our configuration.
+  $cron_config = \Drupal::configFactory()->get('pmmi_psdata.updatesettings');
+  $committee_enabled = $cron_config->get('committee.enabled');
+  $committee_enabled = $cron_config->get('company.enabled');
+  if ($cron_config->get('enabled')) {
+    /** @var \Drupal\pmmi_sso\Service\PMMISSOCronDataCollector $data_collector */
+    $data_collector = \Drupal::service('pmmi_sso.cron_data_collector');
+  }
+
+}

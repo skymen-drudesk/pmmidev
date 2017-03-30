@@ -3,7 +3,6 @@
 namespace Drupal\pmmi_psdata\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Config\ImmutableConfig;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\pmmi_sso\Service\PMMISSOHelper;
@@ -410,20 +409,7 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
   public function build() {
     $getee = $this->dataCollector->collectConfigsToUpdate();
     $build = [];
-    $options = new \stdClass();
-    $options->id = $this->configuration['company']['id'];
-    $options->type = 'company';
-    if (array_key_exists('uuid', $this->configuration)) {
-      $uuid = $this->configuration['uuid'];
-    }
-    else {
-      $uuid = md5(serialize($this->configuration));
-    }
-    $options->uuid = $uuid;
-    $options->data = [
-      'company' => $this->configuration['company'],
-      'staff' => $this->configuration['staff'],
-    ];
+    $options = $this->dataCollector->buildOptionsObject($this->configuration, 'company');
     $data = $this->dataCollector->getData($options);
     $build['#theme'] = 'pmmi_psdata_company_staff_block';
     $build['#data'] = $data;
@@ -431,9 +417,7 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
     $build['#staff_label'] = $this->configuration['staff']['label'];
     $build['#columns'] = $this->configuration['staff']['columns'];
     $build['#rows'] = $this->configuration['staff']['rows'];
-    $tag = PMMISSOHelper::PROVIDER . ':' . $this->configuration['uuid'];
-
-    $build['#cache']['tags'] = [$tag];
+    $build['#cache']['tags'] = [$this->dataCollector->buildCid($options, 'main')];
     return $build;
   }
 

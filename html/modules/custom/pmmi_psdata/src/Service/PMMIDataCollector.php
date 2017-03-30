@@ -335,21 +335,35 @@ class PMMIDataCollector {
         break;
 
       case 'company':
+        $additional_key = $this->convertOptions(
+          $options->data['company']['comm_type'],
+          $options->data['company']['comm_location']
+        );
         $country = '_' . strtolower($options->data['company']['country_code']);
-        $cid = $this->provider . ':' . $type . '_' . $id . $country;
+        $cid = $this->provider . ':' . $type . '_' . $id . $country . '_' . $additional_key;
         break;
 
       case 'staff':
         $method = $options->data['company']['method'];
-        $company_sec_comm = array_map('strtolower', $options->data['company']['comm_empl']);
-        $staff_sec_comm = array_map('strtolower', $options->data['staff']['comm_empl']);
-        $communications = array_unique(array_merge($company_sec_comm, $staff_sec_comm));
-        $comm_str = implode('_', $communications);
+//        $company_sec_comm = array_map('strtolower', $options->data['company']['comm_empl']);
+//        $staff_sec_comm = array_map('strtolower', $options->data['staff']['comm_empl']);
+//        $communications = array_unique(array_merge($company_sec_comm, $staff_sec_comm));
+//        $comm_str = implode('_', $communications);
+        $comm_str = $this->convertOptions($options->data['company']['comm_empl'], $options->data['staff']['comm_empl']);
         $cid = $this->provider . ':' . $type . '_' . $method . '_' . $comm_str . '_' . $id;
         break;
 
     }
     return $cid;
+  }
+
+  private function convertOptions (array $first, array $second = []) {
+    $first = array_map('strtolower', $first);
+    $second = array_map('strtolower', $second);
+    $result = array_merge($first, $second);
+    sort($result);
+    $result = array_unique($result);
+    return implode('_', $result);
   }
 
   /**
@@ -380,30 +394,106 @@ class PMMIDataCollector {
   }
 
   /**
+   * @param $config
+   * @return string
+   */
+  public function getBlockType($config) {
+    $type = '';
+    switch ($config['id']) {
+      case 'pmmi_committee_block':
+        $type = 'committee';
+        break;
+
+      case 'pmmi_company_staff_block':
+        $type = 'company';
+    }
+    return $type;
+  }
+
+  /**
    *
    */
   public function collectConfigsToUpdate() {
 
-    $conf = $this->configFactory->listAll('block.block.pmmicompanystaffblock');
-    $conf_all = $this->configFactory->listAll();
-
-
-    $conf2 = $this->configFactory->listAll('page_manager.page');
-    $multiply = $this->configFactory->loadMultiple($conf2);
+    $company_block_config = $this->configFactory->listAll('block.block.pmmicompanystaffblock');
+    $committee_block_config = $this->configFactory->listAll('block.block.pmmicommitteeblock');
+    $panels_variant_config = $this->configFactory->listAll('page_manager.page_variant');
+    $all_configs = array_merge($company_block_config, $committee_block_config, $panels_variant_config);
+    $configs = $this->configFactory->loadMultiple($all_configs);
     $result = [];
-    /** @var ImmutableConfig $config */
-    foreach ($multiply as $config){
+
+    foreach ($configs as $config) {
       $dependency = $config->get('dependencies.module');
-      if (is_array($dependency) && in_array('pmmi_psdata', $dependency)) {
-        foreach ($config->get('variant_settings.blocks') as $uuid => $block) {
-          if ($block['provider'] == 'pmmi_psdata') {
-            $result[$block['id']][$uuid] = $block;
+      if (!empty($dependency)) {
+        if (in_array('panels', $dependency) && in_array('pmmi_psdata', $dependency)) {
+          foreach ($config->get('variant_settings.blocks') as $uuid => $block) {
+            $type = $this->getBlockType($block);
+            $this->fillArray($result, $block, $type);
+
           }
+        }
+        elseif (in_array('pmmi_psdata', $dependency)) {
+          $settings = $config->get('settings');
+          $type = $this->getBlockType($settings);
+          $this->fillArray($result, $settings, $type);
         }
       }
     }
 
     return $result;
+  }
+
+  /**
+   * @param array $config
+   * @param string $type
+   */
+  public function buildOptionsObject(array $config, $type) {
+    $item = new \stdClass();
+    switch ($type) {
+      case 'committee':
+        $item->id = $config['committee_id'];
+        $item->type = 'committee';
+        break;
+
+      case 'company':
+        $item->id = $config['company']['id'];
+        $item->type = 'company';
+        if (array_key_exists('uuid', $config)) {
+          $uuid = $config['uuid'];
+        }
+        else {
+          $uuid = md5(serialize($config));
+        }
+        $item->uuid = $uuid;
+        $item->data = [
+          'company' => $config['company'],
+          'staff' => $config['staff'],
+        ];
+        break;
+    }
+    return $item;
+  }
+
+  /**
+   * @param array $result
+   * @param array $config
+   * @param string $type
+   */
+  public function fillArray(array &$result, array $config, $type) {
+    $item = $this->buildOptionsObject($config, $type);
+    switch ($type) {
+      case 'committee':
+        $cid = $this->buildCid($item, 'main');
+        $result[$type][$cid] = $item;
+        break;
+
+      case 'company':
+        $cid = $this->buildCid($item, $type);
+        $csid = $this->buildCid($item, 'staff');
+        $result[$type][$cid] = $item;
+        $result['staff'][$csid] = $item;
+        break;
+    }
   }
 
 }

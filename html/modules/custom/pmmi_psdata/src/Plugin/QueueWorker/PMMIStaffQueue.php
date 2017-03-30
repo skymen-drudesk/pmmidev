@@ -120,7 +120,7 @@ class PMMIStaffQueue extends PMMIBaseDataQueue {
     switch ($method) {
       // By CustomerClassCode.
       case 'code':
-        // /CustomerInfos?$filter=CustomerClassCode    eq 'STAFF' .
+        // /CustomerInfos?$filter=CustomerClassCode eq 'STAFF' .
         $path = 'CustomerInfos';
         $filter = $this->addFilter(
           'eq',

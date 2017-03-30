@@ -71,14 +71,17 @@
             <div class="company-section-info-staff">
                 {% for member in data.company.staff %}
                     <div class="{{ class_key }} member-row-{{ r }}">
-                        {% if member.job_title %}
-                            <span>{{ member.job_title }}</span><br/>
-                        {% endif %}
                         {% if member.comm.email %}
                             <strong>{{ func.format_link(member.comm.email, 'communication', 'email', member.label_name) }}</strong><br/>
+                            {% if member.job_title %}
+                                <span>{{ member.job_title }}</span><br/>
+                            {% endif %}
                             {{ func.fill_multiply(member.comm|without('email'), 'communication', false) }}
                         {% else %}
                             <strong>{{ member.label_name }}</strong><br/>
+                            {% if member.job_title %}
+                                <span>{{ member.job_title }}</span><br/>
+                            {% endif %}
                             {% if member.comm %}
                                 {{ func.fill_multiply(member.comm, 'communication', false) }}
                             {% endif %}
