@@ -405,3 +405,46 @@
     }
   }
 }
+
+// Committee block.
+.block-pmmi-committee-block {
+  .block-title {
+    @extend .headline2;
+    margin-bottom: 12px;
+  }
+  h3 {
+    @extend .headline4;
+    margin-bottom: 7px;
+  }
+  .committee-block {
+    @extend .side-paragraph;
+    @include tablet-min {
+      margin-bottom: 10px;
+    }
+    .member {
+      margin-bottom: 20px;
+    }
+    .job {
+      font-style: italic;
+    }
+  }
+  .one-member {
+    h3 {
+      margin-bottom: 2px;
+    }
+    .member {
+      > div {
+        display: inline;
+        &:after {
+          content: "|";
+          padding: 0 8px;
+        }
+        &:last-child {
+          &:after {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

@@ -12274,7 +12274,7 @@ table td p, .article-node .node-body p, .article-node .author-info p, .article-n
 .article-node .twitter-link p,
 .article-node .article-release p, .node-body p, .node-bold-label p,
 .featured-speaker p, .school-node .focus p, .school-node .content-verified p, .paragraph2 p, .block-pmmi-twitter-block .block-title .subtitle p, .block-pmmi-facebook-block .block-title .subtitle p, .block-views-blocksearch-page-block-1 .views-field-body p, .mode-default.video .field-name-body p, .mode-default.video .field-name-field-featured-speaker p, .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-field-cert-test-price p, .mode-default.certification-test .field-name-field-cert-test-text-price p, .block-box.mode-full .field-name-body p, .block-box.mode-default .field-name-body p, .block-box.mode-vertical-box .field-name-body p, .block-enticement .block-body p, .brand-and-expo-show .block-body p, .block-pack-expo-show .block-body p, .block-brand.mode-default .block-body p, .block-social-media.mode-media-social-with-text .block-body p, .block-text.mode-image-text .block-body p, .article.mode-default .body p, .accordion-item .body p, .paragraph3 p, .block-image-slide-default .block-body p, .layout-landing .block-text.mode-default .block-body p,
-.layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .mode-event-left-rail .field-name-field-location p, .block-pricing .pricings p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .block-text.mode-container-mode .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-box.mode-mega-menu .field-name-body p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
+.layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .block-pmmi-committee-block .committee-block p, .mode-event-left-rail .field-name-field-location p, .block-pricing .pricings p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .block-text.mode-container-mode .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-box.mode-mega-menu .field-name-body p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
 .block-pack-expo-show .date p, .brand.mode-mega-menu p,
 .pack-expo-show.mode-mega-menu p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p, .page-gateway .block-text.centered .block-body p {
   font-size: inherit;
@@ -12351,7 +12351,7 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
   }
 }
 
-.side-paragraph, .mode-event-left-rail .field-name-field-location, .block-pricing .pricings, .block-text.mode-text-image .block-body, .content-left .block-text.mode-default .block-body, .block-text.mode-container-mode .block-body, .cert-info li .field--item {
+.side-paragraph, .block-pmmi-committee-block .committee-block, .mode-event-left-rail .field-name-field-location, .block-pricing .pricings, .block-text.mode-text-image .block-body, .content-left .block-text.mode-default .block-body, .block-text.mode-container-mode .block-body, .cert-info li .field--item {
   font-size: 14px;
   font-size: 0.875rem;
   line-height: 18px;
@@ -12417,7 +12417,7 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
   border-color: #fff;
 }
 
-.headline2, .block-title-big-bg, .block-pmmi-twitter-block .block-title, .block-pmmi-facebook-block .block-title, .field--type-viewfield .features-videos .viewfield-title, .microsite-info .block-event, body.path-batch .pmmi-panel .block-region-main .batch-container h2.favorites-block-title, .page-company-listing-update h2.block-title, .page-search-results-sales-agent-directory .sales-agent-search-results-header h2, .page-sales-agent-directory-my-favorites h2, .block-views-blockmembership-application-submissions-block-all .block-title, .containers .region-top .field-name-field-head, .block-image-slide-default .title, .block-news .title, .block-text.mode-default .title, .block-text.mode-container-mode .title, .node-title {
+.headline2, .block-title-big-bg, .block-pmmi-twitter-block .block-title, .block-pmmi-facebook-block .block-title, .field--type-viewfield .features-videos .viewfield-title, .block-pmmi-committee-block .block-title, .microsite-info .block-event, body.path-batch .pmmi-panel .block-region-main .batch-container h2.favorites-block-title, .page-company-listing-update h2.block-title, .page-search-results-sales-agent-directory .sales-agent-search-results-header h2, .page-sales-agent-directory-my-favorites h2, .block-views-blockmembership-application-submissions-block-all .block-title, .containers .region-top .field-name-field-head, .block-image-slide-default .title, .block-news .title, .block-text.mode-default .title, .block-text.mode-container-mode .title, .node-title {
   font-size: 36px;
   font-size: 2.25rem;
   line-height: 42px;
@@ -12429,12 +12429,12 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
   letter-spacing: normal;
 }
 
-.headline2 a, .block-title-big-bg a, .block-pmmi-twitter-block .block-title a, .block-pmmi-facebook-block .block-title a, .field--type-viewfield .features-videos .viewfield-title a, .microsite-info .block-event a, body.path-batch .pmmi-panel .block-region-main .batch-container h2.favorites-block-title a, .page-company-listing-update h2.block-title a, .page-search-results-sales-agent-directory .sales-agent-search-results-header h2 a, .page-sales-agent-directory-my-favorites h2 a, .block-views-blockmembership-application-submissions-block-all .block-title a, .containers .region-top .field-name-field-head a, .block-image-slide-default .title a, .block-news .title a, .block-text.mode-default .title a, .block-text.mode-container-mode .title a, .node-title a {
+.headline2 a, .block-title-big-bg a, .block-pmmi-twitter-block .block-title a, .block-pmmi-facebook-block .block-title a, .field--type-viewfield .features-videos .viewfield-title a, .block-pmmi-committee-block .block-title a, .microsite-info .block-event a, body.path-batch .pmmi-panel .block-region-main .batch-container h2.favorites-block-title a, .page-company-listing-update h2.block-title a, .page-search-results-sales-agent-directory .sales-agent-search-results-header h2 a, .page-sales-agent-directory-my-favorites h2 a, .block-views-blockmembership-application-submissions-block-all .block-title a, .containers .region-top .field-name-field-head a, .block-image-slide-default .title a, .block-news .title a, .block-text.mode-default .title a, .block-text.mode-container-mode .title a, .node-title a {
   color: #004e75;
 }
 
 @media screen and (max-width: 1023px) {
-  .headline2, .block-title-big-bg, .block-pmmi-twitter-block .block-title, .block-pmmi-facebook-block .block-title, .field--type-viewfield .features-videos .viewfield-title, .microsite-info .block-event, body.path-batch .pmmi-panel .block-region-main .batch-container h2.favorites-block-title, .page-company-listing-update h2.block-title, .page-search-results-sales-agent-directory .sales-agent-search-results-header h2, .page-sales-agent-directory-my-favorites h2, .block-views-blockmembership-application-submissions-block-all .block-title, .containers .region-top .field-name-field-head, .block-image-slide-default .title, .block-news .title, .block-text.mode-default .title, .block-text.mode-container-mode .title, .node-title {
+  .headline2, .block-title-big-bg, .block-pmmi-twitter-block .block-title, .block-pmmi-facebook-block .block-title, .field--type-viewfield .features-videos .viewfield-title, .block-pmmi-committee-block .block-title, .microsite-info .block-event, body.path-batch .pmmi-panel .block-region-main .batch-container h2.favorites-block-title, .page-company-listing-update h2.block-title, .page-search-results-sales-agent-directory .sales-agent-search-results-header h2, .page-sales-agent-directory-my-favorites h2, .block-views-blockmembership-application-submissions-block-all .block-title, .containers .region-top .field-name-field-head, .block-image-slide-default .title, .block-news .title, .block-text.mode-default .title, .block-text.mode-container-mode .title, .node-title {
     font-size: 1.375rem;
     line-height: 1.1;
   }
@@ -12480,7 +12480,7 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
   }
 }
 
-.headline4, .mode-default.video .field-name-field-date, .mode-default.certification-test .field-name-field-date, .block-box.mode-full .field-name-field-date, .block-box.mode-default .field-name-field-date, .mode-event-left-rail .field-name-field-dates, .node-layout .date {
+.headline4, .block-pmmi-committee-block h3, .mode-default.video .field-name-field-date, .mode-default.certification-test .field-name-field-date, .block-box.mode-full .field-name-field-date, .block-box.mode-default .field-name-field-date, .mode-event-left-rail .field-name-field-dates, .node-layout .date {
   color: #8c8888;
   text-transform: uppercase;
   font-weight: 800;
@@ -13962,6 +13962,45 @@ body.use-container .page-title.hidden {
 
 .block-panels-text-block a:hover {
   text-decoration: none;
+}
+
+.block-pmmi-committee-block .block-title {
+  margin-bottom: 12px;
+}
+
+.block-pmmi-committee-block h3 {
+  margin-bottom: 7px;
+}
+
+@media screen and (min-width: 768px) {
+  .block-pmmi-committee-block .committee-block {
+    margin-bottom: 10px;
+  }
+}
+
+.block-pmmi-committee-block .committee-block .member {
+  margin-bottom: 20px;
+}
+
+.block-pmmi-committee-block .committee-block .job {
+  font-style: italic;
+}
+
+.block-pmmi-committee-block .one-member h3 {
+  margin-bottom: 2px;
+}
+
+.block-pmmi-committee-block .one-member .member > div {
+  display: inline;
+}
+
+.block-pmmi-committee-block .one-member .member > div:after {
+  content: "|";
+  padding: 0 8px;
+}
+
+.block-pmmi-committee-block .one-member .member > div:last-child:after {
+  display: none;
 }
 
 html, body {

@@ -66,8 +66,6 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
   public function defaultConfiguration() {
     return [
         'committee_id' => '',
-        'columns' => 3,
-        'rows' => 3,
         'sort_options' => '',
       ] + parent::defaultConfiguration();
 
@@ -88,29 +86,6 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
       '#pattern' => '[A-Z][0-9]{7}',
       '#weight' => 1,
     ];
-    $form['columns'] = [
-      '#type' => 'number',
-      '#title' => $this->t('Columns'),
-      '#description' => $this->t('Number of columns in the block (maximum 4)'),
-      '#default_value' => $this->configuration['columns'],
-      '#required' => TRUE,
-      '#min' => 1,
-      '#step' => 1,
-      '#max' => 4,
-      '#size' => 1,
-      '#weight' => 2,
-    ];
-    $form['rows'] = [
-      '#type' => 'number',
-      '#title' => $this->t('Rows'),
-      '#description' => $this->t('Number of rows in the block'),
-      '#default_value' => $this->configuration['rows'],
-      '#required' => TRUE,
-      '#min' => 1,
-      '#step' => 1,
-      '#size' => 2,
-      '#weight' => 3,
-    ];
     $form['sort_options'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Sorting Order'),
@@ -128,8 +103,6 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
     $this->configuration['committee_id'] = $form_state->getValue('committee_id');
-    $this->configuration['columns'] = $form_state->getValue('columns');
-    $this->configuration['rows'] = $form_state->getValue('rows');
     $this->configuration['sort_options'] = $form_state->getValue('sort_options');
   }
 
@@ -144,8 +117,6 @@ class PMMICommitteeBlock extends BlockBase implements ContainerFactoryPluginInte
     }
     $build['#theme'] = 'pmmi_psdata_committee_block';
     $build['#data'] = $data;
-    $build['#columns'] = $this->configuration['columns'];
-    $build['#rows'] = $this->configuration['rows'];
     $build['#cache']['tags'] = [$this->dataCollector->buildCid($options, 'main')];
     return $build;
   }
