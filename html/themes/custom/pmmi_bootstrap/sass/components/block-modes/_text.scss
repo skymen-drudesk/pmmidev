@@ -20,6 +20,13 @@
   }
   // Block Image + Text.
   &.mode-image-text {
+    .image {
+      text-align: center;
+      img {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
     .title {
       @extend .headline3;
     }

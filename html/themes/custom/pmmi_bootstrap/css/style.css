@@ -18891,6 +18891,15 @@ div.view {
   margin-bottom: 20px;
 }
 
+.block-text.mode-image-text .image {
+  text-align: center;
+}
+
+.block-text.mode-image-text .image img {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .block-text.mode-image-text .block-body {
   margin-bottom: 15px;
 }
