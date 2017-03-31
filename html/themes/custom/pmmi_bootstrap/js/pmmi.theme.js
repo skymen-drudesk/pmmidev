@@ -170,6 +170,10 @@
           $(this).hide().after('<object data="' + $(this).attr('src') + '" type="image/svg+xml"></object>');
         });
       }
+      // Check if touch device.
+      if ('ontouchstart' in window || navigator.maxTouchPoints) {
+        $('html').addClass('touchevents');
+      }
     }
   };
 
