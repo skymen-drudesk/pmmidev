@@ -2,12 +2,9 @@
 
 namespace Drupal\pmmi_search\Plugin\Block;
 
-use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\Core\Path\CurrentPathStack;
 
 /**
  * Provides a 'PMMISearchResultTitleBlock' block.

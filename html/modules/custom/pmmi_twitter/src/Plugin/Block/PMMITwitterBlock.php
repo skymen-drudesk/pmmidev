@@ -8,7 +8,6 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Twitter;
-use TwitterException;
 
 /**
  * Provides a 'PMMITwitterBlock' block.
@@ -61,6 +60,9 @@ class PMMITwitterBlock extends BlockBase implements ContainerFactoryPluginInterf
     ];
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function blockForm($form, FormStateInterface $form_state) {
     $timeline_options = [
       Twitter::ME => $this->t('My timeline'),
@@ -74,31 +76,34 @@ class PMMITwitterBlock extends BlockBase implements ContainerFactoryPluginInterf
       '#size' => 80,
       '#default_value' => $this->configuration['block_title'],
     ];
-    $form['message_count'] = array(
+    $form['message_count'] = [
       '#type' => 'number',
       '#title' => $this->t('Number of messages to display'),
       '#min' => 1,
       '#max' => 200,
       '#required' => TRUE,
       '#default_value' => $this->configuration['message_count'],
-    );
-    $form['timeline'] = array(
+    ];
+    $form['timeline'] = [
       '#type' => 'select',
       '#title' => $this->t('Number of topics'),
       '#required' => TRUE,
       '#default_value' => $this->configuration['timeline'],
       '#options' => $timeline_options,
-    );
-    $form['max_age'] = array(
+    ];
+    $form['max_age'] = [
       '#type' => 'number',
       '#title' => $this->t('Cache options - Max age in seconds'),
       '#required' => TRUE,
       '#min' => 300,
       '#default_value' => $this->configuration['max_age'],
-    );
+    ];
     return $form;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function blockSubmit($form, FormStateInterface $form_state) {
     $fields = ['block_title', 'message_count', 'timeline', 'max_age'];
     foreach ($fields as $field) {
@@ -131,10 +136,11 @@ class PMMITwitterBlock extends BlockBase implements ContainerFactoryPluginInterf
     $twitter = new Twitter($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
     try {
       $connection = $twitter->authenticate();
-    } catch (\Exception $e) {
+    }
+    catch (\Exception $e) {
       drupal_set_message($this->t('Can not establish connection with Twitter'), 'error');
     }
-    // Retrieve the timeline
+    // Retrieve the timeline.
     if ($connection) {
       $statuses = $twitter->load($block_config['timeline'], $block_config['message_count']);
       foreach ($statuses as $key => $status) {

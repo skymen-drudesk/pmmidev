@@ -28,10 +28,10 @@ function pmmi_twitter_help($route_name, RouteMatchInterface $route_match) {
  */
 function pmmi_twitter_theme() {
   $theme = [];
-  $theme['pmmi_twitter_block'] = array(
+  $theme['pmmi_twitter_block'] = [
     'render element' => 'elements',
     'file' => 'pmmi_twitter.page.inc',
     'template' => 'pmmi-twitter-block',
-  );
+  ];
   return $theme;
 }

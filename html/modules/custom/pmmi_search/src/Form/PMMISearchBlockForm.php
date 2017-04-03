@@ -63,28 +63,28 @@ class PMMISearchBlockForm extends FormBase {
    */
   public function buildForm(array $form, FormStateInterface $form_state, $data = NULL) {
     if (empty($data)) {
-      $form['message'] = array(
+      $form['message'] = [
         '#markup' => $this->t('PMMI Search block is currently disabled'),
-      );
+      ];
       return $form;
     }
     $form_state->setTemporaryValue('data', $data);
-    $form['keys'] = array(
+    $form['keys'] = [
       '#type' => 'search',
       '#title' => $this->t('Search'),
       '#title_display' => 'invisible',
       '#size' => 30,
       '#default_value' => '',
       '#name' => $data['search_identifier'],
-      '#attributes' => array('title' => $this->t('Enter the keywords you wish to search for.')),
-    );
-    $form['actions'] = array('#type' => 'actions');
-    $form['actions']['submit'] = array(
+      '#attributes' => ['title' => $this->t('Enter the keywords you wish to search for.')],
+    ];
+    $form['actions'] = ['#type' => 'actions'];
+    $form['actions']['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Search'),
       // Prevent op from showing up in the query string.
       '#name' => '',
-    );
+    ];
 
     $this->renderer->addCacheableDependency($form, $data);
 
