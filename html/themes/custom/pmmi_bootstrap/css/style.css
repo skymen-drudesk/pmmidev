@@ -14241,12 +14241,14 @@ body > .page-wrapper:after,
   margin-bottom: 15px;
 }
 
+.not-front .below-fold .navbar .navbar-header,
 .below-fold .navbar .navbar-header {
   min-height: 78px;
   padding-left: 90px;
   margin-bottom: 5px;
 }
 
+.not-front .below-fold .navbar .navbar-header + *,
 .below-fold .navbar .navbar-header + * {
   padding-top: 200px;
 }
@@ -14276,15 +14278,30 @@ body > .page-wrapper:after,
   width: 100%;
 }
 
+.not-front .navbar .navbar-header {
+  padding-left: 115px;
+  min-height: 100px;
+  margin-bottom: 5px;
+}
+
+.not-front .navbar .navbar-header div.logo {
+  width: 105px;
+  height: 105px;
+  margin: -10px 0 0 -115px;
+}
+
+.not-front .below-fold .navbar div.logo,
 .below-fold .navbar div.logo {
   width: 73px;
   margin: 0 0 0 -90px;
 }
 
+.not-front .below-fold .navbar div.logo .logo-fold,
 .below-fold .navbar div.logo .logo-fold {
   display: block;
 }
 
+.not-front .below-fold .navbar div.logo .logo-main,
 .below-fold .navbar div.logo .logo-main {
   display: none;
 }
