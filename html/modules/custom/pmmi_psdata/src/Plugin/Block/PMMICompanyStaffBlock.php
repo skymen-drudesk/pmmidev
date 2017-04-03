@@ -95,8 +95,6 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
           'enabled' => TRUE,
           'label' => '',
           'comm_empl' => ['EMAIL', 'PHONE', 'FAX'],
-          'columns' => 3,
-          'rows' => 3,
           'expiration' => 86400,
         ],
 
@@ -279,45 +277,6 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
         ],
       ],
     ];
-    $form['staff']['columns'] = [
-      '#type' => 'number',
-      '#title' => $this->t('Columns'),
-      '#description' => $this->t('Number of columns in the block (maximum 4)'),
-      '#default_value' => $this->configuration['staff']['columns'],
-      '#required' => TRUE,
-      '#min' => 1,
-      '#step' => 1,
-      '#max' => 4,
-      '#size' => 1,
-      '#weight' => 3,
-      '#states' => [
-        'visible' => [
-          ':input[name="settings[staff][enabled]"]' => ['checked' => TRUE],
-        ],
-        'required' => [
-          ':input[name="settings[staff][enabled]"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
-    $form['staff']['rows'] = [
-      '#type' => 'number',
-      '#title' => $this->t('Rows'),
-      '#description' => $this->t('Number of rows in the block'),
-      '#default_value' => $this->configuration['staff']['rows'],
-      '#required' => TRUE,
-      '#min' => 1,
-      '#step' => 1,
-      '#size' => 2,
-      '#weight' => 4,
-      '#states' => [
-        'visible' => [
-          ':input[name="settings[staff][enabled]"]' => ['checked' => TRUE],
-        ],
-        'required' => [
-          ':input[name="settings[staff][enabled]"]' => ['checked' => TRUE],
-        ],
-      ],
-    ];
     $form['staff']['expiration'] = [
       '#type' => 'number',
       '#title' => $this->t('Staff section Expiration time'),
@@ -387,8 +346,6 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
           'staff',
           'comm_empl',
         ])),
-        'columns' => $form_state->getValue(['staff', 'columns']),
-        'rows' => $form_state->getValue(['staff', 'rows']),
         'expiration' => $form_state->getValue(['staff', 'expiration']),
       ],
     ];
@@ -413,8 +370,6 @@ class PMMICompanyStaffBlock extends BlockBase implements ContainerFactoryPluginI
     $build['#data'] = $data;
     $build['#staff_enabled'] = $this->configuration['staff']['enabled'];
     $build['#staff_label'] = $this->configuration['staff']['label'];
-    $build['#columns'] = $this->configuration['staff']['columns'];
-    $build['#rows'] = $this->configuration['staff']['rows'];
     $build['#cache']['tags'] = [$this->dataCollector->buildCid($options, 'main')];
     return $build;
   }

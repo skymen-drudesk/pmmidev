@@ -406,26 +406,43 @@
   }
 }
 
-// Committee block.
+// Committee and company staff block.
+.block-pmmi-company-staff-block,
 .block-pmmi-committee-block {
   .block-title {
-    @extend .headline2;
     margin-bottom: 12px;
   }
   h3 {
     @extend .headline4;
     margin-bottom: 7px;
   }
-  .committee-block {
+  .member {
+    margin-bottom: 20px;
     @extend .side-paragraph;
+  }
+  .job {
+    font-style: italic;
+  }
+  .phone,
+  .name {
+    a {
+      color: #333;
+    }
+  }
+  a[href*="tel:"] {
+    color: #333;
+  }
+  .company-staff,
+  .committee-block,
+  .company-section-info-staff .row,{
+    font-size: 0;
     @include tablet-min {
       margin-bottom: 10px;
     }
     .member {
-      margin-bottom: 20px;
-    }
-    .job {
-      font-style: italic;
+      display: inline-block;
+      float: none;
+      vertical-align: top;
     }
   }
   .one-member {
@@ -446,5 +463,24 @@
         }
       }
     }
+  }
+}
+.block-pmmi-committee-block {
+  .block-title {
+    @extend .headline2;
+  }
+}
+.block-pmmi-company-staff-block {
+  .member {
+    margin-bottom: 15px;
+  }
+  .block-title {
+    @extend .headline3;
+  }
+  .company-section {
+    @extend .side-paragraph;
+  }
+  .company-section-info {
+    margin-bottom: 20px;
   }
 }
