@@ -3,6 +3,18 @@ html {
 }
 a {
   transition: .2s;
+  &:focus {
+    outline: none;
+    text-decoration: none;
+  }
+  &:hover {
+    .touchevents & {
+      text-decoration: none;
+    }
+  }
+}
+:focus {
+  outline: none;
 }
 p {
   @extend .paragraph1;

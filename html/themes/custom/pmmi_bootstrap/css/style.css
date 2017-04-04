@@ -12757,6 +12757,19 @@ a {
   transition: .2s;
 }
 
+a:focus {
+  outline: none;
+  text-decoration: none;
+}
+
+.touchevents a:hover {
+  text-decoration: none;
+}
+
+:focus {
+  outline: none;
+}
+
 h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 0;
 }
@@ -18777,6 +18790,12 @@ div.view {
 
 .block-person .image img {
   border-radius: 50%;
+}
+
+@media screen and (max-width: 767px) {
+  .col .block-person {
+    margin-bottom: -8px;
+  }
 }
 
 .block-pricing .pricings .title {
