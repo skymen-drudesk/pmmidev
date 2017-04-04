@@ -12880,8 +12880,11 @@ table {
 
 table th,
 table td {
-  border-color: #c2c2c2;
   padding: 10px;
+}
+
+table td {
+  border: 1px solid #c2c2c2;
 }
 
 table th {
@@ -12891,6 +12894,7 @@ table th {
   font-size: 1.5rem;
   font-weight: 500;
   color: #fff;
+  border-color: #053248;
 }
 
 @media screen and (max-width: 767px) {
