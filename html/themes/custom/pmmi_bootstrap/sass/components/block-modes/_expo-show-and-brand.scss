@@ -1,9 +1,10 @@
 .brand-and-expo-show {
   text-align: center;
   border: 1px solid $mdgrey;
-  padding: 15px;
+  padding: 15px 15px 60px;
   border-radius: 6px;
   margin-bottom: 40px;
+  position: relative;
   .logo {
     margin-bottom: 8px;
     img {
@@ -11,14 +12,20 @@
     }
   }
   .block-body {
-    margin-bottom: 15px;
     @extend .paragraph2;
+    p:last-child {
+      margin-bottom: 0;
+    }
     @include tablet-max {
       font-size: $r15;
       line-height: $r19;
     }
   }
   .button {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
     .field--item {
       display: inline-block;
       margin: 0 15px 15px;

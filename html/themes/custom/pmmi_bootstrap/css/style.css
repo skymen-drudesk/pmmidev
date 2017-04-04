@@ -12893,6 +12893,11 @@ table th {
   color: #fff;
 }
 
+table.responsive td, table.responsive th {
+  padding: 0;
+  border: none;
+}
+
 @media screen and (max-width: 767px) {
   table.responsive td, table.responsive th {
     display: block;
@@ -18099,9 +18104,10 @@ div.view {
 .brand-and-expo-show, .block-pack-expo-show, .block-brand.mode-default {
   text-align: center;
   border: 1px solid #c2c2c2;
-  padding: 15px;
+  padding: 15px 15px 60px;
   border-radius: 6px;
   margin-bottom: 40px;
+  position: relative;
 }
 
 .brand-and-expo-show .logo, .block-pack-expo-show .logo, .block-brand.mode-default .logo {
@@ -18112,8 +18118,8 @@ div.view {
   margin: 0 auto;
 }
 
-.brand-and-expo-show .block-body, .block-pack-expo-show .block-body, .block-brand.mode-default .block-body {
-  margin-bottom: 15px;
+.brand-and-expo-show .block-body p:last-child, .block-pack-expo-show .block-body p:last-child, .block-brand.mode-default .block-body p:last-child {
+  margin-bottom: 0;
 }
 
 @media screen and (max-width: 1023px) {
@@ -18121,6 +18127,13 @@ div.view {
     font-size: 0.9375rem;
     line-height: 1.1875rem;
   }
+}
+
+.brand-and-expo-show .button, .block-pack-expo-show .button, .block-brand.mode-default .button {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .brand-and-expo-show .button .field--item, .block-pack-expo-show .button .field--item, .block-brand.mode-default .button .field--item {

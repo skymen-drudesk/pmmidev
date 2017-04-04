@@ -120,6 +120,10 @@ table {
     color: #fff;
   }
   &.responsive {
+    td, th {
+      padding: 0;
+      border: none;
+    }
     @include mobile {
       td, th {
         display: block;
