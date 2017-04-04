@@ -60,6 +60,7 @@
 .accordion-item {
   border-bottom: 1px solid $mdgrey;
   .header {
+    overflow: hidden;
     a {
       display: block;
       @extend .headline3;

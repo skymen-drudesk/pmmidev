@@ -19945,6 +19945,10 @@ div.view {
   border-bottom: 1px solid #c2c2c2;
 }
 
+.accordion-item .header {
+  overflow: hidden;
+}
+
 .accordion-item .header a {
   display: block;
   padding: 12px 0 12px 100px;
