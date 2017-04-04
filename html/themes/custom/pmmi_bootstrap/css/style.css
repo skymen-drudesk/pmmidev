@@ -16429,6 +16429,17 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   }
 }
 
+.mode-default.video a.use-ajax {
+  position: relative;
+}
+
+.mode-default.video a.use-ajax .ajax-throbber {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  margin: -6px 0 0;
+}
+
 .mode-default.certification-test {
   clear: both;
   margin-bottom: 40px;
