@@ -19842,6 +19842,12 @@ div.view {
   margin: 10px 0 20px;
 }
 
+@media screen and (max-width: 767px) {
+  .download-node .download-link a {
+    width: 100%;
+  }
+}
+
 .download-node .content-right {
   margin-bottom: 30px;
 }
