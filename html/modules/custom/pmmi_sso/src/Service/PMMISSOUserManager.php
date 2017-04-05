@@ -3,6 +3,7 @@
 namespace Drupal\pmmi_sso\Service;
 
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\pmmi_sso\Event\PMMISSOPreLoginEvent;
 use Drupal\pmmi_sso\Event\PMMISSOPreRegisterEvent;
 use Drupal\pmmi_sso\Event\PMMISSOPreUserLoadEvent;
@@ -14,15 +15,15 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\user\UserDataInterface;
 use Drupal\user\UserInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Drupal\Core\Database\Connection;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Drupal\pmmi_sso\PMMISSOPropertyBag;
-use Drupal\Component\Utility\Crypt;
 
 /**
  * Class PMMISSOUserManager.
  */
 class PMMISSOUserManager {
+
+  use StringTranslationTrait;
 
   /**
    * Used to include the externalauth service from the external_auth module.
@@ -65,6 +66,13 @@ class PMMISSOUserManager {
    * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
    */
   protected $eventDispatcher;
+
+  /**
+   * The User Storage.
+   *
+   * @var \Drupal\Core\Entity\EntityStorageInterface
+   */
+  protected $userStorage;
 
   /**
    * The PMMI SSO token Storage.
@@ -113,6 +121,7 @@ class PMMISSOUserManager {
     $this->session = $session;
     $this->userData = $user_data;
     $this->eventDispatcher = $event_dispatcher;
+    $this->userStorage = $entityTypeManager->getStorage('user');
     $this->tokenStorage = $entityTypeManager->getStorage('pmmi_sso_token');
   }
 
@@ -142,6 +151,40 @@ class PMMISSOUserManager {
   }
 
   /**
+   * Link a local Drupal account with the PMMI SSO username.
+   *
+   * @param string $authname
+   *   The PMMI SSO username.
+   * @param \Drupal\user\UserInterface $account
+   *   The existing Drupal account to link.
+   * @param array $property_values
+   *   Property values to assign to the user on linking.
+   *
+   * @return \Drupal\user\UserInterface
+   *   The user entity.
+   */
+  public function linkExistingAccount($authname, UserInterface $account, array $property_values = []) {
+    $this->externalAuth->linkExistingAccount($authname, $this->provider, $account);
+    if ($property_values['name'] !== $account->getAccountName()) {
+      $account->setUsername($property_values['name']);
+      $this->setMessage(
+        $this->t(
+          'WARNING: Your username has been changed. New username: @username',
+            ['@username' => $property_values['name']]
+        ), 'warning'
+      );
+    }
+    $account->setEmail($property_values['mail']);
+    $account->set('field_first_name', $property_values['field_first_name']);
+    $account->set('field_last_name', $property_values['field_last_name']);
+    $account->setLastLoginTime(0);
+    foreach ($property_values['roles'] as $rid) {
+      $account->addRole($rid);
+    }
+    return $account;
+  }
+
+  /**
    * Attempts to log the user in to the Drupal site.
    *
    * @param PMMISSOPropertyBag $property_bag
@@ -157,6 +200,7 @@ class PMMISSOUserManager {
     // before it's used to lookup a Drupal user account via the authmap table.
     $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_PRE_USER_LOAD, new PMMISSOPreUserLoadEvent($property_bag));
 
+    // Check if the auth user mapping exists.
     $account = $this->externalAuth->load($property_bag->getUserId(), $this->provider);
     if ($account === FALSE) {
       // Dispatch an event that allows modules to deny automatic registration
@@ -165,7 +209,13 @@ class PMMISSOUserManager {
       $sso_pre_register_event = new PMMISSOPreRegisterEvent($property_bag);
       $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_PRE_REGISTER, $sso_pre_register_event);
       if ($sso_pre_register_event->getAllowAutomaticRegistration()) {
-        $account = $this->register($sso_pre_register_event->getUserId(), $sso_pre_register_event->getPropertyValues(), $sso_pre_register_event->getAuthData());
+        // Check if the user exists.
+        if ($exist_account = $this->userStorage->loadByProperties(['init' => $sso_pre_register_event->getDrupalUsername()])) {
+          $account = $this->linkExistingAccount($sso_pre_register_event->getUserId(), reset($exist_account), $sso_pre_register_event->getPropertyValues());
+        }
+        else {
+          $account = $this->register($sso_pre_register_event->getUserId(), $sso_pre_register_event->getPropertyValues(), $sso_pre_register_event->getAuthData());
+        }
         $update_data = [
           'block' => REQUEST_TIME,
           'info' => REQUEST_TIME,
@@ -285,6 +335,26 @@ class PMMISSOUserManager {
   protected function randomPassword() {
     // Default length is 10, use a higher number that's harder to brute force.
     return \user_password(30);
+  }
+
+  /**
+   * Encapsulation of drupal_set_message.
+   *
+   * See https://www.drupal.org/node/2278383 for discussion about converting
+   * drupal_set_message to a service. In the meantime, in order to unit test
+   * the error handling here, we have to encapsulate the call in a method.
+   *
+   * @param string $message
+   *   The message text to set.
+   * @param string $type
+   *   The message type.
+   * @param bool $repeat
+   *   Whether identical messages should all be shown.
+   *
+   * @codeCoverageIgnore
+   */
+  public function setMessage($message, $type = 'status', $repeat = FALSE) {
+    drupal_set_message($message, $type, $repeat);
   }
 
 }
