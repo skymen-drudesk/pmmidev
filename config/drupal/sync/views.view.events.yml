@@ -425,11 +425,13 @@ display:
       defaults:
         filters: false
         filter_groups: false
+        use_ajax: false
       filter_groups:
         operator: AND
         groups:
           1: AND
       exposed_block: true
+      use_ajax: true
     cache_metadata:
       max-age: -1
       contexts:

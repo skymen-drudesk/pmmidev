@@ -16912,6 +16912,11 @@ div.view {
   .view-events .views-view-grid.cols-2 {
     margin: 0 -5px;
   }
+  .view-events .views-view-grid.cols-2 .row, .view-events .views-view-grid.cols-2 .footer .region-footer, .footer .view-events .views-view-grid.cols-2 .region-footer, .view-events .views-view-grid.cols-2 .events-block-upcoming-ribbon .view-content, .events-block-upcoming-ribbon .view-events .views-view-grid.cols-2 .view-content, .view-events .views-view-grid.cols-2
+  .block-views-blockevents-block-upcoming-ribbon .view-content,
+  .block-views-blockevents-block-upcoming-ribbon .view-events .views-view-grid.cols-2 .view-content, .view-events .views-view-grid.cols-2 .block-icons .column, .block-icons .view-events .views-view-grid.cols-2 .column {
+    margin: 0;
+  }
   .view-events .views-view-grid.cols-2 .col {
     padding: 0 5px;
   }

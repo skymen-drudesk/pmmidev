@@ -50,6 +50,9 @@ div.view {
     }
     @include tablet {
       margin: 0 -5px;
+      .row {
+        margin: 0;
+      }
       .col {
         padding: 0 5px;
       }
