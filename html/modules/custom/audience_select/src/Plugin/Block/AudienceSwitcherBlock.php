@@ -20,7 +20,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class AudienceSwitcherBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
-   * Drupal\audience_select\Service\AudienceManager definition.
+   * The audience manager service.
    *
    * @var \Drupal\audience_select\Service\AudienceManager
    */
@@ -36,6 +36,7 @@ class AudienceSwitcherBlock extends BlockBase implements ContainerFactoryPluginI
    * @param string $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
+   *   The audience manager service.
    */
   public function __construct(
     array $configuration,
@@ -64,9 +65,8 @@ class AudienceSwitcherBlock extends BlockBase implements ContainerFactoryPluginI
    */
   public function defaultConfiguration() {
     return [
-        'excluded_audiences' => array(),
+        'excluded_audiences' => [],
       ] + parent::defaultConfiguration();
-
   }
 
   /**
@@ -89,14 +89,13 @@ class AudienceSwitcherBlock extends BlockBase implements ContainerFactoryPluginI
    * {@inheritdoc}
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
-//    $this->configuration['excluded_audiences'] = $form_state->getValue('excluded_audiences');
     $audience = $form_state->getValue('excluded_audiences');
     $excluded_audiences = array_filter($audience);
     if (!empty($excluded_audiences)) {
       $this->setConfigurationValue('excluded_audiences', array_keys($excluded_audiences));
     }
     else {
-      $this->setConfigurationValue('excluded_audiences', array());
+      $this->setConfigurationValue('excluded_audiences', []);
     }
   }
 
@@ -110,17 +109,17 @@ class AudienceSwitcherBlock extends BlockBase implements ContainerFactoryPluginI
     $result_audiences = [];
     foreach ($unselected_audiences as $audience_id => $item) {
       if (!array_key_exists($audience_id, $excluded_audiences)) {
-        $options = array(
-          'query' => array('audience' => $audience_id),
-        );
+        $options = [
+          'query' => ['audience' => $audience_id],
+        ];
         $result_audiences[$audience_id]['title'] = $item['audience_title'];
         $result_audiences[$audience_id]['url'] = Url::fromUri($item['audience_redirect_url'], $options);
       }
     }
-    return array(
+    return [
       '#theme' => 'audience_switcher_block',
       '#audiences' => $result_audiences,
-    );
+    ];
   }
 
 }

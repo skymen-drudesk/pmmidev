@@ -102,12 +102,12 @@ class PMMISearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
       '#default_value' => $search_path,
       '#required' => TRUE,
       '#weight' => '1',
-      '#element_validate' => array(
-        array(
+      '#element_validate' => [
+        [
           get_called_class(),
           'validateUriElement',
-        ),
-      ),
+        ],
+      ],
     ];
     $form['search_identifier'] = [
       '#type' => 'textfield',
@@ -116,14 +116,13 @@ class PMMISearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
       '#default_value' => $this->configuration['search_identifier'],
       '#required' => TRUE,
       '#weight' => '2',
-      '#element_validate' => array(
-        array(
+      '#element_validate' => [
+        [
           get_called_class(),
           'validateIdentifier',
-        ),
-      ),
+        ],
+      ],
     ];
-
 
     return $form;
   }
@@ -140,7 +139,7 @@ class PMMISearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
    * {@inheritdoc}
    */
   public function build() {
-    return $this->formBuilder->getForm('Drupal\pmmi_search\Form\PMMISearchBlockForm', $this->getConfiguration());;
+    return $this->formBuilder->getForm('Drupal\pmmi_search\Form\PMMISearchBlockForm', $this->getConfiguration());
   }
 
   /**
@@ -182,8 +181,9 @@ class PMMISearchBlock extends BlockBase implements ContainerFactoryPluginInterfa
    * @param array $element
    *   The identifier to check.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
    */
-  public static function validateIdentifier($element, FormStateInterface $form_state) {
+  public static function validateIdentifier(array $element, FormStateInterface $form_state) {
     $error = '';
     $identifier = $element['#value'];
     if (empty($identifier)) {

@@ -10,4 +10,9 @@
       border-radius: 50%;
     }
   }
+  @include mobile {
+    .col & {
+      margin-bottom: -8px;
+    }
+  }
 }

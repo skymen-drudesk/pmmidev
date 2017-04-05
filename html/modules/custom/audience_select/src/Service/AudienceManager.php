@@ -232,7 +232,7 @@ class AudienceManager {
           ->getStorage($entity_type)
           ->load($entity_id)
       ) {
-        $displayable_string = EntityAutocomplete::getEntityLabels(array($entity));
+        $displayable_string = EntityAutocomplete::getEntityLabels([$entity]);
       }
     }
 

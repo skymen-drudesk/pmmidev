@@ -55,7 +55,11 @@ form {
   }
   .webform-flex--container,
   .webform-flexbox {
+    margin-top: 10px;
     margin-bottom: 10px;
+  }
+  .webform-flex {
+    align-self: flex-end;
   }
 }
 .label {

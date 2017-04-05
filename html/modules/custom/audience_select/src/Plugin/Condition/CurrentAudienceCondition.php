@@ -6,7 +6,6 @@ use Drupal\audience_select\Service\AudienceManager;
 use Drupal\Core\Condition\ConditionPluginBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Plugin\Context\ContextDefinition;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -17,7 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   label = @Translation("Audience"),
  * )
  */
-class CurrentAudienceCondition extends ConditionPluginBase implements ContainerFactoryPluginInterface{
+class CurrentAudienceCondition extends ConditionPluginBase implements ContainerFactoryPluginInterface {
 
   /**
    * The audience manager service.
@@ -32,7 +31,6 @@ class CurrentAudienceCondition extends ConditionPluginBase implements ContainerF
    * @var null
    */
   protected $audiences;
-
 
   /**
    * {@inheritdoc}
@@ -59,6 +57,7 @@ class CurrentAudienceCondition extends ConditionPluginBase implements ContainerF
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
+   *   The audience manager service.
    */
   public function __construct(array $configuration, $plugin_id, $plugin_definition, AudienceManager $audience_manager) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
@@ -70,14 +69,14 @@ class CurrentAudienceCondition extends ConditionPluginBase implements ContainerF
    * {@inheritdoc}
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form['audiences'] = array(
+    $form['audiences'] = [
       '#type' => 'checkboxes',
       '#title' => $this->t('When the viewer has the following audience'),
       '#default_value' => $this->configuration['audiences'],
       '#options' => $this->AudienceManager->getOptionsList(),
       '#description' => $this->t('If you select no audience, the condition will
         evaluate to TRUE for all viewers.'),
-    );
+    ];
     return parent::buildConfigurationForm($form, $form_state);
   }
 
@@ -85,9 +84,9 @@ class CurrentAudienceCondition extends ConditionPluginBase implements ContainerF
    * {@inheritdoc}
    */
   public function defaultConfiguration() {
-    return array(
-      'audiences' => array(),
-    ) + parent::defaultConfiguration();
+    return [
+      'audiences' => [],
+    ] + parent::defaultConfiguration();
   }
 
   /**
@@ -110,10 +109,10 @@ class CurrentAudienceCondition extends ConditionPluginBase implements ContainerF
       $audiences = reset($audiences);
     }
     if (!empty($this->configuration['negate'])) {
-      return $this->t('The viewer is not a member of @audiences', array('@audiences' => $audiences));
+      return $this->t('The viewer is not a member of @audiences', ['@audiences' => $audiences]);
     }
     else {
-      return $this->t('The viewer is a member of @audiences', array('@audiences' => $audiences));
+      return $this->t('The viewer is a member of @audiences', ['@audiences' => $audiences]);
     }
   }
 

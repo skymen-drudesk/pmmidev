@@ -188,16 +188,16 @@
     .block-body {
       margin-bottom: 10px;
     }
-    .slide-info {
-      @media (min-width: 400px) {
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-      }
-      @media (max-width: 330px) {
-        left: 0;
-        right: 0;
-      }
+  }
+  .slide-info {
+    @media (min-width: 400px) {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+    @media (max-width: 320px) {
+      left: 0;
+      right: 0;
     }
   }
 }

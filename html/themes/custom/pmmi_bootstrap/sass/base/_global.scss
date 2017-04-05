@@ -3,6 +3,18 @@ html {
 }
 a {
   transition: .2s;
+  &:focus {
+    outline: none;
+    text-decoration: none;
+  }
+  &:hover {
+    .touchevents & {
+      text-decoration: none;
+    }
+  }
+}
+:focus {
+  outline: none;
 }
 p {
   @extend .paragraph1;
@@ -53,6 +65,7 @@ body {
     }
   }
 }
+.field--name-body,
 .views-field-body,
 .block-body,
 .node-body,
@@ -108,9 +121,11 @@ table {
   border: none;
   th,
   td {
-    border-color: $mdgrey;
     padding: 10px;
     @extend .paragraph1;
+  }
+  td {
+    border: 1px solid $mdgrey;
   }
   th {
     background: $dkblue;
@@ -118,8 +133,13 @@ table {
     font-size: $r24;
     font-weight: 500;
     color: #fff;
+    border-color: $dkblue;
   }
   &.responsive {
+    td, th {
+      padding: 0;
+      border: none;
+    }
     @include mobile {
       td, th {
         display: block;

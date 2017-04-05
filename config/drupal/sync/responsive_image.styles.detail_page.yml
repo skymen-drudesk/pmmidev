@@ -5,7 +5,6 @@ dependencies:
   config:
     - image.style.detail_page_single_desktop
     - image.style.detail_page_single_dhd
-    - image.style.detail_page_single_mobile
     - image.style.detail_page_single_tablet
   theme:
     - pmmi_bootstrap
@@ -13,24 +12,24 @@ id: detail_page
 label: 'Detail Page single'
 image_style_mappings:
   -
-    breakpoint_id: pmmi_bootstrap.desktop-hd
+    breakpoint_id: pmmi_bootstrap.mobile
     multiplier: 1x
     image_mapping_type: image_style
-    image_mapping: detail_page_single_dhd
-  -
-    breakpoint_id: pmmi_bootstrap.desktop
-    multiplier: 1x
-    image_mapping_type: image_style
-    image_mapping: detail_page_single_desktop
+    image_mapping: detail_page_single_tablet
   -
     breakpoint_id: pmmi_bootstrap.tablet
     multiplier: 1x
     image_mapping_type: image_style
     image_mapping: detail_page_single_tablet
   -
-    breakpoint_id: pmmi_bootstrap.mobile
+    breakpoint_id: pmmi_bootstrap.desktop
     multiplier: 1x
     image_mapping_type: image_style
-    image_mapping: detail_page_single_mobile
+    image_mapping: detail_page_single_desktop
+  -
+    breakpoint_id: pmmi_bootstrap.desktop-hd
+    multiplier: 1x
+    image_mapping_type: image_style
+    image_mapping: detail_page_single_dhd
 breakpoint_group: pmmi_bootstrap
-fallback_image_style: detail_page_single_mobile
+fallback_image_style: detail_page_single_tablet

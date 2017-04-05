@@ -40,6 +40,15 @@
         margin: 0 0 15px;
       }
     }
+    a.use-ajax {
+      position: relative;
+      .ajax-throbber {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        margin: -6px 0 0;
+      }
+    }
   }
   &.certification-test {
     @include views-list-default(

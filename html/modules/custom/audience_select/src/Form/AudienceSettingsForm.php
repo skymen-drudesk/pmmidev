@@ -78,28 +78,31 @@ class AudienceSettingsForm extends ConfigFormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     $config = $this->AudienceManager->getConfig();
     $crawler_audience = $config->get('default_bot_audience');
-    $form['gateway_url'] = array(
+    $form['gateway_url'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Gateway Url'),
       '#description' => $this->t('Paths should start with /, ? or #.'),
       '#default_value' => $this->AudienceManager->getGateway(),
-      '#element_validate' => array(
-        array(
+      '#element_validate' => [
+        [
           get_called_class(),
           'validateUriElement',
-        ),
-      ),
-    );
-    $form['excluded_pages'] = array(
+        ],
+      ],
+    ];
+    $form['excluded_pages'] = [
       '#type' => 'textarea',
       '#title' => $this->t('Excluded Pages'),
       '#default_value' => $config->get('excluded_pages'),
-      '#description' => $this->t("Specify pages by using their paths. Enter one path per line. The '*' character is a wildcard. An example path is %user-wildcard for every user page. %front is the front page.", array(
-        '%user-wildcard' => '/user/*',
-        '%front' => '<front>',
-      )),
-    );
-    $form['default_bot_audience'] = array(
+      '#description' => $this->t(
+        "Specify pages by using their paths. Enter one path per line. The '*' character is a wildcard. An example path is %user-wildcard for every user page. %front is the front page.",
+        [
+          '%user-wildcard' => '/user/*',
+          '%front' => '<front>',
+        ]
+      ),
+    ];
+    $form['default_bot_audience'] = [
       '#type' => 'select',
       '#title' => $this->t('Default Auidience'),
       '#description' => $this->t('Default Auidience for Bot/Crawler'),
@@ -107,7 +110,7 @@ class AudienceSettingsForm extends ConfigFormBase {
       '#default_value' => $crawler_audience,
       '#empty_option' => $this->t('Select Audience'),
       '#options' => $this->AudienceManager->getOptionsList(),
-    );
+    ];
     $form['audiences'] = [
       '#type' => 'table',
       '#description' => $this->t('Default Auidience for Bot/Crawler'),
@@ -125,8 +128,8 @@ class AudienceSettingsForm extends ConfigFormBase {
     if (!empty($this->audiences)) {
       $audiences = $this->audiences;
       foreach ($audiences as $audience_id => $audience) {
-        $form['audiences'][$audience_id] = array(
-          'audience_id' => array(
+        $form['audiences'][$audience_id] = [
+          'audience_id' => [
             '#title' => $this->t('Audience ID'),
             '#title_display' => 'invisible',
             '#type' => 'textfield',
@@ -134,15 +137,15 @@ class AudienceSettingsForm extends ConfigFormBase {
             '#default_value' => $audience_id,
             '#size' => 20,
             '#required' => TRUE,
-          ),
-          'audience_title' => array(
+          ],
+          'audience_title' => [
             '#title' => $this->t('Audience Title'),
             '#title_display' => 'invisible',
             '#type' => 'textfield',
             '#default_value' => $audience['audience_title'],
             '#required' => TRUE,
-          ),
-          'audience_redirect_url' => array(
+          ],
+          'audience_redirect_url' => [
             '#title' => $this->t('Audience Redirect Url'),
             '#title_display' => 'invisible',
             '#type' => 'entity_autocomplete',
@@ -151,30 +154,30 @@ class AudienceSettingsForm extends ConfigFormBase {
             '#default_value' => $audience['audience_redirect_url'],
             '#placeholder' => $this->t('Input URL'),
             '#maxlength' => 200,
-            '#attributes' => array(
+            '#attributes' => [
               'data-autocomplete-first-character-blacklist' => '/#?',
-            ),
-            '#element_validate' => array(
-              array(
+            ],
+            '#element_validate' => [
+              [
                 get_called_class(),
                 'validateUriElement',
-              ),
-            ),
+              ],
+            ],
             '#process_default_value' => FALSE,
-            '#field_prefix' => rtrim(Url::fromRoute('<front>', array(), array('absolute' => TRUE))
+            '#field_prefix' => rtrim(Url::fromRoute('<front>', [], ['absolute' => TRUE])
               ->toString(), '/'),
-          ),
-          'audience_image' => array(
+          ],
+          'audience_image' => [
             '#type' => 'managed_file',
             '#title' => $this->t('Image'),
             '#title_display' => 'invisible',
             '#upload_location' => 'public://audience/image/',
             '#default_value' => (!empty($audience['audience_image'])) ? $audience['audience_image'] : NULL,
-            '#upload_validators' => array(
-              'file_validate_extensions' => array('png jpg jpeg'),
-            ),
-          ),
-        );
+            '#upload_validators' => [
+              'file_validate_extensions' => ['png jpg jpeg'],
+            ],
+          ],
+        ];
         $access = $crawler_audience != $audience_id ? TRUE : FALSE;
         // Operations column.
         $form['audiences'][$audience_id]['operations'] = [
@@ -190,36 +193,36 @@ class AudienceSettingsForm extends ConfigFormBase {
     }
 
     // Add empty row.
-    $form['new_audience'] = array(
+    $form['new_audience'] = [
       '#type' => 'details',
       '#title' => $this->t('Add a new Audience'),
       '#open' => TRUE,
       '#tree' => TRUE,
-    );
-    $form['new_audience']['audience_title'] = array(
+    ];
+    $form['new_audience']['audience_title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Audience Title'),
       '#size' => 48,
-    );
-    $form['new_audience']['audience_id'] = array(
+    ];
+    $form['new_audience']['audience_id'] = [
       '#type' => 'machine_name',
       '#title' => $this->t('Audience ID'),
       '#maxlength' => 20,
       '#required' => FALSE,
-      '#machine_name' => array(
+      '#machine_name' => [
         'exists' => ['Drupal\audience_select\Service\AudienceManager', 'load'],
         'label' => $this->t('Audience ID'),
         'replace_pattern' => '[^a-z0-9_.]+',
-        'source' => array('new_audience', 'audience_title'),
-      ),
+        'source' => ['new_audience', 'audience_title'],
+      ],
       '#description' => t('A unique machine-readable name for this Audience. It must only contain lowercase letters, numbers, and underscores. This name will be used for constructing the URL, in which underscores will be converted into hyphens.'),
-      '#states' => array(
-        'required' => array(
-          ':input[name="new_audience[audience_title]"]' => array('filled' => TRUE),
-        ),
-      ),
-    );
-    $form['new_audience']['audience_redirect_url'] = array(
+      '#states' => [
+        'required' => [
+          ':input[name="new_audience[audience_title]"]' => ['filled' => TRUE],
+        ],
+      ],
+    ];
+    $form['new_audience']['audience_redirect_url'] = [
       '#title' => $this->t('Audience Redirect Url'),
       '#type' => 'entity_autocomplete',
       '#target_type' => 'node',
@@ -227,33 +230,33 @@ class AudienceSettingsForm extends ConfigFormBase {
       '#size' => 30,
       '#placeholder' => $this->t('Input URL'),
       '#maxlength' => 200,
-      '#attributes' => array(
+      '#attributes' => [
         'data-autocomplete-first-character-blacklist' => '/#?',
-      ),
-      '#element_validate' => array(
-        array(
+      ],
+      '#element_validate' => [
+        [
           get_called_class(),
           'validateUriElement',
-        ),
-      ),
+        ],
+      ],
       '#process_default_value' => FALSE,
-      '#states' => array(
-        'required' => array(
-          ':input[name="new_audience[audience_title]"]' => array('filled' => TRUE),
-        ),
-      ),
-      '#field_prefix' => rtrim(\Drupal::url('<front>', array(), array('absolute' => TRUE)), '/'),
-    );
-    $form['new_audience']['audience_image'] = array(
+      '#states' => [
+        'required' => [
+          ':input[name="new_audience[audience_title]"]' => ['filled' => TRUE],
+        ],
+      ],
+      '#field_prefix' => rtrim(Url::fromRoute('<front>', [], ['absolute' => TRUE])->toString(), '/'),
+    ];
+    $form['new_audience']['audience_image'] = [
       '#type' => 'managed_file',
       '#title' => $this->t('Audience Image'),
       '#required' => FALSE,
       '#description' => $this->t('Default background image for Audience block'),
       '#upload_location' => 'public://audience/image/',
-      '#upload_validators' => array(
-        'file_validate_extensions' => array('png jpg jpeg'),
-      ),
-    );
+      '#upload_validators' => [
+        'file_validate_extensions' => ['png jpg jpeg'],
+      ],
+    ];
 
     return parent::buildForm($form, $form_state);
   }
@@ -263,7 +266,7 @@ class AudienceSettingsForm extends ConfigFormBase {
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
     parent::validateForm($form, $form_state);
-    $unique_values = array();
+    $unique_values = [];
 
     // Check all mappings.
     if ($form_state->hasValue('audiences')) {
