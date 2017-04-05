@@ -225,11 +225,11 @@ class AudienceSelectSubscriber implements EventSubscriberInterface {
     // This needs to run before RouterListener::onKernelRequest(), which has
     // a priority of 32. Otherwise, that aborts the request if no matching
     // route is found.
-    $events[KernelEvents::REQUEST][] = array('checkForRedirection', 33);
+    $events[KernelEvents::REQUEST][] = ['checkForRedirection', 33];
     // Priority 6, so that it runs before AnonymousUserResponseSubscriber, but
     // after event subscribers that add the associated cacheability metadata
     // (which have priority 10). This one is conditional, so must run after those.
-    $events[KernelEvents::RESPONSE][] = array('onRespond', 6);
+    $events[KernelEvents::RESPONSE][] = ['onRespond', 6];
     return $events;
   }
 

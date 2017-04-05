@@ -28,12 +28,11 @@ class AudienceDeleteForm extends ConfirmFormBase {
     return ['audience_select.settings'];
   }
 
-
   /**
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to delete %audience_id?', array('%audience_id' => $this->audienceId));
+    return $this->t('Are you sure you want to delete %audience_id?', ['%audience_id' => $this->audienceId]);
   }
 
   /**
@@ -80,9 +79,9 @@ class AudienceDeleteForm extends ConfirmFormBase {
         }
       }
     }
-    $args = array(
+    $args = [
       '%audience_id' => $this->audienceId,
-    );
+    ];
 
     $this->logger('Audience')
       ->notice('The %audience_id has been deleted.', $args);

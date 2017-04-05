@@ -4,7 +4,6 @@ namespace Drupal\audience_select\Plugin\Block;
 
 use Drupal\Component\Utility\UrlHelper;
 use Drupal\Core\Block\BlockBase;
-use Drupal\Core\Cache\Cache;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Url;
@@ -13,7 +12,6 @@ use Drupal\link\Plugin\Field\FieldWidget\LinkWidget;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\audience_select\Service\AudienceManager;
 use Drupal\responsive_image\Entity\ResponsiveImageStyle;
-
 
 /**
  * Provides a 'AudienceBlock' block.
@@ -26,7 +24,7 @@ use Drupal\responsive_image\Entity\ResponsiveImageStyle;
 class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   /**
-   * Drupal\audience_select\Service\AudienceManager definition.
+   * The audience manager service.
    *
    * @var \Drupal\audience_select\Service\AudienceManager
    */
@@ -41,6 +39,8 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
    *   The plugin_id for the plugin instance.
    * @param string $plugin_definition
    *   The plugin implementation definition.
+   * @param \Drupal\audience_select\Service\AudienceManager $audience_manager
+   *   The audience manager service.
    */
   public function __construct(
     array $configuration,
@@ -71,7 +71,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     return [
         'audience_id' => '',
         'image_style' => 'block_style_1',
-        'audience_overrides' => array(),
+        'audience_overrides' => [],
       ] + parent::defaultConfiguration();
 
   }
@@ -104,13 +104,13 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
       '#weight' => '2',
     ];
     // Overrides defaults.
-    $form['overrides'] = array(
+    $form['overrides'] = [
       '#type' => 'details',
       '#title' => $this->t('Overrides defaults'),
       '#open' => !empty($overrides),
       '#tree' => TRUE,
       '#weight' => '2',
-    );
+    ];
     $form['overrides']['audience_title'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Audience Title Override'),
@@ -132,15 +132,15 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
       '#title' => $this->t('Audience Redirect Url Override'),
       '#description' => $this->t('Referenced to node. Manually entered paths should start with /, ? or #.'),
       '#default_value' => $default_url,
-      '#attributes' => array(
+      '#attributes' => [
         'data-autocomplete-first-character-blacklist' => '/#?',
-      ),
-      '#element_validate' => array(
-        array(
+      ],
+      '#element_validate' => [
+        [
           get_called_class(),
           'validateUriElement',
-        ),
-      ),
+        ],
+      ],
       '#process_default_value' => FALSE,
       '#maxlength' => 200,
       '#size' => 48,
@@ -152,9 +152,9 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
       '#description' => $this->t('Override default background image for Audience'),
       '#default_value' => array_key_exists('audience_image', $overrides) ? $overrides['audience_image'] : NULL,
       '#upload_location' => 'public://audience/image/',
-      '#upload_validators' => array(
-        'file_validate_extensions' => array('png jpg jpeg'),
-      ),
+      '#upload_validators' => [
+        'file_validate_extensions' => ['png jpg jpeg'],
+      ],
       '#weight' => '2',
     ];
     return $form;
@@ -197,7 +197,7 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
       }
     }
     else {
-      $this->setConfigurationValue('audience_overrides', array());
+      $this->setConfigurationValue('audience_overrides', []);
     }
   }
 
@@ -217,7 +217,8 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
     $build = [];
     $audience_id = $this->configuration['audience_id'];
     /** @var \Drupal\image\Entity\ImageStyle $image_style */
-    $image_style = ResponsiveImageStyle::load($this->configuration['image_style'])->id();
+    $image_style = ResponsiveImageStyle::load($this->configuration['image_style'])
+      ->id();
     $audience = AudienceManager::load($audience_id);
     $overrides = $this->configuration['audience_overrides'];
     if (!empty($overrides)) {
@@ -234,9 +235,9 @@ class AudienceBlock extends BlockBase implements ContainerFactoryPluginInterface
         }
       }
     }
-    $options = array(
-      'query' => array('audience' => $audience_id),
-    );
+    $options = [
+      'query' => ['audience' => $audience_id],
+    ];
     $request = \Drupal::request();
     if ($request->query->has('dest') && !UrlHelper::isExternal($request->query->get('dest'))) {
       $options['query']['destination'] = $request->query->get('dest');

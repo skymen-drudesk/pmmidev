@@ -5,8 +5,6 @@ namespace Drupal\pmmi_facebook\Plugin\Block;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\Core\Form\FormStateInterface;
-use Facebook\Facebook;
-use Facebook\FacebookRequest;
 
 /**
  * Provides a 'PMMIFacebookBlock' block.
@@ -18,7 +16,6 @@ use Facebook\FacebookRequest;
  */
 class PMMIFacebookBlock extends BlockBase {
 
-
   /**
    * {@inheritdoc}
    */
@@ -29,7 +26,6 @@ class PMMIFacebookBlock extends BlockBase {
       'page_id' => '',
       'max_age' => 300,
     ] + parent::defaultConfiguration();
-
   }
 
   /**
@@ -119,10 +115,6 @@ class PMMIFacebookBlock extends BlockBase {
     }
 
     return $build;
-  }
-
-  public function status() {
-    return TRUE;
   }
 
 }

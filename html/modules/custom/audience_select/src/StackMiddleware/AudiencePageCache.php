@@ -22,11 +22,11 @@ class AudiencePageCache extends PageCache {
   protected function getCacheId(Request $request) {
     $audience = $request->cookies->has('audience_select_audience') ? $request->cookies->get('audience_select_audience') : '';
     $audience = $request->headers->has('crawler') ? $request->headers->get('crawler') : $audience;
-    $cid_parts = array(
+    $cid_parts = [
       $request->getUri(),
       $audience,
       $request->getRequestFormat(),
-    );
+    ];
     return implode(':', $cid_parts);
   }
 
