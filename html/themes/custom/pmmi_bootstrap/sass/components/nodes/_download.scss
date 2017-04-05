@@ -27,6 +27,11 @@
   }
   .download-link {
     margin: 10px 0 20px;
+    @include mobile {
+      a {
+        width: 100%;
+      }
+    }
   }
   .content-right {
     margin-bottom: 30px;
