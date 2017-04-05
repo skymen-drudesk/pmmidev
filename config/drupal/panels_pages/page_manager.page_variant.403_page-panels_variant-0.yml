@@ -31,7 +31,7 @@ variant_settings:
       label_display: '0'
       block_title: '403 Access Denied'
       block_text:
-        value: "<p>We’re sorry, you are not authorized to access this page. \L<br />\r\nIf you are a PMMI member, please <a href=\"/user\">click here</a> to log in and access this content.</p>\r\n\r\n<p>Otherwise <a href=\"/\">return home</a> or begin a new search.</p>\r\n"
+        value: "<p>We’re sorry, you are not authorized to access this page. \L<br />\r\nIf you are a PMMI member, please <a href=\"/ssologin\">click here</a> to log in and access this content.</p>\r\n\r\n<p>Otherwise <a href=\"/\">return home</a> or begin a new search.</p>\r\n"
         format: full_html
       region: main
       weight: 0
