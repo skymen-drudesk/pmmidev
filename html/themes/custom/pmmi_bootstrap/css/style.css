@@ -18856,7 +18856,7 @@ div.view {
   }
 }
 
-@media screen and (max-width: 767px) and (min-width: 400px) {
+@media (min-width: 400px) {
   .block-image-slide .slide-info {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -18871,7 +18871,7 @@ div.view {
   }
 }
 
-@media screen and (max-width: 767px) and (max-width: 330px) {
+@media (max-width: 320px) {
   .block-image-slide .slide-info {
     left: 0;
     right: 0;
