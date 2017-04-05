@@ -12652,6 +12652,11 @@ form .webform-flexbox {
   margin-bottom: 10px;
 }
 
+form .webform-flex {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
 .label {
   color: inherit;
 }
