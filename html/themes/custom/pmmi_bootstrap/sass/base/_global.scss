@@ -121,9 +121,11 @@ table {
   border: none;
   th,
   td {
-    border-color: $mdgrey;
     padding: 10px;
     @extend .paragraph1;
+  }
+  td {
+    border: 1px solid $mdgrey;
   }
   th {
     background: $dkblue;
@@ -131,6 +133,7 @@ table {
     font-size: $r24;
     font-weight: 500;
     color: #fff;
+    border-color: $dkblue;
   }
   &.responsive {
     @include mobile {

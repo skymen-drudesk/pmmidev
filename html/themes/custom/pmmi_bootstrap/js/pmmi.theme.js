@@ -11,7 +11,7 @@
    */
   Drupal.behaviors.pmmiFrameResize = {
     attach: function (context, settings) {
-      var $videoFrame = $('.field-name-field-video iframe');
+      var $videoFrame = $('.field-name-field-video, .field--name-body').find('iframe');
       $videoFrame.once('video-resize').each(function () {
         var $thisFrame = $(this);
         var defaultDimensions = {
