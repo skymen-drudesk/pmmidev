@@ -114,6 +114,13 @@
         background: $blue;
       }
     }
+    ul {
+      font-size: inherit;
+      line-height: inherit;
+      li:before {
+        color: $ltblue;
+      }
+    }
   }
   .field-name-field-button {
     margin: 15px 0 0;
