@@ -39,9 +39,6 @@ body {
   ul {
     overflow: hidden;
     @extend .paragraph1;
-    @include desktop-min {
-      font-size: $r19;
-    }
     li {
       list-style: none;
       position: relative;

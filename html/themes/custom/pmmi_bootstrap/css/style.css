@@ -12371,6 +12371,15 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
   font-weight: 500;
 }
 
+.side-paragraph ul, .block-pmmi-company-staff-block .member ul,
+.block-pmmi-committee-block .member ul, .block-pmmi-company-staff-block .company-section ul, .mode-event-left-rail .field-name-field-location ul, .block-pricing .pricings ul, .block-text.mode-text-image .block-body ul, .content-left .block-text.mode-default .block-body ul, .block-text.mode-container-mode .block-body ul, .cert-info li .field--item ul, .side-paragraph ol, .block-pmmi-company-staff-block .member ol,
+.block-pmmi-committee-block .member ol, .block-pmmi-company-staff-block .company-section ol, .mode-event-left-rail .field-name-field-location ol, .block-pricing .pricings ol, .block-text.mode-text-image .block-body ol, .content-left .block-text.mode-default .block-body ol, .block-text.mode-container-mode .block-body ol, .cert-info li .field--item ol {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
 .headline1, .page-search-sales-agent-directory .main-container .block-title, .events-block-upcoming-ribbon .block-title,
 .block-views-blockevents-block-upcoming-ribbon .block-title, .block-views-blocknews-block-most-recent .block-title, .blue-region .containers .region-top .field-name-field-head, .grey-region .containers .region-top .field-name-field-head, .block-icons > .title, .block-text.mode-default.centered .title {
   font-size: 60px;
@@ -12814,16 +12823,6 @@ body {
 .node-body ul,
 .content ul {
   overflow: hidden;
-}
-
-@media screen and (min-width: 1024px) {
-  .bullet-list ul, .field--name-body ul,
-  .views-field-body ul,
-  .block-body ul,
-  .node-body ul,
-  .content ul {
-    font-size: 1.1875rem;
-  }
 }
 
 .bullet-list ul li, .field--name-body ul li,
