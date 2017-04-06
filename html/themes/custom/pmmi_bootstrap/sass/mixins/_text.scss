@@ -50,6 +50,7 @@
   line-height: $r18;
   font-weight: 500;
   @extend .inherited-p;
+  @include inherit-text-style('ul, ol');
 }
 
 // Headline styles.
