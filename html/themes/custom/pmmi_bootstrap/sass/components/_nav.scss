@@ -30,22 +30,6 @@
   @include desktop {
     padding: 0 10px;
   }
-  .navbar-header {
-    float: none;
-    position: relative;
-    padding-left: 136px;
-    min-height: 133px;
-    margin-bottom: 15px;
-    .not-front .below-fold &,
-    .below-fold & {
-      min-height: 78px;
-      padding-left: 90px;
-      margin-bottom: 5px;
-      & + * {
-        padding-top: 200px;
-      }
-    }
-  }
   div.logo {
     padding: 0;
     position: absolute;
@@ -75,6 +59,21 @@
         width: 105px;
         height: 105px;
         margin: -10px 0 0 -115px;
+      }
+    }
+  }
+  .navbar-header {
+    float: none;
+    position: relative;
+    padding-left: 136px;
+    min-height: 133px;
+    margin-bottom: 15px;
+    .below-fold & {
+      min-height: 78px;
+      padding-left: 90px;
+      margin-bottom: 5px;
+      & + * {
+        padding-top: 200px;
       }
     }
   }
@@ -109,16 +108,17 @@
   @include tablet {
     max-width: 718px;
     &,
+    .not-front &,
     .below-fold & {
       .navbar-header {
         padding-left: 65px;
         min-height: 59px;
-      }
-      div.logo {
-        width: 55px;
-        height: 59px;
-        overflow: hidden;
-        margin: 0 0 0 -65px;
+        div.logo {
+          width: 55px;
+          height: 59px;
+          overflow: hidden;
+          margin: 0 0 0 -65px;
+        }
       }
     }
   }
@@ -133,16 +133,17 @@
       margin-right: 0;
     }
     &,
+    .not-front &,
     .below-fold & {
       .navbar-header {
         padding-left: 50px;
         min-height: 43px;
-      }
-      div.logo {
-        width: 41px;
-        height: 45px;
-        overflow: hidden;
-        margin: 0 0 0 -50px;
+        div.logo {
+          width: 41px;
+          height: 45px;
+          overflow: hidden;
+          margin: 0 0 0 -50px;
+        }
       }
     }
   }
