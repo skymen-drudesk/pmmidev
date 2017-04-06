@@ -4127,6 +4127,9 @@
                 "drupal": {
                     "version": "8.x-1.0-beta1+24-dev",
                     "datestamp": "1486336682"
+                },
+                "patches_applied": {
+                    "Missed renderContext in some cases.": "https://www.drupal.org/files/issues/no-render-context-2867309-1.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
