@@ -5,8 +5,11 @@ dependencies:
   config:
     - block_content.type.image
     - field.field.block_content.image.field_image
+    - field.field.block_content.image.field_link
   module:
+    - ds
     - image
+    - linked_field
 id: block_content.image.default
 targetEntityType: block_content
 bundle: image
@@ -18,6 +21,19 @@ content:
     settings:
       image_style: ''
       image_link: ''
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      linked_field:
+        linked: '1'
+        type: field
+        destination: field_link
+        advanced: {  }
     type: image
-hidden: {  }
+hidden:
+  field_link: true
