@@ -17088,6 +17088,14 @@ div.view {
   }
 }
 
+@media screen and (max-width: 767px) {
+  .view-partner-schools .views-view-grid.cols-2 .col {
+    display: block;
+    width: auto;
+    padding: 0;
+  }
+}
+
 .block-views-blocknews-block-most-recent {
   text-align: center;
   margin: 0;

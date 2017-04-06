@@ -185,6 +185,13 @@ div.view {
         display: block;
       }
     }
+    @include mobile {
+      .col {
+        display: block;
+        width: auto;
+        padding: 0;
+      }
+    }
   }
 }
 .block-views-blocknews-block-most-recent {
