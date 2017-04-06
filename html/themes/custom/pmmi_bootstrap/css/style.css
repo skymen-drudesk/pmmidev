@@ -16543,7 +16543,7 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
     display: block;
   }
   .mode-default.video .field-name-node-link a {
-    margin: 0 0 15px;
+    margin: 0;
   }
 }
 
@@ -16554,6 +16554,9 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
 @media screen and (max-width: 767px) {
   .mode-default.video .field-name-field-link {
     display: block;
+  }
+  .mode-default.video .field-name-field-link a {
+    margin: 15px 0 0;
   }
 }
 
@@ -16609,8 +16612,8 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   display: inline;
 }
 
-.mode-default.video .links {
-  margin-top: 13px;
+.mode-default.video .links a {
+  margin-top: 15px;
 }
 
 .mode-default.video .field-name-field-video {
@@ -16633,6 +16636,11 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   .mode-default.video {
     padding-left: 10px;
     min-height: 0;
+    text-align: center;
+  }
+  .mode-default.video img {
+    margin-left: auto;
+    margin-right: auto;
   }
   .mode-default.video .field-name-field-video {
     float: none;
@@ -16695,7 +16703,7 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
     display: block;
   }
   .mode-default.certification-test .field-name-field-link a {
-    margin: 0 0 15px;
+    margin: 0;
   }
 }
 
@@ -16706,6 +16714,9 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
 @media screen and (max-width: 767px) {
   .mode-default.certification-test .field-name-node-link {
     display: block;
+  }
+  .mode-default.certification-test .field-name-node-link a {
+    margin: 15px 0 0;
   }
 }
 
@@ -17232,7 +17243,7 @@ div.view {
     display: block;
   }
   .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a {
-    margin: 0 0 15px;
+    margin: 0;
   }
 }
 

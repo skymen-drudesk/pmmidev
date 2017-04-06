@@ -23,7 +23,7 @@
           if (e.type === 'update' && data.$videoFrame) {
             $thisFrame = data.$videoFrame;
           }
-          if ($(window).width() < 1024) {
+          if ($(window).width() < 1200) {
             var parentWidth = $thisFrame.parent().width();
             $thisFrame.width(parentWidth).height(parentWidth / aspectRatio);
           }
