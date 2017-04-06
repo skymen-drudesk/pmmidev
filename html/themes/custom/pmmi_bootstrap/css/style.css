@@ -14431,26 +14431,6 @@ body > .page-wrapper:after,
   }
 }
 
-.navbar .navbar-header {
-  float: none;
-  position: relative;
-  padding-left: 136px;
-  min-height: 133px;
-  margin-bottom: 15px;
-}
-
-.not-front .below-fold .navbar .navbar-header,
-.below-fold .navbar .navbar-header {
-  min-height: 78px;
-  padding-left: 90px;
-  margin-bottom: 5px;
-}
-
-.not-front .below-fold .navbar .navbar-header + *,
-.below-fold .navbar .navbar-header + * {
-  padding-top: 200px;
-}
-
 .navbar div.logo {
   padding: 0;
   position: absolute;
@@ -14486,6 +14466,24 @@ body > .page-wrapper:after,
   width: 105px;
   height: 105px;
   margin: -10px 0 0 -115px;
+}
+
+.navbar .navbar-header {
+  float: none;
+  position: relative;
+  padding-left: 136px;
+  min-height: 133px;
+  margin-bottom: 15px;
+}
+
+.below-fold .navbar .navbar-header {
+  min-height: 78px;
+  padding-left: 90px;
+  margin-bottom: 5px;
+}
+
+.below-fold .navbar .navbar-header + * {
+  padding-top: 200px;
 }
 
 .not-front .below-fold .navbar div.logo,
@@ -14526,12 +14524,14 @@ body > .page-wrapper:after,
     max-width: 718px;
   }
   .navbar .navbar-header,
+  .not-front .navbar .navbar-header,
   .below-fold .navbar .navbar-header {
     padding-left: 65px;
     min-height: 59px;
   }
-  .navbar div.logo,
-  .below-fold .navbar div.logo {
+  .navbar .navbar-header div.logo,
+  .not-front .navbar .navbar-header div.logo,
+  .below-fold .navbar .navbar-header div.logo {
     width: 55px;
     height: 59px;
     overflow: hidden;
@@ -14552,12 +14552,14 @@ body > .page-wrapper:after,
     margin-right: 0;
   }
   .navbar .navbar-header,
+  .not-front .navbar .navbar-header,
   .below-fold .navbar .navbar-header {
     padding-left: 50px;
     min-height: 43px;
   }
-  .navbar div.logo,
-  .below-fold .navbar div.logo {
+  .navbar .navbar-header div.logo,
+  .not-front .navbar .navbar-header div.logo,
+  .below-fold .navbar .navbar-header div.logo {
     width: 41px;
     height: 45px;
     overflow: hidden;
