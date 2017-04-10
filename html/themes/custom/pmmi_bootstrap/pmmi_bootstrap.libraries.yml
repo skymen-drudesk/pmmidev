@@ -13,6 +13,7 @@ theme:
     - pmmi_bootstrap/breakpoints
     - pmmi_bootstrap/matchheight
     - pmmi_bootstrap/imagesloaded
+    - pmmi_bootstrap/stacktable.js
 
   css:
     theme:
@@ -76,3 +77,7 @@ blueconic:
   header: true
   js:
     '//cdn.blueconic.net/pmmi.js': { type: external, weight: -22 }
+
+stacktable.js:
+  js:
+    libraries/stacktable.js/stacktable.js: {}
