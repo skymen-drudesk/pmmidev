@@ -12912,6 +12912,7 @@ body {
 
 table {
   border: none;
+  margin-bottom: 15px;
 }
 
 table th,
@@ -12923,6 +12924,7 @@ table td {
   border: 1px solid #c2c2c2;
 }
 
+table td.st-key,
 table th {
   background: #053248;
   padding: 15px;
@@ -12945,6 +12947,46 @@ table.responsive td, table.responsive th {
   table.responsive td[style*="width"] {
     width: auto !important;
   }
+}
+
+@media screen and (max-width: 767px) {
+  table {
+    width: 99%;
+    display: block;
+    overflow-x: auto;
+  }
+  table td.st-key {
+    padding: 10px;
+    width: 150px;
+  }
+  table td.st-key,
+  table th {
+    font-size: 1.125rem;
+  }
+  table td.st-key *,
+  table th * {
+    font-size: inherit;
+  }
+  table td {
+    font-size: 0.875rem;
+  }
+}
+
+table.stacktable.small-only {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  table.stacktable.small-only {
+    display: table;
+  }
+  table.stacktable.large-only {
+    display: none;
+  }
+}
+
+table.stacktable .text-align-center {
+  text-align: left;
 }
 
 .text-align-center img {

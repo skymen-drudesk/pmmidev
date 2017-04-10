@@ -174,6 +174,11 @@
       if ('ontouchstart' in window || navigator.maxTouchPoints) {
         $('html').addClass('touchevents');
       }
+
+      // Responsive tables.
+      $('table.cardtable').once('stack-columns').each(function (e) {
+        $(this).cardtable();
+      });
     }
   };
 
