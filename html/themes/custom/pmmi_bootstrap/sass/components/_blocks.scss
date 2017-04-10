@@ -443,6 +443,9 @@
       display: inline-block;
       float: none;
       vertical-align: top;
+      @include mobile {
+        display: block;
+      }
     }
   }
   .one-member {

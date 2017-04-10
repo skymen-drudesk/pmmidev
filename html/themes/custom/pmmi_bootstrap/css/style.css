@@ -14132,6 +14132,37 @@ body.use-container .page-title.hidden {
   vertical-align: top;
 }
 
+@media screen and (max-width: 767px) {
+  .block-pmmi-company-staff-block .company-staff .member,
+  .block-pmmi-company-staff-block .committee-block .member,
+  .block-pmmi-company-staff-block .company-section-info-staff .row .member,
+  .block-pmmi-company-staff-block .company-section-info-staff .footer .region-footer .member, .footer
+  .block-pmmi-company-staff-block .company-section-info-staff .region-footer .member,
+  .block-pmmi-company-staff-block .company-section-info-staff .events-block-upcoming-ribbon .view-content .member, .events-block-upcoming-ribbon
+  .block-pmmi-company-staff-block .company-section-info-staff .view-content .member,
+  .block-pmmi-company-staff-block .company-section-info-staff
+  .block-views-blockevents-block-upcoming-ribbon .view-content .member,
+  .block-views-blockevents-block-upcoming-ribbon
+  .block-pmmi-company-staff-block .company-section-info-staff .view-content .member,
+  .block-pmmi-company-staff-block .company-section-info-staff .block-icons .column .member, .block-icons
+  .block-pmmi-company-staff-block .company-section-info-staff .column .member,
+  .block-pmmi-committee-block .company-staff .member,
+  .block-pmmi-committee-block .committee-block .member,
+  .block-pmmi-committee-block .company-section-info-staff .row .member,
+  .block-pmmi-committee-block .company-section-info-staff .footer .region-footer .member, .footer
+  .block-pmmi-committee-block .company-section-info-staff .region-footer .member,
+  .block-pmmi-committee-block .company-section-info-staff .events-block-upcoming-ribbon .view-content .member, .events-block-upcoming-ribbon
+  .block-pmmi-committee-block .company-section-info-staff .view-content .member,
+  .block-pmmi-committee-block .company-section-info-staff
+  .block-views-blockevents-block-upcoming-ribbon .view-content .member,
+  .block-views-blockevents-block-upcoming-ribbon
+  .block-pmmi-committee-block .company-section-info-staff .view-content .member,
+  .block-pmmi-committee-block .company-section-info-staff .block-icons .column .member, .block-icons
+  .block-pmmi-committee-block .company-section-info-staff .column .member {
+    display: block;
+  }
+}
+
 .block-pmmi-company-staff-block .one-member h3,
 .block-pmmi-committee-block .one-member h3 {
   margin-bottom: 2px;
