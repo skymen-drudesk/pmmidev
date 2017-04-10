@@ -48,12 +48,8 @@
       }
     }
     a.use-ajax {
-      position: relative;
       .ajax-throbber {
-        position: absolute;
-        right: 10px;
-        top: 50%;
-        margin: -6px 0 0;
+        display: none;
       }
     }
   }
