@@ -213,6 +213,7 @@
       min-height: 86px;
     }
     @include mobile {
+      max-height: 74px;
       min-height: 74px;
     }
   }
