@@ -13610,6 +13610,12 @@ body.use-container .page-title.hidden {
   }
 }
 
+.node-layout .container .containers .container,
+.sitewide .container .containers .container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .block {
   margin-bottom: 20px;
 }
