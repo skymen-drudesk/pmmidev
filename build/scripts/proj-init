@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+base="$(pwd)";
+dd_party_base="/var/www/vendor/summitmedia/dd-party"
+
+# Get environment variables.
+if [[ -f "$base/.env" ]]; then
+  echo "Using Custom ENV file at $base/.env"
+  source "$base/.env"
+else
+  echo "Using Distributed ENV file at $base/env.dist"
+  source "$base/env.dist"
+fi
+
+# Set defaults
+dockercompose="-f docker-compose.yml -f docker-compose.prod.yml"
+webcontainer=${SITE_CODE}_prod_web
+# Get the container ID of the web service
+CONTAINER=$(docker-compose ps -q ${WEB_SERVICE})
+
+# Set Docker Compose file based on environment.
+if [ "$SITE_ENVIRONMENT" = "test" ]; then
+  dockercompose='-f docker-compose.yml -f docker-compose.test.yml'
+elif [ "$SITE_ENVIRONMENT" = "dev" ]; then
+  dockercompose='-f docker-compose.yml -f docker-compose.override.yml'
+fi
+
+if [ "$OSX" = 1 ]; then
+  dockercompose="-f docker-compose.yml -f docker-compose.override.yml -f docker-compose.osx.yml"
+fi
+
+echo "Setting up the $SITE_ENVIRONMENT environment using $dockercompose."
+
+echo -e 'Do you wish to proceed (y/n): \c '
+read  confirm
+
+if [ "$confirm" != "y" ]; then
+  exit 1
+fi
+
+echo 'Starting and building Docker containters.'
+docker-compose ${dockercompose} up -d --build
+docker exec -it ${CONTAINER} /bin/bash -c "service rsyslog start"
+docker exec -it ${CONTAINER} /bin/bash -c "service apache2 graceful"
+
+if [ "$?" != "0" ]; then
+  echo 'Uh oh. The Docker build failed. You should check the output above for errors.'
+  exit 1
+fi
+
+echo "Installing dependencies with Composer.";
+docker exec -it ${CONTAINER} /bin/bash -c "composer install --optimize-autoloader 2>&1"
+
+if [ "$?" != "0" ]; then
+  echo 'Uh oh. Composer install failed. You should check the output above for errors.'
+  exit 1
+fi
+
+echo 'Configuring sendmail.'
+docker exec -it ${CONTAINER} /bin/bash -c "${dd_party_base}/build/sendmail-config"
+docker exec -it ${CONTAINER} /bin/bash -c "service sendmail restart"
+
+echo 'Initiating Drupal install.'
+docker exec -it ${CONTAINER} /bin/bash -c "${dd_party_base}/build/install.sh"
+if [ "$?" != "0" ]; then
+  echo 'Uh oh. The Drupal install failed. You should check the output above for errors.'
+  exit 1
+fi
+
+if [ "$?" = "0" ]; then
+  echo 'Success! Now get the party started!'
+else
+  echo 'Uh oh. The party failed to get started. You should check the output above for errors.'
+fi

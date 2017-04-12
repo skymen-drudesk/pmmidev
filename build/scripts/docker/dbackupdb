@@ -1,3 +1,0 @@
-#!/bin/bash
-
-./build/scripts/docker/ddrush sql-dump --gzip --result-file=../build/ref/pmmi_$(date +%Y%m%d\-%H%M).sql

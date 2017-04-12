@@ -40,6 +40,17 @@
     {
       "type": "package",
       "package": {
+        "name": "summitmedia/dd-party",
+        "version": "dev-master",
+        "dist": {
+          "url": "https://github.com/summitmedia/dd-party/archive/master.zip",
+          "type": "zip"
+        }
+      }
+    },
+    {
+      "type": "package",
+      "package": {
         "name": "summitmedia/panels_everywhere",
         "version": "dev-master",
         "type": "drupal-module",
@@ -405,6 +416,7 @@
     "select2/select2": "^4.0.3",
     "selectize/selectize": "^0.12.4",
     "simontabor/jquery.toggles": "^4.0.0",
+    "summitmedia/dd-party": "dev-master",
     "summitmedia/panels_everywhere": "dev-master",
     "szimek/signature_pad": "^1.5.3",
     "tobia/jquery.pause": "master",
