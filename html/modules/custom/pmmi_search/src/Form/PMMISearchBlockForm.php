@@ -8,6 +8,8 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\RendererInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Component\Utility\Xss;
+
 
 /**
  * Builds the PMMI search form for the search block.
@@ -68,13 +70,16 @@ class PMMISearchBlockForm extends FormBase {
       ];
       return $form;
     }
+    $current_request = \Drupal::request();
+    $keywords = $current_request->query->get($data['search_identifier']);
+
     $form_state->setTemporaryValue('data', $data);
     $form['keys'] = [
       '#type' => 'search',
       '#title' => $this->t('Search'),
       '#title_display' => 'invisible',
       '#size' => 30,
-      '#default_value' => '',
+      '#default_value' => $keywords,
       '#name' => $data['search_identifier'],
       '#attributes' => ['title' => $this->t('Enter the keywords you wish to search for.')],
     ];
@@ -102,7 +107,7 @@ class PMMISearchBlockForm extends FormBase {
     $url = Url::fromUri($data['search_path']);
     // Saved default path query param.
     $default_query = $url->getOption('query');
-    $query[$identifier] = $form_state->getUserInput()[$identifier];
+    $query[$identifier] = Xss::filter(trim($form_state->getUserInput()[$identifier]));
     if (!empty($default_query) && is_array($default_query)) {
       if (array_key_exists($identifier, $default_query)) {
         unset($default_query[$identifier]);
