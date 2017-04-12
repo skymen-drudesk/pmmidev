@@ -69,20 +69,17 @@ function pmmi_sales_agent_cron() {
  * Implements hook_page_attachments().
  */
 function pmmi_sales_agent_page_attachments(array &$attachments) {
-  $current_path = \Drupal::service('path.current')->getPath();
+  $query_params = \Drupal::request()->query->all();
 
-  // Add simple script to allow auto download of the favorites companies.
-  if ($current_path == '/sales-agent-directory/favorites') {
-    $script = "window.onload = function() {
-      var autoDownload = document.getElementById('auto-download');
-      if (autoDownload) { autoDownload.click(); }
-    };";
-
+  // Download favorites file after 2 seconds of delay.
+  if (!empty($query_params['download-favourites-url'])) {
     $attachments['#attached']['html_head'][] = [
       [
-        '#tag' => 'script',
-        '#value' => $script,
-        '#weight' => 10,
+        '#tag' => 'meta',
+        '#attributes' => [
+          'http-equiv' => 'Refresh',
+          'content' => '2;url=' . $query_params['download-favourites-url'],
+        ],
       ],
       'pmmi_sales_agent_favourites_auto_download',
     ];

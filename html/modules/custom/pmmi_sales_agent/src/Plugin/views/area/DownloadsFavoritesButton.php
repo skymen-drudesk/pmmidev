@@ -59,10 +59,7 @@ class DownloadsFavoritesButton extends TokenizeAreaPluginBase {
       }
 
       $url = Url::fromUri('internal:/sales-agent-directory/favorites.csv');
-      $link_options = [
-        'attributes' => ['class' => ['pmmi-download-favorites']],
-        'query' => ['destination' => 'sales-agent-directory/favorites'],
-      ];
+      $link_options = ['attributes' => ['class' => ['pmmi-download-favorites']]];
       $url->setOptions($link_options);
 
       return [

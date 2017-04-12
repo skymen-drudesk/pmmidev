@@ -72,7 +72,7 @@ class PMMISADReportSettingsForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('Success export message'),
       '#default_value' => $config->get('success_message'),
-      '#description' => $this->t('The message which will appear if download was successful. Use the [:download_url] token to add a link to the file. Use "auto-download" id selector in your file link to allow auto download.'),
+      '#description' => $this->t('The message which will appear if download was successful. Use the [:download_url] token to add a link to the file.'),
       '#required' => TRUE,
     ];
     $form['download_favorites']['failed_message'] = [

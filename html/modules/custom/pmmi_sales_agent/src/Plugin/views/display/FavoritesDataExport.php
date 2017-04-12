@@ -509,14 +509,15 @@ class FavoritesDataExport extends RestExport {
         // display's configuration.
         $url = file_create_url($results['vde_file']);
 
-        // If the user specified instant download than redirect to the file.
-        if ($results['automatic_download']) {
-          return new RedirectResponse($url);
-        }
-
         $message = str_replace('[:download_url]', $url, $config->get('success_message'));
         $rendered_message = Markup::create($message);
         drupal_set_message($rendered_message);
+
+        // If the user specified instant download than redirect to the file.
+        if ($results['automatic_download']) {
+          $url = Url::fromUserInput('/sales-agent-directory/favorites', ['query' => ['download-favourites-url' => $url]])->toString();
+          return new RedirectResponse($url);
+        }
       }
     }
     else {
