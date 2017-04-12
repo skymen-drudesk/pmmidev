@@ -1,10 +1,17 @@
+version: "2"
+
+options:
+  verbose: true
+
 syncs:
   pmmi-unison-sync:
     src: './'
     dest: '/var/www'
-    sync_args: '-prefer newer'
-    sync_user: 'www-data'
     sync_userid: '82'
-    sync_host_port: '10871'
-    sync_strategy: 'unison'
-    sync_excludes: ['.gitignore', '.git/', '.idea/', 'nohup.out']
+    sync_excludes: [
+      '.git/',
+      '.gitignore',
+      '.DS_Store',
+      '._.DS_Store',
+      '.idea'
+    ]
