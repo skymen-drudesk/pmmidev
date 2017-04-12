@@ -126,7 +126,7 @@ function pmmi_sales_agent_mail($key, &$message, $params) {
 }
 
 /**
- * Implements hook_field_widget_WIDGET_TYPE_form_alter()
+ * Implements hook_field_widget_WIDGET_TYPE_form_alter().
  */
 function pmmi_sales_agent_field_widget_moderation_state_default_form_alter(&$element, FormStateInterface $form_state, $context) {
   // Add additional process callback to perform additional manipulation we need.
@@ -143,7 +143,8 @@ function pmmi_sales_agent_form_alter(array &$form, FormStateInterface $form_stat
       $build_info = $form_state->getBuildInfo();
       $node = $build_info['callback_object']->getEntity();
 
-      // The field descriptions are converted into tooltips (in accordance with
+      // The field descriptions are converted into tooltips, but we need simple
+      // description for some fields.
       foreach (['field_main_phone_number', 'field_fax_number'] as $field) {
         if (isset($form[$field])) {
           $form[$field]['widget'][0]['value']['#smart_description'] = FALSE;
@@ -456,7 +457,7 @@ function pmmi_sales_agent_is_admin() {
 /**
  * Generates a unique URL for a user to update a listing.
  *
- * @param $nid integer
+ * @param int $nid
  *   The node ID.
  *
  * @return string
@@ -472,16 +473,16 @@ function pmmi_sales_agent_login_url($nid) {
   ],
   [
     'absolute' => TRUE,
-    'language' =>  \Drupal::languageManager()->getCurrentLanguage()
+    'language' => \Drupal::languageManager()->getCurrentLanguage(),
   ]);
 }
 
 /**
  * Creates a unique hash value for use in time-dependent per-node URLs.
  *
- * @param $timestamp integer
+ * @param int $timestamp
  *   The timestamp.
- * @param $nid integer
+ * @param int $nid
  *   The node ID.
  *
  * @return string
