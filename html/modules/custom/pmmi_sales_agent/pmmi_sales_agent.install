@@ -175,3 +175,14 @@ function pmmi_sales_agent_update_8011() {
 function pmmi_sales_agent_update_8012() {
   \Drupal::service('config_update.config_update')->revert('system.simple', 'pmmi_sales_agent.mail_settings');
 }
+
+/**
+ * Change success message (reporting export).
+ */
+function pmmi_sales_agent_update_8013() {
+  $new_message = 'Your report is finished and has automatically downloaded. If it is not happened, please click on <a href="[:download_url]" id="auto-download">this link</a>.';
+
+  \Drupal::service('config.factory')->getEditable('pmmi_sales_agent.reporting_settings')
+    ->set('success_message', $new_message)
+    ->save();
+}

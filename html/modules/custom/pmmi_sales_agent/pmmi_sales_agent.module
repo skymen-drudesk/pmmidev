@@ -66,6 +66,26 @@ function pmmi_sales_agent_cron() {
 }
 
 /**
+ * Implements hook_page_attachments().
+ */
+function pmmi_sales_agent_page_attachments(array &$attachments) {
+  $current_path = \Drupal::service('path.current')->getPath();
+
+  // Add simple script to allow auto download of the favorites companies.
+  if ($current_path == '/sales-agent-directory/favorites') {
+    $script = "window.onload = function() {
+      var autoDownload = document.getElementById('auto-download');
+      if (autoDownload) { autoDownload.click(); }
+    };";
+
+    $attachments['#attached']['html_head'][] = [
+      ['#tag' => 'script', '#value' => $script],
+      'pmmi_sales_agent_favourites_auto_download',
+    ];
+  }
+}
+
+/**
  * Implements hook_file_download().
  */
 function pmmi_sales_agent_file_download($uri) {
