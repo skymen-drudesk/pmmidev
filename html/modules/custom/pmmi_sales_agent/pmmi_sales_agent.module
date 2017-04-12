@@ -79,7 +79,11 @@ function pmmi_sales_agent_page_attachments(array &$attachments) {
     };";
 
     $attachments['#attached']['html_head'][] = [
-      ['#tag' => 'script', '#value' => $script],
+      [
+        '#tag' => 'script',
+        '#value' => $script,
+        '#weight' => 10,
+      ],
       'pmmi_sales_agent_favourites_auto_download',
     ];
   }
