@@ -46,10 +46,10 @@ class FavoritesDataExport extends RestExport {
    * Builds batch export response.
    *
    * @param \Drupal\views\ViewExecutable $view
-   *    The view to export.
+   *   The view to export.
    *
    * @return null|\Symfony\Component\HttpFoundation\RedirectResponse
-   *    Redirect to the batching page.
+   *   Redirect to the batching page.
    */
   protected static function buildBatch(ViewExecutable $view) {
     // Get total number of items.
@@ -101,9 +101,9 @@ class FavoritesDataExport extends RestExport {
     ];
     batch_set($batch_definition);
 
-    // The redirect destination is usually set with a destination, fall back
-    // to <front> to avoid a endless loop.
-    return batch_process(Url::fromRoute('<front>'));
+    // Fall back to favourites page.
+    $favourites_url = Url::fromUserInput('/sales-agent-directory/favorites')->toString();
+    return batch_process($favourites_url);
   }
 
   /**
@@ -508,16 +508,11 @@ class FavoritesDataExport extends RestExport {
         // Permissions for accessing this URL will be inherited from the View
         // display's configuration.
         $url = file_create_url($results['vde_file']);
+        $_SESSION['favorites_csv_download_file'] = $url;
 
         $message = str_replace('[:download_url]', $url, $config->get('success_message'));
         $rendered_message = Markup::create($message);
         drupal_set_message($rendered_message);
-
-        // If the user specified instant download than redirect to the file.
-        if ($results['automatic_download']) {
-          $url = Url::fromUserInput('/sales-agent-directory/favorites', ['query' => ['download-favourites-url' => $url]])->toString();
-          return new RedirectResponse($url);
-        }
       }
     }
     else {

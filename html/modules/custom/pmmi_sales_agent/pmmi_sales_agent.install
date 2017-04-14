@@ -188,6 +188,6 @@ function pmmi_sales_agent_update_8013() {
  */
 function pmmi_sales_agent_update_8014() {
   \Drupal::service('config.factory')->getEditable('pmmi_sales_agent.reporting_settings')
-    ->set('success_message', 'Your report is finished and has automatically downloaded.')
+    ->set('success_message', 'Your export has been created. View/download the file <a href="[:download_url]">here</a> (will automatically download in 3 seconds).')
     ->save();
 }
