@@ -7,6 +7,7 @@
 
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\search_api\Plugin\search_api\datasource\ContentEntity;
 
 // Define trade shows vocabulary.
 define('PMMI_COMPANY_CONTACT_TRADE_SHOWS_VOC', 'trade_shows');
@@ -95,16 +96,34 @@ function pmmi_company_contact_contacts_submit_handler($form, FormStateInterface 
         $contact->save();
       }
     }
+
+    // Force to reindex a company after contacts info was added.
+    $entity = \Drupal\node\Entity\Node::load($company_id);
+    $indexes = ContentEntity::getIndexesForEntity($entity);
+    if (!$indexes) {
+      return;
+    }
+
+    $item_ids = [];
+    $entity_id = $entity->id();
+    foreach (array_keys($entity->getTranslationLanguages()) as $langcode) {
+      $item_ids[] = $entity_id . ':' . $langcode;
+    }
+
+    $datasource_id = 'entity:' . $entity->getEntityTypeId();
+    foreach ($indexes as $index) {
+      $index->trackItemsUpdated($datasource_id, $item_ids);
+    }
   }
 }
 
 /**
  * Helper function to get contacts form in accordance with company.
  *
- * @param $nid integer
+ * @param int $nid
  *   The company ID.
  *
- * @return
+ * @return array
  *   The renderable array with contacts form.
  */
 function pmmi_company_contact_build_form($nid) {
@@ -186,12 +205,12 @@ function pmmi_company_contact_get_active_trade_shows() {
 /**
  * Helper function to get contacts for submitted show trade.
  *
- * @param $tid integer
+ * @param int $tid
  *   The trade show ID.
- * @param $nid integer
+ * @param int $nid
  *   The company ID.
  *
- * @return
+ * @return mixed
  *   Contact entity if exists, otherwise - NULL.
  */
 function pmmi_company_contact_get_contacts($tid, $nid = NULL) {
