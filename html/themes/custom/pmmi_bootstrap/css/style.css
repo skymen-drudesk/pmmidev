@@ -13592,28 +13592,36 @@ body.use-container .page-title.hidden {
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
-  .node-layout .container,
-  .sitewide .container {
+  .node-layout .region-bottom .container,
+  .node-layout .container.region-main,
+  .sitewide .region-bottom .container,
+  .sitewide .container.region-main {
     max-width: 830px;
   }
 }
 
-.node-layout .container .container,
-.sitewide .container .container {
+.node-layout .region-bottom .container .container,
+.node-layout .container.region-main .container,
+.sitewide .region-bottom .container .container,
+.sitewide .container.region-main .container {
   margin-left: -15px;
   margin-right: -15px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
-  .node-layout .container .container,
-  .sitewide .container .container {
+  .node-layout .region-bottom .container .container,
+  .node-layout .container.region-main .container,
+  .sitewide .region-bottom .container .container,
+  .sitewide .container.region-main .container {
     margin-left: -25px;
     margin-right: -25px;
   }
 }
 
-.node-layout .container .containers .container,
-.sitewide .container .containers .container {
+.node-layout .region-bottom .container .containers .container,
+.node-layout .container.region-main .containers .container,
+.sitewide .region-bottom .container .containers .container,
+.sitewide .container.region-main .containers .container {
   margin-left: auto;
   margin-right: auto;
 }
@@ -14080,14 +14088,9 @@ body.use-container .page-title.hidden {
   font-style: italic;
 }
 
-.block-pmmi-company-staff-block .phone a,
 .block-pmmi-company-staff-block .name a,
-.block-pmmi-committee-block .phone a,
-.block-pmmi-committee-block .name a {
-  color: #333;
-}
-
 .block-pmmi-company-staff-block a[href*="tel:"],
+.block-pmmi-committee-block .name a,
 .block-pmmi-committee-block a[href*="tel:"] {
   color: #333;
 }
