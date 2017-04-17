@@ -66,6 +66,28 @@ function pmmi_sales_agent_cron() {
 }
 
 /**
+ * Implements hook_page_attachments().
+ */
+function pmmi_sales_agent_page_attachments(array &$attachments) {
+  // Download favorites file after 3 seconds of delay.
+  if (!empty($_SESSION['favorites_csv_download_file'])) {
+    $file = $_SESSION['favorites_csv_download_file'];
+    unset($_SESSION['favorites_csv_download_file']);
+
+    $attachments['#attached']['html_head'][] = [
+      [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'http-equiv' => 'Refresh',
+          'content' => '3;url=' . $file,
+        ],
+      ],
+      'pmmi_sales_agent_favourites_auto_download',
+    ];
+  }
+}
+
+/**
  * Implements hook_file_download().
  */
 function pmmi_sales_agent_file_download($uri) {
