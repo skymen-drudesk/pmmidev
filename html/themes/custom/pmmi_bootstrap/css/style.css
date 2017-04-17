@@ -12670,6 +12670,15 @@ form .webform-flex {
   color: inherit;
 }
 
+.form-required:after {
+  font-family: "FontAwesome";
+  font-size: 8px;
+  content: "\f069";
+  color: #b93b23;
+  padding: 0 0 0 3px;
+  vertical-align: top;
+}
+
 .selectize-control {
   position: relative;
   border: none;
