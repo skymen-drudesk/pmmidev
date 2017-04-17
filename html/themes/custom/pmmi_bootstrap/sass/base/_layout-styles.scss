@@ -147,7 +147,8 @@ body.use-container {
 }
 .node-layout,
 .sitewide {
-  .container {
+  .region-bottom .container,
+  .container.region-main {
     @include desktop {
       max-width: 830px;
     }

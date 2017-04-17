@@ -424,12 +424,7 @@
   .job {
     font-style: italic;
   }
-  .phone,
-  .name {
-    a {
-      color: #333;
-    }
-  }
+  .name a,
   a[href*="tel:"] {
     color: #333;
   }
