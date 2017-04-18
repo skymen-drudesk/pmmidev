@@ -7,3 +7,5 @@ ARG DEBIAN_FRONTEND=noninteractive
 # with hostname mail.
 RUN apt-get install ssmtp -y
 COPY ./config/ssmtp/ssmtp.conf /etc/ssmtp/ssmtp.conf
+
+RUN apt-get autoremove -y

@@ -12,3 +12,5 @@ RUN curl -sSL https://phar.phpunit.de/phpunit.phar -o phpunit.phar && \
 # with hostname mail.
 RUN apt-get install ssmtp -y
 COPY ./config/ssmtp/ssmtp.conf /etc/ssmtp/ssmtp.conf
+
+RUN apt-get autoremove -y
