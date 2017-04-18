@@ -169,3 +169,23 @@ form {
     }
   }
 }
+.copy-button {
+  display: block;
+  position: relative;
+  padding-right: 30px;
+  br {
+    display: none;
+  }
+  .copy-link {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin: -10px 0 0;
+    color: $ltblue;
+    font-size: 20px;
+    &:hover {
+      color: darken($ltblue, 10%);
+      text-decoration: none;
+    }
+  }
+}
