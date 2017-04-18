@@ -12848,7 +12848,7 @@ body {
 .block-body ul li:before,
 .node-body ul li:before,
 .content ul li:before {
-  font-size: 0.4em;
+  font-size: 7.2px;
   margin: 1.5em 0 0 0;
   vertical-align: top;
   position: absolute;
@@ -12920,6 +12920,7 @@ body {
 }
 
 table {
+  width: 100%;
   border: none;
   margin-bottom: 15px;
 }
@@ -12941,6 +12942,11 @@ table th {
   font-size: 1.5rem;
   font-weight: 500;
   color: #fff;
+  border-right: 1px solid #fff;
+}
+
+table td.st-key:last-child,
+table th:last-child {
   border-color: #053248;
 }
 
@@ -12958,12 +12964,16 @@ table.responsive td, table.responsive th {
   }
 }
 
-@media screen and (max-width: 767px) {
-  table {
+@media screen and (max-width: 1023px) {
+  table.scrolled {
     width: 99%;
     display: block;
     overflow-x: auto;
+    padding: 0 1px;
   }
+}
+
+@media screen and (max-width: 767px) {
   table td.st-key {
     padding: 10px;
     width: 150px;
