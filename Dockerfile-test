@@ -1,11 +1,6 @@
 # from https://www.drupal.org/requirements/php#drupalversions
-FROM pmguser/drupal-php7.0-apache:latest
+FROM pmguser/drupal-php7.0-apache:1.0.6
 ARG DEBIAN_FRONTEND=noninteractive
-
-# Install PHPUnit
-RUN curl -sSL https://phar.phpunit.de/phpunit.phar -o phpunit.phar && \
-  chmod +x phpunit.phar && \
-  mv phpunit.phar /usr/local/bin/phpunit
 
 # sSMTP: note php is configured to use ssmtp, which is configured to send to
 # pximail:1025, which is standard configuration for a mailhog/mailhog image

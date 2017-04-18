@@ -3,18 +3,21 @@ version: '3'
 services:
 
   pmmidb:
-    container_name: "${SITE_CODE}_test_db"
-    restart: always
+    container_name: "${SITE_CODE}_dev_db"
 
   pmmiweb:
-    container_name: "${SITE_CODE}_test_web"
+    container_name: "${SITE_CODE}_dev_web"
     build:
       context: .
-      dockerfile: Dockerfile-test
-    restart: always
+      dockerfile: Dockerfile-dev
+    # Environment variables
+    environment:
+      PHP_XDEBUG_ENABLED: 1
+      PHP_XDEBUG_AUTOSTART: 1
+      PHP_XDEBUG_REMOTE_CONNECT_BACK: 1         # This is needed to respect remote.host setting bellow
+      PHP_XDEBUG_REMOTE_HOST: "10.254.254.254"
 
   pmmisolr:
-    container_name: "${SITE_CODE}_test_solr"
     build: ./build/solr
     networks:
       - back
@@ -22,7 +25,7 @@ services:
       - "8003:8983"
 
   pmmivarnish:
-    container_name: "${SITE_CODE}_test_varnish"
+    container_name: "${SITE_CODE}_dev_varnish"
     image: pmguser/drupal-varnish:latest
     depends_on:
       - pmmiweb
@@ -43,7 +46,7 @@ services:
       VARNISH_STORAGE_SIZE: 1024M
 
   pmmimailhog:
-    container_name: "${SITE_CODE}_test_mailhog"
+    container_name: "${SITE_CODE}_mailhog"
     image: mailhog/mailhog
     links:
       - pmmiweb

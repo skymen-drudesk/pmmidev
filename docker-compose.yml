@@ -1,79 +1,49 @@
-version: '2'
+version: '3'
+
 services:
 
   pmmidb:
-    container_name: pmmi_dev_db
     image: mysql:5.7
+    networks:
+      - back
+    ports:
+      - "3306"
+    expose:
+      - "3306"
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./config/mysql/config:/etc/mysql/conf.d
     environment:
       MYSQL_ROOT_PASSWORD: rootpasswd
       MYSQL_USER: drupal
       MYSQL_PASSWORD: drupal
       MYSQL_DATABASE: drupal
-    volumes:
-      - ./data:/var/lib/mysql
-      - ./config/mysql/config:/etc/mysql/conf.d
-    ports:
-      - "3306:3306"
-    expose:
-      - "3306"
 
   pmmiweb:
-    container_name: pmmi_dev_web
-    build:
-      context: .
-      dockerfile: Dockerfile-dev
+    image: pmguser/drupal-php7.0-apache:latest
     depends_on:
       - pmmidb
-      - pmmisolr
+    links:
+      - pmmidb
+    networks:
+      - front
+      - back
+    ports:
+      - "8084:80"
+    volumes:
+      - .:/var/www
     # Environment variables
     environment:
       TERM: xterm
       # Drupal settings
-      DRUPAL_PROFILE: config_installer
-      DRUPAL_SITE_NAME: PMMI
+      DRUPAL_PROFILE: minimal
+      DRUPAL_SITE_NAME: Pack Expo International
       DRUPAL_USER: admin
       DRUPAL_PASS: admin
       DRUPAL_DBURL: mysql://root:rootpasswd@mysql:3306/drupal
-      PHP_XDEBUG_ENABLED: 1
-      PHP_XDEBUG_AUTOSTART: 1
-      PHP_XDEBUG_REMOTE_CONNECT_BACK: 1         # This is needed to respect remote.host setting bellow
-      PHP_XDEBUG_REMOTE_HOST: "10.254.254.254"
-    volumes:
-      - .:/var/www
-    links:
-      - pmmidb
-      - pmmisolr
-      - pmmimail
-    ports:
-      - "80:80"
-    expose:
-      - "80"
-      - "9000"
 
-  pmmisolr:
-    build: ./build/solr
-    ports:
-      - "8003:8983"
-
-  pmmivarnish:
-    container_name: pmmi_dev_varnish
-    image: pmguser/drupal-varnish:latest
-    depends_on:
-      - pmmiweb
-    volumes:
-      - ./config/varnish/dev:/etc/varnish/
-    environment:
-      VARNISH_SECRET: secret
-      VARNISH_BACKEND_HOST: pmmiweb
-      VARNISH_BACKEND_PORT: 80
-      VARNISH_MEMORY_SIZE: 256M
-      VARNISH_STORAGE_SIZE: 1024M
-    ports:
-      - "8004:6081" # HTTP Proxy for testing purposes. On production we need to change this line to 80:6081
-      - "8005:6082" # Control terminal
-
-  pmmimail:
-    container_name: pmmi_dev_mailhog
-    image: mailhog/mailhog
-    ports:
-      - "8006:8025"
+networks:
+  back:
+    driver: bridge
+  front:
+    external: true

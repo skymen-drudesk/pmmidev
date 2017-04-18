@@ -15,8 +15,6 @@ fi
 # Set defaults
 dockercompose="-f docker-compose.yml -f docker-compose.prod.yml"
 webcontainer=${SITE_CODE}_prod_web
-# Get the container ID of the web service
-CONTAINER=$(docker-compose ps -q ${WEB_SERVICE})
 
 # Set Docker Compose file based on environment.
 if [ "$SITE_ENVIRONMENT" = "test" ]; then
@@ -40,13 +38,14 @@ fi
 
 echo 'Starting and building Docker containters.'
 docker-compose ${dockercompose} up -d --build
-docker exec -it ${CONTAINER} /bin/bash -c "service rsyslog start"
-docker exec -it ${CONTAINER} /bin/bash -c "service apache2 graceful"
 
 if [ "$?" != "0" ]; then
   echo 'Uh oh. The Docker build failed. You should check the output above for errors.'
   exit 1
 fi
+
+# Get the container ID of the web service
+CONTAINER=$(docker-compose ps -q ${WEB_SERVICE})
 
 echo "Installing dependencies with Composer.";
 docker exec -it ${CONTAINER} /bin/bash -c "composer install --optimize-autoloader 2>&1"

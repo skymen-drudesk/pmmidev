@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+
+  pmmiweb:
+    volumes:
+      - pmmi-unison-sync:/var/www:rw
+
+volumes:
+  pmmi-unison-sync:
+    external: true

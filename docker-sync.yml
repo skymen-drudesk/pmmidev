@@ -4,7 +4,7 @@ options:
   verbose: true
 
 syncs:
-  pmmi-unison-sync:
+  pxi-unison-sync:
     src: './'
     dest: '/var/www'
     sync_userid: '82'
@@ -15,3 +15,4 @@ syncs:
       '._.DS_Store',
       '.idea'
     ]
+    sync_prefer: 'newer'
