@@ -26,6 +26,7 @@ class ScriptHandler {
   public static function createRequiredFiles(Event $event) {
     $fs = new Filesystem();
     $root = getcwd();
+    echo "$root\n\n";
     $drupal_root = static::getDrupalRoot(getcwd());
 
     $dirs = [
@@ -33,6 +34,9 @@ class ScriptHandler {
       'profiles',
       'themes',
     ];
+
+    $user_id = 82;
+    $group = 'www-data';
 
     // Required for unit testing
     foreach ($dirs as $dir) {
@@ -63,7 +67,7 @@ class ScriptHandler {
       $event->getIO()->write("Create a sites/default/services.yml file with chmod 0666");
     }
 
-    // Create the files directory with chmod 0770
+    // Create the public files directory with chmod 0770
     if (!$fs->exists($drupal_root . '/sites/default/files')) {
       $oldmask = umask(0);
       $fs->mkdir($drupal_root . '/sites/default/files', 0770);
@@ -75,8 +79,8 @@ class ScriptHandler {
     if (!$fs->exists($root . '/private')) {
       $oldmask = umask(0);
       $fs->mkdir($root . '/private', 0770);
-      $fs->chown($root . '/private', 'www-data');
-      $fs->chgrp($root . '/private', 'www-data');
+      $fs->chown($root . '/private', $user_id);
+      $fs->chgrp($root . '/private', $group);
       umask($oldmask);
       $event->getIO()->write("Create a ../private directory with chmod 0770");
     }
@@ -85,16 +89,17 @@ class ScriptHandler {
     if (!$fs->exists($root . '/private/.htaccess')) {
       $fs->copy('cnf/private.htaccess', $root . '/private/.htaccess');
       $fs->chmod($root . '/private/.htaccess', 0644);
-      $fs->chown($root . '/private/.htaccess', 'www-data');
-      $fs->chgrp($root . '/private/.htaccess', 'www-data');
+      $fs->chown($root . '/private/.htaccess', $user_id);
+      $fs->chgrp($root . '/private/.htaccess', $group);
       $event->getIO()->write("Created .htaccess in private files directory");
     }
 
     // Ensure correct permissions on files directories.
     $fs->chmod($drupal_root . '/sites/default/files', 0770);
-    $fs->chgrp($drupal_root . '/sites/default/files', 'www-data', true);
-    $fs->chown($root . '/private', 'www-data', true);
-    $fs->chgrp($root . '/private', 'www-data', true);
+    $fs->chown($drupal_root, $user_id, true);
+    $fs->chgrp($drupal_root, $group, true);
+    $fs->chown($root . '/private', $user_id, true);
+    $fs->chgrp($root . '/private', $group, true);
     $fs->chmod($root . '/private/.htaccess', 0644);
   }
 
