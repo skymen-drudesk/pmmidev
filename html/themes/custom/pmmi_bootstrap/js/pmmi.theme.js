@@ -334,4 +334,36 @@
     }
   };
 
+  /**
+   * Copy button behavior.
+   */
+  Drupal.behaviors.pmmiCopyButton = {
+    attach: function () {
+      $('.copy-button input').once('copy-button').each(function () {
+        var $input = $(this);
+        var originalText = Drupal.t('Copy to clipboard');
+        var copiedText = Drupal.t('Copied!');
+        var $copyButton = $('<a>', {
+          'class': 'copy-link fa fa-clipboard',
+          'title': originalText,
+          'data-toggle': 'tooltip',
+          'href': '#',
+          'click': function (e) {
+            e.preventDefault();
+            $input.select();
+            document.execCommand('copy');
+            $(this).attr('title', copiedText);
+            $(this).attr('data-original-title', copiedText);
+            $(this).tooltip('show');
+          },
+          'mouseleave': function () {
+            $(this).attr('data-original-title', originalText);
+            $(this).attr('title', originalText);
+          }
+        });
+        $input.after($copyButton);
+      });
+    }
+  };
+
 })(jQuery, window, Drupal);
