@@ -18,6 +18,7 @@ services:
       PHP_XDEBUG_REMOTE_HOST: "10.254.254.254"
 
   pmmisolr:
+    container_name: "${SITE_CODE}_dev_solr"
     build: ./build/solr
     networks:
       - back
