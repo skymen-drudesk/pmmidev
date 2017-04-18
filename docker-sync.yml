@@ -4,7 +4,7 @@ options:
   verbose: true
 
 syncs:
-  pxi-unison-sync:
+  pmmi-unison-sync:
     src: './'
     dest: '/var/www'
     sync_userid: '82'
