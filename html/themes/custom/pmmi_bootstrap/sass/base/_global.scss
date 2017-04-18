@@ -45,7 +45,7 @@ body {
       @extend .fa-circle;
       &:before {
         @extend .fa;
-        font-size: 0.4em;
+        font-size: 7.2px;
         margin: 1.5em 0 0 0;
         vertical-align: top;
         position: absolute;
@@ -115,6 +115,7 @@ body {
 }
 // TABLE
 table {
+  width: 100%;
   border: none;
   margin-bottom: 15px;
   th,
@@ -132,7 +133,10 @@ table {
     font-size: $r24;
     font-weight: 500;
     color: #fff;
-    border-color: $dkblue;
+    border-right: 1px solid #fff;
+    &:last-child {
+      border-color: $dkblue;
+    }
   }
   &.responsive {
     td, th {
@@ -148,10 +152,15 @@ table {
       }
     }
   }
+  @include tablet-max {
+    &.scrolled {
+      width: 99%;
+      display: block;
+      overflow-x: auto;
+      padding: 0 1px;
+    }
+  }
   @include mobile {
-    width: 99%;
-    display: block;
-    overflow-x: auto;
     td.st-key {
       padding: 10px;
       width: 150px;

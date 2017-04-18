@@ -179,6 +179,12 @@
       $('table.cardtable').once('stack-columns').each(function (e) {
         $(this).cardtable();
       });
+      $('table').once('responsive').each(function () {
+        var $table = $(this);
+        if ($table.width() > $table.parent().width()) {
+          $table.addClass('scrolled');
+        }
+      });
     }
   };
 
