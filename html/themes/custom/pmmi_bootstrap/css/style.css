@@ -12647,6 +12647,18 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
   line-height: 20px;
 }
 
+input[type="text"]::-webkit-input-placeholder {
+  color: #656363;
+}
+
+input[type="text"]::-moz-placeholder {
+  color: #656363;
+}
+
+input[type="text"]:-ms-input-placeholder {
+  color: #656363;
+}
+
 form h3 {
   margin: 15px 0 10px;
 }
@@ -12685,13 +12697,14 @@ form .webform-flex {
 .selectize-control input {
   width: 100% !important;
   max-width: 100%;
-  border: 1px solid #869fbe;
+  border: 1px solid #8c8888;
   height: 30px;
   padding: 5px 10px;
   position: absolute !important;
   top: 0;
   left: 0 !important;
   opacity: 1 !important;
+  border-radius: 0;
 }
 
 .selectize-control.multi .selectize-input {
@@ -15980,7 +15993,8 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
 .page-search-sales-agent-directory .main-container .panel-default,
 .page-search-sales-agent-directory .main-container .chosen-choices,
 .page-search-sales-agent-directory .main-container .form-text {
-  border-color: #979797;
+  border-color: #8c8888;
+  color: #1d262c;
   border-radius: 0;
 }
 
@@ -16019,8 +16033,8 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
 
 .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .selectize-control input,
 .page-search-sales-agent-directory .main-container form .form-group .form-item-country-code .selectize-control input {
-  color: #55acee;
   height: 40px;
+  color: #1d262c;
 }
 
 .page-search-sales-agent-directory .main-container form .form-group .form-item-administrative-area .selectize-control .selectize-dropdown,
@@ -16063,6 +16077,13 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   margin-left: 70px;
 }
 
+.page-search-sales-agent-directory .main-container #edit-industries .panel-body,
+.page-search-sales-agent-directory .main-container #edit-equipments .panel-body,
+.page-search-sales-agent-directory .main-container #edit-shows .panel-body {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .page-search-sales-agent-directory .main-container #edit-industries .panel-heading,
 .page-search-sales-agent-directory .main-container #edit-equipments .panel-heading,
 .page-search-sales-agent-directory .main-container #edit-shows .panel-heading {
@@ -16070,32 +16091,23 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   color: #8c8888;
   background: none;
   border: none;
+  padding: 0;
+  border-radius: 0;
 }
 
-.page-search-sales-agent-directory .main-container #edit-industries .panel-heading a[aria-expanded="true"],
-.page-search-sales-agent-directory .main-container #edit-equipments .panel-heading a[aria-expanded="true"],
-.page-search-sales-agent-directory .main-container #edit-shows .panel-heading a[aria-expanded="true"] {
-  color: #004e75;
-  font-weight: 700;
-  padding-left: 12px;
+.page-search-sales-agent-directory .main-container #edit-industries .panel-heading a,
+.page-search-sales-agent-directory .main-container #edit-equipments .panel-heading a,
+.page-search-sales-agent-directory .main-container #edit-shows .panel-heading a {
+  font-size: 16px;
+  font-size: 1rem;
+  display: block;
+  color: #656363;
+  padding: 10px 15px;
 }
 
-.page-search-sales-agent-directory .main-container #edit-industries .in,
-.page-search-sales-agent-directory .main-container #edit-equipments .in,
-.page-search-sales-agent-directory .main-container #edit-shows .in {
-  margin-top: -20px;
-}
-
-.page-search-sales-agent-directory .main-container #edit-industries.active:before,
-.page-search-sales-agent-directory .main-container #edit-equipments.active:before,
-.page-search-sales-agent-directory .main-container #edit-shows.active:before {
-  content: '\f068';
-  background-color: #038dc0;
-}
-
-.page-search-sales-agent-directory .main-container #edit-industries:before,
-.page-search-sales-agent-directory .main-container #edit-equipments:before,
-.page-search-sales-agent-directory .main-container #edit-shows:before {
+.page-search-sales-agent-directory .main-container #edit-industries .panel-heading a:before,
+.page-search-sales-agent-directory .main-container #edit-equipments .panel-heading a:before,
+.page-search-sales-agent-directory .main-container #edit-shows .panel-heading a:before {
   background-color: #004e75;
   width: 40px;
   display: block;
@@ -16112,10 +16124,31 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   bottom: 0;
 }
 
-.page-search-sales-agent-directory .main-container #edit-industries .checker,
-.page-search-sales-agent-directory .main-container #edit-equipments .checker,
-.page-search-sales-agent-directory .main-container #edit-shows .checker {
-  opacity: 0;
+.page-search-sales-agent-directory .main-container #edit-industries .panel-heading a[aria-expanded="true"],
+.page-search-sales-agent-directory .main-container #edit-equipments .panel-heading a[aria-expanded="true"],
+.page-search-sales-agent-directory .main-container #edit-shows .panel-heading a[aria-expanded="true"] {
+  color: #004e75;
+  font-weight: 700;
+  padding-left: 12px;
+}
+
+.page-search-sales-agent-directory .main-container #edit-industries .panel-heading a[aria-expanded="true"]:before,
+.page-search-sales-agent-directory .main-container #edit-equipments .panel-heading a[aria-expanded="true"]:before,
+.page-search-sales-agent-directory .main-container #edit-shows .panel-heading a[aria-expanded="true"]:before {
+  content: '\f068';
+  background-color: #038dc0;
+}
+
+.page-search-sales-agent-directory .main-container #edit-industries .panel-heading a:hover,
+.page-search-sales-agent-directory .main-container #edit-equipments .panel-heading a:hover,
+.page-search-sales-agent-directory .main-container #edit-shows .panel-heading a:hover {
+  color: #004e75;
+}
+
+.page-search-sales-agent-directory .main-container #edit-industries .in,
+.page-search-sales-agent-directory .main-container #edit-equipments .in,
+.page-search-sales-agent-directory .main-container #edit-shows .in {
+  margin-top: -20px;
 }
 
 .page-search-sales-agent-directory .main-container #edit-industries .checkbox.checked,
@@ -16131,14 +16164,6 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   margin-left: 20px;
 }
 
-.page-search-sales-agent-directory .main-container #edit-industries .checkbox.checked:before,
-.page-search-sales-agent-directory .main-container #edit-equipments .checkbox.checked:before,
-.page-search-sales-agent-directory .main-container #edit-shows .checkbox.checked:before {
-  font-family: FontAwesome;
-  content: '\f046';
-  position: absolute;
-}
-
 .page-search-sales-agent-directory .main-container #edit-industries .checkbox,
 .page-search-sales-agent-directory .main-container #edit-equipments .checkbox,
 .page-search-sales-agent-directory .main-container #edit-shows .checkbox {
@@ -16152,12 +16177,62 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   margin-left: 20px;
 }
 
-.page-search-sales-agent-directory .main-container #edit-industries .checkbox:before,
-.page-search-sales-agent-directory .main-container #edit-equipments .checkbox:before,
-.page-search-sales-agent-directory .main-container #edit-shows .checkbox:before {
+.page-search-sales-agent-directory .main-container #edit-industries .checkbox .checker,
+.page-search-sales-agent-directory .main-container #edit-equipments .checkbox .checker,
+.page-search-sales-agent-directory .main-container #edit-shows .checkbox .checker {
+  float: left;
+  margin-left: -20px;
+  position: relative;
+}
+
+.page-search-sales-agent-directory .main-container #edit-industries .checkbox .checker span,
+.page-search-sales-agent-directory .main-container #edit-equipments .checkbox .checker span,
+.page-search-sales-agent-directory .main-container #edit-shows .checkbox .checker span {
+  display: block;
+}
+
+.page-search-sales-agent-directory .main-container #edit-industries .checkbox .checker span:before,
+.page-search-sales-agent-directory .main-container #edit-equipments .checkbox .checker span:before,
+.page-search-sales-agent-directory .main-container #edit-shows .checkbox .checker span:before {
   font-family: FontAwesome;
+  font-size: 15px;
   content: '\f096';
+}
+
+.page-search-sales-agent-directory .main-container #edit-industries .checkbox .checker span.checked:before,
+.page-search-sales-agent-directory .main-container #edit-equipments .checkbox .checker span.checked:before,
+.page-search-sales-agent-directory .main-container #edit-shows .checkbox .checker span.checked:before {
+  content: '\f046';
+}
+
+.page-search-sales-agent-directory .main-container #edit-industries .checkbox .checker input,
+.page-search-sales-agent-directory .main-container #edit-equipments .checkbox .checker input,
+.page-search-sales-agent-directory .main-container #edit-shows .checkbox .checker input {
   position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  opacity: 0;
+  margin: 0;
+}
+
+@media screen and (min-width: 1024px) {
+  .page-search-sales-agent-directory .main-container #edit-industries .form-checkboxes,
+  .page-search-sales-agent-directory .main-container #edit-equipments .form-checkboxes,
+  .page-search-sales-agent-directory .main-container #edit-shows .form-checkboxes {
+    padding: 0;
+    margin: 0 0 0 -10px;
+    font-size: 0;
+  }
+  .page-search-sales-agent-directory .main-container #edit-industries .form-checkboxes .form-type-checkbox,
+  .page-search-sales-agent-directory .main-container #edit-equipments .form-checkboxes .form-type-checkbox,
+  .page-search-sales-agent-directory .main-container #edit-shows .form-checkboxes .form-type-checkbox {
+    font-size: 1rem;
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+    padding: 0 10px;
+  }
 }
 
 .page-search-sales-agent-directory .main-container .form-item-keywords .control-label {
@@ -16191,7 +16266,6 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
     padding-right: 20px;
   }
   .page-search-sales-agent-directory .main-container form {
-    max-width: 340px;
     width: auto;
   }
   .page-search-sales-agent-directory .main-container form .form-group > .form-item .control-label {

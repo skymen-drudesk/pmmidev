@@ -49,6 +49,15 @@
   padding: 5px 10px;
   line-height: 20px;
 }
+input[type="text"]::-webkit-input-placeholder {
+  color: $dkgrey;
+}
+input[type="text"]::-moz-placeholder {
+  color: $dkgrey;
+}
+input[type="text"]:-ms-input-placeholder {
+  color: $dkgrey;
+}
 form {
   h3 {
     margin: 15px 0 10px;
@@ -81,13 +90,14 @@ form {
   input {
     width: 100% !important;
     max-width: 100%;
-    border: 1px solid $blueopacity;
+    border: 1px solid $grey;
     height: 30px;
     padding: 5px 10px;
     position: absolute !important;
     top: 0;
     left: 0 !important;
     opacity: 1 !important;
+    border-radius: 0;
   }
   &.multi {
     .selectize-input {
