@@ -185,6 +185,12 @@
           $table.addClass('scrolled');
         }
       });
+      // Selectize tuning.
+      $('.selectize-input .item a').on('click', function (e) {
+        setTimeout(function () {
+          $('.selectize-dropdown').hide();
+        }, 50);
+      });
     }
   };
 
