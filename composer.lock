@@ -4750,7 +4750,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/search_api",
-                "reference": "3f9e19aca82cc315c0a755bdd71ecca749dcfade"
+                "reference": "23ac74395df2b53b275cd3b3b7396d7516e3ade3"
             },
             "require": {
                 "drupal/core": "^8.2"
@@ -4764,8 +4764,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-rc2+2-dev",
-                    "datestamp": "1491897543"
+                    "version": "8.x-1.0-rc3+1-dev",
+                    "datestamp": "1492676943"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4793,7 +4793,7 @@
                 "issues": "https://www.drupal.org/project/issues/search_api",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
             },
-            "time": "2017-04-13 13:42:47"
+            "time": "2017-04-20 08:28:46"
         },
         {
             "name": "drupal/search_api_page",
@@ -4844,12 +4844,12 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/search_api_solr",
-                "reference": "43156067c6198621012bd60914906e1dbc37f6f6"
+                "reference": "9fbf9c4902b70e5456a326e0810c15e933cdfe4c"
             },
             "require": {
                 "drupal/core": "~8.0",
                 "drupal/search_api": "*",
-                "solarium/solarium": "3.7.*"
+                "solarium/solarium": "3.8.*"
             },
             "type": "drupal-module",
             "extra": {
@@ -4857,8 +4857,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-beta1+35-dev",
-                    "datestamp": "1488655684"
+                    "version": "8.x-1.0-beta1+56-dev",
+                    "datestamp": "1492123750"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -4898,7 +4898,7 @@
                 "issues": "https://www.drupal.org/project/issues/search_api_solr",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
             },
-            "time": "2017-03-21 08:23:24"
+            "time": "2017-04-17 10:31:58"
         },
         {
             "name": "drupal/selectize",
@@ -7308,16 +7308,16 @@
         },
         {
             "name": "solarium/solarium",
-            "version": "3.7.0",
+            "version": "3.8.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/solariumphp/solarium.git",
-                "reference": "0acdb2838ae551fe87e4e334e449a468973839f2"
+                "reference": "c353babec89fdbe8c64054bfec8e77bcb5da6705"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/solariumphp/solarium/zipball/0acdb2838ae551fe87e4e334e449a468973839f2",
-                "reference": "0acdb2838ae551fe87e4e334e449a468973839f2",
+                "url": "https://api.github.com/repos/solariumphp/solarium/zipball/c353babec89fdbe8c64054bfec8e77bcb5da6705",
+                "reference": "c353babec89fdbe8c64054bfec8e77bcb5da6705",
                 "shasum": ""
             },
             "require": {
@@ -7325,6 +7325,7 @@
                 "symfony/event-dispatcher": "~2.3|~3.0"
             },
             "require-dev": {
+                "guzzlehttp/guzzle": "^3.8 || ^6.2",
                 "phpunit/phpunit": "~3.7",
                 "satooshi/php-coveralls": "~1.0",
                 "squizlabs/php_codesniffer": "~1.4",
@@ -7361,7 +7362,7 @@
                 "search",
                 "solr"
             ],
-            "time": "2016-10-28T08:50:36+00:00"
+            "time": "2017-02-02T13:32:22+00:00"
         },
         {
             "name": "stack/builder",
@@ -9694,7 +9695,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/coder-8.x-2.12.zip",
-                "reference": null,
+                "reference": "8.x-2.12",
                 "shasum": "271f6d17aab5c61c9ae3d6112ce806e57f2ba2d1"
             },
             "require": {
@@ -9755,7 +9756,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/config_devel-8.x-1.0.zip",
-                "reference": null,
+                "reference": "8.x-1.0",
                 "shasum": "148d408827c570e725b08d7e4c1c46d321dc1efa"
             },
             "require": {
@@ -9889,7 +9890,8 @@
                 "source": "http://cgit.drupalcode.org/devel",
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
-            }
+            },
+            "time": "2017-04-10 08:04:17"
         },
         {
             "name": "drupal/devel_debug_log",
@@ -9902,7 +9904,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/devel_debug_log-8.x-1.0-beta1.zip",
-                "reference": null,
+                "reference": "8.x-1.0-beta1",
                 "shasum": "673585c5eefb2831d474da5a0ffc3b210bdb2701"
             },
             "require": {
@@ -9946,7 +9948,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/diff-8.x-1.0-rc1.zip",
-                "reference": null,
+                "reference": "8.x-1.0-rc1",
                 "shasum": "4945154c2c07444195a7ae07011a3b3db941c72a"
             },
             "require": {
@@ -10097,7 +10099,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/stage_file_proxy-8.x-1.0-alpha1.zip",
-                "reference": null,
+                "reference": "8.x-1.0-alpha1",
                 "shasum": "ffc763b0b74f5a29c0d4a5a6c6930bda473a9e97"
             },
             "require": {
@@ -10220,7 +10222,8 @@
             "homepage": "https://www.drupal.org/project/xhprof",
             "support": {
                 "source": "http://cgit.drupalcode.org/xhprof"
-            }
+            },
+            "time": "2017-01-11 07:55:36"
         },
         {
             "name": "ezyang/htmlpurifier",
