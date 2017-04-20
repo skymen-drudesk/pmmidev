@@ -58,6 +58,17 @@ form {
     margin-top: 10px;
     margin-bottom: 10px;
   }
+  .webform-flex--0 {
+    .webform-flex--container {
+      margin: 0;
+    }
+    .form-group,
+    .js-form-wrapper,
+    .form-wrapper {
+      margin: 0 .5em;
+    }
+  }
+  .js-form-wrapper,
   .webform-flex {
     align-self: flex-end;
   }

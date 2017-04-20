@@ -12657,6 +12657,17 @@ form .webform-flexbox {
   margin-bottom: 10px;
 }
 
+form .webform-flex--0 .webform-flex--container {
+  margin: 0;
+}
+
+form .webform-flex--0 .form-group,
+form .webform-flex--0 .js-form-wrapper,
+form .webform-flex--0 .form-wrapper {
+  margin: 0 .5em;
+}
+
+form .js-form-wrapper,
 form .webform-flex {
   -ms-flex-item-align: end;
       align-self: flex-end;
