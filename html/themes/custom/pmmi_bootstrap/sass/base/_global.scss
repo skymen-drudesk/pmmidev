@@ -138,6 +138,17 @@ table {
       border-color: $dkblue;
     }
   }
+  &[border="0"] {
+    td,
+    td.st-key,
+    th {
+      border: none;
+      padding-top: 0;
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+  }
   &.responsive {
     td, th {
       padding: 0;

@@ -12970,6 +12970,19 @@ table th:last-child {
   border-color: #053248;
 }
 
+table[border="0"] td,
+table[border="0"] td.st-key,
+table[border="0"] th {
+  border: none;
+  padding-top: 0;
+}
+
+table[border="0"] td:first-child,
+table[border="0"] td.st-key:first-child,
+table[border="0"] th:first-child {
+  padding-left: 0;
+}
+
 table.responsive td, table.responsive th {
   padding: 0;
   border: none;
