@@ -77,7 +77,7 @@
     </div>
 
     {{ field_render([content.footer_reg, 'footer-reg']) }}
-    {% set changedDate = node.getChangedTime|date('M. j, Y') %}
+    {% set changedDate = content['#node'].getChangedTime|date('M. j, Y') %}
     <div class="profile-updated">
       {% trans %}Profile last updated {{ changedDate }} {% endtrans %}
     </div>
