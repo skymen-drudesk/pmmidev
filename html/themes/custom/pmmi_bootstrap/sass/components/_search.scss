@@ -427,7 +427,7 @@
   h2 {
     @extend .headline2;
   }
-  .view-header a {
+  .view-header a.pmmi-download-favorites {
     margin: -45px 0 30px 250px;
     height: auto;
     @extend .button-primary;

@@ -21,6 +21,7 @@ class SADDownloadsQuotaEditForm extends EntityForm {
       '#required' => TRUE,
       '#disabled' => !$this->entity->isNew(),
       '#default_value' => $this->entity->getUser(),
+      '#selection_settings' => ['include_anonymous' => FALSE],
     ];
     $form['quota'] = [
       '#type' => 'number',
