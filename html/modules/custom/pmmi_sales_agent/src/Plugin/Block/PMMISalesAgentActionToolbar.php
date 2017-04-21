@@ -121,11 +121,8 @@ class PMMISalesAgentActionToolbar extends BlockBase implements ContainerFactoryP
           break;
 
         case 'company_add':
-          $url = Url::fromUri('internal:/node/add/company');
-          $link_options = ['attributes' => ['class' => ['pmmi-company-add']]];
-          $url->setOptions($link_options);
-
-          $links_to_display[$link] = Link::fromTextAndUrl($this->t('Add your company'), $url)->toString();
+          // "Add your company" link should be here, but we decided to hide it
+          // temporarily. So, do nothing in this case.
           break;
 
         case 'favorites_download':
