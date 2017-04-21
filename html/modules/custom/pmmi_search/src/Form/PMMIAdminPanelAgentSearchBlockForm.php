@@ -169,7 +169,7 @@ class PMMIAdminPanelAgentSearchBlockForm extends FormBase {
       $query['keywords'] = str_replace(' ', '+', $values['keywords']);
     }
 
-    $url = Url::fromUri('internal:/admin/sales-agent-directory');
+    $url = Url::fromUri('internal:/admin/config/sad/admin-panel');
     $url->setOption('query', $query);
     $form_state->setRedirectUrl($url);
   }
