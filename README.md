@@ -37,7 +37,7 @@ using [Composer](https://getcomposer.org/) and
 git clone summitmedia/pmmi your_project_name
 cd your_project_name
 cp cnf/settings.local.php html/sites/default
-cp cnf/.env.dist ./.env
+cp cnf/.envt ./.env
 ./build/scripts/proj-init
 ```
 
