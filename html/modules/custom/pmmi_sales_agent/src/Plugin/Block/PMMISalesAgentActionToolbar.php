@@ -120,11 +120,6 @@ class PMMISalesAgentActionToolbar extends BlockBase implements ContainerFactoryP
           $links_to_display[$link]['#cache']['max-age'] = 0;
           break;
 
-        case 'company_add':
-          // "Add your company" link should be here, but we decided to hide it
-          // temporarily. So, do nothing in this case.
-          break;
-
         case 'favorites_download':
           $hasPermission = \Drupal::currentUser()
             ->hasPermission('pmmi sales agent favorites');
