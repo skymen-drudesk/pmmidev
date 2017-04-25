@@ -328,6 +328,19 @@ onetwo:
       label: 1st row 2nd column
     bottom:
       label: Bottom content
+onetwouneven:
+  label: Column 2-up Uneven (1 row of 2 uneven columns)
+  category: PMMI: Columns
+  template: templates/layouts/columns/onetwouneven
+  regions:
+    top:
+      label: Top content
+    oneone:
+      label: 1st row 1st column
+    onetwo:
+      label: 1st row 2nd column
+    bottom:
+      label: Bottom content
 onethree:
   label: Column 3-up (1 row of 3 columns)
   category: PMMI: Columns
@@ -537,8 +550,6 @@ block_event_default:
       label: Location
     hosted_by:
       label: Hosted By
-    button:
-      label: Button
     link:
       label: Link
 block_event_ribbon:
