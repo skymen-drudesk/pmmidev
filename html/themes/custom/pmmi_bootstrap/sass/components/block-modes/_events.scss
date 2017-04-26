@@ -2,7 +2,18 @@
 // Default event view.
 .block-event-default {
   @include event_news;
+  .link {
+    a {
+      background-color: $blue;
+      border-color: $blue;
+    }
+    a:hover {
+      background-color: $dkblue;
+      border-color: $dkblue;
+    }
+  }
 }
+
 .block-event-ribbon {
   padding-left: 76px;
   color: #fff;
