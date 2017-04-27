@@ -552,12 +552,15 @@
       text-align: left;
       li:first-child {
         background-color: $blue;
+        float: left;
+        margin-right: 1%;
         a {
           color: #fff;
         }
       }
       li {
         width: 100%;
+        max-width: 49%;
         text-align: center;
         border: 2px solid $blue;
         border-radius: 3px;
