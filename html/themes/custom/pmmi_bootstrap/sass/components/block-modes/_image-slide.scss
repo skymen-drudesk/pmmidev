@@ -1,5 +1,26 @@
 /* IMAGE SLIDE VIEW MODES. */
 // Image slide default.
+button.slick-arrow {
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  background-color: initial;
+  border-style: initial;
+  border-radius: 0 3px 3px 0;
+}
+button.slick-arrow:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+button.slick-arrow.slick-next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
 .block-image-slide-default {
   position: relative;
   min-height: 380px;
