@@ -6,7 +6,6 @@ options:
 syncs:
   pmmi-unison-sync:
     src: './'
-    dest: '/var/www'
     sync_userid: '82'
     sync_excludes: [
       '.git/',
