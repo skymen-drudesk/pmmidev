@@ -16561,6 +16561,7 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
 .page-sales-agent-directory-my-favorites .view-header a.pmmi-download-favorites {
   margin: -45px 0 30px 250px;
   height: auto;
+  padding: 10px 12px;
 }
 
 .page-sales-agent-directory-my-favorites .view-header a.pmmi-download-favorites p {
@@ -16576,6 +16577,7 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
 }
 
 .page-sales-agent-directory-my-favorites thead > tr > th {
+  border: none;
   border-bottom: 1px solid #c2c2c2;
   background: transparent;
   font-weight: 800;
@@ -16593,7 +16595,7 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
 }
 
 .page-sales-agent-directory-my-favorites tbody tr td {
-  border-top: none;
+  border: none;
   padding: 15px 8px;
 }
 
@@ -16658,7 +16660,7 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   .page-sales-agent-directory-my-favorites h2 {
     position: relative;
   }
-  .page-sales-agent-directory-my-favorites .view-header {
+  .page-sales-agent-directory-my-favorites .view-header a.pmmi-download-favorites {
     margin: 5px 0 15px 0;
   }
   .page-sales-agent-directory-my-favorites thead {
@@ -16682,6 +16684,9 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   }
   .page-sales-agent-directory-my-favorites tbody > tr td.views-field-field-address-country-code {
     font-style: italic;
+  }
+  .page-sales-agent-directory-my-favorites tbody > tr td.views-field-link-flag {
+    margin-top: 10px;
   }
 }
 

@@ -431,6 +431,7 @@
     margin: -45px 0 30px 250px;
     height: auto;
     @extend .button-primary;
+    padding: 10px 12px;
     p {
       margin: 0;
     }
@@ -442,6 +443,7 @@
     }
   }
   thead > tr > th {
+    border: none;
     border-bottom: 1px solid $mdgrey;
     background: transparent;
     font-weight: 800;
@@ -456,7 +458,7 @@
         background: $ltbluebg;
       }
       td {
-        border-top: none;
+        border: none;
         padding: 15px 8px;
         &.views-field-title {
           display: block;
@@ -517,7 +519,7 @@
     h2 {
       position: relative;
     }
-    .view-header {
+    .view-header a.pmmi-download-favorites {
       margin: 5px 0 15px 0;
     }
     thead {
@@ -539,6 +541,9 @@
         }
         &.views-field-field-address-country-code {
           font-style: italic;
+        }
+        &.views-field-link-flag {
+          margin-top: 10px;
         }
       }
     }
