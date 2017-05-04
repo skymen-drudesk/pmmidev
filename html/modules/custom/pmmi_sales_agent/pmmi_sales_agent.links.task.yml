@@ -1,3 +1,13 @@
+# Sales agent directory - admin panel.
+pmmi_sales_agent.admin_panel:
+  route_name: page_manager.page_view_sales_agent_directory_admin_panel_sales_agent_directory_admin_panel-panels_variant-0
+  base_route: page_manager.page_view_sales_agent_directory_admin_panel_sales_agent_directory_admin_panel-panels_variant-0
+  title: 'Company contacts'
+pmmi_sales_agent.admin_panel_shows:
+  route_name: view.agent_trade_shows.page_1
+  base_route: page_manager.page_view_sales_agent_directory_admin_panel_sales_agent_directory_admin_panel-panels_variant-0
+  title: 'Company contacts by show'
+
 # Sales agent directory - migration.
 pmmi_sales_agent.migrate:
   route_name: pmmi_sales_agent.migrate
