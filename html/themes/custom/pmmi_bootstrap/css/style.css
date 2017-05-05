@@ -18876,11 +18876,16 @@ div.view {
 }
 
 /* IMAGE SLIDE VIEW MODES. */
+nav.slick__arrow {
+  position: relative;
+  margin: auto;
+}
+
 button.slick-arrow {
   position: absolute;
   top: 50%;
   width: auto;
-  margin-top: -22px;
+  margin-top: -200px;
   padding: 16px;
   color: white;
   font-weight: bold;
@@ -18898,6 +18903,12 @@ button.slick-arrow:hover {
 button.slick-arrow.slick-next {
   right: 0;
   border-radius: 3px 0 0 3px;
+}
+
+@media (max-width: 1023px) {
+  button.slick-arrow {
+    margin-top: -138px;
+  }
 }
 
 .block-image-slide-default {
