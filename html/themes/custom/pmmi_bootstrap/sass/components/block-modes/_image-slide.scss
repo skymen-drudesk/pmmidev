@@ -1,5 +1,35 @@
 /* IMAGE SLIDE VIEW MODES. */
 // Image slide default.
+nav.slick__arrow {
+  position: relative;
+  margin: auto;
+}
+button.slick-arrow {
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -200px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  background-color: initial;
+  border-style: initial;
+  border-radius: 0 3px 3px 0;
+}
+button.slick-arrow:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+button.slick-arrow.slick-next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+@media (max-width: 1023px) {
+  button.slick-arrow {
+    margin-top: -138px;
+  }
+}
 .block-image-slide-default {
   position: relative;
   min-height: 380px;
