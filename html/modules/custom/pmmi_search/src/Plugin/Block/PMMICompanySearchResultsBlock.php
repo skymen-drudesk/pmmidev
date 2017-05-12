@@ -150,29 +150,32 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
    */
   protected function getFilterInfo($filter, array $values) {
     $items = [];
-    $query_params = \Drupal::request()->query->all();
 
     switch ($filter) {
-      // Country/state filter info.
-      case 'country_code':
+      // Territory served filter info.
+      case 'ts':
         $countries = $this->countryRepository->getList();
 
+        $divisions = [];
         foreach ($values as $value) {
-          if (isset($countries[$value])) {
-            // Bypass all administrative_area values and add information about
-            // selected states if they are related to some selected country.
-            $areas_names = [];
-            if (!empty($query_params['administrative_area'])) {
-              $subdivisions = $this->subdivisionRepository->getList([$value]);
-              foreach ($query_params['administrative_area'] as $area) {
-                if (array_key_exists($area, $subdivisions)) {
-                  $areas_names[] = $subdivisions[$area];
-                }
-              }
+          $parts = explode('::', $value);
+          if (isset($countries[$parts[0]])) {
+            if (!isset($divisions[$countries[$parts[0]]])) {
+              $divisions[$countries[$parts[0]]] = [];
             }
 
-            $items[$value] = !$areas_names ? $countries[$value] : $countries[$value] . ': ' . implode(', ', $areas_names);
+            if (isset($parts[1])) {
+              $areas = $this->subdivisionRepository->getList([$parts[0]]);
+              if (array_key_exists($parts[1], $areas)) {
+                $divisions[$countries[$parts[0]]][] = $areas[$parts[1]];
+              }
+            }
           }
+        }
+
+        // Prepare items to display.
+        foreach ($divisions as $country => $areas) {
+          $items[] = !$areas ? $country : $country . ': ' . implode(', ', $areas);
         }
         break;
 
