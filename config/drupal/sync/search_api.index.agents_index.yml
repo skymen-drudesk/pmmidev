@@ -270,6 +270,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_after_sales_service
+  ts:
+    label: 'Territory served'
+    datasource_id: 'entity:node'
+    property_path: field_territory_served
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_territory_served
 datasource_settings:
   'entity:node':
     bundles:
@@ -281,28 +289,8 @@ datasource_settings:
       selected: {  }
 processor_settings:
   state: {  }
-  country: {  }
   pmmi_shows: {  }
-  ignorecase:
-    fields:
-      - title
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-  content_access:
-    weights:
-      preprocess_query: -10
-  aggregated_field: {  }
-  rendered_item: {  }
-  add_url: {  }
-  tokenizer:
-    fields: {  }
-    spaces: ''
-    overlap_cjk: 1
-    minimum_word_size: '3'
-    weights:
-      preprocess_index: -6
-      preprocess_query: -6
+  country: {  }
   highlight:
     highlight: always
     highlight_partial: false
@@ -313,6 +301,27 @@ processor_settings:
     suffix: '</strong>'
     weights:
       postprocess_query: 0
+  html_filter:
+    fields:
+      - title
+    title: true
+    alt: true
+    tags:
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      b: 2
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  ignorecase:
+    fields:
+      - title
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  add_url: {  }
   stopwords:
     fields: {  }
     stopwords:
@@ -354,6 +363,10 @@ processor_settings:
     weights:
       preprocess_index: -5
       preprocess_query: -2
+  content_access:
+    weights:
+      preprocess_query: -10
+  aggregated_field: {  }
   stemmer:
     fields:
       - title_f
@@ -363,20 +376,21 @@ processor_settings:
     weights:
       preprocess_index: 0
       preprocess_query: 0
-  html_filter:
-    fields:
-      - title
-    title: true
-    alt: true
-    tags:
-      h1: 5
-      h2: 3
-      h3: 2
-      strong: 2
-      b: 2
+  tokenizer:
+    fields: {  }
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
     weights:
-      preprocess_index: -10
-      preprocess_query: -10
+      preprocess_index: -6
+      preprocess_query: -6
+  rendered_item: {  }
+  pmmi_country_area_ws:
+    fields:
+      - ts
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
 tracker_settings:
   default: {  }
 options:
