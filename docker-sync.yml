@@ -5,6 +5,7 @@ options:
 
 syncs:
   pmmi-sync:
+    notify_terminal: true
     src: './'
     sync_userid: '82'
     sync_excludes: [
@@ -14,4 +15,12 @@ syncs:
       '._.DS_Store',
       '.idea'
     ]
+    sync_strategy: 'unison'
     sync_prefer: 'newer'
+    watch_excludes: [
+      '.git/',
+      '.gitignore',
+      '.DS_Store',
+      '._.DS_Store',
+      '.idea'
+    ]
