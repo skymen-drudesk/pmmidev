@@ -293,7 +293,7 @@
     }
     .input-group,
     .select-wrapper {
-      display: inline-flex;
+      display: inline-block;
       .selector {
         border-color: $blueopacity;
       }
@@ -381,6 +381,7 @@
     legend {
       font-size: $r15;
       font-weight: bold;
+      color: #000;
     }
     .webform-options-display-one-column {
       input {
@@ -420,13 +421,13 @@
       .form-group > .form-item {
         float: right;
         label {
-          display: inline-flex;
+          display: inline-block;
           text-transform: uppercase;
           padding-right: 10px;
         }
         input {
           max-width: 370px;
-          display: inline-flex;
+          display: inline-block;
         }
       }
       .checkbox label {
