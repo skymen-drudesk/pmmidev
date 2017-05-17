@@ -78,7 +78,7 @@ class SADController extends ControllerBase {
     // If one-time update link is not valid - redirect back to a request form.
     if ($current - $timestamp > $timeout || !Crypt::hashEquals($hash, pmmi_sales_agent_hash($timestamp, $nid))) {
       drupal_set_message($this->t('You have tried to use a one-time update link that has either been used or is no longer valid. Please request a new one using the form below.'), 'error');
-      $url = Url::fromUri('internal:/sales-agent-directory');
+      $url = Url::fromUri('internal:/sales-agent-directory/update');
       return $this->redirect($url->getRouteName());
     }
 
