@@ -262,7 +262,19 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: search_api_term
-      sorts: {  }
+      sorts:
+        field_date:
+          id: field_date
+          table: search_api_index_default_index
+          field: field_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
       header: {  }
       footer: {  }
       empty: {  }
