@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.school.field_image
     - field.field.node.school.field_image_header
     - field.field.node.school.field_logo
+    - field.field.node.school.field_partner_school_type
     - field.field.node.school.field_phone
     - field.field.node.school.field_programs_focus
     - field.field.node.school.field_school_contact
@@ -61,6 +62,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: address_default
+  field_partner_school_type:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
   field_phone:
     weight: 2
     label: hidden
