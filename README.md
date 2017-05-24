@@ -14,16 +14,16 @@ the [project's README](https://github.com/summitmedia/dd-party).
 
 ## Requirements
 
-* Docker
+* Docker (latest version)
   * [Linux](https://docs.docker.com/linux/)
   * [Mac](https://docs.docker.com/mac/)
   * [Windows](https://docs.docker.com/windows/)
 
 * [Direnv](http://direnv.net/)
   * Optional
-  * Used with wrapper scripts to add `dbash` and `ddrush` commands
+  * Used with wrapper scripts to add commands (e.g `dbash`, `ddrush`).
 
-* [docker-sync](https://github.com/EugenMayer/docker-sync/) version 0.2.x.
+* [docker-sync](https://github.com/EugenMayer/docker-sync/) (>= 0.4.6)
   * Optional
   * Used to improve performance on macOS (OS X).
 
@@ -37,7 +37,8 @@ using [Composer](https://getcomposer.org/) and
 git clone summitmedia/pmmi your_project_name
 cd your_project_name
 cp cnf/settings.local.php html/sites/default
-cp cnf/.envt ./.env
+cp cnf/.env ./.env
+source .env
 ./build/scripts/proj-init
 ```
 
@@ -47,10 +48,14 @@ To improve performance on macOS, use [docker-sync](https://github.com/EugenMayer
 
 To install docker-sync run:
 
-1. `gem install docker-sync`
-2. `brew install fswatch`
+1. `gem install docker-sync -v '>= 0.4.6'`
 
-In `.env`, set `OSX=1`:
+**IMPORTANT**
+
+If the previous installed version is < 0.4.0, be sure to run
+`docker-sync clean` after upgrading.
+
+In `.env`, add `OSX=1` below `source env.dist`:
 
 ```bash
 export SITE_ENVIRONMENT=dev
