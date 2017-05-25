@@ -327,6 +327,7 @@
     }
     .table > thead > tr > th {
       vertical-align: bottom;
+      border-right: none;
       border-bottom: 1px solid $mdgrey;
       background: transparent;
     }
@@ -339,6 +340,7 @@
     }
     .table > tbody > tr > td {
       border: none;
+      vertical-align: inherit;
     }
     tbody > tr {
       background: none;
