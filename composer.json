@@ -318,6 +318,8 @@
   },
   "minimum-stability": "dev",
   "prefer-stable": true,
+  "prefer-dist": true,
+  "optimize-autoloader": true,
   "require": {
     "RobinHerbots/jquery.inputmask": "^3.3.4",
     "briancherne/jquery.hoverIntent": "^1.8.1",
