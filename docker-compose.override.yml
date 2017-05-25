@@ -19,11 +19,6 @@ services:
 
   pmmisolr:
     container_name: "${SITE_CODE}_dev_solr"
-    build: ./build/solr
-    networks:
-      - back
-    ports:
-      - "8003:8983"
 
   pmmivarnish:
     container_name: "${SITE_CODE}_dev_varnish"

@@ -15,9 +15,4 @@ services:
 
   pmmisolr:
     container_name: "${SITE_CODE}_prod_solr"
-    build: ./build/solr
     restart: always
-    networks:
-      - back
-    ports:
-      - "8003:8983"
