@@ -198,8 +198,6 @@ class PMMICompanySearchBlockForm extends FormBase {
     $values = $form_state->getValues();
 
     $filters = [
-      'country_code',
-      'administrative_area',
       'field_industries_served',
       'field_equipment_sold_type',
       'pmmi_shows'
@@ -212,6 +210,13 @@ class PMMICompanySearchBlockForm extends FormBase {
           $query["{$filter}[$key]"] = $item;
         }
       }
+    }
+
+    $cc = is_array($values['country_code']) ? $values['country_code'] : [];
+    $sc = is_array($values['administrative_area']) ? $values['administrative_area'] : [];
+    $territoryServed = $this->filterTerritoryServedBuild($cc, $sc);
+    if ($territoryServed) {
+      $query += $territoryServed;
     }
 
     // Fulltext filter.
@@ -263,5 +268,33 @@ class PMMICompanySearchBlockForm extends FormBase {
     }
 
     return $trade_shows;
+  }
+
+  /**
+   * Build territory served filter.
+   */
+  protected function filterTerritoryServedBuild($ccodes, $scodes = array()) {
+    $items = [];
+
+    // Build list of items. Use the next styles:
+    //  - for country only: COUNTRY_CODE;
+    //  - for country and area: COUNTRY_CODE::AREA_CODE.
+    foreach ($ccodes as $key => $ccode) {
+      $sub = FALSE;
+      $subdivisions = $this->subdivisionRepository->getList([$ccode]);
+
+      foreach ($scodes as $scode) {
+        if (isset($subdivisions[$scode])) {
+          $sub = TRUE;
+          $items['ts'][] = $ccode . '::' . $scode;
+        }
+      }
+
+      if (!$sub) {
+        $items['ts'][] = $ccode;
+      }
+    }
+
+    return $items;
   }
 }

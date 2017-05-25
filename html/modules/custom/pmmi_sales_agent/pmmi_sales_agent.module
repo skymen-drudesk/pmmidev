@@ -143,9 +143,15 @@ function pmmi_sales_agent_form_alter(array &$form, FormStateInterface $form_stat
 
       // The field descriptions are converted into tooltips, but we need simple
       // description for some fields.
-      foreach (['field_main_phone_number', 'field_fax_number'] as $field) {
+      $fields = [
+        'field_main_phone_number' => 'value',
+        'field_fax_number' => 'value',
+        'field_website_url' => 'uri',
+      ];
+
+      foreach ($fields as $field => $column) {
         if (isset($form[$field])) {
-          $form[$field]['widget'][0]['value']['#smart_description'] = FALSE;
+          $form[$field]['widget'][0][$column]['#smart_description'] = FALSE;
         }
       }
 

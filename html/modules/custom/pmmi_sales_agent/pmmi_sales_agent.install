@@ -191,3 +191,12 @@ function pmmi_sales_agent_update_8014() {
     ->set('success_message', 'Your export has been created. View/download the file <a href="[:download_url]">here</a> (will automatically download in 3 seconds).')
     ->save();
 }
+
+/**
+ * Change quota exceeded message.
+ */
+function pmmi_sales_agent_update_8015() {
+  \Drupal::service('config.factory')->getEditable('pmmi_sales_agent.reporting_settings')
+    ->set('exceeded_message', 'Your download limit has been exceeded. For questions, please contact Paige Jarvi, <a href="mailto:pjarvi@pmmi.org">pjarvi@pmmi.org</a>.')
+    ->save();
+}

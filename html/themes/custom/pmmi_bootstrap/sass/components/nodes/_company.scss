@@ -6,7 +6,7 @@
     margin-bottom: 0;
   }
   .container {
-    margin-top: 30px;
+    margin-top: 0px;
   }
   .block-image-header .page-name {
     max-width: 370px;
@@ -70,7 +70,6 @@
     .block-label {
       color: $blue;
       font-size: $r20;
-      border-bottom: 2px solid $mdgrey;
     }
   }
   .right-col.col-md-4 {
@@ -294,7 +293,7 @@
     }
     .input-group,
     .select-wrapper {
-      display: inline-flex;
+      display: inline-block;
       .selector {
         border-color: $blueopacity;
       }
@@ -382,6 +381,7 @@
     legend {
       font-size: $r15;
       font-weight: bold;
+      color: #000;
     }
     .webform-options-display-one-column {
       input {
@@ -421,13 +421,13 @@
       .form-group > .form-item {
         float: right;
         label {
-          display: inline-flex;
+          display: inline-block;
           text-transform: uppercase;
           padding-right: 10px;
         }
         input {
           max-width: 370px;
-          display: inline-flex;
+          display: inline-block;
         }
       }
       .checkbox label {
@@ -553,12 +553,15 @@
       text-align: left;
       li:first-child {
         background-color: $blue;
+        float: left;
+        margin-right: 1%;
         a {
           color: #fff;
         }
       }
       li {
         width: 100%;
+        max-width: 49%;
         text-align: center;
         border: 2px solid $blue;
         border-radius: 3px;

@@ -4,8 +4,8 @@ services:
 
   pmmiweb:
     volumes:
-      - pmmi-unison-sync:/var/www:rw
+      - pmmi-sync:/var/www:nocopy
 
 volumes:
-  pmmi-unison-sync:
+  pmmi-sync:
     external: true

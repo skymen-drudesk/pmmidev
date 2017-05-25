@@ -21,7 +21,8 @@ options:
     adaptiveHeight: true
     autoplay: true
     autoplaySpeed: 4000
-    arrows: false
+    prevArrow: '<button type="button" data-role="none" class="slick-prev" aria-label="Previous" tabindex="0" role="button">&#10094;</button>'
+    nextArrow: '<button type="button" data-role="none" class="slick-next" aria-label="Next" tabindex="0" role="button">&#10095;</button>'
     lazyLoad: ondemand
     respondTo: slider
     slidesToShow: 1

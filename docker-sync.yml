@@ -4,9 +4,9 @@ options:
   verbose: true
 
 syncs:
-  pmmi-unison-sync:
+  pmmi-sync:
+    notify_terminal: true
     src: './'
-    dest: '/var/www'
     sync_userid: '82'
     sync_excludes: [
       '.git/',
@@ -15,4 +15,12 @@ syncs:
       '._.DS_Store',
       '.idea'
     ]
+    sync_strategy: 'unison'
     sync_prefer: 'newer'
+    watch_excludes: [
+      '.git/',
+      '.gitignore',
+      '.DS_Store',
+      '._.DS_Store',
+      '.idea'
+    ]

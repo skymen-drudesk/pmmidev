@@ -120,14 +120,6 @@ class PMMISalesAgentActionToolbar extends BlockBase implements ContainerFactoryP
           $links_to_display[$link]['#cache']['max-age'] = 0;
           break;
 
-        case 'company_add':
-          $url = Url::fromUri('internal:/node/add/company');
-          $link_options = ['attributes' => ['class' => ['pmmi-company-add']]];
-          $url->setOptions($link_options);
-
-          $links_to_display[$link] = Link::fromTextAndUrl($this->t('Add your company'), $url)->toString();
-          break;
-
         case 'favorites_download':
           $hasPermission = \Drupal::currentUser()
             ->hasPermission('pmmi sales agent favorites');

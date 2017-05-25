@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.body
     - field.storage.node.field_address
     - field.storage.node.field_news_category
+    - field.storage.node.field_date
     - search_api.server.solr_server
   module:
     - search_api
@@ -16,6 +17,13 @@ name: 'Default Index'
 description: ''
 read_only: false
 field_settings:
+  node_grants:
+    label: 'Node access information'
+    property_path: search_api_node_grants
+    type: string
+    indexed_locked: true
+    type_locked: true
+    hidden: true
   title:
     label: 'Title String'
     datasource_id: 'entity:node'
@@ -108,13 +116,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_address
-  node_grants:
-    label: 'Node access information'
-    property_path: search_api_node_grants
-    type: string
-    indexed_locked: true
-    type_locked: true
-    hidden: true
+  field_date:
+    label: Date
+    datasource_id: 'entity:node'
+    property_path: field_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_date
 datasource_settings:
   'entity:node':
     bundles:
@@ -125,19 +134,33 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
+  country: {  }
   state: {  }
   pmmi_shows: {  }
-  country: {  }
-  highlight:
-    highlight: always
-    highlight_partial: true
-    excerpt: false
-    excerpt_length: 1024
-    exclude_fields: {  }
-    prefix: '<strong>'
-    suffix: '</strong>'
+  stemmer:
+    fields:
+      - title_f
+      - body_f
+    exceptions:
+      texan: texa
+      mexican: mexic
     weights:
-      postprocess_query: 0
+      preprocess_index: 0
+      preprocess_query: 0
+  rendered_item: {  }
+  aggregated_field: {  }
+  add_url: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  ignorecase:
+    fields:
+      - title
+      - title_f
+      - body_f
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
   html_filter:
     fields:
       - title_f
@@ -153,27 +176,6 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
-  add_url: {  }
-  stemmer:
-    fields:
-      - title_f
-      - body_f
-    exceptions:
-      texan: texa
-      mexican: mexic
-    weights:
-      preprocess_index: 0
-      preprocess_query: 0
-  ignorecase:
-    fields:
-      - title
-      - title_f
-      - body_f
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-  rendered_item: {  }
-  aggregated_field: {  }
   ignore_character:
     fields:
       - title
@@ -215,9 +217,16 @@ processor_settings:
     weights:
       preprocess_index: -6
       preprocess_query: -6
-  content_access:
+  highlight:
+    highlight: always
+    highlight_partial: true
+    excerpt: false
+    excerpt_length: 1024
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
     weights:
-      preprocess_query: -30
+      postprocess_query: 0
   entity_status: {  }
 tracker_settings:
   default: {  }
