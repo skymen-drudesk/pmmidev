@@ -20,6 +20,7 @@ DirectoryIndex index.php index.html index.htm
 
 # Add correct encoding for SVGZ.
 AddType image/svg+xml svg svgz
+AddType image/png png
 AddEncoding gzip svgz
 AddOutputFilter DEFLATE svg
 
@@ -192,7 +193,7 @@ AddOutputFilter DEFLATE svg
 # Various header fixes.
 <IfModule mod_headers.c>
   # Disable content sniffing, since it's an attack vector.
-  Header always set X-Content-Type-Options nosniff
+  # Header always set X-Content-Type-Options nosniff
   # Disable Proxy header, since it's an attack vector.
   RequestHeader unset Proxy
 </IfModule>
