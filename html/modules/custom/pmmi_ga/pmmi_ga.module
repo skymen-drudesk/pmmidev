@@ -58,24 +58,22 @@ function pmmi_ga_sad_search_tracking_script() {
     $event_category = t('Sales agent directory');
     $query_params = $request->query->all();
 
-    // Searches for Countries covered.
-    if (!empty($query_params['country_code'])) {
+    // Searches for Countries\States covered.
+    if (!empty($query_params['ts'])) {
       $countries = \Drupal::service('address.country_repository')->getList();
 
-      foreach ($query_params['country_code'] as $code) {
-        if (isset($countries[$code])) {
+      foreach ($query_params['ts'] as $code) {
+        $parts = explode('::', $code);
+        if (isset($parts[0], $countries[$parts[0]])) {
           $action = t('Searches for Countries covered');
-          $script .= "ga('send', 'event', '{$event_category}', '{$action}', '{$countries[$code]}');";
+          $script .= "ga('send', 'event', '{$event_category}', '{$action}', '{$countries[$parts[0]]}');";
         }
-      }
-    }
 
-    // Searches for States covered.
-    if (!empty($query_params['administrative_area'])) {
-      // @todo: do we need state name here?
-      foreach ($query_params['administrative_area'] as $code) {
-        $action = t('Searches for States covered');
-        $script .= "ga('send', 'event', '{$event_category}', '{$action}', '{$code}');";
+        // @todo: do we need state name here?
+        if (isset($parts[1])) {
+          $action = t('Searches for States covered');
+          $script .= "ga('send', 'event', '{$event_category}', '{$action}', '{$parts[1]}');";
+        }
       }
     }
 
