@@ -59,6 +59,8 @@ theme.has_glyphicons ? 'has-glyphicons',
     <head>
         <head-placeholder token="{{ placeholder_token|raw }}">
         <title>{{ head_title|safe_join(' | ') }}</title>
+        <script src="https://use.typekit.net/ezd3trx.js"></script>
+        <script>try{Typekit.load({ async: false });}catch(e){}</script>
         <css-placeholder token="{{ placeholder_token|raw }}">
         <js-placeholder token="{{ placeholder_token|raw }}">
         {% include directory ~ '/includes/google_tag_head.html.twig' %}

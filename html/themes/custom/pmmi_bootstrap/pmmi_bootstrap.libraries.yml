@@ -1,3 +1,8 @@
+fonts:
+  header: true
+  js:
+    js/font.js: {}
+
 theme:
   js:
     js/pmmi.theme.js: {}
@@ -25,10 +30,6 @@ countdown:
     js/countdown.js: {}
   dependencies:
     - pmmi_bootstrap/jquery.countdown
-
-fonts:
-  js:
-    js/font.js: {}
 
 bootstrap-scripts:
   js:
