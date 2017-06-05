@@ -5093,7 +5093,7 @@
             "dist": {
                 "type": "zip",
                 "url": "https://ftp.drupal.org/files/projects/varnish_purge-8.x-1.5.zip",
-                "reference": "8.x-1.5",
+                "reference": null,
                 "shasum": "a5fba946f355e648883dc2729fd895017f638ed7"
             },
             "require": {
@@ -5112,6 +5112,9 @@
                 "drupal": {
                     "version": "8.x-1.5",
                     "datestamp": "1495108687"
+                },
+                "patches_applied": {
+                    "Localhost configuration": "https://www.drupal.org/files/issues/varnish_purge-localhost_configuration.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
