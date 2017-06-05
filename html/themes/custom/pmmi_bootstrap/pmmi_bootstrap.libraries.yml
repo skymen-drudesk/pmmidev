@@ -1,7 +1,8 @@
 fonts:
   header: true
   js:
-    js/font.js: {}
+    '//use.typekit.net/ezd3trx.js': { type: external, weight: -21 }
+    js/font.js: { weight: -20 }
 
 theme:
   js:
