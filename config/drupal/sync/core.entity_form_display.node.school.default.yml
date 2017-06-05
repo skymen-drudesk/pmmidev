@@ -11,6 +11,7 @@ dependencies:
     - field.field.node.school.field_image
     - field.field.node.school.field_image_header
     - field.field.node.school.field_logo
+    - field.field.node.school.field_partner_school_type
     - field.field.node.school.field_phone
     - field.field.node.school.field_programs_focus
     - field.field.node.school.field_school_contact
@@ -19,6 +20,7 @@ dependencies:
     - node.type.school
   module:
     - address
+    - content_moderation
     - datetime
     - entity_browser
     - field_group
@@ -117,6 +119,14 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+  field_partner_school_type:
+    weight: 31
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
   field_phone:
     weight: 14
     settings:
