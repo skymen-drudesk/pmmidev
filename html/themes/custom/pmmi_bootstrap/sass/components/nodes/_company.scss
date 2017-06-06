@@ -113,14 +113,14 @@
     border-bottom: solid 2px $ltgrey;
   }
   .block-label, .field--label {
-    font-weight: 800;
+    font-weight: $extrabold;
     font-size: $r18;
     margin-bottom: 4px;
   }
   .footer-reg {
     .view-header p {
       margin-bottom: 10px;
-      font-weight: 800;
+      font-weight: $extrabold;
       font-size: $r18;
     }
     .view-company-trade-shows-contacts {
@@ -259,7 +259,7 @@
   .field--name-field-manufacturers-represented label,
   .field--name-field-business-lines legend {
     color: $blue;
-    font-weight: 800;
+    font-weight: $extrabold;
     font-size: $r20;
   }
   .company-info,
@@ -341,7 +341,7 @@
   .field--name-field-territory-served {
     label {
       font-size: $r15;
-      font-weight: 400;
+      font-weight: $medium;
       color: $blue;
     }
     .input-group-addon {

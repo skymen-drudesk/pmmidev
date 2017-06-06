@@ -41,7 +41,7 @@
   .block-body {
     font-size: $r16;
     line-height: $r21;
-    font-weight: 400;
+    font-weight: $medium;
     color: $blue;
     margin-bottom: 22px;
     @include tablet-max {

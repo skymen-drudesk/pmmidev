@@ -155,7 +155,7 @@ button.slick-arrow.slick-next {
   }
   .block-body {
     margin-bottom: 31px;
-    font-weight: 400;
+    font-weight: $medium;
     @extend .inherited-p;
   }
   @include desktop {

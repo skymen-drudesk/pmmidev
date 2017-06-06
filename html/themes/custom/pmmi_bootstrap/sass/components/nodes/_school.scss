@@ -9,7 +9,7 @@
       font-style: italic;
       &.given-name,
       &.family-name {
-        font-weight: 800;
+        font-weight: $extrabold;
         font-style: normal;
       }
     }
@@ -69,7 +69,7 @@
   .focus {
     margin-bottom: 25px;
     .field-label-inline {
-      font-weight: 800;
+      font-weight: $extrabold;
     }
     @extend .paragraph1;
   }

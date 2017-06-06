@@ -84,7 +84,7 @@
 .headline2 {
   font-size: $r36;
   line-height: $r42;
-  font-weight: 800;
+  font-weight: $extrabold;
   color: $blue;
   font-family: $lato;
   text-transform: none;
@@ -100,7 +100,7 @@
 .headline3 {
   font-size: $r22;
   line-height: 1.18;
-  font-weight: 800;
+  font-weight: $extrabold;
   color: $blue;
   a {
     color: $blue;
@@ -115,12 +115,12 @@
 .headline4 {
   color: $grey;
   text-transform: uppercase;
-  font-weight: 800;
+  font-weight: $extrabold;
   font-size: $r14;
   line-height: $r23;
 }
 .headline-date {
-  font-weight: 800;
+  font-weight: $extrabold;
   font-size: $r16;
   line-height: $r21;
   @include tablet-max {
@@ -131,7 +131,7 @@
   font-size: $r18;
   line-height: $r23;
   color: $dkblue;
-  font-weight: 800;
+  font-weight: $extrabold;
   padding-bottom: 6px;
   border-bottom: 2px solid $mdgrey;
   margin-bottom: 10px;
@@ -143,13 +143,13 @@
   font-size: $r14;
   line-height: $r18;
   color: $grey;
-  font-weight: 800;
+  font-weight: $extrabold;
   text-transform: uppercase;
 }
 .sidehead3 {
   font-size: $r14;
   line-height: $r18;
-  font-weight: 800;
+  font-weight: $extrabold;
 }
 
 // Titles.

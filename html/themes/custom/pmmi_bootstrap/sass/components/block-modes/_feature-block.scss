@@ -70,7 +70,7 @@
       a {
         font-size: $r14;
         line-height: $r15;
-        font-weight: 600;
+        font-weight: $bold;
         padding-left: 20px;
         display: inline-block;
         @extend .fa-chevron-circle-right;
@@ -78,7 +78,7 @@
           float: left;
           margin-left: -20px;
           @extend .fa;
-          font-weight: 400;
+          font-weight: $medium;
         }
       }
     }
