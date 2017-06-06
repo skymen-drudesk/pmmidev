@@ -71,14 +71,6 @@ sub vcl_recv {
         return (synth(200, "Ban added."));
     }
 
-    if (! req.http.Authorization ~ "Basic ZGVtbzpkZW1v" &&
-    req.url ~ "(?i)\.(pdf|asc|dat|txt|doc|xls|ppt|tgz|csv|png|gif|jpeg|jpg|svg|ico|swf|css|map|xml|js)(\?.*)?$") {
-        unset req.http.Authorization;
-    } elseif (! req.http.Authorization ~ "Basic ZGVtbzpkZW1v") {
-        return(synth(401, "Authentication required"));
-    }
-    unset req.http.Authorization;
-
     # Only cache GET and HEAD requests (pass through POST requests).
     if (req.method != "GET" && req.method != "HEAD") {
         return (pass);
@@ -189,14 +181,6 @@ sub vcl_hit {
   else {
     return (fetch);
   }
-}
-
-sub vcl_synth {
-    if (resp.status == 401) {
-        set resp.status = 401;
-        set resp.http.WWW-Authenticate = "Basic";
-        return(deliver);
-    }
 }
 
 # Set a header to track a cache HITs and MISSes.
