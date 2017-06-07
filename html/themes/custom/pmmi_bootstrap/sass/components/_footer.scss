@@ -99,7 +99,7 @@ body > .page-wrapper,
         margin-right: 10px;
         &:before {
           @extend .fa;
-          font-weight: 400;
+          font-weight: $medium;
           line-height: $r15;
           margin-right: 6px;
         }

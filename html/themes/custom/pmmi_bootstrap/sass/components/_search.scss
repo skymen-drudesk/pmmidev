@@ -321,7 +321,7 @@
   .view-search-sales-agent-directory {
     @include container;
     .table > thead:first-child > tr:first-child > th {
-      font-weight: 800;
+      font-weight: $extrabold;
       font-size: $r20;
       color: $blue;
     }
@@ -361,7 +361,7 @@
             margin-left: -20px;
             padding-left: 7px;
             padding-right: 12px;
-            font-weight: 400;
+            font-weight: $medium;
             font-family: FontAwesome;
             content: "\f138";
             color: $twitterblue;
@@ -448,7 +448,7 @@
     border: none;
     border-bottom: 1px solid $mdgrey;
     background: transparent;
-    font-weight: 800;
+    font-weight: $extrabold;
     font-size: $r20;
     color: $blue;
   }
@@ -468,7 +468,7 @@
           a {
             color: $blue;
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: $bold;
             display: block;
             text-overflow: ellipsis;
             white-space: nowrap;
