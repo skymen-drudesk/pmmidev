@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Marks a Page to be re-indexed by the page_manager_search plugin.
+ *
+ * @param int $pid
+ *   The Page ID.
+ */
+function pmmi_page_manager_search_reindex_page_manager_search($pid) {
+  if (\Drupal::moduleHandler()->moduleExists('search')) {
+    // Reindex node context indexed by the node module search plugin.
+    search_mark_for_reindex('page_manager_search', $pid);
+  }
+}
