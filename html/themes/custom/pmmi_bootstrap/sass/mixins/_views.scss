@@ -92,7 +92,7 @@
       @extend .paragraph2;
       margin: 13px 0 20px;
       .field-label-inline {
-        font-weight: 800;
+        font-weight: $extrabold;
       }
     }
   }
@@ -113,7 +113,7 @@
   }
   .date {
     color: $textdark;
-    font-weight: 800;
+    font-weight: $extrabold;
     line-height: $r21;
     margin-bottom: 4px;
   }
@@ -145,7 +145,7 @@
     font-weight: 500;
     margin: 10px 0;
     .field-label-inline {
-      font-weight: 800;
+      font-weight: $extrabold;
     }
   }
   .buttons {

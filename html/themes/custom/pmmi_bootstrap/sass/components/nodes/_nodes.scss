@@ -19,7 +19,7 @@
   @extend .paragraph1;
   margin: 15px 0 30px;
   .field-label-inline {
-    font-weight: 800;
+    font-weight: $extrabold;
   }
 }
 .node-layout {

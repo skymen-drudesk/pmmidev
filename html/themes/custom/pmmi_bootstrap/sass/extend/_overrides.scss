@@ -334,7 +334,7 @@ table tr.error {
   background: none;
   label, .control-label {
     color: $state-danger-text;
-    font-weight: 600;
+    font-weight: $bold;
   }
   input, textarea, select, .uneditable-input {
     color: $input-color;

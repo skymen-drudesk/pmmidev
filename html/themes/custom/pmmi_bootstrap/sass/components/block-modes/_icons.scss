@@ -55,7 +55,7 @@
   .block-body {
     font-size: $r13;
     line-height: $r17;
-    font-weight: 400;
+    font-weight: $medium;
     margin-bottom: 10px;
     @extend .inherited-p;
     p {

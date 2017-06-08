@@ -23,7 +23,7 @@ h1, .h1, h2, .h2, h3, .h3 {
   margin-top: 0;
 }
 strong {
-  font-weight: 800;
+  font-weight: $extrabold;
 }
 // Lists.
 ol, ul {
@@ -229,7 +229,7 @@ table {
       border: none;
       margin: 0;
       color: $mdgrey;
-      font-weight: 600;
+      font-weight: $bold;
       font-size: $r16;
       line-height: $r21;
       &:hover {

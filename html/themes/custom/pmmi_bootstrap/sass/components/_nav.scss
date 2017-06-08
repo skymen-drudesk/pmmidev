@@ -338,7 +338,7 @@
                 margin-top: -8px;
                 font-family: "FontAwesome";
                 content: "\f055";
-                font-weight: 400;
+                font-weight: $medium;
                 color: $ltblue;
               }
               &:hover {
@@ -355,7 +355,7 @@
             }
           }
           & > a {
-            font-weight: 800;
+            font-weight: $extrabold;
           }
         }
       }
@@ -407,7 +407,7 @@
           display: none;
         }
         a {
-          font-weight: 800;
+          font-weight: $extrabold;
           color: $dkgrey;
           .description {
             color: $grey;
@@ -452,7 +452,7 @@
           a {
             text-decoration: none;
             display: block;
-            font-weight: 800;
+            font-weight: $extrabold;
             color: $ltblue;
             padding: 10px;
             border-bottom: 1px solid $mdgrey;
@@ -528,7 +528,7 @@
           display: inline;
           font-size: 14px;
           color: $grey;
-          font-weight: 600;
+          font-weight: $bold;
           padding: 0;
           &:hover {
             background: none;
@@ -795,7 +795,7 @@
       color: $textdark;
       letter-spacing: 2px;
       line-height: $r35;
-      font-weight: 400;
+      font-weight: $medium;
       font-family: $trumpgothicpro;
       @extend .inherited-p;
       p {
