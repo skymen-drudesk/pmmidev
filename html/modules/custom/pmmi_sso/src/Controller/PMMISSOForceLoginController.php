@@ -56,7 +56,7 @@ class PMMISSOForceLoginController implements ContainerInjectionInterface {
     // Check referer is an external site.
     $request = $this->requestStack->getCurrentRequest();
     $referer_host = $request->headers->get('referer');
-    $referer = preg_replace('~^(?:https?://)?(?:www\.)?~i', '', $referer_host);
+    $referer = preg_replace("(^https?://)", "", $referer_host );
     // 'https://pmmi.com' or 'http://pmmi.com/'
     $base = $request->getHttpHost() . $request->getBaseUrl();
     // Example '/about?er=343'.
