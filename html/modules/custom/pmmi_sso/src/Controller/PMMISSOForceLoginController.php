@@ -61,13 +61,7 @@ class PMMISSOForceLoginController implements ContainerInjectionInterface {
     $base = $request->getHttpHost() . $request->getBaseUrl();
     // Example '/about?er=343'.
     $path = preg_replace('/^' . preg_quote($base, '/') . '/', '', $referer);
-    $external = $path === $referer ? FALSE : TRUE;
-    \Drupal::logger('pmmi_sso')->notice("request: $request");
-    \Drupal::logger('pmmi_sso')->notice("referer_host: $referer_host");
-    \Drupal::logger('pmmi_sso')->notice("referer: $referer");
-    \Drupal::logger('pmmi_sso')->notice("base: $base");
-    \Drupal::logger('pmmi_sso')->notice("path: $path");
-    \Drupal::logger('pmmi_sso')->notice("external: $external");
+    $external = $path === $referer ? TRUE : FALSE;
 
     $sso_redirect_data = new PMMISSORedirectData();
     // Set return URI for redirect after Login to SSO.
