@@ -2,8 +2,10 @@
 
 namespace Drupal\pmmi_page_manager_search\Plugin\Search;
 
+use Drupal\Component\Utility\Unicode;
 use Drupal\search\Plugin\SearchIndexingInterface;
 use Drupal\search\Plugin\SearchPluginBase;
+use Drupal\pmmi_page_manager_search\Entity;
 
 /**
  * Handles searching for Page Manager entities using the Search module index.
@@ -45,36 +47,18 @@ class PageManagerSearch extends SearchPluginBase implements SearchIndexingInterf
    * indexing.
    */
   public function updateIndex() {
-    // TODO: Implement updateIndex() method.
+    $page_variants = \Drupal::entityTypeManager()
+      ->getStorage('page_variant')
+      ->loadMultiple();
 
-    // Interpret the cron limit setting as the maximum number of nodes to index
-    // per cron run.
-    $limit = (int) $this->searchSettings->get('index.cron_limit');
+    foreach ($page_variants as $pid => $page_variant) {
+      $page = Entity\PageManagerSearch::load($pid);
+      $sid = pmmi_page_manager_search_encoder($pid);
 
-    $query = db_select('node', 'n', array('target' => 'replica'));
-    $query->addField('n', 'nid');
-    $query->leftJoin('search_dataset', 'sd', 'sd.sid = n.nid AND sd.type = :type', array(':type' => $this->getPluginId()));
-    $query->addExpression('CASE MAX(sd.reindex) WHEN NULL THEN 0 ELSE 1 END', 'ex');
-    $query->addExpression('MAX(sd.reindex)', 'ex2');
-    $query->condition(
-      $query->orConditionGroup()
-        ->where('sd.sid IS NULL')
-        ->condition('sd.reindex', 0, '<>')
-    );
-    $query->orderBy('ex', 'DESC')
-      ->orderBy('ex2')
-      ->orderBy('n.nid')
-      ->groupBy('n.nid')
-      ->range(0, $limit);
-
-    $nids = $query->execute()->fetchCol();
-    if (!$nids) {
-      return;
-    }
-
-    $node_storage = $this->entityManager->getStorage('node');
-    foreach ($node_storage->loadMultiple($nids) as $node) {
-      $this->indexNode($node);
+      // @todo Check if not disabled.
+      if (!empty($page->content)) {
+        search_index($this->getType(), $sid, 'EN', $page->content);
+      }
     }
   }
 
@@ -89,7 +73,7 @@ class PageManagerSearch extends SearchPluginBase implements SearchIndexingInterf
    * @see search_index_clear()
    */
   public function indexClear() {
-    // TODO: Implement indexClear() method.
+    search_index_clear($this->getPluginId());
   }
 
   /**
@@ -104,7 +88,7 @@ class PageManagerSearch extends SearchPluginBase implements SearchIndexingInterf
    * @see search_mark_for_reindex()
    */
   public function markForReindex() {
-    // TODO: Implement markForReindex() method.
+    search_mark_for_reindex($this->getPluginId());
   }
 
   /**
@@ -120,7 +104,15 @@ class PageManagerSearch extends SearchPluginBase implements SearchIndexingInterf
    *   - total: The total number of items to index.
    */
   public function indexStatus() {
-    // TODO: Implement indexStatus() method.
+    $page_variant = \Drupal::entityTypeManager()
+      ->getStorage('page_variant')
+      ->loadMultiple();
+    $total = count($page_variant);
+    $remaining = $total - \Drupal::database()
+        ->query("SELECT COUNT(*) FROM {search_dataset} sd WHERE sd.type = :type AND sd.reindex = 0", [':type' => $this->getPluginId()])
+        ->fetchField();
+
+    return ['remaining' => $remaining, 'total' => $total];
   }
 
   /**
@@ -130,6 +122,33 @@ class PageManagerSearch extends SearchPluginBase implements SearchIndexingInterf
    *   A structured list of search results.
    */
   public function execute() {
-    // TODO: Implement execute() method.
+    $results = [];
+
+    $keys = $this->keywords;
+
+    // Build matching conditions.
+    $query = \Drupal::database()
+      ->select('search_index', 'i', ['target' => 'replica'])
+      ->extend('Drupal\search\SearchQuery')
+      ->extend('Drupal\Core\Database\Query\PagerSelectExtender')
+      ->searchExpression($keys, $this->getType());
+
+    $find = $query
+      ->limit(10)
+      ->execute();
+
+    foreach ($find as $item) {
+      $page = Entity\PageManagerSearch::load($item->sid, TRUE);
+      if (!empty($page)) {
+        $results[] = [
+          'link' => $page->path,
+          'title' => $page->title,
+          'score' => $item->calculated_score,
+          'snippet' => search_excerpt($keys, $page->content, $item->langcode),
+        ];
+      }
+    }
+
+    return $results;
   }
 }
