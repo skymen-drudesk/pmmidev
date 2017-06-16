@@ -72,10 +72,11 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
         $break_year = intval(date("Y")) - 5;
         $options = [];
         $options['All'] = '- Any -';
-        while($current_year > $break_year) {
-          if ($current_year ===  intval(date("Y"))) {
+        while ($current_year > $break_year) {
+          if ($current_year === intval(date("Y"))) {
             $options[intval(date("Y"))] = 'Current';
-          } else {
+          }
+          else {
             $options[$current_year] = $current_year;
           }
           $current_year--;
