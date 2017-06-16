@@ -65,6 +65,28 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
         }
       }
       break;
+
+    case 'views_exposed_form':
+      if ($form['#id'] === 'views-exposed-form-news-search-api-paged') {
+        $current_year = intval(date("Y"));
+        $break_year = intval(date("Y")) - 5;
+        $options = [];
+        $options['All'] = '- Any -';
+        while ($current_year > $break_year) {
+          if ($current_year === intval(date("Y"))) {
+            $options[intval(date("Y"))] = 'Current';
+          }
+          else {
+            $options[$current_year] = $current_year;
+          }
+          $current_year--;
+        }
+        $form['year']['#type'] = 'select';
+        $form['year']['#options'] = $options;
+        $form['year']['#default_value'] = 'All';
+        $form['year']['#attributes']['size'] = 1;
+      }
+      break;
   }
 }
 
