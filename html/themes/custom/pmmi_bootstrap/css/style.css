@@ -18912,9 +18912,9 @@ button.slick-arrow {
   font-weight: bold;
   font-size: 18px;
   transition: 0.6s ease;
-  background-color: initial;
-  border-style: initial;
   border-radius: 0 3px 3px 0;
+  border: 0;
+  background: none;
 }
 
 button.slick-arrow:hover {
@@ -19538,6 +19538,31 @@ button.slick-arrow.slick-next {
     max-width: 280px;
     margin-left: auto;
     margin-right: auto;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .region-top .block.block-views-exposed-filter-blocknews-search-api-paged form .select-wrapper {
+    width: 220px;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1199px) {
+  .region-top .block.block-views-exposed-filter-blocknews-search-api-paged form .select-wrapper {
+    width: 220px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .region-top .block.block-views-exposed-filter-blocknews-search-api-paged form label {
+    margin-right: 3px;
+  }
+  .region-top .block.block-views-exposed-filter-blocknews-search-api-paged form .select-wrapper {
+    width: 175px;
+    margin-right: 10px;
+  }
+  .region-top .block.block-views-exposed-filter-blocknews-search-api-paged form button {
+    min-width: 100px;
   }
 }
 
