@@ -12,6 +12,8 @@ services:
       context: .
       dockerfile: Dockerfile-test
     restart: always
+    environment:
+      VIRTUAL_HOST: pmmistaging.pmmimediagroup.com,staging.pmmi.org
 
   pmmisolr:
     container_name: "${SITE_CODE}_test_solr"
