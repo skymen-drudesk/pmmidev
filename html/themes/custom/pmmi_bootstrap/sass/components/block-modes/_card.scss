@@ -6,10 +6,23 @@
     height: 290px;
     text-align: center;
     position: relative;
+    .ie11 & {
+      transition: 0.5s ease-out;
+      -o-transition: 0.5s ease-out;
+      -ms-transition: 0.5s ease-out;
+
+      transform-style: preserve-3d;
+      -o-transform-style: preserve-3d;
+      -ms-transform-style: preserve-3d;
+
+      backface-visibility: visible;
+      -o-backface-visibility: visible;
+      -ms-backface-visibility: visible;
+    }
   }
   .side {
     transform-style: preserve-3d;
-    transition: transform 0.7s linear;
+    transition: transform 0.5s linear;
     background-color: white;
     position: absolute;
     left: 0;
@@ -21,7 +34,9 @@
     overflow: hidden;
     @include box-shadow(0 1px 6px #8c8888);
     .ie11 & {
-      transition-duration: 0s;
+      backface-visibility: hidden;
+      -o-backface-visibility: hidden;
+      -ms-backface-visibility: visible;
     }
   }
   .image {
@@ -50,6 +65,19 @@
     }
     @extend .inherited-p;
   }
+  .front-side {
+    .ie11 & {
+      transform: rotateY(0deg);
+      -o-transform: rotateY(0deg);
+      -ms-transform: rotateY(0deg);
+
+      animation: stayvisible 0.7s both;
+      -o-animation: stayvisible 0.7s both;
+      -ms-animation: donothing 0.5s;
+      -ms-transition: visibility 0s linear 0.17s;
+      visibility: visible;
+    }
+  }
   .back-side {
     transform: rotateY(-180deg);
     font-size: 0;
@@ -71,15 +99,52 @@
         display: inline-block;
       }
     }
+    .ie11 & {
+      transform: rotateY(-180deg);
+      -o-transform: rotateY(-180deg);
+      -ms-transform: rotateY(-180deg);
+
+      animation: stayvisible 0.5s both;
+      -o-animation: stayvisible 0.5s both;
+      -ms-animation: donothing 0.5s;
+      -ms-transition: visibility 0s linear 0.17s;
+      visibility: hidden;
+    }
   }
   &:hover {
+    .flipper {
+      .ie11 & {
+        transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        -ms-transform: rotateY(180deg);
+      }
+    }
     .front-side {
       transform: rotateY(180deg);
+      .ie11 & {
+        transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+
+        animation: stayvisible 0.5s both;
+        -o-animation: stayvisible 0.5s both;
+        -ms-animation: donothing 0.5s;
+        -ms-transition: visibility 0s linear 0.17s;
+        visibility: hidden;
+      }
     }
     .back-side {
       transform: rotateY(0deg);
       .ie11 & {
-        -ms-backface-visibility: visible;
+        transform: rotateY(-180deg);
+        -o-transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg);
+
+        animation: stayvisible 0.5s both;
+        -o-animation: stayvisible 0.5s both;
+        -ms-animation: donothing 0.5s;
+        -ms-transition: visibility 0s linear 0.17s;
+        visibility: visible;
       }
     }
   }
@@ -227,3 +292,4 @@
     }
   }
 }
+

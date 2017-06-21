@@ -17620,12 +17620,26 @@ div.view {
   position: relative;
 }
 
+.ie11 .block-card .flipper {
+  transition: 0.5s ease-out;
+  -o-transition: 0.5s ease-out;
+  -ms-transition: 0.5s ease-out;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -webkit-backface-visibility: visible;
+          backface-visibility: visible;
+  -o-backface-visibility: visible;
+  -ms-backface-visibility: visible;
+}
+
 .block-card .side {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  transition: -webkit-transform 0.7s linear;
-  transition: transform 0.7s linear;
-  transition: transform 0.7s linear, -webkit-transform 0.7s linear;
+  transition: -webkit-transform 0.5s linear;
+  transition: transform 0.5s linear;
+  transition: transform 0.5s linear, -webkit-transform 0.5s linear;
   background-color: white;
   position: absolute;
   left: 0;
@@ -17640,7 +17654,10 @@ div.view {
 }
 
 .ie11 .block-card .side {
-  transition-duration: 0s;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  -ms-backface-visibility: visible;
 }
 
 .block-card .image {
@@ -17681,6 +17698,19 @@ div.view {
   }
 }
 
+.ie11 .block-card .front-side {
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  -webkit-animation: stayvisible 0.7s both;
+          animation: stayvisible 0.7s both;
+  -o-animation: stayvisible 0.7s both;
+  -ms-animation: donothing 0.5s;
+  -ms-transition: visibility 0s linear 0.17s;
+  visibility: visible;
+}
+
 .block-card .back-side {
   -webkit-transform: rotateY(-180deg);
           transform: rotateY(-180deg);
@@ -17709,9 +17739,42 @@ div.view {
   display: inline-block;
 }
 
+.ie11 .block-card .back-side {
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  -webkit-animation: stayvisible 0.5s both;
+          animation: stayvisible 0.5s both;
+  -o-animation: stayvisible 0.5s both;
+  -ms-animation: donothing 0.5s;
+  -ms-transition: visibility 0s linear 0.17s;
+  visibility: hidden;
+}
+
+.ie11 .block-card:hover .flipper {
+  -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+}
+
 .block-card:hover .front-side {
   -webkit-transform: rotateY(180deg);
           transform: rotateY(180deg);
+}
+
+.ie11 .block-card:hover .front-side {
+  -webkit-transform: rotateY(0deg);
+          transform: rotateY(0deg);
+  -o-transform: rotateY(0deg);
+  -ms-transform: rotateY(0deg);
+  -webkit-animation: stayvisible 0.5s both;
+          animation: stayvisible 0.5s both;
+  -o-animation: stayvisible 0.5s both;
+  -ms-animation: donothing 0.5s;
+  -ms-transition: visibility 0s linear 0.17s;
+  visibility: hidden;
 }
 
 .block-card:hover .back-side {
@@ -17720,7 +17783,16 @@ div.view {
 }
 
 .ie11 .block-card:hover .back-side {
-  -ms-backface-visibility: visible;
+  -webkit-transform: rotateY(-180deg);
+          transform: rotateY(-180deg);
+  -o-transform: rotateY(-180deg);
+  -ms-transform: rotateY(-180deg);
+  -webkit-animation: stayvisible 0.5s both;
+          animation: stayvisible 0.5s both;
+  -o-animation: stayvisible 0.5s both;
+  -ms-animation: donothing 0.5s;
+  -ms-transition: visibility 0s linear 0.17s;
+  visibility: visible;
 }
 
 @media screen and (min-width: 1024px) and (max-width: 1199px) {
