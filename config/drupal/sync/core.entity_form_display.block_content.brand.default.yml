@@ -27,6 +27,7 @@ content:
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
+    region: content
   field_button:
     weight: 4
     settings:
@@ -41,6 +42,7 @@ content:
         accesskey: false
     third_party_settings: {  }
     type: link_attributes
+    region: content
   field_head:
     weight: 2
     settings:
@@ -48,6 +50,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_logo:
     weight: 3
     settings:
@@ -55,6 +58,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
   info:
     type: string_textfield
     weight: 0
@@ -62,4 +66,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden: {  }

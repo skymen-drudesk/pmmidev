@@ -82,6 +82,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_block_2:
     type: pmmi_entity_reference_entity_view
     settings:
@@ -97,6 +98,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_block_3:
     type: pmmi_entity_reference_entity_view
     settings:
@@ -112,42 +114,49 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_block_plugin_1:
     type: entity_reference_rendered_block_plugin
     weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_block_plugin_2:
     type: entity_reference_rendered_block_plugin
     weight: 5
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_block_plugin_3:
     type: entity_reference_rendered_block_plugin
     weight: 8
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_block_views_1:
     type: viewfield_with_more_link
     weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_block_views_2:
     type: viewfield_with_more_link
     weight: 6
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_block_views_3:
     type: viewfield_with_more_link
     weight: 9
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_button:
     type: link
     weight: 10
@@ -166,6 +175,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_head:
     weight: 0
     label: hidden
@@ -201,6 +211,7 @@ content:
             fi: false
             fi-def-at: false
     type: string
+    region: content
 hidden:
   field_block_4: true
   field_block_5: true

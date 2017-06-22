@@ -62,6 +62,7 @@ content:
             lb-col: false
             classes: {  }
     type: link
+    region: content
   field_dates:
     weight: 0
     label: hidden
@@ -81,6 +82,7 @@ content:
             lb-col: false
             classes: {  }
     type: daterange_event_custom
+    region: content
   field_head:
     weight: 1
     label: hidden
@@ -95,6 +97,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
+    region: content
   field_hosted_by:
     weight: 3
     label: inline
@@ -109,6 +112,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
+    region: content
   field_link:
     type: link
     weight: 5
@@ -127,6 +131,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_location:
     type: address_default
     weight: 2
@@ -140,12 +145,14 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_locations:
     weight: 8
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: address_default
+    region: content
   field_members_only:
     type: views_field_formatter
     weight: 0
@@ -162,6 +169,7 @@ content:
       multiple: false
       implode_character: ''
     third_party_settings: {  }
+    region: content
 hidden:
   field_event_types: true
   field_exclude_main_calendar: true

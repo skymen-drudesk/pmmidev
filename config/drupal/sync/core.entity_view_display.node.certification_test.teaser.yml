@@ -32,8 +32,13 @@ content:
     settings:
       trim_length: 600
     third_party_settings: {  }
+    region: content
+  content_moderation_control:
+    weight: -20
+    region: content
   links:
     weight: 100
+    region: content
 hidden:
   field_accordions: true
   field_cert_test_coming: true

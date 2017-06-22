@@ -82,6 +82,7 @@ content:
     weight: 1
     label: hidden
     third_party_settings: {  }
+    region: content
   field_block_2:
     type: pmmi_entity_reference_entity_view
     weight: 2
@@ -90,6 +91,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
   field_block_3:
     type: pmmi_entity_reference_entity_view
     weight: 3
@@ -98,6 +100,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
   field_block_4:
     type: pmmi_entity_reference_entity_view
     weight: 4
@@ -106,6 +109,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
   field_block_5:
     type: pmmi_entity_reference_entity_view
     weight: 5
@@ -114,6 +118,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
   field_block_6:
     type: pmmi_entity_reference_entity_view
     weight: 6
@@ -122,6 +127,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
   field_block_plugin_1:
     weight: 7
     label: hidden
@@ -135,6 +141,7 @@ content:
             lb-col: false
             classes: {  }
     type: entity_reference_rendered_block_plugin
+    region: content
   field_block_plugin_2:
     type: entity_reference_rendered_block_plugin
     weight: 8
@@ -148,6 +155,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_block_plugin_3:
     type: entity_reference_rendered_block_plugin
     weight: 9
@@ -161,6 +169,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_block_plugin_4:
     type: entity_reference_rendered_block_plugin
     weight: 10
@@ -174,6 +183,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_block_plugin_5:
     type: entity_reference_rendered_block_plugin
     weight: 11
@@ -187,6 +197,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_block_plugin_6:
     type: entity_reference_rendered_block_plugin
     weight: 12
@@ -200,6 +211,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_block_views_1:
     weight: 13
     label: hidden
@@ -213,6 +225,7 @@ content:
             lb-col: false
             classes: {  }
     type: viewfield_with_more_link
+    region: content
   field_block_views_2:
     type: viewfield_with_more_link
     weight: 14
@@ -225,6 +238,7 @@ content:
           settings:
             lb: ''
             lb-col: false
+    region: content
   field_block_views_3:
     type: viewfield_with_more_link
     weight: 15
@@ -237,6 +251,7 @@ content:
           settings:
             lb: ''
             lb-col: false
+    region: content
   field_block_views_4:
     type: viewfield_with_more_link
     weight: 16
@@ -249,6 +264,7 @@ content:
           settings:
             lb: ''
             lb-col: false
+    region: content
   field_block_views_5:
     type: viewfield_with_more_link
     weight: 17
@@ -261,6 +277,7 @@ content:
           settings:
             lb: ''
             lb-col: false
+    region: content
   field_block_views_6:
     type: viewfield_with_more_link
     weight: 18
@@ -273,6 +290,7 @@ content:
           settings:
             lb: ''
             lb-col: false
+    region: content
   field_button:
     weight: 19
     label: hidden
@@ -291,6 +309,7 @@ content:
             lb-col: false
             classes: {  }
     type: link
+    region: content
   field_head:
     weight: 0
     label: hidden
@@ -326,6 +345,7 @@ content:
             fi: false
             fi-def-at: false
     type: string
+    region: content
 hidden:
   field_block_select_1: true
   field_block_select_2: true

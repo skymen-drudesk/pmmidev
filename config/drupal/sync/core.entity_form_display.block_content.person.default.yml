@@ -23,6 +23,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_image:
     weight: 3
     settings:
@@ -30,6 +31,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
   field_job_title:
     weight: 5
     settings:
@@ -37,6 +39,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_name:
     weight: 4
     settings:
@@ -44,6 +47,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   info:
     type: string_textfield
     weight: -5
@@ -51,4 +55,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden: {  }

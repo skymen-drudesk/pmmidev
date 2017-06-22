@@ -53,6 +53,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_location:
     type: address_default
     weight: 3
@@ -71,6 +72,7 @@ content:
         type: field
         destination: field_buttons
         advanced: {  }
+    region: content
   field_logo:
     type: responsive_image
     weight: 0
@@ -91,6 +93,7 @@ content:
         type: field
         destination: field_buttons
         advanced: {  }
+    region: content
   field_show_dates:
     type: daterange_event_custom
     weight: 2
@@ -115,6 +118,7 @@ content:
         type: field
         destination: field_buttons
         advanced: {  }
+    region: content
 hidden:
   body: true
   field_buttons: true

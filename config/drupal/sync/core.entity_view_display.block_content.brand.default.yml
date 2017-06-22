@@ -41,6 +41,7 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_button:
     weight: 2
     label: hidden
@@ -52,6 +53,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_head:
     weight: 3
     label: above
@@ -59,6 +61,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_logo:
     weight: 1
     label: hidden
@@ -74,4 +77,5 @@ content:
             lb-col: false
             classes: {  }
     type: responsive_image
+    region: content
 hidden: {  }

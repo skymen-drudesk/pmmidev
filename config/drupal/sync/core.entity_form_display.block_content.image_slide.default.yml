@@ -49,6 +49,7 @@ content:
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
+    region: content
   field_button:
     weight: 7
     settings:
@@ -63,6 +64,7 @@ content:
         accesskey: false
     third_party_settings: {  }
     type: link_attributes
+    region: content
   field_head:
     weight: 4
     settings:
@@ -70,6 +72,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_image:
     weight: 11
     settings:
@@ -82,11 +85,13 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: entity_browser_file
+    region: content
   field_slide_type:
     weight: 10
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
   field_subhead:
     weight: 5
     settings:
@@ -94,6 +99,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_video:
     weight: 12
     settings:
@@ -108,12 +114,14 @@ content:
       uri_scheme: public
     third_party_settings: {  }
     type: video_embed
+    region: content
   field_weight:
     weight: 9
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   info:
     type: string_textfield
     weight: -5
@@ -121,4 +129,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden: {  }

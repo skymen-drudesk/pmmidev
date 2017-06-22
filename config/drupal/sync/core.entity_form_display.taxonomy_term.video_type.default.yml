@@ -23,6 +23,7 @@ content:
       placeholder: ''
       rows: 5
     third_party_settings: {  }
+    region: content
   field_head:
     weight: 1
     settings:
@@ -30,6 +31,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_logo:
     weight: 3
     settings:
@@ -42,6 +44,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: entity_browser_file
+    region: content
   name:
     type: string_textfield
     weight: 0
@@ -49,9 +52,11 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   path:
     type: path
     weight: 4
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden: {  }

@@ -43,6 +43,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
+    region: content
   field_image:
     weight: 1
     label: hidden
@@ -58,4 +59,5 @@ content:
             lb-col: false
             classes: {  }
     type: responsive_image
+    region: content
 hidden: {  }

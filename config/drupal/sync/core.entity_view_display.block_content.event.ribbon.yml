@@ -61,6 +61,7 @@ content:
             lb-col: false
             classes: {  }
     type: daterange_event_ribbon_custom
+    region: content
   field_head:
     weight: 0
     label: hidden
@@ -68,6 +69,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_hosted_by:
     type: string
     weight: 0
@@ -82,6 +84,7 @@ content:
             lb: 'Hosted by:'
             lb-col: false
             classes: {  }
+    region: content
   field_link:
     type: link
     weight: 0
@@ -93,12 +96,15 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+    region: content
   field_location:
     type: address_default
     weight: 0
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   field_button: true
   field_event_types: true
+  field_exclude_main_calendar: true

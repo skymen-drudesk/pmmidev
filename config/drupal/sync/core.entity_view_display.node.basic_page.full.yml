@@ -58,12 +58,17 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
+    region: content
+  content_moderation_control:
+    weight: -20
+    region: content
   field_image_header:
     type: entity_reference_rendered_block_plugin
     weight: 0
     label: above
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   field_meta_tags: true
   field_page_name: true

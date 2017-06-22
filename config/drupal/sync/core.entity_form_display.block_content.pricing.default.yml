@@ -20,6 +20,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_pricings:
     weight: 3
     settings:
@@ -32,6 +33,7 @@ content:
       override_labels: 0
     third_party_settings: {  }
     type: pmmi_inline_entity_form_complex
+    region: content
   info:
     type: string_textfield
     weight: 0
@@ -39,4 +41,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden: {  }

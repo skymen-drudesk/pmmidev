@@ -28,6 +28,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: entity_browser_file
+    region: content
   field_link:
     weight: 6
     settings:
@@ -42,6 +43,7 @@ content:
         accesskey: false
     third_party_settings: {  }
     type: link_attributes
+    region: content
   info:
     type: string_textfield
     weight: -5
@@ -49,4 +51,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden: {  }

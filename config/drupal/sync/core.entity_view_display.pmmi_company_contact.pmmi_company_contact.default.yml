@@ -23,12 +23,14 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_email:
     weight: 3
     label: above
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: content
   field_name:
     weight: 1
     label: above
@@ -36,6 +38,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_title:
     weight: 2
     label: above
@@ -43,6 +46,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_trade_show:
     weight: 5
     label: above
@@ -50,6 +54,7 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   name:
     label: above
     type: string
@@ -57,10 +62,12 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    region: content
   user_id:
     label: hidden
     type: author
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden: {  }

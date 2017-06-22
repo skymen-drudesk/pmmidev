@@ -47,6 +47,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
+    region: content
   field_icon_1:
     weight: 1
     label: hidden
@@ -55,6 +56,7 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
   field_icon_2:
     weight: 2
     label: hidden
@@ -63,6 +65,7 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
   field_icon_3:
     weight: 3
     label: hidden
@@ -71,6 +74,7 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
   field_icon_4:
     weight: 4
     label: hidden
@@ -79,4 +83,5 @@ content:
       view_mode: default
     third_party_settings: {  }
     type: entity_reference_entity_view
+    region: content
 hidden: {  }

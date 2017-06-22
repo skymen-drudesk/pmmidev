@@ -99,6 +99,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
+  content_moderation_control:
+    weight: -20
+    region: content
   field_date:
     type: datetime_default
     weight: 1
@@ -114,6 +118,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_news_category:
     type: entity_reference_label
     weight: 0
@@ -128,6 +133,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
 hidden:
   field_author: true
   field_author_title: true

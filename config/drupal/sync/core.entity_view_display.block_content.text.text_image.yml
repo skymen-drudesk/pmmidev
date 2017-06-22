@@ -55,6 +55,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_button:
     type: link
     weight: 3
@@ -66,6 +67,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+    region: content
   field_head:
     weight: 0
     label: hidden
@@ -80,6 +82,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
+    region: content
   field_image:
     weight: 2
     label: hidden
@@ -95,6 +98,7 @@ content:
             lb-col: false
             classes: {  }
     type: image
+    region: content
   field_link:
     type: link
     weight: 4
@@ -106,5 +110,6 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
+    region: content
 hidden:
   field_center_text: true

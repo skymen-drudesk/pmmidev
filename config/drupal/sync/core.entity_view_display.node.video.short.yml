@@ -66,6 +66,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
+  content_moderation_control:
+    weight: -20
+    region: content
   field_video:
     weight: 0
     label: hidden
@@ -81,6 +85,7 @@ content:
             lb-col: false
             classes: {  }
     type: video_embed_thumbnail
+    region: content
 hidden:
   field_date: true
   field_featured_speaker: true

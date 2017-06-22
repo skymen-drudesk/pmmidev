@@ -51,6 +51,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_head:
     weight: 1
     label: hidden
@@ -65,6 +66,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
+    region: content
   field_image:
     weight: 0
     label: hidden
@@ -80,6 +82,7 @@ content:
             lb-col: false
             classes: {  }
     type: responsive_image
+    region: content
 hidden:
   field_button: true
   field_slide_type: true
