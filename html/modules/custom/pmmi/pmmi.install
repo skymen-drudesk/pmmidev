@@ -81,3 +81,16 @@ function pmmi_update_8001() {
     }
   }
 }
+
+/**
+ * Delete field_link from Event block.
+ */
+function pmmi_update_8002() {
+  $entityManager = \Drupal::service('entity.manager');
+  $fields = $entityManager->getFieldDefinitions('block_content', 'event');
+  if (!empty($fields['field_link'])) {
+    $field = $fields['field_link'];
+    $field->delete();
+    drupal_set_message($this->t('Field was successfully deleted'));
+  }
+}

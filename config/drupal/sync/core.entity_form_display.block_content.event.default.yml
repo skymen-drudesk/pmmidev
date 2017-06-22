@@ -10,7 +10,6 @@ dependencies:
     - field.field.block_content.event.field_exclude_main_calendar
     - field.field.block_content.event.field_head
     - field.field.block_content.event.field_hosted_by
-    - field.field.block_content.event.field_link
     - field.field.block_content.event.field_location
   module:
     - address
@@ -68,20 +67,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-  field_link:
-    type: link_attributes
-    weight: 6
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-      enabled_attributes:
-        id: false
-        name: false
-        target: true
-        rel: true
-        class: true
-        accesskey: false
-    third_party_settings: {  }
   field_location:
     type: address_default
     weight: 7
