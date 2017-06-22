@@ -1,0 +1,44 @@
+uuid: a214415c-0975-44e6-b9a0-ecb1f55945bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.company
+  module:
+    - content_moderation
+id: sales_agent_admin
+label: 'Sales Agent Admin'
+states:
+  draft:
+    label: Draft
+    weight: -5
+  published:
+    label: Published
+    weight: 0
+transitions:
+  create_new_draft:
+    label: 'Create New Draft'
+    from:
+      - draft
+      - published
+    to: draft
+    weight: 0
+  publish:
+    label: Publish
+    from:
+      - draft
+      - published
+    to: published
+    weight: 1
+type: content_moderation
+type_settings:
+  states:
+    draft:
+      published: false
+      default_revision: false
+    published:
+      published: true
+      default_revision: true
+  entity_types:
+    node:
+      - company
