@@ -81,3 +81,15 @@ function pmmi_update_8001() {
     }
   }
 }
+
+/**
+ * Delete field_button from Event block.
+ */
+function pmmi_update_8002() {
+  $entityManager = \Drupal::service('entity.manager');
+  $fields = $entityManager->getFieldDefinitions('block_content', 'event');
+  if (!empty($fields['field_button'])) {
+    $field = $fields['field_button'];
+    $field->delete();
+  }
+}
