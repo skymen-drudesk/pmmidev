@@ -4,12 +4,12 @@ status: true
 dependencies:
   config:
     - block_content.type.event
-    - field.field.block_content.event.field_button
     - field.field.block_content.event.field_dates
     - field.field.block_content.event.field_event_types
     - field.field.block_content.event.field_exclude_main_calendar
     - field.field.block_content.event.field_head
     - field.field.block_content.event.field_hosted_by
+    - field.field.block_content.event.field_link
     - field.field.block_content.event.field_location
   module:
     - address
@@ -21,20 +21,6 @@ targetEntityType: block_content
 bundle: event
 mode: default
 content:
-  field_button:
-    weight: 4
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-      enabled_attributes:
-        id: false
-        name: false
-        target: true
-        rel: true
-        class: true
-        accesskey: false
-    third_party_settings: {  }
-    type: link_attributes
   field_dates:
     weight: 2
     settings: {  }
@@ -67,6 +53,20 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+  field_link:
+    type: link_attributes
+    weight: 6
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+      enabled_attributes:
+        id: false
+        name: false
+        target: true
+        rel: true
+        class: true
+        accesskey: false
+    third_party_settings: {  }
   field_location:
     type: address_default
     weight: 7
