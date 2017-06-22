@@ -238,7 +238,7 @@ function pmmi_sales_agent_widget_moderation_state_process_actions($element, Form
 
     // If current state is 'Draft', it means that sales agent added new changes.
     // PMMI should review and approve or reject the changes.
-    $current_state = $node->get('moderation_state')->getValue()[0]['target_id'] ?: '';
+    $current_state = $node->get('moderation_state')->getValue()[0]['value'] ?: '';
     if (!$form['#new'] && $current_state == 'draft') {
       $form['actions']['moderation_state_published']['#value'] = t('Approve');
       $form['actions']['moderation_state_published']['#submit'][] = 'pmmi_sales_agent_notify_sales_agent';
