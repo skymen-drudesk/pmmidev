@@ -24,8 +24,8 @@ selection_display_configuration:
   display: thumbnail
   display_settings:
     image_style: file_entity_browser_small
-  selection_hidden: true
   select_text: 'Use selected'
+  selection_hidden: true
 widget_selector: tabs
 widget_selector_configuration: {  }
 widgets:
@@ -34,6 +34,7 @@ widgets:
       view: file_entity_browser
       view_display: entity_browser_1
       submit_text: 'Select entities'
+      auto_select: false
     uuid: a4ad947c-9669-497c-9988-24351955a02f
     weight: 1
     label: 'Files listing'
@@ -42,8 +43,8 @@ widgets:
     settings:
       upload_location: 'public://'
       dropzone_description: 'Click or drop files here to upload them'
-      extensions: 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp'
       max_filesize: 2M
+      extensions: 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp'
       submit_text: 'Select entities'
     uuid: 735d146c-a4b2-4327-a057-d109e0905e05
     weight: 0
