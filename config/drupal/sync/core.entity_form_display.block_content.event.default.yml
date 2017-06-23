@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - block_content.type.event
-    - field.field.block_content.event.field_button
     - field.field.block_content.event.field_dates
     - field.field.block_content.event.field_event_types
     - field.field.block_content.event.field_exclude_main_calendar
@@ -22,21 +21,6 @@ targetEntityType: block_content
 bundle: event
 mode: default
 content:
-  field_button:
-    weight: 4
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-      enabled_attributes:
-        id: false
-        name: false
-        target: true
-        rel: true
-        class: true
-        accesskey: false
-    third_party_settings: {  }
-    type: link_attributes
-    region: content
   field_dates:
     weight: 2
     settings: {  }

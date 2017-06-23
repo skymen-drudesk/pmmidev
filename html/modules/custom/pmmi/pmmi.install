@@ -83,6 +83,7 @@ function pmmi_update_8001() {
 }
 
 /**
+<<<<<<< HEAD
  * Set module PMMI module weight so updates happen first.
  */
 function pmmi_update_8002() {
@@ -100,17 +101,30 @@ function pmmi_update_8002() {
  *
  * The recreation of the workflow is handled during the configuration import.
  */
-function pmmi_update_8003() {
-  $entity_manage = \Drupal::entityTypeManager();
-  // Load all content_moderation_state entities.
-  $cms_entities = $entity_manage
-    ->getStorage('content_moderation_state')
-    ->loadMultiple();
-  // Delete all content_moderation_state entities.
-  $entity_manage
-    ->getStorage('content_moderation_state')
-    ->delete($cms_entities);
+function pmmi_update_8003()
+{
+    $entity_manage = \Drupal::entityTypeManager();
+    // Load all content_moderation_state entities.
+    $cms_entities = $entity_manage
+        ->getStorage('content_moderation_state')
+        ->loadMultiple();
+    // Delete all content_moderation_state entities.
+    $entity_manage
+        ->getStorage('content_moderation_state')
+        ->delete($cms_entities);
 
-  // Uninstall content_moderation module.
-  \Drupal::service('module_installer')->uninstall(['content_moderation']);
+    // Uninstall content_moderation module.
+    \Drupal::service('module_installer')->uninstall(['content_moderation']);
+}
+
+/**
+ * Delete field_button from Event block.
+ */
+function pmmi_update_8004() {
+  $entityManager = \Drupal::service('entity.manager');
+  $fields = $entityManager->getFieldDefinitions('block_content', 'event');
+  if (!empty($fields['field_button'])) {
+    $field = $fields['field_button'];
+    $field->delete();
+  }
 }
