@@ -9,20 +9,17 @@ use Drupal\Component\Utility\Unicode;
  */
 function pmmi_page_manager_search_reindex_page_manager_search($pid) {
   if (\Drupal::moduleHandler()->moduleExists('search')) {
-    // Reindex node context indexed by the node module search plugin.
     search_mark_for_reindex('page_manager_search', $pid);
   }
 }
 
 /**
- * Helper function; Convert Page manager page machine name to a decimal
- * conversion of the MD5 hash.
+ * Helper function.
+ * Convert Page manager page machine name to a decimal conversion of the MD5 hash.
+ *
+ * @todo Find better solution.
  */
 function pmmi_page_manager_search_machine_name_to_dec($machine_name, $length = 9) {
-  // As not every subtask has a PID we need to convert the subtask id to a
-  // decimal reprisentation. I'm uncertain of whether the truncated decimal
-  // conversion of an MD5 hash is unique enough, but I have limited
-  // alternatives.
   $md5 = md5($machine_name);
   $dec = base_convert($md5, 16, 10);
 
@@ -31,25 +28,25 @@ function pmmi_page_manager_search_machine_name_to_dec($machine_name, $length = 9
 
 
 /**
- * Helper functon; Get Page manager page(s) by decimal conversion of MD5 hash.
+ * Helper function.
+ * Get Page manager page(s) by decimal conversion of MD5 hash.
+ *
+ * @param null $dec
+ * @param int $length
+ *
+ * @return array|mixed
  */
 function pmmi_page_manager_search_get_pages_by_dec($dec = NULL, $length = 9) {
   $items = [];
 
-  $pages = \Drupal::entityTypeManager()->getStorage('page_variant')->loadMultiple();
-  foreach($pages as $page_variant_id => $page_variant) {
+  $pages = \Drupal::entityTypeManager()
+    ->getStorage('page_variant')
+    ->loadMultiple();
+
+  foreach ($pages as $page_variant_id => $page_variant) {
     $sid = pmmi_page_manager_search_machine_name_to_dec($page_variant_id);
     $items[$sid] = $page_variant;
   }
 
   return !is_null($dec) && isset($items[$dec]) ? $items[$dec] : $items;
-}
-
-function pmmi_page_manager_search_encoder($string) {
-  return join(array_map(function ($n) { return sprintf('%03d', $n); },
-    unpack('C*', $string)));
-}
-
-function pmmi_page_manager_search_decoder($number) {
-  return join(array_map('chr', str_split($number, 3)));
 }
