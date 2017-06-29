@@ -64,14 +64,13 @@ class PageManagerSearchStorage extends ContentEntityStorageBase implements Entit
    * {@inheritdoc}
    */
   protected function has($id, EntityInterface $entity) {
-    return parent::has($id, $entity);
   }
 
   /**
    * {@inheritdoc}
    */
   protected function getQueryServiceName() {
-    return parent::getQueryServiceName();
+    return 'entity.query.null';
   }
 
   /**
