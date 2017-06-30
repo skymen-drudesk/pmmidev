@@ -93,6 +93,14 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
         array_unshift($form['#submit'], 'pmmi_forms_custom_filter_by_year_submit');
       }
 
+      if ($form['#id'] === 'views-exposed-form-search-page-block-1') {
+        $form['page_type']['#options']['All'] = t('All');
+        $form['page_type']['#weight'] = 10;
+
+        // Attach library for hiding unnecessary legend element;
+        $form['#attached']['library'][] = 'pmmi_forms/pmmi_forms';
+      }
+
       break;
   }
 }
