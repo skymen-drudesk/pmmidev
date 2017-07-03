@@ -96,8 +96,71 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       if ($form['#id'] === 'views-exposed-form-search-page-block-1') {
         $form['page_type']['#options']['All'] = t('All');
         $form['page_type']['#weight'] = 10;
+        $form['page_type']['#attributes']['style'] = 'display: none;';
 
-        // Attach library for hiding unnecessary legend element;
+        // Add pseudo checkboxes for converting radio elements to checkboxes.
+        // Default checkboxes do not allow to use both conditions there is conflict
+        // between them (e.g. Is one of `Article` and Is none of `Article`).
+        $form['page_types'] = [
+          '#type' => 'checkboxes',
+          '#options' => [
+            'press_releases' => 'Press Releases',
+            'pages' => 'Pages',
+          ],
+          '#default_value' => ['pages', 'press_releases'],
+        ];
+
+        // Set `All` if both checkboxes is checked or unchecked.
+        $form['page_type']['All']['#states'] = [
+          'checked' => [
+            [
+              ':input[name="page_types[press_releases]"]' => [
+                'checked' => TRUE,
+              ],
+              ':input[name="page_types[pages]"]' => [
+                'checked' => TRUE,
+              ],
+            ],
+            [
+              ':input[name="page_types[press_releases]"]' => [
+                'checked' => FALSE,
+              ],
+              ':input[name="page_types[pages]"]' => [
+                'checked' => FALSE,
+              ],
+            ],
+
+          ],
+        ];
+
+        // Set radio `Press Releases` checked if appropriate checkbox is set and
+        // another is not selected.
+        $form['page_type'][1]['#states'] = [
+          'checked' => [
+            ':input[name="page_types[press_releases]"]' => [
+              'checked' => TRUE,
+            ],
+            ':input[name="page_types[pages]"]' => [
+              'checked' => FALSE,
+            ],
+          ],
+        ];
+
+        // Set radio `Pages` checked if appropriate checkbox is set and another
+        // is not selected.
+        $form['page_type'][2]['#states'] = [
+          'checked' => [
+            ':input[name="page_types[pages]"]' => [
+              'checked' => TRUE,
+            ],
+            ':input[name="page_types[press_releases]"]' => [
+              'checked' => FALSE,
+            ],
+          ],
+        ];
+
+        // Attach library for hiding unnecessary legend element and aligning
+        // checkboxes;
         $form['#attached']['library'][] = 'pmmi_forms/pmmi_forms';
       }
 
