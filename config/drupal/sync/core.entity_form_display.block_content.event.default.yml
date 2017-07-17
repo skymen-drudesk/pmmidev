@@ -4,7 +4,6 @@ status: true
 dependencies:
   config:
     - block_content.type.event
-    - field.field.block_content.event.field_button
     - field.field.block_content.event.field_dates
     - field.field.block_content.event.field_event_types
     - field.field.block_content.event.field_exclude_main_calendar
@@ -22,25 +21,12 @@ targetEntityType: block_content
 bundle: event
 mode: default
 content:
-  field_button:
-    weight: 4
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-      enabled_attributes:
-        id: false
-        name: false
-        target: true
-        rel: true
-        class: true
-        accesskey: false
-    third_party_settings: {  }
-    type: link_attributes
   field_dates:
     weight: 2
     settings: {  }
     third_party_settings: {  }
     type: daterange_default
+    region: content
   field_event_types:
     weight: 5
     settings:
@@ -49,11 +35,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
   field_exclude_main_calendar:
     weight: 8
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
   field_head:
     weight: 1
     settings:
@@ -61,6 +49,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_hosted_by:
     weight: 3
     settings:
@@ -68,6 +57,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_link:
     type: link_attributes
     weight: 6
@@ -82,12 +72,14 @@ content:
         class: true
         accesskey: false
     third_party_settings: {  }
+    region: content
   field_location:
     type: address_default
     weight: 7
     settings:
       default_country: null
     third_party_settings: {  }
+    region: content
   info:
     type: string_textfield
     weight: 0
@@ -95,4 +87,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden: {  }

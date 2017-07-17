@@ -33,6 +33,9 @@ targetEntityType: node
 bundle: video
 mode: video_thumbnail
 content:
+  content_moderation_control:
+    weight: -20
+    region: content
   field_video:
     weight: 0
     label: hidden
@@ -48,6 +51,7 @@ content:
             lb-col: false
             classes: {  }
     type: video_embed_thumbnail
+    region: content
 hidden:
   body: true
   field_date: true

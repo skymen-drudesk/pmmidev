@@ -53,6 +53,7 @@ content:
     weight: 3
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_accordions:
     type: entity_reference_entity_view
     weight: 7
@@ -69,6 +70,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_button:
     weight: 5
     label: hidden
@@ -87,6 +89,7 @@ content:
             lb-col: false
             classes: {  }
     type: link
+    region: content
   field_head:
     weight: 0
     label: hidden
@@ -94,6 +97,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_image:
     weight: 2
     label: hidden
@@ -109,6 +113,7 @@ content:
             lb-col: false
             classes: {  }
     type: responsive_image
+    region: content
   field_link:
     type: link
     weight: 6
@@ -127,6 +132,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_resources_block:
     type: pmmi_entity_reference_entity_view
     weight: 4
@@ -135,6 +141,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
   field_video_node:
     weight: 1
     label: hidden
@@ -150,4 +157,5 @@ content:
             lb-col: false
             classes: {  }
     type: entity_reference_entity_view
+    region: content
 hidden: {  }

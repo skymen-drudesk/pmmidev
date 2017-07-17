@@ -23,6 +23,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
   field_email:
     weight: 8
     settings:
@@ -30,6 +31,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: email_default
+    region: content
   field_name:
     weight: 6
     settings:
@@ -37,6 +39,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_title:
     weight: 7
     settings:
@@ -44,6 +47,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_trade_show:
     weight: 10
     settings:
@@ -52,6 +56,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
   name:
     type: string_textfield
     weight: -4
@@ -59,6 +64,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   user_id:
     type: entity_reference_autocomplete
     weight: 5
@@ -67,4 +73,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden: {  }

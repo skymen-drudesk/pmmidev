@@ -42,6 +42,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
+    region: content
   field_pricings:
     weight: 1
     label: hidden
@@ -58,4 +59,5 @@ content:
             lb-col: false
             classes: {  }
     type: pmmi_entity_reference_entity_view
+    region: content
 hidden: {  }

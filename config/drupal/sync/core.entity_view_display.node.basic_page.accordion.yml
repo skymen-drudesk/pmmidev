@@ -39,6 +39,10 @@ content:
     weight: 1
     settings: {  }
     third_party_settings: {  }
+    region: content
+  content_moderation_control:
+    weight: -20
+    region: content
   field_page_name:
     weight: 0
     label: hidden
@@ -51,6 +55,7 @@ content:
           settings:
             lb: ''
     type: string
+    region: content
 hidden:
   field_image_header: true
   field_meta_tags: true

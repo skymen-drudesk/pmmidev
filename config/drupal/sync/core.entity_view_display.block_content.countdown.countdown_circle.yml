@@ -42,6 +42,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
   field_end_date_time:
     weight: 3
     label: hidden
@@ -57,5 +58,6 @@ content:
             lb-col: false
             classes: {  }
     type: datetime_timezone_custom
+    region: content
 hidden:
   field_head: true

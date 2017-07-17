@@ -2,13 +2,10 @@
   "patches": {
     "drupal/core": {
       "Avoid illegal characters in database name": "https://www.drupal.org/files/issues/fix-dbname-validation-2443839-40.patch",
-      "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/minimal-install-profile-1170362-204.patch",
-      "SystemBrandingBlock causes fatal error if theme is not set when place it in Panels": "https://www.drupal.org/files/issues/systembrandingblock-causes-fatal-error-if-theme-is-not-set-when-place-it-in-panels-2838601-2.patch",
-      "Expose contextual filters of views blocks as context": "https://www.drupal.org/files/issues/2287073-148.patch",
-      "Datetime Views plugins don't support timezones": "https://www.drupal.org/files/issues/2627512-139_0.patch",
+      "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/1170362-239.patch",
+      "SystemBrandingBlock causes fatal error if theme is not set when place it in Panels": "https://www.drupal.org/files/issues/2838601-11.patch",
+      "Datetime Views plugins don't support timezones": "https://www.drupal.org/files/issues/2627512-214-wo-update.patch",
       "Improve the views integration for daterange fields": "https://www.drupal.org/files/issues/improve_the_views-2786577-71.patch",
-      "Fix Datetime Timestamp widget issue": "https://www.drupal.org/files/issues/2802663-18.patch",
-      "Exposed date filter leads to a notice": "https://www.drupal.org/files/issues/2811887-19-fix-tests.patch",
       "Batch API should use the current theme to run the batches": "https://www.drupal.org/files/issues/wrong-route-check-539022-71.patch",
       "Complex job in ViewExecutable::unserialize() causes data corruption": "https://www.drupal.org/files/issues/nested-unserialization-workaround.patch"
     },
@@ -34,6 +31,9 @@
     },
     "drupal/views_data_export": {
       "Support for batch operations": "https://www.drupal.org/files/issues/views_data_export-batch_support-2789531-58-D8.patch"
+    },
+    "drupal/address": {
+      "Address field formatter strip whitespace between inline span tags." : "https://www.drupal.org/files/issues/dissapers_whitespace_fix-2893544-2.patch"
     }
   }
 }

@@ -53,10 +53,10 @@
       "type": "package",
       "package": {
         "name": "drupal/tb_megamenu",
-        "version": "8.1.0-alpha2",
+        "version": "8.1.0-alpha3",
         "type": "drupal-module",
         "dist": {
-          "url": "https://github.com/summitmedia/tb_megamenu/archive/1.0-alpha2.zip",
+          "url": "https://github.com/summitmedia/tb_megamenu/archive/1.0-alpha3.zip",
           "type": "zip"
         }
       }
@@ -345,12 +345,12 @@
     "drupal/config_update": "^1.2",
     "drupal/console": "^1.0",
     "drupal/country": "^1.0-beta",
-    "drupal/core": "8.2.x",
+    "drupal/core": "^8.3.4",
     "drupal/ctools": "^3.0@alpha",
     "drupal/date": "1.x-dev",
     "drupal/default_content": "1.0-alpha5",
     "drupal/dropzonejs": "1.0-alpha3",
-    "drupal/ds": "^2.6",
+    "drupal/ds": "~3.1",
     "drupal/entity_browser": "^1.0@beta",
     "drupal/externalauth": "^1.0@alpha",
     "drupal/facets": "1.x-dev",
@@ -371,8 +371,8 @@
     "drupal/migrate_source_csv": "^2.0",
     "drupal/migrate_spreadsheet": "1.0-alpha4",
     "drupal/migrate_tools": "3.0-beta1",
-    "drupal/page_manager": "1.x-dev",
-    "drupal/panels": "^3.0@alpha",
+    "drupal/page_manager": "^4.0@beta",
+    "drupal/panels": "~4.1",
     "drupal/pathauto": "^1.0@alpha",
     "drupal/purge": "^3.0@beta",
     "drupal/redirect": "1.x-dev",

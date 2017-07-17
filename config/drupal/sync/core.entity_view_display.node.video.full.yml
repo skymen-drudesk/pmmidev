@@ -84,6 +84,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
+  content_moderation_control:
+    weight: -20
+    region: content
   field_date:
     weight: 4
     label: hidden
@@ -99,6 +103,7 @@ content:
             lb-col: false
             classes: {  }
     type: datetime_default
+    region: content
   field_featured_speaker:
     weight: 5
     label: inline
@@ -113,6 +118,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
+    region: content
   field_image_header:
     type: entity_reference_entity_view
     weight: 0
@@ -128,6 +134,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_video:
     weight: 3
     label: hidden
@@ -144,6 +151,7 @@ content:
             lb-col: false
             classes: {  }
     type: video_embed_player
+    region: content
 hidden:
   field_link: true
   field_video_type: true

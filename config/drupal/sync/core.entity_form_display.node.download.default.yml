@@ -30,11 +30,13 @@ content:
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
+    region: content
   created:
     type: datetime_timestamp
     weight: 2
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_block_button_text:
     weight: 13
     settings:
@@ -42,6 +44,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_file_download_button:
     type: entity_browser_entity_reference
     weight: 12
@@ -54,6 +57,7 @@ content:
       field_widget_edit: true
       field_widget_display_settings: {  }
     third_party_settings: {  }
+    region: content
   field_image:
     weight: 7
     settings:
@@ -66,6 +70,7 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: entity_browser_file
+    region: content
   field_image_header:
     weight: 5
     settings:
@@ -78,6 +83,7 @@ content:
       override_labels: false
     third_party_settings: {  }
     type: inline_entity_form_complex
+    region: content
   field_links:
     weight: 8
     settings:
@@ -85,23 +91,27 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
   path:
     type: path
     weight: 30
     settings: {  }
     third_party_settings: {  }
+    region: content
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
     weight: 3
     third_party_settings: {  }
+    region: content
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
     weight: 4
     third_party_settings: {  }
+    region: content
   title:
     type: string_textfield
     weight: 0
@@ -109,6 +119,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   uid:
     type: entity_reference_autocomplete
     weight: 1
@@ -117,4 +128,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden: {  }

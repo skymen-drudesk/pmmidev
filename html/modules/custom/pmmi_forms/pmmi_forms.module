@@ -65,6 +65,63 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
         }
       }
       break;
+
+    case 'views_exposed_form':
+      if ($form['#id'] === 'views-exposed-form-news-search-api-paged') {
+        $current_year = intval(date("Y"));
+        $break_year = intval(date("Y")) - 5;
+
+        $options = [];
+        $options['All'] = '- Any -';
+        while ($current_year > $break_year) {
+          if ($current_year === intval(date("Y"))) {
+            $options[intval(date("Y"))] = 'Current';
+          }
+          else {
+            $options[$current_year] = $current_year;
+          }
+          $current_year--;
+        }
+        // Add custom form element for emulating `Filter by Year` filter and hide
+        // Date field (operator: is between).
+        $form['filter_by_year']['#title'] = t('Filter by Year');
+        $form['filter_by_year']['#type'] = 'select';
+        $form['filter_by_year']['#options'] = $options;
+        $form['filter_by_year']['#default_value'] = intval(date("Y"));
+        $form['filter_by_year']['#attributes']['size'] = 1;
+        $form['year']['#type'] = 'hidden';
+        array_unshift($form['#submit'], 'pmmi_forms_custom_filter_by_year_submit');
+      }
+
+      break;
+  }
+}
+
+/**
+ * Custom callback function for filtering news by year.
+ *
+ * @todo
+ * Needs to be changed when Date Views filter will be available for Drupal 8.
+ *
+ */
+function pmmi_forms_custom_filter_by_year_submit(array &$form, FormStateInterface &$form_state) {
+  $values = $form_state->getValues();
+  // Manually set values in min and max fields for `Date filter` based on
+  // select value in custom form element.
+  if ($values['filter_by_year'] !== 'All' && is_numeric($values['filter_by_year'])) {
+    $form_state->setValue([
+      'year',
+      'min',
+    ], $values['filter_by_year'] . '-01-01');
+    $form_state->setValue([
+      'year',
+      'max',
+    ], $values['filter_by_year'] . '-12-31');
+  }
+  else {
+    $form_state->setValue(['year', 'min'], NULL);
+    $form_state->setValue(['year', 'max'], NULL);
+    $form_state->setValue('filter_by_year', NULL);
   }
 }
 

@@ -129,16 +129,15 @@
           var $textBlock = $row.find('.block-text');
           $containerBlocks = $containerBlocks.add($textBlock);
         }
-        $row.imagesLoaded()
-          .always(function () {
-            if ($containerBlocks.length) {
-              $('.col > .field > *', $row).matchHeight();
-            }
-            var $matchHeightBlock = $('.match-height, .match-height-parent > *', $row);
-            if ($matchHeightBlock.length) {
-              $matchHeightBlock.matchHeight();
-            }
-          });
+        $row.imagesLoaded().always(function () {
+          if ($containerBlocks.length) {
+            $('.col > .field > *', $row).matchHeight();
+          }
+          var $matchHeightBlock = $('.match-height, .match-height-parent > *', $row);
+          if ($matchHeightBlock.length) {
+            $matchHeightBlock.matchHeight();
+          }
+        });
         $.fn.matchHeight._beforeUpdate = function (event, groups) {
           $socialBlock.each(function () {
             $(this).removeAttr('style');
@@ -213,6 +212,17 @@
     alignCards: function ($row, breakpoint) {
       _.delay(function () {
         $row.find('.flipper').removeAttr('style');
+        var maxCardHeidht = 0;
+        $('.card-content', $row).each(function () {
+          var $cardContent = $(this);
+          var $cardParent = $cardContent.parent();
+          var parentHeight = $cardParent.height();
+          var cardHeight = $cardContent.height();
+          var padding = $cardParent.outerHeight() - parentHeight;
+          if (maxCardHeidht <= cardHeight + padding) {
+            maxCardHeidht = cardHeight + padding;
+          }
+        });
         $('.card-content', $row).each(function () {
           var $cardContent = $(this);
           var $cardParent = $cardContent.parent();
@@ -226,6 +236,9 @@
             else {
               $row.find('.flipper').height(cardHeight + padding);
             }
+          }
+          else if ((cardHeight + padding) < parentHeight) {
+            $row.find('.flipper').height(maxCardHeidht);
           }
         });
       }, 50);
@@ -268,9 +281,9 @@
           var $link = $(this);
           if (!$link.attr('href').length) {
             $link.removeAttr('href').css('cursor', 'default')
-              .on('click', function (e) {
-                e.preventDefault();
-              });
+                .on('click', function (e) {
+                  e.preventDefault();
+                });
           }
         });
         // Search block.
@@ -284,8 +297,8 @@
               $dropdownLink.on('click.mobile-toggler', function (e) {
                 e.preventDefault();
                 $dropdownLink.toggleClass('opened').parent().toggleClass('opened')
-                  .siblings().removeClass('opened')
-                  .find('>a').removeClass('opened');
+                    .siblings().removeClass('opened')
+                    .find('>a').removeClass('opened');
               });
             });
           }
@@ -325,13 +338,13 @@
       var headerH = $header.outerHeight(true);
       if (scrollTop > headerH) {
         $header
-          .addClass('below-fold')
-          .parent().css('padding-top', headerH);
+            .addClass('below-fold')
+            .parent().css('padding-top', headerH);
       }
       else {
         $header
-          .removeClass('below-fold')
-          .parent().css('padding-top', 0);
+            .removeClass('below-fold')
+            .parent().css('padding-top', 0);
       }
     },
     attach: function (context, settings) {

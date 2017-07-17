@@ -79,6 +79,10 @@ content:
     weight: 6
     settings: {  }
     third_party_settings: {  }
+    region: content
+  content_moderation_control:
+    weight: -20
+    region: content
   field_author:
     weight: 7
     label: hidden
@@ -86,6 +90,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_author_title:
     weight: 8
     label: hidden
@@ -93,6 +98,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_company:
     weight: 9
     label: hidden
@@ -100,6 +106,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_date:
     weight: 3
     label: hidden
@@ -108,12 +115,14 @@ content:
       format_type: month_day_year
     third_party_settings: {  }
     type: datetime_default
+    region: content
   field_email:
     type: email_mailto
     weight: 11
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_image:
     type: responsive_image
     weight: 2
@@ -129,6 +138,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_image_header:
     type: entity_reference_entity_view
     weight: 0
@@ -137,6 +147,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
   field_immediate_release:
     weight: 5
     label: hidden
@@ -153,6 +164,7 @@ content:
             lb-col: false
             classes: {  }
     type: boolean
+    region: content
   field_link:
     weight: 4
     label: inline
@@ -171,6 +183,7 @@ content:
             lb-col: true
             classes: {  }
     type: link
+    region: content
   field_phone:
     weight: 10
     label: hidden
@@ -178,6 +191,7 @@ content:
       title: ''
     third_party_settings: {  }
     type: telephone_link
+    region: content
 hidden:
   field_meta_tags: true
   field_news_category: true

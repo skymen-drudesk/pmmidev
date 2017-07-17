@@ -59,6 +59,10 @@ content:
     weight: 3
     settings: {  }
     third_party_settings: {  }
+    region: content
+  content_moderation_control:
+    weight: -20
+    region: content
   field_file_download_button:
     type: views_field_formatter
     weight: 6
@@ -85,6 +89,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_image:
     weight: 4
     label: hidden
@@ -100,6 +105,7 @@ content:
             lb-col: false
             classes: {  }
     type: image
+    region: content
   field_image_header:
     type: entity_reference_entity_view
     weight: 0
@@ -108,6 +114,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
+    region: content
   field_links:
     weight: 5
     label: hidden
@@ -119,6 +126,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
+    region: content
 hidden:
   field_block_button_text: true
   links: true

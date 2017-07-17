@@ -142,16 +142,19 @@ content:
       default_country: null
     third_party_settings: {  }
     type: address_default
+    region: content
   field_after_sales_service:
     weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
   field_business_lines:
     weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
   field_company_description:
     weight: 1
     settings:
@@ -159,11 +162,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+    region: content
   field_equipment_sold_type:
     weight: 10
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
   field_equipment_sold_type_other:
     weight: 11
     settings:
@@ -171,12 +176,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+    region: content
   field_fax_number:
     weight: 2
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: telephone_default
+    region: content
   field_general_company_email:
     weight: 4
     settings:
@@ -184,11 +191,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: email_default
+    region: content
   field_industries_served:
     weight: 11
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
+    region: content
   field_industries_served_other:
     weight: 12
     settings:
@@ -196,12 +205,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+    region: content
   field_main_phone_number:
     weight: 1
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: telephone_default
+    region: content
   field_manufacturers_represented:
     weight: 8
     settings:
@@ -209,6 +220,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textarea
+    region: content
   field_primary_contact_email:
     weight: 10
     settings:
@@ -216,6 +228,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: email_default
+    region: content
   field_primary_contact_first_name:
     weight: 7
     settings:
@@ -223,6 +236,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_primary_contact_last_name:
     weight: 8
     settings:
@@ -230,12 +244,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_primary_contact_mobile:
     weight: 11
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: telephone_default
+    region: content
   field_primary_contact_title:
     weight: 9
     settings:
@@ -243,11 +259,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_territory_served:
     weight: 5
     settings: {  }
     third_party_settings: {  }
     type: country_area_autocomplete
+    region: content
   field_website_url:
     weight: 3
     settings:
@@ -255,6 +273,7 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
   title:
     type: string_textfield
     weight: 0
@@ -262,6 +281,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   field_address_1: true

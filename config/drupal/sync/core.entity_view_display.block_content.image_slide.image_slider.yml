@@ -59,6 +59,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
+    region: content
   field_button:
     weight: 5
     label: hidden
@@ -77,6 +78,7 @@ content:
             lb-col: false
             classes: {  }
     type: link
+    region: content
   field_head:
     weight: 2
     label: hidden
@@ -91,6 +93,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
+    region: content
   field_image:
     weight: 0
     label: hidden
@@ -106,6 +109,7 @@ content:
             lb-col: false
             classes: {  }
     type: responsive_image
+    region: content
   field_subhead:
     weight: 3
     label: hidden
@@ -120,6 +124,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
+    region: content
   field_video:
     type: video_embed_player
     weight: 1
@@ -129,6 +134,7 @@ content:
       height: '480'
       autoplay: true
     third_party_settings: {  }
+    region: content
 hidden:
   field_slide_type: true
   field_weight: true

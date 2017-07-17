@@ -25,8 +25,15 @@ targetEntityType: node
 bundle: company
 mode: teaser
 content:
+  content_moderation_control:
+    weight: -20
+    region: content
+  flag_favorites_content:
+    weight: 10
+    region: content
   links:
     weight: 100
+    region: content
 hidden:
   field_address: true
   field_address_1: true
@@ -43,12 +50,15 @@ hidden:
   field_general_company_email: true
   field_industries_served: true
   field_industries_served_other: true
+  field_last_updated_on: true
   field_main_phone_number: true
   field_manufacturers_represented: true
   field_postal_code: true
   field_primary_contact_email: true
   field_primary_contact_first_name: true
   field_primary_contact_last_name: true
+  field_primary_contact_mobile: true
+  field_primary_contact_title: true
   field_state: true
   field_territory_served: true
   field_trade_shows: true

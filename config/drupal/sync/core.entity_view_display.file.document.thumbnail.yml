@@ -23,6 +23,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    region: content
   field_suffix:
     type: string
     weight: 2
@@ -30,6 +31,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    region: content
   filename:
     type: string
     weight: 1
@@ -37,6 +39,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     label: hidden
+    region: content
 hidden:
   field_download_button_text: true
   field_tags: true
