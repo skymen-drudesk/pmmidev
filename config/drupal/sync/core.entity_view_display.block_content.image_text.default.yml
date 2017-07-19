@@ -1,0 +1,47 @@
+uuid: d6024ebe-9ee4-4782-b86f-5d23a69872e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.image_text
+    - field.field.block_content.image_text.body
+    - field.field.block_content.image_text.field_image
+  module:
+    - ds
+    - responsive_image
+    - text
+third_party_settings:
+  ds:
+    layout:
+      id: onetwouneven
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      oneone:
+        - field_image
+      onetwo:
+        - body
+id: block_content.image_text.default
+targetEntityType: block_content
+bundle: image_text
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 1
+    settings: {  }
+    third_party_settings: {  }
+    region: onetwo
+  field_image:
+    weight: 0
+    label: hidden
+    settings:
+      image_link: ''
+      responsive_image_style: ''
+    third_party_settings: {  }
+    type: responsive_image
+    region: oneone
+hidden: {  }
