@@ -1,52 +1,64 @@
 <?php
-use Drupal\Component\Utility\Unicode;
 
 /**
- * Marks a Page to be re-indexed by the page_manager_search plugin.
+ * @file
  *
- * @param int $pid
- *   The Page ID.
+ * Main file of module.
  */
-function pmmi_page_manager_search_reindex_page_manager_search($pid) {
-  if (\Drupal::moduleHandler()->moduleExists('search')) {
-    search_mark_for_reindex('page_manager_search', $pid);
+
+/**
+ * @todo
+ * Implement hooks below.
+ */
+
+/**
+ * Implements hook_entity_insert().
+ */
+function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'page_variant') {
+    $page_manager_search = \Drupal::entityTypeManager()->getStorage('page_manager_search')->loadMultiple([]);
   }
 }
 
 /**
- * Helper function.
- * Convert Page manager page machine name to a decimal conversion of the MD5 hash.
- *
- * @todo Find better solution.
+ * Implements hook_entity_update().
  */
-function pmmi_page_manager_search_machine_name_to_dec($machine_name, $length = 9) {
-  $md5 = md5($machine_name);
-  $dec = base_convert($md5, 16, 10);
+function pmmi_page_manager_search_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'page_variant') {
+    $exist_page_manager_search = \Drupal::entityQuery('page_manager_search')
+      ->condition('pid', $entity->id())
+      ->execute();
 
-  return Unicode::substr($dec, 0, $length);
+    if (empty($exist_page_manager_search)) {
+      $page = $entity->getPage();
+
+      $render = \Drupal::entityTypeManager()
+        ->getViewBuilder('page_variant')
+        ->view($entity);
+
+      $content = \Drupal::service('renderer')->renderRoot($render);
+      $content = strip_tags($content);
+      $content = trim(preg_replace('/\s+/', ' ', $content));
+
+      $page_manager_search = \Drupal::entityTypeManager()
+        ->getStorage('page_manager_search')
+        ->create([
+          'pid' => $entity->id(),
+          'title' => $entity->label(),
+          'content' => $content,
+          'path' => $page->getPath(),
+          ]);
+
+    }
+    $b=0;
+  }
 }
 
-
 /**
- * Helper function.
- * Get Page manager page(s) by decimal conversion of MD5 hash.
- *
- * @param null $dec
- * @param int $length
- *
- * @return array|mixed
+ * Implements hook_entity_delete().
  */
-function pmmi_page_manager_search_get_pages_by_dec($dec = NULL, $length = 9) {
-  $items = [];
-
-  $pages = \Drupal::entityTypeManager()
-    ->getStorage('page_variant')
-    ->loadMultiple();
-
-  foreach ($pages as $page_variant_id => $page_variant) {
-    $sid = pmmi_page_manager_search_machine_name_to_dec($page_variant_id);
-    $items[$sid] = $page_variant;
+function pmmi_page_manager_search_entity_delete(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() == 'page_variant') {
+    $page_manager_search = \Drupal::entityTypeManager()->getStorage('page_manager_search')->loadMultiple([]);
   }
-
-  return !is_null($dec) && isset($items[$dec]) ? $items[$dec] : $items;
 }
