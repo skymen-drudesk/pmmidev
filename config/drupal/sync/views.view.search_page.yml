@@ -356,6 +356,61 @@ display:
             title_f: title_f
             body_f: body_f
           plugin_id: search_api_fulltext
+        type:
+          id: type
+          table: search_api_index_default_index
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: type_op
+            label: 'Content type'
+            description: null
+            use_operator: false
+            operator: type_op
+            identifier: type
+            required: false
+            remember: false
+            multiple: true
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: true
+          group_info:
+            label: '<none>'
+            description: '<none>'
+            identifier: page_type
+            optional: true
+            widget: radios
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple:
+              1: 1
+              2: 2
+            group_items:
+              1:
+                title: 'Press Releases'
+                operator: or
+                value:
+                  article: article
+              2:
+                title: Pages
+                operator: or
+                value:
+                  basic_page: basic_page
+                  certification_test: certification_test
+                  company: company
+                  download: download
+                  school: school
+                  video: video
+          reduce_duplicates: false
+          plugin_id: search_api_options
       filter_groups:
         operator: AND
         groups:

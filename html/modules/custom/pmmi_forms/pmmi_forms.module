@@ -10,6 +10,8 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
+use Drupal\node\Entity\Node;
+use Drupal\views\ViewExecutable;
 
 /**
  * Implements hook_form_alter().
@@ -91,6 +93,80 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
         $form['filter_by_year']['#attributes']['size'] = 1;
         $form['year']['#type'] = 'hidden';
         array_unshift($form['#submit'], 'pmmi_forms_custom_filter_by_year_submit');
+      }
+
+      if ($form['#id'] === 'views-exposed-form-search-page-block-1') {
+        // Add pseudo checkboxes for converting radio elements to checkboxes.
+        // Default checkboxes do not allow to use both conditions there is conflict
+        // between them (e.g. Is one of `Article` and Is none of `Article`).
+        $form['page_types'] = [
+          '#type' => 'checkboxes',
+          '#options' => [
+            'press_releases' => 'Press Releases',
+            'pages' => 'Pages',
+          ],
+        ];
+
+        // Check if Page Type has not been selected yet and set default checkboxes
+        // as `All`.
+        // In $form_state->getValues() no values because this form use GET method
+        // and I can't to check this value by default Drupal Form API.
+        if (empty($_GET['page_type']) || $_GET['page_type'] === 'All') {
+          $form['page_types']['#attributes']['checked'] = TRUE;
+        }
+
+        // Set `All` if both checkboxes is checked or unchecked.
+        $form['page_type']['All']['#states'] = [
+          'checked' => [
+            [
+              ':input[name="page_types[press_releases]"]' => [
+                'checked' => TRUE,
+              ],
+              ':input[name="page_types[pages]"]' => [
+                'checked' => TRUE,
+              ],
+            ],
+            [
+              ':input[name="page_types[press_releases]"]' => [
+                'checked' => FALSE,
+              ],
+              ':input[name="page_types[pages]"]' => [
+                'checked' => FALSE,
+              ],
+            ],
+
+          ],
+        ];
+
+        // Set radio `Press Releases` checked if appropriate checkbox is set and
+        // another is not selected.
+        $form['page_type'][1]['#states'] = [
+          'checked' => [
+            ':input[name="page_types[press_releases]"]' => [
+              'checked' => TRUE,
+            ],
+            ':input[name="page_types[pages]"]' => [
+              'checked' => FALSE,
+            ],
+          ],
+        ];
+
+        // Set radio `Pages` checked if appropriate checkbox is set and another
+        // is not selected.
+        $form['page_type'][2]['#states'] = [
+          'checked' => [
+            ':input[name="page_types[pages]"]' => [
+              'checked' => TRUE,
+            ],
+            ':input[name="page_types[press_releases]"]' => [
+              'checked' => FALSE,
+            ],
+          ],
+        ];
+
+        // Attach library for hiding unnecessary legend element and aligning
+        // checkboxes;
+        $form['#attached']['library'][] = 'pmmi_forms/pmmi_forms';
       }
 
       break;
@@ -240,5 +316,30 @@ function pmmi_forms_menu_local_tasks_alter(&$data, $route_name) {
       ),
       '#active' => $route_name == 'entity.webform_options.collection',
     );
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ *
+ * Add type of content to title (Press Releases or Page).
+ *
+ * @param \Drupal\views\ViewExecutable $view
+ */
+function pmmi_forms_views_pre_render(ViewExecutable $view) {
+  if ($view->id() === 'search_page' && $view->current_display === 'block_1') {
+    foreach($view->result as $result) {
+      if (!empty($result->_object)) {
+        $entity = $result->_object->getValue();
+        if ($entity instanceof Node) {
+          if ($entity->getType() == 'article') {
+            $entity->setTitle($entity->getTitle() . ' - Press Releases');
+          }
+          else {
+            $entity->setTitle($entity->getTitle() . ' - Page');
+          }
+        }
+      }
+    }
   }
 }
