@@ -6,17 +6,29 @@
  * Main file of module.
  */
 
-/**
- * @todo
- * Implement hooks below.
- */
+use Drupal\pmmi_page_manager_search\Entity\PageManagerSearch;
 
 /**
  * Implements hook_entity_insert().
  */
 function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
   if ($entity->getEntityTypeId() == 'page_variant') {
-    $page_manager_search = \Drupal::entityTypeManager()->getStorage('page_manager_search')->loadMultiple([]);
+    $page = $entity->getPage();
+
+    $render = \Drupal::entityTypeManager()
+      ->getViewBuilder('page_variant')
+      ->view($entity);
+
+    $content = \Drupal::service('renderer')->renderRoot($render);
+    $content = strip_tags($content);
+    $content = trim(preg_replace('/\s+/', ' ', $content));
+
+    PageManagerSearch::create([
+      'pid' => $entity->id(),
+      'title' => $page->label(),
+      'content' => $content,
+      'path' => $page->getPath(),
+    ])->save();
   }
 }
 
@@ -25,32 +37,39 @@ function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterfa
  */
 function pmmi_page_manager_search_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
   if ($entity->getEntityTypeId() == 'page_variant') {
-    $exist_page_manager_search = \Drupal::entityQuery('page_manager_search')
+    $exist_page_manager_search = \Drupal::entityQuery('pmmi_page_manager_search')
       ->condition('pid', $entity->id())
       ->execute();
 
+    // Load Page of PageVariant.
+    $page = $entity->getPage();
+
+    // Get rendered PageVariant content.
+    $render = \Drupal::entityTypeManager()
+      ->getViewBuilder('page_variant')
+      ->view($entity);
+    $content = \Drupal::service('renderer')->renderRoot($render);
+    $content = strip_tags($content);
+    $content = trim(preg_replace('/\s+/', ' ', $content));
+
+    // Check if PageManagerSearch is already exist.
     if (empty($exist_page_manager_search)) {
-      $page = $entity->getPage();
-
-      $render = \Drupal::entityTypeManager()
-        ->getViewBuilder('page_variant')
-        ->view($entity);
-
-      $content = \Drupal::service('renderer')->renderRoot($render);
-      $content = strip_tags($content);
-      $content = trim(preg_replace('/\s+/', ' ', $content));
-
-      $page_manager_search = \Drupal::entityTypeManager()
-        ->getStorage('page_manager_search')
-        ->create([
-          'pid' => $entity->id(),
-          'title' => $entity->label(),
-          'content' => $content,
-          'path' => $page->getPath(),
-          ]);
-
+      PageManagerSearch::create([
+        'pid' => $entity->id(),
+        'title' => $page->label(),
+        'content' => $content,
+        'path' => $page->getPath(),
+      ])->save();
     }
-    $b=0;
+    else {
+      // Load exist PageManagerSearch entity and then update it.
+      $exist_page_manager_search_id = reset($exist_page_manager_search);
+      $exist_page_manager_search_entity = PageManagerSearch::load($exist_page_manager_search_id);
+      $exist_page_manager_search_entity->set('title', $page->label());
+      $exist_page_manager_search_entity->set('path', $page->getPath());
+      $exist_page_manager_search_entity->set('content', $content);
+      $exist_page_manager_search_entity->save();
+    }
   }
 }
 
@@ -59,6 +78,14 @@ function pmmi_page_manager_search_entity_update(Drupal\Core\Entity\EntityInterfa
  */
 function pmmi_page_manager_search_entity_delete(Drupal\Core\Entity\EntityInterface $entity) {
   if ($entity->getEntityTypeId() == 'page_variant') {
-    $page_manager_search = \Drupal::entityTypeManager()->getStorage('page_manager_search')->loadMultiple([]);
+    $exist_page_manager_search = \Drupal::entityQuery('pmmi_page_manager_search')
+      ->condition('pid', $entity->id())
+      ->execute();
+
+    if (!empty($exist_page_manager_search)) {
+      $exist_page_manager_search_id = reset($exist_page_manager_search);
+      $exist_page_manager_search_entity = PageManagerSearch::load($exist_page_manager_search_id);
+      $exist_page_manager_search_entity->delete();
+    }
   }
 }

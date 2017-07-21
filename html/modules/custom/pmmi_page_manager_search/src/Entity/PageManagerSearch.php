@@ -17,14 +17,22 @@ use Drupal\Core\Field\BaseFieldDefinition;
  * @ingroup pmmi_page_manager_search
  *
  * @ContentEntityType(
- *   id = "page_manager_search",
+ *   id = "pmmi_page_manager_search",
  *   label = @Translation("Page Manager Search"),
- *   base_table = "page_manager_search",
+ *   base_table = "pmmi_page_manager_search",
  *   entity_keys = {
  *    "id" = "id",
  *    "label" = "name",
  *    "uuid" = "uuid"
  *   },
+ *   handlers = {
+ *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
+ *     "list_builder" = "Drupal\pmmi_page_manager_search\PageManagerSearchEntityListBuilder",
+ *     "views_data" = "Drupal\pmmi_page_manager_search\Entity\PageManagerSearchEntityViewsData",
+ *   },
+ *   links = {
+ *     "canonical" = "/page-manager-search/{pmmi_page_manager_search}"
+ *  }
  * )
  */
 
@@ -57,7 +65,7 @@ class PageManagerSearch extends ContentEntityBase implements ContentEntityInterf
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
-    $fields['title'] = BaseFieldDefinition::create('text')
+    $fields['title'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Title'))
       ->setDescription(t('The title of the page.'))
       ->setRequired(TRUE)
@@ -71,9 +79,9 @@ class PageManagerSearch extends ContentEntityBase implements ContentEntityInterf
         'weight' => -6,
       ))
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);;
+      ->setDisplayConfigurable('view', TRUE);
 
-    $fields['content'] = BaseFieldDefinition::create('text')
+    $fields['content'] = BaseFieldDefinition::create('text_long')
       ->setLabel(t('Content'))
       ->setDescription(t('The content of the page.'))
       ->setRequired(TRUE)
@@ -89,26 +97,18 @@ class PageManagerSearch extends ContentEntityBase implements ContentEntityInterf
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);;
 
-    $fields['pid'] = BaseFieldDefinition::create('entity_reference')
+    $fields['pid'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Page variant ID'))
       ->setDescription(t('Page variant ID of the referenced Page.'))
-      ->setSetting('target_type', 'page_variant')
-      ->setSetting('handler', 'default')
       ->setRequired(TRUE)
       ->setDisplayOptions('view', array(
         'label' => 'above',
-        'type' => 'entity_reference_label',
-        'weight' => -3,
+        'type' => 'string',
+        'weight' => -6,
       ))
       ->setDisplayOptions('form', array(
-        'type' => 'entity_reference_autocomplete',
-        'settings' => array(
-          'match_operator' => 'CONTAINS',
-          'size' => 60,
-          'autocomplete_type' => 'tags',
-          'placeholder' => '',
-        ),
-        'weight' => -3,
+        'type' => 'string_textfield',
+        'weight' => -6,
       ))
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
@@ -116,7 +116,11 @@ class PageManagerSearch extends ContentEntityBase implements ContentEntityInterf
     $fields['path'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Page Variant path'))
       ->setDescription(t('The path to the Page Variant.'))
-      ->setRequired(TRUE);
+      ->setRequired(TRUE)
+      ->setDisplayOptions('view', array(
+        'label' => 'above',
+        'type' => 'string',
+      ));
 
     return $fields;
   }
