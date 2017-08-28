@@ -28,10 +28,8 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   },
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" =
- *   "Drupal\pmmi_page_manager_search\PageManagerSearchEntityListBuilder",
- *     "views_data" =
- *   "Drupal\pmmi_page_manager_search\Entity\PageManagerSearchEntityViewsData",
+ *     "list_builder" = "Drupal\pmmi_page_manager_search\PageManagerSearchEntityListBuilder",
+ *     "views_data" = "Drupal\pmmi_page_manager_search\Entity\PageManagerSearchEntityViewsData",
  *   },
  *   links = {
  *     "canonical" = "/page-manager-search/{pmmi_page_manager_search}"

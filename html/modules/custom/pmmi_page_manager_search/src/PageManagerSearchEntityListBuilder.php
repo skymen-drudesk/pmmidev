@@ -15,7 +15,7 @@ use Drupal\Core\Url;
 /**
  * Defines a class to build a listing of Page Manager Search entities.
  *
- * @ingroup pmmi_company_contact
+ * @ingroup pmmi_page_manager_search
  */
 class PageManagerSearchEntityListBuilder extends EntityListBuilder {
 

@@ -2,6 +2,7 @@
 
 /**
  * @file
+ *
  * Contains \Drupal\pmmi_page_manager_search\Plugin\Search\PageManagerSearch.
  */
 
@@ -22,7 +23,6 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessibleInterface;
 use Drupal\Core\Database\Query\Condition;
 use Drupal\Core\Render\RendererInterface;
-use Drupal\Core\Url;
 use Drupal\search\Plugin\ConfigurableSearchPluginBase;
 use Drupal\search\Plugin\SearchIndexingInterface;
 use Drupal\search\SearchQuery;

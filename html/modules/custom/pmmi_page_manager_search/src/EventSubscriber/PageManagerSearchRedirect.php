@@ -15,6 +15,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
  * Class PageManagerSearchRedirect
+ *
+ * @package pmmi_page_manager_search
+ *
  * Redirect from Page Manager Search page to Page Variant page.
  */
 class PageManagerSearchRedirect implements EventSubscriberInterface {
@@ -24,12 +27,11 @@ class PageManagerSearchRedirect implements EventSubscriberInterface {
     $baseUrl = $event->getRequest()->getBaseUrl();
     $attr = $event->getRequest()->attributes;
 
-    if ($attr !== NULL &&
-      $attr->get('pmmi_page_manager_search') !== NULL
-    ) {
+    if ($attr !== NULL && $attr->get('pmmi_page_manager_search') !== NULL) {
       $path = $attr->get('pmmi_page_manager_search')
         ->get('path_to_page')
         ->getValue();
+
       $event->setResponse(new RedirectResponse($baseUrl . $path[0]['value']));
     }
   }
@@ -39,6 +41,7 @@ class PageManagerSearchRedirect implements EventSubscriberInterface {
    */
   static function getSubscribedEvents() {
     $events[KernelEvents::REQUEST][] = ['checkForRedirection'];
+
     return $events;
   }
 
