@@ -32,7 +32,9 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   },
  *   links = {
  *     "canonical" = "/page-manager-search/{pmmi_page_manager_search}"
- *  }
+ *  },
+ *  admin_permission = "administer Page Manager Search entity",
+ *  field_ui_base_route = "pmmi_page_manager_search.settings"
  * )
  */
 
@@ -64,6 +66,16 @@ class PageManagerSearch extends ContentEntityBase implements ContentEntityInterf
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
+
+    $fields['id'] = BaseFieldDefinition::create('integer')
+      ->setLabel(t('ID'))
+      ->setDescription(t('The ID of the Page Manager Search entity.'))
+      ->setReadOnly(TRUE);
+
+    $fields['uuid'] = BaseFieldDefinition::create('uuid')
+      ->setLabel(t('UUID'))
+      ->setDescription(t('The UUID of the Page Manager Search entity.'))
+      ->setReadOnly(TRUE);
 
     $fields['title'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Title'))

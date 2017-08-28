@@ -23,7 +23,7 @@ class PageManagerSearchEntityViewsData extends EntityViewsData implements Entity
     $data['pmmi_page_manager_search']['table']['base'] = array(
       'field' => 'id',
       'title' => $this->t('Page Manager Search'),
-      'help' => $this->t('Page Manager Search ID.'),
+      'help' => $this->t('Page Manager Search.'),
     );
 
     return $data;

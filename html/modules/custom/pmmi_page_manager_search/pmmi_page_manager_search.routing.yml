@@ -5,3 +5,13 @@ entity.pmmi_page_manager_search.canonical:
     _title: 'Page Manager Search'
   requirements:
     _permission: 'view pmmi_page_manager_search entity'
+
+pmmi_page_manager_search.settings:
+  path: 'admin/structure/pmmi_page_manager_search'
+  defaults:
+   _form: '\Drupal\pmmi_page_manager_search\Entity\Form\PageManagerSearchSettingsForm'
+   _title: 'Page Manager Search settings'
+  requirements:
+    _permission: 'administer pmmi_page_manager_search entities'
+  options:
+    _admin_route: TRUE
