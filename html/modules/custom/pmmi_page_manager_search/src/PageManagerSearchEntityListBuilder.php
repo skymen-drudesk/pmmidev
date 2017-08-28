@@ -18,7 +18,8 @@ use Drupal\Core\Url;
  * @ingroup pmmi_company_contact
  */
 class PageManagerSearchEntityListBuilder extends EntityListBuilder {
- /**
+
+  /**
    * {@inheritdoc}
    */
   public function buildHeader() {

@@ -6,6 +6,7 @@ use Drupal\Core\Annotation\Translation;
 use Drupal\Core\Entity\Annotation\ContentEntityType;
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 
@@ -27,8 +28,10 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   },
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
- *     "list_builder" = "Drupal\pmmi_page_manager_search\PageManagerSearchEntityListBuilder",
- *     "views_data" = "Drupal\pmmi_page_manager_search\Entity\PageManagerSearchEntityViewsData",
+ *     "list_builder" =
+ *   "Drupal\pmmi_page_manager_search\PageManagerSearchEntityListBuilder",
+ *     "views_data" =
+ *   "Drupal\pmmi_page_manager_search\Entity\PageManagerSearchEntityViewsData",
  *   },
  *   links = {
  *     "canonical" = "/page-manager-search/{pmmi_page_manager_search}"
@@ -37,7 +40,6 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *  field_ui_base_route = "pmmi_page_manager_search.settings"
  * )
  */
-
 class PageManagerSearch extends ContentEntityBase implements ContentEntityInterface {
 
   /**
@@ -64,6 +66,18 @@ class PageManagerSearch extends ContentEntityBase implements ContentEntityInterf
   /**
    * {@inheritdoc}
    */
+  public function postSave(EntityStorageInterface $storage, $update = TRUE) {
+    parent::postSave($storage, $update);
+    if ($update) {
+      if (\Drupal::moduleHandler()->moduleExists('search')) {
+        search_mark_for_reindex('pmmi_page_manager_search', $this->id());
+      }
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = parent::baseFieldDefinitions($entity_type);
 
@@ -81,15 +95,15 @@ class PageManagerSearch extends ContentEntityBase implements ContentEntityInterf
       ->setLabel(t('Title'))
       ->setDescription(t('The title of the page.'))
       ->setRequired(TRUE)
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
         'type' => 'string',
         'weight' => -6,
-      ))
-      ->setDisplayOptions('form', array(
+      ])
+      ->setDisplayOptions('form', [
         'type' => 'string_textfield',
         'weight' => -6,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
@@ -97,42 +111,49 @@ class PageManagerSearch extends ContentEntityBase implements ContentEntityInterf
       ->setLabel(t('Content'))
       ->setDescription(t('The content of the page.'))
       ->setRequired(TRUE)
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
         'type' => 'string',
         'weight' => -5,
-      ))
-      ->setDisplayOptions('form', array(
+      ])
+      ->setDisplayOptions('form', [
         'type' => 'string_textfield',
         'weight' => -5,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
-      ->setDisplayConfigurable('view', TRUE);;
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['path_to_page'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('Page Variant path'))
+      ->setDescription(t('The path to the Page Variant.'))
+      ->setRequired(TRUE)
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => -6,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -6,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     $fields['pid'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Page variant ID'))
       ->setDescription(t('Page variant ID of the referenced Page.'))
       ->setRequired(TRUE)
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
         'type' => 'string',
         'weight' => -6,
-      ))
-      ->setDisplayOptions('form', array(
+      ])
+      ->setDisplayOptions('form', [
         'type' => 'string_textfield',
         'weight' => -6,
-      ))
+      ])
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
-
-    $fields['path'] = BaseFieldDefinition::create('string')
-      ->setLabel(t('Page Variant path'))
-      ->setDescription(t('The path to the Page Variant.'))
-      ->setRequired(TRUE)
-      ->setDisplayOptions('view', array(
-        'label' => 'above',
-        'type' => 'string',
-      ));
 
     return $fields;
   }

@@ -2,7 +2,8 @@
 
 /**
  * @file
- * Contains \Drupal\pmmi_company_contact\Entity\Form\PMMICompanyContactEntitySettingsForm.
+ * Contains
+ *   \Drupal\pmmi_company_contact\Entity\Form\PMMICompanyContactEntitySettingsForm.
  */
 
 namespace Drupal\pmmi_page_manager_search\Entity\Form;
@@ -18,6 +19,7 @@ use Drupal\Core\Form\FormStateInterface;
  * @ingroup pmmi_company_contact
  */
 class PageManagerSearchSettingsForm extends FormBase {
+
   /**
    * Returns a unique string identifying the form.
    *

@@ -6,6 +6,7 @@
  * Main file of module.
  */
 
+use Drupal\page_manager\Entity\Page;
 use Drupal\pmmi_page_manager_search\Entity\PageManagerSearch;
 
 /**
@@ -27,7 +28,7 @@ function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterfa
       'pid' => $entity->id(),
       'title' => $page->label(),
       'content' => $content,
-      'path' => $page->getPath(),
+      'path_to_page' => $page->getPath(),
     ])->save();
   }
 }
@@ -58,7 +59,7 @@ function pmmi_page_manager_search_entity_update(Drupal\Core\Entity\EntityInterfa
         'pid' => $entity->id(),
         'title' => $page->label(),
         'content' => $content,
-        'path' => $page->getPath(),
+        'path_to_page' => $page->getPath(),
       ])->save();
     }
     else {
@@ -66,7 +67,7 @@ function pmmi_page_manager_search_entity_update(Drupal\Core\Entity\EntityInterfa
       $exist_page_manager_search_id = reset($exist_page_manager_search);
       $exist_page_manager_search_entity = PageManagerSearch::load($exist_page_manager_search_id);
       $exist_page_manager_search_entity->set('title', $page->label());
-      $exist_page_manager_search_entity->set('path', $page->getPath());
+      $exist_page_manager_search_entity->set('path_to_page', $page->getPath());
       $exist_page_manager_search_entity->set('content', $content);
       $exist_page_manager_search_entity->save();
     }
