@@ -83,7 +83,6 @@ function pmmi_update_8001() {
 }
 
 /**
-<<<<<<< HEAD
  * Set module PMMI module weight so updates happen first.
  */
 function pmmi_update_8002() {
@@ -127,4 +126,20 @@ function pmmi_update_8004() {
     $field = $fields['field_button'];
     $field->delete();
   }
+}
+
+/**
+ * Uninstall the layout_plugin module.
+ */
+function pmmi_update_8005() {
+  \Drupal::service('module_installer')->uninstall(['layout_plugin']);
+}
+
+/**
+ * Truncate queue table.
+ */
+function pmmi_update_8006() {
+  $database = \Drupal::database();
+  $query = $database->truncate('queue');
+  $query->execute();
 }

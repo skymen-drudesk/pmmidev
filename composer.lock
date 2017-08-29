@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e5537c70911d601f5990b9f00cf2ff96",
+    "content-hash": "8aab9910b6d82ee3eed99b3586d28a40",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -2481,16 +2481,16 @@
         },
         {
             "name": "drupal/core",
-            "version": "8.3.4",
+            "version": "8.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/drupal/core.git",
-                "reference": "f34eee7255142ab5416107972ef13d011f11e163"
+                "reference": "32f66ed9cc593f8e9ab0eaaaeff4cadbd859d5ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/drupal/core/zipball/f34eee7255142ab5416107972ef13d011f11e163",
-                "reference": "f34eee7255142ab5416107972ef13d011f11e163",
+                "url": "https://api.github.com/repos/drupal/core/zipball/32f66ed9cc593f8e9ab0eaaaeff4cadbd859d5ff",
+                "reference": "32f66ed9cc593f8e9ab0eaaaeff4cadbd859d5ff",
                 "shasum": ""
             },
             "require": {
@@ -2673,7 +2673,7 @@
                 "GPL-2.0+"
             ],
             "description": "Drupal is an open source content management platform powering millions of websites and applications.",
-            "time": "2017-06-21T18:13:27+00:00"
+            "time": "2017-08-16T17:10:35+00:00"
         },
         {
             "name": "drupal/country",
@@ -4738,6 +4738,60 @@
             }
         },
         {
+            "name": "drupal/queue_ui",
+            "version": "dev-2.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/queue_ui",
+                "reference": "74da9699d23ec470040b219ef9275e1b8a0e24da"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-2.x": "2.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-2.x-dev",
+                    "datestamp": "1496171943",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "bceyssens",
+                    "homepage": "https://www.drupal.org/user/2743951"
+                },
+                {
+                    "name": "coltrane",
+                    "homepage": "https://www.drupal.org/user/91990"
+                },
+                {
+                    "name": "floretan",
+                    "homepage": "https://www.drupal.org/user/66163"
+                },
+                {
+                    "name": "tsphethean",
+                    "homepage": "https://www.drupal.org/user/881620"
+                }
+            ],
+            "description": "Interface and manager for Drupal queues.",
+            "homepage": "https://www.drupal.org/project/queue_ui",
+            "support": {
+                "source": "http://cgit.drupalcode.org/queue_ui"
+            },
+            "time": "2017-05-30 19:17:17"
+        },
+        {
             "name": "drupal/recaptcha",
             "version": "dev-2.x",
             "source": {
@@ -4759,7 +4813,7 @@
                     "datestamp": "1491166684"
                 },
                 "patches_applied": {
-                    "Integrate Invisible reCAPTCHA option from Google": "https://www.drupal.org/files/issues/recaptcha-invisible-option-2852269-52.patch"
+                    "Integrate Invisible reCAPTCHA option from Google": "https://www.drupal.org/files/issues/recaptcha-invisible-option-2852269-56.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -5729,8 +5783,12 @@
                     "dev-5.x": "5.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-5.x-dev",
-                    "datestamp": "1493003344"
+                    "version": "8.x-5.0-alpha1+5-dev",
+                    "datestamp": "1498601042",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -5741,6 +5799,10 @@
                 {
                     "name": "bucefal91",
                     "homepage": "https://www.drupal.org/user/504128"
+                },
+                {
+                    "name": "jrockowitz",
+                    "homepage": "https://www.drupal.org/user/371407"
                 },
                 {
                     "name": "ws.agency",
@@ -11518,6 +11580,7 @@
         "drupal/migrate_plus": 10,
         "drupal/page_manager": 10,
         "drupal/pathauto": 15,
+        "drupal/queue_ui": 20,
         "drupal/purge": 10,
         "drupal/recaptcha": 20,
         "drupal/redirect": 20,
