@@ -20,7 +20,7 @@ function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterfa
       ->getViewBuilder('page_variant')
       ->view($entity);
 
-    $content = \Drupal::service('renderer')->renderRoot($render);
+    $content = \Drupal::service('renderer')->renderPlain($render);
     $content = strip_tags($content);
     $content = trim(preg_replace('/\s+/', ' ', $content));
 
@@ -51,7 +51,7 @@ function pmmi_page_manager_search_entity_update(Drupal\Core\Entity\EntityInterfa
     $render = \Drupal::entityTypeManager()
       ->getViewBuilder('page_variant')
       ->view($entity);
-    $content = \Drupal::service('renderer')->renderRoot($render);
+    $content = \Drupal::service('renderer')->renderPlain($render);
     $content = strip_tags($content);
     $content = trim(preg_replace('/\s+/', ' ', $content));
 
