@@ -1,0 +1,7 @@
+entity.pmmi_page_manager_search.canonical:
+  path: '/page-manager-search/{pmmi_page_manager_search}'
+  defaults:
+    _entity_view: 'pmmi_page_manager_search'
+    _title: 'Page Manager Search'
+  requirements:
+    _permission: 'view pmmi_page_manager_search entity'
