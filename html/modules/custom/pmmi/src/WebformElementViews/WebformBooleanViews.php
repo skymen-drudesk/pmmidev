@@ -2,7 +2,7 @@
 
 namespace Drupal\pmmi\WebformElementViews;
 
-use Drupal\webform\WebformElementInterface;
+use Drupal\webform\Plugin\WebformElementInterface;
 use Drupal\webform_views\WebformElementViews\WebformElementViewsAbstract;
 
 /**
@@ -13,8 +13,8 @@ class WebformBooleanViews extends WebformElementViewsAbstract {
   /**
    * {@inheritdoc}
    */
-  public function getElementViewsData(WebformElementInterface $element) {
-    $views_data = parent::getElementViewsData($element);
+  public function getElementViewsData(WebformElementInterface $element_plugin, array $element) {
+    $views_data = parent::getElementViewsData($element_plugin, $element);
 
     $views_data['filter'] = [
       'id' => 'webform_submission_boolean_filter',
