@@ -7,11 +7,25 @@ dependencies:
     - field.storage.node.field_address
     - field.storage.node.field_news_category
     - field.storage.node.field_date
+    - field.storage.node.field_accordions
+    - field.storage.node.field_author
+    - field.storage.node.field_company
+    - field.storage.node.field_company_description
+    - field.storage.node.field_featured_speaker
+    - field.storage.node.field_industries_served
+    - field.storage.node.field_business_lines
+    - field.storage.node.field_manufacturers_represented
+    - field.storage.node.field_equipment_sold_type_other
+    - field.storage.node.field_industries_served_other
+    - field.storage.node.field_programs_focus
+    - field.storage.node.field_equipment_sold_type
+    - field.storage.node.field_tags
     - search_api.server.solr_server
   module:
+    - node
     - search_api
     - pmmi_search
-    - node
+    - pmmi_page_manager_search
 id: default_index
 name: 'Default Index'
 description: ''
@@ -124,6 +138,189 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_date
+  body:
+    label: 'Accordions » Content » Body'
+    datasource_id: 'entity:node'
+    property_path: 'field_accordions:entity:body'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_accordions
+        - field.storage.node.body
+      module:
+        - node
+  field_author:
+    label: 'Accordions » Content » Author'
+    datasource_id: 'entity:node'
+    property_path: 'field_accordions:entity:field_author'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_accordions
+        - field.storage.node.field_author
+      module:
+        - node
+  field_company:
+    label: 'Accordions » Content » Company'
+    datasource_id: 'entity:node'
+    property_path: 'field_accordions:entity:field_company'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_accordions
+        - field.storage.node.field_company
+      module:
+        - node
+  field_company_description:
+    label: 'Accordions » Content » Company description'
+    datasource_id: 'entity:node'
+    property_path: 'field_accordions:entity:field_company_description'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_accordions
+        - field.storage.node.field_company_description
+      module:
+        - node
+  field_featured_speaker:
+    label: 'Accordions » Content » Featured Speaker'
+    datasource_id: 'entity:node'
+    property_path: 'field_accordions:entity:field_featured_speaker'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_accordions
+        - field.storage.node.field_featured_speaker
+      module:
+        - node
+  field_industries_served:
+    label: 'Accordions » Content » Industries served'
+    datasource_id: 'entity:node'
+    property_path: 'field_accordions:entity:field_industries_served'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_accordions
+        - field.storage.node.field_industries_served
+      module:
+        - node
+  field_business_lines:
+    label: 'Accordions » Content » Lines of  business'
+    datasource_id: 'entity:node'
+    property_path: 'field_accordions:entity:field_business_lines'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_accordions
+        - field.storage.node.field_business_lines
+      module:
+        - node
+  field_manufacturers_represented:
+    label: 'Accordions » Content » Manufacturers represented'
+    datasource_id: 'entity:node'
+    property_path: 'field_accordions:entity:field_manufacturers_represented'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_accordions
+        - field.storage.node.field_manufacturers_represented
+      module:
+        - node
+  field_equipment_sold_type_other:
+    label: 'Accordions » Content » Other equipment'
+    datasource_id: 'entity:node'
+    property_path: 'field_accordions:entity:field_equipment_sold_type_other'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_accordions
+        - field.storage.node.field_equipment_sold_type_other
+      module:
+        - node
+  field_industries_served_other:
+    label: 'Accordions » Content » Other industries'
+    datasource_id: 'entity:node'
+    property_path: 'field_accordions:entity:field_industries_served_other'
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.field_accordions
+        - field.storage.node.field_industries_served_other
+      module:
+        - node
+  field_programs_focus:
+    label: 'Accordions » Content » Programs focus on'
+    datasource_id: 'entity:node'
+    property_path: 'field_accordions:entity:field_programs_focus'
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_accordions
+        - field.storage.node.field_programs_focus
+      module:
+        - node
+  field_equipment_sold_type:
+    label: 'Accordions » Content » Type of equipment sold'
+    datasource_id: 'entity:node'
+    property_path: 'field_accordions:entity:field_equipment_sold_type'
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_accordions
+        - field.storage.node.field_equipment_sold_type
+      module:
+        - node
+  body_1:
+    label: Body
+    datasource_id: 'entity:node'
+    property_path: body
+    type: text
+    dependencies:
+      config:
+        - field.storage.node.body
+  field_company_1:
+    label: Company
+    datasource_id: 'entity:node'
+    property_path: field_company
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_company
+  field_news_category_1:
+    label: 'News Category'
+    datasource_id: 'entity:node'
+    property_path: field_news_category
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_news_category
+  field_programs_focus_1:
+    label: 'Programs focus on'
+    datasource_id: 'entity:node'
+    property_path: field_programs_focus
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_programs_focus
+  field_tags:
+    label: Tags
+    datasource_id: 'entity:node'
+    property_path: field_tags
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_tags
+  title_1:
+    label: Title
+    datasource_id: 'entity:pmmi_page_manager_search'
+    property_path: title
+    type: string
+  processed:
+    label: 'Content » Processed text'
+    datasource_id: 'entity:pmmi_page_manager_search'
+    property_path: 'content:processed'
+    type: text
+    boost: !!float 13
 datasource_settings:
   'entity:node':
     bundles:
@@ -133,38 +330,41 @@ datasource_settings:
     languages:
       default: true
       selected: {  }
+  'entity:pmmi_page_manager_search': {  }
 processor_settings:
   country: {  }
-  state: {  }
   pmmi_shows: {  }
-  stemmer:
-    fields:
-      - title_f
-      - body_f
-    exceptions:
-      texan: texa
-      mexican: mexic
-    weights:
-      preprocess_index: 0
-      preprocess_query: 0
-  rendered_item: {  }
-  aggregated_field: {  }
+  state: {  }
   add_url: {  }
+  aggregated_field: {  }
   content_access:
     weights:
       preprocess_query: -30
-  ignorecase:
-    fields:
-      - title
-      - title_f
-      - body_f
+  entity_status: {  }
+  highlight:
+    highlight: always
+    highlight_partial: true
+    excerpt: false
+    excerpt_length: 1024
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
     weights:
-      preprocess_index: -10
-      preprocess_query: -10
+      postprocess_query: 0
   html_filter:
+    all_fields: false
     fields:
       - title_f
       - body_f
+      - body
+      - field_company_description
+      - field_manufacturers_represented
+      - field_equipment_sold_type_other
+      - field_industries_served_other
+      - field_programs_focus
+      - body_1
+      - field_programs_focus_1
+      - title_1
     title: true
     alt: true
     tags:
@@ -176,11 +376,65 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
-  ignore_character:
+  ignorecase:
+    all_fields: true
     fields:
+      - node_grants
       - title
+      - type
       - title_f
       - body_f
+      - administrative_area
+      - locality
+      - postal_code
+      - address_line1
+      - address_line2
+      - body
+      - field_author
+      - field_company
+      - field_company_description
+      - field_featured_speaker
+      - field_business_lines
+      - field_manufacturers_represented
+      - field_equipment_sold_type_other
+      - field_industries_served_other
+      - field_programs_focus
+      - body_1
+      - field_company_1
+      - field_programs_focus_1
+      - title_1
+      - processed
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  ignore_character:
+    all_fields: true
+    fields:
+      - node_grants
+      - title
+      - type
+      - title_f
+      - body_f
+      - administrative_area
+      - locality
+      - postal_code
+      - address_line1
+      - address_line2
+      - body
+      - field_author
+      - field_company
+      - field_company_description
+      - field_featured_speaker
+      - field_business_lines
+      - field_manufacturers_represented
+      - field_equipment_sold_type_other
+      - field_industries_served_other
+      - field_programs_focus
+      - body_1
+      - field_company_1
+      - field_programs_focus_1
+      - title_1
+      - processed
     ignorable: '[''¿¡!?,.:;]'
     strip:
       character_sets:
@@ -207,30 +461,46 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
-  tokenizer:
+  rendered_item: {  }
+  stemmer:
+    all_fields: true
     fields:
       - title_f
       - body_f
+      - body
+      - field_company_description
+      - field_manufacturers_represented
+      - field_equipment_sold_type_other
+      - field_industries_served_other
+      - body_1
+      - processed
+    exceptions:
+      texan: texa
+      mexican: mexic
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
+  tokenizer:
+    all_fields: true
+    fields:
+      - title_f
+      - body_f
+      - body
+      - field_company_description
+      - field_manufacturers_represented
+      - field_equipment_sold_type_other
+      - field_industries_served_other
+      - body_1
+      - processed
     spaces: ''
     overlap_cjk: 1
     minimum_word_size: '3'
     weights:
       preprocess_index: -6
       preprocess_query: -6
-  highlight:
-    highlight: always
-    highlight_partial: true
-    excerpt: false
-    excerpt_length: 1024
-    exclude_fields: {  }
-    prefix: '<strong>'
-    suffix: '</strong>'
-    weights:
-      postprocess_query: 0
-  entity_status: {  }
 tracker_settings:
   default: {  }
 options:
-  index_directly: true
+  index_directly: false
   cron_limit: 50
 server: solr_server
