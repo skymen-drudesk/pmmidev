@@ -17,14 +17,13 @@ use Drupal\Core\Database\StatementInterface;
 use Drupal\Core\Entity\ContentEntityInterface;
 use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Extension\ModuleHandlerInterface;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Access\AccessibleInterface;
 use Drupal\Core\Database\Query\Condition;
 use Drupal\Core\Render\RendererInterface;
-use Drupal\search\Plugin\ConfigurableSearchPluginBase;
 use Drupal\search\Plugin\SearchIndexingInterface;
+use Drupal\search\Plugin\SearchPluginBase;
 use Drupal\search\SearchQuery;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -34,7 +33,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  *   title = @Translation("PageManagerSearch Search")
  * )
  */
-class PageManagerSearch extends ConfigurableSearchPluginBase implements AccessibleInterface, SearchIndexingInterface {
+class PageManagerSearch extends SearchPluginBase implements AccessibleInterface, SearchIndexingInterface {
 
   /**
    * A database connection object.
@@ -51,7 +50,7 @@ class PageManagerSearch extends ConfigurableSearchPluginBase implements Accessib
   protected $entityManager;
 
   /**
-   * A module manager object.
+   * A module handler object.
    *
    * @var \Drupal\Core\Extension\ModuleHandlerInterface
    */
@@ -125,7 +124,7 @@ class PageManagerSearch extends ConfigurableSearchPluginBase implements Accessib
    * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
    *   An entity manager object.
    * @param \Drupal\Core\Extension\ModuleHandlerInterface $module_handler
-   *   A module manager object.
+   *   A module handler object.
    * @param \Drupal\Core\Config\Config $search_settings
    *   A config object for 'search.settings'.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
@@ -364,7 +363,13 @@ class PageManagerSearch extends ConfigurableSearchPluginBase implements Accessib
     // index per cron run.
     $limit = (int) $this->searchSettings->get('index.cron_limit');
 
-    $result = $this->database->queryRange("SELECT ppms.id, MAX(sd.reindex) FROM {pmmi_page_manager_search} ppms LEFT JOIN {search_dataset} sd ON sd.sid = ppms.id AND sd.type = :type WHERE sd.sid IS NULL OR sd.reindex <> 0 GROUP BY ppms.id ORDER BY MAX(sd.reindex) is null DESC, MAX(sd.reindex) ASC, ppms.id ASC", 0, $limit, [':type' => $this->getPluginId()], ['target' => 'pmmi_page_manager_search']);
+    $result = $this->database->queryRange("SELECT ppms.id, MAX(sd.reindex) 
+      FROM {pmmi_page_manager_search} ppms 
+      LEFT JOIN {search_dataset} sd ON sd.sid = ppms.id AND sd.type = :type 
+      WHERE sd.sid IS NULL OR sd.reindex <> 0 
+      GROUP BY ppms.id 
+      ORDER BY MAX(sd.reindex) is null DESC, MAX(sd.reindex) ASC, ppms.id ASC",
+      0, $limit, [':type' => $this->getPluginId()], ['target' => 'pmmi_page_manager_search']);
 
     $rids = $result->fetchCol();
     if (!$rids) {
@@ -428,7 +433,10 @@ class PageManagerSearch extends ConfigurableSearchPluginBase implements Accessib
 
     $total = $this->database->query('SELECT COUNT(*) FROM {pmmi_page_manager_search}')
       ->fetchField();
-    $remaining = $this->database->query("SELECT COUNT(DISTINCT ppms.id) FROM {pmmi_page_manager_search} ppms LEFT JOIN {search_dataset} sd ON sd.sid = ppms.id AND sd.type = :type WHERE sd.sid IS NULL OR sd.reindex <> 0", [':type' => $this->getPluginId()])
+    $remaining = $this->database->query("SELECT COUNT(DISTINCT ppms.id) 
+      FROM {pmmi_page_manager_search} ppms 
+      LEFT JOIN {search_dataset} sd ON sd.sid = ppms.id AND sd.type = :type 
+      WHERE sd.sid IS NULL OR sd.reindex <> 0", [':type' => $this->getPluginId()])
       ->fetchField();
 
     return ['remaining' => $remaining, 'total' => $total];
@@ -446,48 +454,4 @@ class PageManagerSearch extends ConfigurableSearchPluginBase implements Accessib
     }
     return $this->rankings;
   }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    // Output form for defining rank factor weights.
-    $form['content_ranking'] = [
-      '#type' => 'details',
-      '#title' => t('Content ranking'),
-      '#open' => TRUE,
-    ];
-    $form['content_ranking']['info'] = [
-      '#markup' => '' . $this->t('Influence is a numeric multiplier used in ordering search results. A higher number means the corresponding factor has more influence on search results; zero means the factor is ignored. Changing these numbers does not require the search index to be rebuilt. Changes take effect immediately.') . '',
-    ];
-    // Prepare table.
-    $header = [$this->t('Factor'), $this->t('Influence')];
-    $form['content_ranking']['rankings'] = [
-      '#type' => 'table',
-      '#header' => $header,
-    ];
-
-    // Note: reversed to reflect that higher number = higher ranking.
-    $range = range(0, 10);
-    $options = array_combine($range, $range);
-    foreach ($this->getRankings() as $var => $values) {
-      $form['content_ranking']['rankings'][$var]['name'] = [
-        '#markup' => $values['title'],
-      ];
-      $form['content_ranking']['rankings'][$var]['value'] = [
-        '#type' => 'select',
-        '#options' => $options,
-        '#attributes' => ['aria-label' => $this->t("Influence of '@title'", ['@title' => $values['title']])],
-        '#default_value' => isset($this->configuration['rankings'][$var]) ? $this->configuration['rankings'][$var] : 0,
-      ];
-    }
-    return $form;
-  }
-
-  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
-    // TODO: Implement submitConfigurationForm() method.
-  }
 }
-
-
-

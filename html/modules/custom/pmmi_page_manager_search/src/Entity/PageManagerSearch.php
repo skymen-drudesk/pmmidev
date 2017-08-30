@@ -55,7 +55,7 @@ class PageManagerSearch extends ContentEntityBase implements ContentEntityInterf
   }
 
   /**
-   * Get referenced Page Variant Id.
+   * Set referenced Page Variant Id.
    */
   public function setPageVariantId($pid) {
     return $this->set('pid', $pid);

@@ -44,5 +44,4 @@ class PageManagerSearchRedirect implements EventSubscriberInterface {
 
     return $events;
   }
-
 }
