@@ -142,6 +142,7 @@ class PMMISSOUserManager {
   public function register($authname, array $property_values = [], array $user_data = []) {
     try {
       $property_values['pass'] = $this->randomPassword();
+      $property_values['name'] = $property_values['init'];
       $user = $this->externalAuth->register($authname, $this->provider, $property_values, $user_data);
     }
     catch (ExternalAuthRegisterException $e) {
