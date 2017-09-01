@@ -11,6 +11,7 @@ dependencies:
   module:
     - search_api
     - pmmi_search
+    - search_api_bundle_boost
     - node
     - pmmi_page_manager_search
 id: default_index
@@ -162,6 +163,7 @@ processor_settings:
       postprocess_query: 0
   add_url: {  }
   ignore_character:
+    all_fields: false
     fields:
       - title
       - title_f
@@ -192,8 +194,8 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
-    all_fields: false
   tokenizer:
+    all_fields: false
     fields:
       - title_f
       - body_f
@@ -203,8 +205,8 @@ processor_settings:
     weights:
       preprocess_index: -6
       preprocess_query: -6
-    all_fields: false
   html_filter:
+    all_fields: false
     fields:
       - title_f
       - body_f
@@ -219,7 +221,6 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
-    all_fields: false
   content_access:
     weights:
       preprocess_query: -30
@@ -227,6 +228,7 @@ processor_settings:
   rendered_item: {  }
   entity_status: {  }
   ignorecase:
+    all_fields: false
     fields:
       - title
       - title_f
@@ -234,8 +236,8 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
-    all_fields: false
   stemmer:
+    all_fields: false
     fields:
       - title_f
       - body_f
@@ -245,7 +247,17 @@ processor_settings:
     weights:
       preprocess_index: 0
       preprocess_query: 0
-    all_fields: false
+  search_api_bundle_boost_processor:
+    bundles:
+      node:
+        article: '21.0'
+        basic_page: '0.0'
+        certification_test: '0.0'
+        download: '0.0'
+        school: '0.0'
+        video: '0.0'
+      pmmi_page_manager_search:
+        pmmi_page_manager_search: '0.0'
 tracker_settings:
   default: {  }
 options:
