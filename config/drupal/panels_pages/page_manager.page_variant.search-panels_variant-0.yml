@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - page_manager.page.search
-    - views.view.search_page
+    - views.view.search_pages
   module:
     - panels
     - pmmi_search
@@ -14,17 +14,6 @@ label: Panels
 variant: panels_variant
 variant_settings:
   blocks:
-    015a88f4-5074-48e3-b0df-6e031abe3a03:
-      id: 'views_block:search_page-block_1'
-      label: ''
-      provider: views
-      label_display: '0'
-      views_label: ''
-      items_per_page: none
-      region: oneone
-      weight: 0
-      uuid: 015a88f4-5074-48e3-b0df-6e031abe3a03
-      context_mapping: {  }
     a44b6662-19e9-48ff-a5f7-f80ea9e365dc:
       id: pmmi_search_result_title_block
       label: 'PMMI Search Result Title block'
@@ -38,15 +27,26 @@ variant_settings:
       block_title: ''
       uuid: a44b6662-19e9-48ff-a5f7-f80ea9e365dc
       context_mapping: {  }
-    b29428c5-d1ca-447e-87ff-dc310e75247d:
-      id: 'views_exposed_filter_block:search_page-block_1'
+    367bd47a-837c-44f6-bfd1-dc23b0cd53bb:
+      id: 'views_block:search_pages-block_1'
+      label: ''
+      provider: views
+      label_display: '0'
+      views_label: ''
+      items_per_page: none
+      region: oneone
+      weight: 0
+      uuid: 367bd47a-837c-44f6-bfd1-dc23b0cd53bb
+      context_mapping: {  }
+    d07dcae3-a1b2-4fe5-8b1d-d0aadbf712dd:
+      id: 'views_exposed_filter_block:search_pages-block_1'
       label: ''
       provider: views
       label_display: '0'
       views_label: ''
       region: top
-      weight: -10
-      uuid: b29428c5-d1ca-447e-87ff-dc310e75247d
+      weight: 0
+      uuid: d07dcae3-a1b2-4fe5-8b1d-d0aadbf712dd
       context_mapping: {  }
   id: panels_variant
   uuid: fb36ba8b-4370-4280-a936-ee36b0721fe3

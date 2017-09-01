@@ -11,6 +11,7 @@ dependencies:
   module:
     - search_api
     - pmmi_search
+    - search_api_bundle_boost
     - node
     - pmmi_page_manager_search
 id: default_index
@@ -150,6 +151,12 @@ processor_settings:
   country: {  }
   pmmi_shows: {  }
   state: {  }
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  entity_status: {  }
   highlight:
     highlight: always
     highlight_partial: true
@@ -160,8 +167,33 @@ processor_settings:
     suffix: '</strong>'
     weights:
       postprocess_query: 0
-  add_url: {  }
+  html_filter:
+    all_fields: false
+    fields:
+      - title_f
+      - body_f
+    title: true
+    alt: true
+    tags:
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      b: 2
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  ignorecase:
+    all_fields: false
+    fields:
+      - title
+      - title_f
+      - body_f
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
   ignore_character:
+    all_fields: false
     fields:
       - title
       - title_f
@@ -192,50 +224,9 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
-    all_fields: false
-  tokenizer:
-    fields:
-      - title_f
-      - body_f
-    spaces: ''
-    overlap_cjk: 1
-    minimum_word_size: '3'
-    weights:
-      preprocess_index: -6
-      preprocess_query: -6
-    all_fields: false
-  html_filter:
-    fields:
-      - title_f
-      - body_f
-    title: true
-    alt: true
-    tags:
-      h1: 5
-      h2: 3
-      h3: 2
-      strong: 2
-      b: 2
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-    all_fields: false
-  content_access:
-    weights:
-      preprocess_query: -30
-  aggregated_field: {  }
   rendered_item: {  }
-  entity_status: {  }
-  ignorecase:
-    fields:
-      - title
-      - title_f
-      - body_f
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-    all_fields: false
   stemmer:
+    all_fields: false
     fields:
       - title_f
       - body_f
@@ -245,7 +236,28 @@ processor_settings:
     weights:
       preprocess_index: 0
       preprocess_query: 0
+  tokenizer:
     all_fields: false
+    fields:
+      - title_f
+      - body_f
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
+  search_api_bundle_boost_processor:
+    bundles:
+      node:
+        article: '21.0'
+        basic_page: '0.0'
+        certification_test: '0.0'
+        download: '0.0'
+        school: '0.0'
+        video: '0.0'
+      pmmi_page_manager_search:
+        pmmi_page_manager_search: '0.0'
 tracker_settings:
   default: {  }
 options:
