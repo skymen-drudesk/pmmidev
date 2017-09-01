@@ -55,6 +55,13 @@ class PageManagerSearchGenerate extends FormBase {
       ];
     }
 
+    // Delete all PageManagerSearch entities for preventing duplicates of
+    // exist entities.
+    $ids = \Drupal::entityQuery('pmmi_page_manager_search')->execute();
+    $controller = \Drupal::entityTypeManager()->getStorage('pmmi_page_manager_search');
+    $entities = $controller->loadMultiple($ids);
+    $controller->delete($entities);
+
     $batch = [
       'title' => t('Bulk Generate...'),
       'operations' => $operation,
