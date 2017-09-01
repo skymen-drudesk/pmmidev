@@ -11,6 +11,7 @@ use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
+use Drupal\pmmi_page_manager_search\Entity\PageManagerSearch;
 use Drupal\views\ViewExecutable;
 
 /**
@@ -338,6 +339,9 @@ function pmmi_forms_views_pre_render(ViewExecutable $view) {
           else {
             $entity->setTitle($entity->getTitle() . ' - Page');
           }
+        }
+        elseif ($entity instanceof PageManagerSearch) {
+          $entity->set('title', $entity->get('title')->value . ' - Page');
         }
       }
     }
