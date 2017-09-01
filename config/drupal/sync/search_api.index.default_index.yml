@@ -224,18 +224,6 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
-  rendered_item: {  }
-  stemmer:
-    all_fields: false
-    fields:
-      - title_f
-      - body_f
-    exceptions:
-      texan: texa
-      mexican: mexic
-    weights:
-      preprocess_index: 0
-      preprocess_query: 0
   tokenizer:
     all_fields: false
     fields:
@@ -247,6 +235,48 @@ processor_settings:
     weights:
       preprocess_index: -6
       preprocess_query: -6
+  html_filter:
+    all_fields: false
+    fields:
+      - title_f
+      - body_f
+    title: true
+    alt: true
+    tags:
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      b: 2
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  content_access:
+    weights:
+      preprocess_query: -30
+  aggregated_field: {  }
+  rendered_item: {  }
+  entity_status: {  }
+  ignorecase:
+    all_fields: false
+    fields:
+      - title
+      - title_f
+      - body_f
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  stemmer:
+    all_fields: false
+    fields:
+      - title_f
+      - body_f
+    exceptions:
+      texan: texa
+      mexican: mexic
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
   search_api_bundle_boost_processor:
     bundles:
       node:
