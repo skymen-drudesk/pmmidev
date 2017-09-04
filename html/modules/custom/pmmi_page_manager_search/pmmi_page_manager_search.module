@@ -122,11 +122,16 @@ function pmmi_page_manager_search_form_alter(&$form, \Drupal\Core\Form\FormState
 
   // Add new checkbox with config.
   if ($form_id === 'page_manage_variant_configure_form') {
+    $index_page_variant = (
+      isset($page_variant->get('third_party_settings')['index_page_variant'])
+        ? $page_variant->get('third_party_settings')['index_page_variant']
+        : 1
+    );
     $form['variant_settings']['include_in_search_results'] = [
       '#type' => 'checkbox',
       '#title' => t('Index this page variant?'),
       '#weight' => 0,
-      '#default_value' => $page_variant->get('third_party_settings')['index_page_variant'],
+      '#default_value' => $index_page_variant,
     ];
 
     $form['actions']['update_and_save']['#submit'][] = 'pmmi_page_manager_search_page_variant_submit';
