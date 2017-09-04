@@ -27,8 +27,6 @@ class PageManagerSearchGenerateBatch {
       $page->save();
     }
     catch (Exception $e) {
-
-      $b=0;
       return;
     }
   }
