@@ -45,7 +45,12 @@ function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterfa
 function pmmi_page_manager_search_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
   if ($entity->getEntityTypeId() == 'page_variant') {
     // Check if need to index this PageVariant.
-    if ($entity->get('third_party_settings')['index_page_variant'] === 1) {
+    $index_page_variant = (
+    isset($entity->get('third_party_settings')['index_page_variant'])
+      ? $entity->get('third_party_settings')['index_page_variant']
+      : 1
+    );
+    if ($index_page_variant === 1) {
       $existing_page_manager_search = \Drupal::entityQuery('pmmi_page_manager_search')
         ->condition('pid', $entity->id())
         ->execute();
