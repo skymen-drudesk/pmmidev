@@ -275,6 +275,7 @@ class PMMICompanySearchBlockForm extends FormBase {
    */
   protected function filterTerritoryServedBuild($ccodes, $scodes = array()) {
     $items = [];
+    $countries = $this->countryRepository->getList();
 
     // Build list of items. Use the next styles:
     //  - for country only: COUNTRY_CODE;
@@ -287,11 +288,13 @@ class PMMICompanySearchBlockForm extends FormBase {
         if (isset($subdivisions[$scode])) {
           $sub = TRUE;
           $items['ts'][] = $ccode . '::' . $scode;
+          $items['country'][] = $countries[$ccode];
         }
       }
 
       if (!$sub) {
         $items['ts'][] = $ccode;
+        $items['country'][] = $countries[$ccode];
       }
     }
 

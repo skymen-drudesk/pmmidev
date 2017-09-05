@@ -24,7 +24,7 @@ class SADClearTerritoryServedBatch {
   public static function bulkUpdate($nid, &$context) {
     try  {
       $node = Node::load($nid);
-      $node->set('field_territory_served', '');
+      $node->set('field_territory_served', []);
       $node->save();
     }
     catch (Exception $e) {
