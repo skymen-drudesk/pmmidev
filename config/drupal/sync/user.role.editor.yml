@@ -7,6 +7,16 @@ label: Editor
 weight: 3
 is_admin: null
 permissions:
+uuid: 0d7202ab-9234-445d-902a-db42da91adb9
+langcode: en
+status: true
+dependencies: {  }
+id: editor
+label: Editor
+weight: 3
+is_admin: null
+permissions:
+  - 'access administration pages'
   - 'access browse_files entity browser pages'
   - 'access browse_files_modal entity browser pages'
   - 'access content overview'
@@ -17,12 +27,15 @@ permissions:
   - 'access in-place editing'
   - 'access panels in-place editing'
   - 'access toolbar'
+  - 'access webform overview'
+  - 'access webform submission log'
   - 'administer advanced pane settings'
   - 'administer block_content display'
   - 'administer block_content fields'
   - 'administer block_content form display'
   - 'administer blocks'
   - 'administer files'
+  - 'administer imce'
   - 'administer nodes'
   - 'administer pages'
   - 'administer pane access'
@@ -48,6 +61,7 @@ permissions:
   - 'delete any school content'
   - 'delete any video content'
   - 'delete any video files'
+  - 'delete any webform submission'
   - 'delete article revisions'
   - 'delete basic_page revisions'
   - 'delete certification_test revisions'
@@ -63,6 +77,7 @@ permissions:
   - 'delete own school content'
   - 'delete own video content'
   - 'delete own video files'
+  - 'delete own webform submission'
   - 'delete school revisions'
   - 'delete video revisions'
   - 'dropzone upload files'
@@ -77,6 +92,8 @@ permissions:
   - 'edit any school content'
   - 'edit any video content'
   - 'edit any video files'
+  - 'edit any webform'
+  - 'edit any webform submission'
   - 'edit own archive files'
   - 'edit own article content'
   - 'edit own audio files'
@@ -107,6 +124,7 @@ permissions:
   - 'use published_published transition'
   - 'use text format full_html'
   - 'view any unpublished content'
+  - 'view any webform submission'
   - 'view article revisions'
   - 'view basic_page revisions'
   - 'view certification_test revisions'
@@ -121,3 +139,4 @@ permissions:
   - 'view school revisions'
   - 'view the administration theme'
   - 'view video revisions'
+
