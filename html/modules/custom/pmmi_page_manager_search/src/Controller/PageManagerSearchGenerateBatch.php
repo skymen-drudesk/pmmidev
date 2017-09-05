@@ -24,7 +24,9 @@ class PageManagerSearchGenerateBatch {
   public static function bulkGenerate($pvid, &$context) {
     try  {
       $page = PageVariant::load($pvid);
-      $page->save();
+      if ($page->get('page') !== 'site_template') {
+        $page->save();
+      }
     }
     catch (Exception $e) {
       return;
