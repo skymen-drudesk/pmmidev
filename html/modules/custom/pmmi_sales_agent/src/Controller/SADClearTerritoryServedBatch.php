@@ -10,7 +10,7 @@ use Exception;
  *
  * Batch for clearing field_territory_served field value in Company nodes;
  *
- * @package Drupal\pmmi_page_manager_search\Controller
+ * @package Drupal\pmmi_sales_agent\Controller
  */
 class SADClearTerritoryServedBatch {
 
