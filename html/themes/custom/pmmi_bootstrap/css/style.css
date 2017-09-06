@@ -14752,7 +14752,7 @@ body > .page-wrapper:after,
 
 .navbar .main-nav .menu-container.collapse {
   display: block;
-  height: auto !important;
+  height: auto;
 }
 
 .navbar .main-nav .nav {
@@ -14870,17 +14870,21 @@ body > .page-wrapper:after,
   }
   .navbar .main-nav .menu-container {
     clear: both;
-    position: absolute;
-    right: 0;
-    top: 100%;
+    position: fixed;
     z-index: 3;
-    min-width: 230px;
+    max-width: 250px;
+    width: 100%;
+    top: 46px;
+    right: 15px;
+    overflow-y: scroll;
   }
   .navbar .main-nav .menu-container.collapse {
     display: none;
   }
   .navbar .main-nav .menu-container.collapse.in {
     display: block;
+    height: calc(100vh - 46px) !important;
+    overflow-y: scroll;
   }
   .navbar .main-nav .nav {
     float: none;
@@ -14900,7 +14904,6 @@ body > .page-wrapper:after,
     text-transform: none;
     font-weight: 500;
     padding: 10px 12px;
-    border-bottom: 1px solid #e8eded;
   }
   .navbar .main-nav .nav li > a:after {
     display: none;
@@ -14935,6 +14938,15 @@ body > .page-wrapper:after,
     color: #fff;
   }
   .navbar .main-nav .nav li > a {
+    font-weight: 900;
+  }
+  .navbar .main-nav .nav li.level-1 > a {
+    border-bottom: 1px solid #e8eded;
+  }
+  .navbar .main-nav .nav li:not(.level-1) .description {
+    display: none;
+  }
+  .navbar .main-nav .nav li:not(.level-1).only-mobile > a {
     font-weight: 900;
   }
 }
@@ -15815,8 +15827,14 @@ body > .page-wrapper:after,
 }
 
 @media screen and (max-width: 767px) {
-  .tb-megamenu-submenu .mobile-hidden {
-    display: none;
+  .tb-megamenu-submenu .mobile-hidden .view-content {
+    margin: 0;
+  }
+  .tb-megamenu-submenu .mobile-hidden .view-content .views-row {
+    width: 50% !important;
+  }
+  .tb-megamenu-submenu .mobile-hidden .view-content .views-row div[class*="field-show-dates"] {
+    white-space: normal;
   }
 }
 
