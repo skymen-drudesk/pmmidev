@@ -28,6 +28,8 @@ class SADClearTerritoryServedBatch {
       $node->save();
     }
     catch (Exception $e) {
+      \Drupal::logger('pmmi_sales_agent')->error($e);
+
       return;
     }
   }
