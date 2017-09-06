@@ -121,12 +121,12 @@ function pmmi_page_manager_search_entity_delete(Drupal\Core\Entity\EntityInterfa
  * Implements hook_form_alter().
  */
 function pmmi_page_manager_search_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  $cached_values = $form_state->getTemporaryValue('wizard');
-  /** @var $page_variant \Drupal\page_manager\Entity\PageVariant */
-  $page_variant = $cached_values['page_variant'];
-
   // Add new checkbox with config.
   if ($form_id === 'page_manage_variant_configure_form') {
+    $cached_values = $form_state->getTemporaryValue('wizard');
+    /** @var $page_variant \Drupal\page_manager\Entity\PageVariant */
+    $page_variant = $cached_values['page_variant'];
+
     $index_page_variant = (
       isset($page_variant->get('third_party_settings')['index_page_variant'])
         ? $page_variant->get('third_party_settings')['index_page_variant']
