@@ -4,8 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.download.body
-    - field.field.node.download.field_block_button_text
-    - field.field.node.download.field_file_download_button
+    - field.field.node.download.field_document_link
     - field.field.node.download.field_image
     - field.field.node.download.field_image_header
     - field.field.node.download.field_links
@@ -13,6 +12,7 @@ dependencies:
     - responsive_image.styles.block_style_4
   module:
     - ds
+    - link
     - responsive_image
     - text
     - user
@@ -52,20 +52,17 @@ content:
   content_moderation_control:
     weight: -20
     region: content
-  field_block_button_text:
-    weight: 5
-    label: hidden
+  field_document_link:
+    weight: 3
+    label: above
     settings:
-      link_to_entity: true
-    third_party_settings:
-      ds:
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
-    type: string
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
     region: content
   field_image:
     weight: 0
@@ -84,7 +81,6 @@ content:
     type: responsive_image
     region: content
 hidden:
-  field_file_download_button: true
   field_image_header: true
   field_links: true
   links: true
