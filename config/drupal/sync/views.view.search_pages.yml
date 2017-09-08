@@ -32,8 +32,8 @@ display:
       query:
         type: views_query
         options:
-          bypass_access: false
-          skip_access: false
+          skip_access: 1
+          bypass_access: 0
       exposed_form:
         type: basic
         options:
@@ -180,7 +180,7 @@ display:
             preserve_tags: ''
             html: false
           element_type: h3
-          element_class: ''
+          element_class: headline3
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
