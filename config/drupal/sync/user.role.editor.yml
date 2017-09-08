@@ -7,15 +7,6 @@ label: Editor
 weight: 3
 is_admin: null
 permissions:
-uuid: 0d7202ab-9234-445d-902a-db42da91adb9
-langcode: en
-status: true
-dependencies: {  }
-id: editor
-label: Editor
-weight: 3
-is_admin: null
-permissions:
   - 'access administration pages'
   - 'access browse_files entity browser pages'
   - 'access browse_files_modal entity browser pages'
@@ -139,4 +130,3 @@ permissions:
   - 'view school revisions'
   - 'view the administration theme'
   - 'view video revisions'
-
