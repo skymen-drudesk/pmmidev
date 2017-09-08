@@ -50,3 +50,10 @@ entity.sad_user_stat_type.collection:
   description: 'List Sales agent user stat type (bundles)'
   parent: system.admin_structure
   weight: 99
+
+# Sales agent directory configuration page.
+pmmi_sales_agent.clear_territory_served:
+  title: Clear territory_served field values
+  route_name: pmmi_sales_agent.clear_territory_served
+  parent: pmmi_sales_agent.sales_agent_directory
+  weight: 100
