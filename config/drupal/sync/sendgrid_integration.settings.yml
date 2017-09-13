@@ -1,11 +1,11 @@
 apikey: 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
 test_defaults:
-  to: example@mail.com
-  subject: ''
+  to: devuser@pmmimediagroup.com
+  subject: 'PMMI.org Sendgrid Test Message'
   body:
-    value: ''
+    value: 'This is just a test message.'
     format: plain_text
-  from_name: Test User
+  from_name: 'Test User'
   to_name: ''
   reply_to: ''
 _core:
