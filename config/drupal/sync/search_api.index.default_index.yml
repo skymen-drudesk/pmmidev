@@ -11,7 +11,9 @@ dependencies:
   module:
     - search_api
     - pmmi_search
+    - search_api_bundle_boost
     - node
+    - pmmi_page_manager_search
 id: default_index
 name: 'Default Index'
 description: ''
@@ -124,6 +126,17 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_date
+  content:
+    label: Content
+    datasource_id: 'entity:pmmi_page_manager_search'
+    property_path: content
+    type: text
+    boost: !!float 13
+  title_1:
+    label: Title
+    datasource_id: 'entity:pmmi_page_manager_search'
+    property_path: title
+    type: string
 datasource_settings:
   'entity:node':
     bundles:
@@ -133,35 +146,29 @@ datasource_settings:
     languages:
       default: true
       selected: {  }
+  'entity:pmmi_page_manager_search': {  }
 processor_settings:
   country: {  }
-  state: {  }
   pmmi_shows: {  }
-  stemmer:
-    fields:
-      - title_f
-      - body_f
-    exceptions:
-      texan: texa
-      mexican: mexic
-    weights:
-      preprocess_index: 0
-      preprocess_query: 0
-  rendered_item: {  }
-  aggregated_field: {  }
+  state: {  }
   add_url: {  }
+  aggregated_field: {  }
   content_access:
     weights:
       preprocess_query: -30
-  ignorecase:
-    fields:
-      - title
-      - title_f
-      - body_f
+  entity_status: {  }
+  highlight:
+    highlight: always
+    highlight_partial: true
+    excerpt: false
+    excerpt_length: 1024
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
     weights:
-      preprocess_index: -10
-      preprocess_query: -10
+      postprocess_query: 0
   html_filter:
+    all_fields: false
     fields:
       - title_f
       - body_f
@@ -176,7 +183,17 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
+  ignorecase:
+    all_fields: false
+    fields:
+      - title
+      - title_f
+      - body_f
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
   ignore_character:
+    all_fields: false
     fields:
       - title
       - title_f
@@ -208,6 +225,7 @@ processor_settings:
       preprocess_index: -10
       preprocess_query: -10
   tokenizer:
+    all_fields: false
     fields:
       - title_f
       - body_f
@@ -217,17 +235,59 @@ processor_settings:
     weights:
       preprocess_index: -6
       preprocess_query: -6
-  highlight:
-    highlight: always
-    highlight_partial: true
-    excerpt: false
-    excerpt_length: 1024
-    exclude_fields: {  }
-    prefix: '<strong>'
-    suffix: '</strong>'
+  html_filter:
+    all_fields: false
+    fields:
+      - title_f
+      - body_f
+    title: true
+    alt: true
+    tags:
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      b: 2
     weights:
-      postprocess_query: 0
+      preprocess_index: -10
+      preprocess_query: -10
+  content_access:
+    weights:
+      preprocess_query: -30
+  aggregated_field: {  }
+  rendered_item: {  }
   entity_status: {  }
+  ignorecase:
+    all_fields: false
+    fields:
+      - title
+      - title_f
+      - body_f
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+  stemmer:
+    all_fields: false
+    fields:
+      - title_f
+      - body_f
+    exceptions:
+      texan: texa
+      mexican: mexic
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
+  search_api_bundle_boost_processor:
+    bundles:
+      node:
+        article: '0.0'
+        basic_page: '21.0'
+        certification_test: '21.0'
+        download: '21.0'
+        school: '21.0'
+        video: '21.0'
+      pmmi_page_manager_search:
+        pmmi_page_manager_search: '21.0'
 tracker_settings:
   default: {  }
 options:

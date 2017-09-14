@@ -134,3 +134,12 @@ function pmmi_update_8004() {
 function pmmi_update_8005() {
   \Drupal::service('module_installer')->uninstall(['layout_plugin']);
 }
+
+/**
+ * Truncate queue table.
+ */
+function pmmi_update_8006() {
+  $database = \Drupal::database();
+  $query = $database->truncate('queue');
+  $query->execute();
+}

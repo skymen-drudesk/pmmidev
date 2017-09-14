@@ -4,7 +4,6 @@ module:
   admin_toolbar: 0
   admin_toolbar_tools: 0
   aggregator: 0
-  audience_select: 0
   backup_migrate: 0
   big_pipe: 0
   blazy: 0
@@ -57,6 +56,7 @@ module:
   link_attributes: 0
   linked_field: 0
   maillog: 0
+  mailsystem: 0
   menu_link_content: 0
   menu_ui: 0
   metatag: 0
@@ -69,7 +69,6 @@ module:
   node: 0
   options: 0
   page_cache: 0
-  page_manager: 0
   page_manager_ui: 0
   panels: 0
   panels_everywhere: 0
@@ -84,6 +83,7 @@ module:
   pmmi_forms: 0
   pmmi_ga: 0
   pmmi_import: 0
+  pmmi_page_manager_search: 0
   pmmi_psdata: 0
   pmmi_sales_agent: 0
   pmmi_search: 0
@@ -93,10 +93,10 @@ module:
   purge: 0
   purge_drush: 0
   purge_processor_cron: 0
-  purge_processor_lateruntime: 0
   purge_queuer_coretags: 0
   purge_tokens: 0
   purge_ui: 0
+  queue_ui: 0
   quickedit: 0
   recaptcha: 0
   redirect: 0
@@ -104,14 +104,15 @@ module:
   responsive_image: 0
   rest: 0
   search_api: 0
+  search_api_bundle_boost: 0
   search_api_solr: 0
   search_api_views_taxonomy: 0
   selectize: 0
+  sendgrid_integration: 0
   serialization: 0
   slick: 0
   slick_views: 0
   statistics: 0
-  syslog: 0
   system: 0
   taxonomy: 0
   tb_megamenu: 0
@@ -119,7 +120,6 @@ module:
   text: 0
   token: 0
   toolbar: 0
-  update: 0
   user: 0
   varnish_purge_tags: 0
   varnish_purger: 0
@@ -131,11 +131,9 @@ module:
   views_data_export: 0
   views_field_formatter: 0
   views_field_view: 0
-  webform: 0
   webform_ui: 0
   webform_views: 0
   workflows: 0
-  pathauto: 0
 theme:
   stable: 0
   classy: 0

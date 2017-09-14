@@ -181,7 +181,7 @@
     }
     .menu-container.collapse {
       display: block;
-      height: auto !important;
+      height: auto;
     }
     /* START First level theming in ALL modes. */
     .nav {
@@ -287,15 +287,19 @@
       }
       .menu-container {
         clear: both;
-        position: absolute;
-        right: 0;
-        top: 100%;
+        position: fixed;
         z-index: 3;
-        min-width: 230px;
+        max-width: 250px;
+        width: 100%;
+        top: 46px;
+        right: 15px;
+        overflow-y: scroll;
         &.collapse {
           display: none;
           &.in {
             display: block;
+            height: calc(100vh - 46px) !important;
+            overflow-y: scroll;
           }
         }
       }
@@ -315,7 +319,6 @@
             text-transform: none;
             font-weight: 500;
             padding: 10px 12px;
-            border-bottom: 1px solid $ltgrey;
             &:after {
               display: none;
             }
@@ -356,6 +359,21 @@
           }
           & > a {
             font-weight: $extrabold;
+          }
+          &.level-1 {
+            > a {
+              border-bottom: 1px solid $ltgrey;
+            }
+          }
+          &:not(.level-1) {
+            .description {
+              display: none;
+            }
+            &.only-mobile {
+              > a {
+                font-weight: $extrabold;
+              }
+            }
           }
         }
       }
@@ -970,7 +988,16 @@
   }
   .mobile-hidden {
     @include mobile {
-      display: none;
+      //display: none;
+      .view-content {
+        margin: 0;
+        .views-row {
+          width: 50% !important;
+          div[class*="field-show-dates"] {
+            white-space: normal;
+          }
+        }
+      }
     }
   }
 }

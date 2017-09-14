@@ -36,8 +36,8 @@ display:
       query:
         type: views_query
         options:
-          bypass_access: false
-          skip_access: false
+          skip_access: 1
+          bypass_access: 0
       exposed_form:
         type: basic
         options:
@@ -355,6 +355,7 @@ display:
           fields:
             title_f: title_f
             body_f: body_f
+            content: content
           plugin_id: search_api_fulltext
         type:
           id: type
@@ -485,14 +486,82 @@ display:
           field_rendering: true
           fallback_handler: search_api
           fallback_options:
-            link_to_item: false
+            link_to_item: true
             multi_separator: ', '
           entity_type: node
           plugin_id: search_api_field
-        body:
-          id: body
-          table: search_api_datasource_default_index_entity_node
-          field: body
+        title_1:
+          id: title_1
+          table: search_api_index_default_index
+          field: title_1
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: h3
+          element_class: headline3
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: true
+            multi_separator: ', '
+          plugin_id: search_api_field
+        body_f:
+          id: body_f
+          table: search_api_index_default_index
+          field: body_f
           relationship: none
           group_type: group
           admin_label: ''
@@ -521,10 +590,10 @@ display:
             more_link: false
             more_link_text: ''
             more_link_path: ''
-            strip_tags: true
-            trim: true
+            strip_tags: false
+            trim: false
             preserve_tags: ''
-            html: true
+            html: false
           element_type: ''
           element_class: ''
           element_label_type: ''
@@ -533,10 +602,10 @@ display:
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
-          empty: 'No description available'
+          empty: ''
           hide_empty: false
           empty_zero: false
-          hide_alter_empty: false
+          hide_alter_empty: true
           click_sort_column: value
           type: text_summary_or_trimmed
           settings:
@@ -556,7 +625,74 @@ display:
           fallback_options:
             link_to_item: false
             multi_separator: ', '
-          entity_type: node
+          plugin_id: search_api_field
+        content:
+          id: content
+          table: search_api_index_default_index
+          field: content
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: true
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 200
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_trimmed
+          settings:
+            trim_length: 200
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          field_rendering: true
+          fallback_handler: search_api
+          fallback_options:
+            link_to_item: false
+            multi_separator: ', '
           plugin_id: search_api_field
     cache_metadata:
       max-age: -1

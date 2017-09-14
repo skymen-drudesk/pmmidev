@@ -238,6 +238,12 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
       return;
     }
 
+    $countries = [];
+    if (!empty($query_params['country'])) {
+      $countries = $query_params['country'];
+      unset($query_params['country']);
+    }
+
     $where = $view->query->getWhere();
     $group_id = max(array_keys($where));
 
@@ -248,6 +254,13 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
         $view->query->setWhereGroup('OR', ++$group_id);
         foreach ($values as $value) {
           $view->query->addCondition($param, $value, 'IN', $group_id);
+        }
+        // Add to filter group WHERE (filter by `ts`) with condition OR filter
+        // by countries.
+        if ($param === 'ts' && !empty($countries)) {
+          foreach ($countries as $country) {
+            $view->query->addCondition('country', $country, 'IN', $group_id);
+          }
         }
       }
     }
