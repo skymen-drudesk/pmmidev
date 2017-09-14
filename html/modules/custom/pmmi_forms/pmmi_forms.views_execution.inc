@@ -17,12 +17,13 @@ function pmmi_forms_views_query_alter(ViewExecutable $view, QueryPluginBase $que
 
     // If selected `Pages` in exposed filter - add to results PagaManagerSearch
     // entities too.
-    $where = $view->query->getWhere();
+    $where = $query->getWhere();
     $group_id = max(array_keys($where));
 
     if ($query_params['page_types']['pages'] === 'pages') {
-      $view->query->setWhereGroup('OR', ++$group_id);
-      $view->query->addCondition('content', '', '<>', $group_id);
+      $query->setGroupOperator('OR');
+      $query->setWhereGroup('OR', ++$group_id);
+      $query->addCondition('title_1', '', '<>', $group_id);
     }
   }
 }
