@@ -99,19 +99,24 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       }
       if ($form['#id'] === 'views-exposed-form-past-hall-of-fame-honorees-block-1') {
         $connection = Database::getConnection();
-        $query = $connection->select('block_content__field_p_p_hall_of_fame_honorees_', 'd')
-          ->fields('d', ['field_p_p_hall_of_fame_honorees__value'])
-          ->orderBy('field_p_p_hall_of_fame_honorees__value', 'ASC');
+        $query = $connection->select('block_content__field_p_p_hall_of_fame_honorees', 'd')
+          ->fields('d', ['field_p_p_hall_of_fame_honorees_value'])
+          ->orderBy('field_p_p_hall_of_fame_honorees_value', 'ASC');
         $results = $query->execute()->fetchAll();
         $storage = $form_state->getStorage();
         $view_title = $storage['view']->getTitle();
+        $form['title'] = [
+          '#type' => 'item',
+          '#markup' => "<h2 class='block-title'>{$view_title}</h2>",
+        ];
+        $form['field_p_p_hall_of_fame_honorees_value']['#type'] = 'hidden';
         if (!empty($results)) {
           $min_val = reset($results);
           $max_val = end($results);
 
           $date_object = [
-            'min_value' => strtotime($min_val->field_p_p_hall_of_fame_honorees__value),
-            'max_value' => strtotime($max_val->field_p_p_hall_of_fame_honorees__value)
+            'min_value' => strtotime($min_val->field_p_p_hall_of_fame_honorees_value),
+            'max_value' => strtotime($max_val->field_p_p_hall_of_fame_honorees_value)
           ];
           $date_object['min_value_year'] = intval(date('Y', $date_object['min_value']));
           $date_object['max_value_year'] = intval(date('Y', $date_object['max_value']));
@@ -128,10 +133,6 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
             $clean_value[]['max'] = $date_object['decade_start'];
             $options[] = $period;
           }
-          $form['title'] = [
-            '#type' => 'item',
-            '#markup' => "<h2 class='block-title'>{$view_title}</h2>",
-          ];
           if ($clean_value && $options) {
             // Add custom form element for emulating `Filter by Year` filter and hide
             // Date field (operator: is between).
@@ -140,7 +141,6 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
             $form['filter_by_year']['#options'] = $options;
             $form['filter_by_year']['#default_value'] = $options[0];
             $form['filter_by_year']['#attributes']['size'] = 1;
-            $form['field_p_p_hall_of_fame_honorees__value']['#type'] = 'hidden';
             //$form_state->storage['clean_value'] = $clean_value;
             array_unshift($form['#submit'], 'pmmi_forms_custom_filter_by_decade_submit');
           }
@@ -230,7 +230,7 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
  * Custom callback function for filtering news by year.
  *
  * @todo
- * Needs to be changed when Date Views filter will be available for Drupal 8.
+ * This is not finished function. Will update it.
  *
  */
 function pmmi_forms_custom_filter_by_decade_submit(array &$form, FormStateInterface &$form_state) {
