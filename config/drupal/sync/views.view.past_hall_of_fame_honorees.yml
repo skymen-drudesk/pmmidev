@@ -9,7 +9,7 @@ dependencies:
     - field.storage.block_content.field_date
     - field.storage.block_content.field_job_title
     - field.storage.block_content.field_name
-    - field.storage.block_content.field_p_p_hall_of_fame_honorees_
+    - field.storage.block_content.field_p_p_hall_of_fame_honorees
     - field.storage.block_content.field_pmmi_member_since
     - field.storage.block_content.field_retired
   module:
@@ -74,10 +74,10 @@ display:
           relationship: none
           view_mode: person_commission_member
       fields:
-        field_p_p_hall_of_fame_honorees_:
-          id: field_p_p_hall_of_fame_honorees_
-          table: block_content__field_p_p_hall_of_fame_honorees_
-          field: field_p_p_hall_of_fame_honorees_
+        field_p_p_hall_of_fame_honorees:
+          id: field_p_p_hall_of_fame_honorees
+          table: block_content__field_p_p_hall_of_fame_honorees
+          field: field_p_p_hall_of_fame_honorees
           relationship: none
           group_type: group
           admin_label: ''
@@ -275,10 +275,10 @@ display:
           entity_field: type
           plugin_id: bundle
           group: 1
-        field_p_p_hall_of_fame_honorees__value_1:
-          id: field_p_p_hall_of_fame_honorees__value_1
-          table: block_content__field_p_p_hall_of_fame_honorees_
-          field: field_p_p_hall_of_fame_honorees__value
+        field_p_p_hall_of_fame_honorees_value_1:
+          id: field_p_p_hall_of_fame_honorees_value_1
+          table: block_content__field_p_p_hall_of_fame_honorees
+          field: field_p_p_hall_of_fame_honorees_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -315,10 +315,10 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: datetime
-        field_p_p_hall_of_fame_honorees__value:
-          id: field_p_p_hall_of_fame_honorees__value
-          table: block_content__field_p_p_hall_of_fame_honorees_
-          field: field_p_p_hall_of_fame_honorees__value
+        field_p_p_hall_of_fame_honorees_value:
+          id: field_p_p_hall_of_fame_honorees_value
+          table: block_content__field_p_p_hall_of_fame_honorees
+          field: field_p_p_hall_of_fame_honorees_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -331,12 +331,12 @@ display:
           group: 1
           exposed: true
           expose:
-            operator_id: field_p_p_hall_of_fame_honorees__value_op
-            label: 'P&P Hall of Fame Honorees Year (field_p_p_hall_of_fame_honorees_)'
+            operator_id: field_p_p_hall_of_fame_honorees_value_op
+            label: 'P&P Hall of Fame Honorees Year (field_p_p_hall_of_fame_honorees)'
             description: ''
             use_operator: false
-            operator: field_p_p_hall_of_fame_honorees__value_op
-            identifier: field_p_p_hall_of_fame_honorees__value
+            operator: field_p_p_hall_of_fame_honorees_value_op
+            identifier: field_p_p_hall_of_fame_honorees_value
             required: false
             remember: false
             multiple: false
@@ -352,9 +352,9 @@ display:
               membership_committee: '0'
           is_grouped: false
           group_info:
-            label: 'P&amp;P Hall of Fame Honorees Year (field_p_p_hall_of_fame_honorees_)'
+            label: 'P&amp;P Hall of Fame Honorees Year (field_p_p_hall_of_fame_honorees)'
             description: null
-            identifier: field_p_p_hall_of_fame_honorees__value
+            identifier: field_p_p_hall_of_fame_honorees_value
             optional: true
             widget: select
             multiple: false
@@ -388,7 +388,7 @@ display:
       tags:
         - 'config:field.storage.block_content.field_job_title'
         - 'config:field.storage.block_content.field_name'
-        - 'config:field.storage.block_content.field_p_p_hall_of_fame_honorees_'
+        - 'config:field.storage.block_content.field_p_p_hall_of_fame_honorees'
   block_1:
     display_plugin: block
     id: block_1
@@ -403,7 +403,7 @@ display:
         options:
           grouping:
             -
-              field: field_p_p_hall_of_fame_honorees_
+              field: field_p_p_hall_of_fame_honorees
               rendered: true
               rendered_strip: true
           row_class: ''
@@ -423,10 +423,10 @@ display:
           separator: ''
           hide_empty: true
       fields:
-        field_p_p_hall_of_fame_honorees_:
-          id: field_p_p_hall_of_fame_honorees_
-          table: block_content__field_p_p_hall_of_fame_honorees_
-          field: field_p_p_hall_of_fame_honorees_
+        field_p_p_hall_of_fame_honorees:
+          id: field_p_p_hall_of_fame_honorees
+          table: block_content__field_p_p_hall_of_fame_honorees
+          field: field_p_p_hall_of_fame_honorees
           relationship: none
           group_type: group
           admin_label: ''
@@ -815,7 +815,7 @@ display:
         - 'config:field.storage.block_content.field_company'
         - 'config:field.storage.block_content.field_job_title'
         - 'config:field.storage.block_content.field_name'
-        - 'config:field.storage.block_content.field_p_p_hall_of_fame_honorees_'
+        - 'config:field.storage.block_content.field_p_p_hall_of_fame_honorees'
         - 'config:field.storage.block_content.field_pmmi_member_since'
         - 'config:field.storage.block_content.field_retired'
   block_2:
@@ -1113,4 +1113,4 @@ display:
       tags:
         - 'config:field.storage.block_content.field_job_title'
         - 'config:field.storage.block_content.field_name'
-        - 'config:field.storage.block_content.field_p_p_hall_of_fame_honorees_'
+        - 'config:field.storage.block_content.field_p_p_hall_of_fame_honorees'
