@@ -255,7 +255,7 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
       }
       elseif ($json_data = json_decode($response)) {
         $data = $json_data->d;
-        if (!empty($data) && $data[0]->MemberMasterCustomer == $committee_id) {
+        if (!empty($data) && $data[0]->CommitteeMasterCustomer == $committee_id) {
           $roles[] = $committee_id;
         }
         else {
