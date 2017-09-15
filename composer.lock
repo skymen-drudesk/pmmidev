@@ -675,61 +675,6 @@
             "time": "2017-08-30T16:41:23+00:00"
         },
         {
-            "name": "derhasi/composer-preserve-paths",
-            "version": "0.1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/derhasi/composer-preserve-paths.git",
-                "reference": "d557250928235fe23e11c86329bd7cef05397648"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/derhasi/composer-preserve-paths/zipball/d557250928235fe23e11c86329bd7cef05397648",
-                "reference": "d557250928235fe23e11c86329bd7cef05397648",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0"
-            },
-            "require-dev": {
-                "composer/composer": "1.*",
-                "derhasi/tempdirectory": "0.1.*",
-                "escapestudios/symfony2-coding-standard": "2.*",
-                "phpunit/phpunit": "4.*",
-                "squizlabs/php_codesniffer": "2.*"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "derhasi\\Composer\\Plugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "derhasi\\Composer\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Johannes Haseitl",
-                    "email": "johannes@undpaul.de",
-                    "homepage": "http://www.undpaul.de"
-                }
-            ],
-            "description": "Composer plugin for preserving custom paths and supporting nested packages",
-            "homepage": "https://github.com/derhasi/composer-preserve-paths",
-            "keywords": [
-                "composer-plugin",
-                "custom path",
-                "installer",
-                "nested package"
-            ],
-            "abandoned": "drupal-composer/preserve-paths",
-            "time": "2017-02-03T11:32:31+00:00"
-        },
-        {
             "name": "derhasi/viewfield",
             "version": "2.0",
             "source": {
@@ -1466,6 +1411,60 @@
             ],
             "description": "Composer Plugin for updating the Drupal scaffold files when using drupal/core",
             "time": "2016-04-13T15:46:44+00:00"
+        },
+        {
+            "name": "drupal-composer/preserve-paths",
+            "version": "0.1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/drupal-composer/preserve-paths.git",
+                "reference": "d557250928235fe23e11c86329bd7cef05397648"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/drupal-composer/preserve-paths/zipball/d557250928235fe23e11c86329bd7cef05397648",
+                "reference": "d557250928235fe23e11c86329bd7cef05397648",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0"
+            },
+            "require-dev": {
+                "composer/composer": "1.*",
+                "derhasi/tempdirectory": "0.1.*",
+                "escapestudios/symfony2-coding-standard": "2.*",
+                "phpunit/phpunit": "4.*",
+                "squizlabs/php_codesniffer": "2.*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "derhasi\\Composer\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "derhasi\\Composer\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Johannes Haseitl",
+                    "email": "johannes@undpaul.de",
+                    "homepage": "http://www.undpaul.de"
+                }
+            ],
+            "description": "Composer plugin for preserving custom paths and supporting nested packages",
+            "homepage": "https://github.com/derhasi/composer-preserve-paths",
+            "keywords": [
+                "composer-plugin",
+                "custom path",
+                "installer",
+                "nested package"
+            ],
+            "time": "2017-02-03T11:32:31+00:00"
         },
         {
             "name": "drupal/address",
@@ -3710,10 +3709,6 @@
                 {
                     "name": "effulgentsia",
                     "homepage": "https://www.drupal.org/user/78040"
-                },
-                {
-                    "name": "joseph.olstad",
-                    "homepage": "https://www.drupal.org/user/1321830"
                 },
                 {
                     "name": "robeano",
@@ -6427,6 +6422,16 @@
                 "sendgrid"
             ],
             "time": "2017-08-17T00:06:47+00:00"
+        },
+        {
+            "name": "file_permissions",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/file_permissions",
+                "reference": "8.x-1.0"
+            },
+            "type": "drupal-drush"
         },
         {
             "name": "gabordemooij/redbean",
