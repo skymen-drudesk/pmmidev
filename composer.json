@@ -314,6 +314,19 @@
           "type": "zip"
         }
       }
+    },
+    "25": {
+      "type": "package",
+      "package": {
+        "name": "file_permissions",
+        "version": "1.0.0",
+        "type": "drupal-drush",
+        "source": {
+          "url": "https://git.drupal.org/project/file_permissions",
+          "type": "git",
+          "reference": "8.x-1.0"
+        }
+      }
     }
   },
   "minimum-stability": "dev",
@@ -327,12 +340,12 @@
     "codemirror/codemirror": "^5.17.0",
     "composer/installers": "~1.0.20",
     "cweagans/composer-patches": "~1.0",
-    "derhasi/composer-preserve-paths": "~0.1.3",
     "derhasi/viewfield": "^2.0",
     "desandro/imagesloaded": "3.1.8",
     "desandro/masonry": "3.3.1",
     "douglascrockford/json2": "^2.0",
     "drupal-composer/drupal-scaffold": "~1.3.1",
+    "drupal-composer/preserve-paths": "^0.1.4",
     "drupal/address": "^1.0@RC",
     "drupal/admin_toolbar": "^1.0",
     "drupal/backup_migrate": "4.x-dev",
@@ -396,6 +409,7 @@
     "drupal/webform": "^5.0@beta",
     "drupal/webform_views": "^5.0@alpha",
     "drush/drush": "^8.1.0",
+    "file_permissions": "^1.0",
     "enyo/dropzone": "4.2.0",
     "gjunge/jquery.rateit": "^1.1.1",
     "harvesthq/chosen": "^1.6.1",
