@@ -1,9 +1,10 @@
-uuid: 298bb5b0-2933-4345-a662-dccc79884781
+uuid: aaa5a400-58e5-4115-879c-e80ab468783b
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.person
+    - core.entity_view_mode.block_content.person_commission_member
     - field.field.block_content.person.field_commission_member
     - field.field.block_content.person.field_company
     - field.field.block_content.person.field_date
@@ -14,45 +15,55 @@ dependencies:
     - field.field.block_content.person.field_p_p_hall_of_fame_honorees_
     - field.field.block_content.person.field_pmmi_member_since
     - field.field.block_content.person.field_retired
-    - image.style.person_block
+    - responsive_image.styles.brand_block
   module:
     - ds
-    - image
+    - responsive_image
 third_party_settings:
   ds:
     layout:
-      id: block_person
+      id: block_person_company
       library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
-      image:
-        - field_image
+      logo:
+        - field_logo
       name:
         - field_name
       job_title:
         - field_job_title
       company:
         - field_company
-id: block_content.person.default
+id: block_content.person.person_commission_member
 targetEntityType: block_content
 bundle: person
-mode: default
+mode: person_commission_member
 content:
   field_company:
+    type: string
     weight: 3
+    region: company
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  field_job_title:
     type: string
-    region: company
-  field_image:
-    weight: 0
+    weight: 2
+    region: job_title
     label: hidden
     settings:
-      image_style: person_block
+      link_to_entity: false
+    third_party_settings: {  }
+  field_logo:
+    type: responsive_image
+    weight: 0
+    region: logo
+    label: hidden
+    settings:
+      responsive_image_style: brand_block
       image_link: ''
     third_party_settings:
       ds:
@@ -62,28 +73,18 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: image
-    region: image
-  field_job_title:
-    weight: 2
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: job_title
   field_name:
+    type: string
     weight: 1
+    region: name
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
-    region: name
 hidden:
   field_commission_member: true
   field_date: true
-  field_logo: true
+  field_image: true
   field_p_p_hall_of_fame_honorees_: true
   field_pmmi_member_since: true
   field_retired: true
