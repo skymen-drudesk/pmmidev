@@ -21,9 +21,8 @@ function pmmi_forms_views_query_alter(ViewExecutable $view, QueryPluginBase $que
     $group_id = max(array_keys($where));
 
     if ($query_params['page_types']['pages'] === 'pages') {
-      $query->setGroupOperator('OR');
-      $query->setWhereGroup('OR', ++$group_id);
-      $query->addCondition('title_1', '', '<>', $group_id);
+      $query->setWhereGroup('OR', $group_id);
+      $query->addCondition('title_1', NULL, '<>', $group_id);
     }
   }
 }
