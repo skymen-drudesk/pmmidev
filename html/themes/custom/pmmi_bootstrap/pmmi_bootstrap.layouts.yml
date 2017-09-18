@@ -73,6 +73,22 @@ panel_landing_2:
     bottom:
       label: Bottom content
 
+panel_landing_3:
+  label: Hall of Fame Landing page
+  category: PMMI: Layouts
+  template: templates/layouts/panels/landing-3
+  regions:
+    top:
+      label: Top content
+    under_top_left:
+      label: Under Top content Left Side
+    under_top_right:
+      label: Under Top content Right Side
+    main:
+      label: Main content
+    bottom:
+      label: Bottom content
+
 panel_landing_left_sidebar:
   label: Landing with left sidebar
   category: PMMI: Layouts
@@ -606,6 +622,19 @@ block_person:
       label: Job Title
     company:
       label: Company
+block_person_company:
+  label: Person Company Variant
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/person-company-variant
+  regions:
+    name:
+      label: Name
+    job_title:
+      label: Job Title
+    company:
+      label: Company
+    logo:
+      label: Company Logo
 block_pricing:
   label: Pricing
   category: PMMI: Blocks
