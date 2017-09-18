@@ -1,0 +1,160 @@
+%view-content {
+  @extend .container;
+}
+.region-under-top {
+  @extend .container;
+  .block-title {
+    color: #004D74;
+    @extend h1;
+  }
+  .block-text {
+    .button {
+      a  {
+        height: 40px;
+        padding: 10px 15px;
+        background-color: #0680C0;
+        border-color: #0680C0;
+        font-size: 20px;
+      }
+    }
+  }
+  .containers.mode-4-up {
+    display: flex;
+    flex-flow: row nowrap;
+    @include mobile {
+      flex-flow: row wrap;
+      .region-top {
+        text-align: center;
+        width: 100%;
+      }
+      .row {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        .col {
+          display: block;
+          flex: 0 1 36%;
+        }
+      }
+    }
+    .region-top {
+      align-self: center;
+      padding-right: 15px;
+    }
+    .field-name-field-head {
+      @extend p;
+      color: #000;
+      white-space: nowrap;
+      margin-bottom: 0;
+      padding-bottom: 0;
+      padding-top: 40px;
+    }
+  }
+}
+.block-views-blockpast-hall-of-fame-honorees-block-2 {
+  .view-content {
+    text-align: center;
+  }
+  h3 {
+    font-size: 18px;
+  }
+  ul {
+    padding: 0;
+    list-style-type: none;
+    li {
+      margin-bottom: 20px;
+    }
+  }
+}
+.path-hall-of-fame {
+  .block.views-exposed-form {
+    text-align: center;
+    .form-item-title {
+      display: block;
+    }
+    @extend .default-exposed-form;
+    h2 {
+      color: #fff;
+      line-height: $r30;
+      font-weight: 900;
+      padding: 16px 0 14px;
+      text-align: center;
+    }
+  }
+  .block-views-blockpast-hall-of-fame-honorees-block-1 {
+    @extend %view-content;
+    .view-content {
+      display: flex;
+      flex-flow: column wrap;
+      max-height: 700px;
+      @include mobile {
+        display: flex;
+        flex-flow: row wrap;
+        max-height: none;
+        align-content: center;
+      }
+      .item-list {
+        flex: 0 1 auto;
+        max-width: 33%;
+        @include mobile {
+          max-width: none;
+          width:100%;
+        }
+        margin-bottom: 15px;
+        h3 {
+          font-size: 18px;
+        }
+        ul {
+          padding: 0;
+          list-style-type: none;
+          li {
+            margin-bottom: 10px;
+            .views-field {
+              display: inline-block;
+              padding-right: 3px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .block-views-blockpast-hall-of-fame-honorees-block-3 {
+    .view-content {
+      @extend %view-content;
+    }
+    h2 {
+      background: $blue;
+      margin: 3px 0 30px;
+      color: #fff;
+      line-height: $r30;
+      font-weight: 900;
+      vertical-align: top;
+      text-overflow: ellipsis;
+      padding: 16px 0 14px;
+      text-align: center;
+    }
+    .item-list {
+      ul {
+        padding: 0;
+        list-style-type: none;
+      }
+    }
+    .block-person-company-style {
+      padding: 0;
+      margin-bottom: 30px;
+      .inline-text {
+        padding-bottom: 10px;
+        div {
+          display: inline-block;
+          &.name {
+            font-weight: 500;
+          }
+        }
+        .separator {
+          margin-left: -3px;
+        }
+      }
+    }
+  }
+}
