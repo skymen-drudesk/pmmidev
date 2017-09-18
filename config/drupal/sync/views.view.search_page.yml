@@ -350,12 +350,13 @@ display:
               1: {  }
               2: {  }
               3: {  }
-          parse_mode: terms
+          parse_mode: phrase
           min_length: 3
           fields:
             title_f: title_f
             body_f: body_f
             content: content
+            title_1: title_1
           plugin_id: search_api_fulltext
         type:
           id: type
