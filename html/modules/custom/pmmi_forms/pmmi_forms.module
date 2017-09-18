@@ -124,29 +124,31 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
           $date_object['decade_end'] = ceil($date_object['max_value_year'] / 10) * 10;
 
           $options = [];
+          $i=0;
           while ($date_object['decade_start'] < $date_object['decade_end']) {
-            $clean_value[]['min'] = $date_object['decade_start'];
+            $clean_value[$i]['min'] = $date_object['decade_start'];
             $period = $date_object['decade_start'];
             $period .= ' - ';
             $period .= $date_object['decade_start'] + 10;
             $date_object['decade_start'] = $date_object['decade_start'] + 10;
-            $clean_value[]['max'] = $date_object['decade_start'];
+            $clean_value[$i]['max'] = $date_object['decade_start'];
             $options[] = $period;
+            $i++;
           }
+          $form['actions']['submit']['#value'] = t('FILTER RESULTS');
           if ($clean_value && $options) {
             // Add custom form element for emulating `Filter by Year` filter and hide
             // Date field (operator: is between).
             $form['filter_by_year']['#title'] = t('Filter by Decade');
             $form['filter_by_year']['#type'] = 'select';
             $form['filter_by_year']['#options'] = $options;
-            $form['filter_by_year']['#default_value'] = $options[0];
+            $form['filter_by_year']['#default_value'] = 0;
             $form['filter_by_year']['#attributes']['size'] = 1;
-            //$form_state->storage['clean_value'] = $clean_value;
+            $storage['clean_value'] = $clean_value;
+            $form_state->setStorage($storage);
             array_unshift($form['#submit'], 'pmmi_forms_custom_filter_by_decade_submit');
           }
-
         }
-
       }
       if ($form['#id'] === 'views-exposed-form-search-page-block-1') {
         // Add pseudo checkboxes for converting radio elements to checkboxes.
@@ -235,6 +237,25 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
  */
 function pmmi_forms_custom_filter_by_decade_submit(array &$form, FormStateInterface &$form_state) {
   $values = $form_state->getValues();
+  $storage = $form_state->getStorage();
+  // Manually set values in min and max fields for `Date filter` based on
+  // select value in custom form element.
+  if (isset($values['filter_by_year'])) {
+    if (is_string($values['filter_by_year'])) {
+      $option_val = $values['filter_by_year'] = (int) $values['filter_by_year'];
+    }
+    else {
+      $option_val = $values['filter_by_year'];
+    }
+    $form_state->setValue([
+      'field_p_p_hall_of_fame_honorees_value',
+      'min',
+    ], $storage['clean_value'][$option_val]['min'] . '-01-01');
+    $form_state->setValue([
+      'field_p_p_hall_of_fame_honorees_value',
+      'max',
+    ], $storage['clean_value'][$option_val]['max'] . '-12-31');
+  }
 }
 
 /**

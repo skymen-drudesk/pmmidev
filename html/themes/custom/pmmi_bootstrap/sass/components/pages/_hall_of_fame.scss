@@ -1,6 +1,17 @@
 %view-content {
   @extend .container;
 }
+
+%h2 {
+  color: #fff;
+  line-height: $r30;
+  font-weight: 900;
+  padding: 16px 0 14px;
+  @include mobile {
+    text-align: center;
+  }
+}
+
 .region-under-top {
   @extend .container;
   .block-title {
@@ -9,7 +20,7 @@
   }
   .block-text {
     .button {
-      a  {
+      a {
         height: 40px;
         padding: 10px 15px;
         background-color: #0680C0;
@@ -19,6 +30,7 @@
     }
   }
   .containers.mode-4-up {
+    margin-bottom: 20px;
     display: flex;
     flex-flow: row nowrap;
     @include mobile {
@@ -51,6 +63,7 @@
     }
   }
 }
+
 .block-views-blockpast-hall-of-fame-honorees-block-2 {
   .view-content {
     text-align: center;
@@ -66,6 +79,7 @@
     }
   }
 }
+
 .path-hall-of-fame {
   .block.views-exposed-form {
     text-align: center;
@@ -74,31 +88,67 @@
     }
     @extend .default-exposed-form;
     h2 {
-      color: #fff;
-      line-height: $r30;
-      font-weight: 900;
-      padding: 16px 0 14px;
-      text-align: center;
+      @extend %h2;
+    }
+  }
+  .block-views-exposed-filter-blockpast-hall-of-fame-honorees-block-1 {
+    form {
+      .form-inline {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        @include tablet {
+          display: block;
+          float: left !important;
+          text-align: left;
+        }
+        @include mobile {
+          display: block;
+          float: none !important;
+          width: auto;
+          h2 {
+            text-align: center !important;
+          }
+          .form-type-select {
+            > div, > label {
+              display: inline-block;
+              width: auto;
+            }
+          }
+          .form-actions {
+            max-width: 350px;
+            margin: 0 auto;
+          }
+        }
+        .form-item-title {
+          flex: 1 1 auto;
+          h2 {
+            text-align: left;
+            padding-right: 30px;
+          }
+        }
+        .select-wrapper {
+          max-width: 200px;
+        }
+        .form-actions {
+          align-self: center;
+        }
+      }
     }
   }
   .block-views-blockpast-hall-of-fame-honorees-block-1 {
     @extend %view-content;
     .view-content {
       display: flex;
-      flex-flow: column wrap;
-      max-height: 700px;
-      @include mobile {
-        display: flex;
-        flex-flow: row wrap;
-        max-height: none;
-        align-content: center;
-      }
+      flex-flow: row wrap;
+      justify-content: space-between;
       .item-list {
-        flex: 0 1 auto;
-        max-width: 33%;
+        flex: 0 1 33%;
+        @include tablet {
+          flex: 0 1 45%;
+        }
         @include mobile {
-          max-width: none;
-          width:100%;
+          flex: 0 1 100%;
         }
         margin-bottom: 15px;
         h3 {
@@ -118,12 +168,8 @@
       }
     }
   }
-
-  .block-views-blockpast-hall-of-fame-honorees-block-3 {
-    .view-content {
-      @extend %view-content;
-    }
-    h2 {
+  .region-bottom {
+    .plain-text.block-block-content {
       background: $blue;
       margin: 3px 0 30px;
       color: #fff;
@@ -132,7 +178,20 @@
       vertical-align: top;
       text-overflow: ellipsis;
       padding: 16px 0 14px;
-      text-align: center;
+      .block-plain_text {
+        @extend %view-content;
+        max-width: none !important;
+        h2 {
+          @extend %h2;
+        }
+      }
+    }
+  }
+
+  .block-views-blockpast-hall-of-fame-honorees-block-3 {
+    margin-bottom: 30px;
+    .view-content {
+      @extend %view-content;
     }
     .item-list {
       ul {
@@ -141,8 +200,10 @@
       }
     }
     .block-person-company-style {
-      padding: 0;
       margin-bottom: 30px;
+      div.image img {
+        height: 90px;
+      }
       .inline-text {
         padding-bottom: 10px;
         div {
