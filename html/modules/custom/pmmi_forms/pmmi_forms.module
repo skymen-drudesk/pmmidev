@@ -97,6 +97,7 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
         $form['year']['#type'] = 'hidden';
         array_unshift($form['#submit'], 'pmmi_forms_custom_filter_by_year_submit');
       }
+
       if ($form['#id'] === 'views-exposed-form-past-hall-of-fame-honorees-block-1') {
         $connection = Database::getConnection();
         $query = $connection->select('block_content__field_p_p_hall_of_fame_honorees', 'd')
@@ -109,6 +110,7 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
           '#type' => 'item',
           '#markup' => "<h2 class='block-title'>{$view_title}</h2>",
         ];
+        // Hide default filter;
         $form['field_p_p_hall_of_fame_honorees_value']['#type'] = 'hidden';
         if (!empty($results)) {
           $min_val = reset($results);
@@ -136,9 +138,9 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
             $i++;
           }
           $form['actions']['submit']['#value'] = t('FILTER RESULTS');
+          // Add custom form element for emulating `Filter by Year` filter.
+          // (operator: is between).
           if ($clean_value && $options) {
-            // Add custom form element for emulating `Filter by Year` filter and hide
-            // Date field (operator: is between).
             $form['filter_by_year']['#title'] = t('Filter by Decade');
             $form['filter_by_year']['#type'] = 'select';
             $form['filter_by_year']['#options'] = $options;
@@ -150,6 +152,7 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
           }
         }
       }
+
       if ($form['#id'] === 'views-exposed-form-search-page-block-1') {
         // Add pseudo checkboxes for converting radio elements to checkboxes.
         // Default checkboxes do not allow to use both conditions there is conflict
@@ -229,16 +232,16 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
 }
 
 /**
- * Custom callback function for filtering news by year.
+ * Custom callback function for filtering content by decade.
  *
  * @todo
- * This is not finished function. Will update it.
+ *  Needs to be changed when Date Views filter will be available for Drupal 8.
  *
  */
 function pmmi_forms_custom_filter_by_decade_submit(array &$form, FormStateInterface &$form_state) {
   $values = $form_state->getValues();
   $storage = $form_state->getStorage();
-  // Manually set values in min and max fields for `Date filter` based on
+  // Manually set values in min and max fields for `Decade filter` based on
   // select value in custom form element.
   if (isset($values['filter_by_year'])) {
     if (is_string($values['filter_by_year'])) {
