@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "31ae83fdc484d1741ff92ae0869e893f",
+    "content-hash": "de3109d8f17795b474838c230f2140c2",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -3711,6 +3711,10 @@
                     "homepage": "https://www.drupal.org/user/78040"
                 },
                 {
+                    "name": "joseph.olstad",
+                    "homepage": "https://www.drupal.org/user/1321830"
+                },
+                {
                     "name": "robeano",
                     "homepage": "https://www.drupal.org/user/67660"
                 },
@@ -4360,6 +4364,9 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
+                },
+                "patches_applied": {
+                    "Panels/Page Manager integration": "https://www.drupal.org/files/issues/panels_page_manager-2563657-29.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
