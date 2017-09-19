@@ -136,7 +136,8 @@ field_settings:
     label: Title
     datasource_id: 'entity:pmmi_page_manager_search'
     property_path: title
-    type: string
+    type: text
+    boost: !!float 21
 datasource_settings:
   'entity:node':
     bundles:
@@ -167,31 +168,7 @@ processor_settings:
     suffix: '</strong>'
     weights:
       postprocess_query: 0
-  html_filter:
-    all_fields: false
-    fields:
-      - title_f
-      - body_f
-    title: true
-    alt: true
-    tags:
-      h1: 5
-      h2: 3
-      h3: 2
-      strong: 2
-      b: 2
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-  ignorecase:
-    all_fields: false
-    fields:
-      - title
-      - title_f
-      - body_f
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
+  add_url: {  }
   ignore_character:
     all_fields: false
     fields:
