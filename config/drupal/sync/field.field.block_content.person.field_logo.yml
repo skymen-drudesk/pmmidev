@@ -1,38 +1,38 @@
-uuid: d4479c84-0564-4896-b02b-d21e0b41c74a
+uuid: 18f5d8e8-7e42-46d7-bd2a-aa4335a5943b
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.person
-    - field.storage.block_content.field_image
+    - field.storage.block_content.field_logo
   module:
     - image
-id: block_content.person.field_image
-field_name: field_image
+id: block_content.person.field_logo
+field_name: field_logo
 entity_type: block_content
 bundle: person
-label: Image
+label: 'Company Logo'
 description: ''
 required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: '[date:custom:Y]-[date:custom:m]'
   file_extensions: 'png gif jpg jpeg'
-  max_filesize: ''
-  max_resolution: ''
-  min_resolution: ''
   alt_field: true
-  alt_field_required: false
+  alt_field_required: true
   title_field: false
   title_field_required: false
+  max_resolution: ''
+  min_resolution: ''
   default_image:
-    uuid: ''
+    uuid: null
     alt: ''
     title: ''
     width: null
     height: null
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  max_filesize: ''
   handler: 'default:file'
   handler_settings: {  }
 field_type: image
