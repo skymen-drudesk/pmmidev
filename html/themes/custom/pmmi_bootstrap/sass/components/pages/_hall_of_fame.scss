@@ -68,16 +68,16 @@
 .block-views-blockpast-hall-of-fame-honorees-block-2 {
   .view-content {
     text-align: center;
-  }
-  h3 {
-    font-size: 18px;
-    font-weight: bold;
-  }
-  ul {
-    padding: 0;
-    list-style-type: none;
-    li {
+    .item-list {
       margin-bottom: 20px;
+      h3 {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      ul {
+        padding: 0;
+        list-style-type: none;
+      }
     }
   }
 }
