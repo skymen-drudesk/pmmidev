@@ -24,6 +24,8 @@ module:
   webform: 0
 theme: {  }
 blacklist:
+  - page_manager.page_variant.403_page-panels_variant-0
+  - page_manager.page_variant.404_page-panels_variant-0
   - page_manager.page_variant.contact_us-panels_variant-0
   - pmmi_sales_agent.mail_mass_settings
   - pmmi_sales_agent.mail_settings
