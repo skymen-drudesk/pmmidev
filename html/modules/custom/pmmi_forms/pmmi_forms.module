@@ -5,6 +5,7 @@
  * Contains pmmi_forms.module.
  */
 
+use Drupal\Core\Database\Database;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
@@ -97,6 +98,61 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
         array_unshift($form['#submit'], 'pmmi_forms_custom_filter_by_year_submit');
       }
 
+      if ($form['#id'] === 'views-exposed-form-past-hall-of-fame-honorees-block-1') {
+        $connection = Database::getConnection();
+        $query = $connection->select('block_content__field_p_p_hall_of_fame_honorees', 'd')
+          ->fields('d', ['field_p_p_hall_of_fame_honorees_value'])
+          ->orderBy('field_p_p_hall_of_fame_honorees_value', 'ASC');
+        $results = $query->execute()->fetchAll();
+        $storage = $form_state->getStorage();
+        $view_title = $storage['view']->getTitle();
+        $form['title'] = [
+          '#type' => 'item',
+          '#markup' => "<h2 class='block-title'>{$view_title}</h2>",
+        ];
+        // Hide default filter;
+        $form['field_p_p_hall_of_fame_honorees_value']['#type'] = 'hidden';
+        if (!empty($results)) {
+          $min_val = reset($results);
+          $max_val = end($results);
+
+          $date_object = [
+            'min_value' => strtotime($min_val->field_p_p_hall_of_fame_honorees_value),
+            'max_value' => strtotime($max_val->field_p_p_hall_of_fame_honorees_value)
+          ];
+          $date_object['min_value_year'] = intval(date('Y', $date_object['min_value']));
+          $date_object['max_value_year'] = intval(date('Y', $date_object['max_value']));
+          $date_object['decade_start'] = intval(substr_replace($date_object['min_value_year'], "0", -1));
+          $date_object['decade_end'] = ceil($date_object['max_value_year'] / 10) * 10;
+
+          $options = [];
+          $i=0;
+          while ($date_object['decade_start'] < $date_object['decade_end']) {
+            $clean_value[$i]['min'] = $date_object['decade_start'];
+            $period = $date_object['decade_start'];
+            $period .= ' - ';
+            $period .= $date_object['decade_start'] + 10;
+            $date_object['decade_start'] = $date_object['decade_start'] + 10;
+            $clean_value[$i]['max'] = $date_object['decade_start'];
+            $options[] = $period;
+            $i++;
+          }
+          $form['actions']['submit']['#value'] = t('FILTER RESULTS');
+          // Add custom form element for emulating `Filter by Year` filter.
+          // (operator: is between).
+          if ($clean_value && $options) {
+            $form['filter_by_year']['#title'] = t('Filter by Decade');
+            $form['filter_by_year']['#type'] = 'select';
+            $form['filter_by_year']['#options'] = $options;
+            $form['filter_by_year']['#default_value'] = 0;
+            $form['filter_by_year']['#attributes']['size'] = 1;
+            $storage['clean_value'] = $clean_value;
+            $form_state->setStorage($storage);
+            array_unshift($form['#submit'], 'pmmi_forms_custom_filter_by_decade_submit');
+          }
+        }
+      }
+
       if ($form['#id'] === 'views-exposed-form-search-page-block-1') {
         // Add pseudo checkboxes for converting radio elements to checkboxes.
         // Default checkboxes do not allow to use both conditions there is conflict
@@ -176,6 +232,36 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
 }
 
 /**
+ * Custom callback function for filtering content by decade.
+ *
+ * @todo
+ *  Needs to be changed when Date Views filter will be available for Drupal 8.
+ *
+ */
+function pmmi_forms_custom_filter_by_decade_submit(array &$form, FormStateInterface &$form_state) {
+  $values = $form_state->getValues();
+  $storage = $form_state->getStorage();
+  // Manually set values in min and max fields for `Decade filter` based on
+  // select value in custom form element.
+  if (isset($values['filter_by_year'])) {
+    if (is_string($values['filter_by_year'])) {
+      $option_val = $values['filter_by_year'] = (int) $values['filter_by_year'];
+    }
+    else {
+      $option_val = $values['filter_by_year'];
+    }
+    $form_state->setValue([
+      'field_p_p_hall_of_fame_honorees_value',
+      'min',
+    ], $storage['clean_value'][$option_val]['min'] . '-01-01');
+    $form_state->setValue([
+      'field_p_p_hall_of_fame_honorees_value',
+      'max',
+    ], $storage['clean_value'][$option_val]['max'] . '-12-31');
+  }
+}
+
+/**
  * Custom callback function for filtering news by year.
  *
  * @todo
@@ -214,7 +300,8 @@ function pmmi_forms_image_slide_validate(array &$form, FormStateInterface &$form
   $slide_value = $form_state->getValue($element_name);
   $element = $form[$element_name]['widget'];
   if (($slide_type == 'image' && empty($slide_value['target_id']))
-  || ($slide_type == 'video' && empty($slide_value[0]['value']))) {
+    || ($slide_type == 'video' && empty($slide_value[0]['value']))
+  ) {
     $form_state->setError($element, t('@name field is required.', array('@name' => $element['#title'])));
   }
 }
@@ -225,7 +312,7 @@ function pmmi_forms_image_slide_validate(array &$form, FormStateInterface &$form
 function block_content_containers_form_submit($form, FormStateInterface $form_state) {
   $values = $form_state->getValues();
   // Get all select fields.
-  $selects = array_filter($values, function($key) {
+  $selects = array_filter($values, function ($key) {
     return strpos($key, 'field_block_select_') === 0;
   }, ARRAY_FILTER_USE_KEY);
 
@@ -262,7 +349,9 @@ function block_content_containers_form_submit($form, FormStateInterface $form_st
  * create webform permission.
  */
 function pmmi_forms_webform_options_create_access(\Drupal\Core\Session\AccountInterface $account, array $context, $entity_bundle) {
-  return AccessResult::allowedIf($account->hasPermission('create webform'))->cachePerPermissions()->cachePerUser();
+  return AccessResult::allowedIf($account->hasPermission('create webform'))
+    ->cachePerPermissions()
+    ->cachePerUser();
 }
 
 /**
@@ -273,7 +362,9 @@ function pmmi_forms_webform_options_create_access(\Drupal\Core\Session\AccountIn
  */
 function pmmi_forms_webform_options_access(EntityInterface $entity, $operation, AccountInterface $account) {
   if (in_array($operation, ['update', 'delete'])) {
-    return AccessResult::allowedIf($account->hasPermission('create webform'))->cachePerPermissions()->cachePerUser();
+    return AccessResult::allowedIf($account->hasPermission('create webform'))
+      ->cachePerPermissions()
+      ->cachePerUser();
   }
 }
 
@@ -285,7 +376,8 @@ function pmmi_forms_webform_options_access(EntityInterface $entity, $operation, 
 function pmmi_forms_webform_submission_access(EntityInterface $entity, $operation, AccountInterface $account) {
   if ($entity && $webform = $entity->getWebform()) {
     if ($operation == 'view' && $webform->id() == 'membership_application_form'
-    && in_array('membership_committee', $account->getRoles())) {
+      && in_array('membership_committee', $account->getRoles())
+    ) {
       return AccessResult::allowed()->cachePerPermissions()->cachePerUser();
     }
   }
@@ -304,7 +396,8 @@ function pmmi_forms_menu_local_tasks_alter(&$data, $route_name) {
   ];
 
   if (!in_array('administrator', $roles) && $user->hasPermission('create webform')
-  && in_array($route_name, $routes)) {
+    && in_array($route_name, $routes)
+  ) {
     $data['tabs'][0]['webform.options'] = array(
       '#theme' => 'menu_local_task',
       '#link' => array(
@@ -330,7 +423,7 @@ function pmmi_forms_menu_local_tasks_alter(&$data, $route_name) {
  */
 function pmmi_forms_views_pre_render(ViewExecutable $view) {
   if ($view->id() === 'search_page' && $view->current_display === 'block_1') {
-    foreach($view->result as $result) {
+    foreach ($view->result as $result) {
       if (!empty($result->_object)) {
         $entity = $result->_object->getValue();
         if ($entity instanceof Node) {
