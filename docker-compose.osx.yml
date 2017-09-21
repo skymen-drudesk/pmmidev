@@ -5,6 +5,8 @@ services:
   pmmiweb:
     volumes:
       - pmmi-sync:/var/www:nocopy
+    environment:
+        PHP_XDEBUG_REMOTE_CONNECT_BACK: 0
 
 volumes:
   pmmi-sync:

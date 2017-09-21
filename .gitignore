@@ -59,3 +59,6 @@ config/varnish/prod/secret
 
 # Ignore temp files
 *.tmp
+
+# Ignore docker-sync folder.
+.docker-sync/
