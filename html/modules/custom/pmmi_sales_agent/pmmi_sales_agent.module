@@ -11,6 +11,7 @@ use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Entity\EntityInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Site\Settings;
+use Drupal\Core\Database\Database;
 
 // Define sales agent content ID.
 define('PMMI_SALES_AGENT_CONTENT', 'company');
@@ -59,8 +60,12 @@ function pmmi_sales_agent_theme_suggestions_sad_user_stat(array $variables) {
  * Implements hook_cron().
  */
 function pmmi_sales_agent_cron() {
+  // Delete old search records.
+  pmmi_sales_agent_delete_old_search_records();
+
   // Send mass email remind messages.
   pmmi_sales_agent_remind_send();
+
   // Notify internal PMMI admin that some companies is pending approval.
   pmmi_sales_agent_internal_admin_remind_send();
 }
@@ -370,6 +375,7 @@ function pmmi_sales_agent_remind_send() {
 
   foreach ($nids as $mid => $nid) {
     if ($node = \Drupal\node\Entity\Node::load($nid)) {
+      $result = ['result' => FALSE];
       $mail_manager = \Drupal::service('plugin.manager.mail');
       $mail_settings = \Drupal::config('pmmi_sales_agent.mail_settings');
 
@@ -383,9 +389,11 @@ function pmmi_sales_agent_remind_send() {
       // Let's send remind message.
       $to = $node->get('field_primary_contact_email')->getValue()[0]['value'];
       $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
-
-      $result = $mail_manager->mail('pmmi_sales_agent', 'mass_email_remind', $to, $langcode, $params, TRUE);
-
+      try {
+        $result = $mail_manager->mail('pmmi_sales_agent', 'mass_email_remind', $to, $langcode, $params, TRUE);
+      }
+      catch (Exception $e) {
+      }
       if ($result['result'] === TRUE) {
         // Remove mails queue item as mail has been sent successfully.
         \Drupal::service('pmmi_sales_agent.mails_queue')->delete($mid);
@@ -407,6 +415,7 @@ function pmmi_sales_agent_internal_admin_remind_send() {
 
   foreach ($nids as $mid => $nid) {
     if ($node = \Drupal\node\Entity\Node::load($nid)) {
+      $result = ['result' => FALSE];
       $mail_manager = \Drupal::service('plugin.manager.mail');
       $mail_settings = \Drupal::config('pmmi_sales_agent.mail_settings');
 
@@ -420,14 +429,34 @@ function pmmi_sales_agent_internal_admin_remind_send() {
       $to = $mail_settings->get('mail_notification_address');
       $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
 
-      $result = $mail_manager->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_admin', $to, $langcode, $params, TRUE);
-
+      try {
+        $result = $mail_manager->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_admin', $to, $langcode, $params, TRUE);
+      }
+      catch (Exception $e) {
+      }
       // Update a record if mail has been sent successfully.
       if ($result['result'] === TRUE) {
         \Drupal::service('pmmi_sales_agent.mails_queue')
           ->updateSendingDate($mid, REQUEST_TIME + $mail_settings->get('remind_period'));
       }
     }
+  }
+}
+
+/**
+ * Cron task for deleting old search records.
+ */
+function pmmi_sales_agent_delete_old_search_records() {
+  $queue = \Drupal::queue('old_search_records');
+
+  $connection = Database::getConnection();
+  $result = $connection->select('sad_user_stat', 'sus')
+    ->fields('sus', ['id'])
+    ->condition('sus.created', strtotime('-18 month'), '<')
+    ->execute()->fetchAll();
+
+  foreach ($result as $row) {
+    $queue->createItem($row);
   }
 }
 
