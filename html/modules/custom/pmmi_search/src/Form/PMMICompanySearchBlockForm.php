@@ -10,6 +10,7 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\pmmi_address\FilterCountries;
 
 /**
  * Builds the PMMI Company Search Form.
@@ -38,6 +39,13 @@ class PMMICompanySearchBlockForm extends FormBase {
   protected $entityTypeManager;
 
   /**
+   * The filter countries service.
+   *
+   * @var \Drupal\pmmi_address\FilterCountries
+   */
+  protected $filterCountries;
+
+  /**
    * Constructs a PMMICompanySearchBlockForm object.
    *
    * @param \CommerceGuys\Addressing\Country\CountryRepositoryInterface $country_repository
@@ -46,11 +54,14 @@ class PMMICompanySearchBlockForm extends FormBase {
    *   The subdivision repository.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface;
    *   The entity type manager service.
+   * @param \Drupal\pmmi_address\FilterCountries;
+   *   The filter countries service.
    */
-  public function __construct(CountryRepositoryInterface $country_repository, SubdivisionRepositoryInterface $subdivision_repository, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(CountryRepositoryInterface $country_repository, SubdivisionRepositoryInterface $subdivision_repository, EntityTypeManagerInterface $entityTypeManager, FilterCountries $filter_countries) {
     $this->countryRepository = $country_repository;
     $this->subdivisionRepository = $subdivision_repository;
-    $this->entity_type_manager = $entity_type_manager;
+    $this->entityTypeManager = $entityTypeManager;
+    $this->filterCountries = $filter_countries;
   }
 
   /**
@@ -60,7 +71,8 @@ class PMMICompanySearchBlockForm extends FormBase {
     return new static(
       $container->get('address.country_repository'),
       $container->get('address.subdivision_repository'),
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('pmmi_address.filter_countries')
     );
   }
 
@@ -83,10 +95,13 @@ class PMMICompanySearchBlockForm extends FormBase {
       '#prefix' => '<div id="' . $wrapper_id . '">',
       '#suffix' => '</div>',
     ];
+    $list = $this->countryRepository->getList();
+    $used_countries = $this->filterCountries->getUsedCountries('company');
+    $filtered_countries = array_intersect_key($list, $used_countries);
     $form['address']['country_code'] = [
       '#type' => 'selectize',
       '#title' => $this->t('Country'),
-      '#options' => $this->countryRepository->getList(),
+      '#options' => $filtered_countries,
       '#multiple' => TRUE,
       '#settings' => [
         'placeholder' => $this->t('Select Country'),
@@ -235,7 +250,7 @@ class PMMICompanySearchBlockForm extends FormBase {
   protected function getIndustriesOptions() {
     $options = array();
 
-    $terms = $this->entity_type_manager->getStorage('taxonomy_term')->loadTree('industries_served');
+    $terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadTree('industries_served');
     foreach ($terms as $term) {
       $options[$term->tid] = $term->name;
     }
@@ -249,7 +264,7 @@ class PMMICompanySearchBlockForm extends FormBase {
   protected function getEquipmentsOptions() {
     $options = array();
 
-    $terms = $this->entity_type_manager->getStorage('taxonomy_term')->loadTree('equipment_sold_type');
+    $terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadTree('equipment_sold_type');
     foreach ($terms as $term) {
       $options[$term->tid] = $term->name;
     }
@@ -300,4 +315,5 @@ class PMMICompanySearchBlockForm extends FormBase {
 
     return $items;
   }
+
 }

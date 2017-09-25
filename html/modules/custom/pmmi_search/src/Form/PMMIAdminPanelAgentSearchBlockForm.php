@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\pmmi_address\FilterCountries;
 
 /**
  * Builds the PMMI Admin Panel Agent Search Form.
@@ -30,16 +31,26 @@ class PMMIAdminPanelAgentSearchBlockForm extends FormBase {
   protected $subdivisionRepository;
 
   /**
+   * The filter countries service.
+   *
+   * @var \Drupal\pmmi_address\FilterCountries
+   */
+  protected $filterCountries;
+
+  /**
    * Constructs a PMMIAdminPanelAgentSearchBlockForm object.
    *
    * @param \CommerceGuys\Addressing\Country\CountryRepositoryInterface $country_repository
    *   The country repository.
    * @param \CommerceGuys\Addressing\Subdivision\SubdivisionRepositoryInterface;
    *   The subdivision repository.
+   * @param \Drupal\pmmi_address\FilterCountries;
+   *   The filter countries service.
    */
-  public function __construct(CountryRepositoryInterface $country_repository, SubdivisionRepositoryInterface $subdivision_repository) {
+  public function __construct(CountryRepositoryInterface $country_repository, SubdivisionRepositoryInterface $subdivision_repository, FilterCountries $filter_countries) {
     $this->countryRepository = $country_repository;
     $this->subdivisionRepository = $subdivision_repository;
+    $this->filterCountries = $filter_countries;
   }
 
   /**
@@ -48,7 +59,8 @@ class PMMIAdminPanelAgentSearchBlockForm extends FormBase {
   public static function create(ContainerInterface $container) {
     return new static(
       $container->get('address.country_repository'),
-      $container->get('address.subdivision_repository')
+      $container->get('address.subdivision_repository'),
+      $container->get('pmmi_address.filter_countries')
     );
   }
 
@@ -65,6 +77,8 @@ class PMMIAdminPanelAgentSearchBlockForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state, $data = NULL) {
     $qp = \Drupal::request()->query->all();
     $countries = $this->countryRepository->getList();
+    $used_countries = $this->filterCountries->getUsedCountries('company');
+    $filtered_countries = array_intersect_key($countries, $used_countries);
 
     // We can use static wrapper here.
     $wrapper_id = 'admin-panel-sales-agent-directory-address';
@@ -88,7 +102,7 @@ class PMMIAdminPanelAgentSearchBlockForm extends FormBase {
     $form['address']['country_code'] = [
       '#type' => 'select',
       '#title' => $this->t('Country'),
-      '#options' => ['_none' => $this->t('- Any -')] + $countries,
+      '#options' => ['_none' => $this->t('- Any -')] + $filtered_countries,
       '#default_value' => isset($qp['country_code']) ? $qp['country_code'] : '_none',
       '#ajax' => [
         'callback' => [get_class($this), 'addressAjaxRefresh'],
