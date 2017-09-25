@@ -21,6 +21,13 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
   }
 
   /**
+   * Return from from non object context;
+   */
+  public static function getFormIdStatic() {
+    return 'pmmi_sales_agent_mail_mass_confirm_form';
+  }
+
+  /**
    * {@inheritdoc}
    */
   public function getQuestion() {
@@ -129,14 +136,20 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
         // Compose and send an email.
         $current_langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
         $params = ['subject' => $subject, 'body' => $body, 'from' => $from, 'node' => $node];
-        $result = $mailManager->mail('pmmi_sales_agent', 'pmmi_sales_agent_mass', $to[0]['value'], $current_langcode, $params);
-
-        if ($result['result'] == true) {
-          $context['results']['processed']++;
-          self::saveRemindMailsInfo($node->id());
-        }
-        else {
-          \Drupal::logger('pmmi_sales_agent')->error(t("Can't send an email to @address"), ['@address' => $to[0]['value']]);
+        try {
+          $result = $mailManager->mail('pmmi_sales_agent', 'pmmi_sales_agent_mass', $to[0]['value'], $current_langcode, $params);
+          if ($result['result'] == true) {
+            $context['results']['processed']++;
+            self::saveRemindMailsInfo($node->id());
+          }
+          else {
+            \Drupal::logger('pmmi_sales_agent')->error(t("Can't send an email to @address"), ['@address' => $to[0]['value']]);
+          }
+        } catch (Exception $e) {
+          $context['errors'][] = [
+            '@code' => $e->getCode(),
+            '@exception' => $e->getMessage()
+          ];
         }
       }
       else {
@@ -150,6 +163,28 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
    */
   public static function finish($success, $results, $operations) {
     // Check if the batch job was successful.
+    if ($results['all'] != $results['processed']) {
+      \Drupal::logger('pmmi_sales_agent')
+        ->error(t("Can't send mass email with id @id <br> Successfully send: @successfully <br> Failed: @fail <br> Total: @all"),
+          [
+            '@id' => self::getFormIdStatic(),
+            '@successfully' => $results['processed'],
+            '@fail' => (int) $results['all'] - (int) $results['processed'],
+            '@all' => $results['all']
+          ]
+        );
+    }
+    else {
+      \Drupal::logger('pmmi_sales_agent')
+        ->info(t("Mass email with id @id successfully sent.<br> Successfully send: @successfully <br> Failed: @fail <br> Total: @all"),
+          [
+            '@id' => self::getFormIdStatic(),
+            '@successfully' => $results['processed'],
+            '@fail' => (int) $results['all'] - (int) $results['processed'],
+            '@all' => $results['all']
+          ]
+        );
+    }
     if ($success) {
       // Display the number of items which were processed.
       drupal_set_message(t('Processed @processed companies from @companies.', ['@processed' => $results['processed'], '@companies' => $results['all']]));

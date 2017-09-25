@@ -315,9 +315,38 @@ function pmmi_sales_agent_notify_pmmi_admin(&$form, FormStateInterface $form_sta
   ];
 
   $to = $ms->get('mail_notification_address');
-  \Drupal::service('plugin.manager.mail')
-    ->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_agent', $to, $current_langcode, $params);
 
+  try {
+    $result = \Drupal::service('plugin.manager.mail')
+      ->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_agent', $to, $current_langcode, $params);
+    if (!empty($result['result']) && $result['result'] === TRUE) {
+      \Drupal::logger('pmmi_sales_agent')->info('Message successfully sent. Message details: <br> To: @to<br>From: @from<br>Subject: @subject<br>Body: @body',
+        [
+          '@to' => !empty($result['to']) ? $result['to'] : 'empty',
+          '@from' => !empty($result['from']) ? $result['from'] : 'empty',
+          '@subject' => !empty($result['subject']) ? $result['subject'] : 'empty' ,
+          '@body' => !empty($result['body']) ? $result['body'] : 'empty'
+        ]
+      );
+    }
+    else {
+      \Drupal::logger('pmmi_sales_agent')->error('Message didn\'t send.  Message details: <br>To: @to<br>From: @from<br>Subject: @subject<br>Body: @body',
+        [
+          '@to' => !empty($result['to']) ? $result['to'] : 'empty',
+          '@from' => !empty($result['from']) ? $result['from'] : 'empty',
+          '@subject' => !empty($result['subject']) ? $result['subject'] : 'empty' ,
+          '@body' => !empty($result['body']) ? $result['body'] : 'empty'
+        ]
+      );
+    }
+  } catch (Exception $e) {
+    \Drupal::logger('pmmi_sales_agent')->error('Message didn\'t send. <br>The exception code is : @code<br> Message: @exception',
+      [
+        '@code' => $e->getCode(),
+        '@exception' => $e->getMessage()
+      ]
+    );
+  }
   // Add an email to the queue.
   $type = $form['#new'] ? PMMI_SALES_AGENT_MAIL_LISTING_NEW : PMMI_SALES_AGENT_MAIL_LISTING_UPDATE;
   \Drupal::service('pmmi_sales_agent.mails_queue')
@@ -361,8 +390,38 @@ function pmmi_sales_agent_notify_sales_agent(&$form, FormStateInterface $form_st
   ];
 
   $to = $node->get('field_primary_contact_email')->getValue()[0]['value'];
-  \Drupal::service('plugin.manager.mail')
-    ->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_admin', $to, $current_langcode, $params);
+
+  try {
+    $result = \Drupal::service('plugin.manager.mail')
+      ->mail('pmmi_sales_agent', 'pmmi_sales_agent_listing_admin', $to, $current_langcode, $params);
+    if (!empty($result['result']) && $result['result'] === TRUE) {
+      \Drupal::logger('pmmi_sales_agent')->info('Message successfully sent. Message details: <br> To: @to<br>From: @from<br>Subject: @subject<br>Body: @body',
+        [
+          '@to' => !empty($result['to']) ? $result['to'] : 'empty',
+          '@from' => !empty($result['from']) ? $result['from'] : 'empty',
+          '@subject' => !empty($result['subject']) ? $result['subject'] : 'empty' ,
+          '@body' => !empty($result['body']) ? $result['body'] : 'empty'
+        ]
+      );
+    }
+    else {
+      \Drupal::logger('pmmi_sales_agent')->error('Message didn\'t send.  Message details: <br> To: @to<br>From: @from<br>Subject: @subject<br>Body: @body',
+        [
+          '@to' => !empty($result['to']) ? $result['to'] : 'empty',
+          '@from' => !empty($result['from']) ? $result['from'] : 'empty',
+          '@subject' => !empty($result['subject']) ? $result['subject'] : 'empty' ,
+          '@body' => !empty($result['body']) ? $result['body'] : 'empty'
+        ]
+      );
+    }
+  } catch (Exception $e) {
+    \Drupal::logger('pmmi_sales_agent')->error('Message didn\'t send. <br>The exception code is : @code<br> Message: @exception',
+      [
+        '@code' => $e->getCode(),
+        '@exception' => $e->getMessage()
+      ]
+    );
+  }
 }
 
 /**
@@ -372,9 +431,13 @@ function pmmi_sales_agent_remind_send() {
   // Select all companies which should receive remind message.
   $nids = \Drupal::service('pmmi_sales_agent.mails_queue')
     ->selectQueueByTypes([PMMI_SALES_AGENT_MAIL_MASS_REMIND]);
-
+  $results = [
+    'all' => 0,
+    'processed' => 0,
+  ];
   foreach ($nids as $mid => $nid) {
     if ($node = \Drupal\node\Entity\Node::load($nid)) {
+      $results['all']++;
       $result = ['result' => FALSE];
       $mail_manager = \Drupal::service('plugin.manager.mail');
       $mail_settings = \Drupal::config('pmmi_sales_agent.mail_settings');
@@ -391,6 +454,7 @@ function pmmi_sales_agent_remind_send() {
       $langcode = \Drupal::languageManager()->getCurrentLanguage()->getId();
       try {
         $result = $mail_manager->mail('pmmi_sales_agent', 'mass_email_remind', $to, $langcode, $params, TRUE);
+        $results['processed']++;
       }
       catch (Exception $e) {
       }
@@ -398,6 +462,30 @@ function pmmi_sales_agent_remind_send() {
         // Remove mails queue item as mail has been sent successfully.
         \Drupal::service('pmmi_sales_agent.mails_queue')->delete($mid);
       }
+    }
+  }
+  if (!empty($nids)) {
+    if ($results['all'] != $results['processed']) {
+      \Drupal::logger('pmmi_sales_agent')
+        ->error(t("Can't send mass email with id @id <br> Successfully send: @successfully <br> Failed: @fail <br> Total: @all"),
+          [
+            '@id' => __FUNCTION__,
+            '@successfully' => $results['processed'],
+            '@fail' => (int) $results['all'] - (int) $results['processed'],
+            '@all' => $results['all']
+          ]
+        );
+    }
+    else {
+      \Drupal::logger('pmmi_sales_agent')
+        ->info(t("Mass email with id @id successfully sent.<br> Successfully send: @successfully <br> Failed: @fail <br> Total: @all"),
+          [
+            '@id' => __FUNCTION__,
+            '@successfully' => $results['processed'],
+            '@fail' => (int) $results['all'] - (int) $results['processed'],
+            '@all' => $results['all']
+          ]
+        );
     }
   }
 }
