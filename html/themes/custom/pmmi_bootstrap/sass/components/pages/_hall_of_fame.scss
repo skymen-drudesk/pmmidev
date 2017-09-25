@@ -29,30 +29,36 @@
       }
     }
   }
-  .containers .layout-3up {
+  .containers.mode-all-blocks-unformatted {
     margin-bottom: 20px;
     display: flex;
     flex-flow: row nowrap;
+    .rows .row {
+      margin-bottom: 20px;
+      .col {
+        display: flex;
+        flex-flow: row wrap;
+        div.field {
+          padding: 10px 15px;
+          flex: 0 1 33%;
+          align-self: center;
+        }
+      }
+    }
+    @include tablet {
+      .rows .row .col div.field {
+        flex: 0 1 50%;
+      }
+    }
     @include mobile {
       flex-flow: row wrap;
       .region-top {
         text-align: center;
         width: 100%;
       }
-      .rows div[class^="row"] {
-        display: inline;
-        &:before, &:after {
-          display: none;
-        }
-        .col {
-          width: 49%;
-          float: left;
-        }
-
+      .rows .row .col div.field {
+        flex: 0 1 50%;
       }
-    }
-    .rows div[class^="row"] {
-      margin-bottom: 20px;
     }
     .region-top {
       align-self: center;
