@@ -58,4 +58,5 @@ class PMMIAdminPanelAgentSearchBlock extends BlockBase implements ContainerFacto
   public function build() {
     return $this->formBuilder->getForm('Drupal\pmmi_search\Form\PMMIAdminPanelAgentSearchBlockForm', $this->getConfiguration());
   }
+
 }

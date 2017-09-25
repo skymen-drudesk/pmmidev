@@ -9,6 +9,7 @@ syncs:
     src: './'
     sync_userid: '82'
     sync_excludes: [
+      'data/',
       '.git/',
       '.gitignore',
       '.DS_Store',

@@ -20,6 +20,7 @@ dependencies:
     - field.storage.node.field_industries_served_other
     - field.storage.node.field_equipment_sold_type_other
     - field.storage.node.field_after_sales_service
+    - field.storage.node.field_approval_state
     - search_api.server.solr_agents_server
   module:
     - search_api
@@ -278,6 +279,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_territory_served
+  field_approval_state:
+    label: 'Approval state'
+    datasource_id: 'entity:node'
+    property_path: field_approval_state
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_approval_state
 datasource_settings:
   'entity:node':
     bundles:
@@ -288,9 +297,21 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
-  state: {  }
-  pmmi_shows: {  }
   country: {  }
+  pmmi_country_area_ws:
+    fields:
+      - ts
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
+    all_fields: false
+  pmmi_shows: {  }
+  state: {  }
+  add_url: {  }
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -10
   highlight:
     highlight: always
     highlight_partial: false
@@ -315,13 +336,25 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
+    all_fields: false
   ignorecase:
     fields:
       - title
     weights:
       preprocess_index: -10
       preprocess_query: -10
-  add_url: {  }
+    all_fields: false
+  rendered_item: {  }
+  stemmer:
+    fields:
+      - title_f
+    exceptions:
+      texan: texa
+      mexican: mexic
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
+    all_fields: false
   stopwords:
     fields: {  }
     stopwords:
@@ -363,19 +396,7 @@ processor_settings:
     weights:
       preprocess_index: -5
       preprocess_query: -2
-  content_access:
-    weights:
-      preprocess_query: -10
-  aggregated_field: {  }
-  stemmer:
-    fields:
-      - title_f
-    exceptions:
-      texan: texa
-      mexican: mexic
-    weights:
-      preprocess_index: 0
-      preprocess_query: 0
+    all_fields: false
   tokenizer:
     fields: {  }
     spaces: ''
@@ -384,13 +405,7 @@ processor_settings:
     weights:
       preprocess_index: -6
       preprocess_query: -6
-  rendered_item: {  }
-  pmmi_country_area_ws:
-    fields:
-      - ts
-    weights:
-      preprocess_index: -6
-      preprocess_query: -6
+    all_fields: false
 tracker_settings:
   default: {  }
 options:

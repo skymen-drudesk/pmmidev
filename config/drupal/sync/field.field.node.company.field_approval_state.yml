@@ -1,0 +1,23 @@
+uuid: 63e0841c-4c3c-44c0-9388-3cca12b8472d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_approval_state
+    - node.type.company
+  module:
+    - options
+id: node.company.field_approval_state
+field_name: field_approval_state
+entity_type: node
+bundle: company
+label: 'Approval state'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: not_approved
+default_value_callback: ''
+settings: {  }
+field_type: list_string

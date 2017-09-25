@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Database\Database;
+use Drupal\node\Entity\Node;
 
 /**
  * Implements hook_schema().
@@ -199,4 +200,36 @@ function pmmi_sales_agent_update_8015() {
   \Drupal::service('config.factory')->getEditable('pmmi_sales_agent.reporting_settings')
     ->set('exceeded_message', 'Your download limit has been exceeded. For questions, please contact Paige Jarvi, <a href="mailto:pjarvi@pmmi.org">pjarvi@pmmi.org</a>.')
     ->save();
+}
+
+/**
+ * Update all nodes with "approval state" value.
+ */
+function pmmi_sales_agent_update_8016(&$sandbox = []) {
+  if (!isset($sandbox['nids'])) {
+    $nids = \Drupal::entityQuery('node')->condition('type', 'company')->execute();
+    $sandbox['nids'] = $nids;
+    $sandbox['max'] = count($nids);
+    $sandbox['progress'] = 0;
+  }
+  $chunk = array_slice($sandbox['nids'], 0, 5, TRUE);
+  foreach ($chunk as $key => $nid) {
+    $node = Node::load($nid);
+    $moderation_info = \Drupal::service('content_moderation.moderation_information');
+    $node = $moderation_info->getLatestRevision('node', $node->id());
+    $current_state = $node->moderation_state->value ?: '';
+    $approval_state = ($current_state == 'published') ? 'approved' : 'not_approved';
+    if ($current_state == 'draft' && $moderation_info->hasForwardRevision($node)) {
+      $approval_state = 'updated';
+    }
+    $node->set('field_approval_state', $approval_state);
+    $node->presave = TRUE;
+    $node->save();
+    unset($sandbox['nids'][$key]);
+    $sandbox['progress']++;
+  }
+  $sandbox['#finished'] = empty($sandbox['nids']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+  if (function_exists('drush_print')) {
+    drush_print(t('Processed @index of @count...', ['@index' => $sandbox['progress'], '@count' => $sandbox['max']]));
+  }
 }
