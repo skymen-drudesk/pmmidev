@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.company.field_general_company_email
     - field.field.node.company.field_industries_served
     - field.field.node.company.field_industries_served_other
+    - field.field.node.company.field_last_mass_email_received
     - field.field.node.company.field_last_updated_on
     - field.field.node.company.field_main_phone_number
     - field.field.node.company.field_manufacturers_represented
@@ -298,3 +299,4 @@ hidden:
   field_trade_shows: true
   flag_favorites_content: true
   links: true
+  field_last_mass_email_received: true
