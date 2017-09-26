@@ -11,6 +11,7 @@ dependencies:
     - block_content
     - panels
     - pmmi_sales_agent
+    - pmmi_search
     - views
 id: sales_agent_directory_my_favorites-panels_variant-0
 label: Panels
@@ -44,14 +45,24 @@ variant_settings:
       context_mapping: {  }
     c8abc5d1-645d-4be3-8df1-53ca9824d54f:
       id: 'views_block:my_favorites_companies-block_1'
-      label: 'My Favorites'
+      label: ''
       provider: views
-      label_display: visible
-      views_label: 'My Favorites'
+      label_display: '0'
+      views_label: ''
       items_per_page: none
       region: main
       weight: 0
       uuid: c8abc5d1-645d-4be3-8df1-53ca9824d54f
+      context_mapping: {  }
+    5c6b8bf8-2d4d-49a8-8c91-7b6b8e2d4ff8:
+      id: pmmi_favorites_header_block
+      label: 'PMMI Favorites Header block'
+      provider: pmmi_search
+      label_display: '0'
+      title: 'My Favorites'
+      region: main
+      weight: -1
+      uuid: 5c6b8bf8-2d4d-49a8-8c91-7b6b8e2d4ff8
       context_mapping: {  }
   id: panels_variant
   uuid: 66ee0aca-61de-4b7c-868a-541490ca542c
