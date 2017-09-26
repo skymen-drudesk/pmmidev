@@ -4,6 +4,7 @@ namespace Drupal\pmmi_sales_agent\Form;
 
 use Drupal\Component\Datetime\DateTimePlus;
 use Drupal\Core\Form\ConfirmFormBase;
+use Drupal\Core\Form\ConfirmFormHelper;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\Core\Database\Database;
@@ -65,26 +66,77 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
-    $operations = [];
-
+  public function buildForm(array $form, FormStateInterface $form_state) {
+    $form['#title'] = $this->getQuestion();
     $mm_config = \Drupal::service('config.factory')
       ->getEditable('pmmi_sales_agent.mail_mass_settings');
+    $last_run = $mm_config->get('last_run');
+    $form['#attributes']['class'][] = 'confirmation';
+    $form['description'] = ['#markup' => $this->getDescription()];
+    $form[$this->getFormName()] = ['#type' => 'hidden', '#value' => 1];
+    $form['check_prev'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Send undelivered emails from prev batch'),
+    ];
+    $form['notify'] = [
+      '#type' => 'item',
+      '#markup' => $this->t('<strong>Will processed all undelivered emails where field_last_mass_email_received doesn\'t match the last batch run (@date)</strong>', [
+        '@date' => !empty($last_run) ? date('Y-m-d H:i:s', $last_run) : '-/-'
+      ]),
+      '#states' => [
+        'visible' => [
+          ':input[name="check_prev"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
 
+    $form['actions'] = ['#type' => 'actions'];
+    $form['actions']['submit'] = [
+      '#type' => 'submit',
+      '#value' => $this->getConfirmText(),
+      '#button_type' => 'primary',
+    ];
+
+    $form['actions']['cancel'] = ConfirmFormHelper::buildCancelLink($this, $this->getRequest());
+
+    // By default, render the form using theme_confirm_form().
+    if (!isset($form['#theme'])) {
+      $form['#theme'] = 'confirm_form';
+    }
+    return $form;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function submitForm(array &$form, FormStateInterface $form_state) {
+    $operations = [];
+    $mm_config = \Drupal::service('config.factory')
+      ->getEditable('pmmi_sales_agent.mail_mass_settings');
     // Save info about last run.
-    $mm_config->set('last_run', REQUEST_TIME)->save();
-    // Get all companies, which should receive mass email.
-    $nids = $this->massMailGetContacts($mm_config->get('filter'));
-
+    $values = $form_state->getValues();
+    $last_run = FALSE;
+    if (empty($values['check_prev']) && $values['check_prev'] == 0) {
+      $last_run_object = \Drupal::time()->getRequestTime();
+      $last_run = date('Y-m-d H:i:s', $last_run_object);
+      $mm_config->set('last_run', $last_run_object)->save();
+      // Get all companies, which should receive mass email.
+      $nids = $this->massMailGetContacts($mm_config->get('filter'));
+    }
+    else {
+      $last_run_object = $mm_config->get('last_run');
+      $last_run = date('Y-m-d H:i:s', $last_run_object);
+      // Get all unprocessed companies, where field_last_mass_email_received doesn't match the last cron run
+      $nids = $this->massMailGetContacts($mm_config->get('filter'), $last_run);
+    }
     if ($nids) {
       // The sales agent mail settings.
       $mail_settings = \Drupal::config('pmmi_sales_agent.mail_settings');
-
       // Process 10 items per operation.
       foreach (array_chunk($nids, 10) as $chunk) {
         $operations[] = [
           [__CLASS__, 'process'],
-          [$chunk, $mail_settings->get('ss_update.subject'), $mail_settings->get('ss_update.body'), $mail_settings->get('mail_notification_address')]
+          [$chunk, $mail_settings->get('ss_update.subject'), $mail_settings->get('ss_update.body'), $mail_settings->get('mail_notification_address'), $last_run]
         ];
       }
     }
@@ -113,12 +165,14 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
    *   The mail body.
    * @param string $from
    *   The email address to be used as the 'from' address.
+   * @param string|boolean $batch_last_day
+   *   For internal usage when need to send undelivered emails since the last cron run
    * @param array|\ArrayAccess $context
    *   The context of the current batch, as defined in the @link batch Batch
    *   operations @endlink documentation.
    */
-  public static function process($nids, $subject, $body, $from, &$context) {
-    $entity_manager = \Drupal::entityManager();
+  public static function process($nids, $subject, $body, $from, $batch_last_day,  &$context) {
+    $entity_manager = \Drupal::entityTypeManager();
     $mailManager = \Drupal::service('plugin.manager.mail');
 
     // Check if the results should be initialized.
@@ -140,7 +194,7 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
           $result = $mailManager->mail('pmmi_sales_agent', 'pmmi_sales_agent_mass', $to[0]['value'], $current_langcode, $params);
           if ($result['result'] == true) {
             $context['results']['processed']++;
-            self::saveRemindMailsInfo($node->id());
+            self::saveRemindMailsInfo($node->id(), $batch_last_day);
           }
           else {
             \Drupal::logger('pmmi_sales_agent')->error(t("Can't send an email to @address"), ['@address' => $to[0]['value']]);
@@ -161,7 +215,7 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
   /**
    * Finishes a batch.
    */
-  public static function finish($success, $results, $operations) {
+  public static function finish ($success, $results, $operations) {
     // Check if the batch job was successful.
     if ($results['all'] != $results['processed']) {
       \Drupal::logger('pmmi_sales_agent')
@@ -205,13 +259,19 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
    * @param string $filter
    *   The 'last update on' filter.
    *
-   * @return array
-   *   The company ID's.
+   * @param boolean|string $last_run
+   * @return array The company ID's.
+   * The company ID's.
    */
-  protected function massMailGetContacts($filter) {
+  protected function massMailGetContacts($filter, $last_run = false) {
     $query = \Drupal::entityQuery('node');
     $query->condition('type', PMMI_SALES_AGENT_CONTENT);
-
+    if (!empty($last_run)) {
+      $batch_group = $query->orConditionGroup()
+        ->condition('field_last_mass_email_received.value', $last_run, '<')
+        ->condition('field_last_mass_email_received', NULL, 'IS NULL');
+      $query->condition($batch_group);
+    }
     if ($filter != 'all') {
       $date = DateTimePlus::createFromTimestamp(strtotime($filter))->format(DATETIME_DATETIME_STORAGE_FORMAT);
       $group = $query->orConditionGroup()
@@ -220,7 +280,6 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
 
       $query->condition($group);
     }
-
     return $query->execute();
   }
 
@@ -229,8 +288,17 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
    *
    * @param int $nid
    *   The company ID.
+   * @param string|boolean $batch_last_day
+   *   For internal usage when need to send undelivered emails since the last cron run.
    */
-  protected function saveRemindMailsInfo($nid) {
+  protected static function saveRemindMailsInfo($nid, $batch_last_day) {
+    $entity = \Drupal\node\Entity\Node::load($nid);
+    $now = (new \DateTime())->format('Y/m/d');
+    if (!empty($batch_last_day)) {
+      $now = $batch_last_day;
+    }
+    $entity->set('field_last_mass_email_received', $now);
+    $entity->save();
     $mm_config = \Drupal::service('config.factory')
       ->getEditable('pmmi_sales_agent.mail_mass_settings');
 
