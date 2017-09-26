@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.company.field_address
     - field.field.node.company.field_after_sales_service
+    - field.field.node.company.field_approval_state
     - field.field.node.company.field_business_lines
     - field.field.node.company.field_company_description
     - field.field.node.company.field_equipment_sold_type
@@ -26,6 +27,7 @@ dependencies:
     - node.type.company
   module:
     - address
+    - content_moderation
     - field_group
     - link
     - pmmi_address
@@ -71,7 +73,7 @@ third_party_settings:
       children:
         - group_select_all_that_apply
       parent_name: ''
-      weight: 6
+      weight: 5
       format_type: html_element
       format_settings:
         label: 'Industries served'
@@ -89,7 +91,7 @@ third_party_settings:
       children:
         - group_s
       parent_name: ''
-      weight: 7
+      weight: 6
       format_type: html_element
       format_settings:
         label: 'Type of equipment sold'
@@ -144,7 +146,7 @@ content:
     type: address_default
     region: content
   field_after_sales_service:
-    weight: 9
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -214,7 +216,7 @@ content:
     type: telephone_default
     region: content
   field_manufacturers_represented:
-    weight: 8
+    weight: 7
     settings:
       rows: 5
       placeholder: ''
@@ -261,7 +263,7 @@ content:
     type: string_textfield
     region: content
   field_territory_served:
-    weight: 5
+    weight: 4
     settings: {  }
     third_party_settings: {  }
     type: country_area_autocomplete
@@ -286,6 +288,7 @@ hidden:
   created: true
   field_address_1: true
   field_address_2: true
+  field_approval_state: true
   field_businbess_lines: true
   field_city: true
   field_country: true

@@ -148,6 +148,18 @@ class PMMIAdminPanelAgentSearchBlockForm extends FormBase {
       '#title' => $this->t('Keyword search'),
       '#default_value' => isset($qp['keywords']) ? str_replace('+', ' ', $qp['keywords']) : '',
     ];
+    // Allow fulltext filtering.
+    $form['approval_state'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Approval state'),
+      '#options' => [
+        '_none' => $this->t('- Any -'),
+        'approved' => $this->t('Approved'),
+        'not_approved' => $this->t('Not approved'),
+        'updated' => $this->t('Updated (needs approve)'),
+      ],
+      '#default_value' => isset($qp['approval_state']) ? $qp['approval_state'] : 'all',
+    ];
 
     $form['submit'] = [
       '#type' => 'submit',
@@ -183,8 +195,14 @@ class PMMIAdminPanelAgentSearchBlockForm extends FormBase {
       $query['keywords'] = str_replace(' ', '+', $values['keywords']);
     }
 
+    // Approval state filtering.
+    if (!empty($values['approval_state']) && $values['approval_state'] !== '_none') {
+      $query['approval_state'] = str_replace(' ', '+', $values['approval_state']);
+    }
+
     $url = Url::fromUri('internal:/admin/config/sad/admin-panel');
     $url->setOption('query', $query);
     $form_state->setRedirectUrl($url);
   }
+
 }

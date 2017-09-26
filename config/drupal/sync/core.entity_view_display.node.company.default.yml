@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.company.field_address
     - field.field.node.company.field_after_sales_service
+    - field.field.node.company.field_approval_state
     - field.field.node.company.field_business_lines
     - field.field.node.company.field_company_description
     - field.field.node.company.field_equipment_sold_type
@@ -288,6 +289,7 @@ hidden:
   content_moderation_control: true
   field_address_1: true
   field_address_2: true
+  field_approval_state: true
   field_businbess_lines: true
   field_city: true
   field_country: true

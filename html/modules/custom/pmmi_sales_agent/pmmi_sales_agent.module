@@ -167,6 +167,10 @@ function pmmi_sales_agent_form_alter(array &$form, FormStateInterface $form_stat
       $token = \Drupal::request()->get('sad-login-token');
       $node->one_time_update = isset($_SESSION[$session_key], $token) && Crypt::hashEquals($_SESSION[$session_key], $token);
       break;
+
+    case 'views_form_search_sales_agent_directory_block_2':
+      $form['#action'] = '';
+      break;
   }
 }
 
@@ -207,6 +211,22 @@ function pmmi_sales_agent_node_presave(EntityInterface $node) {
     // Update the "Last Update On" field value.
     $new_date = DateTimePlus::createFromTimestamp(time())->format('Y-m-d');
     $node->set('field_last_updated_on', $new_date);
+  }
+  if ($node && ($node->getType() == PMMI_SALES_AGENT_CONTENT) && empty($node->presave)) {
+    $current_state = $node->moderation_state->value ?: '';
+    $moderation_info = \Drupal::service('content_moderation.moderation_information');
+    $hasForwardRevision = $moderation_info->hasForwardRevision($node);
+    $approval_state = ($current_state == 'published') ? 'approved' : 'not_approved';
+    if ($current_state == 'draft' && (!$node->isDefaultRevision() || $hasForwardRevision || !empty($node->one_time_update))) {
+      $approval_state = 'updated';
+      $def_revision = $moderation_info->getLatestRevision('node', $node->id());
+      $def_revision->set('field_approval_state', $approval_state);
+      $def_revision->presave = TRUE;
+      $def_revision->save();
+    }
+    else {
+      $node->set('field_approval_state', $approval_state);
+    }
   }
 }
 

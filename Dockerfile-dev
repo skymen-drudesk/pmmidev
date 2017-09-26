@@ -14,4 +14,7 @@ RUN apt-get update
 RUN apt-get install ssmtp --fix-missing -y
 COPY ./config/ssmtp/ssmtp.conf /etc/ssmtp/ssmtp.conf
 
+COPY ./vendor/bin/xdebug-config /
+RUN bash -c "/xdebug-config"
+
 RUN apt-get autoremove -y
