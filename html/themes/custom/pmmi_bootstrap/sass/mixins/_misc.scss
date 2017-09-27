@@ -25,15 +25,43 @@
       color: $grey;
       background: none;
       border: none;
-      a{
+      padding: 0;
+      a {
         color: inherit;
         font-weight: $bold;
         font-style: italic;
         font-size: $r16;
+        display: block;
+        line-height: 20px;
+        padding: 10px 10px 10px 0;
+        text-decoration: none;
+        &:before {
+          background-color: $blue;
+          width: 40px;
+          display: block;
+          font-family: FontAwesome;
+          color: #fff;
+          content: '\f067';
+          font-size: $r20;
+          padding-top: 9px;
+          text-align: center;
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+        }
       }
       a[aria-expanded="true"] {
         font-weight: 700;
         padding-left: 15px;
+      }
+    }
+    &.active {
+      .panel-heading {
+        a:before {
+          content: '\f068';
+          background-color: $ltblue;
+        }
       }
     }
     .panel-body.in {
@@ -52,27 +80,6 @@
           }
         }
       }
-    }
-    &.active {
-      &:before {
-        content: '\f068';
-        background-color: $ltblue;
-      }
-    }
-    &:before {
-      background-color: $blue;
-      width: 40px;
-      display: block;
-      font-family: FontAwesome;
-      color: #fff;
-      content: '\f067';
-      font-size: $r20;
-      padding-top: 9px;
-      text-align: center;
-      position: absolute;
-      left: 0;
-      top: 0;
-      bottom: 0;
     }
     .checker {
       opacity: 0;

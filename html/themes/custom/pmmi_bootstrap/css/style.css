@@ -12167,6 +12167,7 @@ fieldset[disabled] a.focus {
   color: #8c8888;
   background: none;
   border: none;
+  padding: 0;
 }
 
 .details-wrapper.panel-default .panel-heading a, .node-company-form .panel-default.equipment-sold-details .panel-heading a,
@@ -12176,12 +12177,40 @@ fieldset[disabled] a.focus {
   font-style: italic;
   font-size: 16px;
   font-size: 1rem;
+  display: block;
+  line-height: 20px;
+  padding: 10px 10px 10px 0;
+  text-decoration: none;
+}
+
+.details-wrapper.panel-default .panel-heading a:before, .node-company-form .panel-default.equipment-sold-details .panel-heading a:before,
+.node-company-form .panel-default.industries-served-details .panel-heading a:before {
+  background-color: #004e75;
+  width: 40px;
+  display: block;
+  font-family: FontAwesome;
+  color: #fff;
+  content: '\f067';
+  font-size: 20px;
+  font-size: 1.25rem;
+  padding-top: 9px;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
 }
 
 .details-wrapper.panel-default .panel-heading a[aria-expanded="true"], .node-company-form .panel-default.equipment-sold-details .panel-heading a[aria-expanded="true"],
 .node-company-form .panel-default.industries-served-details .panel-heading a[aria-expanded="true"] {
   font-weight: 700;
   padding-left: 15px;
+}
+
+.details-wrapper.panel-default.active .panel-heading a:before, .node-company-form .panel-default.active.equipment-sold-details .panel-heading a:before,
+.node-company-form .panel-default.active.industries-served-details .panel-heading a:before {
+  content: '\f068';
+  background-color: #038dc0;
 }
 
 .details-wrapper.panel-default .panel-body.in, .node-company-form .panel-default.equipment-sold-details .panel-body.in,
@@ -12207,30 +12236,6 @@ fieldset[disabled] a.focus {
   .node-company-form .panel-default.industries-served-details .panel-body.in .form-type-textarea .form-textarea-wrapper {
     position: relative;
   }
-}
-
-.details-wrapper.panel-default.active:before, .node-company-form .panel-default.active.equipment-sold-details:before,
-.node-company-form .panel-default.active.industries-served-details:before {
-  content: '\f068';
-  background-color: #038dc0;
-}
-
-.details-wrapper.panel-default:before, .node-company-form .panel-default.equipment-sold-details:before,
-.node-company-form .panel-default.industries-served-details:before {
-  background-color: #004e75;
-  width: 40px;
-  display: block;
-  font-family: FontAwesome;
-  color: #fff;
-  content: '\f067';
-  font-size: 20px;
-  font-size: 1.25rem;
-  padding-top: 9px;
-  text-align: center;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
 }
 
 .details-wrapper.panel-default .checker, .node-company-form .panel-default.equipment-sold-details .checker,
