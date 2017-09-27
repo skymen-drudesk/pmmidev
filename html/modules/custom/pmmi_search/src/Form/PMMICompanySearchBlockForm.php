@@ -126,30 +126,20 @@ class PMMICompanySearchBlockForm extends FormBase {
     ];
 
     $countries = [];
-
     // Override values after country has been changed!
     $triggering_element = $form_state->getTriggeringElement();
     if ($triggering_element && $triggering_element['#name'] == 'country_code') {
       $countries = $triggering_element['#value'];
     }
 
-    // Show or hide second level of hierarchy in accordance with selected
-    // country.
-    if ($countries) {
-      $areas = [];
-      foreach ($countries as $value) {
-        $subdivisions = $this->subdivisionRepository->getList([$value]);
-        $areas = $areas + $subdivisions;
-      }
-
+    // Show "State/Region" field only for US.
+    if (in_array('US', $countries)) {
+      $subdivisions = $this->subdivisionRepository->getList(['US']);
       // Show subdivision field.
-      if ($areas) {
-        $form['address']['administrative_area']['#options'] = $areas;
+      if ($subdivisions) {
+        $form['address']['administrative_area']['#options'] = $subdivisions;
         $form['address']['administrative_area']['#access'] = TRUE;
       }
-    }
-    else {
-      $form['address']['administrative_area']['#options'] = [];
     }
 
     // Describe "Industries Served" filter.
