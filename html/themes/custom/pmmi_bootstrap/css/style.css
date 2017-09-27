@@ -22097,6 +22097,12 @@ button.slick-arrow.slick-next {
   height: 185px;
 }
 
+@media screen and (min-width: 767px) {
+  .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-3 .block-person-company-style .image {
+    max-width: 60%;
+  }
+}
+
 @media screen and (max-width: 767px) {
   .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-3 .block-person-company-style {
     height: auto;

@@ -215,6 +215,11 @@
     .block-person-company-style {
       margin-bottom: 45px;
       height: 185px;
+      @include mobile-min {
+        .image {
+          max-width: 60%;
+        }
+      }
       @include mobile {
         height: auto;
       }
