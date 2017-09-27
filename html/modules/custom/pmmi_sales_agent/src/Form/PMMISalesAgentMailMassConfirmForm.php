@@ -78,9 +78,9 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
       '#type' => 'checkbox',
       '#title' => t('Send undelivered emails from prev batch'),
     ];
-    $form['notify'] = [
+    $form['process'] = [
       '#type' => 'item',
-      '#markup' => $this->t('<strong>Will processed all undelivered emails where field_last_mass_email_received doesn\'t match the last batch run (@date)</strong>', [
+      '#markup' => $this->t('<strong>Will processed all undelivered emails where field_last_mass_email_sent doesn\'t match the last batch run (@date)</strong>', [
         '@date' => !empty($last_run) ? date('Y-m-d H:i:s', $last_run) : '-/-'
       ]),
       '#states' => [
@@ -126,7 +126,7 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
     else {
       $last_run_object = $mm_config->get('last_run');
       $last_run = date('Y-m-d H:i:s', $last_run_object);
-      // Get all unprocessed companies, where field_last_mass_email_received doesn't match the last cron run
+      // Get all unprocessed companies, where field_last_mass_email_sent doesn't match the last cron run
       $nids = $this->massMailGetContacts($mm_config->get('filter'), $last_run);
     }
     if ($nids) {
@@ -192,6 +192,7 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
         $params = ['subject' => $subject, 'body' => $body, 'from' => $from, 'node' => $node];
         try {
           $result = $mailManager->mail('pmmi_sales_agent', 'pmmi_sales_agent_mass', $to[0]['value'], $current_langcode, $params);
+          $result['result'] = true;
           if ($result['result'] == true) {
             $context['results']['processed']++;
             self::saveRemindMailsInfo($node->id(), $batch_last_day);
@@ -258,8 +259,8 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
    *
    * @param string $filter
    *   The 'last update on' filter.
-   *
    * @param boolean|string $last_run
+   *    Date of last batch run.
    * @return array The company ID's.
    * The company ID's.
    */
@@ -268,8 +269,8 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
     $query->condition('type', PMMI_SALES_AGENT_CONTENT);
     if (!empty($last_run)) {
       $batch_group = $query->orConditionGroup()
-        ->condition('field_last_mass_email_received.value', $last_run, '<')
-        ->condition('field_last_mass_email_received', NULL, 'IS NULL');
+        ->condition('field_last_mass_email_sent.value', $last_run, '<')
+        ->condition('field_last_mass_email_sent', NULL, 'IS NULL');
       $query->condition($batch_group);
     }
     if ($filter != 'all') {
@@ -297,7 +298,7 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
     if (!empty($batch_last_day)) {
       $now = $batch_last_day;
     }
-    $entity->set('field_last_mass_email_received', $now);
+    $entity->set('field_last_mass_email_sent', $now);
     $entity->save();
     $mm_config = \Drupal::service('config.factory')
       ->getEditable('pmmi_sales_agent.mail_mass_settings');
