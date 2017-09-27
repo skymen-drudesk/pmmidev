@@ -21382,6 +21382,57 @@ button.slick-arrow.slick-next {
   }
 }
 
+.compare-forms-inner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.compare-forms-inner > div {
+  border: 1px solid #c2c2c2;
+  padding: 10px;
+}
+
+.compare-forms-inner > div > h4 {
+  color: #053248;
+  font-size: 20px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  background: #edf5ff;
+  padding: 10px;
+  margin: -10px -10px 20px -10px;
+}
+
+.compare-forms-inner .previous-revision-form {
+  margin-right: 10px;
+}
+
+.compare-forms-inner .main-contact .panel-body label,
+.compare-forms-inner .company-info .panel-body label {
+  width: auto;
+  text-align: left;
+}
+
+.compare-forms-inner .main-contact .panel-body .description,
+.compare-forms-inner .company-info .panel-body .description {
+  padding-left: 0;
+}
+
+.compare-forms-inner .field--name-field-address .control-label {
+  padding: 7px 0 0;
+  vertical-align: top;
+}
+
+.compare-forms-inner .button {
+  width: 100%;
+  float: none;
+  margin: 0 0 20px;
+}
+
 .download-node {
   margin-bottom: 40px;
 }
