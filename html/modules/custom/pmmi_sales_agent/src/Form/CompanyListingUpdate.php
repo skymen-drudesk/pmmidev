@@ -79,7 +79,10 @@ class CompanyListingUpdate extends FormBase {
     ];
     $form['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Search'),
+      '#attributes' => [
+        'class' => ['btn-primary'],
+      ],
+      '#value' => $this->t('Send link'),
     ];
 
     return $form;

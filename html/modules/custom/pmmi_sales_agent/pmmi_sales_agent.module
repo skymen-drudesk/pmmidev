@@ -516,13 +516,15 @@ function pmmi_sales_agent_is_admin() {
  * @return string
  *   Unique URL for a user to update a listing.
  */
-function pmmi_sales_agent_login_url($nid) {
-  $timestamp = REQUEST_TIME;
-
+function pmmi_sales_agent_login_url($node) {
+  $timestamp = \Drupal::time()->getRequestTime();;
+  $moderation_info = \Drupal::service('content_moderation.moderation_information');
+  $nid = $node->id();
+  $last_revision_id = $moderation_info->getLatestRevisionId('node', $nid);
   return \Drupal::url('pmmi_sales_agent.login', [
-    'nid' => $nid,
-    'timestamp' => REQUEST_TIME,
-    'hash' => pmmi_sales_agent_hash($timestamp, $nid),
+    'node' => $nid,
+    'timestamp' => $timestamp,
+    'hash' => pmmi_sales_agent_hash($timestamp, $last_revision_id + $nid),
   ],
   [
     'absolute' => TRUE,
