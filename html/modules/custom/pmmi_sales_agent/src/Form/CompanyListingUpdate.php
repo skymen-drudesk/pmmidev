@@ -116,9 +116,30 @@ class CompanyListingUpdate extends FormBase {
           'node' => $node,
         ];
 
-        \Drupal::service('plugin.manager.mail')
-          ->mail('pmmi_sales_agent', 'pmmi_one_time_update', $mail, $langcode, $params, TRUE);
-
+        try {
+          $result = \Drupal::service('plugin.manager.mail')
+            ->mail('pmmi_sales_agent', 'pmmi_one_time_update', $mail, $langcode, $params, TRUE);
+          if (!empty($result['result']) && $result['result'] === TRUE) {
+            _db_email_login(
+              'single_email',
+              'info',
+              $result
+            );
+          }
+          else {
+            _db_email_login(
+              'single_email',
+              'error',
+              $result
+            );
+          }
+        } catch (Exception $e) {
+          _db_email_login(
+            'exception',
+            'error',
+            $e
+          );
+        }
         $form_state->setRebuild();
       }
     }
