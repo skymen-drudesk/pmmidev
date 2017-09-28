@@ -649,10 +649,10 @@ function _db_email_login($type, $method, $results) {
 
     case 'pmmi_sales_agent_remind_send':
       if ($method == 'error') {
-        $text = 'Can\'t send mass email with id @id <br> Successfully send: @successfully <br> Failed: @fail <br> Total: @all';
+        $text = 'Can\'t complete mass email send with id @id <br> Successfully send: @successfully <br> Failed: @fail <br> Total: @all';
       }
       else {
-        $text = 'Mass email with id @id successfully send.<br> Successfully send: @successfully <br> Failed: @fail <br> Total: @all';
+        $text = 'Completed mass email send with id @id.<br> Successfully send: @successfully <br> Failed: @fail <br> Total: @all';
       }
       \Drupal::logger('pmmi_sales_agent')
         ->$method(t($text,
