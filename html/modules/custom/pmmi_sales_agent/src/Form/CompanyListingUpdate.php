@@ -120,31 +120,24 @@ class CompanyListingUpdate extends FormBase {
           $result = \Drupal::service('plugin.manager.mail')
             ->mail('pmmi_sales_agent', 'pmmi_one_time_update', $mail, $langcode, $params, TRUE);
           if (!empty($result['result']) && $result['result'] === TRUE) {
-            \Drupal::logger('pmmi_sales_agent')->info('Message successfully sent. Message details: <br> To: @to<br>From: @from<br>Subject: @subject<br>Body: @body',
-              [
-                '@to' => !empty($result['to']) ? $result['to'] : 'empty',
-                '@from' => !empty($result['from']) ? $result['from'] : 'empty',
-                '@subject' => !empty($result['subject']) ? $result['subject'] : 'empty' ,
-                '@body' => !empty($result['body']) ? $result['body'] : 'empty'
-              ]
+            _db_email_login(
+              'single_email',
+              'info',
+              $result
             );
           }
           else {
-            \Drupal::logger('pmmi_sales_agent')->error('Message didn\'t send.  Message details: <br>To: @to<br>From: @from<br>Subject: @subject<br>Body: @body',
-              [
-                '@to' => !empty($result['to']) ? $result['to'] : 'empty',
-                '@from' => !empty($result['from']) ? $result['from'] : 'empty',
-                '@subject' => !empty($result['subject']) ? $result['subject'] : 'empty' ,
-                '@body' => !empty($result['body']) ? $result['body'] : 'empty'
-              ]
+            _db_email_login(
+              'single_email',
+              'error',
+              $result
             );
           }
         } catch (Exception $e) {
-          \Drupal::logger('pmmi_sales_agent')->error('Message didn\'t send. <br>The exception code is : @code<br> Message: @exception',
-            [
-              '@code' => $e->getCode(),
-              '@exception' => $e->getMessage()
-            ]
+          _db_email_login(
+            'exception',
+            'error',
+            $e
           );
         }
         $form_state->setRebuild();

@@ -192,7 +192,6 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
         $params = ['subject' => $subject, 'body' => $body, 'from' => $from, 'node' => $node];
         try {
           $result = $mailManager->mail('pmmi_sales_agent', 'pmmi_sales_agent_mass', $to[0]['value'], $current_langcode, $params);
-          $result['result'] = true;
           if ($result['result'] == true) {
             $context['results']['processed']++;
             self::saveRemindMailsInfo($node->id(), $batch_last_day);
@@ -205,6 +204,11 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
             '@code' => $e->getCode(),
             '@exception' => $e->getMessage()
           ];
+          _db_email_login(
+            'exception',
+            'error',
+            $e
+          );
         }
       }
       else {
@@ -219,26 +223,18 @@ class PMMISalesAgentMailMassConfirmForm extends ConfirmFormBase {
   public static function finish ($success, $results, $operations) {
     // Check if the batch job was successful.
     if ($results['all'] != $results['processed']) {
-      \Drupal::logger('pmmi_sales_agent')
-        ->error(t("Can't send mass email with id @id <br> Successfully send: @successfully <br> Failed: @fail <br> Total: @all"),
-          [
-            '@id' => self::getFormIdStatic(),
-            '@successfully' => $results['processed'],
-            '@fail' => (int) $results['all'] - (int) $results['processed'],
-            '@all' => $results['all']
-          ]
-        );
+      _db_email_login(
+        'PMMISalesAgentMailMassConfirmFormFinish',
+        'error',
+        $results
+      );
     }
     else {
-      \Drupal::logger('pmmi_sales_agent')
-        ->info(t("Mass email with id @id successfully sent.<br> Successfully send: @successfully <br> Failed: @fail <br> Total: @all"),
-          [
-            '@id' => self::getFormIdStatic(),
-            '@successfully' => $results['processed'],
-            '@fail' => (int) $results['all'] - (int) $results['processed'],
-            '@all' => $results['all']
-          ]
-        );
+      _db_email_login(
+        'PMMISalesAgentMailMassConfirmFormFinish',
+        'info',
+        $results
+      );
     }
     if ($success) {
       // Display the number of items which were processed.
