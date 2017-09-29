@@ -113,7 +113,7 @@ class EntityForm extends BlockBase implements ContainerFactoryPluginInterface {
     $forms['forms']['prev_form']['#suffix'] = '</div>';
     $forms['forms']['current_form'] = $this->entityFormBuilder->getForm($last_edit_entity);
     $forms['forms']['current_form']['#prefix'] = '<div class="current-revision-form">';
-    $forms['forms']['current_form']['#prefix'] .= '<h4>' . $this->t('Current updates (for approving)') . '</h4>';
+    $forms['forms']['current_form']['#prefix'] .= '<h4>' . $this->t('Pending approval') . '</h4>';
     $forms['forms']['current_form']['#suffix'] = '</div>';
     return $forms;
   }
