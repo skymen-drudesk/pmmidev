@@ -50,6 +50,8 @@ field_settings:
       type: union
       fields:
         - 'entity:node/title'
+        - 'entity:node/field_equipment_sold_type_other'
+        - 'entity:node/field_industries_served_other'
   title:
     label: 'Title String'
     datasource_id: 'entity:node'
@@ -297,7 +299,7 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
-  country: {  }
+  pmmi_shows: {  }
   pmmi_country_area_ws:
     fields:
       - ts
@@ -305,56 +307,9 @@ processor_settings:
       preprocess_index: -6
       preprocess_query: -6
     all_fields: false
-  pmmi_shows: {  }
   state: {  }
-  add_url: {  }
+  country: {  }
   aggregated_field: {  }
-  content_access:
-    weights:
-      preprocess_query: -10
-  highlight:
-    highlight: always
-    highlight_partial: false
-    excerpt: true
-    excerpt_length: 256
-    exclude_fields: {  }
-    prefix: '<strong>'
-    suffix: '</strong>'
-    weights:
-      postprocess_query: 0
-  html_filter:
-    fields:
-      - title
-    title: true
-    alt: true
-    tags:
-      h1: 5
-      h2: 3
-      h3: 2
-      strong: 2
-      b: 2
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-    all_fields: false
-  ignorecase:
-    fields:
-      - title
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-    all_fields: false
-  rendered_item: {  }
-  stemmer:
-    fields:
-      - title_f
-    exceptions:
-      texan: texa
-      mexican: mexic
-    weights:
-      preprocess_index: 0
-      preprocess_query: 0
-    all_fields: false
   stopwords:
     fields: {  }
     stopwords:
@@ -397,6 +352,36 @@ processor_settings:
       preprocess_index: -5
       preprocess_query: -2
     all_fields: false
+  add_url: {  }
+  rendered_item: {  }
+  html_filter:
+    fields:
+      - title
+    title: true
+    alt: true
+    tags:
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      b: 2
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+    all_fields: false
+  highlight:
+    highlight: always
+    highlight_partial: false
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+  content_access:
+    weights:
+      preprocess_query: -10
   tokenizer:
     fields: {  }
     spaces: ''
@@ -405,6 +390,23 @@ processor_settings:
     weights:
       preprocess_index: -6
       preprocess_query: -6
+    all_fields: false
+  stemmer:
+    fields:
+      - title_f
+    exceptions:
+      texan: texa
+      mexican: mexic
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
+    all_fields: false
+  ignorecase:
+    fields:
+      - title
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
     all_fields: false
 tracker_settings:
   default: {  }
