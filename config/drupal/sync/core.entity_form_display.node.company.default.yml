@@ -31,6 +31,7 @@ dependencies:
     - field_group
     - link
     - pmmi_address
+    - pmmi_fields
     - telephone
 third_party_settings:
   field_group:
@@ -146,7 +147,7 @@ content:
     type: address_default
     region: content
   field_after_sales_service:
-    weight: 8
+    weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -167,9 +168,10 @@ content:
     region: content
   field_equipment_sold_type:
     weight: 10
-    settings: {  }
+    settings:
+      other_field_name: field_equipment_sold_type_other
     third_party_settings: {  }
-    type: options_buttons
+    type: options_buttons_other
     region: content
   field_equipment_sold_type_other:
     weight: 11
@@ -196,9 +198,10 @@ content:
     region: content
   field_industries_served:
     weight: 11
-    settings: {  }
+    settings:
+      other_field_name: field_industries_served_other
     third_party_settings: {  }
-    type: options_buttons
+    type: options_buttons_other
     region: content
   field_industries_served_other:
     weight: 12
@@ -216,7 +219,7 @@ content:
     type: telephone_default
     region: content
   field_manufacturers_represented:
-    weight: 7
+    weight: 8
     settings:
       rows: 5
       placeholder: ''

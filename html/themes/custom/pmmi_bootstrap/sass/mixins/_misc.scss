@@ -69,15 +69,21 @@
       .form-type-textarea {
         label {
           text-transform: uppercase;
-          padding: 4px 15px 0 0;
+          padding: 4px 5px 0 0;
+          width: 180px;
+          float: left;
         }
         .form-textarea-wrapper {
-          position: absolute;
-          padding-right: 20px;
-          display: inline-block;
-          @include tablet-max {
-            position: relative;
+          overflow: hidden;
+        }
+        @include tablet-max {
+          label {
+            float: none;
+            width: auto;
           }
+        }
+        textarea {
+          line-height: $r22;
         }
       }
     }

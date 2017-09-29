@@ -149,7 +149,7 @@ class PMMICompanySearchBlockForm extends FormBase {
     ];
     $form['industries']['field_industries_served'] = [
       '#type' => 'checkboxes',
-      '#options' => $this->getIndustriesOptions(),
+      '#options' => $this->getTermReferenceOptions('industries_served'),
       '#limit_validation_errors' => [],
     ];
 
@@ -160,7 +160,7 @@ class PMMICompanySearchBlockForm extends FormBase {
     ];
     $form['equipments']['field_equipment_sold_type'] = [
       '#type' => 'checkboxes',
-      '#options' => $this->getEquipmentsOptions(),
+      '#options' => $this->getTermReferenceOptions('equipment_sold_type'),
     ];
 
     // Describe "Attending PMMI show" filter.
@@ -235,28 +235,16 @@ class PMMICompanySearchBlockForm extends FormBase {
   }
 
   /**
-   * Get industries served options.
+   * Get term reference options.
    */
-  protected function getIndustriesOptions() {
+  protected function getTermReferenceOptions($vid) {
     $options = array();
 
-    $terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadTree('industries_served');
+    $terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadTree($vid);
     foreach ($terms as $term) {
-      $options[$term->tid] = $term->name;
-    }
-
-    return $options;
-  }
-
-  /**
-   * Get types of equipment sold options.
-   */
-  protected function getEquipmentsOptions() {
-    $options = array();
-
-    $terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadTree('equipment_sold_type');
-    foreach ($terms as $term) {
-      $options[$term->tid] = $term->name;
+      if ($term->name !== 'Other') {
+        $options[$term->tid] = $term->name;
+      }
     }
 
     return $options;
