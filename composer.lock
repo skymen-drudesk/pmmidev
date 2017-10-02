@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "de3109d8f17795b474838c230f2140c2",
+    "content-hash": "163bac976b912c969da0d99181beb42c",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -1514,7 +1514,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.1",
-                    "datestamp": "1499893143",
+                    "datestamp": "1505896144",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1572,7 +1572,11 @@
                 },
                 "drupal": {
                     "version": "8.x-1.19",
-                    "datestamp": "1491487683"
+                    "datestamp": "1505199844",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -1583,6 +1587,14 @@
                 {
                     "name": "Mohamed Anis Taktak",
                     "homepage": "https://www.drupal.org/u/matio89"
+                },
+                {
+                    "name": "adriancid",
+                    "homepage": "https://www.drupal.org/user/1962106"
+                },
+                {
+                    "name": "bolbol",
+                    "homepage": "https://www.drupal.org/user/3400070"
                 },
                 {
                     "name": "eme",
@@ -1648,7 +1660,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/backup_migrate"
             },
-            "time": "2017-05-09 02:56:22"
+            "time": "2017-05-09T02:56:22+00:00"
         },
         {
             "name": "drupal/blazy",
@@ -2267,7 +2279,7 @@
                 "issues": "https://www.drupal.org/project/issues/config_split",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             },
-            "time": "2017-08-30 09:29:34"
+            "time": "2017-08-30T09:29:34+00:00"
         },
         {
             "name": "drupal/config_update",
@@ -2293,7 +2305,11 @@
                 },
                 "drupal": {
                     "version": "8.x-1.3",
-                    "datestamp": "1484770683"
+                    "datestamp": "1505755744",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -3014,7 +3030,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/date"
             },
-            "time": "2012-10-28 09:20:01"
+            "time": "2012-10-28T09:20:01+00:00"
         },
         {
             "name": "drupal/default_content",
@@ -3377,7 +3393,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.1",
-                    "datestamp": "1502200443",
+                    "datestamp": "1505808844",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -3598,7 +3614,7 @@
                 "issues": "https://www.drupal.org/project/issues/facets",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
             },
-            "time": "2017-08-29 19:57:24"
+            "time": "2017-08-29T19:57:24+00:00"
         },
         {
             "name": "drupal/field_group",
@@ -3707,7 +3723,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/file_browser"
             },
-            "time": "2017-07-24 05:23:55"
+            "time": "2017-07-24T05:23:55+00:00"
         },
         {
             "name": "drupal/file_entity",
@@ -4112,7 +4128,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/job_scheduler"
             },
-            "time": "2017-07-04 13:18:23"
+            "time": "2017-07-04T13:18:23+00:00"
         },
         {
             "name": "drupal/layout_plugin",
@@ -4291,7 +4307,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/linked_field"
             },
-            "time": "2017-04-28 16:28:28"
+            "time": "2017-04-28T16:28:28+00:00"
         },
         {
             "name": "drupal/maillog",
@@ -4341,7 +4357,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/maillog"
             },
-            "time": "2016-08-05 21:18:07"
+            "time": "2016-08-05T21:18:07+00:00"
         },
         {
             "name": "drupal/mailsystem",
@@ -5056,7 +5072,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/queue_ui"
             },
-            "time": "2017-05-30 19:17:17"
+            "time": "2017-05-30T19:17:17+00:00"
         },
         {
             "name": "drupal/recaptcha",
@@ -5115,7 +5131,7 @@
                 "source": "http://git.drupal.org/project/recaptcha.git",
                 "issues": "https://www.drupal.org/project/issues/recaptcha"
             },
-            "time": "2017-04-02 21:15:08"
+            "time": "2017-04-02T21:15:08+00:00"
         },
         {
             "name": "drupal/redirect",
@@ -5161,7 +5177,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/redirect"
             },
-            "time": "2017-08-26 11:06:45"
+            "time": "2017-08-26T11:06:45+00:00"
         },
         {
             "name": "drupal/search_api",
@@ -5216,7 +5232,7 @@
                 "issues": "https://www.drupal.org/project/issues/search_api",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
             },
-            "time": "2017-08-28 10:36:24"
+            "time": "2017-08-28T10:36:24+00:00"
         },
         {
             "name": "drupal/search_api_bundle_boost",
@@ -5308,7 +5324,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/search_api_page"
             },
-            "time": "2017-03-04 13:17:03"
+            "time": "2017-03-04T13:17:03+00:00"
         },
         {
             "name": "drupal/search_api_solr",
@@ -5384,7 +5400,7 @@
                 "issues": "https://www.drupal.org/project/issues/search_api_solr",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
             },
-            "time": "2017-08-24 07:53:24"
+            "time": "2017-08-24T07:53:24+00:00"
         },
         {
             "name": "drupal/selectize",
@@ -5552,7 +5568,7 @@
                 "source": "http://cgit.drupalcode.org/slick",
                 "issues": "https://drupal.org/project/issues/slick"
             },
-            "time": "2017-05-25 20:26:30"
+            "time": "2017-05-25T20:26:30+00:00"
         },
         {
             "name": "drupal/slick_views",
@@ -5591,18 +5607,57 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/slick_views"
             },
-            "time": "2017-02-10 11:40:20"
+            "time": "2017-02-10T11:40:20+00:00"
         },
         {
             "name": "drupal/tb_megamenu",
-            "version": "8.1.0-alpha3",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/summitmedia/tb_megamenu/archive/1.0-alpha3.zip",
-                "reference": null,
-                "shasum": null
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/tb_megamenu",
+                "reference": "5a0cb3468e71a4ea3a9da39939848e23b6a7309c"
             },
-            "type": "drupal-module"
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1505878447",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "cgmonroe",
+                    "homepage": "https://www.drupal.org/user/563114"
+                },
+                {
+                    "name": "themebrain",
+                    "homepage": "https://www.drupal.org/user/1446728"
+                },
+                {
+                    "name": "williampham",
+                    "homepage": "https://www.drupal.org/user/2320884"
+                }
+            ],
+            "description": "Megamenu solutions for Drupal",
+            "homepage": "https://www.drupal.org/project/tb_megamenu",
+            "support": {
+                "source": "http://cgit.drupalcode.org/tb_megamenu"
+            },
+            "time": "2017-09-25T02:19:46+00:00"
         },
         {
             "name": "drupal/token",
@@ -5915,7 +5970,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/views_block_filter_block"
             },
-            "time": "2017-05-25 11:05:23"
+            "time": "2017-05-25T11:05:23+00:00"
         },
         {
             "name": "drupal/views_data_export",
@@ -6110,7 +6165,7 @@
                 },
                 "drupal": {
                     "version": "8.x-5.0-beta16",
-                    "datestamp": "1502286865",
+                    "datestamp": "1505089745",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -8264,7 +8319,7 @@
                 "source": "https://github.com/summitmedia/dd-party/tree/master",
                 "issues": "https://github.com/summitmedia/dd-party/issues"
             },
-            "time": "2017-07-27 00:21:29"
+            "time": "2017-07-27T00:21:29+00:00"
         },
         {
             "name": "summitmedia/panels_everywhere",
@@ -9882,7 +9937,7 @@
                 "reference": "origin/master"
             },
             "type": "drupal-library",
-            "time": "2010-06-13 23:39:18"
+            "time": "2010-06-13T23:39:18+00:00"
         },
         {
             "name": "twig/twig",
@@ -10541,7 +10596,11 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0",
-                    "datestamp": "1487232784"
+                    "datestamp": "1505141044",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -10560,6 +10619,10 @@
                 {
                     "name": "chx",
                     "homepage": "https://www.drupal.org/user/9446"
+                },
+                {
+                    "name": "joachim",
+                    "homepage": "https://www.drupal.org/user/107701"
                 },
                 {
                     "name": "nedjo",
@@ -10655,7 +10718,7 @@
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             },
-            "time": "2017-08-29 01:14:35"
+            "time": "2017-08-29T01:14:35+00:00"
         },
         {
             "name": "drupal/devel_debug_log",
@@ -10991,7 +11054,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/xhprof"
             },
-            "time": "2017-05-29 08:34:02"
+            "time": "2017-05-29T08:34:02+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -12161,7 +12224,7 @@
         "drupal/selectize": 10,
         "drupal/slick": 20,
         "drupal/slick_views": 20,
-        "drupal/tb_megamenu": 15,
+        "drupal/tb_megamenu": 20,
         "drupal/token": 10,
         "drupal/view_unpublished": 15,
         "drupal/views_block_filter_block": 20,
