@@ -233,3 +233,19 @@ function pmmi_sales_agent_update_8016(&$sandbox = []) {
     drush_print(t('Processed @index of @count...', ['@index' => $sandbox['progress'], '@count' => $sandbox['max']]));
   }
 }
+
+/**
+ * Set default value for the 'pmmi_sales_agent.mail_settings' config.
+ */
+function pmmi_sales_agent_update_8017() {
+  $mail_settings = \Drupal::service('config.factory')->getEditable('pmmi_sales_agent.mail_settings');
+  $mail_settings->set('one_time_expiration', 432000);
+  $one_time = $mail_settings->get('one_time');
+  $one_time['body'] = str_replace(
+    'It expires after 48 hours',
+    'It expires after 120 hours(5 days)',
+    $one_time['body']
+  );
+  $mail_settings->set('one_time', $one_time);
+  $mail_settings->save();
+}
