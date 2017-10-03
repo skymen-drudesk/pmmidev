@@ -22094,7 +22094,13 @@ button.slick-arrow.slick-next {
 
 .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-3 .block-person-company-style {
   margin-bottom: 45px;
-  height: 185px;
+  height: 140px;
+}
+
+@media screen and (min-width: 767px) {
+  .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-3 .block-person-company-style .image {
+    max-width: 60%;
+  }
 }
 
 @media screen and (max-width: 767px) {
