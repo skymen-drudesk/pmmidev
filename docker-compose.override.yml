@@ -44,7 +44,8 @@ services:
   pmmimailhog:
     container_name: "${SITE_CODE}_mailhog"
     image: mailhog/mailhog
-    links:
-      - pmmiweb
+    networks:
+      - back
     ports:
+      - 1025:1025
       - "8006:8025"
