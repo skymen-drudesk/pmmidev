@@ -251,7 +251,6 @@ function _pmmi_forms_company_remove_requirements(&$element) {
   if (isset($element['#required'])) {
     $element['#required'] = FALSE;
   }
-  $element['#required'] = FALSE;
   foreach (Element::children($element) as $key) {
     _pmmi_forms_company_remove_requirements($element[$key]);
   }
