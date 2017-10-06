@@ -5,7 +5,8 @@ ARG DEBIAN_FRONTEND=noninteractive
 # sSMTP: note php is configured to use ssmtp, which is configured to send to
 # pximail:1025, which is standard configuration for a mailhog/mailhog image
 # with hostname mail.
-RUN apt-get install ssmtp -y
+RUN apt-get update
+RUN apt-get install ssmtp --fix-missing -y
 COPY ./config/ssmtp/ssmtp.conf /etc/ssmtp/ssmtp.conf
 
 RUN apt-get autoremove -y
