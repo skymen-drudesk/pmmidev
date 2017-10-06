@@ -18,6 +18,11 @@
     @content;
   }
 }
+@mixin mobile-min {
+  @media screen and (min-width: $screen-xs-max) {
+    @content;
+  }
+}
 @mixin tablet-max {
   @media screen and (max-width: $screen-sm-max) {
     @content;
