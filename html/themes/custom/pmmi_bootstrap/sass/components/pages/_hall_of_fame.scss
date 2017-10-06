@@ -29,24 +29,35 @@
       }
     }
   }
-  .containers.mode-4-up {
+  .containers.mode-all-blocks-unformatted {
     margin-bottom: 20px;
     display: flex;
     flex-flow: row nowrap;
+    .rows .row {
+      margin-bottom: 20px;
+      .col {
+        display: flex;
+        flex-flow: row wrap;
+        div.field {
+          padding: 10px 15px;
+          flex: 0 1 33%;
+          align-self: center;
+        }
+      }
+    }
+    @include tablet {
+      .rows .row .col div.field {
+        flex: 0 1 50%;
+      }
+    }
     @include mobile {
       flex-flow: row wrap;
       .region-top {
         text-align: center;
         width: 100%;
       }
-      .row {
-        display: flex;
-        flex-flow: row wrap;
-        justify-content: center;
-        .col {
-          display: block;
-          flex: 0 1 36%;
-        }
+      .rows .row .col div.field {
+        flex: 0 1 50%;
       }
     }
     .region-top {
@@ -60,7 +71,6 @@
       white-space: nowrap;
       margin-bottom: 0;
       padding-bottom: 0;
-      padding-top: 40px;
     }
   }
 }
@@ -204,9 +214,14 @@
     }
     .block-person-company-style {
       margin-bottom: 45px;
-      height: 185px;
-      div.image img {
-        height: 90px;
+      height: 140px;
+      @include mobile-min {
+        .image {
+          max-width: 60%;
+        }
+      }
+      @include mobile {
+        height: auto;
       }
       .inline-text {
         padding-bottom: 10px;

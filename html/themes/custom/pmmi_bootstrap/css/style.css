@@ -3352,7 +3352,7 @@ th {
   img {
     max-width: 100% !important;
   }
-  p, .region-under-top .containers.mode-4-up .field-name-field-head,
+  p, .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head,
   h2,
   h3 {
     orphans: 3;
@@ -3456,7 +3456,6 @@ img {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
-  -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   display: inline-block;
   max-width: 100%;
@@ -3587,7 +3586,7 @@ h6, .h6 {
   font-size: 12px;
 }
 
-p, .region-under-top .containers.mode-4-up .field-name-field-head {
+p, .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head {
   margin: 0 0 10px;
 }
 
@@ -3840,7 +3839,7 @@ blockquote {
   border-left: 5px solid #eeeeee;
 }
 
-blockquote p:last-child, blockquote .region-under-top .containers.mode-4-up .field-name-field-head:last-child, .region-under-top .containers.mode-4-up blockquote .field-name-field-head:last-child,
+blockquote p:last-child, blockquote .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head:last-child, .region-under-top .containers.mode-all-blocks-unformatted blockquote .field-name-field-head:last-child,
 blockquote ul:last-child,
 blockquote ol:last-child {
   margin-bottom: 0;
@@ -5065,7 +5064,6 @@ output {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
   transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
 
@@ -6059,7 +6057,6 @@ input[type="button"].btn-block {
 
 .fade {
   opacity: 0;
-  -webkit-transition: opacity 0.15s linear;
   transition: opacity 0.15s linear;
 }
 
@@ -6087,11 +6084,8 @@ tbody.collapse.in {
   position: relative;
   height: 0;
   overflow: hidden;
-  -webkit-transition-property: height, visibility;
   transition-property: height, visibility;
-  -webkit-transition-duration: 0.35s;
   transition-duration: 0.35s;
-  -webkit-transition-timing-function: ease;
   transition-timing-function: ease;
 }
 
@@ -8775,7 +8769,7 @@ a.badge:hover, a.badge:focus {
   color: inherit;
 }
 
-.jumbotron p, .jumbotron .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .jumbotron .field-name-field-head {
+.jumbotron p, .jumbotron .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .jumbotron .field-name-field-head {
   margin-bottom: 15px;
   font-size: 21px;
   font-weight: 200;
@@ -8820,7 +8814,6 @@ a.badge:hover, a.badge:focus {
   background-color: #fff;
   border: 1px solid #ddd;
   border-radius: 4px;
-  -webkit-transition: border 0.2s ease-in-out;
   transition: border 0.2s ease-in-out;
 }
 
@@ -8860,12 +8853,12 @@ a.thumbnail.active {
   font-weight: bold;
 }
 
-.alert > p, .region-under-top .containers.mode-4-up .alert > .field-name-field-head,
+.alert > p, .region-under-top .containers.mode-all-blocks-unformatted .alert > .field-name-field-head,
 .alert > ul {
   margin-bottom: 0;
 }
 
-.alert > p + p, .region-under-top .containers.mode-4-up .alert > .field-name-field-head + p, .region-under-top .containers.mode-4-up .alert > p + .field-name-field-head, .region-under-top .containers.mode-4-up .alert > .field-name-field-head + .field-name-field-head {
+.alert > p + p, .region-under-top .containers.mode-all-blocks-unformatted .alert > .field-name-field-head + p, .region-under-top .containers.mode-all-blocks-unformatted .alert > p + .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .alert > .field-name-field-head + .field-name-field-head {
   margin-top: 5px;
 }
 
@@ -8975,13 +8968,11 @@ a.thumbnail.active {
   text-align: center;
   background-color: #337ab7;
   box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
-  -webkit-transition: width 0.6s ease;
   transition: width 0.6s ease;
 }
 
 .progress-striped .progress-bar,
 .progress-bar-striped {
-  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-size: 40px 40px;
 }
@@ -8997,7 +8988,6 @@ a.thumbnail.active {
 }
 
 .progress-striped .progress-bar-success {
-  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
 
@@ -9006,7 +8996,6 @@ a.thumbnail.active {
 }
 
 .progress-striped .progress-bar-info {
-  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
 
@@ -9015,7 +9004,6 @@ a.thumbnail.active {
 }
 
 .progress-striped .progress-bar-warning {
-  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
 
@@ -9024,7 +9012,6 @@ a.thumbnail.active {
 }
 
 .progress-striped .progress-bar-danger {
-  background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
 }
 
@@ -9804,7 +9791,6 @@ button.close {
 .modal.fade .modal-dialog {
   -webkit-transform: translate(0, -25%);
   transform: translate(0, -25%);
-  -webkit-transition: -webkit-transform 0.3s ease-out;
   transition: -webkit-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
   transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
@@ -10230,7 +10216,6 @@ button.close {
 .carousel-inner > .item {
   display: none;
   position: relative;
-  -webkit-transition: 0.6s ease-in-out left;
   transition: 0.6s ease-in-out left;
 }
 
@@ -10244,7 +10229,6 @@ button.close {
 
 @media all and (transform-3d), (-webkit-transform-3d) {
   .carousel-inner > .item {
-    -webkit-transition: -webkit-transform 0.6s ease-in-out;
     transition: -webkit-transform 0.6s ease-in-out;
     transition: transform 0.6s ease-in-out;
     transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
@@ -10324,7 +10308,6 @@ button.close {
 }
 
 .carousel-control.left {
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.0001) 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
@@ -10333,7 +10316,6 @@ button.close {
 .carousel-control.right {
   left: auto;
   right: 0;
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0%, rgba(0, 0, 0, 0.5) 100%);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
@@ -10927,7 +10909,7 @@ ul.secondary {
   margin-top: 0;
 }
 
-p:last-child, .region-under-top .containers.mode-4-up .field-name-field-head:last-child {
+p:last-child, .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head:last-child {
   margin-bottom: 10px;
 }
 
@@ -12284,7 +12266,7 @@ fieldset[disabled] a.focus {
   position: absolute;
 }
 
-.inherited-p p, .paragraph1 p, p p, .region-under-top .containers.mode-4-up .field-name-field-head p, .bullet-list ul p, .field--name-body ul p,
+.inherited-p p, .paragraph1 p, p p, .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head p, .bullet-list ul p, .field--name-body ul p,
 .views-field-body ul p,
 .block-body ul p,
 .node-body ul p,
@@ -12296,38 +12278,38 @@ table td p, .article-node .node-body p, .article-node .author-info p, .article-n
 .layout-homepage .block-text.mode-default .block-body p, .side-paragraph p, .block-pmmi-company-staff-block .member p,
 .block-pmmi-committee-block .member p, .block-pmmi-company-staff-block .company-section p, .mode-event-left-rail .field-name-field-location p, .block-pricing .pricings p, .block-text.mode-text-image .block-body p, .content-left .block-text.mode-default .block-body p, .block-text.mode-container-mode .block-body p, .cert-info li .field--item p, .microsite-info .block-event .field-name-field-location p, .mode-default.school p, .block-box.mode-mega-menu .field-name-body p, .block-card .block-body p, .block-event-ribbon .location p, .block-pack-expo-show .location p,
 .block-pack-expo-show .date p, .brand.mode-mega-menu p,
-.pack-expo-show.mode-mega-menu p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p, .page-gateway .block-text.centered .block-body p, .inherited-p .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .inherited-p .field-name-field-head, .paragraph1 .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .paragraph1 .field-name-field-head, p .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up p .field-name-field-head, .region-under-top .containers.mode-4-up .field-name-field-head .field-name-field-head, .bullet-list ul .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .bullet-list ul .field-name-field-head, .field--name-body ul .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .field--name-body ul .field-name-field-head,
-.views-field-body ul .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up
+.pack-expo-show.mode-mega-menu p, .feature-block .field-name-body p, .block-icon .block-body p, .block-image-slide .block-body p, .block-news .block-body p, .page-gateway .block-text.centered .block-body p, .inherited-p .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .inherited-p .field-name-field-head, .paragraph1 .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .paragraph1 .field-name-field-head, p .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted p .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head .field-name-field-head, .bullet-list ul .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .bullet-list ul .field-name-field-head, .field--name-body ul .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .field--name-body ul .field-name-field-head,
+.views-field-body ul .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted
 .views-field-body ul .field-name-field-head,
-.block-body ul .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up
+.block-body ul .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted
 .block-body ul .field-name-field-head,
-.node-body ul .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up
+.node-body ul .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted
 .node-body ul .field-name-field-head,
-.content ul .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up
-.content ul .field-name-field-head, table th .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up table th .field-name-field-head,
-table td .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up
-table td .field-name-field-head, .article-node .node-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .article-node .node-body .field-name-field-head, .article-node .author-info .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .article-node .author-info .field-name-field-head, .article-node .date .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .article-node .date .field-name-field-head,
-.article-node .twitter-link .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up
+.content ul .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted
+.content ul .field-name-field-head, table th .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted table th .field-name-field-head,
+table td .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted
+table td .field-name-field-head, .article-node .node-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .article-node .node-body .field-name-field-head, .article-node .author-info .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .article-node .author-info .field-name-field-head, .article-node .date .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .article-node .date .field-name-field-head,
+.article-node .twitter-link .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted
 .article-node .twitter-link .field-name-field-head,
-.article-node .article-release .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up
-.article-node .article-release .field-name-field-head, .node-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .node-body .field-name-field-head, .node-bold-label .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .node-bold-label .field-name-field-head,
-.featured-speaker .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up
-.featured-speaker .field-name-field-head, .school-node .focus .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .school-node .focus .field-name-field-head, .school-node .content-verified .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .school-node .content-verified .field-name-field-head, .paragraph2 .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .paragraph2 .field-name-field-head, .block-pmmi-twitter-block .block-title .subtitle .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-pmmi-twitter-block .block-title .subtitle .field-name-field-head, .block-pmmi-facebook-block .block-title .subtitle .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-pmmi-facebook-block .block-title .subtitle .field-name-field-head, .block-views-blocksearch-page-block-1 .views-field-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-views-blocksearch-page-block-1 .views-field-body .field-name-field-head, .mode-default.video .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .mode-default.video .field-name-body .field-name-field-head, .mode-default.video .field-name-field-featured-speaker .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .mode-default.video .field-name-field-featured-speaker .field-name-field-head, .mode-default.certification-test .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .mode-default.certification-test .field-name-body .field-name-field-head, .mode-default.certification-test .field-name-field-cert-test-price .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .mode-default.certification-test .field-name-field-cert-test-price .field-name-field-head, .mode-default.certification-test .field-name-field-cert-test-text-price .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .mode-default.certification-test .field-name-field-cert-test-text-price .field-name-field-head, .block-box.mode-full .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-box.mode-full .field-name-body .field-name-field-head, .block-box.mode-default .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-box.mode-default .field-name-body .field-name-field-head, .block-box.mode-vertical-box .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-box.mode-vertical-box .field-name-body .field-name-field-head, .block-enticement .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-enticement .block-body .field-name-field-head, .brand-and-expo-show .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .brand-and-expo-show .block-body .field-name-field-head, .block-pack-expo-show .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-pack-expo-show .block-body .field-name-field-head, .block-brand.mode-default .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-brand.mode-default .block-body .field-name-field-head, .block-social-media.mode-media-social-with-text .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-social-media.mode-media-social-with-text .block-body .field-name-field-head, .block-text.mode-image-text .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-text.mode-image-text .block-body .field-name-field-head, .article.mode-default .body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .article.mode-default .body .field-name-field-head, .accordion-item .body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .accordion-item .body .field-name-field-head, .paragraph3 .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .paragraph3 .field-name-field-head, .block-image-slide-default .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-image-slide-default .block-body .field-name-field-head, .layout-landing .block-text.mode-default .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .layout-landing .block-text.mode-default .block-body .field-name-field-head,
-.layout-homepage .block-text.mode-default .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up
-.layout-homepage .block-text.mode-default .block-body .field-name-field-head, .side-paragraph .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .side-paragraph .field-name-field-head, .block-pmmi-company-staff-block .member .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-pmmi-company-staff-block .member .field-name-field-head,
-.block-pmmi-committee-block .member .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up
-.block-pmmi-committee-block .member .field-name-field-head, .block-pmmi-company-staff-block .company-section .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-pmmi-company-staff-block .company-section .field-name-field-head, .mode-event-left-rail .field-name-field-location .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .mode-event-left-rail .field-name-field-location .field-name-field-head, .block-pricing .pricings .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-pricing .pricings .field-name-field-head, .block-text.mode-text-image .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-text.mode-text-image .block-body .field-name-field-head, .content-left .block-text.mode-default .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .content-left .block-text.mode-default .block-body .field-name-field-head, .block-text.mode-container-mode .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-text.mode-container-mode .block-body .field-name-field-head, .cert-info li .field--item .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .cert-info li .field--item .field-name-field-head, .microsite-info .block-event .field-name-field-location .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .microsite-info .block-event .field-name-field-location .field-name-field-head, .mode-default.school .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .mode-default.school .field-name-field-head, .block-box.mode-mega-menu .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-box.mode-mega-menu .field-name-body .field-name-field-head, .block-card .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-card .block-body .field-name-field-head, .block-event-ribbon .location .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-event-ribbon .location .field-name-field-head, .block-pack-expo-show .location .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-pack-expo-show .location .field-name-field-head,
-.block-pack-expo-show .date .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up
-.block-pack-expo-show .date .field-name-field-head, .brand.mode-mega-menu .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .brand.mode-mega-menu .field-name-field-head,
-.pack-expo-show.mode-mega-menu .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up
-.pack-expo-show.mode-mega-menu .field-name-field-head, .feature-block .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .feature-block .field-name-body .field-name-field-head, .block-icon .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-icon .block-body .field-name-field-head, .block-image-slide .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-image-slide .block-body .field-name-field-head, .block-news .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-news .block-body .field-name-field-head, .page-gateway .block-text.centered .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .page-gateway .block-text.centered .block-body .field-name-field-head {
+.article-node .article-release .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted
+.article-node .article-release .field-name-field-head, .node-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .node-body .field-name-field-head, .node-bold-label .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .node-bold-label .field-name-field-head,
+.featured-speaker .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted
+.featured-speaker .field-name-field-head, .school-node .focus .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .school-node .focus .field-name-field-head, .school-node .content-verified .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .school-node .content-verified .field-name-field-head, .paragraph2 .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .paragraph2 .field-name-field-head, .block-pmmi-twitter-block .block-title .subtitle .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-pmmi-twitter-block .block-title .subtitle .field-name-field-head, .block-pmmi-facebook-block .block-title .subtitle .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-pmmi-facebook-block .block-title .subtitle .field-name-field-head, .block-views-blocksearch-page-block-1 .views-field-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-views-blocksearch-page-block-1 .views-field-body .field-name-field-head, .mode-default.video .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .mode-default.video .field-name-body .field-name-field-head, .mode-default.video .field-name-field-featured-speaker .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .mode-default.video .field-name-field-featured-speaker .field-name-field-head, .mode-default.certification-test .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .mode-default.certification-test .field-name-body .field-name-field-head, .mode-default.certification-test .field-name-field-cert-test-price .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .mode-default.certification-test .field-name-field-cert-test-price .field-name-field-head, .mode-default.certification-test .field-name-field-cert-test-text-price .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .mode-default.certification-test .field-name-field-cert-test-text-price .field-name-field-head, .block-box.mode-full .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-box.mode-full .field-name-body .field-name-field-head, .block-box.mode-default .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-box.mode-default .field-name-body .field-name-field-head, .block-box.mode-vertical-box .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-box.mode-vertical-box .field-name-body .field-name-field-head, .block-enticement .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-enticement .block-body .field-name-field-head, .brand-and-expo-show .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .brand-and-expo-show .block-body .field-name-field-head, .block-pack-expo-show .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-pack-expo-show .block-body .field-name-field-head, .block-brand.mode-default .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-brand.mode-default .block-body .field-name-field-head, .block-social-media.mode-media-social-with-text .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-social-media.mode-media-social-with-text .block-body .field-name-field-head, .block-text.mode-image-text .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-text.mode-image-text .block-body .field-name-field-head, .article.mode-default .body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .article.mode-default .body .field-name-field-head, .accordion-item .body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .accordion-item .body .field-name-field-head, .paragraph3 .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .paragraph3 .field-name-field-head, .block-image-slide-default .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-image-slide-default .block-body .field-name-field-head, .layout-landing .block-text.mode-default .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .layout-landing .block-text.mode-default .block-body .field-name-field-head,
+.layout-homepage .block-text.mode-default .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted
+.layout-homepage .block-text.mode-default .block-body .field-name-field-head, .side-paragraph .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .side-paragraph .field-name-field-head, .block-pmmi-company-staff-block .member .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-pmmi-company-staff-block .member .field-name-field-head,
+.block-pmmi-committee-block .member .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted
+.block-pmmi-committee-block .member .field-name-field-head, .block-pmmi-company-staff-block .company-section .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-pmmi-company-staff-block .company-section .field-name-field-head, .mode-event-left-rail .field-name-field-location .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .mode-event-left-rail .field-name-field-location .field-name-field-head, .block-pricing .pricings .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-pricing .pricings .field-name-field-head, .block-text.mode-text-image .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-text.mode-text-image .block-body .field-name-field-head, .content-left .block-text.mode-default .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .content-left .block-text.mode-default .block-body .field-name-field-head, .block-text.mode-container-mode .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-text.mode-container-mode .block-body .field-name-field-head, .cert-info li .field--item .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .cert-info li .field--item .field-name-field-head, .microsite-info .block-event .field-name-field-location .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .microsite-info .block-event .field-name-field-location .field-name-field-head, .mode-default.school .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .mode-default.school .field-name-field-head, .block-box.mode-mega-menu .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-box.mode-mega-menu .field-name-body .field-name-field-head, .block-card .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-card .block-body .field-name-field-head, .block-event-ribbon .location .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-event-ribbon .location .field-name-field-head, .block-pack-expo-show .location .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-pack-expo-show .location .field-name-field-head,
+.block-pack-expo-show .date .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted
+.block-pack-expo-show .date .field-name-field-head, .brand.mode-mega-menu .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .brand.mode-mega-menu .field-name-field-head,
+.pack-expo-show.mode-mega-menu .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted
+.pack-expo-show.mode-mega-menu .field-name-field-head, .feature-block .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .feature-block .field-name-body .field-name-field-head, .block-icon .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-icon .block-body .field-name-field-head, .block-image-slide .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-image-slide .block-body .field-name-field-head, .block-news .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-news .block-body .field-name-field-head, .page-gateway .block-text.centered .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .page-gateway .block-text.centered .block-body .field-name-field-head {
   font-size: inherit;
   line-height: inherit;
   font-weight: inherit;
   color: inherit;
 }
 
-.paragraph1, p, .region-under-top .containers.mode-4-up .field-name-field-head, .bullet-list ul, .field--name-body ul,
+.paragraph1, p, .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .bullet-list ul, .field--name-body ul,
 .views-field-body ul,
 .block-body ul,
 .node-body ul,
@@ -12344,7 +12326,7 @@ table td, .article-node .node-body, .article-node .author-info, .article-node .d
 }
 
 @media screen and (max-width: 1023px) {
-  .paragraph1, p, .region-under-top .containers.mode-4-up .field-name-field-head, .bullet-list ul, .field--name-body ul,
+  .paragraph1, p, .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .bullet-list ul, .field--name-body ul,
   .views-field-body ul,
   .block-body ul,
   .node-body ul,
@@ -12873,7 +12855,6 @@ html {
 }
 
 a {
-  -webkit-transition: .2s;
   transition: .2s;
 }
 
@@ -15027,7 +15008,7 @@ body.use-container .page-title.hidden {
   margin: 0 0 20px;
 }
 
-.block-panels-text-block p, .block-panels-text-block .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-panels-text-block .field-name-field-head {
+.block-panels-text-block p, .block-panels-text-block .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-panels-text-block .field-name-field-head {
   margin-bottom: 15px;
 }
 
@@ -15453,7 +15434,6 @@ body > .page-wrapper:after,
   top: -200px;
   position: static;
   padding-top: 20px;
-  -webkit-transition: top 1.5s ease-in;
   transition: top 1.5s ease-in;
 }
 
@@ -15884,7 +15864,6 @@ body > .page-wrapper:after,
   background-color: #fff;
   background-clip: border-box;
   float: none;
-  -webkit-transition: 200ms ease;
   transition: 200ms ease;
   border: 4px solid #053248;
   box-shadow: none;
@@ -16374,7 +16353,7 @@ body > .page-wrapper:after,
   font-family: "trumpgothicpro", Arial, FreeSans, sans-serif;
 }
 
-.microsite-info .block-event .field-name-field-location p, .microsite-info .block-event .field-name-field-location .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .microsite-info .block-event .field-name-field-location .field-name-field-head {
+.microsite-info .block-event .field-name-field-location p, .microsite-info .block-event .field-name-field-location .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .microsite-info .block-event .field-name-field-location .field-name-field-head {
   margin-bottom: 0;
 }
 
@@ -17515,7 +17494,7 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   vertical-align: top;
 }
 
-.page-sales-agent-directory-my-favorites .favorites-header a.pmmi-download-favorites p, .page-sales-agent-directory-my-favorites .favorites-header a.pmmi-download-favorites .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .page-sales-agent-directory-my-favorites .favorites-header a.pmmi-download-favorites .field-name-field-head {
+.page-sales-agent-directory-my-favorites .favorites-header a.pmmi-download-favorites p, .page-sales-agent-directory-my-favorites .favorites-header a.pmmi-download-favorites .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .page-sales-agent-directory-my-favorites .favorites-header a.pmmi-download-favorites .field-name-field-head {
   margin: 0;
 }
 
@@ -17738,7 +17717,7 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   margin-bottom: 13px;
 }
 
-.mode-default.video .field-name-body p, .mode-default.video .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .mode-default.video .field-name-body .field-name-field-head {
+.mode-default.video .field-name-body p, .mode-default.video .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .mode-default.video .field-name-body .field-name-field-head {
   display: inline;
 }
 
@@ -17746,7 +17725,7 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   .mode-default.video .field-name-body {
     display: block;
   }
-  .mode-default.video .field-name-body p, .mode-default.video .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .mode-default.video .field-name-body .field-name-field-head {
+  .mode-default.video .field-name-body p, .mode-default.video .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .mode-default.video .field-name-body .field-name-field-head {
     display: block;
   }
 }
@@ -17894,7 +17873,7 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   margin-bottom: 13px;
 }
 
-.mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .mode-default.certification-test .field-name-body .field-name-field-head {
+.mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .mode-default.certification-test .field-name-body .field-name-field-head {
   display: inline;
 }
 
@@ -17902,7 +17881,7 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   .mode-default.certification-test .field-name-body {
     display: block;
   }
-  .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .mode-default.certification-test .field-name-body .field-name-field-head {
+  .mode-default.certification-test .field-name-body p, .mode-default.certification-test .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .mode-default.certification-test .field-name-body .field-name-field-head {
     display: block;
   }
 }
@@ -18424,7 +18403,7 @@ div.view {
   margin-bottom: 13px;
 }
 
-.block-box.mode-full .field-name-body p, .block-box.mode-full .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-box.mode-full .field-name-body .field-name-field-head, .block-box.mode-default .field-name-body p, .block-box.mode-default .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-box.mode-default .field-name-body .field-name-field-head {
+.block-box.mode-full .field-name-body p, .block-box.mode-full .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-box.mode-full .field-name-body .field-name-field-head, .block-box.mode-default .field-name-body p, .block-box.mode-default .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-box.mode-default .field-name-body .field-name-field-head {
   display: inline;
 }
 
@@ -18432,7 +18411,7 @@ div.view {
   .block-box.mode-full .field-name-body, .block-box.mode-default .field-name-body {
     display: block;
   }
-  .block-box.mode-full .field-name-body p, .block-box.mode-full .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-box.mode-full .field-name-body .field-name-field-head, .block-box.mode-default .field-name-body p, .block-box.mode-default .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-box.mode-default .field-name-body .field-name-field-head {
+  .block-box.mode-full .field-name-body p, .block-box.mode-full .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-box.mode-full .field-name-body .field-name-field-head, .block-box.mode-default .field-name-body p, .block-box.mode-default .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-box.mode-default .field-name-body .field-name-field-head {
     display: block;
   }
 }
@@ -18445,7 +18424,7 @@ div.view {
   width: 100%;
 }
 
-.block-box.mode-full .field-name-body p, .block-box.mode-full .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-box.mode-full .field-name-body .field-name-field-head, .block-box.mode-default .field-name-body p, .block-box.mode-default .field-name-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-box.mode-default .field-name-body .field-name-field-head {
+.block-box.mode-full .field-name-body p, .block-box.mode-full .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-box.mode-full .field-name-body .field-name-field-head, .block-box.mode-default .field-name-body p, .block-box.mode-default .field-name-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-box.mode-default .field-name-body .field-name-field-head {
   display: block;
 }
 
@@ -18498,7 +18477,7 @@ div.view {
   color: #656363;
 }
 
-.block-box.mode-mega-menu p, .block-box.mode-mega-menu .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-box.mode-mega-menu .field-name-field-head {
+.block-box.mode-mega-menu p, .block-box.mode-mega-menu .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-box.mode-mega-menu .field-name-field-head {
   margin: 0;
 }
 
@@ -18566,7 +18545,6 @@ div.view {
 }
 
 .ie11 .block-card .flipper {
-  -webkit-transition: 0.5s ease-out;
   transition: 0.5s ease-out;
   -o-transition: 0.5s ease-out;
   -ms-transition: 0.5s ease-out;
@@ -18583,7 +18561,6 @@ div.view {
 .block-card .side {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  -webkit-transition: -webkit-transform 0.5s linear;
   transition: -webkit-transform 0.5s linear;
   transition: transform 0.5s linear;
   transition: transform 0.5s linear, -webkit-transform 0.5s linear;
@@ -19431,7 +19408,7 @@ div.view {
   margin-bottom: 10px;
 }
 
-.block-event-default .location p, .block-event-default .location .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-event-default .location .field-name-field-head {
+.block-event-default .location p, .block-event-default .location .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-event-default .location .field-name-field-head {
   line-height: inherit;
   font-size: inherit;
   font-weight: inherit;
@@ -19573,7 +19550,7 @@ div.view {
   margin-bottom: 2px;
 }
 
-.mode-event-left-rail .field-name-field-location p, .mode-event-left-rail .field-name-field-location .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .mode-event-left-rail .field-name-field-location .field-name-field-head {
+.mode-event-left-rail .field-name-field-location p, .mode-event-left-rail .field-name-field-location .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .mode-event-left-rail .field-name-field-location .field-name-field-head {
   margin: 0;
 }
 
@@ -19606,7 +19583,7 @@ div.view {
   margin: 0 auto;
 }
 
-.brand-and-expo-show .block-body p:last-child, .block-pack-expo-show .block-body p:last-child, .block-brand.mode-default .block-body p:last-child, .brand-and-expo-show .block-body .region-under-top .containers.mode-4-up .field-name-field-head:last-child, .region-under-top .containers.mode-4-up .brand-and-expo-show .block-body .field-name-field-head:last-child, .block-pack-expo-show .block-body .region-under-top .containers.mode-4-up .field-name-field-head:last-child, .region-under-top .containers.mode-4-up .block-pack-expo-show .block-body .field-name-field-head:last-child, .block-brand.mode-default .block-body .region-under-top .containers.mode-4-up .field-name-field-head:last-child, .region-under-top .containers.mode-4-up .block-brand.mode-default .block-body .field-name-field-head:last-child {
+.brand-and-expo-show .block-body p:last-child, .block-pack-expo-show .block-body p:last-child, .block-brand.mode-default .block-body p:last-child, .brand-and-expo-show .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head:last-child, .region-under-top .containers.mode-all-blocks-unformatted .brand-and-expo-show .block-body .field-name-field-head:last-child, .block-pack-expo-show .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head:last-child, .region-under-top .containers.mode-all-blocks-unformatted .block-pack-expo-show .block-body .field-name-field-head:last-child, .block-brand.mode-default .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head:last-child, .region-under-top .containers.mode-all-blocks-unformatted .block-brand.mode-default .block-body .field-name-field-head:last-child {
   margin-bottom: 0;
 }
 
@@ -19898,7 +19875,7 @@ div.view {
   margin-bottom: 10px;
 }
 
-.block-icon .block-body p, .block-icon .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-icon .block-body .field-name-field-head {
+.block-icon .block-body p, .block-icon .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-icon .block-body .field-name-field-head {
   margin-bottom: 2px;
 }
 
@@ -19930,7 +19907,6 @@ button.slick-arrow {
   color: white;
   font-weight: bold;
   font-size: 18px;
-  -webkit-transition: 0.6s ease;
   transition: 0.6s ease;
   border-radius: 0 3px 3px 0;
   border: 0;
@@ -20251,7 +20227,7 @@ button.slick-arrow.slick-next {
   overflow: hidden;
 }
 
-.block-news .block-body p, .block-news .block-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-news .block-body .field-name-field-head {
+.block-news .block-body p, .block-news .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-news .block-body .field-name-field-head {
   margin: 0;
 }
 
@@ -20344,7 +20320,7 @@ button.slick-arrow.slick-next {
   margin: 2px 0 3px;
 }
 
-.block-pricing .pricings p, .block-pricing .pricings .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .block-pricing .pricings .field-name-field-head {
+.block-pricing .pricings p, .block-pricing .pricings .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .block-pricing .pricings .field-name-field-head {
   margin-bottom: 0;
 }
 
@@ -20652,7 +20628,7 @@ button.slick-arrow.slick-next {
   }
 }
 
-.article-node .node-body p, .article-node .node-body .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .article-node .node-body .field-name-field-head {
+.article-node .node-body p, .article-node .node-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .article-node .node-body .field-name-field-head {
   margin-bottom: 25px;
 }
 
@@ -20888,7 +20864,7 @@ button.slick-arrow.slick-next {
   margin-bottom: 4px;
 }
 
-.company-node .footer-reg .view-header p, .company-node .footer-reg .view-header .region-under-top .containers.mode-4-up .field-name-field-head, .region-under-top .containers.mode-4-up .company-node .footer-reg .view-header .field-name-field-head {
+.company-node .footer-reg .view-header p, .company-node .footer-reg .view-header .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .company-node .footer-reg .view-header .field-name-field-head {
   margin-bottom: 10px;
   font-weight: 900;
   font-size: 18px;
@@ -21823,7 +21799,6 @@ button.slick-arrow.slick-next {
 }
 
 .page-gateway .page-wrapper {
-  background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
   background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 100%);
   padding: 70px 0 0;
   max-width: 1280px;
@@ -21938,60 +21913,90 @@ button.slick-arrow.slick-next {
   font-size: 20px;
 }
 
-.region-under-top .containers.mode-4-up {
+.region-under-top .containers.mode-all-blocks-unformatted {
   margin-bottom: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-flow: row nowrap;
-      flex-flow: row nowrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+
+.region-under-top .containers.mode-all-blocks-unformatted .rows .row, .region-under-top .containers.mode-all-blocks-unformatted .rows .footer .region-footer, .footer .region-under-top .containers.mode-all-blocks-unformatted .rows .region-footer, .region-under-top .containers.mode-all-blocks-unformatted .rows .events-block-upcoming-ribbon .view-content, .events-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content, .region-under-top .containers.mode-all-blocks-unformatted .rows
+.block-views-blockevents-block-upcoming-ribbon .view-content,
+.block-views-blockevents-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content, .region-under-top .containers.mode-all-blocks-unformatted .rows .block-icons .column, .block-icons .region-under-top .containers.mode-all-blocks-unformatted .rows .column {
+  margin-bottom: 20px;
+}
+
+.region-under-top .containers.mode-all-blocks-unformatted .rows .row .col, .region-under-top .containers.mode-all-blocks-unformatted .rows .footer .region-footer .col, .footer .region-under-top .containers.mode-all-blocks-unformatted .rows .region-footer .col, .region-under-top .containers.mode-all-blocks-unformatted .rows .events-block-upcoming-ribbon .view-content .col, .events-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col, .region-under-top .containers.mode-all-blocks-unformatted .rows
+.block-views-blockevents-block-upcoming-ribbon .view-content .col,
+.block-views-blockevents-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col, .region-under-top .containers.mode-all-blocks-unformatted .rows .block-icons .column .col, .block-icons .region-under-top .containers.mode-all-blocks-unformatted .rows .column .col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+}
+
+.region-under-top .containers.mode-all-blocks-unformatted .rows .row .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .footer .region-footer .col div.field, .footer .region-under-top .containers.mode-all-blocks-unformatted .rows .region-footer .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .events-block-upcoming-ribbon .view-content .col div.field, .events-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows
+.block-views-blockevents-block-upcoming-ribbon .view-content .col div.field,
+.block-views-blockevents-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .block-icons .column .col div.field, .block-icons .region-under-top .containers.mode-all-blocks-unformatted .rows .column .col div.field {
+  padding: 10px 15px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 33%;
+          flex: 0 1 33%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .region-under-top .containers.mode-all-blocks-unformatted .rows .row .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .footer .region-footer .col div.field, .footer .region-under-top .containers.mode-all-blocks-unformatted .rows .region-footer .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .events-block-upcoming-ribbon .view-content .col div.field, .events-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows
+  .block-views-blockevents-block-upcoming-ribbon .view-content .col div.field,
+  .block-views-blockevents-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .block-icons .column .col div.field, .block-icons .region-under-top .containers.mode-all-blocks-unformatted .rows .column .col div.field {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 1 50%;
+            flex: 0 1 50%;
+  }
 }
 
 @media screen and (max-width: 767px) {
-  .region-under-top .containers.mode-4-up {
-    -ms-flex-flow: row wrap;
-        flex-flow: row wrap;
+  .region-under-top .containers.mode-all-blocks-unformatted {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
   }
-  .region-under-top .containers.mode-4-up .region-top {
+  .region-under-top .containers.mode-all-blocks-unformatted .region-top {
     text-align: center;
     width: 100%;
   }
-  .region-under-top .containers.mode-4-up .row, .region-under-top .containers.mode-4-up .footer .region-footer, .footer .region-under-top .containers.mode-4-up .region-footer, .region-under-top .containers.mode-4-up .events-block-upcoming-ribbon .view-content, .events-block-upcoming-ribbon .region-under-top .containers.mode-4-up .view-content, .region-under-top .containers.mode-4-up
-  .block-views-blockevents-block-upcoming-ribbon .view-content,
-  .block-views-blockevents-block-upcoming-ribbon .region-under-top .containers.mode-4-up .view-content, .region-under-top .containers.mode-4-up .block-icons .column, .block-icons .region-under-top .containers.mode-4-up .column {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-flow: row wrap;
-        flex-flow: row wrap;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-  .region-under-top .containers.mode-4-up .row .col, .region-under-top .containers.mode-4-up .footer .region-footer .col, .footer .region-under-top .containers.mode-4-up .region-footer .col, .region-under-top .containers.mode-4-up .events-block-upcoming-ribbon .view-content .col, .events-block-upcoming-ribbon .region-under-top .containers.mode-4-up .view-content .col, .region-under-top .containers.mode-4-up
-  .block-views-blockevents-block-upcoming-ribbon .view-content .col,
-  .block-views-blockevents-block-upcoming-ribbon .region-under-top .containers.mode-4-up .view-content .col, .region-under-top .containers.mode-4-up .block-icons .column .col, .block-icons .region-under-top .containers.mode-4-up .column .col {
-    display: block;
+  .region-under-top .containers.mode-all-blocks-unformatted .rows .row .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .footer .region-footer .col div.field, .footer .region-under-top .containers.mode-all-blocks-unformatted .rows .region-footer .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .events-block-upcoming-ribbon .view-content .col div.field, .events-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows
+  .block-views-blockevents-block-upcoming-ribbon .view-content .col div.field,
+  .block-views-blockevents-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .block-icons .column .col div.field, .block-icons .region-under-top .containers.mode-all-blocks-unformatted .rows .column .col div.field {
     -webkit-box-flex: 0;
-        -ms-flex: 0 1 36%;
-            flex: 0 1 36%;
+        -ms-flex: 0 1 50%;
+            flex: 0 1 50%;
   }
 }
 
-.region-under-top .containers.mode-4-up .region-top {
+.region-under-top .containers.mode-all-blocks-unformatted .region-top {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
   padding-right: 15px;
 }
 
-.region-under-top .containers.mode-4-up .field-name-field-head {
+.region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head {
   color: #000;
   font-weight: bold;
   white-space: nowrap;
   margin-bottom: 0;
   padding-bottom: 0;
-  padding-top: 40px;
 }
 
 .block-views-blockpast-hall-of-fame-honorees-block-2 .view-content {
@@ -22024,8 +22029,10 @@ button.slick-arrow.slick-next {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-flow: row nowrap;
-      flex-flow: row nowrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
@@ -22083,8 +22090,10 @@ button.slick-arrow.slick-next {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-flow: row wrap;
-      flex-flow: row wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
@@ -22159,11 +22168,19 @@ button.slick-arrow.slick-next {
 
 .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-3 .block-person-company-style {
   margin-bottom: 45px;
-  height: 185px;
+  height: 140px;
 }
 
-.path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-3 .block-person-company-style div.image img {
-  height: 90px;
+@media screen and (min-width: 767px) {
+  .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-3 .block-person-company-style .image {
+    max-width: 60%;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-3 .block-person-company-style {
+    height: auto;
+  }
 }
 
 .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-3 .block-person-company-style .inline-text {

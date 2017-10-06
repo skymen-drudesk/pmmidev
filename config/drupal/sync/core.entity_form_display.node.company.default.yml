@@ -14,6 +14,7 @@ dependencies:
     - field.field.node.company.field_general_company_email
     - field.field.node.company.field_industries_served
     - field.field.node.company.field_industries_served_other
+    - field.field.node.company.field_last_mass_email_sent
     - field.field.node.company.field_last_updated_on
     - field.field.node.company.field_main_phone_number
     - field.field.node.company.field_manufacturers_represented
@@ -147,7 +148,7 @@ content:
     type: address_default
     region: content
   field_after_sales_service:
-    weight: 9
+    weight: 8
     settings: {  }
     third_party_settings: {  }
     type: options_buttons
@@ -219,7 +220,7 @@ content:
     type: telephone_default
     region: content
   field_manufacturers_represented:
-    weight: 8
+    weight: 7
     settings:
       rows: 5
       placeholder: ''
@@ -296,6 +297,7 @@ hidden:
   field_city: true
   field_country: true
   field_image_header: true
+  field_last_mass_email_sent: true
   field_last_updated_on: true
   field_postal_code: true
   field_state: true
