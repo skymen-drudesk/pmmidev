@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9768bf054ea9b11dfbd8ce59b6795264",
+    "content-hash": "e85b686af2dd4e783e11bfc34a97cd8f",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -3128,17 +3128,17 @@
         },
         {
             "name": "drupal/dropzonejs",
-            "version": "2.0.0-alpha1",
+            "version": "1.0.0-alpha7",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/dropzonejs",
-                "reference": "8.x-2.0-alpha1"
+                "reference": "8.x-1.0-alpha7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/dropzonejs-8.x-2.0-alpha1.zip",
-                "reference": "8.x-2.0-alpha1",
-                "shasum": "a6d84d111ded2363917a024e0f7633c7ac05d632"
+                "url": "https://ftp.drupal.org/files/projects/dropzonejs-8.x-1.0-alpha7.zip",
+                "reference": "8.x-1.0-alpha7",
+                "shasum": "62fc6d46cee1d5fa9885bab3e65b3638172311f6"
             },
             "require": {
                 "drupal/core": "*"
@@ -3152,11 +3152,11 @@
             "type": "drupal-module",
             "extra": {
                 "branch-alias": {
-                    "dev-2.x": "2.x-dev"
+                    "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0-alpha1",
-                    "datestamp": "1507619644",
+                    "version": "8.x-1.0-alpha7",
+                    "datestamp": "1495200183",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -3215,7 +3215,7 @@
         },
         {
             "name": "drupal/dropzonejs_eb_widget",
-            "version": "2.0.0-alpha1",
+            "version": "1.0.0-alpha7",
             "require": {
                 "drupal/core": "*",
                 "drupal/dropzonejs": "self.version",
@@ -3224,11 +3224,11 @@
             "type": "metapackage",
             "extra": {
                 "branch-alias": {
-                    "dev-2.x": "2.x-dev"
+                    "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-2.0-alpha1",
-                    "datestamp": "1507619644",
+                    "version": "8.x-1.0-alpha7",
+                    "datestamp": "1495200183",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
