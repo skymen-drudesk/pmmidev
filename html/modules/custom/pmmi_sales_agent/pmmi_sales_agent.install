@@ -7,6 +7,8 @@
 
 use Drupal\Core\Database\Database;
 use Drupal\node\Entity\Node;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Implements hook_schema().
@@ -203,9 +205,31 @@ function pmmi_sales_agent_update_8015() {
 }
 
 /**
+ * Add approval state field programmatically if it missed.
+ */
+function pmmi_sales_agent_update_8016() {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  if (!$field = $manager->getFieldStorageDefinition('field_approval_state', 'node')) {
+    FieldStorageConfig::create(array(
+      'field_name' => 'field_approval_state',
+      'entity_type' => 'node',
+      'type' => 'list_string',
+      'cardinality' => 1,
+      'module' => 'options',
+    ))->save();
+    FieldConfig::create([
+      'field_name' => 'field_approval_state',
+      'entity_type' => 'node',
+      'bundle' => 'company',
+      'label' => 'Approval state',
+    ])->save();
+  }
+}
+
+/**
  * Update all nodes with "approval state" value.
  */
-function pmmi_sales_agent_update_8016(&$sandbox = []) {
+function pmmi_sales_agent_update_8017(&$sandbox = []) {
   if (!isset($sandbox['nids'])) {
     $nids = \Drupal::entityQuery('node')->condition('type', 'company')->execute();
     $sandbox['nids'] = $nids;
@@ -237,7 +261,7 @@ function pmmi_sales_agent_update_8016(&$sandbox = []) {
 /**
  * Set default value for the 'pmmi_sales_agent.mail_settings' config.
  */
-function pmmi_sales_agent_update_8017() {
+function pmmi_sales_agent_update_8018() {
   $mail_settings = \Drupal::service('config.factory')->getEditable('pmmi_sales_agent.mail_settings');
   $mail_settings->set('one_time_expiration', 432000);
   $one_time = $mail_settings->get('one_time');
