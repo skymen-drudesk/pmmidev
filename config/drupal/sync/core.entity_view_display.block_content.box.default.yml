@@ -9,7 +9,7 @@ dependencies:
     - field.field.block_content.box.field_buttons
     - field.field.block_content.box.field_head
     - field.field.block_content.box.field_image
-    - responsive_image.styles.block_style_3
+    - responsive_image.styles.block_style_5
   module:
     - ds
     - link
@@ -19,13 +19,12 @@ third_party_settings:
   ds:
     layout:
       id: block_default_single
-      path: themes/custom/pmmi_bootstrap
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
-      main:
+      head:
         - field_image
         - field_head
         - body
@@ -48,7 +47,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: head
   field_buttons:
     weight: 3
     label: hidden
@@ -68,7 +67,7 @@ content:
             lb-col: false
             classes: {  }
     type: link
-    region: content
+    region: head
   field_head:
     weight: 1
     label: hidden
@@ -83,12 +82,12 @@ content:
             lb-col: false
             classes: {  }
     type: string
-    region: content
+    region: head
   field_image:
     weight: 0
     label: hidden
     settings:
-      responsive_image_style: block_style_3
+      responsive_image_style: block_style_5
       image_link: ''
     third_party_settings:
       ds:
@@ -99,6 +98,6 @@ content:
             lb-col: false
             classes: {  }
     type: responsive_image
-    region: content
+    region: head
 hidden:
   field_box_type: true
