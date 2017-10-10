@@ -3,23 +3,23 @@ version: '3'
 services:
 
   pmmidb:
-    container_name: "${SITE_CODE}_test_db"
+    container_name: "${SITE_CODE}_test_2_db"
     restart: always
 
   pmmiweb:
-    container_name: "${SITE_CODE}_test_web"
+    container_name: "${SITE_CODE}_test_2_web"
     build:
       context: .
       dockerfile: Dockerfile-test
     restart: always
     environment:
-      VIRTUAL_HOST: pmmistaging.pmmimediagroup.com,staging.pmmi.org
+      VIRTUAL_HOST: pmmistaging2.pmmimediagroup.com,staging2.pmmi.org
 
   pmmisolr:
-    container_name: "${SITE_CODE}_test_solr"
+    container_name: "${SITE_CODE}_test_2_solr"
 
   pmmivarnish:
-    container_name: "${SITE_CODE}_test_varnish"
+    container_name: "${SITE_CODE}_test_2_varnish"
     image: pmguser/drupal-varnish:latest
     depends_on:
       - pmmiweb
@@ -40,7 +40,7 @@ services:
       VARNISH_STORAGE_SIZE: 1024M
 
   pmmimailhog:
-    container_name: "${SITE_CODE}_test_mailhog"
+    container_name: "${SITE_CODE}_test_2_mailhog"
     image: mailhog/mailhog
     networks:
       - back
