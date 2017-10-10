@@ -20,6 +20,7 @@ services:
   pmmivarnish:
     container_name: "${SITE_CODE}_prod_varnish"
     image: pmguser/drupal-varnish:latest
+    restart: always
     depends_on:
       - pmmiweb
     links:
