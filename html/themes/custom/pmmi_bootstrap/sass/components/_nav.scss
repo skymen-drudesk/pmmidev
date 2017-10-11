@@ -1029,7 +1029,7 @@
         text-decoration: underline !important;
       }
     }
-    &:not(:first-cpage_manager.page_variant.site_template-panels_everywhere_variant-2.ymlhild) {
+    &:not(:first-child) {
       a {
         &:before {
           color: $grey;

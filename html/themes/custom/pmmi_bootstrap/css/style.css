@@ -16750,7 +16750,7 @@ body > .page-wrapper:after,
   text-decoration: underline !important;
 }
 
-.user-menu--wrapper li:not(:first-cpage_manager.page_variant.site_template-panels_everywhere_variant-2.ymlhild) a:before {
+.user-menu--wrapper li:not(:first-child) a:before {
   color: #8c8888;
   content: "|";
   margin: 0 5px;
