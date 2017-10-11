@@ -438,3 +438,13 @@ function pmmi_bootstrap_preprocess_file_link(&$variables) {
     }
   }
 }
+
+/**
+ * Implements hook_preprocess_user().
+ */
+function pmmi_bootstrap_preprocess_menu(&$variables) {
+  /** @var User $account */
+  $account = \Drupal::currentUser()->getAccount();
+
+  $variables['username'] = $account->getDisplayName();
+}
