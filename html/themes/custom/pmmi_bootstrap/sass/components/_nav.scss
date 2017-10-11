@@ -1001,3 +1001,42 @@
     }
   }
 }
+
+.user-menu--wrapper {
+  padding-top: 6px;
+  margin-bottom: 10px;
+  float: left;
+  li > a, p {
+    display: inline;
+    font-size: $r14;
+    color: $grey;
+    font-weight: $bold;
+    padding: 0;
+    > b {
+      color: $dkgrey;
+    }
+  }
+  p {
+    &:after {
+      color: $grey;
+      content: "|";
+      margin: 0 5px;
+    }
+  }
+  li {
+    a {
+      &:hover {
+        text-decoration: underline !important;
+      }
+    }
+    &:not(:first-cpage_manager.page_variant.site_template-panels_everywhere_variant-2.ymlhild) {
+      a {
+        &:before {
+          color: $grey;
+          content: "|";
+          margin: 0 5px;
+        }
+      }
+    }
+  }
+}
