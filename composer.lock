@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e85b686af2dd4e783e11bfc34a97cd8f",
+    "content-hash": "dd58e2e5146f6aaf47a81dd1159315b6",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -3607,11 +3607,17 @@
         },
         {
             "name": "drupal/facets",
-            "version": "dev-1.x",
+            "version": "1.0.0-alpha11",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/facets",
-                "reference": "e510c8ece78182d1cc09305e7047c248dbb8e7a9"
+                "reference": "8.x-1.0-alpha11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/facets-8.x-1.0-alpha11.zip",
+                "reference": "8.x-1.0-alpha11",
+                "shasum": "7b53517e7049048a4379a5e30a2ca4a243ca1fe9"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -3625,8 +3631,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha11+42-dev",
-                    "datestamp": "1507315143",
+                    "version": "8.x-1.0-alpha11",
+                    "datestamp": "1500888543",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -3657,8 +3663,7 @@
                 "source": "git://git.drupal.org/project/facets.git",
                 "issues": "https://www.drupal.org/project/issues/facets",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
-            },
-            "time": "2017-10-06 19:27:10"
+            }
         },
         {
             "name": "drupal/field_group",
@@ -5218,17 +5223,22 @@
         },
         {
             "name": "drupal/search_api",
-            "version": "dev-1.x",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/search_api",
-                "reference": "824a21b5f04148c92b549793cb1c7b6e928b0949"
+                "reference": "8.x-1.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "750555dee199d8ab62a609b394fb11206b8fbe4c"
             },
             "require": {
                 "drupal/core": "^8.3"
             },
             "require-dev": {
-                "drupal/search_api_autocomplete": "@dev",
                 "drupal/search_api_db": "*"
             },
             "type": "drupal-module",
@@ -5237,11 +5247,11 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.4+18-dev",
-                    "datestamp": "1506686943",
+                    "version": "8.x-1.4",
+                    "datestamp": "1504799343",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -5269,72 +5279,25 @@
                 "source": "http://git.drupal.org/project/search_api.git",
                 "issues": "https://www.drupal.org/project/issues/search_api",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
-            },
-            "time": "2017-10-08 15:40:40"
-        },
-        {
-            "name": "drupal/search_api_bundle_boost",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/search_api_bundle_boost",
-                "reference": "8.x-1.0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/search_api_bundle_boost-8.x-1.0.zip",
-                "reference": "8.x-1.0",
-                "shasum": "dd2705f43cd3ec6dd365bba4042e2d4b013cb3be"
-            },
-            "require": {
-                "drupal/core": "~8.0",
-                "drupal/search_api": "*"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.0",
-                    "datestamp": "1487537282",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Jens Beltofte",
-                    "homepage": "https://www.drupal.org/u/beltofte"
-                }
-            ],
-            "description": "Allow administrators control boosting of specific entity bundles.",
-            "homepage": "https://www.drupal.org/project/search_api_bundle_boost",
-            "support": {
-                "source": "http://git.drupal.org/project/search_api_bundle_boost.git",
-                "issues": "https://www.drupal.org/project/issues/search_api_bundle_boost"
             }
         },
         {
             "name": "drupal/search_api_page",
-            "version": "dev-1.x",
+            "version": "1.0.0-alpha11",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/search_api_page",
-                "reference": "d85240a7d974ffe51b9e98d73a71d6d635e74ec3"
+                "reference": "8.x-1.0-alpha11"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/search_api_page-8.x-1.0-alpha11.zip",
+                "reference": "8.x-1.0-alpha11",
+                "shasum": "021baad1b03d2b3dc4be659043d6471569dfffb7"
             },
             "require": {
                 "drupal/core": "~8.0",
                 "drupal/search_api": "*"
-            },
-            "require-dev": {
-                "drupal/facets": "*"
             },
             "type": "drupal-module",
             "extra": {
@@ -5342,11 +5305,11 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha11+10-dev",
-                    "datestamp": "1506336543",
+                    "version": "8.x-1.0-alpha11",
+                    "datestamp": "1467834839",
                     "security-coverage": {
                         "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "message": "Alpha releases are not covered by Drupal security advisories."
                     }
                 }
             },
@@ -5368,16 +5331,21 @@
             "homepage": "https://www.drupal.org/project/search_api_page",
             "support": {
                 "source": "http://cgit.drupalcode.org/search_api_page"
-            },
-            "time": "2017-09-25 13:04:15"
+            }
         },
         {
             "name": "drupal/search_api_solr",
-            "version": "dev-1.x",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/search_api_solr",
-                "reference": "9cad2040e011524d08a0f75fb48cf1585793c9e0"
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/search_api_solr-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "ff124407b883c9e56030e8c10dcd8827c922cceb"
             },
             "require": {
                 "drupal/core": "~8.0",
@@ -5388,8 +5356,7 @@
                 "drupal/facets": "1.x-dev",
                 "drupal/geofield": "1.x-dev",
                 "drupal/search_api_autocomplete": "1.x-dev",
-                "drupal/search_api_location": "1.x-dev",
-                "phayes/geophp": "dev-master"
+                "drupal/search_api_location": "1.x-dev"
             },
             "suggest": {
                 "drupal/facets": "Provides facetted search.",
@@ -5401,11 +5368,11 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1+10-dev",
-                    "datestamp": "1506951544",
+                    "version": "8.x-1.1",
+                    "datestamp": "1505488645",
                     "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
                     }
                 }
             },
@@ -5445,8 +5412,7 @@
                 "source": "http://git.drupal.org/project/search_api_solr.git",
                 "issues": "https://www.drupal.org/project/issues/search_api_solr",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
-            },
-            "time": "2017-09-30 10:39:40"
+            }
         },
         {
             "name": "drupal/selectize",
@@ -12255,9 +12221,7 @@
         "drupal/purge": 10,
         "drupal/recaptcha": 20,
         "drupal/redirect": 10,
-        "drupal/search_api": 20,
-        "drupal/search_api_page": 20,
-        "drupal/search_api_solr": 20,
+        "drupal/search_api_page": 15,
         "drupal/selectize": 10,
         "drupal/slick": 20,
         "drupal/slick_views": 5,
