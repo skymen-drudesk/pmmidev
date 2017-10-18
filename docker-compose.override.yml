@@ -13,7 +13,7 @@ services:
     # Environment variables
     environment:
       PHP_XDEBUG_ENABLED: 1
-      PHP_XDEBUG_AUTOSTART: 1
+      PHP_XDEBUG_AUTOSTART: 0
       PHP_XDEBUG_REMOTE_CONNECT_BACK: 1         # This is needed to respect remote.host setting bellow
       PHP_XDEBUG_REMOTE_HOST: "10.254.254.254"
 
