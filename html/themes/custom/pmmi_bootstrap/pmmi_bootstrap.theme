@@ -433,8 +433,11 @@ function pmmi_bootstrap_preprocess_file_link(&$variables) {
   foreach (['prefix', 'suffix'] as $element) {
     $field_name = 'field_' . $element;
     $variables[$element] = '';
-    if ($field = $file->get($field_name)) {
-      $variables[$element] = $file->{$field_name}->value;
+    try {
+      if ($field = $file->get($field_name)) {
+        $variables[$element] = $file->{$field_name}->value;
+      }
     }
+    catch (Exception $e) {}
   }
 }
