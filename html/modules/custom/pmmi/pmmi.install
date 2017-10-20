@@ -143,3 +143,10 @@ function pmmi_update_8006() {
   $query = $database->truncate('queue');
   $query->execute();
 }
+
+/**
+ * Uninstall the search_api_bundle_boost module.
+ */
+function pmmi_update_8007() {
+  \Drupal::service('module_installer')->uninstall(['search_api_bundle_boost']);
+}

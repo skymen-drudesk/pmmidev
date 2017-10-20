@@ -11,7 +11,6 @@ dependencies:
   module:
     - search_api
     - pmmi_search
-    - search_api_bundle_boost
     - node
     - pmmi_page_manager_search
 id: default_index
@@ -152,12 +151,6 @@ processor_settings:
   country: {  }
   pmmi_shows: {  }
   state: {  }
-  add_url: {  }
-  aggregated_field: {  }
-  content_access:
-    weights:
-      preprocess_query: -30
-  entity_status: {  }
   highlight:
     highlight: always
     highlight_partial: true
@@ -254,17 +247,21 @@ processor_settings:
     weights:
       preprocess_index: 0
       preprocess_query: 0
-  search_api_bundle_boost_processor:
-    bundles:
-      node:
-        article: '0.0'
-        basic_page: '21.0'
-        certification_test: '21.0'
-        download: '21.0'
-        school: '21.0'
-        video: '21.0'
-      pmmi_page_manager_search:
-        pmmi_page_manager_search: '21.0'
+  type_boost:
+    boosts:
+      'entity:node':
+        datasource_boost: !!float 1
+        bundle_boosts:
+          article: !!float 0
+          basic_page: !!float 21
+          certification_test: !!float 21
+          download: !!float 21
+          school: !!float 21
+          video: !!float 21
+      'entity:pmmi_page_manager_search':
+        datasource_boost: !!float 21
+    weights:
+      preprocess_index: 0
 tracker_settings:
   default: {  }
 options:
