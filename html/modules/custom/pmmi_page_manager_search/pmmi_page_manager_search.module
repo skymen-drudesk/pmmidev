@@ -15,10 +15,11 @@ use Drupal\pmmi_page_manager_search\Entity\PageManagerSearch;
  */
 function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
   if ($entity->getEntityTypeId() == 'page_variant' && $entity->page !== 'site_template') {
-    // Check if need to index this PageVariant.
-    if ($entity->get('third_party_settings')['index_page_variant'] === 1) {
-      $page = $entity->getPage();
+    // Load Page of PageVariant.
+    $page = $entity->getPage();
 
+    // Check if need to index this PageVariant.
+    if ($entity->get('third_party_settings')['index_page_variant'] === 1 && $page->id() !== 'site_template') {
       $render = \Drupal::entityTypeManager()
         ->getViewBuilder('page_variant')
         ->view($entity);
