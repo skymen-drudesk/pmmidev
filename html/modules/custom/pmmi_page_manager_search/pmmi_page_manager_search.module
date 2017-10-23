@@ -14,11 +14,12 @@ use Drupal\pmmi_page_manager_search\Entity\PageManagerSearch;
  * Implements hook_entity_insert().
  */
 function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
-  if ($entity->getEntityTypeId() == 'page_variant') {
-    // Check if need to index this PageVariant.
-    if ($entity->get('third_party_settings')['index_page_variant'] === 1) {
-      $page = $entity->getPage();
+  if ($entity->getEntityTypeId() == 'page_variant' && $entity->page !== 'site_template') {
+    // Load Page of PageVariant.
+    $page = $entity->getPage();
 
+    // Check if need to index this PageVariant.
+    if ($entity->get('third_party_settings')['index_page_variant'] === 1 && $page->id() !== 'site_template') {
       $render = \Drupal::entityTypeManager()
         ->getViewBuilder('page_variant')
         ->view($entity);
@@ -44,19 +45,19 @@ function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterfa
  */
 function pmmi_page_manager_search_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
   if ($entity->getEntityTypeId() == 'page_variant') {
+    // Load Page of PageVariant.
+    $page = $entity->getPage();
     // Check if need to index this PageVariant.
     $index_page_variant = (
     isset($entity->get('third_party_settings')['index_page_variant'])
       ? $entity->get('third_party_settings')['index_page_variant']
       : 1
     );
-    if ($index_page_variant === 1) {
+    if ($index_page_variant === 1 && $page->id() !== 'site_template') {
       $existing_page_manager_search = \Drupal::entityQuery('pmmi_page_manager_search')
         ->condition('pid', $entity->id())
         ->execute();
 
-      // Load Page of PageVariant.
-      $page = $entity->getPage();
 
       // Get rendered PageVariant content.
       $render = \Drupal::entityTypeManager()
@@ -132,15 +133,18 @@ function pmmi_page_manager_search_form_alter(&$form, \Drupal\Core\Form\FormState
         ? $page_variant->get('third_party_settings')['index_page_variant']
         : 1
     );
-    $form['variant_settings']['include_in_search_results'] = [
-      '#type' => 'checkbox',
-      '#title' => t('Index this page variant?'),
-      '#weight' => 0,
-      '#default_value' => $index_page_variant,
-    ];
 
-    $form['actions']['update_and_save']['#submit'][] = 'pmmi_page_manager_search_page_variant_submit';
-    $form['actions']['finish']['#submit'][] = 'pmmi_page_manager_search_page_variant_submit';
+    if ($cached_values['id'] !== 'site_template') {
+      $form['variant_settings']['include_in_search_results'] = [
+        '#type' => 'checkbox',
+        '#title' => t('Index this page variant?'),
+        '#weight' => 0,
+        '#default_value' => $index_page_variant,
+      ];
+
+      $form['actions']['update_and_save']['#submit'][] = 'pmmi_page_manager_search_page_variant_submit';
+      $form['actions']['finish']['#submit'][] = 'pmmi_page_manager_search_page_variant_submit';
+    }
   }
 }
 
