@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd58e2e5146f6aaf47a81dd1159315b6",
+    "content-hash": "1d54bd6e7954de3055fd5d6a6407b281",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -4451,6 +4451,69 @@
             "homepage": "https://www.drupal.org/project/mailsystem",
             "support": {
                 "source": "http://cgit.drupalcode.org/mailsystem"
+            }
+        },
+        {
+            "name": "drupal/menu_per_role",
+            "version": "1.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/menu_per_role",
+                "reference": "8.x-1.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/menu_per_role-8.x-1.0-alpha1.zip",
+                "reference": "8.x-1.0-alpha1",
+                "shasum": "43397245ae3ff4b01ac49d2e289295b800187cfe"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha1",
+                    "datestamp": "1504964044",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "AlexisWilke",
+                    "homepage": "https://www.drupal.org/user/356197"
+                },
+                {
+                    "name": "Grimreaper",
+                    "homepage": "https://www.drupal.org/user/2388214"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
+                    "name": "neerajskydiver",
+                    "homepage": "https://www.drupal.org/user/227792"
+                }
+            ],
+            "description": "Allows restricting access to menu items per role.",
+            "homepage": "https://www.drupal.org/project/menu_per_role",
+            "support": {
+                "source": "http://cgit.drupalcode.org/menu_per_role"
             }
         },
         {
@@ -12235,6 +12298,7 @@
         "drupal/webform_views": 15,
         "summitmedia/dd-party": 20,
         "summitmedia/panels_everywhere": 20,
+        "drupal/menu_per_role": 15,
         "drupal/config_devel": 5,
         "drupal/devel": 20,
         "drupal/devel_debug_log": 10,
