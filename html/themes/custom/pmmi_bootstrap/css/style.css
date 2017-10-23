@@ -16762,6 +16762,10 @@ body > .page-wrapper:after,
   text-decoration: underline !important;
 }
 
+.user-menu--wrapper li a:hover:after, .user-menu--wrapper li a:hover:before {
+  text-decoration: none !important;
+}
+
 .user-menu--wrapper li:not(:first-child) a:before {
   color: #8c8888;
   content: "|";
