@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "4d58d283d39c7d306b2f8b65972ad152",
+    "content-hash": "549c9a02ce93a24dc2142c4d3d8b5748",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -1589,6 +1589,10 @@
                     "homepage": "https://www.drupal.org/u/matio89"
                 },
                 {
+                    "name": "adriancid",
+                    "homepage": "https://www.drupal.org/user/1962106"
+                },
+                {
                     "name": "bolbol",
                     "homepage": "https://www.drupal.org/user/3400070"
                 },
@@ -1666,7 +1670,7 @@
                 "source": "http://cgit.drupalcode.org/backup_migrate",
                 "issues": "https://www.drupal.org/project/issues/backup_migrate"
             },
-            "time": "2017-10-04 12:33:58"
+            "time": "2017-10-04T12:33:58+00:00"
         },
         {
             "name": "drupal/blazy",
@@ -2774,7 +2778,8 @@
                     "Datetime Views plugins don't support timezones": "https://www.drupal.org/files/issues/2627512-214-wo-update.patch",
                     "Improve the views integration for daterange fields": "https://www.drupal.org/files/issues/improve_the_views-2786577-71.patch",
                     "Batch API should use the current theme to run the batches": "https://www.drupal.org/files/issues/wrong-route-check-539022-71.patch",
-                    "Complex job in ViewExecutable::unserialize() causes data corruption": "https://www.drupal.org/files/issues/nested-unserialization-workaround.patch"
+                    "Complex job in ViewExecutable::unserialize() causes data corruption": "https://www.drupal.org/files/issues/nested-unserialization-workaround.patch",
+                    "Lock system is broken in many regards": "https://www.drupal.org/files/issues/lock_system_needs_a-2077827-49_0.patch"
                 }
             },
             "autoload": {
@@ -2979,6 +2984,79 @@
             }
         },
         {
+            "name": "drupal/ctools_block",
+            "version": "3.0.0",
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/ctools": "self.version"
+            },
+            "type": "metapackage",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0",
+                    "datestamp": "1493401742",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "EclipseGc",
+                    "homepage": "https://www.drupal.org/user/61203"
+                },
+                {
+                    "name": "damiankloip",
+                    "homepage": "https://www.drupal.org/user/1037976"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "esmerel",
+                    "homepage": "https://www.drupal.org/user/164022"
+                },
+                {
+                    "name": "japerry",
+                    "homepage": "https://www.drupal.org/user/45640"
+                },
+                {
+                    "name": "merlinofchaos",
+                    "homepage": "https://www.drupal.org/user/26979"
+                },
+                {
+                    "name": "neclimdul",
+                    "homepage": "https://www.drupal.org/user/48673"
+                },
+                {
+                    "name": "sdboyer",
+                    "homepage": "https://www.drupal.org/user/146719"
+                },
+                {
+                    "name": "sun",
+                    "homepage": "https://www.drupal.org/user/54136"
+                },
+                {
+                    "name": "tim.plunkett",
+                    "homepage": "https://www.drupal.org/user/241634"
+                }
+            ],
+            "description": "Provides improvements to blocks that will one day be added to Drupal core.",
+            "homepage": "https://www.drupal.org/project/ctools",
+            "support": {
+                "source": "http://cgit.drupalcode.org/ctools"
+            }
+        },
+        {
             "name": "drupal/date",
             "version": "dev-1.x",
             "source": {
@@ -3049,7 +3127,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/date"
             },
-            "time": "2012-10-28 09:20:01"
+            "time": "2012-10-28T09:20:01+00:00"
         },
         {
             "name": "drupal/default_content",
@@ -4185,7 +4263,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/job_scheduler"
             },
-            "time": "2017-07-04 13:18:23"
+            "time": "2017-07-04T13:18:23+00:00"
         },
         {
             "name": "drupal/layout_plugin",
@@ -4388,7 +4466,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/maillog"
             },
-            "time": "2016-08-05 21:18:07"
+            "time": "2016-08-05T21:18:07+00:00"
         },
         {
             "name": "drupal/mailsystem",
@@ -5002,6 +5080,62 @@
             }
         },
         {
+            "name": "drupal/panels_everywhere",
+            "version": "dev-4.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/panels_everywhere",
+                "reference": "5b1c92baad5b3fa51ce94dbbf0581cc1fa631d09"
+            },
+            "require": {
+                "drupal/core": "*",
+                "drupal/ctools": ">=3.0.0",
+                "drupal/ctools_block": "*",
+                "drupal/page_manager": ">=4.0.0",
+                "drupal/panels": ">=4.0.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-4.x": "4.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-4.x-dev",
+                    "datestamp": "1507779545",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "See contributors",
+                    "homepage": "https://www.drupal.org/node/669722/committers",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Letharion",
+                    "homepage": "https://www.drupal.org/user/373603"
+                },
+                {
+                    "name": "merlinofchaos",
+                    "homepage": "https://www.drupal.org/user/26979"
+                }
+            ],
+            "description": "Use the Panels architecture to manage the full page display.",
+            "homepage": "https://www.drupal.org/project/panels_everywhere",
+            "support": {
+                "source": "http://git.drupal.org/project/panels_everywhere.git",
+                "issues": "https://www.drupal.org/project/issues/panels_everywhere",
+                "irc": "irc://irc.freenode.org/drupal-scotch"
+            }
+        },
+        {
             "name": "drupal/pathauto",
             "version": "1.0.0",
             "source": {
@@ -5165,7 +5299,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/queue_ui"
             },
-            "time": "2017-05-30 19:17:17"
+            "time": "2017-05-30T19:17:17+00:00"
         },
         {
             "name": "drupal/recaptcha",
@@ -5750,7 +5884,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/tb_megamenu"
             },
-            "time": "2017-10-09 01:41:51"
+            "time": "2017-10-09T01:41:51+00:00"
         },
         {
             "name": "drupal/token",
@@ -6032,7 +6166,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/views_block_filter_block"
             },
-            "time": "2017-10-06 10:50:46"
+            "time": "2017-10-06T10:50:46+00:00"
         },
         {
             "name": "drupal/views_data_export",
@@ -8386,7 +8520,7 @@
                 "source": "https://github.com/summitmedia/dd-party/tree/master",
                 "issues": "https://github.com/summitmedia/dd-party/issues"
             },
-            "time": "2017-07-27 00:21:29"
+            "time": "2017-07-27T00:21:29+00:00"
         },
         {
             "name": "summitmedia/panels_everywhere",
@@ -10004,7 +10138,7 @@
                 "reference": "origin/master"
             },
             "type": "drupal-library",
-            "time": "2010-06-13 23:39:18"
+            "time": "2010-06-13T23:39:18+00:00"
         },
         {
             "name": "twig/twig",
@@ -10785,7 +10919,7 @@
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             },
-            "time": "2017-10-05 09:36:49"
+            "time": "2017-10-05T09:36:49+00:00"
         },
         {
             "name": "drupal/devel_debug_log",
@@ -11121,7 +11255,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/xhprof"
             },
-            "time": "2017-05-29 08:34:02"
+            "time": "2017-05-29T08:34:02+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -12280,6 +12414,7 @@
         "drupal/metatag": 10,
         "drupal/migrate_plus": 10,
         "drupal/page_manager": 10,
+        "drupal/panels_everywhere": 20,
         "drupal/pathauto": 15,
         "drupal/purge": 10,
         "drupal/queue_ui": 20,
