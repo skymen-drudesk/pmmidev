@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dd58e2e5146f6aaf47a81dd1159315b6",
+    "content-hash": "c0aefd2695170691d39c2136ecae8db1",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -2984,6 +2984,79 @@
             }
         },
         {
+            "name": "drupal/ctools_block",
+            "version": "3.0.0",
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/ctools": "self.version"
+            },
+            "type": "metapackage",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0",
+                    "datestamp": "1493401742",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "EclipseGc",
+                    "homepage": "https://www.drupal.org/user/61203"
+                },
+                {
+                    "name": "damiankloip",
+                    "homepage": "https://www.drupal.org/user/1037976"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "esmerel",
+                    "homepage": "https://www.drupal.org/user/164022"
+                },
+                {
+                    "name": "japerry",
+                    "homepage": "https://www.drupal.org/user/45640"
+                },
+                {
+                    "name": "merlinofchaos",
+                    "homepage": "https://www.drupal.org/user/26979"
+                },
+                {
+                    "name": "neclimdul",
+                    "homepage": "https://www.drupal.org/user/48673"
+                },
+                {
+                    "name": "sdboyer",
+                    "homepage": "https://www.drupal.org/user/146719"
+                },
+                {
+                    "name": "sun",
+                    "homepage": "https://www.drupal.org/user/54136"
+                },
+                {
+                    "name": "tim.plunkett",
+                    "homepage": "https://www.drupal.org/user/241634"
+                }
+            ],
+            "description": "Provides improvements to blocks that will one day be added to Drupal core.",
+            "homepage": "https://www.drupal.org/project/ctools",
+            "support": {
+                "source": "http://cgit.drupalcode.org/ctools"
+            }
+        },
+        {
             "name": "drupal/date",
             "version": "dev-1.x",
             "source": {
@@ -4942,6 +5015,63 @@
                 "issues": "https://www.drupal.org/project/issues/panels",
                 "irc": "irc://irc.freenode.org/drupal-scotch"
             }
+        },
+        {
+            "name": "drupal/panels_everywhere",
+            "version": "dev-4.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/panels_everywhere",
+                "reference": "5b1c92baad5b3fa51ce94dbbf0581cc1fa631d09"
+            },
+            "require": {
+                "drupal/core": "*",
+                "drupal/ctools": ">=3.0.0",
+                "drupal/ctools_block": "*",
+                "drupal/page_manager": ">=4.0.0",
+                "drupal/panels": ">=4.0.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-4.x": "4.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-4.x-dev",
+                    "datestamp": "1507779545",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "See contributors",
+                    "homepage": "https://www.drupal.org/node/669722/committers",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Letharion",
+                    "homepage": "https://www.drupal.org/user/373603"
+                },
+                {
+                    "name": "merlinofchaos",
+                    "homepage": "https://www.drupal.org/user/26979"
+                }
+            ],
+            "description": "Use the Panels architecture to manage the full page display.",
+            "homepage": "https://www.drupal.org/project/panels_everywhere",
+            "support": {
+                "source": "http://git.drupal.org/project/panels_everywhere.git",
+                "issues": "https://www.drupal.org/project/issues/panels_everywhere",
+                "irc": "irc://irc.freenode.org/drupal-scotch"
+            },
+            "time": "2017-10-25T11:06:45+00:00"
         },
         {
             "name": "drupal/pathauto",
@@ -8329,17 +8459,6 @@
                 "issues": "https://github.com/summitmedia/dd-party/issues"
             },
             "time": "2017-07-27T00:21:29+00:00"
-        },
-        {
-            "name": "summitmedia/panels_everywhere",
-            "version": "dev-master",
-            "dist": {
-                "type": "zip",
-                "url": "https://github.com/summitmedia/panels_everywhere/archive/master.zip",
-                "reference": null,
-                "shasum": null
-            },
-            "type": "drupal-module"
         },
         {
             "name": "symfony-cmf/routing",
@@ -12221,6 +12340,7 @@
         "drupal/metatag": 10,
         "drupal/migrate_plus": 10,
         "drupal/page_manager": 10,
+        "drupal/panels_everywhere": 20,
         "drupal/pathauto": 15,
         "drupal/queue_ui": 20,
         "drupal/purge": 10,
@@ -12239,7 +12359,6 @@
         "drupal/webform": 10,
         "drupal/webform_views": 15,
         "summitmedia/dd-party": 20,
-        "summitmedia/panels_everywhere": 20,
         "drupal/config_devel": 5,
         "drupal/devel": 20,
         "drupal/devel_debug_log": 10,
