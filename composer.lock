@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c0aefd2695170691d39c2136ecae8db1",
+    "content-hash": "549c9a02ce93a24dc2142c4d3d8b5748",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -4532,6 +4532,69 @@
             }
         },
         {
+            "name": "drupal/menu_per_role",
+            "version": "1.0.0-alpha1",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/menu_per_role",
+                "reference": "8.x-1.0-alpha1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/menu_per_role-8.x-1.0-alpha1.zip",
+                "reference": "8.x-1.0-alpha1",
+                "shasum": "43397245ae3ff4b01ac49d2e289295b800187cfe"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha1",
+                    "datestamp": "1504964044",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "AlexisWilke",
+                    "homepage": "https://www.drupal.org/user/356197"
+                },
+                {
+                    "name": "Grimreaper",
+                    "homepage": "https://www.drupal.org/user/2388214"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "fago",
+                    "homepage": "https://www.drupal.org/user/16747"
+                },
+                {
+                    "name": "neerajskydiver",
+                    "homepage": "https://www.drupal.org/user/227792"
+                }
+            ],
+            "description": "Allows restricting access to menu items per role.",
+            "homepage": "https://www.drupal.org/project/menu_per_role",
+            "support": {
+                "source": "http://cgit.drupalcode.org/menu_per_role"
+            }
+        },
+        {
             "name": "drupal/metatag",
             "version": "1.3.0",
             "source": {
@@ -5070,8 +5133,7 @@
                 "source": "http://git.drupal.org/project/panels_everywhere.git",
                 "issues": "https://www.drupal.org/project/issues/panels_everywhere",
                 "irc": "irc://irc.freenode.org/drupal-scotch"
-            },
-            "time": "2017-10-25T11:06:45+00:00"
+            }
         },
         {
             "name": "drupal/pathauto",
@@ -8459,6 +8521,17 @@
                 "issues": "https://github.com/summitmedia/dd-party/issues"
             },
             "time": "2017-07-27T00:21:29+00:00"
+        },
+        {
+            "name": "summitmedia/panels_everywhere",
+            "version": "dev-master",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/summitmedia/panels_everywhere/archive/master.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-module"
         },
         {
             "name": "symfony-cmf/routing",
@@ -12337,13 +12410,14 @@
         "drupal/link_attributes": 15,
         "drupal/linked_field": 10,
         "drupal/maillog": 20,
+        "drupal/menu_per_role": 15,
         "drupal/metatag": 10,
         "drupal/migrate_plus": 10,
         "drupal/page_manager": 10,
         "drupal/panels_everywhere": 20,
         "drupal/pathauto": 15,
-        "drupal/queue_ui": 20,
         "drupal/purge": 10,
+        "drupal/queue_ui": 20,
         "drupal/recaptcha": 20,
         "drupal/redirect": 10,
         "drupal/search_api_page": 15,
@@ -12359,6 +12433,7 @@
         "drupal/webform": 10,
         "drupal/webform_views": 15,
         "summitmedia/dd-party": 20,
+        "summitmedia/panels_everywhere": 20,
         "drupal/config_devel": 5,
         "drupal/devel": 20,
         "drupal/devel_debug_log": 10,
