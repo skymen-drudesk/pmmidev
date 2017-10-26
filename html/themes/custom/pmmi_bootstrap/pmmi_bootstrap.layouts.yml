@@ -150,6 +150,19 @@ article_news_default:
       label: Body
     button:
       label: Button
+blog_default:
+  label: Blog(default)
+  category: PMMI: Nodes
+  template: templates/layouts/blocks/blog-default
+  regions:
+    press_date:
+      label: Type and date
+    title:
+      label: Title
+    body:
+      label: Body
+    button:
+      label: Button
 basic:
   label: Basic
   category: PMMI: Nodes
