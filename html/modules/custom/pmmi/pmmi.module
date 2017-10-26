@@ -4,15 +4,11 @@
  * PMMI common stuff.
  */
 
-use Drupal\varnish_purger\Plugin\Purge\Purger\VarnishPurgerBase;
 use Drupal\views\ViewExecutable;
 use Drupal\Core\Template\Attribute;
 use \Drupal\panels\Plugin\DisplayVariant\PanelsDisplayVariant;
 use Drupal\page_manager\Context\EntityLazyLoadContext;
 use Drupal\Component\Utility\Html;
-use Drupal\purge\Plugin\Purge\Purger\Exception\CapacityException;
-use Drupal\purge\Plugin\Purge\Purger\Exception\DiagnosticsException;
-use Drupal\purge\Plugin\Purge\Purger\Exception\LockException;
 /**
  * Implements hook_views_pre_build().
  */
