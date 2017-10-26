@@ -24,9 +24,18 @@ module:
   webform: 0
 theme: {  }
 blacklist:
+  - page_manager.page.site_template
   - page_manager.page_variant.403_page-panels_variant-0
   - page_manager.page_variant.404_page-panels_variant-0
   - page_manager.page_variant.contact_us-panels_variant-0
+  - page_manager.page_variant.site_template-panels_everywhere_variant-0
+  - page_manager.page_variant.site_template-panels_everywhere_variant-1
+  - page_manager.page_variant.site_template-panels_everywhere_variant-2
+  - page_manager.page_variant.site_template-panels_everywhere_variant-3
+  - page_manager.page_variant.site_template-panels_everywhere_variant-4
+  - page_manager.page_variant.site_template-panels_everywhere_variant-5
+  - page_manager.page_variant.site_template-panels_everywhere_variant-6
+  - page_manager.page_variant.site_template-panels_everywhere_variant-7
   - pmmi_sales_agent.mail_mass_settings
   - pmmi_sales_agent.mail_settings
   - pmmi_sales_agent.reporting_settings
