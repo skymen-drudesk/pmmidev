@@ -1,4 +1,4 @@
-uuid: d8fd48ff-ce78-4aed-b3a4-685a6d976101
+uuid: 5c97b043-53ea-4f97-940b-e6575501d58d
 langcode: en
 status: true
 dependencies:
@@ -6,8 +6,7 @@ dependencies:
     - page_manager.page.site_template
     - system.menu.footer
   content:
-    - 'block_content:event:789967f6-fe99-4014-8706-7a5096fcee60'
-    - 'block_content:image:71a06013-5697-4abb-a415-9cf91ec30d0a'
+    - 'block_content:image:32a03c64-b529-40d6-915c-88ff08733fd8'
     - 'block_content:social_media:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
   module:
     - audience_select
@@ -17,21 +16,21 @@ dependencies:
     - pmmi_search
     - system
     - tb_megamenu
-id: site_template-panels_everywhere_variant-3
-label: 'Annual Meeting'
+id: site_template-panels_everywhere_variant-4
+label: 'Emerging Leaders Network'
 variant: panels_everywhere_variant
 variant_settings:
   blocks:
-    86daf206-a70b-48d9-b051-931d40e5b2d6:
+    5cb2ef2c-ddef-4307-9006-7ccfcf25c127:
       id: system_messages_block
       label: Messages
       provider: system
       label_display: 0
       region: topbar
       weight: '0'
-      uuid: 86daf206-a70b-48d9-b051-931d40e5b2d6
+      uuid: 5cb2ef2c-ddef-4307-9006-7ccfcf25c127
       context_mapping: {  }
-    0640deed-22ba-413a-9676-ab1c78e0c834:
+    a4255987-5bdc-4554-8746-9156bbe5ef95:
       id: local_tasks_block
       label: Tabs
       provider: core
@@ -40,18 +39,18 @@ variant_settings:
       secondary: 1
       region: topbar
       weight: '0'
-      uuid: 0640deed-22ba-413a-9676-ab1c78e0c834
+      uuid: a4255987-5bdc-4554-8746-9156bbe5ef95
       context_mapping: {  }
-    4243702c-73cd-4dc5-9499-85d553d1e86a:
+    6d97685a-5541-44ac-8c57-1a67e3b224a6:
       id: system_main_block
       label: 'Main page content'
       provider: system
       label_display: 0
       region: main
       weight: '0'
-      uuid: 4243702c-73cd-4dc5-9499-85d553d1e86a
+      uuid: 6d97685a-5541-44ac-8c57-1a67e3b224a6
       context_mapping: {  }
-    8bc91466-5086-4e1b-9f4b-9ebbd1eb44ec:
+    cafd3158-bd58-4464-a406-f6675fc53663:
       id: 'system_menu_block:footer'
       label: Footer
       provider: system
@@ -60,9 +59,9 @@ variant_settings:
       depth: '0'
       region: footer
       weight: '-3'
-      uuid: 8bc91466-5086-4e1b-9f4b-9ebbd1eb44ec
+      uuid: cafd3158-bd58-4464-a406-f6675fc53663
       context_mapping: {  }
-    ea597756-c83d-41b3-b821-5d41ad4e3338:
+    563c1d9b-1ae3-457f-ae89-0e216a25fedc:
       id: audience_switcher
       label: 'Other Versions:'
       provider: audience_select
@@ -70,9 +69,9 @@ variant_settings:
       excluded_audiences: {  }
       region: footer
       weight: '-2'
-      uuid: ea597756-c83d-41b3-b821-5d41ad4e3338
+      uuid: 563c1d9b-1ae3-457f-ae89-0e216a25fedc
       context_mapping: {  }
-    04cc93ed-49ee-415a-8f46-e8bbac00f2a4:
+    4b0e47ab-44ce-498f-bfa8-7a0880602edf:
       id: 'block_content:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
       label: 'PMMI - Social Media'
       provider: block_content
@@ -82,18 +81,18 @@ variant_settings:
       view_mode: footer_social
       region: footer
       weight: '-1'
-      uuid: 04cc93ed-49ee-415a-8f46-e8bbac00f2a4
+      uuid: 4b0e47ab-44ce-498f-bfa8-7a0880602edf
       context_mapping: {  }
-    acd8ee88-ec85-46bb-9cd8-cb9e205e044e:
+    ee3b6d98-bc70-4ed5-a832-1b2e37d67082:
       id: copyright_block
       label: 'Copyright block'
       provider: pmmi
       label_display: 0
       region: footer
       weight: '-4'
-      uuid: acd8ee88-ec85-46bb-9cd8-cb9e205e044e
+      uuid: ee3b6d98-bc70-4ed5-a832-1b2e37d67082
       context_mapping: {  }
-    a0b1a50c-68b7-4554-8727-877ceba6c8fa:
+    2ee8adc4-65a4-47ab-bc7a-c360b0c6359b:
       id: pmmi_search_block
       label: 'PMMI Search block'
       provider: pmmi_search
@@ -102,11 +101,11 @@ variant_settings:
       search_identifier: text
       region: header_main_nav
       weight: '0'
-      uuid: a0b1a50c-68b7-4554-8727-877ceba6c8fa
+      uuid: 2ee8adc4-65a4-47ab-bc7a-c360b0c6359b
       context_mapping: {  }
-    9fa4e4f2-4fa9-45ee-815c-f31384a1b54b:
-      id: 'block_content:71a06013-5697-4abb-a415-9cf91ec30d0a'
-      label: 'Annual Meeting Logo'
+    6ebcfd51-bdf9-40be-a969-0ba5d0fe2ea1:
+      id: 'block_content:32a03c64-b529-40d6-915c-88ff08733fd8'
+      label: 'Emerging Leaders Logo'
       provider: block_content
       label_display: 0
       status: true
@@ -114,45 +113,33 @@ variant_settings:
       view_mode: full
       region: header_logo
       weight: '0'
-      uuid: 9fa4e4f2-4fa9-45ee-815c-f31384a1b54b
+      uuid: 6ebcfd51-bdf9-40be-a969-0ba5d0fe2ea1
       context_mapping: {  }
-    f994f981-7dff-4a52-ac9d-79388ec2f7cf:
-      id: 'block_content:789967f6-fe99-4014-8706-7a5096fcee60'
-      label: 'Annual Meeting - Event Date (shows in header)'
-      provider: block_content
-      label_display: 0
-      status: true
-      info: ''
-      view_mode: event_in_header
-      region: header_microsite_info
-      weight: '0'
-      uuid: f994f981-7dff-4a52-ac9d-79388ec2f7cf
-      context_mapping: {  }
-    5d5126dd-5853-470d-9f87-9f24b2ebff70:
-      id: 'tb_megamenu_menu_block:annual-meeting-nav'
-      label: 'Annual Meeting navigation'
+    42d05637-0925-4c48-9963-fc3719f455c7:
+      id: 'tb_megamenu_menu_block:emerging-leaders-nav'
+      label: 'Emerging Leaders navigation'
       provider: tb_megamenu
       label_display: 0
       region: header_main_nav
       weight: '0'
-      uuid: 5d5126dd-5853-470d-9f87-9f24b2ebff70
+      uuid: 42d05637-0925-4c48-9963-fc3719f455c7
       context_mapping: {  }
   id: panels_everywhere_variant
-  uuid: d36c9fa4-a8b2-43c6-8608-56cb1f139d1c
+  uuid: d50f3796-4d4b-40b6-a48b-ea0d3a051c16
   label: null
   weight: 0
-  layout: panel_microsite_an
+  layout: panel_microsite_eln
   layout_settings: {  }
   page_title: ''
   storage_type: page_manager
-  storage_id: site_template-panels_everywhere_variant-3
+  storage_id: site_template-panels_everywhere_variant-4
   builder: standard
 page: site_template
-weight: -10
+weight: -9
 selection_criteria:
   -
     id: request_path
-    pages: "/annual-meeting\n/annual-meeting/*"
+    pages: "/emerging-leaders-network\n/emerging-leaders-network/*"
     negate: false
     context_mapping: {  }
 selection_logic: and
