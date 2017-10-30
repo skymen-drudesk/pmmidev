@@ -15863,7 +15863,7 @@ body > .page-wrapper:after,
 }
 
 @media screen and (min-width: 1024px) {
-  .navbar .main-nav .dropdown-menu.tb-megamenu-submenu {
+  .navbar .main-nav .dropdown-menu.tb-megamenu-submenu:not(.default-width) {
     min-width: 624px;
     padding: 25px 30px 10px;
   }
@@ -16748,6 +16748,10 @@ body > .page-wrapper:after,
 
 .user-menu--wrapper li a:hover {
   text-decoration: underline !important;
+}
+
+.user-menu--wrapper li a:hover:after, .user-menu--wrapper li a:hover:before {
+  text-decoration: none !important;
 }
 
 .user-menu--wrapper li:not(:first-child) a:before {

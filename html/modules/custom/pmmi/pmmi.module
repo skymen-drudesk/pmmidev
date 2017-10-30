@@ -9,7 +9,6 @@ use Drupal\Core\Template\Attribute;
 use \Drupal\panels\Plugin\DisplayVariant\PanelsDisplayVariant;
 use Drupal\page_manager\Context\EntityLazyLoadContext;
 use Drupal\Component\Utility\Html;
-
 /**
  * Implements hook_views_pre_build().
  */
@@ -115,4 +114,23 @@ function pmmi_module_implements_alter(&$implementations, $hook) {
       $implementations['pmmi'] = $group;
       break;
   }
+}
+
+/**
+ * Clear varnish cache of entity after updating it.
+ * Cache tag will be invalidated after cron running.
+ *
+ * Implements hook_entity_update().
+ */
+function pmmi_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+  $purgeInvalidationFactory = \Drupal::service('purge.invalidation.factory');
+  $purgeQueuers = \Drupal::service('purge.queuers');
+  $purgeQueue = \Drupal::service('purge.queue');
+
+  $queuer = $purgeQueuers->get('coretags');
+  $invalidations = [
+    $purgeInvalidationFactory->get('tag', $entity->getEntityTypeId() . ':' . $entity->id()),
+  ];
+
+  $purgeQueue->add($queuer, $invalidations);
 }

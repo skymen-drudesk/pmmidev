@@ -39,6 +39,9 @@ blacklist:
   - pmmi_sales_agent.mail_mass_settings
   - pmmi_sales_agent.mail_settings
   - pmmi_sales_agent.reporting_settings
+  - tb_megamenu.menu_config.annual-meeting-nav__pmmi_bootstrap
+  - tb_megamenu.menu_config.emerging-leaders-nav__pmmi_bootstrap
+  - tb_megamenu.menu_config.executive-leadership-nav__pmmi_bootstrap
 graylist: {  }
 graylist_dependents: true
 graylist_skip_equal: true

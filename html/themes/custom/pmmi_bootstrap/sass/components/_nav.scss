@@ -407,7 +407,7 @@
       font-family: $lato;
       min-width: 200px;
       padding: 15px 15px 10px;
-      &.tb-megamenu-submenu {
+      &.tb-megamenu-submenu:not(.default-width) {
         @include desktop-min {
           min-width: 624px;
           padding: 25px 30px 10px;
@@ -1027,6 +1027,10 @@
     a {
       &:hover {
         text-decoration: underline !important;
+        &:after,
+        &:before {
+          text-decoration: none !important;
+        }
       }
     }
     &:not(:first-child) {
