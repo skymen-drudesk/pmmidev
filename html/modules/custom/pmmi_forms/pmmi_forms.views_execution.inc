@@ -25,4 +25,54 @@ function pmmi_forms_views_query_alter(ViewExecutable $view, QueryPluginBase $que
       $query->addCondition('title_1', NULL, '<>', $group_id);
     }
   }
+
+  if ($view->id() === 'membership_application_submissions' && $view->current_display == 'block_all') {
+    if (!$query_params = \Drupal::request()->query->all()) {
+      // There are no available filters.
+      return;
+    }
+
+    if (!empty($query_params['date'])) {
+      $date_formatter = \Drupal::service('date.formatter');
+      $dates = explode('_', $query_params['date']);
+
+      // Define table.
+      $definition = [
+        'table' => 'webform_submission_data',
+        'field' => 'sid',
+        'left_table' => 'webform_submission',
+        'left_field' => 'sid',
+        'extra' => [
+          [
+            'field' => 'name',
+            'value' => 'submission_date_is_belongs_to',
+          ],
+        ],
+        'extraOperator' => 'AND',
+      ];
+
+      // Join table and field with `Submission date is belong to` data.
+      $join = Drupal::service('plugin.manager.views.join')
+        ->createInstance('standard', $definition);
+      $relation = $query->addRelationship('webform_submission_date_is_belongs_to', $join, 'webform_submission');
+      $query->addTable('webform_submission_data', $relation, $join, 'webform_submission_date_is_belongs_to');
+      $query->addField('webform_submission_date_is_belongs_to', 'value', 'submission_date_is_belongs_to');
+
+      // Get where group ID.
+      $where = $query->where;
+      $group_id = max(array_keys($where));
+
+      // Get `filtered by` field.
+      $field = $query->getDateFormat('webform_submission_date_is_belongs_to.value', 'Y-m-d', TRUE);
+
+      // Change format of seasons start and end dates.
+      $started = $date_formatter->format($dates[0], 'custom', 'Y-m-d', NULL);
+      $ended = $date_formatter->format($dates[1], 'custom', 'Y-m-d', NULL);
+
+      // Create expression.
+      $start = $query->getDateFormat("'" . $started  . "'", 'Y-m-d', TRUE);
+      $end = $query->getDateFormat("'" . $ended . "'", 'Y-m-d', TRUE);
+      $query->addWhereExpression($group_id, "$field BETWEEN $start AND $end");
+    }
+  }
 }

@@ -228,24 +228,20 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       }
 
       if ($form['#id'] === 'views-exposed-form-membership-application-submissions-block-all') {
-        $form['created']['#type'] = 'fieldset';
-        $form['created']['#tree'] = TRUE;
-        $form['created']['#attributes']['style'] = 'display: none';
-
         // Get current user and check if he has `administrator` role.
         $current_user = \Drupal::currentUser();
         $roles = $current_user->getRoles();
 
         if (in_array('administrator', $roles)) {
-          $query = \Drupal::database()->select('webform_submission', 'ws');
-          $query->addField('ws', 'created');
-          $query->condition('ws.webform_id', 'membership_application_form');
-          $query->orderBy('created', 'DESC');
+          $query = \Drupal::database()->select('webform_submission_data', 'wsd');
+          $query->addField('wsd', 'value');
+          $query->condition('wsd.webform_id', 'membership_application_form');
+          $query->condition('wsd.name', 'submission_date_is_belongs_to');
           $webform_submissions = $query->execute()->fetchAll();
           $date_options = [];
 
           foreach($webform_submissions as $key => $value) {
-            $option = pmmi_forms_get_season($value->created);
+            $option = pmmi_forms_get_season($value->value);
             $date_options[$option['date']] = $option['formatted_date'];
           }
 
@@ -255,7 +251,6 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
             '#options' => array_unique($date_options),
             '#empty_option' => t('None'),
           ];
-          array_unshift($form['#submit'], 'pmmi_forms_member_applications_seasons_submit');
         }
       }
 
@@ -481,10 +476,10 @@ function pmmi_forms_views_pre_render(ViewExecutable $view) {
  *
  * @return array
  *  Array of arrays with the following elements:
- *  - date: Start and end date of season (e.g. 2017-06-01 0:00:00_2017-08-30 0:00:00).
+ *  - date: Start and end date of season.
  *  - formatted_date: Formatted date (e.g. Summer 2017).
  */
-function pmmi_forms_get_season($timestamp) {
+function pmmi_forms_get_season($date) {
   $formatted_date = '';
   $first_month_season = 1;
   $last_month_season = 12;
@@ -496,6 +491,8 @@ function pmmi_forms_get_season($timestamp) {
     'Summer' => [6, 7, 8],
     'Fall' => [9, 10, 11],
   ];
+
+  $timestamp = strtotime($date);
 
   $date = date('m-Y', $timestamp);
   $dates = explode('-', $date);
@@ -514,21 +511,9 @@ function pmmi_forms_get_season($timestamp) {
   $last_day = date(date('t', strtotime($first_day)) .'-' . $last_month_season . '-' . $dates[1]);
 
   $option = [
-    'date' => date('Y-m-d G:i:s', strtotime($first_day)) . '_' . date('Y-m-d G:i:s', strtotime($last_day)),
+    'date' => strtotime($first_day) . '_' . strtotime($last_day),
     'formatted_date' => $formatted_date,
   ];
 
   return $option;
-}
-
-/**
- * Custom callback function for filtering content by seasons.
- */
-function pmmi_forms_member_applications_seasons_submit(array &$form, FormStateInterface &$form_state) {
-  $values = $form_state->getValues();
-  if (!empty($values['date'])) {
-    $dates = explode('_', $values['date']);
-    $form_state->setValue(['created', 'min'], $dates[0]);
-    $form_state->setValue(['created', 'max'], $dates[1]);
-  }
 }
