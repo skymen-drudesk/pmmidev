@@ -15875,7 +15875,7 @@ body > .page-wrapper:after,
 }
 
 @media screen and (min-width: 1024px) {
-  .navbar .main-nav .dropdown-menu.tb-megamenu-submenu {
+  .navbar .main-nav .dropdown-menu.tb-megamenu-submenu:not(.default-width) {
     min-width: 624px;
     padding: 25px 30px 10px;
   }
