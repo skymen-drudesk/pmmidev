@@ -228,23 +228,19 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       }
 
       if ($form['#id'] === 'views-exposed-form-membership-application-submissions-block-all') {
-        // Get current user and check if he has `administrator` role.
-        $current_user = \Drupal::currentUser();
-        $roles = $current_user->getRoles();
+        $query = \Drupal::database()->select('webform_submission_data', 'wsd');
+        $query->addField('wsd', 'value');
+        $query->condition('wsd.webform_id', 'membership_application_form');
+        $query->condition('wsd.name', 'submission_date_is_belongs_to');
+        $webform_submissions = $query->execute()->fetchAll();
+        $date_options = [];
 
-        if (in_array('administrator', $roles)) {
-          $query = \Drupal::database()->select('webform_submission_data', 'wsd');
-          $query->addField('wsd', 'value');
-          $query->condition('wsd.webform_id', 'membership_application_form');
-          $query->condition('wsd.name', 'submission_date_is_belongs_to');
-          $webform_submissions = $query->execute()->fetchAll();
-          $date_options = [];
+        foreach($webform_submissions as $key => $value) {
+          $option = pmmi_forms_get_season($value->value);
+          $date_options[$option['date']] = $option['formatted_date'];
+        }
 
-          foreach($webform_submissions as $key => $value) {
-            $option = pmmi_forms_get_season($value->value);
-            $date_options[$option['date']] = $option['formatted_date'];
-          }
-
+        if (!empty($date_options)) {
           $form['date'] = [
             '#type' => 'select',
             '#title' => t('Date'),
