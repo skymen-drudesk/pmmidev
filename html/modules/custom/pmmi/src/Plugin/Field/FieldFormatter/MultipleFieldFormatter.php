@@ -7,7 +7,6 @@ use Drupal\Core\Field\Plugin\Field\FieldFormatter\EntityReferenceFormatterBase;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Plugin implementation of the 'Random_default' formatter.
  *
  * @FieldFormatter(
  *   id = "pmmi_multiple_formatter",
