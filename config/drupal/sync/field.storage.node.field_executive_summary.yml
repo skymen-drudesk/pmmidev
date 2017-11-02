@@ -1,0 +1,19 @@
+uuid: e33fc94b-c115-494f-a57f-c59b69068151
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_executive_summary
+field_name: field_executive_summary
+entity_type: node
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

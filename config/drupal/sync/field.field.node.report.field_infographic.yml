@@ -1,0 +1,21 @@
+uuid: 95509374-49be-49e1-85bc-0f97141e3e43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_infographic
+    - node.type.report
+  module:
+    - text
+id: node.report.field_infographic
+field_name: field_infographic
+entity_type: node
+bundle: report
+label: Infographic
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

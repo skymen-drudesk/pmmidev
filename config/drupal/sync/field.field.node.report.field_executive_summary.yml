@@ -1,0 +1,21 @@
+uuid: aba0d574-e797-411e-bf82-83e48168cbdd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_executive_summary
+    - node.type.report
+  module:
+    - text
+id: node.report.field_executive_summary
+field_name: field_executive_summary
+entity_type: node
+bundle: report
+label: 'Executive Summary'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long
