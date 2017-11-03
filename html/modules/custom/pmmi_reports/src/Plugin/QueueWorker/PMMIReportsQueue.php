@@ -216,7 +216,7 @@ class PMMIReportsQueue extends QueueWorkerBase implements ContainerFactoryPlugin
         $image_base_path = $this->configFactory->get('pmmi_reports.import_settings')->get('images_base_path');
         $img_path = $image_base_path . $filename;
         $directory_path = 'public://report_images';
-        $drupal_uri = $directory_path . $filename;
+        $drupal_uri = $directory_path . '/' . $filename;
         if (!file_exists($drupal_uri) || $resave) {
           file_prepare_directory($directory_path, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
           $data = file_get_contents($img_path);

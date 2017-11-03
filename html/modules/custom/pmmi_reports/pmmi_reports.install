@@ -6,29 +6,45 @@
  */
 
 use Drupal\taxonomy\Entity\Term;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Implements hook_install().
  */
 function pmmi_reports_install() {
-  // Update product class field on existing report type terms.
-  $result = \Drupal::entityQuery('taxonomy_term')
-    ->condition('vid', 'report_type')
-    ->execute();
-  if (!empty($result)) {
-    $terms = Term::loadMultiple($result);
-    $terms_to_update = [
-      'Benchmarking' => 'BENCHMARKING',
-      'Economic' => 'ECONOMIC-TRENDS',
-      'Industry' => 'INDUSTRY-RPTS',
-      'International' => 'INTL-RESEARCH',
-    ];
-    foreach ($terms as $term) {
-      foreach ($terms_to_update as $name => $personify_class) {
-        if (strpos($term->getName(), $name) !== FALSE) {
-          $term->set('field_personify_class', $personify_class);
-          $term->save();
-          break;
+
+  // Add required fields on install if they still missed.
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  if (!$field = $manager->getFieldStorageDefinition('field_personify_class', 'taxonomy_term')) {
+    $config_installer = \Drupal::service('config.installer');
+    if ($config_installer->isSyncing()) {
+      $config_installer->setSyncing(FALSE);
+      \Drupal::service('config.installer')->installDefaultConfig('module', 'pmmi_reports');
+      $config_installer->setSyncing(TRUE);
+    }
+  }
+
+  if ($manager->getFieldStorageDefinition('field_personify_class', 'taxonomy_term')) {
+    // Update product class field on existing report type terms.
+    $result = \Drupal::entityQuery('taxonomy_term')
+      ->condition('vid', 'report_type')
+      ->execute();
+    if (!empty($result)) {
+      $terms = Term::loadMultiple($result);
+      $terms_to_update = [
+        'Benchmarking' => 'BENCHMARKING',
+        'Economic' => 'ECONOMIC-TRENDS',
+        'Industry' => 'INDUSTRY-RPTS',
+        'International' => 'INTL-RESEARCH',
+      ];
+      foreach ($terms as $term) {
+        foreach ($terms_to_update as $name => $personify_class) {
+          if (strpos($term->getName(), $name) !== FALSE) {
+            $term->set('field_personify_class', $personify_class);
+            $term->save();
+            break;
+          }
         }
       }
     }
