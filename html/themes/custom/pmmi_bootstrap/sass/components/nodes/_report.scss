@@ -1,0 +1,39 @@
+.report-node {
+  @include desktop-max {
+    .content-left {
+      background: $ltgrey;
+      padding-top: 15px;
+      padding-bottom: 15px;
+    }
+    .left-block {
+      max-width: 810px;
+      margin-left: auto;
+      margin-right: auto;
+      > * {
+        display: inline-block;
+        margin: 0 20px 10px 0
+      }
+    }
+  }
+  @include desktop {
+    .left-block > * {
+      width: 230px;
+    }
+  }
+  @include tablet {
+    .left-block > * {
+      width: 310px;
+    }
+  }
+  // Reports view.
+  .field--type-ds.field--label-above {
+    .field--label {
+      @extend .sidehead1;
+    }
+  }
+  .view-reports {
+    .views-row {
+      @extend .linked-list-item;
+    }
+  }
+}

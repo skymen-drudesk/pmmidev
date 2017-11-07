@@ -1,9 +1,12 @@
+uuid: b880b572-dbcd-41ce-917e-3cd89a1470e7
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.taxonomy_term.field_personify_class
     - taxonomy.vocabulary.report_type
+_core:
+  default_config_hash: 2yeIr_4WkJ4NqNcsJ4VWiThrkWxQ3_lAc-A0Io6yfUE
 id: taxonomy_term.report_type.field_personify_class
 field_name: field_personify_class
 entity_type: taxonomy_term

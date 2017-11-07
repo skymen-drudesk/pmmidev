@@ -150,6 +150,7 @@ class PMMIReportsQueue extends QueueWorkerBase implements ContainerFactoryPlugin
       'field_non_member_price' => $data['list_currency_symbol'] . $data['list_price'],
       'field_product_id' => (string) $product_id,
       'field_product_status_date' => $data['status_date'],
+      'field_available_from_date' => $data['available_date'],
       'field_category' => $this->getTermIdByProductClass($data['category']),
       'field_image' => $this->getImage($data['image']),
     ];
@@ -194,7 +195,7 @@ class PMMIReportsQueue extends QueueWorkerBase implements ContainerFactoryPlugin
   /**
    * Get category term.
    */
-  protected function getTermIdByProductClass($product_class) {
+  public static function getTermIdByProductClass($product_class) {
     $term_id = NULL;
     $result = \Drupal::entityQuery('taxonomy_term')
       ->condition('vid', 'report_type')

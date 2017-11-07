@@ -8,6 +8,8 @@
 use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\ultimate_cron\CronJobInterface;
 use Drupal\Core\Queue\{RequeueException, SuspendQueueException};
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Block\BlockPluginInterface;
 
 /**
  * Implements hook_help().
@@ -109,5 +111,17 @@ function pmmi_reports_import_content(CronJobInterface $job) {
       watchdog_exception('ultimate_cron_queue', $e);
       break;
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_block() for block templates.
+ *
+ * Add year value to view title if year query param exists.
+ */
+function pmmi_reports_preprocess_block(&$variables) {
+  if ($variables['plugin_id'] == 'views_block:reports-reports_category'
+  && $year = \Drupal::request()->query->get('year')) {
+    $variables['label'] = $year . ' ' . $variables['label'];
   }
 }

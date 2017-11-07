@@ -1,0 +1,95 @@
+uuid: 07bf525e-3ba9-4cac-9864-218d69aef43c
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.business_intelligence_benchmarking_reports
+    - taxonomy.vocabulary.report_type
+    - views.view.reports
+  module:
+    - panels
+    - pmmi_reports
+    - pmmi_search
+    - views
+id: business_intelligence_benchmarking_reports-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    1284498f-21e9-4f07-a3fc-71b8f8d3fe17:
+      id: reports_years
+      label: 'Benchmarking Archives'
+      provider: pmmi_reports
+      label_display: visible
+      personify_class: BENCHMARKING
+      region: sidebar
+      weight: -1
+      link_prefix: 'Benchmarking Reports'
+      uuid: 1284498f-21e9-4f07-a3fc-71b8f8d3fe17
+      context_mapping: {  }
+    febfa911-0721-4889-9233-136350402526:
+      id: other_reports
+      label: 'Other Reports & Research'
+      provider: pmmi_reports
+      label_display: visible
+      links:
+        -
+          url: /business-intelligence/economic-reports
+          link_text: 'Economic Reports'
+        -
+          url: /business-intelligence/industry-reports
+          link_text: 'Industry Reports'
+        -
+          url: /business-intelligence/international-research
+          link_text: 'International Research'
+      region: sidebar
+      weight: 0
+      other_reports_links: null
+      links_count: 1
+      uuid: febfa911-0721-4889-9233-136350402526
+      context_mapping: {  }
+    24283dc0-7117-4617-9f5b-070d45c5d658:
+      id: 'views_block:reports-reports_category'
+      label: 'Benchmarking reports'
+      provider: views
+      label_display: visible
+      views_label: 'Benchmarking reports'
+      items_per_page: none
+      region: main
+      weight: 0
+      uuid: 24283dc0-7117-4617-9f5b-070d45c5d658
+      context_mapping:
+        field_personify_class_value: class
+    6cbed15d-46d9-4c9f-a2c1-d81aa591f000:
+      id: pmmi_search_library_block
+      label: 'Search Reports & Research'
+      provider: pmmi_search
+      label_display: visible
+      vid: report_type
+      term_identifier: category
+      search_path: 'internal:/business-intelligence/search'
+      search_identifier: text
+      region: sidebar
+      weight: 0
+      uuid: 6cbed15d-46d9-4c9f-a2c1-d81aa591f000
+      context_mapping: {  }
+  id: panels_variant
+  uuid: 2653bbb3-2b16-4bff-be79-fa53df891322
+  label: null
+  weight: 0
+  layout: panel_landing_left_sidebar
+  layout_settings: {  }
+  page_title: ''
+  storage_type: page_manager
+  storage_id: business_intelligence_benchmarking_reports-panels_variant-0
+  builder: standard
+page: business_intelligence_benchmarking_reports
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context:
+  class:
+    label: CLASS
+    type: string
+    description: ''
+    value: BENCHMARKING

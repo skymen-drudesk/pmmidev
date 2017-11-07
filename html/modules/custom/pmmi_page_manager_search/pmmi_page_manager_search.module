@@ -14,7 +14,7 @@ use Drupal\pmmi_page_manager_search\Entity\PageManagerSearch;
  * Implements hook_entity_insert().
  */
 function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
-  if ($entity->getEntityTypeId() == 'page_variant' && $entity->page !== 'site_template') {
+  if ($entity->getEntityTypeId() == 'page_variant') {
     // Load Page of PageVariant.
     $page = $entity->getPage();
 

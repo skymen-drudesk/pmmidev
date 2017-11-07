@@ -320,6 +320,29 @@ video_default_mode:
       label: Content
     links:
       label: Links
+report:
+  label: Report
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/report
+  regions:
+    image_header:
+      label: Image Header
+    left_block:
+      label: Left block
+    title:
+      label: Title
+    body:
+      label: Body
+    image:
+      label: Image
+    extended_info:
+      label: Links
+    member_price:
+      label: Member Price
+    non_member_price:
+      label: Non-Member Price
+    file_download_button:
+      label: File Download Button
 oneone:
   label: Column 1-up (1 row of 1 column)
   category: PMMI: Columns

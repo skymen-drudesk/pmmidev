@@ -1,8 +1,9 @@
-uuid: 478eef7d-554d-457e-89b8-1e90aa455b81
+uuid: 5048164c-d103-4a62-8706-2b8a06819b3e
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.full
     - field.field.node.report.body
     - field.field.node.report.field_available_from_date
     - field.field.node.report.field_category
@@ -19,23 +20,36 @@ dependencies:
     - responsive_image.styles.block_style_3
   module:
     - ds
+    - link
     - responsive_image
     - text
     - user
 third_party_settings:
   ds:
     layout:
-      id: default_mode
+      id: report
       library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
-      content:
-        - field_image
+      image_header:
+        - field_image_header
+      title:
         - node_title
+      body:
         - body
+      image:
+        - field_image
+      extended_info:
+        - field_links
+      member_price:
+        - field_member_price
+      non_member_price:
+        - field_non_member_price
+      file_download_button:
         - 'dynamic_token_field:node-download_report_link'
+        - field_note
     fields:
       node_title:
         plugin_id: node_title
@@ -54,13 +68,13 @@ third_party_settings:
             classes: {  }
       'dynamic_token_field:node-download_report_link':
         plugin_id: 'dynamic_token_field:node-download_report_link'
-        weight: 3
+        weight: 7
         label: hidden
         formatter: default
-id: node.report.default
+id: node.report.full
 targetEntityType: node
 bundle: report
-mode: default
+mode: full
 content:
   body:
     label: hidden
@@ -68,9 +82,9 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
-    region: content
+    region: body
   field_image:
-    weight: 0
+    weight: 3
     label: hidden
     settings:
       responsive_image_style: block_style_3
@@ -84,16 +98,76 @@ content:
             lb-col: false
             classes: {  }
     type: responsive_image
-    region: content
+    region: image
+  field_image_header:
+    weight: 0
+    label: hidden
+    settings:
+      link: true
+      view_mode: default
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: image_header
+  field_links:
+    weight: 4
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: extended_info
+  field_member_price:
+    weight: 5
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: true
+            classes: {  }
+    type: string
+    region: member_price
+  field_non_member_price:
+    weight: 6
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: true
+            classes: {  }
+    type: string
+    region: non_member_price
+  field_note:
+    weight: 8
+    label: inline
+    settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: '*Note'
+            lb-col: true
+            classes: {  }
+    type: text_default
+    region: file_download_button
 hidden:
   field_available_from_date: true
   field_category: true
-  field_image_header: true
   field_keywords: true
-  field_links: true
-  field_member_price: true
-  field_non_member_price: true
-  field_note: true
   field_product_id: true
   field_product_status_date: true
   links: true

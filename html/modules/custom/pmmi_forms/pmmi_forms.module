@@ -154,77 +154,7 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       }
 
       if ($form['#id'] === 'views-exposed-form-search-page-block-1') {
-        // Add pseudo checkboxes for converting radio elements to checkboxes.
-        // Default checkboxes do not allow to use both conditions there is conflict
-        // between them (e.g. Is one of `Article` and Is none of `Article`).
-        $form['page_types'] = [
-          '#type' => 'checkboxes',
-          '#options' => [
-            'press_releases' => 'Press Releases',
-            'pages' => 'Pages',
-          ],
-        ];
 
-        // Check if Page Type has not been selected yet and set default checkboxes
-        // as `All`.
-        // In $form_state->getValues() no values because this form use GET method
-        // and I can't to check this value by default Drupal Form API.
-        if (empty($_GET['page_type']) || $_GET['page_type'] === 'All') {
-          $form['page_types']['#attributes']['checked'] = TRUE;
-        }
-
-        // Set `All` if both checkboxes is checked or unchecked.
-        $form['page_type']['All']['#states'] = [
-          'checked' => [
-            [
-              ':input[name="page_types[press_releases]"]' => [
-                'checked' => TRUE,
-              ],
-              ':input[name="page_types[pages]"]' => [
-                'checked' => TRUE,
-              ],
-            ],
-            [
-              ':input[name="page_types[press_releases]"]' => [
-                'checked' => FALSE,
-              ],
-              ':input[name="page_types[pages]"]' => [
-                'checked' => FALSE,
-              ],
-            ],
-
-          ],
-        ];
-
-        // Set radio `Press Releases` checked if appropriate checkbox is set and
-        // another is not selected.
-        $form['page_type'][1]['#states'] = [
-          'checked' => [
-            ':input[name="page_types[press_releases]"]' => [
-              'checked' => TRUE,
-            ],
-            ':input[name="page_types[pages]"]' => [
-              'checked' => FALSE,
-            ],
-          ],
-        ];
-
-        // Set radio `Pages` checked if appropriate checkbox is set and another
-        // is not selected.
-        $form['page_type'][2]['#states'] = [
-          'checked' => [
-            ':input[name="page_types[pages]"]' => [
-              'checked' => TRUE,
-            ],
-            ':input[name="page_types[press_releases]"]' => [
-              'checked' => FALSE,
-            ],
-          ],
-        ];
-
-        // Attach library for hiding unnecessary legend element and aligning
-        // checkboxes;
-        $form['#attached']['library'][] = 'pmmi_forms/pmmi_forms';
       }
 
       if ($form['#id'] === 'views-exposed-form-membership-application-submissions-block-all') {
@@ -450,11 +380,17 @@ function pmmi_forms_views_pre_render(ViewExecutable $view) {
       if (!empty($result->_object)) {
         $entity = $result->_object->getValue();
         if ($entity instanceof Node) {
-          if ($entity->getType() == 'article') {
-            $entity->setTitle($entity->getTitle() . ' - Press Releases');
-          }
-          else {
-            $entity->setTitle($entity->getTitle() . ' - Page');
+          switch ($entity->getType()) {
+            case 'article':
+              $entity->setTitle($entity->getTitle() . ' - Press Releases');
+              break;
+
+            case 'report':
+              $entity->setTitle($entity->getTitle() . ' - Report');
+              break;
+
+            default:
+              $entity->setTitle($entity->getTitle() . ' - Page');
           }
         }
         elseif ($entity instanceof PageManagerSearch) {
