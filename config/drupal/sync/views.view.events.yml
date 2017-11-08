@@ -161,10 +161,11 @@ display:
           entity_type: block_content
           entity_field: type
           plugin_id: bundle
-        field_dates_value:
-          id: field_dates_value
+          group: 1
+        field_dates_end_value:
+          id: field_dates_end_value
           table: block_content__field_dates
-          field: field_dates_value
+          field: field_dates_end_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -173,7 +174,7 @@ display:
             min: ''
             max: ''
             value: now
-            type: offset
+            type: date
           group: 1
           exposed: false
           expose:
@@ -257,6 +258,10 @@ display:
           not: false
           plugin_id: numeric
       display_extenders: {  }
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
     cache_metadata:
       max-age: -1
       contexts:
