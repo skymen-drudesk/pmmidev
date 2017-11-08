@@ -2,6 +2,11 @@
 
 base="$(pwd)";
 dd_party_base="/var/www/vendor/summitmedia/dd-party"
+DEBUG_MODE=${DEBUG_MODE:-''}
+SITE_CODE=${SITE_CODE:-'pmmi'}
+SITE_ENVIRONMENT=${SITE_ENVIRONMENT:-'dev'}
+WEB_SERVICE=${WEB_SERVICE:-''}
+OSX=${OSX:-0}
 
 # Get environment variables.
 if [[ -f "$base/.env" ]]; then
@@ -20,11 +25,20 @@ webcontainer=${SITE_CODE}_prod_web
 if [ "$SITE_ENVIRONMENT" = "test" ]; then
   dockercompose='-f docker-compose.yml -f docker-compose.test.yml'
 elif [ "$SITE_ENVIRONMENT" = "dev" ]; then
-  dockercompose='-f docker-compose.yml -f docker-compose.override.yml'
+  dockercompose="-f docker-compose.yml -f docker-compose.override.yml"
+fi
+
+if [ "$DEBUG_MODE" = "xdebug" ]; then
+  dockercompose+=' -f docker-compose.xdebug.yml'
+elif [ "$DEBUG_MODE" = "blackfire" ]; then
+  dockercompose+=' -f docker-compose.blackfire.yml'
+  if [ "$OSX" = 1 ]; then
+    dockercompose+=' -f docker-compose.blackfire.osx.yml'
+  fi
 fi
 
 if [ "$OSX" = 1 ]; then
-  dockercompose="-f docker-compose.yml -f docker-compose.override.yml -f docker-compose.osx.yml"
+  dockercompose+=' -f docker-compose.osx.yml'
 fi
 
 echo "Setting up the $SITE_ENVIRONMENT environment using $dockercompose."
@@ -36,7 +50,7 @@ if [ "$confirm" != "y" ]; then
   exit 1
 fi
 
-echo 'Starting and building Docker containters.'
+echo 'Starting and building Docker containers.'
 docker-compose ${dockercompose} up -d --build
 
 if [ "$?" != "0" ]; then
