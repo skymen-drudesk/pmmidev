@@ -1,0 +1,23 @@
+.page-node-type-blog {
+  .node-title {
+    margin-bottom: 10px;
+  }
+  .field-name-node-post-date {
+    color: $grey;
+    font-style: italic;
+  }
+  .author-info {
+    &:before {
+      display: none;
+    }
+  }
+  .field-name-field-blog-tags {
+    color: $blue;
+    font-style: normal;
+    .field-label-inline {
+      color: black;
+      font-weight: bold;
+    }
+
+  }
+}
