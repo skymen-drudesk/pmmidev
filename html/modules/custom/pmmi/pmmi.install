@@ -150,3 +150,17 @@ function pmmi_update_8006() {
 function pmmi_update_8007() {
   \Drupal::service('module_installer')->uninstall(['search_api_bundle_boost']);
 }
+
+/**
+ * Update global_marketing-panels_variant-0 config module dependencies.
+ */
+function pmmi_update_8008() {
+  $config_factory = \Drupal::configFactory();
+  $config = $config_factory->getEditable('page_manager.page_variant.global_marketing-panels_variant-0');
+  $data = $config->getRawData();
+  if ($data['dependencies']['module'][1] == 'index_page_variant') {
+    $data['dependencies']['module'][1] = 'pmmi_page_manager_search';
+    $config->setData($data);
+    $config->save(TRUE);
+  }
+}
