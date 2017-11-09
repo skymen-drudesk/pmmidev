@@ -20697,6 +20697,29 @@ button.slick-arrow.slick-next {
   margin-bottom: 20px;
 }
 
+.page-node-type-blog .node-title {
+  margin-bottom: 10px;
+}
+
+.page-node-type-blog .field-name-node-post-date {
+  color: #8c8888;
+  font-style: italic;
+}
+
+.page-node-type-blog .author-info:before {
+  display: none;
+}
+
+.page-node-type-blog .field-name-field-blog-tags {
+  color: #004e75;
+  font-style: normal;
+}
+
+.page-node-type-blog .field-name-field-blog-tags .field-label-inline {
+  color: black;
+  font-weight: bold;
+}
+
 .cert-info {
   padding: 0;
   list-style: none;

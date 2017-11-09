@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+
+  pmmiweb:
+    image: pmguser/drupal-php7.0-apache:xdebug-latest
+    container_name: "${SITE_CODE}_dev_web_xdebug"

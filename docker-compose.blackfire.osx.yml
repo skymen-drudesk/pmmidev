@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  pmmiweb:
+  pmmiweb-blackfire:
     volumes:
       - pmmi-sync:/var/www:nocopy
 

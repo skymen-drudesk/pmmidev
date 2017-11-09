@@ -9,6 +9,8 @@ services:
   pmmiweb:
     container_name: "${SITE_CODE}_prod_web"
     image: pmguser/drupal-php7.0-apache:1.0.6
+    volumes:
+      - ./data:/var/lib/mysql
     restart: always
     ports:
       - "8084:80"

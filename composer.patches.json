@@ -9,7 +9,11 @@
       "Batch API should use the current theme to run the batches": "https://www.drupal.org/files/issues/wrong-route-check-539022-71.patch",
       "Complex job in ViewExecutable::unserialize() causes data corruption": "https://www.drupal.org/files/issues/nested-unserialization-workaround.patch",
       "Lock system is broken in many regards": "https://www.drupal.org/files/issues/lock_system_needs_a-2077827-49_0.patch",
-      "HtmlEscapedText object to string conversation error" : "https://www.drupal.org/files/issues/drupal_8_3_2_HtmlEscapedText_to_string_01.patch"
+      "HtmlEscapedText object to string conversation error" : "https://www.drupal.org/files/issues/drupal_8_3_2_HtmlEscapedText_to_string_01.patch",
+      "Twig - only search for templates in templates directory of themes": "patches/3879__twig__only_scan_templates_dir.patch"
+    },
+    "drupal/ds": {
+      "Only search for templates in templates directory of themes": "patches/3879__ds__only_scan_templates_dir.patch"
     },
     "drupal/page_manager": {
       "Don't call getCacheTagsToInvalidate() when null": "https://www.drupal.org/files/issues/2696345-2.patch",
