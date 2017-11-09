@@ -12,6 +12,8 @@ services:
       context: .
       dockerfile: Dockerfile-test
     restart: always
+    networks:
+      - front
     environment:
       VIRTUAL_HOST: pmmistaging.pmmimediagroup.com,staging.pmmi.org
 
@@ -47,3 +49,7 @@ services:
     ports:
       - 1025:1025
       - "8006:8025"
+
+networks:
+  front:
+    external: true
