@@ -26,6 +26,11 @@
 
             {{ field_render([content.links, 'links']) }}
 
+            <div class="prices">
+              {{ content.member_price }}
+              {{ content.non_member_price }}
+            </div>
+
             {{ field_render([content.file_download_button, 'download-link btn-prm-wrap']) }}
 
           </div>

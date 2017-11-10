@@ -19,6 +19,13 @@ use Drupal\Core\Url;
  */
 class OtherReports extends BlockBase {
 
+  /**
+   * {@inheritdoc}
+   */
+  public function __construct(array $configuration, $plugin_id, $plugin_definition) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition);
+
+  }
 
   /**
    * {@inheritdoc}
@@ -90,7 +97,8 @@ class OtherReports extends BlockBase {
    * Selects and returns the fieldset with the names in it.
    */
   public function addmoreCallback(array &$form, FormStateInterface $form_state) {
-    return $form['settings']['links'];
+    $form_settings = ($form['#form_id'] == 'panels_edit_block_form') ? $form['settings'] : $form;
+    return $form_settings['links'];
   }
 
   /**
@@ -99,7 +107,8 @@ class OtherReports extends BlockBase {
    * Increments the max counter and causes a rebuild.
    */
   public function addOne(array &$form, FormStateInterface $form_state) {
-    $count = $form_state->get('links_count') ?? count(Element::children($form['settings']['links']));
+    $form_settings = ($form['#form_id'] == 'panels_edit_block_form') ? $form['settings'] : $form;
+    $count = $form_state->get('links_count') ?? count(Element::children($form_settings['links']));
     $form_state->setValue('links_count', ++$count);
     $form_state->setRebuild();
   }
@@ -110,7 +119,8 @@ class OtherReports extends BlockBase {
    * Decrements the max counter and causes a rebuild.
    */
   public function removeOne(array &$form, FormStateInterface $form_state) {
-    $count = $form_state->get('links_count') ?? count(Element::children($form['settings']['links']));
+    $form_settings = ($form['#form_id'] == 'panels_edit_block_form') ? $form['settings'] : $form;
+    $count = $form_state->get('links_count') ?? count(Element::children($form_settings['links']));
     $form_state->setValue('links_count', --$count);
     $form_state->setRebuild();
   }
@@ -119,13 +129,14 @@ class OtherReports extends BlockBase {
    * {@inheritdoc}
    */
   public function blockValidate($form, FormStateInterface $form_state) {
+    $form_settings = ($form['#form_id'] == 'panels_edit_block_form') ? $form['settings'] : $form;
     $links = $form_state->getValue('links');
     foreach ($links as $key => $link) {
       if (empty($link['url']) && !empty($link['link_text'])) {
-        $form_state->setError($form['settings']['links'][$key]['url'], $this->t('Url is required.'));
+        $form_state->setError($form_settings['links'][$key]['url'], $this->t('Url is required.'));
       }
       elseif (!empty($link['url']) && empty($link['link_text'])) {
-        $form_state->setError($form['settings']['links'][$key]['link_text'], $this->t('Link text is required.'));
+        $form_state->setError($form_settings['links'][$key]['link_text'], $this->t('Link text is required.'));
       }
       elseif (empty($link['url'])) {
         unset($links[$key]);
@@ -151,10 +162,13 @@ class OtherReports extends BlockBase {
       $items = [];
       foreach ($links as $link) {
         $url = Url::fromUserInput($link['url']);
-        $items[] = Link::fromTextAndUrl($link['link_text'], $url);
+        $item = Link::fromTextAndUrl($link['link_text'], $url)->toRenderable();
+        $item['#wrapper_attributes'] = ['class' => 'linked-list-item'];
+        $items[] = $item;
       }
 
       $build['links'] = [
+        '#attributes' => ['class' => 'linked-list'],
         '#theme' => 'item_list',
         '#items' => $items,
       ];

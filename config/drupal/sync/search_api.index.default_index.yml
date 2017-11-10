@@ -7,9 +7,12 @@ dependencies:
     - field.storage.node.field_address
     - field.storage.node.field_news_category
     - field.storage.node.field_date
+    - field.storage.node.field_category
+    - field.storage.node.field_available_from_date
     - search_api.server.solr_server
   module:
     - search_api
+    - pmmi_reports
     - pmmi_search
     - node
     - pmmi_page_manager_search
@@ -25,6 +28,10 @@ field_settings:
     indexed_locked: true
     type_locked: true
     hidden: true
+  report_year:
+    label: 'Report available date(year)'
+    property_path: report_year
+    type: integer
   title:
     label: 'Title String'
     datasource_id: 'entity:node'
@@ -125,6 +132,22 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_date
+  field_category:
+    label: Category
+    datasource_id: 'entity:node'
+    property_path: field_category
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_category
+  field_available_from_date:
+    label: 'Available from date'
+    datasource_id: 'entity:node'
+    property_path: field_available_from_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_available_from_date
   content:
     label: Content
     datasource_id: 'entity:pmmi_page_manager_search'
@@ -148,9 +171,30 @@ datasource_settings:
       selected: {  }
   'entity:pmmi_page_manager_search': {  }
 processor_settings:
-  country: {  }
+  report_year: {  }
   pmmi_shows: {  }
   state: {  }
+  country: {  }
+  entity_status: {  }
+  aggregated_field: {  }
+  add_url: {  }
+  rendered_item: {  }
+  html_filter:
+    all_fields: false
+    fields:
+      - title_f
+      - body_f
+    title: true
+    alt: true
+    tags:
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      b: 2
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
   highlight:
     highlight: always
     highlight_partial: true
@@ -161,7 +205,20 @@ processor_settings:
     suffix: '</strong>'
     weights:
       postprocess_query: 0
-  add_url: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
+  tokenizer:
+    all_fields: false
+    fields:
+      - title_f
+      - body_f
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
   ignore_character:
     all_fields: false
     fields:
@@ -194,48 +251,6 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
-  tokenizer:
-    all_fields: false
-    fields:
-      - title_f
-      - body_f
-    spaces: ''
-    overlap_cjk: 1
-    minimum_word_size: '3'
-    weights:
-      preprocess_index: -6
-      preprocess_query: -6
-  html_filter:
-    all_fields: false
-    fields:
-      - title_f
-      - body_f
-    title: true
-    alt: true
-    tags:
-      h1: 5
-      h2: 3
-      h3: 2
-      strong: 2
-      b: 2
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-  content_access:
-    weights:
-      preprocess_query: -30
-  aggregated_field: {  }
-  rendered_item: {  }
-  entity_status: {  }
-  ignorecase:
-    all_fields: false
-    fields:
-      - title
-      - title_f
-      - body_f
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
   stemmer:
     all_fields: false
     fields:
@@ -262,6 +277,15 @@ processor_settings:
         datasource_boost: !!float 21
     weights:
       preprocess_index: 0
+  ignorecase:
+    all_fields: false
+    fields:
+      - title
+      - title_f
+      - body_f
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
 tracker_settings:
   default: {  }
 options:

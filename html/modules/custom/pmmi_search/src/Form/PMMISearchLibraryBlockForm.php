@@ -17,6 +17,13 @@ class PMMISearchLibraryBlockForm extends PMMISearchBlockForm {
   /**
    * {@inheritdoc}
    */
+  public function getFormId() {
+    return 'pmmi_search_library_block_form';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function buildForm(array $form, FormStateInterface $form_state, $data = NULL) {
     if (empty($data)) {
       $form['message'] = array(

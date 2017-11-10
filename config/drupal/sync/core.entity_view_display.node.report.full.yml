@@ -8,7 +8,6 @@ dependencies:
     - field.field.node.report.field_available_from_date
     - field.field.node.report.field_category
     - field.field.node.report.field_image
-    - field.field.node.report.field_image_header
     - field.field.node.report.field_keywords
     - field.field.node.report.field_links
     - field.field.node.report.field_member_price
@@ -16,12 +15,12 @@ dependencies:
     - field.field.node.report.field_note
     - field.field.node.report.field_product_id
     - field.field.node.report.field_product_status_date
+    - image.style.download_page
     - node.type.report
-    - responsive_image.styles.block_style_3
   module:
     - ds
+    - image
     - link
-    - responsive_image
     - text
     - user
 third_party_settings:
@@ -34,14 +33,16 @@ third_party_settings:
       settings: {  }
     regions:
       image_header:
-        - field_image_header
+        - 'dynamic_block_field:node-reports_header'
+      left_block:
+        - 'dynamic_block_field:node-other_reports_and_research'
       title:
         - node_title
       body:
         - body
       image:
         - field_image
-      extended_info:
+      links:
         - field_links
       member_price:
         - field_member_price
@@ -53,7 +54,7 @@ third_party_settings:
     fields:
       node_title:
         plugin_id: node_title
-        weight: 1
+        weight: 2
         label: hidden
         formatter: default
         settings:
@@ -66,9 +67,19 @@ third_party_settings:
             lb: ''
             lb-col: false
             classes: {  }
+      'dynamic_block_field:node-other_reports_and_research':
+        plugin_id: 'dynamic_block_field:node-other_reports_and_research'
+        weight: 1
+        label: above
+        formatter: default
+      'dynamic_block_field:node-reports_header':
+        plugin_id: 'dynamic_block_field:node-reports_header'
+        weight: 0
+        label: hidden
+        formatter: default
       'dynamic_token_field:node-download_report_link':
         plugin_id: 'dynamic_token_field:node-download_report_link'
-        weight: 7
+        weight: 8
         label: hidden
         formatter: default
 id: node.report.full
@@ -79,15 +90,15 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     region: body
   field_image:
-    weight: 3
+    weight: 4
     label: hidden
     settings:
-      responsive_image_style: block_style_3
+      image_style: download_page
       image_link: content
     third_party_settings:
       ds:
@@ -97,19 +108,12 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
+    type: image
     region: image
-  field_image_header:
-    weight: 0
-    label: hidden
-    settings:
-      link: true
-      view_mode: default
-    third_party_settings: {  }
-    type: entity_reference_entity_view
-    region: image_header
   field_links:
-    weight: 4
+    type: link
+    weight: 5
+    region: links
     label: hidden
     settings:
       trim_length: 80
@@ -118,10 +122,8 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
-    region: extended_info
   field_member_price:
-    weight: 5
+    weight: 6
     label: inline
     settings:
       link_to_entity: false
@@ -136,7 +138,7 @@ content:
     type: string
     region: member_price
   field_non_member_price:
-    weight: 6
+    weight: 7
     label: inline
     settings:
       link_to_entity: false
@@ -151,7 +153,7 @@ content:
     type: string
     region: non_member_price
   field_note:
-    weight: 8
+    weight: 9
     label: inline
     settings: {  }
     third_party_settings:

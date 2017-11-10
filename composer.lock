@@ -5848,6 +5848,9 @@
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
                     }
+                },
+                "patches_applied": {
+                    "Missing array keys cause notices": "https://www.drupal.org/files/issues/missing_array_keys-2921195-3.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",

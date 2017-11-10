@@ -221,9 +221,21 @@ display:
           group_type: group
           admin_label: ''
           order: DESC
-          exposed: false
+          exposed: true
           expose:
             label: 'Most Relevant'
+          plugin_id: search_api
+        changed:
+          id: changed
+          table: search_api_index_default_index
+          field: changed
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: true
+          expose:
+            label: 'Most Recent'
           plugin_id: search_api
       title: 'Search Page'
       header: {  }
@@ -251,6 +263,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'url.query_args:sort_by'
       tags:
         - 'config:field.storage.node.body'
   block_1:
@@ -344,6 +357,8 @@ display:
           fields:
             title_f: title_f
             body_f: body_f
+            content: content
+            title_1: title_1
           plugin_id: search_api_fulltext
         type:
           id: type
@@ -362,7 +377,7 @@ display:
             description: null
             use_operator: false
             operator: type_op
-            identifier: type
+            identifier: page_type
             required: false
             remember: false
             multiple: true
@@ -371,7 +386,7 @@ display:
             reduce: false
           is_grouped: true
           group_info:
-            label: '<none>'
+            label: 'Page type'
             description: '<none>'
             identifier: page_type
             optional: true
@@ -695,6 +710,7 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'url.query_args:sort_by'
       tags:
         - 'config:field.storage.node.body'
   page_1:
@@ -711,6 +727,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - 'url.query_args:sort_by'
       tags:
         - 'config:field.storage.node.body'
   reports_search:
@@ -732,6 +749,7 @@ display:
         sorts: false
         title: false
         pager: false
+        arguments: false
       row:
         type: search_api
         options:
@@ -742,9 +760,11 @@ display:
               blog: ''
               certification_test: default
               download: default
-              report: teaser
+              report: default
               school: default
               video: default
+            'entity:pmmi_page_manager_search':
+              pmmi_page_manager_search: default
       filters:
         type:
           id: type
@@ -885,6 +905,53 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: search_api_term
+        report_year:
+          id: report_year
+          table: search_api_index_default_index
+          field: report_year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: report_year_op
+            label: 'Report available date(year)'
+            description: ''
+            use_operator: false
+            operator: report_year_op
+            identifier: year
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              manager: '0'
+              sales_agent_admin: '0'
+              pmmi_member: '0'
+              staff: '0'
+              membership_committee: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_numeric
       filter_groups:
         operator: AND
         groups:
@@ -919,7 +986,7 @@ display:
       pager:
         type: full
         options:
-          items_per_page: 10
+          items_per_page: 20
           offset: 0
           id: 0
           total_pages: null
@@ -937,6 +1004,7 @@ display:
             offset: false
             offset_label: Offset
           quantity: 9
+      arguments: {  }
     cache_metadata:
       max-age: -1
       contexts:

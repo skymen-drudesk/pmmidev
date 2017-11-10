@@ -100,6 +100,20 @@ panel_landing_left_sidebar:
       label: Left sidebar
     main:
       label: Main content
+panel_landing_left_sidebar_collapsible:
+  label: Landing with left sidebar collapsible
+  category: PMMI: Layouts
+  class: '\Drupal\pmmi\Plugin\CollapsibleLayout'
+  template: templates/layouts/panels/landing-left-sidebar-collapsible
+  regions:
+    top:
+      label: Top content
+    head:
+      label: Head content
+    sidebar:
+      label: Left sidebar
+    main:
+      label: Main content
 
 default_mode:
   label: Default (view mode)
@@ -335,7 +349,7 @@ report:
       label: Body
     image:
       label: Image
-    extended_info:
+    links:
       label: Links
     member_price:
       label: Member Price

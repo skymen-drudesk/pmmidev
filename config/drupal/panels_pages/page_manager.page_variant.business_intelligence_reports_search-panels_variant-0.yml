@@ -6,7 +6,10 @@ dependencies:
     - page_manager.page.business_intelligence_reports_search
     - taxonomy.vocabulary.report_type
     - views.view.search_page
+  content:
+    - 'block_content:image_header:51ab98af-c4bf-40ac-9d7b-46e09f6e7e05'
   module:
+    - block_content
     - panels
     - pmmi_reports
     - pmmi_search
@@ -24,7 +27,7 @@ variant_settings:
       views_label: ''
       items_per_page: none
       region: main
-      weight: 0
+      weight: -9
       uuid: bb1b2084-c3a7-4767-9c72-f20b8d031c0c
       context_mapping: {  }
     c559582c-bccc-4a44-9f81-2f716045dae6:
@@ -46,7 +49,7 @@ variant_settings:
           url: /business-intelligence/international-research
           link_text: 'International Research'
       region: sidebar
-      weight: 0
+      weight: -1
       uuid: c559582c-bccc-4a44-9f81-2f716045dae6
       context_mapping: {  }
     78395650-3f47-47c1-a982-37c0a3ea66bc:
@@ -71,16 +74,40 @@ variant_settings:
       fallback_title: 'Reports Search'
       search_path: 'internal:/business-intelligence/search'
       search_identifier: text
-      region: main
+      region: head
       weight: -1
       uuid: 2faeffe0-59f8-48c7-85aa-4c93ed6fd58a
+      context_mapping: {  }
+    39c5f74f-d55f-4985-8d6b-64ace11c66bf:
+      id: reports_years
+      label: Archives
+      provider: pmmi_reports
+      label_display: '0'
+      personify_class: ''
+      select_type: query
+      region: sidebar
+      weight: -2
+      uuid: 39c5f74f-d55f-4985-8d6b-64ace11c66bf
+      context_mapping: {  }
+    a2a71e33-30f4-4ed2-96ae-e29c225ab221:
+      id: 'block_content:51ab98af-c4bf-40ac-9d7b-46e09f6e7e05'
+      label: 'Business Intelligence - Reports'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: a2a71e33-30f4-4ed2-96ae-e29c225ab221
       context_mapping: {  }
   id: panels_variant
   uuid: 96b3d202-4a1d-40e4-b141-4419fcc821d2
   label: null
   weight: 0
-  layout: panel_landing_left_sidebar
-  layout_settings: {  }
+  layout: panel_landing_left_sidebar_collapsible
+  layout_settings:
+    query_params: 'category, year, text'
   page_title: ''
   storage_type: page_manager
   storage_id: business_intelligence_reports_search-panels_variant-0

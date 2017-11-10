@@ -6,7 +6,10 @@ dependencies:
     - page_manager.page.business_intelligence_economic_reports
     - taxonomy.vocabulary.report_type
     - views.view.reports
+  content:
+    - 'block_content:image_header:51ab98af-c4bf-40ac-9d7b-46e09f6e7e05'
   module:
+    - block_content
     - panels
     - pmmi_reports
     - pmmi_search
@@ -22,6 +25,7 @@ variant_settings:
       provider: pmmi_reports
       label_display: visible
       personify_class: ECONOMIC-TRENDS
+      select_type: class
       region: sidebar
       weight: 0
       uuid: d4360279-e1a1-47a2-a3e9-b692d73eb8eb
@@ -47,10 +51,10 @@ variant_settings:
       context_mapping: {  }
     82a78caf-6303-4d36-92d5-268f8885708f:
       id: 'views_block:reports-reports_category'
-      label: 'Economic Reports'
+      label: ''
       provider: views
-      label_display: visible
-      views_label: 'Economic Reports'
+      label_display: '0'
+      views_label: ''
       items_per_page: none
       region: main
       weight: 0
@@ -70,12 +74,35 @@ variant_settings:
       weight: 0
       uuid: 1c8057d7-53c0-46b3-978e-d47756ed8339
       context_mapping: {  }
+    7536aa02-4cc1-416b-a16a-fabb6ac8173f:
+      id: reports_title
+      label: null
+      provider: pmmi_reports
+      label_display: null
+      title: 'Economic Reports'
+      region: head
+      weight: 0
+      uuid: 7536aa02-4cc1-416b-a16a-fabb6ac8173f
+      context_mapping: {  }
+    0cd67568-7ed9-4c34-9904-34b90850766a:
+      id: 'block_content:51ab98af-c4bf-40ac-9d7b-46e09f6e7e05'
+      label: 'Business Intelligence - Reports'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: 0cd67568-7ed9-4c34-9904-34b90850766a
+      context_mapping: {  }
   id: panels_variant
   uuid: ebeda211-ecb2-455d-ae66-22deb7bc2f53
   label: null
   weight: 0
-  layout: panel_landing_left_sidebar
-  layout_settings: {  }
+  layout: panel_landing_left_sidebar_collapsible
+  layout_settings:
+    query_params: 'category, year, text'
   page_title: ''
   storage_type: page_manager
   storage_id: business_intelligence_economic_reports-panels_variant-0

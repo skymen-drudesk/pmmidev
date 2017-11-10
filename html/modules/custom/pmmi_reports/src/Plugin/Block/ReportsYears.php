@@ -26,6 +26,7 @@ class ReportsYears extends BlockBase {
   public function defaultConfiguration() {
     return [
       'personify_class' => '',
+      'select_type' => 'class',
     ] + parent::defaultConfiguration();
   }
 
@@ -33,12 +34,27 @@ class ReportsYears extends BlockBase {
    * {@inheritdoc}
    */
   public function blockForm($form, FormStateInterface $form_state) {
+    $form['select_type'] = [
+      '#type' => 'radios',
+      '#options' => [
+        'class' => $this->t('By personify class ID'),
+        'query' => $this->t('By context(query param)'),
+      ],
+      '#default_value' => $this->configuration['select_type'],
+    ];
     $form['personify_class'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Personify Class'),
       '#description' => $this->t('Personify category class, i.e. <em>BENCHMARKING, ECONOMIC-TRENDS, INDUSTRY-RPTS, INTL-RESEARCH</em>.'),
       '#default_value' => $this->configuration['personify_class'],
-      '#required' => TRUE,
+      '#states' => [
+        'required' => [
+          ':input[name*="select_type"]' => ['value' => 'class'],
+        ],
+        'visible' => [
+          ':input[name*="select_type"]' => ['value' => 'class'],
+        ],
+      ],
     ];
 
     return $form;
@@ -49,6 +65,7 @@ class ReportsYears extends BlockBase {
    */
   public function blockSubmit($form, FormStateInterface $form_state) {
     $this->configuration['personify_class'] = $form_state->getValue('personify_class');
+    $this->configuration['select_type'] = $form_state->getValue('select_type');
   }
 
   /**
@@ -56,21 +73,42 @@ class ReportsYears extends BlockBase {
    */
   public function build() {
     $build = [];
-    // Get term id by personify product class.
-    $tid = PMMIReportsQueue::getTermIdByProductClass($this->configuration['personify_class']);
+    // Get term id by personify product class or from query.
+    $is_query_select = $this->configuration['select_type'] == 'query';
+    if ($is_query_select) {
+      $tid = \Drupal::request()->query->get('category');
+    }
+    else {
+      $tid = PMMIReportsQueue::getTermIdByProductClass($this->configuration['personify_class']);
+    }
     if (!$tid) {
       return $build;
     }
     $term = Term::load($tid);
     if ($years = $this->getYearsList($tid)) {
+      if ($is_query_select) {
+        $term_name = explode(' ', trim($term->getName()));
+        $build['title'] = [
+          '#markup' => $this->t('@name Archives', ['@name' => $term_name[0]]),
+          '#prefix' => '<h2 class="block-title sidehead1">',
+          '#suffix' => '</h2>',
+        ];
+      }
       $items = [];
       $current_path = \Drupal::service('path.current')->getPath();
+      $query = \Drupal::request()->query->all();
+      // Unset pager get param to prevent "No results" issue.
+      unset($query['page']);
       foreach ($years as $year) {
-        $url = Url::fromUserInput($current_path, ['query' => ['year' => $year]]);
-        $items[] = Link::fromTextAndUrl($term->getName() . ' ' . $year, $url);
+        $query['year'] = $year;
+        $url = Url::fromUserInput($current_path, ['query' => $query]);
+        $item = Link::fromTextAndUrl($term->getName() . ' ' . $year, $url)->toRenderable();
+        $item['#wrapper_attributes'] = ['class' => 'linked-list-item'];
+        $items[] = $item;
       }
 
       $build['years'] = [
+        '#attributes' => ['class' => 'linked-list'],
         '#theme' => 'item_list',
         '#items' => $items,
       ];

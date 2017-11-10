@@ -354,6 +354,14 @@ function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array
           $suggestions[] = 'block__header_search';
         }
         break;
+
+      case 'pmmi_search_library_block':
+      case 'other_reports':
+      case 'reports_years':
+        if ($variables['elements']['#configuration']['region'] == 'sidebar') {
+          $suggestions[] = 'block__sidebar';
+        }
+        break;
     }
     if ($variables['elements']['#base_plugin_id'] == 'system_menu_block'
     && $variables['elements']['#configuration']['region'] == 'header_main_nav') {

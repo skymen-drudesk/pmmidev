@@ -6,7 +6,10 @@ dependencies:
     - page_manager.page.business_intelligence_benchmarking_reports
     - taxonomy.vocabulary.report_type
     - views.view.reports
+  content:
+    - 'block_content:image_header:51ab98af-c4bf-40ac-9d7b-46e09f6e7e05'
   module:
+    - block_content
     - panels
     - pmmi_reports
     - pmmi_search
@@ -22,6 +25,7 @@ variant_settings:
       provider: pmmi_reports
       label_display: visible
       personify_class: BENCHMARKING
+      select_type: class
       region: sidebar
       weight: -1
       link_prefix: 'Benchmarking Reports'
@@ -50,10 +54,10 @@ variant_settings:
       context_mapping: {  }
     24283dc0-7117-4617-9f5b-070d45c5d658:
       id: 'views_block:reports-reports_category'
-      label: 'Benchmarking reports'
+      label: ''
       provider: views
-      label_display: visible
-      views_label: 'Benchmarking reports'
+      label_display: '0'
+      views_label: ''
       items_per_page: none
       region: main
       weight: 0
@@ -73,12 +77,35 @@ variant_settings:
       weight: 0
       uuid: 6cbed15d-46d9-4c9f-a2c1-d81aa591f000
       context_mapping: {  }
+    851e02eb-6d2d-41ab-962c-2b7e86660c1a:
+      id: reports_title
+      label: null
+      provider: pmmi_reports
+      label_display: null
+      title: 'Benchmarking reports'
+      region: head
+      weight: -2
+      uuid: 851e02eb-6d2d-41ab-962c-2b7e86660c1a
+      context_mapping: {  }
+    f03307dc-eaea-42ea-9594-8ea69b258f0e:
+      id: 'block_content:51ab98af-c4bf-40ac-9d7b-46e09f6e7e05'
+      label: 'Business Intelligence - Reports'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: f03307dc-eaea-42ea-9594-8ea69b258f0e
+      context_mapping: {  }
   id: panels_variant
   uuid: 2653bbb3-2b16-4bff-be79-fa53df891322
   label: null
   weight: 0
-  layout: panel_landing_left_sidebar
-  layout_settings: {  }
+  layout: panel_landing_left_sidebar_collapsible
+  layout_settings:
+    query_params: 'category, year, text'
   page_title: ''
   storage_type: page_manager
   storage_id: business_intelligence_benchmarking_reports-panels_variant-0

@@ -153,8 +153,15 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
         }
       }
 
-      if ($form['#id'] === 'views-exposed-form-search-page-block-1') {
-
+      if ($form['#id'] === 'views-exposed-form-search-page-block-1' && isset($form['page_type'])) {
+        $form['page_type']['#weight'] = 3;
+        $get_params = \Drupal::request()->query->all();
+        if (empty($get_params['page_type']) || $get_params['page_type'] === 'All') {
+          $form['page_type']['#attributes']['checked'] = TRUE;
+        }
+        // Attach library for hiding unnecessary legend element and aligning
+        // checkboxes.
+        $form['#attached']['library'][] = 'pmmi_forms/pmmi_forms';
       }
 
       if ($form['#id'] === 'views-exposed-form-membership-application-submissions-block-all') {
@@ -377,8 +384,8 @@ function pmmi_forms_menu_local_tasks_alter(&$data, $route_name) {
 function pmmi_forms_views_pre_render(ViewExecutable $view) {
   if ($view->id() === 'search_page' && $view->current_display === 'block_1') {
     foreach ($view->result as $result) {
-      if (!empty($result->_object)) {
-        $entity = $result->_object->getValue();
+      if ($object = $result->_item->getOriginalObject()) {
+        $entity = $object->getValue();
         if ($entity instanceof Node) {
           switch ($entity->getType()) {
             case 'article':

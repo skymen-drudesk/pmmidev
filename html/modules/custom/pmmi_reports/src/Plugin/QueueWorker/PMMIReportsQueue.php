@@ -142,7 +142,7 @@ class PMMIReportsQueue extends QueueWorkerBase implements ContainerFactoryPlugin
     return [
       'title' => $data['title'],
       'body' => [
-        'value' => $this->lowerTags($data['body']),
+        'value' => !empty($data['body']) ? $this->lowerTags($data['body']) : $data['title'],
         'summary' => $this->lowerTags($data['summary']),
         'format' => 'full_html',
       ],
@@ -220,15 +220,17 @@ class PMMIReportsQueue extends QueueWorkerBase implements ContainerFactoryPlugin
         $drupal_uri = $directory_path . '/' . $filename;
         if (!file_exists($drupal_uri) || $resave) {
           file_prepare_directory($directory_path, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
-          $data = file_get_contents($img_path);
+          $data = ($resave && file_exists($drupal_uri))
+            ? file_get_contents($drupal_uri)
+            : file_get_contents($img_path);
           $file = file_save_data($data, $drupal_uri, FILE_EXISTS_REPLACE);
         }
         elseif ($file = \Drupal::entityTypeManager()->getStorage('file')->loadByProperties(['uri' => $drupal_uri])) {
           $file = reset($file);
         }
         else {
-          // Re-save file if physically exists but not stored in DB.
-          $this->getImage($filename, TRUE);
+          // Re-save file if it physically exists but not stored in DB.
+          $fid = $this->getImage($filename, TRUE);
         }
         if (!empty($file)) {
           $fid = $file->id();
