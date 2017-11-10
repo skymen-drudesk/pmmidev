@@ -12,6 +12,18 @@
   @include tablet-max {
     padding-top: 10px;
   }
+  header.navbar.navbar-default {
+    @include dhd {
+      max-width: 1361px;
+    }
+    @include desktop {
+      max-width: 972px;
+      padding: 0 10px;
+    }
+    @include mobile {
+      max-width: 716px;
+    }
+  }
   &.below-fold {
     position: fixed;
     background: #fff;
@@ -27,9 +39,6 @@
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
-  @include desktop {
-    padding: 0 10px;
-  }
   div.logo {
     padding: 0;
     position: absolute;
