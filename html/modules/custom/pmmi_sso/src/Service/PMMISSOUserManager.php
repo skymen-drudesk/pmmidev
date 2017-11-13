@@ -209,6 +209,7 @@ class PMMISSOUserManager {
       // be created.
       $sso_pre_register_event = new PMMISSOPreRegisterEvent($property_bag);
       $this->eventDispatcher->dispatch(PMMISSOHelper::EVENT_PRE_REGISTER, $sso_pre_register_event);
+      $sso_pre_register_event->setAllowAutomaticRegistration(TRUE);
       if ($sso_pre_register_event->getAllowAutomaticRegistration()) {
         // Check if the user exists.
         if ($exist_account = $this->userStorage->loadByProperties(['init' => $sso_pre_register_event->getDrupalUsername()])) {

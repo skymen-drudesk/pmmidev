@@ -11,7 +11,6 @@ services:
     expose:
       - "3306"
     volumes:
-      - ./data:/var/lib/mysql
       - ./config/mysql/config:/etc/mysql/conf.d
     environment:
       MYSQL_ROOT_PASSWORD: rootpasswd
@@ -24,11 +23,8 @@ services:
     depends_on:
       - pmmidb
       - pmmisolr
-    links:
-      - pmmidb
-      - pmmisolr
     networks:
-      - front
+      - default
       - back
     ports:
       - "8084:80"
@@ -54,5 +50,8 @@ services:
 networks:
   back:
     driver: bridge
-  front:
-    external: true
+  #front:
+  #  external: true
+
+volumes:
+  mysql_data:

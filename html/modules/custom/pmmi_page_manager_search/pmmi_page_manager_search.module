@@ -8,6 +8,7 @@
 
 use Drupal\Core\Form\FormState;
 use Drupal\page_manager\Entity\Page;
+use Drupal\page_manager\Entity\PageVariant;
 use Drupal\pmmi_page_manager_search\Entity\PageManagerSearch;
 
 /**
@@ -16,6 +17,7 @@ use Drupal\pmmi_page_manager_search\Entity\PageManagerSearch;
 function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
   if ($entity->getEntityTypeId() == 'page_variant') {
     // Load Page of PageVariant.
+    /** @var $page \Drupal\page_manager\Entity\Page */
     $page = $entity->getPage();
 
     // Check if need to index this PageVariant.
