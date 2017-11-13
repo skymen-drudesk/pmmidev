@@ -6,13 +6,13 @@
  * Main file of module.
  */
 
-use Drupal\Core\Form\FormState;
-use Drupal\page_manager\Entity\Page;
 use Drupal\page_manager\Entity\PageVariant;
 use Drupal\pmmi_page_manager_search\Entity\PageManagerSearch;
 
 /**
  * Implements hook_entity_insert().
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
  */
 function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
   if ($entity->getEntityTypeId() == 'page_variant') {
@@ -20,8 +20,14 @@ function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterfa
     /** @var $page \Drupal\page_manager\Entity\Page */
     $page = $entity->getPage();
 
+    // Get index_page_variant value
+    $index_page_value = $entity->getThirdPartySetting('pmmi_page_manager_search', 'index_page_variant');
+
     // Check if need to index this PageVariant.
-    if ($entity->get('third_party_settings')['index_page_variant'] === 1 && $page->id() !== 'site_template') {
+    $index_page_variant = isset($index_page_value) ? $index_page_value : 1;
+
+    // Check if need to index this PageVariant.
+    if ($index_page_variant === 1 && $page->id() !== 'site_template') {
       $render = \Drupal::entityTypeManager()
         ->getViewBuilder('page_variant')
         ->view($entity);
@@ -41,25 +47,74 @@ function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterfa
 }
 
 /**
+ * Implements hook_entity_presave().
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ */
+function pmmi_page_manager_search_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity instanceof PageVariant) {
+    // Load Page of PageVariant.
+    /** @var $page \Drupal\page_manager\Entity\Page */
+    $page = $entity->getPage();
+
+    // Get index_page_variant value
+    $index_page_value = $entity->getThirdPartySetting('pmmi_page_manager_search', 'index_page_variant');
+
+    // Check if need to index this PageVariant.
+    $index_page_variant = isset($index_page_value) ? $index_page_value : 1;
+
+    // Check Page id.
+    if ($page->id() === 'site_template') {
+      $index_page_variant = 0;
+    }
+
+    // Check if PageVariant has additional context (e.g. node_type etc.).
+    $context = $entity->getContexts();
+    if (isset($context['current_user'])
+      && isset($context['language_interface'])
+      && count($context) > 2) {
+      $index_page_variant = 0;
+    }
+
+    // Remove wrong third_party_settings (index_page_variant).
+    $third_party_settings = $entity->get('third_party_settings');
+    unset($third_party_settings['index_page_variant']);
+    $entity->set('third_party_settings', $third_party_settings);
+
+    // Set right third_party_settings.
+    $entity->setThirdPartySetting('pmmi_page_manager_search', 'index_page_variant', $index_page_variant);
+
+    // Get entity dependencies and remove `index_page_variant` module.
+    $dependencies = $entity->get('dependencies');
+    if (($key = array_search('index_page_variant', $dependencies['module'])) !== FALSE) {
+      unset($dependencies['module'][$key]);
+    }
+
+    $entity->set('dependencies', $dependencies);
+  }
+}
+
+/**
  * Implements hook_entity_update().
  *
  * @param \Drupal\Core\Entity\EntityInterface $entity
  */
 function pmmi_page_manager_search_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
-  if ($entity->getEntityTypeId() == 'page_variant') {
+  if ($entity instanceof PageVariant) {
     // Load Page of PageVariant.
+    /** @var $page \Drupal\page_manager\Entity\Page */
     $page = $entity->getPage();
+
+    // Get index_page_variant value
+    $index_page_value = $entity->getThirdPartySetting('pmmi_page_manager_search', 'index_page_variant');
+
     // Check if need to index this PageVariant.
-    $index_page_variant = (
-    isset($entity->get('third_party_settings')['index_page_variant'])
-      ? $entity->get('third_party_settings')['index_page_variant']
-      : 1
-    );
+    $index_page_variant = isset($index_page_value) ? $index_page_value : 1;
+
     if ($index_page_variant === 1 && $page->id() !== 'site_template') {
       $existing_page_manager_search = \Drupal::entityQuery('pmmi_page_manager_search')
         ->condition('pid', $entity->id())
         ->execute();
-
 
       // Get rendered PageVariant content.
       $render = \Drupal::entityTypeManager()
@@ -105,9 +160,11 @@ function pmmi_page_manager_search_entity_update(Drupal\Core\Entity\EntityInterfa
 
 /**
  * Implements hook_entity_delete().
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
  */
 function pmmi_page_manager_search_entity_delete(Drupal\Core\Entity\EntityInterface $entity) {
-  if ($entity->getEntityTypeId() == 'page_variant') {
+  if ($entity instanceof PageVariant) {
     $existing_page_manager_search = \Drupal::entityQuery('pmmi_page_manager_search')
       ->condition('pid', $entity->id())
       ->execute();
@@ -122,6 +179,10 @@ function pmmi_page_manager_search_entity_delete(Drupal\Core\Entity\EntityInterfa
 
 /**
  * Implements hook_form_alter().
+ *
+ * @param $form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ * @param $form_id
  */
 function pmmi_page_manager_search_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   // Add new checkbox with config.
@@ -130,11 +191,11 @@ function pmmi_page_manager_search_form_alter(&$form, \Drupal\Core\Form\FormState
     /** @var $page_variant \Drupal\page_manager\Entity\PageVariant */
     $page_variant = $cached_values['page_variant'];
 
-    $index_page_variant = (
-      isset($page_variant->get('third_party_settings')['index_page_variant'])
-        ? $page_variant->get('third_party_settings')['index_page_variant']
-        : 1
-    );
+    // Get index_page_variant value
+    $index_page_value = $page_variant->getThirdPartySetting('pmmi_page_manager_search', 'index_page_variant');
+
+    // Check if need to index this PageVariant.
+    $index_page_variant = isset($index_page_value) ? $index_page_value: 1;
 
     if ($cached_values['id'] !== 'site_template') {
       $form['variant_settings']['include_in_search_results'] = [
@@ -152,14 +213,18 @@ function pmmi_page_manager_search_form_alter(&$form, \Drupal\Core\Form\FormState
 
 /**
  * Add new settings for PageVariant.
+ *
  * @param $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  */
 function pmmi_page_manager_search_page_variant_submit($form, \Drupal\Core\Form\FormStateInterface $form_state) {
   $cached_values = $form_state->getTemporaryValue('wizard');
+
   /** @var $page_variant \Drupal\page_manager\Entity\PageVariant */
   $page_variant = $cached_values['page_variant'];
   $index_page_variant = $form_state->getValue('variant_settings')['include_in_search_results'];
-  $page_variant->set('third_party_settings', ['index_page_variant' => $index_page_variant]);
+
+  $page_variant->setThirdPartySetting('pmmi_page_manager_search', 'index_page_variant', $index_page_variant);
+
   $page_variant->save();
 }

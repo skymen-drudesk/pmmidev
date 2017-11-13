@@ -26,16 +26,16 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *    "label" = "name",
  *    "uuid" = "uuid"
  *   },
+ *   fieldable = FALSE,
  *   handlers = {
  *     "view_builder" = "Drupal\Core\Entity\EntityViewBuilder",
  *     "list_builder" = "Drupal\pmmi_page_manager_search\PageManagerSearchEntityListBuilder",
  *     "views_data" = "Drupal\pmmi_page_manager_search\Entity\PageManagerSearchEntityViewsData",
  *   },
  *   links = {
- *     "canonical" = "/page-manager-search/{pmmi_page_manager_search}"
+ *     "canonical" = "/page-manager-search/{pmmi_page_manager_search}",
  *  },
  *  admin_permission = "administer Page Manager Search entity",
- *  field_ui_base_route = "pmmi_page_manager_search.settings"
  * )
  */
 class PageManagerSearch extends ContentEntityBase implements ContentEntityInterface {
