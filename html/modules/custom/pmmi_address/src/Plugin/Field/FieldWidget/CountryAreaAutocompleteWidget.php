@@ -107,6 +107,15 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $field_name = $this->fieldDefinition->getName();
     $selected = $this->getSelectedOptions($items);
+    $input = $form_state->getUserInput();
+    if (empty($selected['countries']) && empty($selected['areas'])) {
+      if (!empty($input['field_territory_served']['country_code'])) {
+        $selected['countries'] = $input['field_territory_served']['country_code'];
+      }
+      if (!empty($input['field_territory_served']['administrative_area'])) {
+        $selected['areas'] = $input['field_territory_served']['administrative_area'];
+      }
+    }
 
     $id_prefix = implode('-', array_merge($element['#field_parents'], [$field_name]));
     $wrapper_id = Crypt::hashBase64($id_prefix . '-ajax-wrapper');
@@ -151,12 +160,11 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
     ];
 
     // Default values.
-    $countries = array();
-    if (!empty($selected['countries'])) {
-      $countries = $selected['countries'];
+    $countries = !empty($selected['countries']) ? $selected['countries'] : array();
+    if (!empty($selected['countries']) && empty($input)) {
       $element['country_code']['#default_value'] = $selected['countries'];
     }
-    if (!empty($selected['areas'])) {
+    if (!empty($selected['areas']) && empty($input)) {
       $element['administrative_area']['#default_value'] = $selected['areas'];
     }
 
@@ -186,7 +194,10 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
       $element['administrative_area']['#options'] = array();
     }
 
-    $element['#element_validate'][] = array(get_class($this), 'validateElement');
+    $element['#element_validate'][] = array(
+      get_class($this),
+      'validateElement'
+    );
 
     return $element;
   }
@@ -201,9 +212,27 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
    */
   public static function validateElement(array $element, FormStateInterface $form_state) {
     $items = array();
+    $input = $form_state->getUserInput();
 
-    $countries = !empty($element['country_code']['#value']) ? $element['country_code']['#value'] : array();
-    $areas = !empty($element['administrative_area']['#value']) ? $element['administrative_area']['#value'] : array();
+    if (!empty($element['country_code']['#value'])) {
+      $countries =  $element['country_code']['#value'];
+    }
+    elseif (!empty($input['field_territory_served']['country_code'])) {
+      $countries = $input['field_territory_served']['country_code'];
+    }
+    else {
+      $countries = array();
+    }
+
+    if (!empty($element['administrative_area']['#value'])) {
+      $areas =  $element['administrative_area']['#value'];
+    }
+    elseif (!empty($input['field_territory_served']['administrative_area'])) {
+      $areas = $input['field_territory_served']['administrative_area'];
+    }
+    else {
+      $areas = array();
+    }
 
     // Validation error for required field, if there are no any countries.
     if ($element['#required'] && !$countries) {

@@ -9,6 +9,8 @@ dependencies:
     - field.storage.node.field_date
     - field.storage.node.field_category
     - field.storage.node.field_available_from_date
+    - field.storage.node.field_blog_date
+    - field.storage.node.field_blog_category
     - search_api.server.solr_server
   module:
     - search_api
@@ -148,6 +150,22 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_available_from_date
+  field_blog_date:
+    label: Date
+    datasource_id: 'entity:node'
+    property_path: field_blog_date
+    type: date
+    dependencies:
+      config:
+        - field.storage.node.field_blog_date
+  field_blog_category:
+    label: 'Blog category'
+    datasource_id: 'entity:node'
+    property_path: field_blog_category
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_blog_category
   content:
     label: Content
     datasource_id: 'entity:pmmi_page_manager_search'
@@ -262,6 +280,9 @@ processor_settings:
     weights:
       preprocess_index: 0
       preprocess_query: 0
+  content_access:
+    weights:
+      preprocess_query: -30
   type_boost:
     boosts:
       'entity:node':
