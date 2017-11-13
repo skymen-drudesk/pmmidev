@@ -100,6 +100,20 @@ panel_landing_left_sidebar:
       label: Left sidebar
     main:
       label: Main content
+panel_landing_left_sidebar_collapsible:
+  label: Landing with left sidebar collapsible
+  category: PMMI: Layouts
+  class: '\Drupal\pmmi\Plugin\CollapsibleLayout'
+  template: templates/layouts/panels/landing-left-sidebar-collapsible
+  regions:
+    top:
+      label: Top content
+    head:
+      label: Head content
+    sidebar:
+      label: Left sidebar
+    main:
+      label: Main content
 
 default_mode:
   label: Default (view mode)
@@ -320,6 +334,29 @@ video_default_mode:
       label: Content
     links:
       label: Links
+report:
+  label: Report
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/report
+  regions:
+    image_header:
+      label: Image Header
+    left_block:
+      label: Left block
+    title:
+      label: Title
+    body:
+      label: Body
+    image:
+      label: Image
+    links:
+      label: Links
+    member_price:
+      label: Member Price
+    non_member_price:
+      label: Non-Member Price
+    file_download_button:
+      label: File Download Button
 oneone:
   label: Column 1-up (1 row of 1 column)
   category: PMMI: Columns

@@ -333,9 +333,16 @@
 }
 
 // Pmmi search library block.
-.block-pmmi-search-library-block {
+.blue-region .block-pmmi-search-library-block {
   @extend .default-exposed-form;
   margin: 0;
+  text-align: center;
+  .block-title {
+    @extend .headline1;
+    @extend .white;
+    display: inline-block;
+    margin: 0 auto 50px;
+  }
   form {
     padding: 0;
     text-align: center;
@@ -390,6 +397,35 @@
     }
   }
 }
+.content-left .block-pmmi-search-library-block {
+  .block-title {
+    @include desktop-min {
+      margin-bottom: 20px;
+    }
+  }
+  .selector {
+    border-color: $mdgrey;
+    &:before {
+      background: $blue;
+      color: #fff;
+      height: 30px;
+      top: -1px;
+      right: -1px;
+    }
+  }
+  .form-submit {
+    min-width: 70%;
+    font-size: $r14;
+    text-transform: uppercase;
+    font-weight: 700;
+    @include tablet-max {
+      width: 100%;
+    }
+    .icon {
+      display: none;
+    }
+  }
+}
 
 // Panels text block.
 .block-panels-text-block {
@@ -430,7 +466,7 @@
   }
   .company-staff,
   .committee-block,
-  .company-section-info-staff .row,{
+  .company-section-info-staff .row {
     font-size: 0;
     @include tablet-min {
       margin-bottom: 10px;
@@ -480,6 +516,14 @@
     @extend .side-paragraph;
   }
   .company-section-info {
+    margin-bottom: 20px;
+  }
+}
+
+// Reports search View block.
+.block-views-blockreports-reports-category {
+  .block-title {
+    @extend .headline2;
     margin-bottom: 20px;
   }
 }

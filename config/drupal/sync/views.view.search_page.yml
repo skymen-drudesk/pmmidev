@@ -5,8 +5,10 @@ dependencies:
   config:
     - field.storage.node.body
     - search_api.index.default_index
+    - taxonomy.vocabulary.report_type
   module:
     - search_api
+    - search_api_views_taxonomy
     - text
 id: search_page
 label: 'Search Page'
@@ -375,7 +377,7 @@ display:
             description: null
             use_operator: false
             operator: type_op
-            identifier: type
+            identifier: page_type
             required: false
             remember: false
             multiple: true
@@ -384,17 +386,18 @@ display:
             reduce: false
           is_grouped: true
           group_info:
-            label: '<none>'
+            label: 'Page type'
             description: '<none>'
             identifier: page_type
             optional: true
             widget: radios
-            multiple: false
+            multiple: true
             remember: false
             default_group: All
             default_group_multiple:
               1: 1
               2: 2
+              3: 3
             group_items:
               1:
                 title: 'Press Releases'
@@ -402,6 +405,11 @@ display:
                 value:
                   article: article
               2:
+                title: Reports
+                operator: or
+                value:
+                  report: report
+              3:
                 title: Pages
                 operator: or
                 value:
@@ -720,5 +728,290 @@ display:
         - 'languages:language_interface'
         - url.query_args
         - 'url.query_args:sort_by'
+      tags:
+        - 'config:field.storage.node.body'
+  reports_search:
+    display_plugin: block
+    id: reports_search
+    display_title: Reports
+    position: 3
+    display_options:
+      display_extenders: {  }
+      display_description: ''
+      style:
+        type: default
+        options: {  }
+      defaults:
+        style: false
+        row: false
+        filters: false
+        filter_groups: false
+        sorts: false
+        title: false
+        pager: false
+        arguments: false
+      row:
+        type: search_api
+        options:
+          view_modes:
+            'entity:node':
+              article: default
+              basic_page: default
+              blog: ''
+              certification_test: default
+              download: default
+              report: default
+              school: default
+              video: default
+            'entity:pmmi_page_manager_search':
+              pmmi_page_manager_search: default
+      filters:
+        type:
+          id: type
+          table: search_api_index_default_index
+          field: type
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value:
+            report: report
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          plugin_id: search_api_options
+        search_api_fulltext:
+          id: search_api_fulltext
+          table: search_api_index_default_index
+          field: search_api_fulltext
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: and
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: search_api_fulltext_op
+            label: 'Fulltext search'
+            description: ''
+            use_operator: false
+            operator: search_api_fulltext_op
+            identifier: text
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              manager: '0'
+              sales_agent_admin: '0'
+              pmmi_member: '0'
+              staff: '0'
+              membership_committee: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          parse_mode: phrase
+          min_length: 3
+          fields:
+            title_f: title_f
+            body_f: body_f
+          plugin_id: search_api_fulltext
+        field_category:
+          id: field_category
+          table: search_api_index_default_index
+          field: field_category
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_category_op
+            label: Category
+            description: ''
+            use_operator: false
+            operator: field_category_op
+            identifier: category
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              manager: '0'
+              sales_agent_admin: '0'
+              pmmi_member: '0'
+              staff: '0'
+              membership_committee: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: report_type
+          hierarchy: false
+          error_message: true
+          plugin_id: search_api_term
+        report_year:
+          id: report_year
+          table: search_api_index_default_index
+          field: report_year
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value:
+            min: ''
+            max: ''
+            value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: report_year_op
+            label: 'Report available date(year)'
+            description: ''
+            use_operator: false
+            operator: report_year_op
+            identifier: year
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              editor: '0'
+              manager: '0'
+              sales_agent_admin: '0'
+              pmmi_member: '0'
+              staff: '0'
+              membership_committee: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: search_api_numeric
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      sorts:
+        search_api_relevance:
+          id: search_api_relevance
+          table: search_api_index_default_index
+          field: search_api_relevance
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: 'Most Relevant'
+          plugin_id: search_api
+        field_available_from_date:
+          id: field_available_from_date
+          table: search_api_index_default_index
+          field: field_available_from_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
+      title: 'Reports search'
+      exposed_block: true
+      pager:
+        type: full
+        options:
+          items_per_page: 20
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: Previous
+            next: Next
+            first: ''
+            last: ''
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 9
+      arguments: {  }
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - user
       tags:
         - 'config:field.storage.node.body'
