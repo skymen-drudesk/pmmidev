@@ -228,6 +228,18 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       }
 
       if ($form['#id'] === 'views-exposed-form-membership-application-submissions-block-all') {
+        // Get current user and check if he has `administrator` role.
+        $current_user = \Drupal::currentUser();
+        $roles = $current_user->getRoles();
+
+        // Remove `False` value from options if current user doesn't have
+        // `Staff` or `administrator` role.
+        if (!in_array('administrator', $roles) || !in_array('Staff', $roles)) {
+          $options = $form['webform_submission_value']['#options'];
+          $false_key = array_search('False', $options);
+          unset($form['webform_submission_value']['#options'][$false_key]);
+        }
+
         $query = \Drupal::database()->select('webform_submission_data', 'wsd');
         $query->addField('wsd', 'value');
         $query->condition('wsd.webform_id', 'membership_application_form');
@@ -245,7 +257,6 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
             '#type' => 'select',
             '#title' => t('Date'),
             '#options' => array_unique($date_options),
-            '#empty_option' => t('None'),
           ];
         }
       }
