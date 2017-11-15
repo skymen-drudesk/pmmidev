@@ -333,6 +333,13 @@
 }
 
 // Pmmi search library block.
+.block-pmmi-search-library-block {
+  .select-wrapper {
+    &:after {
+      display: none;
+    }
+  }
+}
 .blue-region .block-pmmi-search-library-block {
   @extend .default-exposed-form;
   margin: 0;
