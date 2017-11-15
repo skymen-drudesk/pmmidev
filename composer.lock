@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8fb94cac9d63b151938a011a4bf5754e",
+    "content-hash": "0e92b889c23b0568920f7aed1ca2647c",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -1588,6 +1588,10 @@
                     "homepage": "https://www.drupal.org/u/matio89"
                 },
                 {
+                    "name": "adriancid",
+                    "homepage": "https://www.drupal.org/user/1962106"
+                },
+                {
                     "name": "bolbol",
                     "homepage": "https://www.drupal.org/user/3400070"
                 },
@@ -1665,7 +1669,7 @@
                 "source": "http://cgit.drupalcode.org/backup_migrate",
                 "issues": "https://www.drupal.org/project/issues/backup_migrate"
             },
-            "time": "2017-10-18 14:54:39"
+            "time": "2017-10-18T14:54:39+00:00"
         },
         {
             "name": "drupal/blazy",
@@ -2980,6 +2984,79 @@
             }
         },
         {
+            "name": "drupal/ctools_block",
+            "version": "3.0.0",
+            "require": {
+                "drupal/core": "~8.0",
+                "drupal/ctools": "self.version"
+            },
+            "type": "metapackage",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.0",
+                    "datestamp": "1493401742",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "EclipseGc",
+                    "homepage": "https://www.drupal.org/user/61203"
+                },
+                {
+                    "name": "damiankloip",
+                    "homepage": "https://www.drupal.org/user/1037976"
+                },
+                {
+                    "name": "dawehner",
+                    "homepage": "https://www.drupal.org/user/99340"
+                },
+                {
+                    "name": "esmerel",
+                    "homepage": "https://www.drupal.org/user/164022"
+                },
+                {
+                    "name": "japerry",
+                    "homepage": "https://www.drupal.org/user/45640"
+                },
+                {
+                    "name": "merlinofchaos",
+                    "homepage": "https://www.drupal.org/user/26979"
+                },
+                {
+                    "name": "neclimdul",
+                    "homepage": "https://www.drupal.org/user/48673"
+                },
+                {
+                    "name": "sdboyer",
+                    "homepage": "https://www.drupal.org/user/146719"
+                },
+                {
+                    "name": "sun",
+                    "homepage": "https://www.drupal.org/user/54136"
+                },
+                {
+                    "name": "tim.plunkett",
+                    "homepage": "https://www.drupal.org/user/241634"
+                }
+            ],
+            "description": "Provides improvements to blocks that will one day be added to Drupal core.",
+            "homepage": "https://www.drupal.org/project/ctools",
+            "support": {
+                "source": "http://cgit.drupalcode.org/ctools"
+            }
+        },
+        {
             "name": "drupal/date",
             "version": "dev-1.x",
             "source": {
@@ -3050,7 +3127,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/date"
             },
-            "time": "2012-10-28 09:20:01"
+            "time": "2012-10-28T09:20:01+00:00"
         },
         {
             "name": "drupal/default_content",
@@ -3304,7 +3381,11 @@
                 },
                 "drupal": {
                     "version": "8.x-3.1",
-                    "datestamp": "1495660084"
+                    "datestamp": "1495660084",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
                 },
                 "patches_applied": {
                     "Only search for templates in templates directory of themes": "patches/3879__ds__only_scan_templates_dir.patch"
@@ -4185,7 +4266,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/job_scheduler"
             },
-            "time": "2017-07-04 13:18:23"
+            "time": "2017-07-04T13:18:23+00:00"
         },
         {
             "name": "drupal/layout_plugin",
@@ -4388,7 +4469,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/maillog"
             },
-            "time": "2016-08-05 21:18:07"
+            "time": "2016-08-05T21:18:07+00:00"
         },
         {
             "name": "drupal/mailsystem",
@@ -5218,7 +5299,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/queue_ui"
             },
-            "time": "2017-05-30 19:17:17"
+            "time": "2017-05-30T19:17:17+00:00"
         },
         {
             "name": "drupal/recaptcha",
@@ -5808,7 +5889,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/tb_megamenu"
             },
-            "time": "2017-10-09 01:41:51"
+            "time": "2017-10-09T01:41:51+00:00"
         },
         {
             "name": "drupal/token",
@@ -6155,7 +6236,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/views_block_filter_block"
             },
-            "time": "2017-10-13 06:53:22"
+            "time": "2017-10-13T06:53:22+00:00"
         },
         {
             "name": "drupal/views_data_export",
@@ -6350,7 +6431,7 @@
                 },
                 "drupal": {
                     "version": "8.x-5.0-beta21",
-                    "datestamp": "1509363484",
+                    "datestamp": "1509576185",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -8509,7 +8590,7 @@
                 "source": "https://github.com/summitmedia/dd-party/tree/master",
                 "issues": "https://github.com/summitmedia/dd-party/issues"
             },
-            "time": "2017-07-27 00:21:29"
+            "time": "2017-07-27T00:21:29+00:00"
         },
         {
             "name": "symfony-cmf/routing",
@@ -10119,7 +10200,7 @@
                 "reference": "origin/master"
             },
             "type": "drupal-library",
-            "time": "2010-06-13 23:39:18"
+            "time": "2010-06-13T23:39:18+00:00"
         },
         {
             "name": "twig/twig",
@@ -10826,79 +10907,6 @@
             }
         },
         {
-            "name": "drupal/ctools_block",
-            "version": "3.0.0",
-            "require": {
-                "drupal/core": "~8.0",
-                "drupal/ctools": "self.version"
-            },
-            "type": "metapackage",
-            "extra": {
-                "branch-alias": {
-                    "dev-3.x": "3.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-3.0",
-                    "datestamp": "1493401742",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "EclipseGc",
-                    "homepage": "https://www.drupal.org/user/61203"
-                },
-                {
-                    "name": "damiankloip",
-                    "homepage": "https://www.drupal.org/user/1037976"
-                },
-                {
-                    "name": "dawehner",
-                    "homepage": "https://www.drupal.org/user/99340"
-                },
-                {
-                    "name": "esmerel",
-                    "homepage": "https://www.drupal.org/user/164022"
-                },
-                {
-                    "name": "japerry",
-                    "homepage": "https://www.drupal.org/user/45640"
-                },
-                {
-                    "name": "merlinofchaos",
-                    "homepage": "https://www.drupal.org/user/26979"
-                },
-                {
-                    "name": "neclimdul",
-                    "homepage": "https://www.drupal.org/user/48673"
-                },
-                {
-                    "name": "sdboyer",
-                    "homepage": "https://www.drupal.org/user/146719"
-                },
-                {
-                    "name": "sun",
-                    "homepage": "https://www.drupal.org/user/54136"
-                },
-                {
-                    "name": "tim.plunkett",
-                    "homepage": "https://www.drupal.org/user/241634"
-                }
-            ],
-            "description": "Provides improvements to blocks that will one day be added to Drupal core.",
-            "homepage": "https://www.drupal.org/project/ctools",
-            "support": {
-                "source": "http://cgit.drupalcode.org/ctools"
-            }
-        },
-        {
             "name": "drupal/devel",
             "version": "dev-1.x",
             "source": {
@@ -10973,7 +10981,7 @@
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             },
-            "time": "2017-10-05 09:36:49"
+            "time": "2017-10-05T09:36:49+00:00"
         },
         {
             "name": "drupal/devel_debug_log",
@@ -11309,7 +11317,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/xhprof"
             },
-            "time": "2017-05-29 08:34:02"
+            "time": "2017-05-29T08:34:02+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -12471,7 +12479,7 @@
         "drupal/metatag": 10,
         "drupal/migrate_plus": 10,
         "drupal/page_manager": 10,
-        "drupal/panels_everywhere": 15,
+        "drupal/panels_everywhere": 20,
         "drupal/pathauto": 15,
         "drupal/purge": 10,
         "drupal/queue_ui": 20,
