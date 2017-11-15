@@ -236,7 +236,7 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
 
         // Remove `False` value from options if current user doesn't have
         // `Staff` or `administrator` role.
-        if (!in_array('administrator', $roles) || !in_array('Staff', $roles)) {
+        if (!in_array('administrator', $roles) || !in_array('staff', $roles)) {
           $options = $form['webform_submission_value']['#options'];
           $false_key = array_search('False', $options);
           unset($form['webform_submission_value']['#options'][$false_key]);
