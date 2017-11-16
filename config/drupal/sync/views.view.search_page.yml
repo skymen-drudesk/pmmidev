@@ -848,8 +848,8 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: phrase
-          min_length: 3
+          parse_mode: direct
+          min_length: 1
           fields:
             title_f: title_f
             body_f: body_f

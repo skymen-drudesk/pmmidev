@@ -34,7 +34,7 @@ third_party_settings:
         - field_image
         - node_title
         - body
-        - 'dynamic_token_field:node-download_report_link'
+        - node_link
     fields:
       node_title:
         plugin_id: node_title
@@ -51,11 +51,22 @@ third_party_settings:
             lb: ''
             lb-col: false
             classes: {  }
-      'dynamic_token_field:node-download_report_link':
-        plugin_id: 'dynamic_token_field:node-download_report_link'
+      node_link:
+        plugin_id: node_link
         weight: 3
         label: hidden
         formatter: default
+        settings:
+          'link text': 'Download Report'
+          'link class': 'btn button-primary'
+          wrapper: ''
+          class: ''
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.report.default
 targetEntityType: node
 bundle: report
