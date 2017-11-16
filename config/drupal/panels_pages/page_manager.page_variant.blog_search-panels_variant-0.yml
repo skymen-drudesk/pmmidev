@@ -11,6 +11,10 @@ dependencies:
     - block_content
     - panels
     - views
+    - pmmi_page_manager_search
+third_party_settings:
+  pmmi_page_manager_search:
+    index_page_variant: 0
 id: blog_search-panels_variant-0
 label: Panels
 variant: panels_variant
