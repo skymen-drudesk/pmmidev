@@ -27,7 +27,7 @@ services:
       - default
       - back
     ports:
-      - "8085:80"
+      - "8084:80"
     volumes:
       - .:/var/www
     # Environment variables
@@ -45,7 +45,7 @@ services:
     networks:
       - back
     ports:
-      - "8011:8983"
+      - "8003:8983"
 
 networks:
   back:
