@@ -10,6 +10,7 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\pmmi_address\FilterCountries;
 
 /**
  * Builds the PMMI Company Search Form.
@@ -38,6 +39,13 @@ class PMMICompanySearchBlockForm extends FormBase {
   protected $entityTypeManager;
 
   /**
+   * The filter countries service.
+   *
+   * @var \Drupal\pmmi_address\FilterCountries
+   */
+  protected $filterCountries;
+
+  /**
    * Constructs a PMMICompanySearchBlockForm object.
    *
    * @param \CommerceGuys\Addressing\Country\CountryRepositoryInterface $country_repository
@@ -46,11 +54,14 @@ class PMMICompanySearchBlockForm extends FormBase {
    *   The subdivision repository.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface;
    *   The entity type manager service.
+   * @param \Drupal\pmmi_address\FilterCountries;
+   *   The filter countries service.
    */
-  public function __construct(CountryRepositoryInterface $country_repository, SubdivisionRepositoryInterface $subdivision_repository, EntityTypeManagerInterface $entity_type_manager) {
+  public function __construct(CountryRepositoryInterface $country_repository, SubdivisionRepositoryInterface $subdivision_repository, EntityTypeManagerInterface $entityTypeManager, FilterCountries $filter_countries) {
     $this->countryRepository = $country_repository;
     $this->subdivisionRepository = $subdivision_repository;
-    $this->entity_type_manager = $entity_type_manager;
+    $this->entityTypeManager = $entityTypeManager;
+    $this->filterCountries = $filter_countries;
   }
 
   /**
@@ -60,7 +71,8 @@ class PMMICompanySearchBlockForm extends FormBase {
     return new static(
       $container->get('address.country_repository'),
       $container->get('address.subdivision_repository'),
-      $container->get('entity_type.manager')
+      $container->get('entity_type.manager'),
+      $container->get('pmmi_address.filter_countries')
     );
   }
 
@@ -83,10 +95,13 @@ class PMMICompanySearchBlockForm extends FormBase {
       '#prefix' => '<div id="' . $wrapper_id . '">',
       '#suffix' => '</div>',
     ];
+    $list = $this->countryRepository->getList();
+    $used_countries = $this->filterCountries->getUsedCountries('company');
+    $filtered_countries = array_intersect_key($list, $used_countries);
     $form['address']['country_code'] = [
       '#type' => 'selectize',
       '#title' => $this->t('Country'),
-      '#options' => $this->countryRepository->getList(),
+      '#options' => $filtered_countries,
       '#multiple' => TRUE,
       '#settings' => [
         'placeholder' => $this->t('Select Country'),
@@ -111,30 +126,20 @@ class PMMICompanySearchBlockForm extends FormBase {
     ];
 
     $countries = [];
-
     // Override values after country has been changed!
     $triggering_element = $form_state->getTriggeringElement();
     if ($triggering_element && $triggering_element['#name'] == 'country_code') {
       $countries = $triggering_element['#value'];
     }
 
-    // Show or hide second level of hierarchy in accordance with selected
-    // country.
-    if ($countries) {
-      $areas = [];
-      foreach ($countries as $value) {
-        $subdivisions = $this->subdivisionRepository->getList([$value]);
-        $areas = $areas + $subdivisions;
-      }
-
+    // Show "State/Region" field only for US.
+    if (in_array('US', $countries)) {
+      $subdivisions = $this->subdivisionRepository->getList(['US']);
       // Show subdivision field.
-      if ($areas) {
-        $form['address']['administrative_area']['#options'] = $areas;
+      if ($subdivisions) {
+        $form['address']['administrative_area']['#options'] = $subdivisions;
         $form['address']['administrative_area']['#access'] = TRUE;
       }
-    }
-    else {
-      $form['address']['administrative_area']['#options'] = [];
     }
 
     // Describe "Industries Served" filter.
@@ -144,7 +149,7 @@ class PMMICompanySearchBlockForm extends FormBase {
     ];
     $form['industries']['field_industries_served'] = [
       '#type' => 'checkboxes',
-      '#options' => $this->getIndustriesOptions(),
+      '#options' => $this->getTermReferenceOptions('industries_served'),
       '#limit_validation_errors' => [],
     ];
 
@@ -155,7 +160,7 @@ class PMMICompanySearchBlockForm extends FormBase {
     ];
     $form['equipments']['field_equipment_sold_type'] = [
       '#type' => 'checkboxes',
-      '#options' => $this->getEquipmentsOptions(),
+      '#options' => $this->getTermReferenceOptions('equipment_sold_type'),
     ];
 
     // Describe "Attending PMMI show" filter.
@@ -230,28 +235,16 @@ class PMMICompanySearchBlockForm extends FormBase {
   }
 
   /**
-   * Get industries served options.
+   * Get term reference options.
    */
-  protected function getIndustriesOptions() {
+  protected function getTermReferenceOptions($vid) {
     $options = array();
 
-    $terms = $this->entity_type_manager->getStorage('taxonomy_term')->loadTree('industries_served');
+    $terms = $this->entityTypeManager->getStorage('taxonomy_term')->loadTree($vid);
     foreach ($terms as $term) {
-      $options[$term->tid] = $term->name;
-    }
-
-    return $options;
-  }
-
-  /**
-   * Get types of equipment sold options.
-   */
-  protected function getEquipmentsOptions() {
-    $options = array();
-
-    $terms = $this->entity_type_manager->getStorage('taxonomy_term')->loadTree('equipment_sold_type');
-    foreach ($terms as $term) {
-      $options[$term->tid] = $term->name;
+      if ($term->name !== 'Other') {
+        $options[$term->tid] = $term->name;
+      }
     }
 
     return $options;
@@ -300,4 +293,5 @@ class PMMICompanySearchBlockForm extends FormBase {
 
     return $items;
   }
+
 }

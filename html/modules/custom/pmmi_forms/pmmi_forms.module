@@ -13,8 +13,10 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Url;
 use Drupal\node\Entity\Node;
 use Drupal\pmmi_page_manager_search\Entity\PageManagerSearch;
-use Drupal\views\Plugin\views\query\QueryPluginBase;
 use Drupal\views\ViewExecutable;
+use Drupal\Core\Render\Element;
+use Drupal\node\NodeInterface;
+use Drupal\field\Entity\FieldConfig;
 
 /**
  * Implements hook_form_alter().
@@ -69,7 +71,15 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
           $form['actions'][$button]['#access'] = FALSE;
         }
       }
-      break;
+
+      // Remove required fields for admin users.
+      if (function_exists('pmmi_sales_agent_is_admin') && pmmi_sales_agent_is_admin()) {
+        foreach (Element::children($form) as $key) {
+          _pmmi_forms_company_remove_requirements($form[$key]);
+        }
+        $form['#entity_builders'][] = 'pmmi_forms_company_node_builder';
+        break;
+      }
 
     case 'views_exposed_form':
       if ($form['#id'] === 'views-exposed-form-news-search-api-paged'
@@ -201,6 +211,32 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       }
 
       break;
+  }
+}
+
+/**
+ * Help recursive function to remove 'required' from fields.
+ */
+function _pmmi_forms_company_remove_requirements(&$element) {
+  if (isset($element['#field_name']) && $element['#field_name'] == 'title') {
+    return;
+  }
+  if (isset($element['#required'])) {
+    $element['#required'] = FALSE;
+  }
+  foreach (Element::children($element) as $key) {
+    _pmmi_forms_company_remove_requirements($element[$key]);
+  }
+}
+
+/**
+ * Entity form builder to remove required fields.
+ */
+function pmmi_forms_company_node_builder($entity_type, NodeInterface $entity, &$form, FormStateInterface $form_state) {
+  foreach ($entity->getFieldDefinitions() as $definition) {
+    if ($definition instanceof FieldConfig && $definition->isRequired()) {
+      $definition->setRequired(FALSE);
+    }
   }
 }
 

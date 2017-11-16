@@ -10,7 +10,6 @@ dependencies:
     - country
     - csv_serialization
     - pmmi_sales_agent
-    - rest
     - serialization
     - user
     - views_data_export
@@ -563,24 +562,24 @@ display:
         block_1: block_1
         default: '0'
       row:
-        type: data_field
+        type: 'csv data_field'
         options:
           field_options:
             created:
-              alias: ''
-              raw_output: false
+              alias: 'Date searched'
+              raw_output: 0
             field_company:
-              alias: company
-              raw_output: false
+              alias: Company
+              raw_output: 0
             name:
-              alias: ''
-              raw_output: false
+              alias: Name
+              raw_output: 0
             mail:
-              alias: ''
-              raw_output: false
+              alias: 'Email address'
+              raw_output: 0
             field_countries_searched:
-              alias: countries_searched
-              raw_output: false
+              alias: 'Countries searched'
+              raw_output: 0
     cache_metadata:
       max-age: -1
       contexts:

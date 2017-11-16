@@ -76,7 +76,7 @@ pmmi_sales_agent.mass_email_confirm:
     _permission: 'pmmi sales agent administration'
 
 pmmi_sales_agent.login:
-  path: '/sales_agent_directory/login/{nid}/{timestamp}/{hash}'
+  path: '/sales_agent_directory/login/{node}/{timestamp}/{hash}'
   defaults:
     _controller: '\Drupal\pmmi_sales_agent\Controller\SADController::updateListingLogin'
     _title: 'Login to update a listing'
@@ -85,6 +85,9 @@ pmmi_sales_agent.login:
   options:
     _maintenance_access: TRUE
     no_cache: TRUE
+    parameters:
+      node:
+        type: entity:node
 
 pmmi_sales_agent.clear_territory_served:
   path: '/admin/config/sad/clear-territory-served'

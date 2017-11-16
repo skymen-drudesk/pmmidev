@@ -11,6 +11,7 @@ syncs:
     sync_userid: '82'
     sync_host_ip: '127.0.0.1'
     sync_excludes: [
+      'data/',
       '.git/',
       '.gitignore',
       '.DS_Store',
