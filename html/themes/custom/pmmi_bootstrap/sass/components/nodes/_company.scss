@@ -581,3 +581,44 @@
     }
   }
 }
+.compare-forms-inner {
+  display: flex;
+  justify-content: space-between;
+  > div {
+    border: 1px solid $mdgrey;
+    padding: 10px;
+    > h4 {
+      color: $dkblue;
+      font-size: $r20;
+      font-weight: 700;
+      text-align: center;
+      background: $ltbluebg;
+      padding: 10px;
+      margin: -10px -10px 20px -10px;
+    }
+  }
+  .previous-revision-form {
+    margin-right: 10px;
+  }
+  .main-contact,
+  .company-info {
+    .panel-body {
+      label {
+        width: auto;
+        text-align: left;
+      }
+      .description {
+        padding-left: 0;
+      }
+    }
+  }
+  .field--name-field-address .control-label {
+    padding: 7px 0 0;
+    vertical-align: top;
+  }
+  .button {
+    width: 100%;
+    float: none;
+    margin: 0 0 20px;
+  }
+}
