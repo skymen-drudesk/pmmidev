@@ -8,7 +8,7 @@ use Exception;
 /**
  * Class PageManagerSearchGenerateBatch
  *
- * Batch for generating PageManagerSearch entities for each Page Variant entity;
+ * Batch for generating PageManagerSearch entities for each PageVariant entity.
  *
  * @package Drupal\pmmi_page_manager_search\Controller
  */
@@ -23,9 +23,11 @@ class PageManagerSearchGenerateBatch {
    */
   public static function bulkGenerate($pvid, &$context) {
     try  {
-      $page = PageVariant::load($pvid);
-      if ($page->get('page') !== 'site_template') {
-        $page->save();
+      $page_variant = PageVariant::load($pvid);
+      // Get Page from PageVariant
+      $page = $page_variant->getPage();
+      if ($page->id() !== 'site_template') {
+        $page_variant->save();
       }
     }
     catch (Exception $e) {
