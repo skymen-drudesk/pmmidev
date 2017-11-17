@@ -265,8 +265,6 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
           $date_options[$option['date']] = $option['formatted_date'];
         }
 
-        $b=0;
-
         if (!empty($date_options)) {
           $form['date'] = [
             '#type' => 'select',
