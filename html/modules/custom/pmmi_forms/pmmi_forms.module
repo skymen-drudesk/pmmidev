@@ -256,6 +256,7 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
         $query->addField('wsd', 'value');
         $query->condition('wsd.webform_id', 'membership_application_form');
         $query->condition('wsd.name', 'submission_date_is_belongs_to');
+        $query->orderBy('value', 'DESC');
         $webform_submissions = $query->execute()->fetchAll();
         $date_options = [];
 
@@ -263,6 +264,8 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
           $option = pmmi_forms_get_season($value->value);
           $date_options[$option['date']] = $option['formatted_date'];
         }
+
+        $b=0;
 
         if (!empty($date_options)) {
           $form['date'] = [
