@@ -182,6 +182,7 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
       if ($subdivisions) {
         $element['administrative_area']['#options'] = $subdivisions;
         $element['administrative_area']['#access'] = TRUE;
+        $element['#correlation']['US'] = $subdivisions;
       }
     }
 
