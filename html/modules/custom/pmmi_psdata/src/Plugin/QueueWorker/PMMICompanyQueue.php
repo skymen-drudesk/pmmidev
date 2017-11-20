@@ -41,17 +41,17 @@ class PMMICompanyQueue extends PMMIBaseDataQueue {
     $company_sub_id = $item->data['company']['sub_id'];
     // Example path: CustomerInfos(MasterCustomerId='00094039',SubCustomerId=0)
     // /Addresses?$filter=AddressStatusCode eq 'GOOD'&$select=JobTitle .
-    $filter = $this->addFilter('eq', 'AddressStatusCode', ['GOOD'], TRUE);
-    $filter .= $this->addFilter('eq', 'AddressTypeCodeString', $item->data['company']['address']);
-    $filter .= $this->addFilter('eq', 'CountryCode', [$item->data['company']['country_code']]);
+    $filter = $this->requestHelper->addFilter('eq', 'AddressStatusCode', ['GOOD'], TRUE);
+    $filter .= $this->requestHelper->addFilter('eq', 'AddressTypeCodeString', $item->data['company']['address']);
+    $filter .= $this->requestHelper->addFilter('eq', 'CountryCode', [$item->data['company']['country_code']]);
     $path_element = "CustomerInfos(MasterCustomerId='" . $company_id .
       "',SubCustomerId=" . $company_sub_id . ")/Addresses";
     $query = [
       '$filter' => $filter,
       '$select' => 'Address1,Address2,Address3,Address4,City,CompanyName,CountryCode,PostalCode,State,FormattedCityStatePostal',
     ];
-    $request_options = $this->buildGetRequest($path_element, $query);
-    if ($addresses = $this->handleRequest($request_options)) {
+    $request_options = $this->requestHelper->buildGetRequest($path_element, $query);
+    if ($addresses = $this->requestHelper->handleRequest($request_options)) {
       foreach ($addresses as $address) {
         $company_data[$company_id][$address->CountryCode] = [
           'company_name' => $address->CompanyName,
@@ -74,13 +74,13 @@ class PMMICompanyQueue extends PMMIBaseDataQueue {
     // SubCustomerId=0)/Communications?$filter=CommLocationCodeString eq
     // 'WORK' and (CommTypeCodeString eq 'EMAIL' or CommTypeCodeString eq
     // 'PHONE' )&$select=CommTypeCodeString,FormattedPhoneAddress .
-    $filter = $this->addFilter(
+    $filter = $this->requestHelper->addFilter(
       'eq',
       'CommLocationCodeString',
       $item->data['company']['comm_location'],
       TRUE
     );
-    $filter .= $this->addFilter(
+    $filter .= $this->requestHelper->addFilter(
       'eq',
       'CommTypeCodeString',
       $item->data['company']['comm_type']
@@ -91,8 +91,8 @@ class PMMICompanyQueue extends PMMIBaseDataQueue {
       '$select' => 'CommTypeCodeString,CountryCode,CommLocationCodeString,FormattedPhoneAddress',
       '$filter' => $filter,
     ];
-    $request_options = $this->buildGetRequest($path_element, $query);
-    if ($comm_data = $this->handleRequest($request_options)) {
+    $request_options = $this->requestHelper->buildGetRequest($path_element, $query);
+    if ($comm_data = $this->requestHelper->handleRequest($request_options)) {
       foreach ($comm_data as $comm) {
         $type = strtolower($comm->CommTypeCodeString);
         $location = strtolower($comm->CommLocationCodeString);

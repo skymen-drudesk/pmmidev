@@ -43,16 +43,16 @@ class PMMICommitteeQueue extends PMMIBaseDataQueue {
         "ParticipationStatusCodeString eq 'ACTIVE' and EndDate ge datetime'" .
         $date->format('Y-m-d') . "'",
     ];
-    $request_options = $this->buildGetRequest('CommitteeMembers', $query);
+    $request_options = $this->requestHelper->buildGetRequest('CommitteeMembers', $query);
     $members = [];
-    if ($committee_data = $this->handleRequest($request_options)) {
+    if ($committee_data = $this->requestHelper->handleRequest($request_options)) {
       foreach ($committee_data as $customer) {
         $last_first_name = $customer->CommitteeMemberLastFirstName;
         $member_id = $customer->MemberMasterCustomer;
         $position = $customer->PositionCodeDescriptionDisplay;
         $data[$position][$last_first_name] = [
           'label_name' => $customer->CommitteeMemberLabelName,
-          'end_date' => $this->formatDate($customer->EndDate, 'Y'),
+          'end_date' => $this->requestHelper->formatDate($customer->EndDate, 'Y'),
           'member_id' => $member_id,
           'company_id' => $customer->RepresentingMasterCustomer,
           'company_name' => $customer->RepresentingLabelName,
@@ -63,7 +63,7 @@ class PMMICommitteeQueue extends PMMIBaseDataQueue {
         ];
       }
       $job_title_requests = $this->separateRequest(array_keys($members), 'job_title');
-      if ($job_title_data = $this->handleAsyncRequests($job_title_requests)) {
+      if ($job_title_data = $this->requestHelper->handleAsyncRequests($job_title_requests)) {
         foreach ($job_title_data as $member_data) {
           $position = $members[$member_data->MasterCustomerId]['position'];
           $label_name = $members[$member_data->MasterCustomerId]['label_name'];
@@ -73,7 +73,7 @@ class PMMICommitteeQueue extends PMMIBaseDataQueue {
       $this->sort($data);
     }
     else {
-      $this->ssoHelper->log("Error with request to get Data Service Committee Members.");
+      $this->requestHelper->ssoHelper->log("Error with request to get Data Service Committee Members.");
     }
     return $data;
   }

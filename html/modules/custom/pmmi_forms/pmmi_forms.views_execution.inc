@@ -10,17 +10,11 @@ use Drupal\views\ViewExecutable;
  */
 function pmmi_forms_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
   if ($view->id() == 'search_page' && $view->current_display == 'block_1') {
-    if (!$query_params = \Drupal::request()->query->all()) {
-      // There are no available filters.
-      return;
-    }
-
-    // If selected `Pages` in exposed filter - add to results PagaManagerSearch
-    // entities too.
     $where = $query->getWhere();
     $group_id = max(array_keys($where));
 
-    if ($query_params['page_types']['pages'] === 'pages') {
+    if (isset($group_id) && !empty($where[$group_id]['conditions'])
+    && $where[$group_id]['conditions'][0][0] === 'type') {
       $query->setWhereGroup('OR', $group_id);
       $query->addCondition('title_1', NULL, '<>', $group_id);
     }
