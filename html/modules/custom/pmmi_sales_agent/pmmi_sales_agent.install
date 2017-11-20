@@ -6,6 +6,9 @@
  */
 
 use Drupal\Core\Database\Database;
+use Drupal\node\Entity\Node;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\field\Entity\FieldStorageConfig;
 
 /**
  * Implements hook_schema().
@@ -199,4 +202,74 @@ function pmmi_sales_agent_update_8015() {
   \Drupal::service('config.factory')->getEditable('pmmi_sales_agent.reporting_settings')
     ->set('exceeded_message', 'Your download limit has been exceeded. For questions, please contact Paige Jarvi, <a href="mailto:pjarvi@pmmi.org">pjarvi@pmmi.org</a>.')
     ->save();
+}
+
+/**
+ * Add approval state field programmatically if it missed.
+ */
+function pmmi_sales_agent_update_8016() {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  if (!$field = $manager->getFieldStorageDefinition('field_approval_state', 'node')) {
+    FieldStorageConfig::create(array(
+      'field_name' => 'field_approval_state',
+      'entity_type' => 'node',
+      'type' => 'list_string',
+      'cardinality' => 1,
+      'module' => 'options',
+    ))->save();
+    FieldConfig::create([
+      'field_name' => 'field_approval_state',
+      'entity_type' => 'node',
+      'bundle' => 'company',
+      'label' => 'Approval state',
+    ])->save();
+  }
+}
+
+/**
+ * Update all nodes with "approval state" value.
+ */
+function pmmi_sales_agent_update_8017(&$sandbox = []) {
+  if (!isset($sandbox['nids'])) {
+    $nids = \Drupal::entityQuery('node')->condition('type', 'company')->execute();
+    $sandbox['nids'] = $nids;
+    $sandbox['max'] = count($nids);
+    $sandbox['progress'] = 0;
+  }
+  $chunk = array_slice($sandbox['nids'], 0, 5, TRUE);
+  foreach ($chunk as $key => $nid) {
+    $node = Node::load($nid);
+    $moderation_info = \Drupal::service('content_moderation.moderation_information');
+    $node = $moderation_info->getLatestRevision('node', $node->id());
+    $current_state = $node->moderation_state->value ?: '';
+    $approval_state = ($current_state == 'published') ? 'approved' : 'not_approved';
+    if ($current_state == 'draft' && $moderation_info->hasForwardRevision($node)) {
+      $approval_state = 'updated';
+    }
+    $node->set('field_approval_state', $approval_state);
+    $node->presave = TRUE;
+    $node->save();
+    unset($sandbox['nids'][$key]);
+    $sandbox['progress']++;
+  }
+  $sandbox['#finished'] = empty($sandbox['nids']) ? 1 : $sandbox['progress'] / $sandbox['max'];
+  if (function_exists('drush_print')) {
+    drush_print(t('Processed @index of @count...', ['@index' => $sandbox['progress'], '@count' => $sandbox['max']]));
+  }
+}
+
+/**
+ * Set default value for the 'pmmi_sales_agent.mail_settings' config.
+ */
+function pmmi_sales_agent_update_8018() {
+  $mail_settings = \Drupal::service('config.factory')->getEditable('pmmi_sales_agent.mail_settings');
+  $mail_settings->set('one_time_expiration', 432000);
+  $one_time = $mail_settings->get('one_time');
+  $one_time['body'] = str_replace(
+    'It expires after 48 hours',
+    'It expires after 120 hours(5 days)',
+    $one_time['body']
+  );
+  $mail_settings->set('one_time', $one_time);
+  $mail_settings->save();
 }

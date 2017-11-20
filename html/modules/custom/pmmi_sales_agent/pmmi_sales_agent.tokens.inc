@@ -29,7 +29,7 @@ function pmmi_sales_agent_tokens($type, $tokens, array $data, array $options, Bu
     foreach ($tokens as $name => $original) {
       switch ($name) {
         case 'one-time-update-link':
-          $replacements[$original] = pmmi_sales_agent_login_url($node->id());
+          $replacements[$original] = pmmi_sales_agent_login_url($node);
           break;
       }
     }

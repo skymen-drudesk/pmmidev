@@ -443,6 +443,26 @@ function pmmi_bootstrap_preprocess_file_link(&$variables) {
 }
 
 /**
+ * Implements hook_preprocess_field().
+ */
+function pmmi_bootstrap_preprocess_field(&$vars) {
+  if (isset($vars['element'])) {
+    switch ($vars['element']['#field_name']) {
+      case 'field_industries_served':
+      case 'field_equipment_sold_type':
+        if (!empty($vars['items'])) {
+          foreach ($vars['items'] as $key => $item) {
+            if ($item['content']['#plain_text'] == 'Other') {
+              unset($vars['items'][$key]);
+            }
+          }
+        }
+        break;
+    }
+  }
+}
+
+/**
  * Implements hook_preprocess_user().
  */
 function pmmi_bootstrap_preprocess_menu(&$variables) {
@@ -451,3 +471,4 @@ function pmmi_bootstrap_preprocess_menu(&$variables) {
 
   $variables['username'] = $account->getDisplayName();
 }
+

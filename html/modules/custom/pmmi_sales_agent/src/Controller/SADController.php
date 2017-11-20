@@ -8,6 +8,7 @@ use Drupal\user\UserStorageInterface;
 use Drupal\Core\Url;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\node\NodeInterface;
 
 /**
  * Controller routines for pmmi_sales_agent routes.
@@ -68,15 +69,17 @@ class SADController extends ControllerBase {
    * @throws \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException
    *   If $uid is for a blocked user or invalid user ID.
    */
-  public function updateListingLogin($nid, $timestamp, $hash) {
-    $current = REQUEST_TIME;
-
+  public function updateListingLogin(NodeInterface $node, $timestamp, $hash) {
+    $current = \Drupal::time()->getRequestTime();
+    $moderation_info = \Drupal::service('content_moderation.moderation_information');
+    $nid = $node->id();
+    $last_revision_id = $moderation_info->getLatestRevisionId('node', $nid);
     // Time out, in seconds, until login URL expires.
     $timeout = \Drupal::config('pmmi_sales_agent.mail_settings')
       ->get('one_time_expiration');
 
     // If one-time update link is not valid - redirect back to a request form.
-    if ($current - $timestamp > $timeout || !Crypt::hashEquals($hash, pmmi_sales_agent_hash($timestamp, $nid))) {
+    if ($current - $timestamp > $timeout || !Crypt::hashEquals($hash, pmmi_sales_agent_hash($timestamp, $last_revision_id + $nid))) {
       drupal_set_message($this->t('You have tried to use a one-time update link that has either been used or is no longer valid. Please request a new one using the form below.'), 'error');
       $url = Url::fromUri('internal:/sales-agent-directory/update');
       return $this->redirect($url->getRouteName());
@@ -93,4 +96,5 @@ class SADController extends ControllerBase {
       ]
     );
   }
+
 }

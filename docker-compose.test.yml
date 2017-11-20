@@ -47,9 +47,10 @@ services:
     networks:
       - back
     ports:
-      - 1025:1025
+      - "1025:1025"
       - "8006:8025"
 
 networks:
   front:
     external: true
+

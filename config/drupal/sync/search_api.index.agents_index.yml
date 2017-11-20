@@ -20,6 +20,7 @@ dependencies:
     - field.storage.node.field_industries_served_other
     - field.storage.node.field_equipment_sold_type_other
     - field.storage.node.field_after_sales_service
+    - field.storage.node.field_approval_state
     - search_api.server.solr_agents_server
   module:
     - search_api
@@ -49,6 +50,8 @@ field_settings:
       type: union
       fields:
         - 'entity:node/title'
+        - 'entity:node/field_equipment_sold_type_other'
+        - 'entity:node/field_industries_served_other'
   title:
     label: 'Title String'
     datasource_id: 'entity:node'
@@ -278,6 +281,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_territory_served
+  field_approval_state:
+    label: 'Approval state'
+    datasource_id: 'entity:node'
+    property_path: field_approval_state
+    type: string
+    dependencies:
+      config:
+        - field.storage.node.field_approval_state
 datasource_settings:
   'entity:node':
     bundles:
@@ -288,40 +299,17 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
-  state: {  }
   pmmi_shows: {  }
+  pmmi_country_area_ws:
+    fields:
+      - ts
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
+    all_fields: false
+  state: {  }
   country: {  }
-  highlight:
-    highlight: always
-    highlight_partial: false
-    excerpt: true
-    excerpt_length: 256
-    exclude_fields: {  }
-    prefix: '<strong>'
-    suffix: '</strong>'
-    weights:
-      postprocess_query: 0
-  html_filter:
-    fields:
-      - title
-    title: true
-    alt: true
-    tags:
-      h1: 5
-      h2: 3
-      h3: 2
-      strong: 2
-      b: 2
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-  ignorecase:
-    fields:
-      - title
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-  add_url: {  }
+  aggregated_field: {  }
   stopwords:
     fields: {  }
     stopwords:
@@ -363,10 +351,46 @@ processor_settings:
     weights:
       preprocess_index: -5
       preprocess_query: -2
+    all_fields: false
+  add_url: {  }
+  rendered_item: {  }
+  html_filter:
+    fields:
+      - title
+    title: true
+    alt: true
+    tags:
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      b: 2
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+    all_fields: false
+  highlight:
+    highlight: always
+    highlight_partial: false
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
   content_access:
     weights:
       preprocess_query: -10
-  aggregated_field: {  }
+  tokenizer:
+    fields: {  }
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
+    all_fields: false
   stemmer:
     fields:
       - title_f
@@ -376,21 +400,14 @@ processor_settings:
     weights:
       preprocess_index: 0
       preprocess_query: 0
-  tokenizer:
-    fields: {  }
-    spaces: ''
-    overlap_cjk: 1
-    minimum_word_size: '3'
-    weights:
-      preprocess_index: -6
-      preprocess_query: -6
-  rendered_item: {  }
-  pmmi_country_area_ws:
+    all_fields: false
+  ignorecase:
     fields:
-      - ts
+      - title
     weights:
-      preprocess_index: -6
-      preprocess_query: -6
+      preprocess_index: -10
+      preprocess_query: -10
+    all_fields: false
 tracker_settings:
   default: {  }
 options:

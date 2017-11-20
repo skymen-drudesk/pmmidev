@@ -425,23 +425,40 @@
 /**
  * Sales Agent Directory Favorites Page.
  */
+.favorites-header {
+  .title {
+    display: inline;
+    margin: 0 15px 0 0;
+    span {
+      font-weight: normal;
+    }
+  }
+}
 .page-sales-agent-directory-my-favorites {
   h2 {
     @extend .headline2;
   }
-  .view-header a.pmmi-download-favorites {
-    margin: -45px 0 30px 250px;
-    height: auto;
-    @extend .button-primary;
-    padding: 10px 12px;
-    p {
-      margin: 0;
+  .view-header {
+    a.pmmi-download-favorites {
+      display: none;
     }
-    a {
-      color: #fff;
-      font-size: $r14;
-      padding: 5px;
-      font-weight: 700;
+  }
+  .favorites-header {
+    a.pmmi-download-favorites {
+      height: auto;
+      @extend .button-primary;
+      padding: 10px 12px;
+      margin: 5px;
+      vertical-align: top;
+      p {
+        margin: 0;
+      }
+      a {
+        color: #fff;
+        font-size: $r14;
+        padding: 5px;
+        font-weight: 700;
+      }
     }
   }
   thead > tr > th {
@@ -520,9 +537,6 @@
     }
     h2 {
       position: relative;
-    }
-    .view-header a.pmmi-download-favorites {
-      margin: 5px 0 15px 0;
     }
     thead {
       display: none;

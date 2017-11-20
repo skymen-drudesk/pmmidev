@@ -174,24 +174,16 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
       $countries = $triggering_element['#value'];
     }
 
-    // Show or hide second level of hierarchy in accordance with selected
-    // country.
-    if ($countries) {
-      $areas = array();
-      foreach ($countries as $value) {
-        $subdivisions = $this->subdivisionRepository->getList(array($value));
-        $areas = $areas + $subdivisions;
-        $element['#correlation'][$value] = $subdivisions;
-      }
+    // Show or hide second level of hierarchy field only for US country.
+    if (in_array('US', $countries)) {
 
+      $subdivisions = $this->subdivisionRepository->getList(['US']);
       // Show subdivision field.
-      if ($areas) {
-        $element['administrative_area']['#options'] = $areas;
+      if ($subdivisions) {
+        $element['administrative_area']['#options'] = $subdivisions;
         $element['administrative_area']['#access'] = TRUE;
+        $element['#correlation']['US'] = $subdivisions;
       }
-    }
-    else {
-      $element['administrative_area']['#options'] = array();
     }
 
     $element['#element_validate'][] = array(
@@ -296,4 +288,5 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
 
     return $selected_options;
   }
+
 }

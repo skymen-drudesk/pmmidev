@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0e92b889c23b0568920f7aed1ca2647c",
+    "content-hash": "4cdf618d3696dc4a908c6d465bcacc58",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -2779,6 +2779,7 @@
                     "Batch API should use the current theme to run the batches": "https://www.drupal.org/files/issues/wrong-route-check-539022-71.patch",
                     "Complex job in ViewExecutable::unserialize() causes data corruption": "https://www.drupal.org/files/issues/nested-unserialization-workaround.patch",
                     "Lock system is broken in many regards": "https://www.drupal.org/files/issues/lock_system_needs_a-2077827-49_0.patch",
+                    "HtmlEscapedText object to string conversation error": "https://www.drupal.org/files/issues/drupal_8_3_2_HtmlEscapedText_to_string_01.patch",
                     "Twig - only search for templates in templates directory of themes": "patches/3879__twig__only_scan_templates_dir.patch"
                 }
             },
@@ -5140,7 +5141,8 @@
                 "source": "http://git.drupal.org/project/panels_everywhere.git",
                 "issues": "https://www.drupal.org/project/issues/panels_everywhere",
                 "irc": "irc://irc.freenode.org/drupal-scotch"
-            }
+            },
+            "time": "2017-10-25T11:06:45+00:00"
         },
         {
             "name": "drupal/pathauto",
