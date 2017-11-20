@@ -5,6 +5,7 @@
  * Contains pmmi_forms.module.
  */
 
+use Drupal\Component\Utility\Xss;
 use Drupal\Core\Database\Database;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Access\AccessResult;
@@ -242,6 +243,8 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       if ($form['#id'] === 'views-exposed-form-membership-application-submissions-block-all') {
         // Get current user and check if he has `administrator` role.
         $current_user = \Drupal::currentUser();
+        $current_path = \Drupal::request();
+        $current_query_date = Xss::filter($current_path->query->get('date'));
         $roles = $current_user->getRoles();
 
         // Remove `False` value from options if current user doesn't have
@@ -256,6 +259,7 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
         $query->addField('wsd', 'value');
         $query->condition('wsd.webform_id', 'membership_application_form');
         $query->condition('wsd.name', 'submission_date_is_belongs_to');
+        $query->orderBy('value', 'DESC');
         $webform_submissions = $query->execute()->fetchAll();
         $date_options = [];
 
@@ -270,6 +274,10 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
             '#title' => t('Date'),
             '#options' => array_unique($date_options),
           ];
+
+          if (!empty($current_query_date)) {
+            $form['date']['#default_value'] = $current_query_date;
+          }
         }
       }
 
@@ -552,11 +560,15 @@ function pmmi_forms_get_season($date) {
   }
 
   // Get first and last day of season.
-  $first_day = date('01-' . $first_month_season . '-' . $dates[1]);
-  $last_day = date(date('t', strtotime($first_day)) .'-' . $last_month_season . '-' . $dates[1]);
+  $first_day = date($dates[1] . '-' . $first_month_season . '-01' . ' 00:00:00 +0000');
+  $last_day = date($dates[1] .'-' . $last_month_season . '-' . date('t', strtotime($first_day)) . ' 00:00:00 +0000');
+
+  // Get date with GMT timezone.
+  $first_day_date = DateTime::createFromFormat("Y-n-d H:i:s O", $first_day);
+  $last_day_date = DateTime::createFromFormat("Y-n-d H:i:s O", $last_day);
 
   $option = [
-    'date' => strtotime($first_day) . '_' . strtotime($last_day),
+    'date' => $first_day_date->getTimestamp() . '_' . $last_day_date->getTimestamp(),
     'formatted_date' => $formatted_date,
   ];
 
