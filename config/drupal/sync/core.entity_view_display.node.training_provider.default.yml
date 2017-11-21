@@ -1,0 +1,91 @@
+uuid: eef4ec5b-ee6a-4bb4-9cd2-b5608c981151
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.training_provider.body
+    - field.field.node.training_provider.field_country
+    - field.field.node.training_provider.field_course_topics_offered
+    - field.field.node.training_provider.field_delivery_options_offered
+    - field.field.node.training_provider.field_general_company_email
+    - field.field.node.training_provider.field_main_phone_number
+    - field.field.node.training_provider.field_territory_served
+    - field.field.node.training_provider.field_website_url
+    - node.type.training_provider
+  module:
+    - link
+    - pmmi_address
+    - text
+    - user
+id: node.training_provider.default
+targetEntityType: node
+bundle: training_provider
+mode: default
+content:
+  body:
+    weight: 107
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_country:
+    weight: 110
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: country_area_plain
+    region: content
+  field_course_topics_offered:
+    weight: 111
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_delivery_options_offered:
+    weight: 112
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_general_company_email:
+    weight: 104
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_main_phone_number:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_territory_served:
+    weight: 106
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: country_area_plain
+    region: content
+  field_website_url:
+    weight: 103
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  links:
+    weight: 100
+    region: content
+hidden: {  }
