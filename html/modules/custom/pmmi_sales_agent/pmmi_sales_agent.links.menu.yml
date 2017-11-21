@@ -57,3 +57,11 @@ pmmi_sales_agent.clear_territory_served:
   route_name: pmmi_sales_agent.clear_territory_served
   parent: pmmi_sales_agent.sales_agent_directory
   weight: 100
+
+# Send one-time-update page.
+pmmi_sales_agent.sales_agent_directory_update:
+  title: Send one-time-update
+  route_name: page_manager.page_view_company_listing_update_company_listing_update-panels_variant-0
+  parent: pmmi_sales_agent.sales_agent_directory
+  weight: 97
+
