@@ -1,0 +1,12 @@
+# Training provider directory configuration page.
+pmmi_training_provider.training_provider_directory:
+  title: Training provider directory
+  route_name: pmmi_training_provider.training_provider_directory
+  parent: system.admin_config
+  weight: 99
+
+# Panel page: Training provider directory - Admin Panel.
+pmmi_training_provider.admin_panel:
+  title: Admin Panel
+  route_name: page_manager.page_view_training_provider_directory_admin_panel_training_provider_directory_admin_panel-panels_variant-0
+  parent: pmmi_training_provider.training_provider_directory

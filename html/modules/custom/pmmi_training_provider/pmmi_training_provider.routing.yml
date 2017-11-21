@@ -1,0 +1,7 @@
+pmmi_training_provider.training_provider_directory:
+  path: '/admin/config/tpd'
+  defaults:
+    _controller: '\Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+    _title: 'Training Provider Directory'
+  requirements:
+    _permission: 'pmmi training provider administration'

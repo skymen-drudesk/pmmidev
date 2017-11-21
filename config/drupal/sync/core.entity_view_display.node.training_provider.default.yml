@@ -4,7 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.training_provider.body
-    - field.field.node.training_provider.field_country
+    - field.field.node.training_provider.field_address
     - field.field.node.training_provider.field_course_topics_offered
     - field.field.node.training_provider.field_delivery_options_offered
     - field.field.node.training_provider.field_general_company_email
@@ -13,6 +13,7 @@ dependencies:
     - field.field.node.training_provider.field_website_url
     - node.type.training_provider
   module:
+    - address
     - link
     - pmmi_address
     - text
@@ -29,12 +30,12 @@ content:
     third_party_settings: {  }
     type: text_default
     region: content
-  field_country:
-    weight: 110
+  field_address:
+    weight: 113
     label: above
     settings: {  }
     third_party_settings: {  }
-    type: country_area_plain
+    type: address_default
     region: content
   field_course_topics_offered:
     weight: 111
