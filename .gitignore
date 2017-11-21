@@ -62,3 +62,6 @@ config/varnish/prod/secret
 
 # Ignore docker-sync folder.
 .docker-sync/
+
+#Ignore sql-dumps.
+*.sql*

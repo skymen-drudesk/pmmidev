@@ -9,6 +9,8 @@ use Drupal\Core\Template\Attribute;
 use \Drupal\panels\Plugin\DisplayVariant\PanelsDisplayVariant;
 use Drupal\page_manager\Context\EntityLazyLoadContext;
 use Drupal\Component\Utility\Html;
+use Drupal\pmmi\Plugin\CollapsibleLayout;
+
 /**
  * Implements hook_views_pre_build().
  */
@@ -133,4 +135,44 @@ function pmmi_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
   ];
 
   $purgeQueue->add($queuer, $invalidations);
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function pmmi_theme_registry_alter(&$theme_registry) {
+  static $layouts = FALSE;
+
+  if (!$layouts) {
+    // This can be called before ds_update_8003() has run. If that is the case
+    // return an empty array and don't static cache anything.
+    if (!\Drupal::hasService('plugin.manager.core.layout')) {
+      return [];
+    }
+    $layouts = \Drupal::service('plugin.manager.core.layout')->getDefinitions();
+  }
+  $layout_theme_hooks = [];
+  /** @var \Drupal\Core\Layout\LayoutDefinition $info */
+  foreach ($layouts as $info) {
+    if (is_a($info->getClass(), CollapsibleLayout::class, TRUE)) {
+      $layout_theme_hooks[$info->getThemeHook()] = 'layout';
+    }
+  }
+
+  // Only add preprocess functions if entity exposes theme function, and this
+  // layout is using the Display Suite layout class.
+  foreach ($theme_registry as $theme_hook => $info) {
+    if (array_key_exists($theme_hook, $layout_theme_hooks) || (!empty($info['base hook']) && array_key_exists($info['base hook'], $layout_theme_hooks))) {
+      $theme_registry[$theme_hook]['preprocess functions'][] = 'pmmi_preprocess_pmmi_layout';
+    }
+  }
+}
+
+/**
+ * Process layout.
+ *
+ * This function is added in pmmi_reports_theme_registry_alter().
+ */
+function pmmi_preprocess_pmmi_layout(&$variables) {
+  $variables['opened'] = !empty($variables['content']['#opened']) ?? FALSE;
 }

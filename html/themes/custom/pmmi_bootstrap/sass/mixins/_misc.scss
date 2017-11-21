@@ -114,3 +114,21 @@
     }
   }
 }
+
+.hide-desktop-min {
+  display: none;
+  @include tablet-max {
+    display: block;
+  }
+}
+.hide-dhd {
+  @include dhd {
+    display: none;
+  }
+}
+.show-dhd {
+  display: none;
+  @include dhd {
+    display: block;
+  }
+}
