@@ -13,6 +13,7 @@
   padding: 20px;
   border: 1px solid $mdgrey;
   border-radius: 6px;
+  @include clearfix;
   @include tablet-max {
     margin-bottom: 20px;
   }

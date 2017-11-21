@@ -3,7 +3,7 @@
   color: $color;
   background-color: $background;
   border-color: $border;
-
+  &:focus,
   &.focus {
     color: $color;
     background-color: darken($background, 10%);
@@ -75,8 +75,8 @@
       @include tab-focus;
     }
   }
-
   &:hover,
+  &:focus,
   &.focus {
     color: $btn-default-color;
     text-decoration: none;
@@ -143,10 +143,14 @@
     font-weight: $medium;
   }
 }
+.linked-list {
+  padding: 0;
+}
 .linked-list-item {
   border-bottom: 1px solid $mdgrey;
   padding-bottom: 6px;
   margin-bottom: 6px;
+  list-style: none;
   a {
     @extend .text-link;
   }

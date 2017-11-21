@@ -17,6 +17,13 @@ class PMMISearchLibraryBlockForm extends PMMISearchBlockForm {
   /**
    * {@inheritdoc}
    */
+  public function getFormId() {
+    return 'pmmi_search_library_block_form';
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function buildForm(array $form, FormStateInterface $form_state, $data = NULL) {
     if (empty($data)) {
       $form['message'] = array(
@@ -32,7 +39,7 @@ class PMMISearchLibraryBlockForm extends PMMISearchBlockForm {
       '#placeholder' => '',
       '#description' => $this->t('Enter the keywords you wish to search for.'),
       '#size' => 15,
-      '#default_value' => '',
+      '#default_value' => \Drupal::request()->query->get($data['search_identifier']) ?: '',
       '#name' => $data['search_identifier'],
       '#bootstrap_ignore_process' => TRUE,
       '#attributes' => array(
@@ -51,10 +58,11 @@ class PMMISearchLibraryBlockForm extends PMMISearchBlockForm {
       '#title' => $this->t('Filter By Topic'),
       '#title_display' => 'before',
       '#options' => $options,
-      '#empty_value' => '_none',
+      '#empty_value' => 0,
       '#empty_option' => $this->t('Select a Topic'),
       '#name' => $data['term_identifier'],
       '#attributes' => array('class' => array('search-filter')),
+      '#default_value' => \Drupal::request()->query->get($data['term_identifier']) ?: '',
     );
     $form['actions'] = array('#type' => 'actions');
     $form['actions']['submit'] = array(
@@ -88,8 +96,12 @@ class PMMISearchLibraryBlockForm extends PMMISearchBlockForm {
       $default_query = $url->getOption('query');
     }
     // Saved default path query param.
-    $query[$search_identifier] = $form_state->getUserInput()[$search_identifier];
-    $query[$term_identifier] = $form_state->getUserInput()[$term_identifier];
+    foreach ([$search_identifier, $term_identifier] as $param) {
+      if ($input = $form_state->getUserInput()[$param]) {
+        $query[$param] = $input;
+      }
+    }
+
     if (!empty($default_query) && is_array($default_query)) {
       foreach ($query as $key => $value) {
         if (array_key_exists($key, $default_query)) {
