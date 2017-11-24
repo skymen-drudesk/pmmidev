@@ -8,37 +8,34 @@ dependencies:
     - content_moderation
 id: sales_agent_admin
 label: 'Sales Agent Admin'
-states:
-  draft:
-    label: Draft
-    weight: -5
-  published:
-    label: Published
-    weight: 0
-transitions:
-  create_new_draft:
-    label: 'Create New Draft'
-    from:
-      - draft
-      - published
-    to: draft
-    weight: 0
-  publish:
-    label: Publish
-    from:
-      - draft
-      - published
-    to: published
-    weight: 1
 type: content_moderation
 type_settings:
   states:
     draft:
       published: false
       default_revision: false
+      label: Draft
+      weight: -10
     published:
       published: true
       default_revision: true
+      label: Published
+      weight: -10
   entity_types:
     node:
       - company
+  transitions:
+    create_new_draft:
+      label: 'Create New Draft'
+      to: draft
+      weight: 0
+      from:
+        - draft
+        - published
+    publish:
+      label: Publish
+      to: published
+      weight: 1
+      from:
+        - draft
+        - published
