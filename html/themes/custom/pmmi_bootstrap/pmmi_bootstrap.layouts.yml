@@ -102,7 +102,7 @@ panel_landing_left_sidebar:
       label: Main content
 panel_landing_left_sidebar_collapsible:
   label: Landing with left sidebar collapsible
-  category: PMMI: Layouts
+  category: 'PMMI: Layouts'
   class: '\Drupal\pmmi\Plugin\CollapsibleLayout'
   template: templates/layouts/panels/landing-left-sidebar-collapsible
   regions:
@@ -336,7 +336,7 @@ video_default_mode:
       label: Links
 report:
   label: Report
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/nodes/report
   regions:
     image_header:
