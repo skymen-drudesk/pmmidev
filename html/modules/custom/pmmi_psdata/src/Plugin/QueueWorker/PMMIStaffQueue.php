@@ -39,7 +39,7 @@ class PMMIStaffQueue extends PMMIBaseDataQueue {
     $data = NULL;
     $method = $item->data['company']['method'];
     $request_options = $this->buildStaffRequest($item, $method);
-    if ($staff_data = $this->handleRequest($request_options)) {
+    if ($staff_data = $this->requestHelper->handleRequest($request_options)) {
       foreach ($staff_data as $customer) {
         $label_name = '';
         $first_name = '';
@@ -65,7 +65,7 @@ class PMMIStaffQueue extends PMMIBaseDataQueue {
       }
       if ($method != 'code') {
         $members_requests = $this->separateRequest(array_keys($data), 'info');
-        if ($members_data = $this->handleAsyncRequests($members_requests)) {
+        if ($members_data = $this->requestHelper->handleAsyncRequests($members_requests)) {
           foreach ($members_data as $member) {
             $data[$member->MasterCustomerId]['label_name'] = $member->LabelName;
             $data[$member->MasterCustomerId]['first_name'] = $member->FirstName;
@@ -74,7 +74,7 @@ class PMMIStaffQueue extends PMMIBaseDataQueue {
         }
       }
       $address_requests = $this->separateRequest(array_keys($data), 'address');
-      if ($address_data = $this->handleAsyncRequests($address_requests)) {
+      if ($address_data = $this->requestHelper->handleAsyncRequests($address_requests)) {
         foreach ($address_data as $address) {
           $data[$address->MasterCustomerId]['country'] = $address->CountryCode;
           $data[$address->MasterCustomerId]['job_title'] = $address->JobTitle;
@@ -88,7 +88,7 @@ class PMMIStaffQueue extends PMMIBaseDataQueue {
         'communication',
         $communications
       );
-      if ($comm_data = $this->handleAsyncRequests($comm_requests)) {
+      if ($comm_data = $this->requestHelper->handleAsyncRequests($comm_requests)) {
         foreach ($comm_data as $comm) {
           $type = strtolower($comm->CommTypeCodeString);
           $data[$comm->MasterCustomerId]['comm'][$type] = $comm->FormattedPhoneAddress;
@@ -96,7 +96,7 @@ class PMMIStaffQueue extends PMMIBaseDataQueue {
       }
     }
     else {
-      $this->ssoHelper->log("Error with request to get Data Service information about Employees.");
+      $this->requestHelper->ssoHelper->log("Error with request to get Data Service information about Employees.");
     }
     return $data;
   }
@@ -120,7 +120,7 @@ class PMMIStaffQueue extends PMMIBaseDataQueue {
       case 'code':
         // /CustomerInfos?$filter=CustomerClassCode eq 'STAFF' .
         $path = 'CustomerInfos';
-        $filter = $this->addFilter(
+        $filter = $this->requestHelper->addFilter(
           'eq',
           'CustomerClassCode',
           [$item->data['company']['method_data']],
@@ -137,14 +137,14 @@ class PMMIStaffQueue extends PMMIBaseDataQueue {
         // /CustomerInfos(MasterCustomerId='02010445',SubCustomerId=0)
         // /Relationships?$filter=ActiveFlag  eq true and FullTimeFlag eq true .
         $path = "CustomerInfos(MasterCustomerId='$company_id',SubCustomerId=$company_sub_id)/Relationships";
-        $filter = $this->addFilter('eq', 'ActiveFlag', ['true'], TRUE, TRUE);
-        $filter .= $this->addFilter('eq', 'FullTimeFlag', ['true'], FALSE, TRUE);
+        $filter = $this->requestHelper->addFilter('eq', 'ActiveFlag', ['true'], TRUE, TRUE);
+        $filter .= $this->requestHelper->addFilter('eq', 'FullTimeFlag', ['true'], FALSE, TRUE);
         $query = [
           '$filter' => $filter,
         ];
         break;
     }
-    return $this->buildGetRequest($path, $query);
+    return $this->requestHelper->buildGetRequest($path, $query);
   }
 
 }

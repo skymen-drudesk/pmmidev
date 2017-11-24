@@ -23,6 +23,7 @@ class PMMISearchResultTitleBlock extends PMMISearchBlock implements ContainerFac
   public function defaultConfiguration() {
     return [
       'search_title' => '',
+      'fallback_title' => $this->t('All results'),
     ] + parent::defaultConfiguration();
 
   }
@@ -40,6 +41,13 @@ class PMMISearchResultTitleBlock extends PMMISearchBlock implements ContainerFac
       '#required' => TRUE,
       '#weight' => '3',
     ];
+    $form['fallback_title'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Fallback Title'),
+      '#description' => $this->t('Title used when no keywords added.'),
+      '#default_value' => $this->configuration['fallback_title'],
+      '#weight' => '4',
+    ];
     return $form;
   }
 
@@ -49,6 +57,7 @@ class PMMISearchResultTitleBlock extends PMMISearchBlock implements ContainerFac
   public function blockSubmit($form, FormStateInterface $form_state) {
     parent::blockSubmit($form, $form_state);
     $this->configuration['search_title'] = $form_state->getValue('search_title');
+    $this->configuration['fallback_title'] = $form_state->getValue('fallback_title');
   }
 
   /**
@@ -62,7 +71,7 @@ class PMMISearchResultTitleBlock extends PMMISearchBlock implements ContainerFac
       $current_request = \Drupal::request();
       $uri = $current_request->getPathInfo();
       $keywords = $current_request->query->get($this->configuration['search_identifier']);
-      $title = !empty($keywords) ? $this->configuration['search_title'] . ' ' . $keywords : $this->t('All results');
+      $title = !empty($keywords) ? $this->configuration['search_title'] . ' ' . $keywords : $this->configuration['fallback_title'];
       if ($search_path->toString() == $uri) {
         $build['pmmi_search_result_title_block']['#markup'] = '<h2 class="headline2">' . $title . '</h2>';
       }
