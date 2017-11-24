@@ -29,7 +29,16 @@ field_settings:
     indexed_locked: true
     type_locked: true
     hidden: true
-  field_course_topics_offered:
+  keywords:
+    label: Keywords
+    property_path: aggregated_field
+    type: text
+    configuration:
+      type: union
+      fields:
+        - 'entity:node/body'
+        - 'entity:node/title'
+  course_topics:
     label: 'Course Topics Offered'
     datasource_id: 'entity:node'
     property_path: field_course_topics_offered
@@ -37,7 +46,7 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_course_topics_offered
-  field_delivery_options_offered:
+  delivery_options:
     label: 'Delivery Options Offered'
     datasource_id: 'entity:node'
     property_path: field_delivery_options_offered
@@ -53,7 +62,7 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_general_company_email
-  field_territory_served:
+  ts:
     label: Locations
     datasource_id: 'entity:node'
     property_path: field_territory_served
@@ -161,7 +170,7 @@ processor_settings:
   pmmi_shows: {  }
   pmmi_country_area_ws:
     fields:
-      - field_territory_served
+      - ts
     all_fields: false
     weights:
       preprocess_index: -6

@@ -87,14 +87,16 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
   /**
    * {@inheritdoc}
    */
-  public function build() {
+  public function build($data = NULL) {
     $output = [];
-    if (!$view = Views::getView('search_sales_agent_directory')) {
+    $view_name = isset($data['view_name']) ? $data['view_name'] : 'search_sales_agent_directory';
+    $display_id = isset($data['display_id']) ? $data['display_id'] : 'block_1';
+    if (!$view = Views::getView($view_name)) {
       // Search view is not exist.
       return $output;
     }
 
-    $view->setDisplay('block_1');
+    $view->setDisplay($display_id);
     $view->build();
     $this->viewAddFilters($view);
     $view->preExecute();
@@ -114,17 +116,27 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
   /**
    * Build header which includes information about added filter.
    */
-  protected function buildHeader($result_count) {
+  protected function buildHeader($result_count, $data = []) {
     $filters = [];
+    $data += [
+      'class' => 'sales-agent-search-results-header',
+    ];
 
     // Get title.
-    $title = $this->stringTranslation->formatPlural($result_count, 'Search Results <span>(@count company)</span>', 'Search Results <span>(@count companies)</span>');
+    $title = !isset($data['title'])
+      ? $this->stringTranslation->formatPlural($result_count, 'Search Results <span>(@count company)</span>', 'Search Results <span>(@count companies)</span>')
+      : $data['title'];
 
     // Get all available filters.
     if ($query_params = \Drupal::request()->query->all()) {
       foreach ($query_params as $param => $values) {
         $values = is_array($values) ? $values : [$values];
-        if ($filter = $this->getFilterInfo($param, $values)) {
+        $term_references = [
+          'field_industries_served',
+          'field_equipment_sold_type',
+          'pmmi_shows',
+        ];
+        if ($filter = $this->getFilterInfo($param, $values, $term_references)) {
           $filters[] = $filter;
         }
       }
@@ -134,21 +146,24 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
       '#theme' => 'pmmi_company_search_results',
       '#title' => $title,
       '#filters' => $filters,
+      '#class' => $data['class'],
     ];
   }
 
   /**
    * Builds block with information about some filter.
    *
-   * @param $filter string
+   * @param string $filter
    *   The filter machine name.
-   * @param $values array array
+   * @param array $values
    *   The filter values.
+   * @param array $term_references
+   *   The term references filter keys.
    *
    * @return array
    *   The renderable array with information about the filter.
    */
-  protected function getFilterInfo($filter, array $values) {
+  protected function getFilterInfo($filter, array $values, array $term_references = []) {
     $items = [];
 
     switch ($filter) {
@@ -179,20 +194,20 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
         }
         break;
 
-      case 'field_industries_served':
-      case 'field_equipment_sold_type':
-      case 'pmmi_shows':
-        foreach ($values as $value) {
-          $term = $this->entity_type_manager->getStorage('taxonomy_term')->load($value);
-          if ($term) {
-            $items[] = $term->getName();
-          }
-        }
-        break;
-
       case 'keywords':
         if ($values && ($value = reset($values))) {
           $items[] = str_replace('+', ' ', $value);
+        }
+        break;
+
+      default:
+        if (in_array($filter, $term_references)) {
+          foreach ($values as $value) {
+            $term = $this->entity_type_manager->getStorage('taxonomy_term')->load($value);
+            if ($term) {
+              $items[] = $term->getName();
+            }
+          }
         }
         break;
 
@@ -211,22 +226,14 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
    *   The filter name.
    */
   protected function filterGetName($key) {
-    switch ($key) {
-      case 'country_code':
-        return $this->t('Countries');
-
-      case 'field_industries_served':
-        return $this->t('Industries served');
-
-      case 'field_equipment_sold_type':
-        return $this->t('Equipment type');
-
-      case 'pmmi_shows':
-        return $this->t('PMMI Show');
-
-      case 'keywords':
-        return $this->t('Keyword');
-    }
+    $filters = [
+      'ts' => $this->t('Countries'),
+      'field_industries_served' => $this->t('Industries served'),
+      'field_equipment_sold_type' => $this->t('Equipment type'),
+      'pmmi_shows' => $this->t('PMMI Show'),
+      'keywords' => $this->t('Keyword'),
+    ];
+    return $filters[$key] ?? '';
   }
 
   /**

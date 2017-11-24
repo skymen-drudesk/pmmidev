@@ -75,15 +75,15 @@ class PMMIAdminPanelAgentSearchBlockForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $data = NULL) {
+    $bundle = !empty($data['bundle']) ? $data['bundle'] : 'company';
     $qp = \Drupal::request()->query->all();
     $countries = $this->countryRepository->getList();
-    $used_countries = $this->filterCountries->getUsedCountries('company');
+    $used_countries = $this->filterCountries->getUsedCountries($bundle);
     $filtered_countries = array_intersect_key($countries, $used_countries);
 
     // We can use static wrapper here.
     $wrapper_id = !empty($data['wrapper_id']) ? $data['wrapper_id'] : 'admin-panel-sales-agent-directory-address';
 
-    $bundle = !empty($data['bundle']) ? $data['bundle'] : 'company';
     // Add link to quick add new company node.
     $url = Url::fromUri('internal:/node/add/' . $bundle);
     $link_options = [

@@ -51,11 +51,6 @@ class PMMIAdminPanelTrainingProviderSearchBlockForm extends PMMIAdminPanelAgentS
       $query['keywords'] = str_replace(' ', '+', $values['keywords']);
     }
 
-    // Approval state filtering.
-    if (!empty($values['approval_state']) && $values['approval_state'] !== '_none') {
-      $query['approval_state'] = str_replace(' ', '+', $values['approval_state']);
-    }
-
     $url = Url::fromUri('internal:/admin/config/tpd/admin-panel');
     $url->setOption('query', $query);
     $form_state->setRedirectUrl($url);

@@ -13,70 +13,141 @@ dependencies:
     - field.field.node.training_provider.field_website_url
     - node.type.training_provider
   module:
-    - address
+    - ds
     - link
+    - pmmi
     - pmmi_address
+    - pmmi_training_provider
+    - telephone
     - text
     - user
+third_party_settings:
+  ds:
+    layout:
+      id: training_provider
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings: {  }
+    regions:
+      title:
+        - node_title
+      general_line_1:
+        - field_address
+        - field_main_phone_number
+      general_line_2:
+        - field_website_url
+        - field_general_company_email
+      course_topics:
+        - field_course_topics_offered
+      delivery_options:
+        - field_delivery_options_offered
+      locations:
+        - field_territory_served
+      company_description:
+        - body
+      last_updated:
+        - node_changed_date
+    fields:
+      node_changed_date:
+        plugin_id: node_changed_date
+        weight: 9
+        label: inline
+        formatter: ds_post_date_custom_month_day_year
+        ft:
+          id: minimal
+          settings:
+            lb: 'Profile last updated'
+            lb-col: false
+            classes: {  }
+      node_title:
+        plugin_id: node_title
+        weight: 0
+        label: hidden
+        formatter: default
 id: node.training_provider.default
 targetEntityType: node
 bundle: training_provider
 mode: default
 content:
   body:
-    weight: 107
+    weight: 8
     label: above
     settings: {  }
-    third_party_settings: {  }
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: 'Company Description'
+            lb-col: false
+            classes: {  }
     type: text_default
-    region: content
+    region: company_description
   field_address:
-    weight: 113
-    label: above
+    weight: 1
+    label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: address_default
-    region: content
+    type: address_simple
+    region: general_line_1
   field_course_topics_offered:
-    weight: 111
+    weight: 5
     label: above
     settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
+      separator: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: minimal
+          settings:
+            lb: 'Course Topics'
+            lb-col: false
+            classes: {  }
+    type: pmmi_multiple_formatter
+    region: course_topics
   field_delivery_options_offered:
-    weight: 112
+    weight: 6
     label: above
     settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
-    region: content
+      separator: ''
+    third_party_settings:
+      ds:
+        ds_limit: ''
+        ft:
+          id: minimal
+          settings:
+            lb: 'Delivery Options'
+            lb-col: false
+            classes: {  }
+    type: pmmi_multiple_formatter
+    region: delivery_options
   field_general_company_email:
-    weight: 104
-    label: above
+    weight: 4
+    label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-    region: content
+    region: general_line_2
   field_main_phone_number:
-    weight: 102
-    label: above
-    settings: {  }
+    weight: 2
+    label: hidden
+    settings:
+      title: ''
     third_party_settings: {  }
-    type: basic_string
-    region: content
+    type: telephone_link
+    region: general_line_1
   field_territory_served:
-    weight: 106
+    weight: 7
     label: above
     settings: {  }
     third_party_settings: {  }
     type: country_area_plain
-    region: content
+    region: locations
   field_website_url:
-    weight: 103
-    label: above
+    weight: 3
+    label: hidden
     settings:
       trim_length: 80
       url_only: false
@@ -85,8 +156,6 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-    region: content
-  links:
-    weight: 100
-    region: content
-hidden: {  }
+    region: general_line_2
+hidden:
+  links: true

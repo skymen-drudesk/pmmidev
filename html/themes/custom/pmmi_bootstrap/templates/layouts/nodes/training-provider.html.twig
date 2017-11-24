@@ -1,0 +1,32 @@
+<div class="training-provider-node">
+  <div class="top-banner clearfix">
+    {{ field_render([content.image_header, 'img-header']) }}
+  </div>
+  <div class="container">
+    <div class="container-wrapper">
+      <h2 class="node-title">
+        {{ content.title }}
+      </h2>
+
+      <div class="general">
+        {{ field_render([content.general_line_1, 'line-1']) }}
+        {{ field_render([content.general_line_2, 'line-2']) }}
+      </div>
+
+      <div class="row-wrapper row">
+        <div class="course-topics col-md-4">
+          {{ content.course_topics }}
+        </div>
+        <div class="delivery-options col-md-4">
+          {{ content.delivery_options }}
+        </div>
+        <div class="locations col-md-4">
+          {{ content.locations }}
+        </div>
+      </div>
+
+      {{ field_render([content.company_description, 'company-description']) }}
+      {{ field_render([content.last_updated, 'last-updated']) }}
+    </div>
+  </div>
+</div>
