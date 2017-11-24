@@ -47,6 +47,7 @@ function pmmi_company_contact_form_alter(array &$form, FormStateInterface $form_
 
         // Add custom submit to handle contacts.
         $form['actions']['submit']['#submit'][] = 'pmmi_company_contact_contacts_submit_handler';
+        hide($form['moderation_state']);
       }
       break;
   }
