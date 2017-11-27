@@ -381,6 +381,19 @@ onetwo:
       label: 1st row 2nd column
     bottom:
       label: Bottom content
+onetwomiddle:
+  label: Column 2-up (1 row of 2 columns middle)
+  category: PMMI: Columns
+  template: templates/layouts/columns/onetwomiddle
+  regions:
+    top:
+      label: Top content
+    oneone:
+      label: 1st row 1st column
+    onetwo:
+      label: 1st row 2nd column
+    bottom:
+      label: Bottom content
 onetwouneven:
   label: Column 2-up Uneven (1 row of 2 uneven columns)
   category: 'PMMI: Columns'
