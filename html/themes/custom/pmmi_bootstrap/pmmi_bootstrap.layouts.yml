@@ -1,6 +1,6 @@
 sitewide:
   label: Sitewide (Page)
-  category: PMMI: Layouts
+  category: 'PMMI: Layouts'
   template: templates/layouts/sitewide
   regions:
     top:
@@ -11,7 +11,7 @@ sitewide:
       label: Bottom content
 panel_homepage:
   label: Homepage screens (with fullwidth regions, i.e. events(blue), cards(grey), etc.)
-  category: PMMI: Layouts
+  category: 'PMMI: Layouts'
   template: templates/layouts/panels/homepage
   regions:
     top:
@@ -27,7 +27,7 @@ panel_homepage:
 
 panel_landing_1:
   label: Landing screen 1 (with fullwidth regions, white, grey, blue, white 2, grey 2, blue 2)
-  category: PMMI: Layouts
+  category: 'PMMI: Layouts'
   template: templates/layouts/panels/landing-1
   regions:
     top:
@@ -51,7 +51,7 @@ panel_landing_1:
 
 panel_landing_2:
   label: Landing screen 2 (with fullwidth regions, blue, grey, white, blue 2, grey 2, white 2)
-  category: PMMI: Layouts
+  category: 'PMMI: Layouts'
   template: templates/layouts/panels/landing-2
   regions:
     top:
@@ -75,7 +75,7 @@ panel_landing_2:
 
 panel_landing_3:
   label: Hall of Fame Landing page
-  category: PMMI: Layouts
+  category: 'PMMI: Layouts'
   template: templates/layouts/panels/landing-3
   regions:
     top:
@@ -91,7 +91,7 @@ panel_landing_3:
 
 panel_landing_left_sidebar:
   label: Landing with left sidebar
-  category: PMMI: Layouts
+  category: 'PMMI: Layouts'
   template: templates/layouts/panels/landing-left-sidebar
   regions:
     top:
@@ -102,7 +102,7 @@ panel_landing_left_sidebar:
       label: Main content
 panel_landing_left_sidebar_collapsible:
   label: Landing with left sidebar collapsible
-  category: PMMI: Layouts
+  category: 'PMMI: Layouts'
   class: '\Drupal\pmmi\Plugin\CollapsibleLayout'
   template: templates/layouts/panels/landing-left-sidebar-collapsible
   regions:
@@ -117,14 +117,14 @@ panel_landing_left_sidebar_collapsible:
 
 default_mode:
   label: Default (view mode)
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/nodes/default-mode
   regions:
     content:
       label: Content
 article:
   label: Article
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/nodes/article
   regions:
     image_header:
@@ -153,7 +153,7 @@ article:
       label:
 article_news_default:
   label: Article news(default)
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/blocks/article-news-default
   regions:
     press_date:
@@ -166,7 +166,7 @@ article_news_default:
       label: Button
 basic:
   label: Basic
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/nodes/basic
   regions:
     image_header:
@@ -179,7 +179,7 @@ basic:
       label: Body
 cert_test:
   label: Certification Test
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/nodes/cert-test
   regions:
     image_header:
@@ -208,7 +208,7 @@ cert_test:
       label: Accordions
 company:
   label: Company
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/nodes/company
   regions:
     image_header:
@@ -245,7 +245,7 @@ company:
       label: Footer
 download:
   label: Download
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/nodes/download
   regions:
     image_header:
@@ -262,7 +262,7 @@ download:
       label: File Download Button
 school:
   label: School
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/nodes/school
   regions:
     image_header:
@@ -291,7 +291,7 @@ school:
       label: Website
 video:
   label: Video
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/nodes/video
   regions:
     image_header:
@@ -312,7 +312,7 @@ video:
       label: Videos View
 video_ajax:
   label: Video ajax (view mode)
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/nodes/video-ajax
   regions:
     title:
@@ -327,7 +327,7 @@ video_ajax:
       label: Featured Speaker
 video_default_mode:
   label: Video default (view mode)
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/nodes/video-default
   regions:
     content:
@@ -336,7 +336,7 @@ video_default_mode:
       label: Links
 report:
   label: Report
-  category: PMMI: Nodes
+  category: 'PMMI: Nodes'
   template: templates/layouts/nodes/report
   regions:
     image_header:
@@ -359,7 +359,7 @@ report:
       label: File Download Button
 oneone:
   label: Column 1-up (1 row of 1 column)
-  category: PMMI: Columns
+  category: 'PMMI: Columns'
   template: templates/layouts/columns/oneone
   regions:
     top:
@@ -370,7 +370,7 @@ oneone:
       label: Bottom content
 onetwo:
   label: Column 2-up (1 row of 2 columns)
-  category: PMMI: Columns
+  category: 'PMMI: Columns'
   template: templates/layouts/columns/onetwo
   regions:
     top:
@@ -383,7 +383,7 @@ onetwo:
       label: Bottom content
 onetwouneven:
   label: Column 2-up Uneven (1 row of 2 uneven columns)
-  category: PMMI: Columns
+  category: 'PMMI: Columns'
   template: templates/layouts/columns/onetwouneven
   regions:
     top:
@@ -396,7 +396,7 @@ onetwouneven:
       label: Bottom content
 onethree:
   label: Column 3-up (1 row of 3 columns)
-  category: PMMI: Columns
+  category: 'PMMI: Columns'
   template: templates/layouts/columns/onethree
   regions:
     top:
@@ -411,7 +411,7 @@ onethree:
       label: Bottom content
 onefour:
   label: Column 4-up (1 row of 4 columns)
-  category: PMMI: Columns
+  category: 'PMMI: Columns'
   template: templates/layouts/columns/onefour
   regions:
     top:
@@ -428,7 +428,7 @@ onefour:
       label: Bottom content
 onefive:
   label: Column 5-up (1 row of 5 columns)
-  category: PMMI: Columns
+  category: 'PMMI: Columns'
   template: templates/layouts/columns/onefive
   css: css/layouts/one-five.css
   regions:
@@ -448,7 +448,7 @@ onefive:
       label: Bottom content
 onesix:
   label: Column 6-up (2 rows of 3 columns each)
-  category: PMMI: Columns
+  category: 'PMMI: Columns'
   template: templates/layouts/columns/onesix
   regions:
     top:
@@ -470,7 +470,7 @@ onesix:
 
 block_news:
   label: News
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/news
   regions:
     block_title:
@@ -487,7 +487,7 @@ block_news:
       label: Button
 block_card:
   label: Card
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/card
   regions:
     head:
@@ -502,7 +502,7 @@ block_card:
       label: Button
 block_text:
   label: Text
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/text
   regions:
     head:
@@ -517,7 +517,7 @@ block_text:
       label: Link
 block_text_image:
   label: Text+Image
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/text-image
   regions:
     head:
@@ -532,7 +532,7 @@ block_text_image:
       label: Link
 block_image_text:
   label: Image+Text
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/image-text
   regions:
     image:
@@ -547,7 +547,7 @@ block_image_text:
       label: Link
 block_image_slide_default:
   label: Image Slide Default
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/image-slide-default
   regions:
     image:
@@ -558,7 +558,7 @@ block_image_slide_default:
       label: Body
 block_image_slide:
   label: Image Slide
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/image-slide
   regions:
     image:
@@ -573,7 +573,7 @@ block_image_slide:
       label: Button
 block_accordion:
   label: Accordion
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/accordion
   regions:
     head:
@@ -592,7 +592,7 @@ block_accordion:
       label: Accordion(s)
 block_event_default:
   label: Event Default
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/event-default
   regions:
     dates:
@@ -607,7 +607,7 @@ block_event_default:
       label: Link
 block_event_ribbon:
   label: Event Ribbon
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/event-ribbon
   regions:
     dates:
@@ -622,7 +622,7 @@ block_event_ribbon:
       label: Link
 block_pack_expo_show:
   label: Pack Expo Show
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/pack-expo-show
   regions:
     logo:
@@ -637,7 +637,7 @@ block_pack_expo_show:
       label: Button
 block_brand:
   label: Brand
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/brand
   regions:
     logo:
@@ -648,7 +648,7 @@ block_brand:
       label: Button
 block_person:
   label: Person
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/person
   regions:
     image:
@@ -661,7 +661,7 @@ block_person:
       label: Company
 block_person_company:
   label: Person Company Variant
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/person-company-variant
   regions:
     name:
@@ -674,7 +674,7 @@ block_person_company:
       label: Company Logo
 block_pricing:
   label: Pricing
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/pricing
   regions:
     head:
@@ -683,7 +683,7 @@ block_pricing:
       label: Pricings
 block_image_header:
   label: Image Header
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/image-header
   regions:
     head:
@@ -692,7 +692,7 @@ block_image_header:
       label: Image
 block_icon:
   label: Icon
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/icon
   regions:
     image:
@@ -705,7 +705,7 @@ block_icon:
       label: Link
 block_social_media:
   label: Social Media
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/social-media
   regions:
     head:
@@ -724,7 +724,7 @@ block_social_media:
       label: Instagram
 block_social_media_text:
   label: Social Media with text
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/social-media
   regions:
     head:
@@ -745,7 +745,7 @@ block_social_media_text:
       label: Instagram
 block_social_footer:
   label: Social Media Footer
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/social-media-footer
   regions:
     facebook:
@@ -762,7 +762,7 @@ block_social_footer:
       label: Instagram
 block_enticement:
   label: Enticement
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/enticement
   regions:
     image:
@@ -775,7 +775,7 @@ block_enticement:
       label: Button
 block_enticement_full_width:
   label: Enticement full width
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/enticement-full-width
   regions:
     image:
@@ -788,7 +788,7 @@ block_enticement_full_width:
       label: Button
 block_default_single:
   label: Default(with single column, i.e. for block containers)
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/default-single
   regions:
     head:
@@ -797,7 +797,7 @@ block_default_single:
       label: Main content
 block_icons:
   label: Icons
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/icons
   regions:
     head:
@@ -807,7 +807,7 @@ block_icons:
 
 block_box:
   label: Box
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/box
   regions:
     head:
@@ -816,7 +816,7 @@ block_box:
       label: Main content
 block_box_vetical:
   label: Box vertical
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/box-vertical
   regions:
     main:
@@ -826,7 +826,7 @@ block_box_vetical:
 
 block_countdown:
   label: Countdown
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/countdown
   library: pmmi_bootstrap/countdown
   regions:
@@ -839,7 +839,7 @@ block_countdown:
 
 block_countdown_circle:
   label: Countdown circle
-  category: PMMI: Blocks
+  category: 'PMMI: Blocks'
   template: templates/layouts/blocks/countdown-circle
   library: pmmi_bootstrap/countdown
   regions:
@@ -850,7 +850,7 @@ block_countdown_circle:
 
 panel_default:
   label: Default panel layout
-  category: PMMI: Panels
+  category: 'PMMI: Panels'
   template: templates/layouts/panels/panel-default
   regions:
     header_logo:
@@ -867,7 +867,7 @@ panel_default:
       label: Footer content
 panel_microsite_exln:
   label: Panel layout for Executive Leadership Network (Microsite)
-  category: PMMI: Panels
+  category: 'PMMI: Panels'
   template: templates/layouts/panels/panel-microsite-exln
   regions:
     header_logo:
@@ -884,7 +884,7 @@ panel_microsite_exln:
       label: Footer content
 panel_microsite_an:
   label: Panel layout for Annual Meeting (Microsite)
-  category: PMMI: Panels
+  category: 'PMMI: Panels'
   template: templates/layouts/panels/panel-microsite-an
   regions:
     header_logo:
@@ -901,7 +901,7 @@ panel_microsite_an:
       label: Footer content
 panel_microsite_eln:
   label: Panel layout for Emerging Leaders Network (Microsite)
-  category: PMMI: Panels
+  category: 'PMMI: Panels'
   template: templates/layouts/panels/panel-microsite-eln
   regions:
     header_logo:
@@ -916,7 +916,7 @@ panel_microsite_eln:
       label: Footer content
 accordion:
   label: Accordion
-  category: PMMI: Other
+  category: 'PMMI: Other'
   template: templates/layouts/other/field-accordion
   regions:
     header:

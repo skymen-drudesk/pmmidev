@@ -4,10 +4,8 @@
       "Avoid illegal characters in database name": "https://www.drupal.org/files/issues/fix-dbname-validation-2443839-40.patch",
       "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/1170362-239.patch",
       "SystemBrandingBlock causes fatal error if theme is not set when place it in Panels": "https://www.drupal.org/files/issues/2838601-11.patch",
-      "Datetime Views plugins don't support timezones": "https://www.drupal.org/files/issues/2627512-214-wo-update.patch",
       "Improve the views integration for daterange fields": "https://www.drupal.org/files/issues/improve_the_views-2786577-71.patch",
       "Batch API should use the current theme to run the batches": "https://www.drupal.org/files/issues/wrong-route-check-539022-71.patch",
-      "Complex job in ViewExecutable::unserialize() causes data corruption": "https://www.drupal.org/files/issues/nested-unserialization-workaround.patch",
       "Lock system is broken in many regards": "https://www.drupal.org/files/issues/lock_system_needs_a-2077827-49_0.patch",
       "HtmlEscapedText object to string conversation error" : "https://www.drupal.org/files/issues/drupal_8_3_2_HtmlEscapedText_to_string_01.patch",
       "Twig - only search for templates in templates directory of themes": "patches/3879__twig__only_scan_templates_dir.patch"
@@ -34,9 +32,6 @@
     },
     "drupal/selectize": {
       "AJAX issue": "https://www.drupal.org/files/issues/selectize-ajax-issue-2853540-2.patch"
-    },
-    "drupal/varnish_purge": {
-      "Localhost configuration": "https://www.drupal.org/files/issues/varnish_purge-localhost_configuration.patch"
     },
     "drupal/views_data_export": {
       "Support for batch operations": "https://www.drupal.org/files/issues/views_data_export-batch_support-2789531-58-D8.patch"
