@@ -21133,6 +21133,15 @@ button.slick-arrow.slick-next {
   }
 }
 
+.page-node-type-blog .author-info:before {
+  content: '';
+}
+
+.page-node-type-blog .date {
+  color: #656363;
+  font-style: italic;
+}
+
 .cert-info {
   padding: 0;
   list-style: none;
