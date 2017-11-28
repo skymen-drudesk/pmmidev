@@ -51,6 +51,10 @@ pmmi_sales_agent.mass_email:
   route_name: pmmi_sales_agent.mass_email
   base_route: pmmi_sales_agent.mail_settings
   title: 'PMMI Mass Email'
+pmmi_sales_agent.send_one_time_update:
+  route_name: page_manager.page_view_company_listing_update_company_listing_update-panels_variant-0
+  base_route: pmmi_sales_agent.mail_settings
+  title: 'Send one-time-update'
 
 # Sales agent user stat routing definition
 entity.sad_user_stat.canonical:
