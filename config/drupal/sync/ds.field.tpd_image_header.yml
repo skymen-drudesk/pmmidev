@@ -1,0 +1,10 @@
+id: tpd_image_header
+label: 'Training Provider Directory - Image Header'
+ui_limit: 'training_provider|*'
+properties:
+  block: 'block_content:a5eedb25-8d79-4685-9b0b-98e94c247c80'
+  use_block_title: false
+type: block
+type_label: 'Block field'
+entities:
+  node: node
