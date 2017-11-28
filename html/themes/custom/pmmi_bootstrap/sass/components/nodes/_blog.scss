@@ -51,3 +51,14 @@
     }
   }
 }
+.page-node-type-blog {
+  .author-info {
+    &:before {
+      content: '';
+    }
+  }
+  .date {
+    color: $dkgrey;
+    font-style: italic;
+  }
+}

@@ -101,6 +101,37 @@
       }
     }
   }
+  &.report {
+    @include views-list-default('field--name-dynamic-token-fieldnode-download-report-link');
+    padding: 20px 20px 20px 250px;
+    min-height: 228px;
+    border: 1px solid $mdgrey;
+    border-radius: 6px;
+    .field-name-body {
+      margin-bottom: 20px;
+    }
+    .field-name-field-image {
+      float: left;
+      width: 230px;
+      margin-left: -240px;
+    }
+    @include mobile {
+      padding-left: 10px;
+      min-height: 0;
+      .field-name-field-image {
+        float: none;
+        width: auto;
+        margin: 0 0 15px;
+        text-align: center;
+        img {
+          margin: 0 auto;
+        }
+        .field--name-dynamic-token-fieldnode-download-report-link a {
+          width: 100%;
+        }
+      }
+    }
+  }
   &.school {
     font-size: $r14;
     line-height: $r18;

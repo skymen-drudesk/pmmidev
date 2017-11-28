@@ -1,10 +1,11 @@
+.report-node,
 .download-node {
   margin-bottom: 40px;
   .links {
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     .field--item {
       display: inline-block;
-      margin: 0 5px 10px;
+      margin: 0 25px 10px 0;
     }
     a {
       @extend .text-link;
@@ -20,6 +21,7 @@
       }
     }
     @include mobile {
+      margin-bottom: 15px;
       .field--item {
         display: block;
       }
@@ -40,6 +42,7 @@
     > .container {
       width: auto;
     }
+    .content-right,
     .content-full {
       max-width: 830px;
       margin-left: auto;
