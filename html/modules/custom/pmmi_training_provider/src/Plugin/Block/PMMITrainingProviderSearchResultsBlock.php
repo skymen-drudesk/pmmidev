@@ -33,16 +33,11 @@ class PMMITrainingProviderSearchResultsBlock extends PMMICompanySearchResultsBlo
     $data = [
       'title' => $this->stringTranslation->formatPlural($result_count, 'Search Results <span>(@count training provider)</span>', 'Search Results <span>(@count training providers)</span>'),
       'class' => 'training-provider-search-results-header',
+      'term_references' => ['course_topics', 'delivery_options'],
     ];
 
-    return parent::buildHeader($result_count, $data);
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  protected function getFilterInfo($filter, array $values, array $term_references = []) {
-    return parent::getFilterInfo($filter, $values, ['course_topics', 'delivery_options']);
+    $header = parent::buildHeader($result_count, $data);
+    return $header;
   }
 
   /**

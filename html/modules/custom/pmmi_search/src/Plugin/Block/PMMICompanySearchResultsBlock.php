@@ -120,6 +120,11 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
     $filters = [];
     $data += [
       'class' => 'sales-agent-search-results-header',
+      'term_references' => [
+        'field_industries_served',
+        'field_equipment_sold_type',
+        'pmmi_shows',
+      ],
     ];
 
     // Get title.
@@ -131,16 +136,18 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
     if ($query_params = \Drupal::request()->query->all()) {
       foreach ($query_params as $param => $values) {
         $values = is_array($values) ? $values : [$values];
-        $term_references = [
-          'field_industries_served',
-          'field_equipment_sold_type',
-          'pmmi_shows',
-        ];
-        if ($filter = $this->getFilterInfo($param, $values, $term_references)) {
+        if ($filter = $this->getFilterInfo($param, $values, $data['term_references'])) {
           $filters[] = $filter;
         }
       }
     }
+    // Sort filters based on '#weight' value, @see getFilterInfo() method.
+    uasort($filters, function ($a, $b) {
+      if ($a['#weight'] == $b['#weight']) {
+        return 0;
+      }
+      return ($a['#weight'] < $b['#weight']) ? -1 : 1;
+    });
 
     return [
       '#theme' => 'pmmi_company_search_results',
@@ -192,11 +199,13 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
         foreach ($divisions as $country => $areas) {
           $items[] = !$areas ? $country : $country . ': ' . implode(', ', $areas);
         }
+        $weight = 1;
         break;
 
       case 'keywords':
         if ($values && ($value = reset($values))) {
           $items[] = str_replace('+', ' ', $value);
+          $weight = 3;
         }
         break;
 
@@ -208,12 +217,13 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
               $items[] = $term->getName();
             }
           }
+          $weight = 2;
         }
         break;
 
     }
 
-    return !$items ? [] : ['#theme' => 'item_list', '#title' => $this->filterGetName($filter), '#items' => $items];
+    return !$items ? [] : ['#theme' => 'item_list', '#title' => $this->filterGetName($filter), '#items' => $items, '#weight' => $weight];
   }
 
   /**
