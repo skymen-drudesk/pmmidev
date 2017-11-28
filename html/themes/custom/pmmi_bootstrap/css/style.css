@@ -15448,6 +15448,30 @@ body.use-container .page-title.hidden {
   margin-bottom: 20px;
 }
 
+.page-search-training-provider-directory .region-bottom .block.plain-text, .training-provider-node .field--name-dynamic-block-fieldnode-tpd-contact-questions {
+  margin: 215px 0 0;
+  font-size: 16px;
+  font-size: 1rem;
+  line-height: 21px;
+  line-height: 1.3125rem;
+}
+
+.page-search-training-provider-directory .region-bottom .block.plain-text p, .training-provider-node .field--name-dynamic-block-fieldnode-tpd-contact-questions p, .page-search-training-provider-directory .region-bottom .block.plain-text .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .page-search-training-provider-directory .region-bottom .block.plain-text .field-name-field-head, .training-provider-node .field--name-dynamic-block-fieldnode-tpd-contact-questions .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .training-provider-node .field--name-dynamic-block-fieldnode-tpd-contact-questions .field-name-field-head {
+  font-size: inherit;
+  line-height: inherit;
+  font-weight: inherit;
+  color: inherit;
+}
+
+.page-search-training-provider-directory .region-bottom .block.plain-text a, .training-provider-node .field--name-dynamic-block-fieldnode-tpd-contact-questions a {
+  color: #000;
+  text-decoration: none;
+}
+
+.page-search-training-provider-directory .region-bottom .block.plain-text a:hover, .training-provider-node .field--name-dynamic-block-fieldnode-tpd-contact-questions a:hover {
+  text-decoration: underline;
+}
+
 html, body {
   height: 100%;
 }
@@ -16261,6 +16285,10 @@ body > .page-wrapper:after,
   .navbar .main-nav .dropdown-menu li:after {
     display: none;
   }
+}
+
+.navbar .utility-nav {
+  min-height: 26px;
 }
 
 .navbar .utility-navigation {
@@ -17197,11 +17225,6 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
 /**
 * Sales Agent Directory and Training Provider Search Form.
 */
-.page-search-training-provider-directory .main-container,
-.page-search-sales-agent-directory .main-container {
-  color: #004e75;
-}
-
 .page-search-training-provider-directory .main-container .row, .page-search-training-provider-directory .main-container .footer .region-footer, .footer .page-search-training-provider-directory .main-container .region-footer, .page-search-training-provider-directory .main-container .events-block-upcoming-ribbon .view-content, .events-block-upcoming-ribbon .page-search-training-provider-directory .main-container .view-content, .page-search-training-provider-directory .main-container
 .block-views-blockevents-block-upcoming-ribbon .view-content,
 .block-views-blockevents-block-upcoming-ribbon .page-search-training-provider-directory .main-container .view-content, .page-search-training-provider-directory .main-container .block-icons .column, .block-icons .page-search-training-provider-directory .main-container .column,
@@ -17259,6 +17282,7 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
 .page-search-sales-agent-directory .main-container form {
   width: 770px;
   padding: 33px 0 0 0;
+  color: #004e75;
 }
 
 .page-search-training-provider-directory .main-container form .form-group,
@@ -17605,6 +17629,21 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   top: 0;
   opacity: 0;
   margin: 0;
+}
+
+@media screen and (max-width: 1023px) {
+  .page-search-training-provider-directory .main-container #edit-delivery-options,
+  .page-search-training-provider-directory .main-container #edit-course-topics,
+  .page-search-training-provider-directory .main-container #edit-industries,
+  .page-search-training-provider-directory .main-container #edit-equipments,
+  .page-search-training-provider-directory .main-container #edit-shows,
+  .page-search-sales-agent-directory .main-container #edit-delivery-options,
+  .page-search-sales-agent-directory .main-container #edit-course-topics,
+  .page-search-sales-agent-directory .main-container #edit-industries,
+  .page-search-sales-agent-directory .main-container #edit-equipments,
+  .page-search-sales-agent-directory .main-container #edit-shows {
+    margin-left: 0;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -17987,6 +18026,56 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
 
 .block-pmmi-training-provider-search-results-block .view-search-training-provider-directory tbody td:first-child a {
   color: #004e75;
+}
+
+.page-search-training-provider-directory .region-bottom {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.page-search-training-provider-directory .region-bottom:before, .page-search-training-provider-directory .region-bottom:after {
+  content: " ";
+  display: table;
+}
+
+.page-search-training-provider-directory .region-bottom:after {
+  clear: both;
+}
+
+@media (min-width: 768px) {
+  .page-search-training-provider-directory .region-bottom {
+    width: 768px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-search-training-provider-directory .region-bottom {
+    width: 990px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-search-training-provider-directory .region-bottom {
+    width: 1200px;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.page-search-training-provider-directory .region-bottom .block.plain-text {
+  margin: 150px 0 20px 68px;
+}
+
+@media screen and (max-width: 1023px) {
+  .page-search-training-provider-directory .region-bottom .block.plain-text {
+    margin-left: 0;
+  }
 }
 
 /**
@@ -21819,8 +21908,13 @@ button.slick-arrow.slick-next {
   margin-bottom: 20px;
 }
 
+.training-provider-node .top-banner {
+  margin-bottom: 40px;
+}
+
 .training-provider-node .row-wrapper {
   min-height: 240px;
+  margin-bottom: 40px;
 }
 
 .training-provider-node .row-wrapper .field--label,

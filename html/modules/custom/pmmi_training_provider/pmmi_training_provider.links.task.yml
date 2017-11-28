@@ -22,3 +22,13 @@ pmmi_training_provider.reporting_profile_views:
   route_name: page_manager.page_view_training_provider_directory_profile_views_training_provider_directory_profile_views-panels_variant-0
   base_route: page_manager.page_view_training_provider_directory_list_of_searches_training_provider_directory_list_of_searches-panels_variant-0
   title: 'Profile Views'
+
+# Training provider directory - migration.
+pmmi_training_provider.migrate:
+  route_name: pmmi_training_provider.migrate
+  base_route: pmmi_training_provider.migrate
+  title: 'Import'
+pmmi_training_provider.migrate_messages:
+  route_name: pmmi_training_provider.migrate_messages
+  base_route: pmmi_training_provider.migrate
+  title: 'Messages'

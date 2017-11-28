@@ -1,8 +1,9 @@
-uuid: eef4ec5b-ee6a-4bb4-9cd2-b5608c981151
+uuid: 8ee74cea-dcd1-4106-8e35-a11b2e5b0087
 langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.full
     - field.field.node.training_provider.body
     - field.field.node.training_provider.field_address
     - field.field.node.training_provider.field_course_topics_offered
@@ -78,10 +79,10 @@ third_party_settings:
         weight: 0
         label: hidden
         formatter: default
-id: node.training_provider.default
+id: node.training_provider.full
 targetEntityType: node
 bundle: training_provider
-mode: default
+mode: full
 content:
   body:
     weight: 9

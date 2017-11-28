@@ -27,13 +27,13 @@
     .form-text{
       font-style: italic;
     }
-    color: $blue;
     label {
       padding-left: 0;
     }
     form {
       width: 770px;
       padding: 33px 0 0 0;
+      color: $blue;
       .form-group {
         margin-bottom: 16px;
         .form-item-administrative-area,
@@ -173,6 +173,9 @@
             margin: 0;
           }
         }
+      }
+      @include tablet-max {
+        margin-left: 0;
       }
       @include desktop-min {
         .form-checkboxes {
@@ -460,7 +463,18 @@
     }
   }
 }
-
+.page-search-training-provider-directory {
+  .region-bottom {
+    @include container;
+    .block.plain-text {
+      @extend %training-directory-question-block;
+      margin: 150px 0 20px 68px;
+      @include tablet-max {
+        margin-left: 0;
+      }
+    }
+  }
+}
 /**
  * Sales Agent Directory Favorites Page.
  */

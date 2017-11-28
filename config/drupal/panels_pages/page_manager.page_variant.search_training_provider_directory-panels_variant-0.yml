@@ -4,7 +4,11 @@ status: true
 dependencies:
   config:
     - page_manager.page.search_training_provider_directory
+  content:
+    - 'block_content:image_header:a5eedb25-8d79-4685-9b0b-98e94c247c80'
+    - 'block_content:plain_text:8cd893d5-23da-429f-9c60-b5ccff745908'
   module:
+    - block_content
     - panels
     - pmmi_page_manager_search
     - pmmi_training_provider
@@ -24,6 +28,30 @@ variant_settings:
       region: main
       weight: 0
       uuid: 050c8d0c-4eb3-4fdf-bb0b-49f7aa5f1827
+      context_mapping: {  }
+    f340c717-46c2-41dd-ad84-56a42cea9924:
+      id: 'block_content:a5eedb25-8d79-4685-9b0b-98e94c247c80'
+      label: 'Training Provider Directory - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: f340c717-46c2-41dd-ad84-56a42cea9924
+      context_mapping: {  }
+    ae08f7ba-e966-45b6-ba42-2352c120f033:
+      id: 'block_content:8cd893d5-23da-429f-9c60-b5ccff745908'
+      label: 'Training Provider Directory - contact for questions'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: bottom
+      weight: 0
+      uuid: ae08f7ba-e966-45b6-ba42-2352c120f033
       context_mapping: {  }
   id: panels_variant
   uuid: 994c7c79-2ff6-4867-a304-e888c7ee6d16

@@ -218,8 +218,12 @@
 }
 .training-provider-node {
   margin-bottom: 20px;
+  .top-banner {
+    margin-bottom: 40px;
+  }
   .row-wrapper {
     min-height: 240px;
+    margin-bottom: 40px;
     .field--label,
     .field-label-above {
       border-bottom: solid 2px $mdgrey;
@@ -241,6 +245,9 @@
     strong {
       font-weight: normal;
     }
+  }
+  .field--name-dynamic-block-fieldnode-tpd-contact-questions {
+    @extend %training-directory-question-block;
   }
 }
 
