@@ -33,14 +33,14 @@ third_party_settings:
       button:
         - node_link
     fields:
-      node_link:
-        plugin_id: node_link
-        weight: 4
-        label: hidden
-        formatter: default
       'bundle_field:node':
         plugin_id: 'bundle_field:node'
         weight: 1
+        label: hidden
+        formatter: default
+      node_link:
+        plugin_id: node_link
+        weight: 4
         label: hidden
         formatter: default
 id: node.blog.default
@@ -73,9 +73,16 @@ content:
     weight: 2
     label: hidden
     settings:
-      format_type: medium
       timezone_override: ''
-    third_party_settings: {  }
+      format_type: default_medium_date_date_only
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
     type: datetime_default
     region: press_date
   links:
