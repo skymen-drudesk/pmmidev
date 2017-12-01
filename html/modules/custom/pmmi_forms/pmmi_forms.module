@@ -166,15 +166,18 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
         }
       }
 
-      if ($form['#id'] === 'views-exposed-form-search-page-block-1' && isset($form['page_type'])) {
-        $form['page_type']['#weight'] = 3;
-        $get_params = \Drupal::request()->query->all();
-        if (empty($get_params['page_type']) || $get_params['page_type'] === 'All') {
-          $form['page_type']['#attributes']['checked'] = TRUE;
+      if ($form['#id'] === 'views-exposed-form-search-page-block-1') {
+        $form['#action'] = '/search';
+        if (isset($form['page_type'])) {
+          $form['page_type']['#weight'] = 3;
+          $get_params = \Drupal::request()->query->all();
+          if (empty($get_params['page_type']) || $get_params['page_type'] === 'All') {
+            $form['page_type']['#attributes']['checked'] = TRUE;
+          }
+          // Attach library for hiding unnecessary legend element and aligning
+          // checkboxes.
+          $form['#attached']['library'][] = 'pmmi_forms/pmmi_forms';
         }
-        // Attach library for hiding unnecessary legend element and aligning
-        // checkboxes.
-        $form['#attached']['library'][] = 'pmmi_forms/pmmi_forms';
       }
 
       if ($form['#id'] === 'views-exposed-form-membership-application-submissions-block-all') {
