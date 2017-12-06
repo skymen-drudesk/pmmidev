@@ -64,13 +64,15 @@ class PMMIDataRequestHelper {
    *   The requested collection/Path.
    * @param array $query
    *   The array of query parameters.
+   * @param string $accept_header
+   *   Content-Type header value.
    *
    * @return array
    *   The request options array.
    */
-  public function buildGetRequest($collection, array $query) {
+  public function buildGetRequest($collection, array $query, $accept_header = 'application/json') {
     $request_options = $this->ssoHelper->buildDataServiceQuery(
-      $collection, $query
+      $collection, $query, $accept_header
     );
     $request_options['timeout'] = $this->ssoHelper->getConnectionTimeout();
     return $request_options;
@@ -81,18 +83,24 @@ class PMMIDataRequestHelper {
    *
    * @param array $requests
    *   An array of queries parameters.
+   * @param string $method
+   *   HTTP Client method.
+   * @param string $content_type
+   *   Response data type, xml or json.
+   * @param string $data_key
+   *   Key which should be compared on response data.
    *
    * @return array
    *   The JSON decoded array of responses from PMMI Personify Services.
    */
-  public function handleAsyncRequests(array $requests) {
+  public function handleAsyncRequests(array $requests, $method = 'getAsync', $content_type = 'json', $data_key = 'd') {
     $data = [];
     $promises = [];
     // Initiate each request but do not block.
     foreach ($requests as $request) {
       $uri = $request['uri'];
       $options = $request['params'];
-      $promises[] = $this->httpClient->getAsync($uri, $options);
+      $promises[] = $this->httpClient->$method($uri, $options);
     }
     try {
       // Wait on all of the requests to complete. Throws a ConnectException
@@ -107,8 +115,21 @@ class PMMIDataRequestHelper {
     /** @var \GuzzleHttp\Psr7\Response $response */
     foreach ($results as $response) {
       $response_data = $response->getBody()->getContents();
-      if ($json_data = json_decode($response_data)) {
-        $data = array_merge($data, $json_data->d);
+      if ($content_type == 'json' && $json_data = json_decode($response_data)) {
+        $data = array_merge($data, $json_data->$data_key);
+      }
+      if ($content_type == 'xml') {
+        $response_data = simplexml_load_string($response_data);
+        $response_value = (array) $response_data->$data_key;
+        if ($response_value) {
+          $reset = reset($response_value);
+          if (is_array($reset)) {
+            $data = array_merge($data, $reset);
+          }
+          else {
+            $data[] = $reset;
+          }
+        }
       }
       else {
         $this->ssoHelper->log("Can't parse Json data from Data Service.");
