@@ -243,7 +243,7 @@ function pmmi_sales_agent_update_8017(&$sandbox = []) {
     $node = $moderation_info->getLatestRevision('node', $node->id());
     $current_state = $node->moderation_state->value ?: '';
     $approval_state = ($current_state == 'published') ? 'approved' : 'not_approved';
-    if ($current_state == 'draft' && $moderation_info->hasForwardRevision($node)) {
+    if ($current_state == 'draft' && $moderation_info->hasPendingRevision($node)) {
       $approval_state = 'updated';
     }
     $node->set('field_approval_state', $approval_state);

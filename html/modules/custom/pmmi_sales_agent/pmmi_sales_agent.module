@@ -216,9 +216,9 @@ function pmmi_sales_agent_node_presave(EntityInterface $node) {
   if ($node && ($node->getType() == PMMI_SALES_AGENT_CONTENT) && empty($node->presave)) {
     $current_state = $node->moderation_state->value ?: '';
     $moderation_info = \Drupal::service('content_moderation.moderation_information');
-    $hasForwardRevision = $moderation_info->hasForwardRevision($node);
+    $hasPendingRevision = $moderation_info->hasPendingRevision($node);
     $approval_state = ($current_state == 'published') ? 'approved' : 'not_approved';
-    if ($current_state == 'draft' && (!$node->isDefaultRevision() || $hasForwardRevision || !empty($node->one_time_update))) {
+    if ($current_state == 'draft' && (!$node->isDefaultRevision() || $hasPendingRevision || !empty($node->one_time_update))) {
       $approval_state = 'updated';
       $def_revision = $moderation_info->getLatestRevision('node', $node->id());
       $def_revision->set('field_approval_state', $approval_state);
@@ -299,7 +299,7 @@ function pmmi_sales_agent_reject_listing(&$form, FormStateInterface $form_state)
   $moderation_info = \Drupal::service('content_moderation.moderation_information');
   $node = $form_state->getBuildInfo()['callback_object']->getEntity();
 
-  if ($moderation_info->hasForwardRevision($node)) {
+  if ($moderation_info->hasPendingRevision($node)) {
     // Ignore forward unpublished revisions. Revert to default.
     $def_revision_id = $moderation_info->getDefaultRevisionId('node', $node->id());
     $def_revision = node_revision_load($def_revision_id);
