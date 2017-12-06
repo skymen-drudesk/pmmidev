@@ -97,8 +97,8 @@ class ReportsYears extends BlockBase {
       $items = [];
       $current_path = \Drupal::service('path.current')->getPath();
       $query = \Drupal::request()->query->all();
-      // Unset pager get param to prevent "No results" issue.
-      unset($query['page']);
+      // Unset pager and text get params to prevent "No results" issue.
+      unset($query['page'], $query['text']);
       foreach ($years as $year) {
         $query['year'] = $year;
         $url = Url::fromUserInput($current_path, ['query' => $query]);

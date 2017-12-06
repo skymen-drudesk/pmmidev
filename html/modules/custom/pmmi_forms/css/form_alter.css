@@ -7,4 +7,6 @@ fieldset[id*='page-type'] legend {
 }
 fieldset[id*='page-type'] .checker {
   display: inline-block;
+  vertical-align: top;
+  margin: -2px 4px 0 0;
 }

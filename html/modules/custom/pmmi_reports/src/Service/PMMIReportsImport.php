@@ -164,6 +164,14 @@ class PMMIReportsImport {
       }
     }
 
+    // Process related links requests based on returned product id's higher.
+    $related_links_request_opts = $this->buildLinksRequest($report_ids);
+    if ($related_links_responce = $this->requestHelper->handleAsyncRequests($related_links_request_opts, 'postAsync', 'xml', 'ProductRelatedLinks')) {
+      foreach ($related_links_responce as $item) {
+        $reports_data[(string) $item->ProductID]['links'][] = $this->collectItemData($item, 'links');
+      }
+    }
+
     // Process prices requests based on returned product id's higher.
     $prices_requests = $this->buildPricesRequest($report_ids);
     if ($prices_response = $this->requestHelper->handleAsyncRequests($prices_requests)) {
@@ -211,6 +219,10 @@ class PMMIReportsImport {
         'list_price' => 'ListPrice',
         'list_currency_symbol' => 'ListCurrencySymbol',
       ],
+      'links' => [
+        'title' => 'Caption',
+        'url' => 'URL',
+      ],
     ];
   }
 
@@ -237,6 +249,34 @@ class PMMIReportsImport {
   }
 
   /**
+   * Build requests to "GetProductRelatedLinks" personify collection.
+   *
+   * @param array $ids
+   *   List of product ids.
+   *
+   * @return array
+   *   List of prepared requests array.
+   */
+  protected function buildLinksRequest(array $ids) {
+    $chunked = array_chunk($ids, 15);
+    $requests_options = [];
+    $request = $this->requestHelper->buildGetRequest('GetProductRelatedLinks', [], 'application/xml');
+    foreach ($chunked as $chunks) {
+      foreach ($chunks as $chunk) {
+        $body = <<<XML
+<GetProductRelatedLinksInput>
+  <ProductId>$chunk</ProductId>
+  <SubsystemCode>ECD</SubsystemCode>
+</GetProductRelatedLinksInput>
+XML;
+        $request['params']['body'] = $body;
+        $requests_options[] = $request;
+      }
+    }
+    return $requests_options;
+  }
+
+  /**
    * Parse items after personify response and get only needed data.
    *
    * @param object $item
@@ -255,7 +295,7 @@ class PMMIReportsImport {
     foreach ($mapping[$map_key] as $key => $item_property) {
       if (isset($item->{$item_property})) {
         $value = in_array($key, $date_fields) ? $this->prepareItems($item->{$item_property}, 'date') : $item->{$item_property};
-        $data[$key] = $value;
+        $data[$key] = (string) $value;
       }
     }
     return $data;
