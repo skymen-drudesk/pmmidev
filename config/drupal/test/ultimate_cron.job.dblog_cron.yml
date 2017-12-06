@@ -1,19 +1,19 @@
-uuid: 7a9034ae-ef28-49bd-93fa-6fe5ad503edf
+uuid: a4dc293c-fbc2-4aed-bab6-422e8b9fffdd
 langcode: en
 status: true
 dependencies:
   module:
-    - purge_processor_cron
-title: 'Default cron handler'
-id: purge_processor_cron_cron
+    - dblog
+title: 'Remove expired log messages and flood control events'
+id: dblog_cron
 weight: 0
-module: purge_processor_cron
-callback: purge_processor_cron_cron
+module: dblog
+callback: dblog_cron
 scheduler:
   id: simple
   configuration:
     rules:
-      - '*/5+@ * * * *'
+      - '0+@ 0 * * *'
 launcher:
   id: serial
   configuration:
