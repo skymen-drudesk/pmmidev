@@ -1,9 +1,10 @@
-uuid: c15bb41e-d629-4899-bb32-7a7f07434a9b
+uuid: cc22a68b-4b1a-4d21-bb54-7b13d8363f3b
 langcode: en
 status: true
 dependencies:
   config:
     - block_content.type.news
+    - core.entity_view_mode.block_content.news_header
     - field.field.block_content.news.body
     - field.field.block_content.news.field_block_title
     - field.field.block_content.news.field_button
@@ -22,14 +23,14 @@ dependencies:
 third_party_settings:
   ds:
     layout:
-      id: block_news
+      id: block_news_header
       library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
       block_title:
-        - field_block_title
+        - field_image
       logo:
         - field_logo
       date:
@@ -40,10 +41,10 @@ third_party_settings:
         - body
       button:
         - field_button
-id: block_content.news.default
+id: block_content.news.news_header
 targetEntityType: block_content
 bundle: news
-mode: default
+mode: news_header
 content:
   body:
     label: hidden
@@ -52,14 +53,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: body
-  field_block_title:
-    weight: 0
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: block_title
   field_button:
     weight: 5
     label: hidden
@@ -96,6 +89,22 @@ content:
     third_party_settings: {  }
     type: string
     region: head
+  field_image:
+    type: image
+    weight: 0
+    region: block_title
+    label: hidden
+    settings:
+      image_style: shows_block_dhd
+      image_link: ''
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_logo:
     weight: 1
     label: hidden
@@ -113,5 +122,5 @@ content:
     type: image
     region: logo
 hidden:
+  field_block_title: true
   field_head_bkg_color_class: true
-  field_image: true

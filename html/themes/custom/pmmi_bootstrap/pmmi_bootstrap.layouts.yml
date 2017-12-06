@@ -498,6 +498,25 @@ block_news:
       label: Body
     button:
       label: Button
+
+block_news_header:
+  label: News (Header)
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/news-header
+  regions:
+    block_title:
+      label: Block Title
+    logo:
+      label: Logo
+    date:
+      label: Date
+    head:
+      label: Head
+    body:
+      label: Body
+    button:
+      label: Button
+
 block_card:
   label: Card
   category: PMMI: Blocks
