@@ -15,6 +15,7 @@ dependencies:
   module:
     - datetime
     - ds
+    - link
     - text
     - user
     - video
@@ -22,13 +23,13 @@ third_party_settings:
   ds:
     layout:
       id: video_ajax
-      path: themes/custom/pmmi_bootstrap
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
       title:
+        - content_moderation_control
         - node_title
       body:
         - body
@@ -38,10 +39,12 @@ third_party_settings:
         - field_date
       featured_speaker:
         - field_featured_speaker
+      link:
+        - field_link
     fields:
       node_title:
         plugin_id: node_title
-        weight: 0
+        weight: 1
         label: hidden
         formatter: default
         settings:
@@ -61,7 +64,7 @@ mode: video_ajax_mode
 content:
   body:
     type: text_default
-    weight: 1
+    weight: 2
     label: hidden
     settings: {  }
     third_party_settings:
@@ -72,13 +75,15 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: body
   content_moderation_control:
-    weight: -20
-    region: content
+    weight: 0
+    region: title
+    settings: {  }
+    third_party_settings: {  }
   field_date:
     type: datetime_default
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       timezone_override: ''
@@ -91,10 +96,10 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: date
   field_featured_speaker:
     type: string
-    weight: 4
+    weight: 5
     label: inline
     settings:
       link_to_entity: false
@@ -106,9 +111,21 @@ content:
             lb: 'Featured Speaker'
             lb-col: true
             classes: {  }
-    region: content
+    region: featured_speaker
+  field_link:
+    type: link
+    weight: 6
+    region: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
   field_video:
-    weight: 2
+    weight: 3
     label: hidden
     settings:
       autoplay: true
@@ -123,9 +140,8 @@ content:
             lb-col: false
             classes: {  }
     type: video_embed_player
-    region: content
+    region: video
 hidden:
   field_image_header: true
-  field_link: true
   field_video_type: true
   links: true
