@@ -306,6 +306,8 @@ video:
       label: Date
     featured_speaker:
       label: Featured Speaker
+    link:
+       label: Link
     left_block:
       label: Left Block
     view_region:
@@ -325,6 +327,8 @@ video_ajax:
       label: Date
     featured_speaker:
       label: Featured Speaker
+    link:
+       label: Link
 video_default_mode:
   label: Video default (view mode)
   category: 'PMMI: Nodes'
@@ -498,6 +502,25 @@ block_news:
       label: Body
     button:
       label: Button
+
+block_news_header:
+  label: News (Header)
+  category: PMMI: Blocks
+  template: templates/layouts/blocks/news-header
+  regions:
+    block_title:
+      label: Block Title
+    logo:
+      label: Logo
+    date:
+      label: Date
+    head:
+      label: Head
+    body:
+      label: Body
+    button:
+      label: Button
+
 block_card:
   label: Card
   category: 'PMMI: Blocks'

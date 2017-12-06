@@ -153,6 +153,7 @@ class PMMIReportsQueue extends QueueWorkerBase implements ContainerFactoryPlugin
       'field_available_from_date' => $data['available_date'],
       'field_category' => $this->getTermIdByProductClass($data['category']),
       'field_image' => $this->getImage($data['image']),
+      'field_links' => isset($data['links']) ? $this->setLinks($data['links']) : NULL,
     ];
   }
 
@@ -241,6 +242,27 @@ class PMMIReportsQueue extends QueueWorkerBase implements ContainerFactoryPlugin
       }
     }
     return $fid;
+  }
+
+  /**
+   * Set related links.
+   */
+  protected function setLinks($links) {
+    $data = [];
+    if (!empty($links)) {
+      foreach ($links as $link) {
+        $data[] = [
+          'uri' => $link['url'],
+          'title' => $link['title'],
+          'options' => [
+            'attributes' => [
+              'target' => '_blank',
+            ],
+          ],
+        ];
+      }
+    }
+    return $data;
   }
 
   /**

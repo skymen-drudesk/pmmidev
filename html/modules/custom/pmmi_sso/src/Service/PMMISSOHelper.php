@@ -300,17 +300,22 @@ class PMMISSOHelper {
    *   The service collection argument.
    * @param array $query
    *   The service query array to build request query.
+   * @param string $accept_header
+   *   Content-Type header value.
    *
    * @return array
    *   The options for building Data Service Request.
    */
-  public function buildDataServiceQuery($collection, array $query) {
+  public function buildDataServiceQuery($collection, array $query, $accept_header = 'application/json') {
     $result = [];
-    $query = UrlHelper::buildQuery($query);
-    $service_url = $this->settings->get('data_service.endpoint') . '/' . $collection . '?' . $query;
+    $service_url = $this->settings->get('data_service.endpoint') . '/' . $collection;
+    if (!empty($query)) {
+      $query = UrlHelper::buildQuery($query);
+      $service_url .= '?' . $query;
+    }
     $auth_header = [
       'headers' => [
-        'Accept' => 'application/json',
+        'Accept' => $accept_header,
       ],
       'auth' => [
         $this->settings->get('data_service.username'),

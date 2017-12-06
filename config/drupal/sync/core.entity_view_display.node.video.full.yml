@@ -15,6 +15,7 @@ dependencies:
   module:
     - datetime
     - ds
+    - link
     - text
     - user
     - video
@@ -22,13 +23,13 @@ third_party_settings:
   ds:
     layout:
       id: video
-      path: themes/custom/pmmi_bootstrap
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
       image_header:
+        - content_moderation_control
         - field_image_header
       title:
         - node_title
@@ -40,6 +41,8 @@ third_party_settings:
         - field_date
       featured_speaker:
         - field_featured_speaker
+      link:
+        - field_link
       left_block:
         - 'dynamic_block_field:node-videos_left_block'
       view_region:
@@ -47,12 +50,12 @@ third_party_settings:
     fields:
       'dynamic_block_field:node-videos_left_block':
         plugin_id: 'dynamic_block_field:node-videos_left_block'
-        weight: 6
+        weight: 8
         label: hidden
         formatter: default
       'dynamic_block_field:node-videos_view':
         plugin_id: 'dynamic_block_field:node-videos_view'
-        weight: 7
+        weight: 9
         label: hidden
         formatter: default
         ft:
@@ -63,7 +66,7 @@ third_party_settings:
             classes: {  }
       node_title:
         plugin_id: node_title
-        weight: 1
+        weight: 2
         label: hidden
         formatter: default
 id: node.video.full
@@ -74,7 +77,7 @@ content:
   body:
     label: hidden
     type: text_default
-    weight: 2
+    weight: 3
     settings: {  }
     third_party_settings:
       ds:
@@ -84,12 +87,14 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: body
   content_moderation_control:
-    weight: -20
-    region: content
+    weight: 0
+    region: image_header
+    settings: {  }
+    third_party_settings: {  }
   field_date:
-    weight: 4
+    weight: 5
     label: hidden
     settings:
       timezone_override: ''
@@ -103,9 +108,9 @@ content:
             lb-col: false
             classes: {  }
     type: datetime_default
-    region: content
+    region: date
   field_featured_speaker:
-    weight: 5
+    weight: 6
     label: inline
     settings:
       link_to_entity: false
@@ -118,10 +123,10 @@ content:
             lb-col: false
             classes: {  }
     type: string
-    region: content
+    region: featured_speaker
   field_image_header:
     type: entity_reference_entity_view
-    weight: 0
+    weight: 1
     label: hidden
     settings:
       view_mode: default
@@ -134,9 +139,21 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: image_header
+  field_link:
+    type: link
+    weight: 7
+    region: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
   field_video:
-    weight: 3
+    weight: 4
     label: hidden
     settings:
       width: '870'
@@ -151,8 +168,7 @@ content:
             lb-col: false
             classes: {  }
     type: video_embed_player
-    region: content
+    region: video
 hidden:
-  field_link: true
   field_video_type: true
   links: true
