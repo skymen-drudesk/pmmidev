@@ -5,8 +5,8 @@ dependencies:
   config:
     - page_manager.page.search_training_provider_directory
   content:
-    - 'block_content:image_header:a5eedb25-8d79-4685-9b0b-98e94c247c80'
-    - 'block_content:plain_text:8cd893d5-23da-429f-9c60-b5ccff745908'
+    - 'block_content:image_header:ec9fee2a-24f3-48ad-9970-bd9206509cdd'
+    - 'block_content:text:6e57e5f7-0b59-463c-94fb-ed11169d8375'
   module:
     - block_content
     - panels
@@ -22,15 +22,15 @@ variant_settings:
   blocks:
     050c8d0c-4eb3-4fdf-bb0b-49f7aa5f1827:
       id: pmmi_training_provider_search_block
-      label: 'Search Training Provider Directory'
+      label: 'Training Provider Directory'
       provider: pmmi_training_provider
       label_display: visible
       region: main
       weight: 0
       uuid: 050c8d0c-4eb3-4fdf-bb0b-49f7aa5f1827
       context_mapping: {  }
-    f340c717-46c2-41dd-ad84-56a42cea9924:
-      id: 'block_content:a5eedb25-8d79-4685-9b0b-98e94c247c80'
+    e5efa573-f0a9-4fde-9327-a4a9c4fe9f59:
+      id: 'block_content:ec9fee2a-24f3-48ad-9970-bd9206509cdd'
       label: 'Training Provider Directory - Image Header'
       provider: block_content
       label_display: '0'
@@ -39,19 +39,19 @@ variant_settings:
       view_mode: full
       region: top
       weight: 0
-      uuid: f340c717-46c2-41dd-ad84-56a42cea9924
+      uuid: e5efa573-f0a9-4fde-9327-a4a9c4fe9f59
       context_mapping: {  }
-    ae08f7ba-e966-45b6-ba42-2352c120f033:
-      id: 'block_content:8cd893d5-23da-429f-9c60-b5ccff745908'
-      label: 'Training Provider Directory - contact for questions'
+    cc325152-1f29-4492-b65b-91201b2d09d3:
+      id: 'block_content:6e57e5f7-0b59-463c-94fb-ed11169d8375'
+      label: 'Training Provider Directory - Disclaimer / Contact Info'
       provider: block_content
       label_display: '0'
       status: true
       info: ''
-      view_mode: full
+      view_mode: default
       region: bottom
       weight: 0
-      uuid: ae08f7ba-e966-45b6-ba42-2352c120f033
+      uuid: cc325152-1f29-4492-b65b-91201b2d09d3
       context_mapping: {  }
   id: panels_variant
   uuid: 994c7c79-2ff6-4867-a304-e888c7ee6d16
