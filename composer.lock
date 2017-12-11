@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "073e10ea025131962b8a1c8905f6e63a",
+    "content-hash": "593833932350fb555c5441f6b680fe00",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -2467,17 +2467,17 @@
         },
         {
             "name": "drupal/config_update",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/config_update",
-                "reference": "8.x-1.4"
+                "reference": "8.x-1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/config_update-8.x-1.4.zip",
-                "reference": "8.x-1.4",
-                "shasum": "0de82ba4aa7caf054711ab16ad038765215a489d"
+                "url": "https://ftp.drupal.org/files/projects/config_update-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "2f7ae5f90b1c0ab8edf84680d2651e81fab6a126"
             },
             "require": {
                 "drupal/core": "*"
@@ -2488,8 +2488,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.4",
-                    "datestamp": "1505755744",
+                    "version": "8.x-1.5",
+                    "datestamp": "1512587912",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2984,8 +2984,7 @@
                     "Batch API should use the current theme to run the batches": "https://www.drupal.org/files/issues/wrong-route-check-539022-71.patch",
                     "Lock system is broken in many regards": "https://www.drupal.org/files/issues/lock_system_needs_a-2077827-49_0.patch",
                     "HtmlEscapedText object to string conversation error": "https://www.drupal.org/files/issues/drupal_8_3_2_HtmlEscapedText_to_string_01.patch",
-                    "Twig - only search for templates in templates directory of themes": "patches/3879__twig__only_scan_templates_dir.patch",
-                    "Unofficial content_moderation 8.3.7 to 8.4.0 upgrade path": "https://www.drupal.org/files/issues/2896630-13.patch"
+                    "Twig - only search for templates in templates directory of themes": "patches/3879__twig__only_scan_templates_dir.patch"
                 }
             },
             "autoload": {
@@ -5625,8 +5624,7 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "patches_applied": []
+                }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
