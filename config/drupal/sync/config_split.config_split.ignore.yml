@@ -42,7 +42,9 @@ blacklist:
   - tb_megamenu.menu_config.annual-meeting-nav__pmmi_bootstrap
   - tb_megamenu.menu_config.emerging-leaders-nav__pmmi_bootstrap
   - tb_megamenu.menu_config.executive-leadership-nav__pmmi_bootstrap
-graylist: {  }
+graylist:
+  - page_manager.page.blog_search
+  - page_manager.page_variant.blog_search-panels_variant-0
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 3
