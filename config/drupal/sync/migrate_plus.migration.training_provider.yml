@@ -12,7 +12,7 @@ label: 'Training Provider migrate'
 source:
   plugin: spreadsheet
   file: /import_files/training-provider.xlsx
-  worksheet: 'Sheet1'
+  worksheet: Sheet1
   origin: A2
   header_row: 1
   columns:
@@ -53,7 +53,7 @@ process:
     -
       plugin: explode
       source: Locations
-      delimiter: ';'
+      delimiter: ;
     -
       plugin: pmmi_territory_served
       source_type: string

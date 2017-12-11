@@ -17709,10 +17709,19 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   .page-search-training-provider-directory .main-container label,
   .page-search-sales-agent-directory .main-container label {
     padding-left: 0;
-    overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     padding-right: 20px;
+  }
+  .page-search-training-provider-directory .main-container label:before, .page-search-training-provider-directory .main-container label:after,
+  .page-search-sales-agent-directory .main-container label:before,
+  .page-search-sales-agent-directory .main-container label:after {
+    content: " ";
+    display: table;
+  }
+  .page-search-training-provider-directory .main-container label:after,
+  .page-search-sales-agent-directory .main-container label:after {
+    clear: both;
   }
   .page-search-training-provider-directory .main-container form,
   .page-search-sales-agent-directory .main-container form {
@@ -21948,6 +21957,10 @@ button.slick-arrow.slick-next {
 
 .training-provider-node .locations strong {
   font-weight: normal;
+}
+
+.training-provider-node .field--type-telephone a {
+  color: #000;
 }
 
 /**
