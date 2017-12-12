@@ -71,6 +71,16 @@ class PMMITerritoryServed extends ProcessPluginBase implements ContainerFactoryP
    * {@inheritdoc}
    */
   public function transform($value, MigrateExecutableInterface $migrate_executable, Row $row, $destination_property) {
+    $configs = $this->configuration;
+    if (isset($configs['source_type']) && $configs['source_type'] == 'string') {
+      if (!isset($configs['delimeter'])) {
+        throw new MigrateException($this->t('Source type string selected but no delimeter defined.'));
+      }
+      $value = explode($configs['delimeter'], $value);
+    }
+    else {
+      $configs['source_type'] = 'default';
+    }
     if (empty($value[0])) {
       // Country field is empty. Do nothing!
       return;
@@ -141,6 +151,9 @@ class PMMITerritoryServed extends ProcessPluginBase implements ContainerFactoryP
     }
 
     if ($territory_served) {
+      if ($configs['source_type'] == 'string') {
+        return reset($territory_served);
+      }
       return array_values($territory_served);
     }
   }
@@ -158,4 +171,5 @@ class PMMITerritoryServed extends ProcessPluginBase implements ContainerFactoryP
     $countries = $this->country_repository->getList();
     return array_search(strtolower($country), array_map('strtolower', $countries));
   }
+
 }

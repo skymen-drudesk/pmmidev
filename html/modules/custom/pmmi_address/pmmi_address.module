@@ -14,7 +14,7 @@ use Drupal\Core\Render\Element;
 function pmmi_address_theme() {
   return [
     'pmmi_address_country_state' => [
-      'variables' => ['separator' => ': ', 'country' => '', 'states' => '']
+      'variables' => ['separator' => ': ', 'country' => '', 'states' => ''],
     ],
   ];
 }
@@ -25,7 +25,10 @@ function pmmi_address_theme() {
 function pmmi_address_field_widget_form_alter(&$element, \Drupal\Core\Form\FormStateInterface $form_state, $context) {
   $field_definition = $context['items']->getFieldDefinition();
   if ($field_definition->getType() == 'country_area') {
-    $element['country_code']['#title'] = t('You can select as many countries as you want:');
+    $cardinality = $field_definition->getFieldStorageDefinition()->getCardinality();
+    if ($cardinality !== 1) {
+      $element['country_code']['#title'] = t('You can select as many countries as you want:');
+    }
     $element['administrative_area']['#title'] = t('You can select as many states/regions as you want:');
   }
 }
@@ -65,4 +68,22 @@ function pmmi_address_location_required_fields(array $element, FormStateInterfac
  */
 function pmmi_address_validation_constraint_alter(array &$definitions) {
   $definitions['AddressFormat']['class'] = 'Drupal\pmmi_address\Plugin\Validation\Constraint\PmmiAddressFormatConstraint';
+}
+
+
+/**
+ * Implements hook_element_info_alter().
+ */
+function pmmi_address_element_info_alter(&$data, &$context1 = NULL, &$context2 = NULL) {
+  if (isset($data['selectize'])) {
+    $data['selectize']['#pre_render'][] = 'pmmi_address_selectize_pre_render';
+  }
+}
+
+/**
+ * Selectize pre_render.
+ */
+function pmmi_address_selectize_pre_render($element) {
+  $element['#attached']['library'][] = 'pmmi_bootstrap/selectize-plugins';
+  return $element;
 }

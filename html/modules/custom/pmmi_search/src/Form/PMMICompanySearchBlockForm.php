@@ -87,7 +87,8 @@ class PMMICompanySearchBlockForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $data = NULL) {
-    $wrapper_id = 'sales-agent-directory-address';
+    $wrapper_id = !empty($data['wrapper_id']) ? $data['wrapper_id'] : 'sales-agent-directory-address';
+    $bundle = !empty($data['bundle']) ? $data['bundle'] : 'company';
 
     // Describe address filter.
     $form['address'] = [
@@ -96,7 +97,7 @@ class PMMICompanySearchBlockForm extends FormBase {
       '#suffix' => '</div>',
     ];
     $list = $this->countryRepository->getList();
-    $used_countries = $this->filterCountries->getUsedCountries('company');
+    $used_countries = $this->filterCountries->getUsedCountries($bundle);
     $filtered_countries = array_intersect_key($list, $used_countries);
     $form['address']['country_code'] = [
       '#type' => 'selectize',
@@ -112,6 +113,7 @@ class PMMICompanySearchBlockForm extends FormBase {
         'callback' => [get_class($this), 'addressAjaxRefresh'],
         'wrapper' => $wrapper_id,
       ],
+      '#weight' => 0,
     ];
     $form['address']['administrative_area'] = [
       '#type' => 'selectize',
@@ -123,6 +125,7 @@ class PMMICompanySearchBlockForm extends FormBase {
       ],
       '#input_group' => TRUE,
       '#access' => FALSE,
+      '#weight' => 1,
     ];
 
     $countries = [];
@@ -146,6 +149,7 @@ class PMMICompanySearchBlockForm extends FormBase {
     $form['industries'] = [
       '#type' => 'details',
       '#title' => $this->t('Industries Served'),
+      '#weight' => 2,
     ];
     $form['industries']['field_industries_served'] = [
       '#type' => 'checkboxes',
@@ -161,12 +165,14 @@ class PMMICompanySearchBlockForm extends FormBase {
     $form['equipments']['field_equipment_sold_type'] = [
       '#type' => 'checkboxes',
       '#options' => $this->getTermReferenceOptions('equipment_sold_type'),
+      '#weight' => 3,
     ];
 
     // Describe "Attending PMMI show" filter.
     $form['shows'] = [
       '#type' => 'details',
       '#title' => $this->t('Attending PMMI show'),
+      '#weight' => 4,
     ];
     $form['shows']['pmmi_shows'] = [
       '#type' => 'checkboxes',
@@ -178,11 +184,13 @@ class PMMICompanySearchBlockForm extends FormBase {
       '#type' => 'textfield',
       '#title' => $this->t('Keyword'),
       '#placeholder' => $this->t('Enter keyword'),
+      '#weight' => 5,
     ];
 
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Search'),
+      '#weight' => 6,
     ];
 
     return $form;
@@ -205,7 +213,7 @@ class PMMICompanySearchBlockForm extends FormBase {
     $filters = [
       'field_industries_served',
       'field_equipment_sold_type',
-      'pmmi_shows'
+      'pmmi_shows',
     ];
 
     foreach ($filters as $filter) {

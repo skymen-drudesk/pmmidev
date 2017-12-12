@@ -75,23 +75,24 @@ class PMMIAdminPanelAgentSearchBlockForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state, $data = NULL) {
+    $bundle = !empty($data['bundle']) ? $data['bundle'] : 'company';
     $qp = \Drupal::request()->query->all();
     $countries = $this->countryRepository->getList();
-    $used_countries = $this->filterCountries->getUsedCountries('company');
+    $used_countries = $this->filterCountries->getUsedCountries($bundle);
     $filtered_countries = array_intersect_key($countries, $used_countries);
 
     // We can use static wrapper here.
-    $wrapper_id = 'admin-panel-sales-agent-directory-address';
+    $wrapper_id = !empty($data['wrapper_id']) ? $data['wrapper_id'] : 'admin-panel-sales-agent-directory-address';
 
     // Add link to quick add new company node.
-    $url = Url::fromUri('internal:/node/add/company');
+    $url = Url::fromUri('internal:/node/add/' . $bundle);
     $link_options = [
       'attributes' => [
-        'class' => ['button']
-      ]
+        'class' => ['button'],
+      ],
     ];
     $url->setOptions($link_options);
-    $form['create_company']['#markup'] = Link::fromTextAndUrl($this->t('Add new company'), $url)->toString();
+    $form['create_company']['#markup'] = Link::fromTextAndUrl($this->t('Add new @company', ['@company' => str_replace('_', ' ', $bundle)]), $url)->toString();
 
     // Describe address filters.
     $form['address'] = [
@@ -128,7 +129,8 @@ class PMMIAdminPanelAgentSearchBlockForm extends FormBase {
 
     // Show or hide second level of hierarchy in accordance with selected
     // country.
-    if ($selected_country && $selected_country != '_none') {
+    $countries_show_area = isset($data['countries_show_area']) ? $data['countries_show_area'] : [];
+    if ($selected_country && $selected_country != '_none' && in_array($selected_country, $countries_show_area)) {
       $subdivisions = $this->subdivisionRepository->getList([$selected_country]);
 
       // Show subdivision field.

@@ -243,6 +243,29 @@ company:
       label: Provide after sales service
     footer_reg:
       label: Footer
+training_provider:
+  label: Training Provider
+  category: PMMI: Nodes
+  template: templates/layouts/nodes/training-provider
+  regions:
+    image_header:
+      label: Image Header
+    title:
+      label: Title
+    general_line_1:
+      label: General line 1
+    general_line_2:
+      label: General line 2
+    course_topics:
+      label: Course Topics
+    delivery_options:
+      label: Delivery Options
+    locations:
+      label: Locations
+    company_description:
+      label: Company description
+    last_updated:
+      label: Last updated
 download:
   label: Download
   category: 'PMMI: Nodes'

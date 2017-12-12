@@ -106,14 +106,15 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $field_name = $this->fieldDefinition->getName();
+    $cardinality = $this->fieldDefinition->getFieldStorageDefinition()->getCardinality();
     $selected = $this->getSelectedOptions($items);
     $input = $form_state->getUserInput();
     if (empty($selected['countries']) && empty($selected['areas'])) {
-      if (!empty($input['field_territory_served']['country_code'])) {
-        $selected['countries'] = $input['field_territory_served']['country_code'];
+      if (!empty($input[$field_name]['country_code'])) {
+        $selected['countries'] = $input[$field_name]['country_code'];
       }
-      if (!empty($input['field_territory_served']['administrative_area'])) {
-        $selected['areas'] = $input['field_territory_served']['administrative_area'];
+      if (!empty($input[$field_name]['administrative_area'])) {
+        $selected['areas'] = $input[$field_name]['administrative_area'];
       }
     }
 
@@ -132,21 +133,36 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
       ],
     ];
 
+    if ($cardinality == 1) {
+      $country_settings = [
+        '#multiple' => FALSE,
+        '#options' => ['' => ''] + $this->countryRepository->getList(),
+        '#settings' => [
+          'placeholder' => $this->t('Select Country'),
+          'plugins' => ['remove_button'],
+        ],
+      ];
+    }
+    else {
+      $country_settings = [
+        '#multiple' => TRUE,
+        '#options' => $this->countryRepository->getList(),
+        '#settings' => [
+          'placeholder' => $this->t('Select Country'),
+          'plugins' => ['remove_button', 'prevent_items_backspace_delete'],
+        ],
+      ];
+    }
+
     $element['country_code'] = [
       '#type' => 'selectize',
       '#title' => $this->t('Country'),
-      '#options' => $this->countryRepository->getList(),
-      '#multiple' => TRUE,
-      '#settings' => [
-        'placeholder' => $this->t('Select Country'),
-        'plugins' => ['remove_button', 'prevent_items_backspace_delete'],
-      ],
       '#limit_validation_errors' => [],
       '#ajax' => [
         'callback' => [get_class($this), 'ajaxRefresh'],
         'wrapper' => $wrapper_id,
       ],
-    ];
+    ] + $country_settings;
 
     $element['administrative_area'] = [
       '#type' => 'selectize',
@@ -170,12 +186,12 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
 
     // Override values after country has been changed!
     $triggering_element = $form_state->getTriggeringElement();
-    if ($triggering_element && $triggering_element['#name'] == 'field_territory_served[country_code]') {
+    if ($triggering_element && $triggering_element['#name'] == "{$field_name}[country_code]") {
       $countries = $triggering_element['#value'];
     }
 
     // Show or hide second level of hierarchy field only for US country.
-    if (in_array('US', $countries)) {
+    if ((is_array($countries) && in_array('US', $countries)) || $countries == 'US') {
 
       $subdivisions = $this->subdivisionRepository->getList(['US']);
       // Show subdivision field.
@@ -203,24 +219,25 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
    *   The form state.
    */
   public static function validateElement(array $element, FormStateInterface $form_state) {
+    $field_name = $element['#field_name'];
     $items = array();
     $input = $form_state->getUserInput();
 
     if (!empty($element['country_code']['#value'])) {
-      $countries =  $element['country_code']['#value'];
+      $countries = $element['country_code']['#value'];
     }
-    elseif (!empty($input['field_territory_served']['country_code'])) {
-      $countries = $input['field_territory_served']['country_code'];
+    elseif (!empty($input[$field_name]['country_code'])) {
+      $countries = $input[$field_name]['country_code'];
     }
     else {
       $countries = array();
     }
 
     if (!empty($element['administrative_area']['#value'])) {
-      $areas =  $element['administrative_area']['#value'];
+      $areas = $element['administrative_area']['#value'];
     }
-    elseif (!empty($input['field_territory_served']['administrative_area'])) {
-      $areas = $input['field_territory_served']['administrative_area'];
+    elseif (!empty($input[$field_name]['administrative_area'])) {
+      $areas = $input[$field_name]['administrative_area'];
     }
     else {
       $areas = array();
@@ -234,6 +251,7 @@ class CountryAreaAutocompleteWidget extends WidgetBase implements ContainerFacto
     // Build list of items. Use the next styles:
     //  - for country only: COUNTRY_CODE;
     //  - for country and ares: COUNTRY_CODE::AREA_CODE.
+    $countries = is_array($countries) ? $countries : [$countries];
     foreach ($countries as $country) {
       $sub = FALSE;
 
