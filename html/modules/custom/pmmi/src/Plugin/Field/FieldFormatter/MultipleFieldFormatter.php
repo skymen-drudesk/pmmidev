@@ -61,7 +61,7 @@ class MultipleFieldFormatter extends EntityReferenceFormatterBase {
 
       // Check if element isn't last and add separator after it.
       if ($i < $items_count - 1) {
-        $elements[$delta] = ['#plain_text' => $label . $this->getSetting('separator')];
+        $elements[$delta] = ['#markup' => $label . $this->getSetting('separator')];
       }
       else {
         $elements[$delta] = ['#plain_text' => $label];

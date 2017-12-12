@@ -249,6 +249,11 @@
   .field--name-dynamic-block-fieldnode-tpd-contact-questions {
     @extend %training-directory-question-block;
   }
+  .field--type-telephone {
+    a {
+      color: #000;
+    }
+  }
 }
 
 /**

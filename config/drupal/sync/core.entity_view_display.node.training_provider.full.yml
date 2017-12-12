@@ -109,7 +109,7 @@ content:
     weight: 6
     label: above
     settings:
-      separator: ''
+      separator: '<br />'
     third_party_settings:
       ds:
         ds_limit: ''
@@ -125,7 +125,7 @@ content:
     weight: 7
     label: above
     settings:
-      separator: ''
+      separator: '<br />'
     third_party_settings:
       ds:
         ds_limit: ''
@@ -142,7 +142,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
+    type: email_mailto
     region: general_line_2
   field_main_phone_number:
     weight: 3
