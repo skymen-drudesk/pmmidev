@@ -16,7 +16,6 @@ function pmmi_forms_views_query_alter(ViewExecutable $view, QueryPluginBase $que
     if (isset($group_id) && !empty($where[$group_id]['conditions'])
     && $where[$group_id]['conditions'][0][0] === 'type') {
       $query->setWhereGroup('OR', $group_id);
-      $query->addCondition('title_1', NULL, '<>', $group_id);
     }
   }
 
