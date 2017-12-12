@@ -1,0 +1,32 @@
+uuid: 53a51886-a7eb-4bc3-8ad4-5e69ab76c592
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_solr
+id: solr_training_provider_server
+name: 'Solr Training Provider Server'
+description: ''
+backend: search_api_solr
+backend_config:
+  connector: standard
+  connector_config:
+    scheme: http
+    host: pmmisolr
+    port: '8983'
+    path: /solr
+    core: d8_training_provider
+    timeout: 5
+    index_timeout: 5
+    optimize_timeout: 10
+    commit_within: 1000
+    solr_version: ''
+    http_method: AUTO
+  retrieve_data: false
+  highlight_data: false
+  excerpt: false
+  skip_schema_check: false
+  site_hash: true
+  suggest_suffix: true
+  suggest_corrections: true
+  suggest_words: false

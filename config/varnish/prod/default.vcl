@@ -87,7 +87,8 @@ sub vcl_recv {
         req.url ~ "^/batch.*$" ||
         req.url ~ "^/system$" ||
         req.url ~ "^/system/.*$" ||
-        req.url ~ "^/sales-agent-directory/favorites\.csv.*$") {
+        req.url ~ "^/sales-agent-directory/favorites\.csv.*$" ||
+        req.url ~ "^/training-provider-directory/organization/.*$") {
            return (pass);
     }
 

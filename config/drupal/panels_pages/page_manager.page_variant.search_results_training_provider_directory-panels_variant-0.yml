@@ -1,0 +1,57 @@
+uuid: 585e8365-e03a-4321-87ac-6447455c71cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.search_results_training_provider_directory
+  content:
+    - 'block_content:image_header:ec9fee2a-24f3-48ad-9970-bd9206509cdd'
+  module:
+    - block_content
+    - panels
+    - pmmi_page_manager_search
+    - pmmi_training_provider
+third_party_settings:
+  pmmi_page_manager_search:
+    index_page_variant: 1
+id: search_results_training_provider_directory-panels_variant-0
+label: Panels
+variant: panels_variant
+variant_settings:
+  blocks:
+    73915136-54d1-4540-bc4c-496b444fe184:
+      id: pmmi_training_provider_search_results_block
+      label: 'PMMI Training Provider Search Results block'
+      provider: pmmi_training_provider
+      label_display: '0'
+      region: top
+      weight: 1
+      uuid: 73915136-54d1-4540-bc4c-496b444fe184
+      context_mapping: {  }
+    8b4eb061-3c88-4372-afa4-24d0aa2a9ef2:
+      id: 'block_content:ec9fee2a-24f3-48ad-9970-bd9206509cdd'
+      label: 'Training Provider Directory - Image Header'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+      region: top
+      weight: 0
+      uuid: 8b4eb061-3c88-4372-afa4-24d0aa2a9ef2
+      context_mapping: {  }
+  id: panels_variant
+  uuid: f05aba90-c537-4be7-a65a-be4de96d5d50
+  label: null
+  weight: 0
+  layout: sitewide
+  layout_settings: {  }
+  page_title: 'Search results training provider directory'
+  storage_type: page_manager
+  storage_id: search_results_training_provider_directory-panels_variant-0
+  builder: standard
+page: search_results_training_provider_directory
+weight: 0
+selection_criteria: {  }
+selection_logic: and
+static_context: {  }

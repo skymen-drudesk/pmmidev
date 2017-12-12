@@ -1,6 +1,7 @@
 /**
- *  Company node view
+ *  Company and training provider node view
  */
+.training-provider-node,
 .company-node {
   .top-banner.clearfix {
     margin-bottom: 0;
@@ -67,6 +68,8 @@
     border-radius: 6px;
     margin: 0;
     padding-top: 15px;
+    .field--label,
+    .field-label-above,
     .block-label {
       color: $blue;
       font-size: $r20;
@@ -112,7 +115,9 @@
   .services {
     border-bottom: solid 2px $ltgrey;
   }
-  .block-label, .field--label {
+  .block-label,
+  .field--label,
+  .field-label-above {
     font-weight: $extrabold;
     font-size: $r18;
     margin-bottom: 4px;
@@ -208,6 +213,45 @@
         width: 100%;
         float: none;
       }
+    }
+  }
+}
+.training-provider-node {
+  margin-bottom: 20px;
+  .top-banner {
+    margin-bottom: 40px;
+  }
+  .row-wrapper {
+    min-height: 240px;
+    margin-bottom: 40px;
+    .field--label,
+    .field-label-above {
+      border-bottom: solid 2px $mdgrey;
+      margin-bottom: 14px;
+      padding-bottom: 3px;
+    }
+  }
+  .company-description {
+    .field-label-above {
+      margin-bottom: 16px;
+    }
+    margin: 40px 0 24px;
+  }
+  .last-updated {
+    border-top: solid 1px $mdgrey;
+    padding-top: 12px;
+  }
+  .locations {
+    strong {
+      font-weight: normal;
+    }
+  }
+  .field--name-dynamic-block-fieldnode-tpd-contact-questions {
+    @extend %training-directory-question-block;
+  }
+  .field--type-telephone {
+    a {
+      color: #000;
     }
   }
 }

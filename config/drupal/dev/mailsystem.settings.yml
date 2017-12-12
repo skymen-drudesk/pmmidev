@@ -1,0 +1,9 @@
+modules:
+  sendgrid_integration:
+    none:
+      formatter: sendgrid_integration
+      sender: sendgrid_integration
+defaults:
+  formatter: maillog
+  sender: maillog
+theme: current

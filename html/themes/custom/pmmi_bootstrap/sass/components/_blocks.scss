@@ -534,3 +534,17 @@
     margin-bottom: 20px;
   }
 }
+
+%training-directory-question-block {
+  margin: 215px 0 0;
+  font-size: $r16;
+  line-height: $r21;
+  @include inherit-text-style(p);
+  a {
+    color: #000;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

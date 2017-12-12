@@ -31,12 +31,14 @@ class PMMISADMigrateForm extends FormBase implements MigrateMessageInterface {
         the reason on the "Messages" tab. After that, you can fix it and
         re-import (only failed items will be imported at a second time).'
       ),
+      '#weight' => -10,
     ];
 
     $form['company_migrate_upload'] = [
       '#type' => 'file',
       '#title' => $this->t('Upload import file'),
       '#maxlength' => 40,
+      '#weight' => 0,
     ];
 
     // @todo: at the moment we allow import process only. Do we need 'Reset'
@@ -44,6 +46,7 @@ class PMMISADMigrateForm extends FormBase implements MigrateMessageInterface {
     $form['submit'] = [
       '#type' => 'submit',
       '#value' => $this->t('Start import'),
+      '#weight' => 10,
     ];
 
     return $form;
@@ -76,6 +79,7 @@ class PMMISADMigrateForm extends FormBase implements MigrateMessageInterface {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+    $migration_id = isset($form_state->migration_id) ? $form_state->migration_id : 'company_migrate';
 
     $values = $form_state->getValues();
 
@@ -86,16 +90,19 @@ class PMMISADMigrateForm extends FormBase implements MigrateMessageInterface {
 
       // Continue only if necessary migration (company_migrate) is available.
       $migrationPluginManager = \Drupal::service('plugin.manager.config_entity_migration');
-      $migrations = $migrationPluginManager->createInstances(['company_migrate']);
-      if (!empty($migrations['company_migrate'])) {
+      $migrations = $migrationPluginManager->createInstances([$migration_id]);
+      if (!empty($migrations[$migration_id])) {
         // Replace import file to the new one and import new companies from it.
-        $source = $migrations['company_migrate']->get('source');
+        $source = $migrations[$migration_id]->get('source');
         $source['file'] = \Drupal::service('file_system')->realpath($uri);
-        $migrations['company_migrate']->set('source', $source);
+        if (!empty($values['worksheet'])) {
+          $source['worksheet'] = $values['worksheet'];
+        }
+        $migrations[$migration_id]->set('source', $source);
 
         // Prepare this migration to run as an update. Update failed items only.
         // @see Drupal\migrate\Plugin\migrate\id_map\Sql::prepareUpdate.
-        $idMap = $migrations['company_migrate']->getIdMap();
+        $idMap = $migrations[$migration_id]->getIdMap();
         $idMap->getDatabase()->update($idMap->mapTableName())
           ->fields(['source_row_status' => 1])
           ->condition('source_row_status', 3)
@@ -106,7 +113,12 @@ class PMMISADMigrateForm extends FormBase implements MigrateMessageInterface {
         // actions.
         // @todo: fix it as soon as possible!
         $batch = [
-          'operations' => [[[$this, 'batchProcess'], [$migrations['company_migrate']]]],
+          'operations' => [
+            [
+              [$this, 'batchProcess'],
+              [$migrations[$migration_id]],
+            ],
+          ],
           'title' => t('Import processing'),
           'init_message' => t('Starting import process'),
           'progress_message' => t('Processing import of the companies.'),
