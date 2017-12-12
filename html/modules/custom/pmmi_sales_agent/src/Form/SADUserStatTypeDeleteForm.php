@@ -22,7 +22,7 @@ class SADUserStatTypeDeleteForm extends EntityConfirmFormBase {
    * {@inheritdoc}
    */
   public function getCancelUrl() {
-    return new Url('entity.sad_user_stat_type.collection');
+    return $this->entity->toUrl('collection');
   }
 
   /**

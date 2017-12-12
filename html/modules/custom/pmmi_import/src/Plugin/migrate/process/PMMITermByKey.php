@@ -6,6 +6,7 @@ use Drupal\Core\Database\Database;
 use Drupal\migrate\MigrateExecutableInterface;
 use Drupal\migrate\ProcessPluginBase;
 use Drupal\migrate\Row;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * This plugin allows set necessary taxonomy term using some migration key.
@@ -35,7 +36,7 @@ class PMMITermByKey extends ProcessPluginBase {
         // If there are some taxonomy terms which are associated with current
         // key - use them.
         foreach ($query->execute() as $tid) {
-          if ($term = \Drupal\taxonomy\Entity\Term::load($tid)) {
+          if ($term = Term::load($tid)) {
             $term_migration_keys = array_map('trim', explode(PHP_EOL, $term->get('field_migration_keys')->value));
 
             // Additional check by migrate key.
@@ -73,4 +74,5 @@ class PMMITermByKey extends ProcessPluginBase {
   protected function getSeparator() {
     return isset($this->configuration['separator']) ? $this->configuration['separator'] : ',';
   }
+
 }

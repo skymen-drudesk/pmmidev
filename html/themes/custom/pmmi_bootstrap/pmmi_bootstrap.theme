@@ -407,23 +407,6 @@ function pmmi_bootstrap_preprocess_views_view_field(&$variables) {
 }
 
 /**
- * Implements hook_element_info_alter().
- */
-function pmmi_bootstrap_element_info_alter(&$data, &$context1 = NULL, &$context2 = NULL) {
-  if (isset($data['selectize'])) {
-    $data['selectize']['#pre_render'][] = 'pmmi_bootstrap_selectize_pre_render';
-  }
-}
-
-/**
- * Selectize pre_render.
- */
-function pmmi_bootstrap_selectize_pre_render($element) {
-  $element['#attached']['library'][] = 'pmmi_bootstrap/selectize-plugins';
-  return $element;
-}
-
-/**
  * Browser detection help funciton.
  */
 function _pmmi_bootstrap_detect_browsers(&$variables) {

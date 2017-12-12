@@ -24,6 +24,7 @@ dependencies:
     - search_api.server.solr_agents_server
   module:
     - search_api
+    - pmmi_reports
     - pmmi_search
     - node
 id: agents_index
@@ -299,6 +300,7 @@ datasource_settings:
       default: true
       selected: {  }
 processor_settings:
+  report_year: {  }
   pmmi_shows: {  }
   pmmi_country_area_ws:
     fields:

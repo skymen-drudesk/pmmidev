@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "073e10ea025131962b8a1c8905f6e63a",
+    "content-hash": "e113e7eb54a969a06681b0581ffc1ea7",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -135,7 +135,7 @@
         },
         {
             "name": "briancherne/jquery.hoverIntent",
-            "version": "1.8.1",
+            "version": "v1.8.1",
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/briancherne/jquery-hoverIntent/archive/v1.8.1.zip",
@@ -1738,10 +1738,6 @@
                     "homepage": "https://www.drupal.org/u/matio89"
                 },
                 {
-                    "name": "adriancid",
-                    "homepage": "https://www.drupal.org/user/1962106"
-                },
-                {
                     "name": "bolbol",
                     "homepage": "https://www.drupal.org/user/3400070"
                 },
@@ -2467,17 +2463,17 @@
         },
         {
             "name": "drupal/config_update",
-            "version": "1.4.0",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/config_update",
-                "reference": "8.x-1.4"
+                "reference": "8.x-1.5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/config_update-8.x-1.4.zip",
-                "reference": "8.x-1.4",
-                "shasum": "0de82ba4aa7caf054711ab16ad038765215a489d"
+                "url": "https://ftp.drupal.org/files/projects/config_update-8.x-1.5.zip",
+                "reference": "8.x-1.5",
+                "shasum": "2f7ae5f90b1c0ab8edf84680d2651e81fab6a126"
             },
             "require": {
                 "drupal/core": "*"
@@ -2488,8 +2484,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.4",
-                    "datestamp": "1505755744",
+                    "version": "8.x-1.5",
+                    "datestamp": "1512587912",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -2984,8 +2980,7 @@
                     "Batch API should use the current theme to run the batches": "https://www.drupal.org/files/issues/wrong-route-check-539022-71.patch",
                     "Lock system is broken in many regards": "https://www.drupal.org/files/issues/lock_system_needs_a-2077827-49_0.patch",
                     "HtmlEscapedText object to string conversation error": "https://www.drupal.org/files/issues/drupal_8_3_2_HtmlEscapedText_to_string_01.patch",
-                    "Twig - only search for templates in templates directory of themes": "patches/3879__twig__only_scan_templates_dir.patch",
-                    "Unofficial content_moderation 8.3.7 to 8.4.0 upgrade path": "https://www.drupal.org/files/issues/2896630-13.patch"
+                    "Twig - only search for templates in templates directory of themes": "patches/3879__twig__only_scan_templates_dir.patch"
                 }
             },
             "autoload": {
@@ -4182,10 +4177,6 @@
                     "homepage": "https://www.drupal.org/user/78040"
                 },
                 {
-                    "name": "joseph.olstad",
-                    "homepage": "https://www.drupal.org/user/1321830"
-                },
-                {
                     "name": "robeano",
                     "homepage": "https://www.drupal.org/user/67660"
                 },
@@ -4953,11 +4944,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0-beta1",
-                    "datestamp": "1494450485",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
-                    }
+                    "datestamp": "1476307739"
                 },
                 "patches_applied": {
                     "FormatDate process plugin": "https://www.drupal.org/files/issues/formatdate_process_plugin-2820490-2_0.patch"
@@ -4972,10 +4959,6 @@
                     "name": "Mike Ryan",
                     "homepage": "https://www.drupal.org/u/mikeryan",
                     "role": "Maintainer"
-                },
-                {
-                    "name": "mikeryan",
-                    "homepage": "https://www.drupal.org/user/4420"
                 }
             ],
             "description": "Enhancements to core migration support.",
@@ -5046,21 +5029,21 @@
         },
         {
             "name": "drupal/migrate_spreadsheet",
-            "version": "1.0.0-alpha4",
+            "version": "1.0.0-beta6",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/migrate_spreadsheet",
-                "reference": "8.x-1.0-alpha4"
+                "reference": "8.x-1.0-beta6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/migrate_spreadsheet-8.x-1.0-alpha4.zip",
-                "reference": "8.x-1.0-alpha4",
-                "shasum": "b5e4ef8289f8c0a2e5a8dc93a1873b0c0d77205c"
+                "url": "https://ftp.drupal.org/files/projects/migrate_spreadsheet-8.x-1.0-beta6.zip",
+                "reference": "8.x-1.0-beta6",
+                "shasum": "7cd3a4c4fe1bee7b237bb0de5a20281e3e53e75e"
             },
             "require": {
                 "drupal/core": "*",
-                "phpoffice/phpspreadsheet": "~0.0"
+                "phpoffice/phpspreadsheet": "^1.0.0-beta"
             },
             "type": "drupal-module",
             "extra": {
@@ -5068,17 +5051,12 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.0-alpha4",
-                    "datestamp": "1487973484",
+                    "version": "8.x-1.0-beta6",
+                    "datestamp": "1509378185",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
                     }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PhpOffice\\PhpSpreadsheet\\": "vendor/phpoffice/phpspreadsheet/src/PhpSpreadsheet"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -5625,8 +5603,7 @@
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
                     }
-                },
-                "patches_applied": []
+                }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
@@ -8372,10 +8349,10 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-            "version": "0.0",
+            "version": "1.0.0-beta",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/PHPOffice/PhpSpreadsheet/archive/develop.zip",
+                "url": "https://github.com/PHPOffice/PhpSpreadsheet/archive/1.0.0-beta.zip",
                 "reference": null,
                 "shasum": null
             },
@@ -11657,12 +11634,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1+1-dev",
-                    "datestamp": "1507197243",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
-                    }
+                    "version": "8.x-1.0-alpha1+32-dev",
+                    "datestamp": "1480244880"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -12595,6 +12568,54 @@
                 "xunit"
             ],
             "time": "2017-08-03T14:08:16+00:00"
+        },
+        {
+            "name": "psr/simple-cache",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/simple-cache.git",
+                "reference": "753fa598e8f3b9966c886fe13f370baa45ef0e24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/simple-cache/zipball/753fa598e8f3b9966c886fe13f370baa45ef0e24",
+                "reference": "753fa598e8f3b9966c886fe13f370baa45ef0e24",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\SimpleCache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interfaces for simple caching",
+            "keywords": [
+                "cache",
+                "caching",
+                "psr",
+                "psr-16",
+                "simple-cache"
+            ],
+            "time": "2017-01-02T13:31:39+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

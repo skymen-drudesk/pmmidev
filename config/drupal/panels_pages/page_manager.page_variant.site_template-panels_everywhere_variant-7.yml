@@ -1,0 +1,139 @@
+uuid: 9ced3bc0-f6da-4f26-905b-fb935236bca9
+langcode: en
+status: true
+dependencies:
+  config:
+    - page_manager.page.site_template
+    - system.menu.footer
+    - system.menu.training-provider-directory
+  content:
+    - 'block_content:social_media:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
+  module:
+    - audience_select
+    - block_content
+    - panels_everywhere
+    - pmmi
+    - pmmi_page_manager_search
+    - system
+third_party_settings:
+  pmmi_page_manager_search:
+    index_page_variant: 0
+id: site_template-panels_everywhere_variant-7
+label: 'Training Provider Directory'
+variant: panels_everywhere_variant
+variant_settings:
+  blocks:
+    c7c45236-f6b4-4d54-a481-3be730d78e47:
+      id: system_branding_block
+      label: 'Site branding'
+      provider: system
+      label_display: '0'
+      use_site_logo: true
+      use_site_name: false
+      use_site_slogan: false
+      region: header_logo
+      weight: -10
+      uuid: c7c45236-f6b4-4d54-a481-3be730d78e47
+      context_mapping: {  }
+    9f45abea-6583-4975-8959-f826318d2d8a:
+      id: 'system_menu_block:training-provider-directory'
+      label: 'Training Provider Directory Navigation'
+      provider: system
+      label_display: '0'
+      level: 1
+      depth: 0
+      region: header_main_nav
+      weight: -4
+      uuid: 9f45abea-6583-4975-8959-f826318d2d8a
+      context_mapping: {  }
+    7cdb2030-d7ca-43d0-87a8-7ed22ead8fe0:
+      id: system_messages_block
+      label: Messages
+      provider: system
+      label_display: '0'
+      region: topbar
+      weight: 0
+      uuid: 7cdb2030-d7ca-43d0-87a8-7ed22ead8fe0
+      context_mapping: {  }
+    844ff1a5-fce9-4ded-9d81-abe7e58c332a:
+      id: local_tasks_block
+      label: Tabs
+      provider: core
+      label_display: '0'
+      primary: true
+      secondary: true
+      region: topbar
+      weight: 0
+      uuid: 844ff1a5-fce9-4ded-9d81-abe7e58c332a
+      context_mapping: {  }
+    e9b1ea43-6220-4468-8cfa-941769e1deea:
+      id: system_main_block
+      label: 'Main page content'
+      provider: system
+      label_display: '0'
+      region: main
+      weight: 0
+      uuid: e9b1ea43-6220-4468-8cfa-941769e1deea
+      context_mapping: {  }
+    b37681e9-032a-4379-9baf-fc445be423f5:
+      id: copyright_block
+      label: 'Copyright block'
+      provider: pmmi
+      label_display: '0'
+      region: footer
+      weight: 0
+      uuid: b37681e9-032a-4379-9baf-fc445be423f5
+      context_mapping: {  }
+    f5506911-6b22-4422-899c-b5eaa8cf60a3:
+      id: 'system_menu_block:footer'
+      label: Footer
+      provider: system
+      label_display: '0'
+      level: 1
+      depth: 0
+      region: footer
+      weight: 0
+      uuid: f5506911-6b22-4422-899c-b5eaa8cf60a3
+      context_mapping: {  }
+    26761c89-9aad-4799-bda7-f5c41d7f7662:
+      id: audience_switcher
+      label: 'Other Versions:'
+      provider: audience_select
+      label_display: visible
+      excluded_audiences: {  }
+      region: footer
+      weight: 0
+      uuid: 26761c89-9aad-4799-bda7-f5c41d7f7662
+      context_mapping: {  }
+    bbf7a319-acd4-4765-a737-29edfe7b3e71:
+      id: 'block_content:69f14d67-10ce-4ea0-8d21-6292c4bc819c'
+      label: 'PMMI - Social Media'
+      provider: block_content
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: footer_social
+      region: footer
+      weight: 0
+      uuid: bbf7a319-acd4-4765-a737-29edfe7b3e71
+      context_mapping: {  }
+  id: panels_everywhere_variant
+  uuid: 457b3db8-07a6-4b05-9514-fe13ada8f75b
+  label: null
+  weight: 0
+  layout: panel_default
+  layout_settings: {  }
+  page_title: ''
+  storage_type: page_manager
+  storage_id: site_template-panels_everywhere_variant-7
+  builder: standard
+page: site_template
+weight: -9
+selection_criteria:
+  -
+    id: request_path
+    pages: "/training-provider-directory\n/training-provider-directory/*"
+    negate: false
+    context_mapping: {  }
+selection_logic: and
+static_context: {  }
