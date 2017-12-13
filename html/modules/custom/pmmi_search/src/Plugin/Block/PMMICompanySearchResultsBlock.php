@@ -278,8 +278,13 @@ class PMMICompanySearchResultsBlock extends BlockBase implements ContainerFactor
           foreach ($countries as $country) {
             if ($country == 'United States') {
               $state_unfiltered = $query_params['ts'][0];
-              $state_filtered = str_replace('US::', '', $state_unfiltered);
-              $view->query->addCondition('administrative_area', $state_filtered, 'IN', $group_id);
+              $state_filtered = explode('::', $state_unfiltered);
+              if (count($state_filtered) == 1) {
+                $view->query->addCondition('country', $country, 'IN', $group_id);
+              } else {
+                $view->query->addCondition('administrative_area', $state_filtered[1], 'IN', $group_id);
+
+              }
             }
             else {
               $view->query->addCondition('country', $country, 'IN', $group_id);
