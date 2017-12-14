@@ -8,7 +8,7 @@ services:
 
   pmmiweb:
     container_name: "${SITE_CODE}_prod_web"
-    image: pmguser/drupal-php7.0-apache:1.0.6
+    image: pmguser/drupal-php-7-apache:base-2.0.0
     volumes:
       - ./data:/var/lib/mysql
     restart: always
@@ -21,7 +21,7 @@ services:
 
   pmmivarnish:
     container_name: "${SITE_CODE}_prod_varnish"
-    image: pmguser/drupal-varnish:latest
+    image: pmguser/drupal-varnish:1.0.1
     restart: always
     depends_on:
       - pmmiweb

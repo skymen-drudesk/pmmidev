@@ -24,9 +24,11 @@ module:
   webform: 0
 theme: {  }
 blacklist:
+  - page_manager.page.blog_search
   - page_manager.page.site_template
   - page_manager.page_variant.403_page-panels_variant-0
   - page_manager.page_variant.404_page-panels_variant-0
+  - page_manager.page_variant.blog_search-panels_variant-0
   - page_manager.page_variant.contact_us-panels_variant-0
   - page_manager.page_variant.site_template-panels_everywhere_variant-0
   - page_manager.page_variant.site_template-panels_everywhere_variant-1
@@ -35,13 +37,13 @@ blacklist:
   - page_manager.page_variant.site_template-panels_everywhere_variant-4
   - page_manager.page_variant.site_template-panels_everywhere_variant-5
   - page_manager.page_variant.site_template-panels_everywhere_variant-6
+  - page_manager.page_variant.site_templatepanels_everywhere_variant7
   - pmmi_sales_agent.mail_mass_settings
   - pmmi_sales_agent.mail_settings
   - pmmi_sales_agent.reporting_settings
   - tb_megamenu.menu_config.annual-meeting-nav__pmmi_bootstrap
   - tb_megamenu.menu_config.emerging-leaders-nav__pmmi_bootstrap
   - tb_megamenu.menu_config.executive-leadership-nav__pmmi_bootstrap
-  - page_manager.page_variant.site_templatepanels_everywhere_variant7
 graylist: {  }
 graylist_dependents: true
 graylist_skip_equal: true
