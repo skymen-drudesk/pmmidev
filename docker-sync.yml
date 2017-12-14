@@ -8,6 +8,7 @@ syncs:
   pmmi-sync:
     notify_terminal: true
     src: './'
+    sync_userid: '82'
     sync_host_ip: '127.0.0.1'
     sync_excludes: [
       'data/',
@@ -17,9 +18,9 @@ syncs:
       '._.DS_Store',
       '.idea'
     ]
+    sync_strategy: 'unison'
     sync_prefer: 'newer'
     watch_excludes: [
-      'data/',
       '.git/',
       '.gitignore',
       '.DS_Store',
