@@ -24,11 +24,12 @@ function pmmi_forms_views_query_alter(ViewExecutable $view, QueryPluginBase $que
       // There are no available filters.
       return;
     }
-
-    if (!empty($query_params['date'])) {
+    if (isset($query_params['date'])) {
       $date_formatter = \Drupal::service('date.formatter');
-      $dates = explode('_', $query_params['date']);
-
+      $dates = '';
+      if ($query_params['date'] != 0) {
+        $dates = explode('_', $query_params['date']);
+      }
       // Define table.
       $definition = [
         'table' => 'webform_submission_data',
@@ -54,18 +55,21 @@ function pmmi_forms_views_query_alter(ViewExecutable $view, QueryPluginBase $que
       // Get where group ID.
       $where = $query->where;
       $group_id = max(array_keys($where));
-
       // Get `filtered by` field.
-      $field = $query->getDateFormat('webform_submission_date_is_belongs_to.value', 'Y-m-d', TRUE);
+      if ($query_params['date'] != 0) {
+        $field = $query->getDateFormat('webform_submission_date_is_belongs_to.value', 'Y-m-d', TRUE);
+        // Change format of seasons start and end dates.
+        $started = $date_formatter->format($dates[0], 'custom', 'Y-m-d', NULL);
+        $ended = $date_formatter->format($dates[1], 'custom', 'Y-m-d', NULL);
 
-      // Change format of seasons start and end dates.
-      $started = $date_formatter->format($dates[0], 'custom', 'Y-m-d', NULL);
-      $ended = $date_formatter->format($dates[1], 'custom', 'Y-m-d', NULL);
-
-      // Create expression.
-      $start = $query->getDateFormat("'" . $started  . "'", 'Y-m-d', TRUE);
-      $end = $query->getDateFormat("'" . $ended . "'", 'Y-m-d', TRUE);
-      $query->addWhereExpression($group_id, "$field BETWEEN $start AND $end");
+        // Create expression.
+        $start = $query->getDateFormat("'" . $started  . "'", 'Y-m-d', TRUE);
+        $end = $query->getDateFormat("'" . $ended . "'", 'Y-m-d', TRUE);
+        $query->addWhereExpression($group_id, "$field BETWEEN $start AND $end");
+      }
+      elseif ($query_params['date'] == 0) {
+        $query->addWhereExpression($group_id, "webform_submission_date_is_belongs_to.value=''");
+      }
     }
   }
 }
