@@ -482,9 +482,10 @@ display:
       display_extenders: {  }
       path: admin/structure/block/block-content
       menu:
-        type: tab
+        type: none
         title: 'Custom block library'
         description: ''
+        expanded: false
         parent: block.admin_display
         weight: 0
         context: '0'
