@@ -33,9 +33,9 @@ process:
   type:
     plugin: default_value
     default_value: training_provider
-  moderation_state:
+  status:
     plugin: default_value
-    default_value: published
+    default_value: 1
   title: 'Organization Name'
   body: Description
   field_main_phone_number: 'Main Phone Number'
