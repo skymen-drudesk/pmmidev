@@ -117,12 +117,20 @@ function pmmi_sales_agent_mail($key, &$message, $params) {
     case 'pmmi_sales_agent_listing_admin':
     case 'pmmi_one_time_update':
       $token_service = \Drupal::token();
-      $variables = array('node' => $params['node']);
+      $variables = ['node' => $params['node']];
 
       // Use default email if it is not specific.
-      $from = !empty($params['from']) ? $params['from'] : \Drupal::config('system.site')->get('mail');
+      $from = !empty($params['from']) ? $params['from'] : \Drupal::config('system.site')
+        ->get('mail');
+
+      $site_name = \Drupal::config('system.site')->get('name');
 
       $message['from'] = $from;
+      // Set proper From value in email headers.
+      $message['headers']['Return-Path'] = $from;
+      $message['headers']['Sender'] = $from;
+      $message['headers']['From'] = $site_name . '<' . $from . '>';
+
       $message['subject'] = $params['subject'];
       $message['body'][] = $token_service->replace($params['body'], $variables);
       break;
