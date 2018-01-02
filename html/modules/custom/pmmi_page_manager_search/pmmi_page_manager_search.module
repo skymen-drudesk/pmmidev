@@ -35,6 +35,7 @@ function pmmi_page_manager_search_entity_insert(Drupal\Core\Entity\EntityInterfa
       $content = \Drupal::service('renderer')->renderPlain($render);
       $content = strip_tags($content);
       $content = trim(preg_replace('/\s+/', ' ', $content));
+      $content = html_entity_decode($content, ENT_QUOTES);
 
       PageManagerSearch::create([
         'pid' => $entity->id(),
@@ -123,6 +124,7 @@ function pmmi_page_manager_search_entity_update(Drupal\Core\Entity\EntityInterfa
       $content = \Drupal::service('renderer')->renderPlain($render);
       $content = strip_tags($content);
       $content = trim(preg_replace('/\s+/', ' ', $content));
+      $content = html_entity_decode($content, ENT_QUOTES);
 
       // Check if PageManagerSearch already exists.
       if (empty($existing_page_manager_search)) {
