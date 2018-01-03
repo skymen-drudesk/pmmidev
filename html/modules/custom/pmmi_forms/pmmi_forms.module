@@ -18,6 +18,8 @@ use Drupal\views\ViewExecutable;
 use Drupal\Core\Render\Element;
 use Drupal\node\NodeInterface;
 use Drupal\field\Entity\FieldConfig;
+use Drupal\Core\Cache\CacheBackendInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 /**
  * Implements hook_form_alter().
@@ -83,8 +85,7 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       }
 
     case 'views_exposed_form':
-      if ($form['#id'] === 'views-exposed-form-news-search-api-paged'
-        || $form['#id'] == 'views-exposed-form-blog-search-api-block-1') {
+      if ($form['#id'] === 'views-exposed-form-news-search-api-paged') {
 
         $current_year = intval(date("Y"));
         $break_year = intval(date("Y")) - 5;
@@ -107,7 +108,51 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
         $form['filter_by_year']['#options'] = $options;
         $form['filter_by_year']['#default_value'] = intval(date("Y"));
         $form['filter_by_year']['#attributes']['size'] = 1;
-        $form['year']['#type'] = 'hidden';
+        hide($form['year']);
+        array_unshift($form['#submit'], 'pmmi_forms_custom_filter_by_year_submit');
+      }
+      if ($form['#id'] === 'views-exposed-form-blog-search-api-block-1') {
+        $options = &drupal_static(__FUNCTION__);
+        if (is_null($options)) {
+          $cid = 'pmmi_forms:blog:year';
+          $data = \Drupal::cache()->get($cid);
+          if (!$data) {
+            $options = [];
+            $options['All'] = '- Any -';
+            $query = \Drupal::entityQuery('node');
+            $query->condition('type', 'blog')
+              ->condition('status', 1)
+              ->sort('field_blog_date', 'ASC');
+            $result = $query->execute();
+            if ($result) {
+              $nodes = Node::loadMultiple($result);
+              foreach ($nodes as $node) {
+                $date = $node->get('field_blog_date')->getValue();
+                if ($date) {
+                  $date = new DrupalDateTime($date[0]['value'], new DateTimeZone(\Drupal::config('system.date')->get('timezone.default')));
+                  $year = intval($date->format('Y'));
+                  if (!isset($options[$year])) {
+                    $options[$year] = $year;
+                  }
+                }
+              }
+            }
+
+            $cache_tags = ['pmmi_forms:blog:year'];
+            \Drupal::cache()->set($cid, $options, CacheBackendInterface::CACHE_PERMANENT, $cache_tags);
+
+          }
+          else {
+            $options = $data->data;
+          }
+        }
+        $form['filter_by_year'] = [
+          '#title' => t('Filter by Year'),
+          '#type' => 'select',
+          '#options' => $options,
+          '#size' => 1,
+        ];
+        hide($form['year']);
         array_unshift($form['#submit'], 'pmmi_forms_custom_filter_by_year_submit');
       }
 
@@ -228,6 +273,15 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       }
 
       break;
+  }
+}
+/**
+ * Implements hook_ENTITY_TYPE_presave() for node entities.
+ */
+function pmmi_forms_node_presave(EntityInterface $node) {
+  // Clear blogs filter cache when new node is inserted.
+  if ($node->getType() == 'blog') {
+    \Drupal::cache()->delete('pmmi_forms:blog:year');
   }
 }
 
