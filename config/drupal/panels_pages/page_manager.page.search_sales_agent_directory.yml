@@ -3,7 +3,7 @@ langcode: en
 status: true
 dependencies:
   module:
-    - pmmi_sales_agent
+    - user
 id: search_sales_agent_directory
 label: 'Search sales agent directory'
 description: ''
@@ -12,8 +12,12 @@ path: /sales-agent-directory/search
 access_logic: and
 access_conditions:
   -
-    id: sales_agent_permission
-    permission: 'pmmi sales agent search'
+    id: user_role
+    roles:
+      sales_agent_admin: sales_agent_admin
+      pmmi_member: pmmi_member
+      staff: staff
     negate: false
-    context_mapping: {  }
+    context_mapping:
+      user: current_user
 parameters: {  }
