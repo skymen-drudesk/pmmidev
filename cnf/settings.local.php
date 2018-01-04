@@ -98,10 +98,13 @@ $settings['rebuild_access'] = TRUE;
 /**
  * Stage File Proxy settings.
  */
-$config['stage_file_proxy.settings']['origin'] = 'http://demo:demo@pmmistaging.pmmimediagroup.com'; // no trailing slash
+$config['stage_file_proxy.settings']['origin'] = 'https://www.pmmi.org'; // no trailing slash
 $config['stage_file_proxy.settings']['use_imagecache_root'] = TRUE;
 $config['stage_file_proxy.settings']['hotlink'] = FALSE;
 $config['stage_file_proxy.settings']['origin_dir'] = 'sites/default/files';
+
+// Enable relevant config splits.
+$config['config_split.config_split.dev_environment']['status'] = TRUE;
 
 $databases['default']['default'] = array (
   'database' => 'drupal',
