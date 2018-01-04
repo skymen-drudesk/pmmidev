@@ -19,7 +19,7 @@ services:
       MYSQL_DATABASE: drupal
 
   pmmiweb:
-    image: pmguser/drupal-php7.0-apache:latest
+    image: pmguser/drupal-php-7-apache:latest
     depends_on:
       - pmmidb
       - pmmisolr
