@@ -62,7 +62,7 @@ fi
 CONTAINER=$(docker-compose ps -q ${WEB_SERVICE})
 
 echo "Installing dependencies with Composer.";
-docker exec -it ${CONTAINER} /bin/bash -c "composer install --optimize-autoloader 2>&1"
+docker exec -it ${CONTAINER} /bin/bash -c "composer install --optimize-autoloader --prefer-dist 2>&1"
 
 if [ "$?" != "0" ]; then
   echo 'Uh oh. Composer install failed. You should check the output above for errors.'
