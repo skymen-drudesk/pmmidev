@@ -69,10 +69,6 @@ if [ "$?" != "0" ]; then
   exit 1
 fi
 
-echo 'Configuring sendmail.'
-docker exec -it ${CONTAINER} /bin/bash -c "${dd_party_base}/build/sendmail-config"
-docker exec -it ${CONTAINER} /bin/bash -c "service sendmail restart"
-
 echo 'Initiating Drupal install.'
 docker exec -it ${CONTAINER} /bin/bash -c "${dd_party_base}/build/install.sh"
 if [ "$?" != "0" ]; then
