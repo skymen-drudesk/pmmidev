@@ -173,11 +173,13 @@ file to be the default configuration sync folder. `config/drupal/test`
 and `config/drupal/dev` are also set up in the settings file as 
 additional configuration folders.
 
-Environment specific configuration is set based on the 
-`SITE_ENVIRONMENT` environment variable using the [Configuration Split]
-(https://www.drupal.org/project/config_split) module. Configuration for 
-the test dev environments live in `config/drupal/test` and 
-`config/drupal/dev`, respectively.
+Active config split(s) should be specified in `settings.local.php`.
+For example:
+
+`
+// Enable relevant config splits.
+$config['config_split.config_split.dev_environment']['status'] = TRUE;
+`
 
 Skipped modules are set in `drush/drushrc.php`. This excludes the 
 modules from `core.extension.yml` and skips the enabling and 
