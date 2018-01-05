@@ -16,6 +16,8 @@ services:
       - front
     environment:
       VIRTUAL_HOST: pmmistaging.pmmimediagroup.com,staging.pmmi.org
+      DOMAINS: pmmistaging.pmmimediagroup.com
+      SSL: "true"
 
   pmmisolr:
     container_name: "${SITE_CODE}_test_solr"
