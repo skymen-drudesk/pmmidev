@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1c5b5b191370de14afacc6a8afada674",
+    "content-hash": "c97bc8addde6b8571ef25ebf72e37c70",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -1721,7 +1721,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.21",
-                    "datestamp": "1511191054",
+                    "datestamp": "1514888585",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -1775,7 +1775,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/backup_migrate",
-                "reference": "5e80b23609c8f49b86ddc40bd01b0e057054ce24"
+                "reference": "b16ff90175a313bcd52299f2fe1ec83166d50be1"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -1786,8 +1786,8 @@
                     "dev-4.x": "4.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-4.0-beta3+1-dev",
-                    "datestamp": "1507811643",
+                    "version": "8.x-4.0-beta3+2-dev",
+                    "datestamp": "1508338744",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
@@ -1805,8 +1805,16 @@
                     "role": "Maintainer"
                 },
                 {
+                    "name": "DamienMcKenna",
+                    "homepage": "https://www.drupal.org/user/108450"
+                },
+                {
                     "name": "dgorton",
                     "homepage": "https://www.drupal.org/user/19044"
+                },
+                {
+                    "name": "ikit-claw",
+                    "homepage": "https://www.drupal.org/user/3285813"
                 },
                 {
                     "name": "ronan",
@@ -1819,7 +1827,7 @@
                 "source": "http://cgit.drupalcode.org/backup_migrate",
                 "issues": "https://www.drupal.org/project/issues/backup_migrate"
             },
-            "time": "2017-10-18 14:54:39"
+            "time": "2017-11-22T22:52:52+00:00"
         },
         {
             "name": "drupal/blazy",
@@ -5116,7 +5124,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.0-beta6",
-                    "datestamp": "1509378185",
+                    "datestamp": "1514929984",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -5589,7 +5597,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/queue_ui",
-                "reference": "74da9699d23ec470040b219ef9275e1b8a0e24da"
+                "reference": "10ed13add9b806e46cf9f83c0bbc0a978a4449ab"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -5635,7 +5643,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/queue_ui"
             },
-            "time": "2017-05-30 19:17:17"
+            "time": "2017-12-04T13:07:46+00:00"
         },
         {
             "name": "drupal/recaptcha",
@@ -6183,7 +6191,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/tb_megamenu",
-                "reference": "fcd833a819a6fce5062058c7a0e739299f612ac6"
+                "reference": "b34b1a0c98e65604adf4306db0e37b68aa29060a"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -6195,7 +6203,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.x-dev",
-                    "datestamp": "1507495144",
+                    "datestamp": "1512971885",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Project has not opted into security advisory coverage!"
@@ -6228,7 +6236,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/tb_megamenu"
             },
-            "time": "2017-10-09 01:41:51"
+            "time": "2017-12-11T05:59:19+00:00"
         },
         {
             "name": "drupal/token",
@@ -6691,7 +6699,7 @@
                 },
                 "drupal": {
                     "version": "8.x-1.6",
-                    "datestamp": "1510779484",
+                    "datestamp": "1512324785",
                     "security-coverage": {
                         "status": "covered",
                         "message": "Covered by Drupal's security advisory policy"
@@ -6807,7 +6815,7 @@
                 },
                 "drupal": {
                     "version": "8.x-5.0-beta24",
-                    "datestamp": "1510867685",
+                    "datestamp": "1513003985",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -6866,17 +6874,17 @@
         },
         {
             "name": "drupal/webform_views",
-            "version": "5.0.0-alpha2",
+            "version": "5.0.0-alpha3",
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/webform_views",
-                "reference": "8.x-5.0-alpha2"
+                "reference": "8.x-5.0-alpha3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/webform_views-8.x-5.0-alpha2.zip",
-                "reference": "8.x-5.0-alpha2",
-                "shasum": "288e0efa09423e3c3368d6aff9002ca41292238c"
+                "url": "https://ftp.drupal.org/files/projects/webform_views-8.x-5.0-alpha3.zip",
+                "reference": "8.x-5.0-alpha3",
+                "shasum": "363852a59b2e3511a560c21b20eb61ff77133c7e"
             },
             "require": {
                 "drupal/core": "*",
@@ -6888,8 +6896,8 @@
                     "dev-5.x": "5.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-5.0-alpha2",
-                    "datestamp": "1498870443",
+                    "version": "8.x-5.0-alpha3",
+                    "datestamp": "1512044585",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Alpha releases are not covered by Drupal security advisories."
@@ -9076,16 +9084,16 @@
         },
         {
             "name": "summitmedia/dd-party",
-            "version": "dev-master",
+            "version": "dev-develop",
             "source": {
                 "type": "git",
                 "url": "https://github.com/summitmedia/dd-party.git",
-                "reference": "e94f1dccf71522e086d9d0526cc9e6b06927751e"
+                "reference": "13a09d8ebb78813832aa4913d9c73102bf1b4237"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/summitmedia/dd-party/zipball/e94f1dccf71522e086d9d0526cc9e6b06927751e",
-                "reference": "e94f1dccf71522e086d9d0526cc9e6b06927751e",
+                "url": "https://api.github.com/repos/summitmedia/dd-party/zipball/13a09d8ebb78813832aa4913d9c73102bf1b4237",
+                "reference": "13a09d8ebb78813832aa4913d9c73102bf1b4237",
                 "shasum": ""
             },
             "require": {
@@ -9117,10 +9125,10 @@
             ],
             "description": "Provides helper scripts for installing Drupal and apply changes as well as working with Docker.",
             "support": {
-                "source": "https://github.com/summitmedia/dd-party/tree/master",
+                "source": "https://github.com/summitmedia/dd-party/tree/develop",
                 "issues": "https://github.com/summitmedia/dd-party/issues"
             },
-            "time": "2017-11-17 20:42:13"
+            "time": "2018-01-05T04:28:07+00:00"
         },
         {
             "name": "symfony-cmf/routing",
@@ -11480,7 +11488,7 @@
             "source": {
                 "type": "git",
                 "url": "https://git.drupal.org/project/devel",
-                "reference": "be072e747c1d15974fece14259ca735c6f39e512"
+                "reference": "c4f6ab902ab288b29f55834b8f9b19ba2b3a89ec"
             },
             "require": {
                 "drupal/core": "~8.0"
@@ -11494,11 +11502,16 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1+1-dev",
-                    "datestamp": "1507197243",
+                    "version": "8.x-1.2+2-dev",
+                    "datestamp": "1513502285",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9"
                     }
                 }
             },
@@ -11549,7 +11562,7 @@
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             },
-            "time": "2017-10-05 09:36:49"
+            "time": "2017-12-28T22:38:51+00:00"
         },
         {
             "name": "drupal/devel_debug_log",
