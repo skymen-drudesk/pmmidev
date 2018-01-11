@@ -10,10 +10,5 @@ description: ''
 use_admin_theme: false
 path: /sales-agent-directory/search/results
 access_logic: and
-access_conditions:
-  -
-    id: sales_agent_permission
-    permission: 'pmmi sales agent search'
-    negate: false
-    context_mapping: {  }
+access_conditions: {  }
 parameters: {  }
