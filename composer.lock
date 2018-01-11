@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b00462d31764cff9617692bfd28bf1e8",
+    "content-hash": "c882a09a9d9ae84965eb7602e0a21015",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -4846,6 +4846,52 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/mailsystem"
             }
+        },
+        {
+            "name": "drupal/memory_profiler",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/memory_profiler",
+                "reference": "6472d32363e239980e86e9097823b340fdf7fff6"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1468089839",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Dev releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "mcdruid",
+                    "homepage": "https://www.drupal.org/user/255969"
+                },
+                {
+                    "name": "timhilliard",
+                    "homepage": "https://www.drupal.org/user/195493"
+                }
+            ],
+            "description": "A lightweight module for profiling memory usage.",
+            "homepage": "https://www.drupal.org/project/memory_profiler",
+            "support": {
+                "source": "http://cgit.drupalcode.org/memory_profiler"
+            },
+            "time": "2016-07-09T18:44:08+00:00"
         },
         {
             "name": "drupal/menu_per_role",
@@ -13320,6 +13366,7 @@
         "drupal/link_attributes": 15,
         "drupal/linked_field": 10,
         "drupal/maillog": 20,
+        "drupal/memory_profiler": 20,
         "drupal/menu_per_role": 15,
         "drupal/metatag": 10,
         "drupal/migrate_plus": 10,
