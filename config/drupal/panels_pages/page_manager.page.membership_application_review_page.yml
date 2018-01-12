@@ -14,8 +14,8 @@ access_conditions:
   -
     id: user_role
     roles:
+      editor: editor
       manager: manager
-      staff: staff
       membership_committee: membership_committee
     negate: false
     context_mapping:
