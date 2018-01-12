@@ -7,7 +7,11 @@ dependencies:
     - views.view.membership_application_submissions
   module:
     - panels
+    - pmmi_page_manager_search
     - views
+third_party_settings:
+  pmmi_page_manager_search:
+    index_page_variant: 0
 id: membership_application_review_page-panels_variant-0
 label: Panels
 variant: panels_variant

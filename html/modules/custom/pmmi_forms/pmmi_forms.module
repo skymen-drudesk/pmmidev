@@ -228,14 +228,12 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
       if ($form['#id'] === 'views-exposed-form-membership-application-submissions-block-all') {
         if (\Drupal::currentUser()->hasPermission('application-review filter permissions')) {
           // Get current user and check if he has `administrator` role.
-          $current_user = \Drupal::currentUser();
           $current_path = \Drupal::request();
           $current_query_date = Xss::filter($current_path->query->get('date'));
-          $roles = $current_user->getRoles();
 
           // Remove `False` value from options if current user doesn't have
           // `Staff` or `administrator` role.
-          if (!in_array('administrator', $roles) || !in_array('staff', $roles)) {
+          if (!_user_has_one_of_role(['manager', 'editor', 'membership_committee'])) {
             $options = $form['webform_submission_value']['#options'];
             $false_key = array_search('False', $options);
             unset($form['webform_submission_value']['#options'][$false_key]);
@@ -585,3 +583,14 @@ function pmmi_forms_get_season($date) {
 
   return $option;
 }
+
+/**
+ * Helper function to check if user has one of role.
+ * Works with multiple roles.
+ * @param $roles
+ * @return bool
+ */
+function _user_has_one_of_role($roles) {
+
+  return !!count(array_intersect(is_array($roles)? $roles : array($roles), array_values(\Drupal::currentUser()->getRoles())));
+};

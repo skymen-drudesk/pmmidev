@@ -23,6 +23,14 @@
     float: left;
     margin-left: -76px;
   }
+  .date_range {
+    font-size: $r12;
+    line-height: $r16;
+    margin-bottom: 5px;
+    font-style: italic;
+    font-weight: bold;
+    @extend .inherited-p;
+  }
   .start-date,
   .end-date {
     background: #fff;
@@ -65,7 +73,7 @@
     line-height: 1;
     color: #fff;
     font-weight: 900;
-    margin-bottom: 6px;
+    margin-bottom: 3px;
   }
   .location {
     font-size: $r13;
