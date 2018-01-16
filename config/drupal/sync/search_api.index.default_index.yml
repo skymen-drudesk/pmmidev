@@ -13,6 +13,7 @@ dependencies:
     - field.storage.node.field_blog_category
     - search_api.server.solr_server
   module:
+    - search_api_solr
     - search_api
     - pmmi_reports
     - pmmi_search
@@ -170,13 +171,13 @@ field_settings:
     label: Content
     datasource_id: 'entity:pmmi_page_manager_search'
     property_path: content
-    type: text
+    type: solr_text_omit_norms
     boost: !!float 13
   title_1:
     label: Title
     datasource_id: 'entity:pmmi_page_manager_search'
     property_path: title
-    type: text
+    type: solr_text_omit_norms
     boost: !!float 21
 datasource_settings:
   'entity:node':
@@ -191,123 +192,27 @@ datasource_settings:
   'entity:pmmi_page_manager_search': {  }
 processor_settings:
   report_year: {  }
-  pmmi_shows: {  }
   state: {  }
   country: {  }
-  entity_status: {  }
-  aggregated_field: {  }
+  pmmi_shows: {  }
   add_url: {  }
   rendered_item: {  }
-  html_filter:
-    all_fields: false
-    fields:
-      - title_f
-      - body_f
-    title: true
-    alt: true
-    tags:
-      h1: 5
-      h2: 3
-      h3: 2
-      strong: 2
-      b: 2
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-  highlight:
-    highlight: always
-    highlight_partial: true
-    excerpt: false
-    excerpt_length: 1024
-    exclude_fields: {  }
-    prefix: '<strong>'
-    suffix: '</strong>'
-    weights:
-      postprocess_query: 0
-  content_access:
-    weights:
-      preprocess_query: -30
-  tokenizer:
-    all_fields: false
-    fields:
-      - title_f
-      - body_f
-    spaces: ''
-    overlap_cjk: 1
-    minimum_word_size: '1'
-    weights:
-      preprocess_index: -6
-      preprocess_query: -6
-  ignore_character:
-    all_fields: false
-    fields:
-      - title
-      - title_f
-      - body_f
-    ignorable: '[''¿¡!?,.:;]'
-    strip:
-      character_sets:
-        Pc: Pc
-        Pd: Pd
-        Pe: Pe
-        Pf: Pf
-        Pi: Pi
-        Po: Po
-        Ps: Ps
-        Cc: 0
-        Cf: 0
-        Co: 0
-        Mc: 0
-        Me: 0
-        Mn: 0
-        Sc: 0
-        Sk: 0
-        Sm: 0
-        So: 0
-        Zl: 0
-        Zp: 0
-        Zs: 0
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-  stemmer:
-    all_fields: false
-    fields:
-      - title_f
-      - body_f
-    exceptions:
-      texan: texa
-      mexican: mexic
-    weights:
-      preprocess_index: 0
-      preprocess_query: 0
-  content_access:
-    weights:
-      preprocess_query: -30
-  type_boost:
-    boosts:
-      'entity:node':
-        datasource_boost: !!float 1
-        bundle_boosts:
-          article: !!float 0
-          basic_page: !!float 21
-          certification_test: !!float 21
-          download: !!float 21
-          school: !!float 21
-          video: !!float 21
-      'entity:pmmi_page_manager_search':
-        datasource_boost: !!float 21
-    weights:
-      preprocess_index: 0
+  entity_status: {  }
   ignorecase:
     all_fields: false
     fields:
       - title
       - title_f
       - body_f
+      - content
+      - title_1
     weights:
       preprocess_index: -10
       preprocess_query: -10
+  aggregated_field: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
 tracker_settings:
   default: {  }
 options:
