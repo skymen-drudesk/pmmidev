@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "df5e0c867543d9c750100b33a094e73e",
+    "content-hash": "c4d8c357343544f78979335f9c97249a",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -135,7 +135,7 @@
         },
         {
             "name": "briancherne/jquery.hoverIntent",
-            "version": "1.8.1",
+            "version": "v1.8.1",
             "dist": {
                 "type": "zip",
                 "url": "https://github.com/briancherne/jquery-hoverIntent/archive/v1.8.1.zip",
@@ -1738,10 +1738,6 @@
                     "homepage": "https://www.drupal.org/u/matio89"
                 },
                 {
-                    "name": "adriancid",
-                    "homepage": "https://www.drupal.org/user/1962106"
-                },
-                {
                     "name": "bolbol",
                     "homepage": "https://www.drupal.org/user/3400070"
                 },
@@ -1827,7 +1823,7 @@
                 "source": "http://cgit.drupalcode.org/backup_migrate",
                 "issues": "https://www.drupal.org/project/issues/backup_migrate"
             },
-            "time": "2017-11-22T22:52:52+00:00"
+            "time": "2017-11-22 22:52:52"
         },
         {
             "name": "drupal/blazy",
@@ -3356,7 +3352,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/date"
             },
-            "time": "2012-10-28T09:20:01+00:00"
+            "time": "2012-10-28 09:20:01"
         },
         {
             "name": "drupal/default_content",
@@ -4103,6 +4099,66 @@
             }
         },
         {
+            "name": "drupal/field_permissions",
+            "version": "1.0.0-beta4",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/field_permissions",
+                "reference": "8.x-1.0-beta4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/field_permissions-8.x-1.0-beta4.zip",
+                "reference": "8.x-1.0-beta4",
+                "shasum": "f9592d17268bd075445272404ef6262683358cc5"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-beta4",
+                    "datestamp": "1505340243",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "RobLoach",
+                    "homepage": "https://www.drupal.org/user/61114"
+                },
+                {
+                    "name": "jhedstrom",
+                    "homepage": "https://www.drupal.org/user/208732"
+                },
+                {
+                    "name": "mariacha1",
+                    "homepage": "https://www.drupal.org/user/2210776"
+                },
+                {
+                    "name": "markus_petrux",
+                    "homepage": "https://www.drupal.org/user/39593"
+                }
+            ],
+            "description": "The Field Permissions module allows site administrators to set field-level permissions to edit, view and create fields on any entity.",
+            "homepage": "https://www.drupal.org/project/field_permissions",
+            "support": {
+                "source": "http://cgit.drupalcode.org/field_permissions",
+                "issues": "https://www.drupal.org/project/issues/field_permissions"
+            }
+        },
+        {
             "name": "drupal/file_browser",
             "version": "1.1.0",
             "source": {
@@ -4235,10 +4291,6 @@
                 {
                     "name": "effulgentsia",
                     "homepage": "https://www.drupal.org/user/78040"
-                },
-                {
-                    "name": "joseph.olstad",
-                    "homepage": "https://www.drupal.org/user/1321830"
                 },
                 {
                     "name": "robeano",
@@ -4571,7 +4623,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/job_scheduler"
             },
-            "time": "2017-07-04T13:18:23+00:00"
+            "time": "2017-07-04 13:18:23"
         },
         {
             "name": "drupal/layout_plugin",
@@ -4782,7 +4834,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/maillog"
             },
-            "time": "2016-08-05T21:18:07+00:00"
+            "time": "2016-08-05 21:18:07"
         },
         {
             "name": "drupal/mailsystem",
@@ -4891,7 +4943,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/memory_profiler"
             },
-            "time": "2016-07-09T18:44:08+00:00"
+            "time": "2016-07-09 18:44:08"
         },
         {
             "name": "drupal/menu_per_role",
@@ -5054,11 +5106,7 @@
                 },
                 "drupal": {
                     "version": "8.x-3.0-beta1",
-                    "datestamp": "1494450485",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Beta releases are not covered by Drupal security advisories."
-                    }
+                    "datestamp": "1476307739"
                 },
                 "patches_applied": {
                     "FormatDate process plugin": "https://www.drupal.org/files/issues/formatdate_process_plugin-2820490-2_0.patch"
@@ -5073,10 +5121,6 @@
                     "name": "Mike Ryan",
                     "homepage": "https://www.drupal.org/u/mikeryan",
                     "role": "Maintainer"
-                },
-                {
-                    "name": "mikeryan",
-                    "homepage": "https://www.drupal.org/user/4420"
                 }
             ],
             "description": "Enhancements to core migration support.",
@@ -5519,7 +5563,7 @@
                 "issues": "https://www.drupal.org/project/issues/panels_everywhere",
                 "irc": "irc://irc.freenode.org/drupal-scotch"
             },
-            "time": "2017-10-25T11:06:45+00:00"
+            "time": "2017-10-25 11:06:45"
         },
         {
             "name": "drupal/pathauto",
@@ -5689,7 +5733,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/queue_ui"
             },
-            "time": "2017-12-04T13:07:46+00:00"
+            "time": "2017-12-04 13:07:46"
         },
         {
             "name": "drupal/recaptcha",
@@ -6282,7 +6326,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/tb_megamenu"
             },
-            "time": "2017-12-11T05:59:19+00:00"
+            "time": "2017-12-11 05:59:19"
         },
         {
             "name": "drupal/token",
@@ -6640,7 +6684,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/views_block_filter_block"
             },
-            "time": "2017-10-13T06:53:22+00:00"
+            "time": "2017-10-13 06:53:22"
         },
         {
             "name": "drupal/views_data_export",
@@ -6861,7 +6905,7 @@
                 },
                 "drupal": {
                     "version": "8.x-5.0-beta24",
-                    "datestamp": "1510867685",
+                    "datestamp": "1513003985",
                     "security-coverage": {
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
@@ -9174,7 +9218,7 @@
                 "source": "https://github.com/summitmedia/dd-party/tree/master",
                 "issues": "https://github.com/summitmedia/dd-party/issues"
             },
-            "time": "2018-01-12T20:44:52+00:00"
+            "time": "2018-01-12 20:44:52"
         },
         {
             "name": "symfony-cmf/routing",
@@ -10768,7 +10812,7 @@
                 "reference": "origin/master"
             },
             "type": "drupal-library",
-            "time": "2010-06-13T23:39:18+00:00"
+            "time": "2010-06-13 23:39:18"
         },
         {
             "name": "twig/twig",
@@ -11608,7 +11652,7 @@
                 "issues": "http://drupal.org/project/devel",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             },
-            "time": "2017-12-28T22:38:51+00:00"
+            "time": "2017-12-28 22:38:51"
         },
         {
             "name": "drupal/devel_debug_log",
@@ -11757,12 +11801,8 @@
                     "dev-1.x": "1.x-dev"
                 },
                 "drupal": {
-                    "version": "8.x-1.1+1-dev",
-                    "datestamp": "1507197243",
-                    "security-coverage": {
-                        "status": "not-covered",
-                        "message": "Dev releases are not covered by Drupal security advisories."
-                    }
+                    "version": "8.x-1.0-alpha1+32-dev",
+                    "datestamp": "1480244880"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
@@ -11948,7 +11988,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/xhprof"
             },
-            "time": "2017-05-29T08:34:02+00:00"
+            "time": "2017-05-29 08:34:02"
         },
         {
             "name": "ezyang/htmlpurifier",
@@ -13357,6 +13397,7 @@
         "drupal/externalauth": 15,
         "drupal/facets": 20,
         "drupal/field_group": 5,
+        "drupal/field_permissions": 10,
         "drupal/file_browser": 20,
         "drupal/file_entity": 10,
         "drupal/flag": 15,
