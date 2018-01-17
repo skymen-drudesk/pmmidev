@@ -532,7 +532,7 @@ display:
     display_options:
       display_extenders: {  }
       path: admin/config/sad/reporting/usage-export.csv
-      filename: ''
+      filename: usage-export.csv
       automatic_download: 0
       style:
         type: data_export
@@ -580,6 +580,14 @@ display:
             field_countries_searched:
               alias: 'Countries searched'
               raw_output: 0
+      export_limit: 0
+      pager:
+        type: some
+        options:
+          items_per_page: 0
+          offset: 0
+      export_method: batch
+      export_batch_size: '200'
     cache_metadata:
       max-age: -1
       contexts:
