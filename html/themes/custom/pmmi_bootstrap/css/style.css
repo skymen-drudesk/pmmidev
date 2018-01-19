@@ -12197,16 +12197,16 @@ fieldset[disabled] a.focus {
 
 .details-wrapper.panel-default .panel-heading a, .node-company-form .panel-default.equipment-sold-details .panel-heading a,
 .node-company-form .panel-default.industries-served-details .panel-heading a {
+  display: block;
+  margin: 0;
+  padding: 10px 10px 10px 0;
+  line-height: 20px;
   color: inherit;
-  font-weight: 700;
-  font-style: italic;
   font-size: 16px;
   font-size: 1rem;
-  display: block;
-  line-height: 20px;
-  padding: 10px 10px 10px 0;
+  font-weight: 700;
+  font-style: italic;
   text-decoration: none;
-  margin: 0;
 }
 
 .details-wrapper.panel-default .panel-heading a:before, .node-company-form .panel-default.equipment-sold-details .panel-heading a:before,
@@ -14781,10 +14781,6 @@ body.use-container .page-title.hidden {
 
 .block {
   margin-bottom: 20px;
-}
-
-.block-block-content.containers {
-  margin-bottom: 0;
 }
 
 .block-pmmi-twitter-block, .block-pmmi-facebook-block {

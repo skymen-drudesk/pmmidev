@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.company.field_address
+    - field.field.node.company.field_admin_notes
     - field.field.node.company.field_after_sales_service
     - field.field.node.company.field_approval_state
     - field.field.node.company.field_business_lines
@@ -34,6 +35,7 @@ dependencies:
     - pmmi_address
     - pmmi_fields
     - telephone
+    - text
 third_party_settings:
   field_group:
     group_company_information:
@@ -44,6 +46,7 @@ third_party_settings:
         - field_website_url
         - field_general_company_email
         - field_address
+        - field_admin_notes
       parent_name: ''
       weight: 0
       format_type: fieldset
@@ -146,6 +149,14 @@ content:
       default_country: null
     third_party_settings: {  }
     type: address_default
+    region: content
+  field_admin_notes:
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
     region: content
   field_after_sales_service:
     weight: 8
@@ -280,6 +291,19 @@ content:
     third_party_settings: {  }
     type: link_default
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    settings: {  }
+    region: content
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 120
+    region: content
+    third_party_settings: {  }
   title:
     type: string_textfield
     weight: 0

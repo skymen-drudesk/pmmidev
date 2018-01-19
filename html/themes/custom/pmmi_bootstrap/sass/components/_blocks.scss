@@ -8,11 +8,7 @@
     @extend .sidehead1;
   }
 }
-.block-block-content {
-  &.containers {
-    margin-bottom: 0;
-  }
-}
+
 // Twitter block.
 .block-pmmi-twitter-block {
   border: 1px solid $mdgrey;

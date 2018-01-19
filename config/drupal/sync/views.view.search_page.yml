@@ -29,12 +29,8 @@ display:
         type: none
         options: {  }
       cache:
-        type: search_api_time
-        options:
-          results_lifespan: 3600
-          results_lifespan_custom: 0
-          output_lifespan: 3600
-          output_lifespan_custom: 0
+        type: none
+        options: {  }
       query:
         type: views_query
         options:
@@ -313,7 +309,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          operator: and
+          operator: or
           value: ''
           group: 1
           exposed: true
@@ -353,7 +349,7 @@ display:
               2: {  }
               3: {  }
           parse_mode: phrase
-          min_length: 3
+          min_length: null
           fields:
             title_f: title_f
             body_f: body_f

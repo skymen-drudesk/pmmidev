@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.company.field_address
+    - field.field.node.company.field_admin_notes
     - field.field.node.company.field_after_sales_service
     - field.field.node.company.field_approval_state
     - field.field.node.company.field_business_lines
@@ -29,31 +30,26 @@ dependencies:
   module:
     - address
     - ds
-    - link
     - options
     - pmmi_address
+    - pmmi_fields
+    - telephone
+    - text
     - user
 third_party_settings:
   ds:
     layout:
       id: company
-      path: themes/custom/pmmi_bootstrap
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
       image_header:
         - 'dynamic_block_field:node-sales_agent_directory_image_head'
-      header_menu:
-        - 'dynamic_block_field:node-sales_agent_action_toolbar'
-      title:
-        - node_title
-      general_line_1:
-        - field_main_phone_number
       general_line_2:
-        - field_website_url
         - field_general_company_email
+        - field_website_url
       territory_covered:
         - field_territory_served
       business:
@@ -79,12 +75,19 @@ third_party_settings:
         - field_equipment_sold_type_other
       after_sales:
         - field_after_sales_service
+      header_menu:
+        - 'dynamic_block_field:node-sales_agent_action_toolbar'
+      title:
+        - node_title
+      general_line_1:
+        - field_main_phone_number
       footer_reg:
         - 'dynamic_block_field:node-company_trade_shows'
+        - field_admin_notes
     fields:
       node_title:
         plugin_id: node_title
-        weight: 2
+        weight: 19
         label: hidden
         formatter: default
       'dynamic_block_field:node-company_trade_shows':
@@ -94,7 +97,7 @@ third_party_settings:
         formatter: default
       'dynamic_block_field:node-sales_agent_action_toolbar':
         plugin_id: 'dynamic_block_field:node-sales_agent_action_toolbar'
-        weight: 1
+        weight: 18
         label: hidden
         formatter: default
       'dynamic_block_field:node-sales_agent_directory_image_head':
@@ -108,39 +111,46 @@ bundle: company
 mode: default
 content:
   field_address:
-    weight: 14
+    weight: 10
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: address_default
-    region: content
+    region: company_contacts
+  field_admin_notes:
+    weight: 23
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: footer_reg
   field_after_sales_service:
     type: boolean
-    weight: 21
+    weight: 17
     label: hidden
     settings:
       format: default
       format_custom_false: ''
       format_custom_true: ''
     third_party_settings: {  }
-    region: content
+    region: after_sales
   field_business_lines:
-    weight: 7
+    weight: 3
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: list_default
-    region: content
+    region: business
   field_company_description:
-    weight: 16
+    weight: 12
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
-    region: content
+    region: company_description
   field_equipment_sold_type:
     type: entity_reference_label
-    weight: 19
+    weight: 15
     label: hidden
     settings:
       link: false
@@ -153,16 +163,16 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: equipment_sold
   field_equipment_sold_type_other:
     type: basic_string
-    weight: 20
+    weight: 16
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    region: content
+    region: equipment_sold
   field_fax_number:
-    weight: 15
+    weight: 11
     label: inline
     settings:
       link_to_entity: false
@@ -175,17 +185,17 @@ content:
             lb-col: true
             classes: {  }
     type: string
-    region: content
+    region: company_contacts
   field_general_company_email:
-    weight: 5
+    weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: email_mailto
-    region: content
+    region: general_line_2
   field_industries_served:
     type: entity_reference_label
-    weight: 17
+    weight: 13
     label: hidden
     settings:
       link: false
@@ -198,54 +208,54 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: industries_served
   field_industries_served_other:
     type: basic_string
-    weight: 18
+    weight: 14
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    region: content
+    region: industries_served
   field_main_phone_number:
-    weight: 3
+    weight: 20
     label: hidden
     settings:
-      link_to_entity: false
+      title: ''
     third_party_settings: {  }
-    type: string
-    region: content
+    type: telephone_link
+    region: general_line_1
   field_manufacturers_represented:
+    weight: 4
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: manufactures
+  field_primary_contact_email:
     weight: 8
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    type: basic_string
-    region: content
-  field_primary_contact_email:
-    weight: 12
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
     type: email_mailto
-    region: content
+    region: primary_contacts
   field_primary_contact_first_name:
-    weight: 9
+    weight: 5
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
+    region: primary_contacts
   field_primary_contact_last_name:
-    weight: 10
+    weight: 6
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
+    region: primary_contacts
   field_primary_contact_mobile:
-    weight: 13
+    weight: 9
     label: inline
     settings:
       link_to_entity: false
@@ -258,24 +268,24 @@ content:
             lb-col: true
             classes: {  }
     type: string
-    region: content
+    region: primary_contacts
   field_primary_contact_title:
-    weight: 11
+    weight: 7
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
+    region: primary_contacts
   field_territory_served:
-    weight: 6
+    weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: country_area_plain
-    region: content
+    region: territory_covered
   field_website_url:
-    weight: 4
+    weight: 21
     label: hidden
     settings:
       trim_length: 80
@@ -283,9 +293,10 @@ content:
       url_plain: false
       rel: ''
       target: ''
+      link_label: ''
     third_party_settings: {  }
-    type: link
-    region: content
+    type: link_as_label
+    region: general_line_2
 hidden:
   content_moderation_control: true
   field_address_1: true
