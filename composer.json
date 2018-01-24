@@ -495,40 +495,40 @@
   },
   "extra": {
     "installer-paths": {
-      "html/core": [
+      "docroot/core": [
         "type:drupal-core"
       ],
-      "html/libraries/{$name}": [
+      "docroot/libraries/{$name}": [
         "type:drupal-library"
       ],
-      "html/modules/contrib/{$name}": [
+      "docroot/modules/contrib/{$name}": [
         "type:drupal-module"
       ],
-      "html/profiles/contrib/{$name}": [
+      "docroot/profiles/contrib/{$name}": [
         "type:drupal-profile"
       ],
-      "html/themes/contrib/{$name}": [
+      "docroot/themes/contrib/{$name}": [
         "type:drupal-theme"
       ],
-      "html/drush/commands/{$name}": [
+      "docroot/drush/commands/{$name}": [
         "type:drupal-drush"
       ]
     },
     "preserve-paths": [
-      "html/sites/all/modules/contrib",
-      "html/sites/all/modules/custom",
-      "html/sites/all/modules/feature_modules",
-      "html/sites/all/themes/contrib",
-      "html/sites/all/libraries",
-      "html/sites/default/settings.php",
-      "html/sites/default/files"
+      "docroot/sites/all/modules/contrib",
+      "docroot/sites/all/modules/custom",
+      "docroot/sites/all/modules/feature_modules",
+      "docroot/sites/all/themes/contrib",
+      "docroot/sites/all/libraries",
+      "docroot/sites/default/settings.php",
+      "docroot/sites/default/files"
     ],
     "merge-plugin": {
       "include": [
-        "html/modules/custom/pmmi_crawler_detect/composer.json",
-        "html/modules/custom/pmmi_twitter/composer.json",
-        "html/modules/custom/pmmi_facebook/composer.json",
-        "html/modules/custom/pmmi_sso/composer.json"
+        "docroot/modules/custom/pmmi_crawler_detect/composer.json",
+        "docroot/modules/custom/pmmi_twitter/composer.json",
+        "docroot/modules/custom/pmmi_facebook/composer.json",
+        "docroot/modules/custom/pmmi_sso/composer.json"
       ],
       "recurse": false,
       "replace": false,
