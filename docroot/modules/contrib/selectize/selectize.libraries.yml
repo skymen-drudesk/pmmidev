@@ -1,0 +1,10 @@
+core:
+  css:
+    component:
+      /libraries/selectize/dist/css/selectize.default.css: {}
+  js:
+    /libraries/selectize/dist/js/standalone/selectize.min.js: {}
+drupal:
+  version: VERSION
+  js:
+    js/selectize.drupal.js: {}
