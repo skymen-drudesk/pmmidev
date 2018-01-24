@@ -13,7 +13,7 @@ use Symfony\Component\Filesystem\Filesystem;
 class ScriptHandler {
 
   protected static function getDrupalRoot($project_root) {
-    return $project_root .  '/html';
+    return $project_root .  '/docroot';
   }
 
   public static function buildScaffold(Event $event) {

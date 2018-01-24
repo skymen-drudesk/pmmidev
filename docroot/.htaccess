@@ -74,9 +74,9 @@ AddOutputFilter DEFLATE svg
   # Set "protossl" to "s" if we were accessed via https://.  This is used later
   # if you enable "www." stripping or enforcement, in order to ensure that
   # you don't bounce between http and https.
-  RewriteRule ^ - [E=protossl]
-  RewriteCond %{HTTPS} on
-  RewriteRule ^ - [E=protossl:s]
+  #RewriteRule ^ - [E=protossl]
+  #RewriteCond %{HTTPS} on
+  #RewriteRule ^ - [E=protossl:s]
 
   # Make sure Authorization HTTP header is available to PHP
   # even when running as CGI or FastCGI.
@@ -139,10 +139,10 @@ AddOutputFilter DEFLATE svg
       Header always set Content-Security-Policy: upgrade-insecure-requests env=HTTPS
     </IfModule>
 
-    RewriteCond %{HTTP_HOST} ^pmmi\.org$                           [NC]
-    RewriteRule ^(.*)$       http%{ENV:protossl}://www.pmmi.org/$1 [R=301,L]
-    Header always set Strict-Transport-Security "max-age=0; preload"
-    Header always set Content-Security-Policy: upgrade-insecure-requests
+    #RewriteCond %{HTTP_HOST} ^pmmi\.org$                           [NC]
+    #RewriteRule ^(.*)$       http%{ENV:protossl}://www.pmmi.org/$1 [R=301,L]
+    #Header always set Strict-Transport-Security "max-age=0; preload"
+    #Header always set Content-Security-Policy: upgrade-insecure-requests
 
   </IfModule>
 
