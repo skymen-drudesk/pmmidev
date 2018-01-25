@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+path=$(dirname "$0")
+source ${path}/dd-base.sh
+
+docker-compose exec --user root ${WEB_SERVICE} bash

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -e
+path=$(dirname "$0")
+source ${path}/dd-base.sh
+
+# Get the container ID of the web service
+CONTAINER=$(docker-compose ps -q ${WEB_SERVICE})
+
+docker exec -it ${CONTAINER} /bin/bash -c "cd ${THEME_ROOT} && npm run js:w"

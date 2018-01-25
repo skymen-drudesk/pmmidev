@@ -1,0 +1,130 @@
+#!/bin/bash
+
+set -e
+path="$(dirname "$0")"
+pushd ${path}/../..
+base="$(pwd)";
+dd_party_base="./vendor/summitmedia/dd-party"
+
+# Get environment variables.
+if [[ -f "$base/.env" ]]; then
+  echo "Using Custom ENV file at $base/.env"
+  source "$base/.env"
+elif [[ -f "$base/env.dist" ]]; then
+  echo "Using Distributed ENV file at $base/env.dist"
+  source "$base/env.dist"
+else
+  echo "Using dd Party ENV file at $dd_party_base/dd-party.env"
+  source "$dd_party_base/dd-party.env"
+fi
+
+# Set defaults
+build=
+install=
+dockercompose="-f docker-compose.yml -f docker-compose.prod.yml"
+
+# Usage info
+usage() {
+cat << EOF
+Usage: ${0##*/} [[[-i] [-b]] | [-h]]
+
+    -b | --build        Perform Docker Compose build.
+    -i | --install      Perform Drupal install.
+    -h | --help         Display this help and exit.
+
+The default will start the containers and update Drupal to match the
+code on the local environment.
+
+EOF
+}
+
+while [ "$1" != "" ]; do
+  case $1 in
+    -b | --build )
+      build=1
+      ;;
+    -i | --install )
+      install=1
+      ;;
+    -h | --help )
+      usage
+      exit 1
+      ;;
+  esac
+  shift
+done
+
+# Set Docker Compose file based on environment.
+if [ "$SITE_ENVIRONMENT" = "test" ]; then
+  dockercompose='-f docker-compose.yml -f docker-compose.test.yml'
+elif [ "$SITE_ENVIRONMENT" = "dev" ]; then
+  dockercompose='-f docker-compose.yml -f docker-compose.override.yml'
+fi
+
+if [ "$OSX" = 1 ]; then
+  dockercompose="-f docker-compose.yml -f docker-compose.override.yml -f docker-compose.osx.yml"
+fi
+
+echo "Running on the $SITE_ENVIRONMENT environment using $dockercompose."
+
+if [ "$build" = "1" ]; then
+  echo 'The Docker containers will be (re)built.'
+fi
+
+if [ "$install" = "1" ]; then
+  echo 'Drupal will be installed.'
+fi
+
+echo -e 'Do you wish to proceed (y/n): \c '
+read  confirm
+
+if [ "$confirm" != "y" ]; then
+  exit 1
+fi
+
+if [ "$build" = "1" ]; then
+  echo 'Starting and building Docker containters.'
+  docker-compose ${dockercompose} up -d --build
+  # Get the container ID of the web service
+  CONTAINER=$(docker-compose ps -q ${WEB_SERVICE})
+  echo 'Starting rsyslog.'
+  docker exec -it ${CONTAINER} /bin/bash -c "service rsyslog start"
+  echo 'Restarting apache.'
+  docker exec -it ${CONTAINER} /bin/bash -c "service apache2 graceful"
+  echo 'Configuring sendmail.'
+  docker exec -it ${CONTAINER} /bin/bash -c "${dd_party_base}/build/sendmail-config"
+  echo 'Restarting sendmail.'
+  docker exec -it ${CONTAINER} /bin/bash -c "service sendmail restart"
+else
+  echo 'Starting Docker containers.'
+  docker-compose ${dockercompose} up -d
+fi
+
+# Get the container ID of the web service
+CONTAINER=$(docker-compose ps -q ${WEB_SERVICE})
+
+if [ "$?" != "0" ]; then
+  echo 'Uh oh. The Docker build failed. You should check the output above for errors.'
+  exit 1
+fi
+
+echo 'Making dd-party build scripts executable.'
+docker exec -it ${CONTAINER} /bin/bash -c "chmod 755 ${dd_party_base}/build/*"
+
+if [ "${install}" = "1" ]; then
+  echo 'Initiating Drupal install.'
+  docker exec -it ${CONTAINER} /bin/bash -c "${dd_party_base}/build/install.sh"
+  if [ "$?" != "0" ]; then
+    echo 'Uh oh. The Drupal install failed. You should check the output above for errors.'
+    exit 1
+  fi
+else
+  echo 'Initiating updates.'
+  docker exec -it ${CONTAINER} /bin/bash -c "${dd_party_base}/build/update.sh"
+fi
+
+if [ "$?" = "0" ]; then
+  echo 'Success! Now get the party started!'
+else
+  echo 'Uh oh. The party failed to get started. You should check the output above for errors.'
+fi
