@@ -3842,114 +3842,6 @@
         "homepage": "http://vfs.bovigo.org/"
     },
     {
-        "name": "pear/console_table",
-        "version": "v1.3.0",
-        "version_normalized": "1.3.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/pear/Console_Table.git",
-            "reference": "64100b9ee81852f4fa17823e55d0b385a544f976"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/pear/Console_Table/zipball/64100b9ee81852f4fa17823e55d0b385a544f976",
-            "reference": "64100b9ee81852f4fa17823e55d0b385a544f976",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.2.0"
-        },
-        "suggest": {
-            "pear/Console_Color2": ">=0.1.2"
-        },
-        "time": "2016-01-21T16:14:31+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "Table.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-2-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Jan Schneider",
-                "homepage": "http://pear.php.net/user/yunosh"
-            },
-            {
-                "name": "Tal Peer",
-                "homepage": "http://pear.php.net/user/tal"
-            },
-            {
-                "name": "Xavier Noguer",
-                "homepage": "http://pear.php.net/user/xnoguer"
-            },
-            {
-                "name": "Richard Heyes",
-                "homepage": "http://pear.php.net/user/richard"
-            }
-        ],
-        "description": "Library that makes it easy to build console style tables.",
-        "homepage": "http://pear.php.net/package/Console_Table/",
-        "keywords": [
-            "console"
-        ]
-    },
-    {
-        "name": "phpdocumentor/reflection-docblock",
-        "version": "2.0.5",
-        "version_normalized": "2.0.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-            "reference": "e6a969a640b00d8daa3c66518b0405fb41ae0c4b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/e6a969a640b00d8daa3c66518b0405fb41ae0c4b",
-            "reference": "e6a969a640b00d8daa3c66518b0405fb41ae0c4b",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "~4.0"
-        },
-        "suggest": {
-            "dflydev/markdown": "~1.0",
-            "erusev/parsedown": "~1.0"
-        },
-        "time": "2016-01-25T08:17:30+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "phpDocumentor": [
-                    "src/"
-                ]
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Mike van Riel",
-                "email": "mike.vanriel@naenius.com"
-            }
-        ]
-    },
-    {
         "name": "qwertypants/word-and-character-counter",
         "version": "2.3.5",
         "version_normalized": "2.3.5.0",
@@ -4000,118 +3892,6 @@
         },
         "type": "drupal-library",
         "installation-source": "dist"
-    },
-    {
-        "name": "drush/drush",
-        "version": "8.1.15",
-        "version_normalized": "8.1.15.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/drush-ops/drush.git",
-            "reference": "f78b619806a9bc7c3d167fa425e8757eb046bb87"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/drush-ops/drush/zipball/f78b619806a9bc7c3d167fa425e8757eb046bb87",
-            "reference": "f78b619806a9bc7c3d167fa425e8757eb046bb87",
-            "shasum": ""
-        },
-        "require": {
-            "consolidation/annotated-command": "~2",
-            "consolidation/output-formatters": "~3",
-            "pear/console_table": "~1.3.0",
-            "php": ">=5.4.5",
-            "phpdocumentor/reflection-docblock": "^2.0",
-            "psr/log": "~1.0",
-            "psy/psysh": "~0.6",
-            "symfony/console": "~2.7|^3",
-            "symfony/event-dispatcher": "~2.7|^3",
-            "symfony/finder": "~2.7|^3",
-            "symfony/var-dumper": "~2.7|^3",
-            "symfony/yaml": "~2.3|^3",
-            "webmozart/path-util": "~2"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "4.*",
-            "symfony/console": "~2.7",
-            "symfony/event-dispatcher": "~2.7",
-            "symfony/finder": "~2.7",
-            "symfony/process": "2.7.*",
-            "symfony/var-dumper": "~2.7",
-            "symfony/yaml": "~2.3"
-        },
-        "suggest": {
-            "drush/config-extra": "Provides configuration workflow commands, such as config-merge.",
-            "ext-pcntl": "*"
-        },
-        "time": "2017-10-10T02:05:46+00:00",
-        "bin": [
-            "drush",
-            "drush.launcher",
-            "drush.php",
-            "drush.complete.sh"
-        ],
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "8.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Drush": "lib/",
-                "Consolidation": "lib/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "Moshe Weitzman",
-                "email": "weitzman@tejasa.com"
-            },
-            {
-                "name": "Owen Barton",
-                "email": "drupal@owenbarton.com"
-            },
-            {
-                "name": "Mark Sonnabaum",
-                "email": "marksonnabaum@gmail.com"
-            },
-            {
-                "name": "Antoine Beaupré",
-                "email": "anarcat@koumbit.org"
-            },
-            {
-                "name": "Greg Anderson",
-                "email": "greg.1.anderson@greenknowe.org"
-            },
-            {
-                "name": "Jonathan Araña Cruz",
-                "email": "jonhattan@faita.net"
-            },
-            {
-                "name": "Jonathan Hedstrom",
-                "email": "jhedstrom@gmail.com"
-            },
-            {
-                "name": "Christopher Gervais",
-                "email": "chris@ergonlogic.com"
-            },
-            {
-                "name": "Dave Reid",
-                "email": "dave@davereid.net"
-            },
-            {
-                "name": "Damian Lee",
-                "email": "damiankloip@googlemail.com"
-            }
-        ],
-        "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
-        "homepage": "http://www.drush.org"
     },
     {
         "name": "szimek/signature_pad",
@@ -12884,74 +12664,6 @@
         }
     },
     {
-        "name": "drupal/metatag",
-        "version": "1.4.0",
-        "version_normalized": "1.4.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupal.org/project/metatag",
-            "reference": "8.x-1.4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.4.zip",
-            "reference": "8.x-1.4",
-            "shasum": "f689123bdce93bbf452050261c6be9d15b0e1a5b"
-        },
-        "require": {
-            "drupal/core": "*",
-            "drupal/token": "^1.0"
-        },
-        "require-dev": {
-            "drupal/devel": "^1.0",
-            "drupal/metatag_dc": "*",
-            "drupal/metatag_open_graph": "*",
-            "drupal/redirect": "^1.0",
-            "drupal/restui": "^1.0"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.4",
-                "datestamp": "1513959187",
-                "security-coverage": {
-                    "status": "covered",
-                    "message": "Covered by Drupal's security advisory policy"
-                }
-            },
-            "patches_applied": []
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "See contributors",
-                "homepage": "https://www.drupal.org/node/640498/committers",
-                "role": "Developer"
-            },
-            {
-                "name": "Dave Reid",
-                "homepage": "https://www.drupal.org/user/53892"
-            }
-        ],
-        "description": "Manage meta tags for all entities.",
-        "homepage": "https://www.drupal.org/project/metatag",
-        "keywords": [
-            "php",
-            "seo"
-        ],
-        "support": {
-            "source": "http://cgit.drupalcode.org/metatag",
-            "issues": "http://drupal.org/project/issues/metatag"
-        }
-    },
-    {
         "name": "drupal/redirect",
         "version": "1.0.0",
         "version_normalized": "1.0.0.0",
@@ -14030,53 +13742,373 @@
         ]
     },
     {
-        "name": "summitmedia/dd-party",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
+        "name": "phpdocumentor/reflection-common",
+        "version": "1.0.1",
+        "version_normalized": "1.0.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/summitmedia/dd-party.git",
-            "reference": "06b26d035b015494143a42cfe5a4d07081dfaeed"
+            "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
+            "reference": "21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/summitmedia/dd-party/zipball/06b26d035b015494143a42cfe5a4d07081dfaeed",
-            "reference": "06b26d035b015494143a42cfe5a4d07081dfaeed",
+            "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6",
+            "reference": "21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6",
             "shasum": ""
         },
         "require": {
-            "drush/drush": "^8.1.0"
+            "php": ">=5.5"
         },
-        "time": "2018-01-25T14:54:25+00:00",
+        "require-dev": {
+            "phpunit/phpunit": "^4.6"
+        },
+        "time": "2017-09-11T18:02:19+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "phpDocumentor\\Reflection\\": [
+                    "src"
+                ]
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jaap van Otterdijk",
+                "email": "opensource@ijaap.nl"
+            }
+        ],
+        "description": "Common reflection classes used by phpdocumentor to reflect the code structure",
+        "homepage": "http://www.phpdoc.org",
+        "keywords": [
+            "FQSEN",
+            "phpDocumentor",
+            "phpdoc",
+            "reflection",
+            "static analysis"
+        ]
+    },
+    {
+        "name": "phpdocumentor/type-resolver",
+        "version": "0.4.0",
+        "version_normalized": "0.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phpDocumentor/TypeResolver.git",
+            "reference": "9c977708995954784726e25d0cd1dddf4e65b0f7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/9c977708995954784726e25d0cd1dddf4e65b0f7",
+            "reference": "9c977708995954784726e25d0cd1dddf4e65b0f7",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^5.5 || ^7.0",
+            "phpdocumentor/reflection-common": "^1.0"
+        },
+        "require-dev": {
+            "mockery/mockery": "^0.9.4",
+            "phpunit/phpunit": "^5.2||^4.8.24"
+        },
+        "time": "2017-07-14T14:27:02+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "phpDocumentor\\Reflection\\": [
+                    "src/"
+                ]
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mike van Riel",
+                "email": "me@mikevanriel.com"
+            }
+        ]
+    },
+    {
+        "name": "phpdocumentor/reflection-docblock",
+        "version": "4.2.0",
+        "version_normalized": "4.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
+            "reference": "66465776cfc249844bde6d117abff1d22e06c2da"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/66465776cfc249844bde6d117abff1d22e06c2da",
+            "reference": "66465776cfc249844bde6d117abff1d22e06c2da",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^7.0",
+            "phpdocumentor/reflection-common": "^1.0.0",
+            "phpdocumentor/type-resolver": "^0.4.0",
+            "webmozart/assert": "^1.0"
+        },
+        "require-dev": {
+            "doctrine/instantiator": "~1.0.5",
+            "mockery/mockery": "^1.0",
+            "phpunit/phpunit": "^6.4"
+        },
+        "time": "2017-11-27T17:38:31+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "4.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "phpDocumentor\\Reflection\\": [
+                    "src/"
+                ]
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mike van Riel",
+                "email": "me@mikevanriel.com"
+            }
+        ],
+        "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock."
+    },
+    {
+        "name": "chi-teck/drupal-code-generator",
+        "version": "1.22.0",
+        "version_normalized": "1.22.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Chi-teck/drupal-code-generator.git",
+            "reference": "c7e3018ebcbdb5befcfe928c792146078c8c2d05"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Chi-teck/drupal-code-generator/zipball/c7e3018ebcbdb5befcfe928c792146078c8c2d05",
+            "reference": "c7e3018ebcbdb5befcfe928c792146078c8c2d05",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5.9",
+            "symfony/console": "~2.7|^3",
+            "symfony/filesystem": "~2.7|^3",
+            "twig/twig": "^1.23.1"
+        },
+        "time": "2018-01-06T15:54:30+00:00",
         "bin": [
-            "dd-party",
-            "dd-party.env",
-            "build/sendmail-config",
-            "build/xdebug-config",
-            "docker/dd-base.sh",
-            "docker/dbackupdb",
-            "docker/dbash",
-            "docker/dcomposer",
-            "docker/ddrupal",
-            "docker/ddrush",
-            "docker/djs",
-            "docker/dsass"
+            "bin/dcg"
         ],
         "type": "library",
         "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "src/bootstrap.php"
+            ],
+            "psr-4": {
+                "DrupalCodeGenerator\\": "src"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL2"
+        ],
+        "description": "Drupal code generator"
+    },
+    {
+        "name": "drush/drush",
+        "version": "9.0.0",
+        "version_normalized": "9.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/drush-ops/drush.git",
+            "reference": "bfc720746b19673f840df261e86e34ca5542c91d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/drush-ops/drush/zipball/bfc720746b19673f840df261e86e34ca5542c91d",
+            "reference": "bfc720746b19673f840df261e86e34ca5542c91d",
+            "shasum": ""
+        },
+        "require": {
+            "chi-teck/drupal-code-generator": "^1.21.0",
+            "composer/semver": "^1.4",
+            "consolidation/annotated-command": "^2.8.1",
+            "consolidation/config": "^1.0.9",
+            "consolidation/output-formatters": "^3.1.12",
+            "consolidation/robo": "^1.1.5",
+            "ext-dom": "*",
+            "grasmash/yaml-expander": "^1.1.1",
+            "league/container": "~2",
+            "php": ">=5.6.0",
+            "psr/log": "~1.0",
+            "psy/psysh": "~0.6",
+            "sebastian/version": "^1|^2",
+            "symfony/config": "~2.2|^3",
+            "symfony/console": "~2.7|^3",
+            "symfony/event-dispatcher": "~2.7|^3",
+            "symfony/finder": "~2.7|^3",
+            "symfony/process": "~2.7|^3",
+            "symfony/var-dumper": "~2.7|^3",
+            "symfony/yaml": "~2.3|^3",
+            "webflo/drupal-finder": "^1.1",
+            "webmozart/path-util": "^2.1.0"
+        },
+        "require-dev": {
+            "lox/xhprof": "dev-master",
+            "phpunit/phpunit": "^4.8|^5.5.4",
+            "squizlabs/php_codesniffer": "^2.7"
+        },
+        "time": "2018-01-24T19:52:15+00:00",
+        "bin": [
+            "drush"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "9.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Drush\\": "src/",
+                "Drush\\Internal\\": "internal-copy/",
+                "Unish\\": "tests/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Moshe Weitzman",
+                "email": "weitzman@tejasa.com"
+            },
+            {
+                "name": "Owen Barton",
+                "email": "drupal@owenbarton.com"
+            },
+            {
+                "name": "Greg Anderson",
+                "email": "greg.1.anderson@greenknowe.org"
+            },
+            {
+                "name": "Jonathan Araña Cruz",
+                "email": "jonhattan@faita.net"
+            },
+            {
+                "name": "Jonathan Hedstrom",
+                "email": "jhedstrom@gmail.com"
+            },
+            {
+                "name": "Christopher Gervais",
+                "email": "chris@ergonlogic.com"
+            },
+            {
+                "name": "Dave Reid",
+                "email": "dave@davereid.net"
+            },
+            {
+                "name": "Damian Lee",
+                "email": "damiankloip@googlemail.com"
+            }
+        ],
+        "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
+        "homepage": "http://www.drush.org"
+    },
+    {
+        "name": "drupal/metatag",
+        "version": "1.4.0",
+        "version_normalized": "1.4.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/metatag",
+            "reference": "8.x-1.4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/metatag-8.x-1.4.zip",
+            "reference": "8.x-1.4",
+            "shasum": "f689123bdce93bbf452050261c6be9d15b0e1a5b"
+        },
+        "require": {
+            "drupal/core": "*",
+            "drupal/token": "^1.0"
+        },
+        "require-dev": {
+            "drupal/devel": "^1.0",
+            "drupal/metatag_dc": "*",
+            "drupal/metatag_open_graph": "*",
+            "drupal/redirect": "^1.0",
+            "drupal/restui": "^1.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.4",
+                "datestamp": "1513959187",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            },
+            "patches_applied": []
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
         "license": [
             "GPL-2.0+"
         ],
         "authors": [
             {
-                "name": "Doug Dobrzynski",
-                "email": "ddobrzynski@pmmimediagroup.com"
+                "name": "See contributors",
+                "homepage": "https://www.drupal.org/node/640498/committers",
+                "role": "Developer"
+            },
+            {
+                "name": "Dave Reid",
+                "homepage": "https://www.drupal.org/user/53892"
             }
         ],
-        "description": "Provides helper scripts for installing Drupal and apply changes as well as working with Docker.",
+        "description": "Manage meta tags for all entities.",
+        "homepage": "https://www.drupal.org/project/metatag",
+        "keywords": [
+            "php",
+            "seo"
+        ],
         "support": {
-            "source": "https://github.com/summitmedia/dd-party/tree/master",
-            "issues": "https://github.com/summitmedia/dd-party/issues"
+            "source": "http://cgit.drupalcode.org/metatag",
+            "issues": "http://drupal.org/project/issues/metatag"
         }
     }
 ]
