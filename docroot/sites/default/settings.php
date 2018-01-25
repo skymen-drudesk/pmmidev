@@ -708,6 +708,7 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
 $settings['trusted_host_patterns'] = array(
   '^pmmi\.org$',
   '^.+\.pmmi\.org$',
+  '^pmmi$',
   '^.+\.pmmimediagroup\.com$',
   '^pmmi\.dev$',
   '^.+\.pmmi\.dev$',
