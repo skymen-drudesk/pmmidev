@@ -14,8 +14,6 @@ return array(
     'Solarium\\' => array($vendorDir . '/solarium/solarium/library'),
     'Smtpapi' => array($vendorDir . '/sendgrid/smtpapi/lib'),
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
-    'PEAR' => array($vendorDir . '/pear/pear_exception'),
-    'Lurker' => array($vendorDir . '/henrikbjorn/lurker/src'),
     'JakubOnderka\\PhpConsoleHighlighter' => array($vendorDir . '/jakub-onderka/php-console-highlighter/src'),
     'JakubOnderka\\PhpConsoleColor' => array($vendorDir . '/jakub-onderka/php-console-color/src'),
     'HTMLPurifier' => array($vendorDir . '/ezyang/htmlpurifier/library'),
@@ -28,8 +26,5 @@ return array(
     'Dflydev\\DotAccessData' => array($vendorDir . '/dflydev/dot-access-data/src'),
     'Dflydev\\DotAccessConfiguration' => array($vendorDir . '/dflydev/dot-access-configuration/src'),
     'Consolidation' => array($vendorDir . '/drush/drush/lib'),
-    'Console' => array($vendorDir . '/pear/console_getopt'),
     'Caxy\\HtmlDiff' => array($vendorDir . '/caxy/php-htmldiff/lib'),
-    'Archive_Tar' => array($vendorDir . '/pear/archive_tar'),
-    '' => array($vendorDir . '/pear/pear-core-minimal/src'),
 );

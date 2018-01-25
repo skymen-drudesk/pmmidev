@@ -182,6 +182,14 @@ class ViewsFieldFormatter extends FormatterBase
     {
         $summary = [];
         $settings = $this->getSettings();
+
+        // For default settings, don't show a summary.
+        if (empty($settings['view'])) {
+          return [
+              $this->t('Not configured yet.'),
+          ];
+        }
+
         list($view, $view_display) = explode('::', $settings['view']);
         $multiple = (true === (bool) $settings['multiple']) ? 'Enabled' : 'Disabled';
         $hide_empty = (true === (bool) $settings['hide_empty']) ? 'Hide' : 'Display';

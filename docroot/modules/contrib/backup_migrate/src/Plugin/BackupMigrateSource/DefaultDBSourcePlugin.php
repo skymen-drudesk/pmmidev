@@ -40,7 +40,7 @@ class DefaultDBSourcePlugin extends SourcePluginBase {
       return new MySQLiSource($conf);
     }
 
-    return null;
+    return NULL;
   }
 
   /**

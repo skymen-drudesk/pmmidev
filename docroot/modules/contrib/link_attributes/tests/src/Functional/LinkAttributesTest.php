@@ -56,6 +56,8 @@ class LinkAttributesTest extends BrowserTestBase {
     $this->assertNotNull($link);
     $this->assertEquals('_blank', $link->getAttribute('target'));
     $this->assertEquals('menu__link--really_special', $link->getAttribute('class'));
+    // No rel attribute was added, so none should be present.
+    $this->assertFalse($link->hasAttribute('rel'));
   }
 
 }

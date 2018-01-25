@@ -38,7 +38,7 @@ class EntireSiteSourcePlugin extends SourcePluginBase {
       return new DrupalSiteArchiveSource($conf, $this->db_source);
     }
 
-    return null;
+    return NULL;
   }
 
   /**

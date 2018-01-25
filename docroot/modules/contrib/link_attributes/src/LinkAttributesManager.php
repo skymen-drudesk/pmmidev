@@ -35,6 +35,7 @@ class LinkAttributesManager extends DefaultPluginManager implements PluginManage
    *   Cache backend instance to use.
    */
   public function __construct(ModuleHandlerInterface $module_handler, CacheBackendInterface $cache_backend) {
+    $this->alterInfo('link_attributes_plugin');
     $this->moduleHandler = $module_handler;
     $this->setCacheBackend($cache_backend, 'link_attributes', array('link_attributes'));
   }

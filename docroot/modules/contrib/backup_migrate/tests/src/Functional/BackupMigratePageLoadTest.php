@@ -4,9 +4,8 @@ namespace Drupal\Tests\backup_migrate\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 
-
 /**
- * Checks if pages loads successfully
+ * Checks if pages loads successfully.
  *
  * @group backup_migrate
  */
@@ -37,7 +36,7 @@ class BackupMigratePageLoadTest extends BrowserTestBase {
   }
 
   /**
-   * Tests if site quick backup function loads
+   * Tests if site quick backup function loads.
    */
   public function testPages() {
     $account = $this->drupalCreateUser([

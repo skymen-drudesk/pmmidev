@@ -63,6 +63,3 @@ class BackupMigrateQuickBackupTest extends BrowserTestBase {
   }
 
 }
-
-
-

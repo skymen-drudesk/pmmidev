@@ -1,0 +1,16 @@
+***************
+*** 9,14 ****
+  use Drupal\Core\Entity\EntityTypeManagerInterface;
+  use Drupal\Core\Form\FormStateInterface;
+  use Drupal\Core\StringTranslation\TranslatableMarkup;
+  
+  /**
+   * Class MetatagDefaultsForm.
+--- 9,15 ----
+  use Drupal\Core\Entity\EntityTypeManagerInterface;
+  use Drupal\Core\Form\FormStateInterface;
+  use Drupal\Core\StringTranslation\TranslatableMarkup;
++ use Drupal\page_manager\Entity\PageVariant;
+  
+  /**
+   * Class MetatagDefaultsForm.

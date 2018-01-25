@@ -4,9 +4,8 @@ namespace Drupal\Tests\backup_migrate\Functional;
 
 use Drupal\Tests\BrowserTestBase;
 
-
 /**
- * Checks if module enabling doesn't break the site
+ * Checks if module enabling doesn't break the site.
  *
  * @group backup_migrate
  */
@@ -30,7 +29,7 @@ class BackupMigrateEnablingTest extends BrowserTestBase {
   }
 
   /**
-   * Tests if site opens with no errors
+   * Tests if site opens with no errors.
    */
   public function testEnabling() {
     $this->drupalGet('');

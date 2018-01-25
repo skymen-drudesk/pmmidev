@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * Contains BackupMigrate\Core\Destination\DebugDestination
+ * Contains BackupMigrate\Core\Destination\DebugDestination.
  */
 
 
@@ -13,7 +13,8 @@ use BackupMigrate\Core\File\BackupFileReadableInterface;
 use BackupMigrate\Core\Plugin\PluginCallerInterface;
 
 /**
- * Class DebugDestination
+ * Class DebugDestination.
+ *
  * @package BackupMigrate\Core\Destination
  */
 class DebugDestination extends StreamDestination implements WritableDestinationInterface {
@@ -22,14 +23,14 @@ class DebugDestination extends StreamDestination implements WritableDestinationI
    * {@inheritdoc}
    */
   function saveFile(BackupFileReadableInterface $file) {
-    $out = array();
+    $out = [];
 
-    // Quick and dirty way to html format this output
+    // Quick and dirty way to html format this output.
     if ($this->confGet('format') == 'html') {
       print '<pre>';
     }
 
-    // Output the metadata
+    // Output the metadata.
     if ($this->confGet('showmeta')) {
       print "---------------------\n";
       print "Metadata: \n";
@@ -37,7 +38,7 @@ class DebugDestination extends StreamDestination implements WritableDestinationI
       print "---------------------\n";
     }
 
-    // Output the body
+    // Output the body.
     if ($this->confGet('showbody')) {
       print "---------------------\n";
       print "Body: \n";
@@ -55,8 +56,7 @@ class DebugDestination extends StreamDestination implements WritableDestinationI
       print "---------------------\n";
     }
 
-
-    // Quick and dirty way to html format this output
+    // Quick and dirty way to html format this output.
     if ($this->confGet('format') == 'html') {
       print '</pre>';
     }
@@ -71,10 +71,11 @@ class DebugDestination extends StreamDestination implements WritableDestinationI
    */
   public function configDefaults() {
     return new Config([
-      'showmeta' => true,
-      'showbody' => true,
+      'showmeta' => TRUE,
+      'showbody' => TRUE,
       'maxbody' => 1024 * 16,
       'format' => 'text',
     ]);
   }
+
 }

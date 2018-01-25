@@ -59,5 +59,18 @@ fi
 echo "Clearing caches one last time.";
 $drush $drush_cache_clear all
 
+# Check if search_api is enabled.
+if [[ ${modules_enabled} == *"search_api"* ]]; then
+  search_api_enabled=1
+else
+  search_api_enabled=0
+fi
+echo "search_api enabled: $search_api_enabled"
+
+if [ "$search_api_enabled" = 1 ]; then
+  echo "Fixing search_api index if it was broken"
+  $drush pmmi-search-api-fix
+fi
+
 chmod -R +w "$base/cnf"
 chmod -R +w "$drupal_root/sites/default"

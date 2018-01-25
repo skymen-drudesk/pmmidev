@@ -135,6 +135,18 @@ class LinkWithAttributesWidget extends LinkWidget implements ContainerFactoryPlu
   /**
    * {@inheritdoc}
    */
+  public function massageFormValues(array $values, array $form, FormStateInterface $form_state) {
+    return array_map(function (array $value) {
+      $value['options']['attributes'] = array_filter($value['options']['attributes'], function ($attribute) {
+        return $attribute !== "";
+      });
+      return $value;
+    }, $values);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function settingsSummary() {
     $summary = parent::settingsSummary();
     $enabled_attributes = array_filter($this->getSetting('enabled_attributes'));
