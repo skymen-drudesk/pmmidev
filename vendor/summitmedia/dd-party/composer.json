@@ -1,0 +1,27 @@
+{
+  "name": "summitmedia/dd-party",
+  "description": "Provides helper scripts for installing Drupal and apply changes as well as working with Docker.",
+  "license": "GPL-2.0+",
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "authors": [
+    { "name": "Doug Dobrzynski", "email": "ddobrzynski@pmmimediagroup.com" }
+  ],
+  "bin": [
+    "dd-party",
+    "dd-party.env",
+    "build/sendmail-config",
+    "build/xdebug-config",
+    "docker/dd-base.sh",
+    "docker/dbackupdb",
+    "docker/dbash",
+    "docker/dcomposer",
+    "docker/ddrupal",
+    "docker/ddrush",
+    "docker/djs",
+    "docker/dsass"
+  ],
+  "require": {
+    "drush/drush": "^8.1.0"
+  }
+}
