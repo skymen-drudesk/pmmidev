@@ -1,1 +1,0 @@
-../summitmedia/dd-party/docker/dd-base.sh
