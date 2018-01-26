@@ -2,6 +2,7 @@
 
 namespace Drupal\pmmi_psdata\Service;
 
+use Drupal\facets\Exception\Exception;
 use GuzzleHttp\Exception\ConnectException;
 use GuzzleHttp\Promise;
 use GuzzleHttp\Exception\RequestException;
@@ -89,9 +90,9 @@ class PMMIDataRequestHelper {
    *   Response data type, xml or json.
    * @param string $data_key
    *   Key which should be compared on response data.
-   *
    * @return array
    *   The JSON decoded array of responses from PMMI Personify Services.
+   * @throws \Exception
    */
   public function handleAsyncRequests(array $requests, $method = 'getAsync', $content_type = 'json', $data_key = 'd') {
     $data = [];
@@ -110,7 +111,7 @@ class PMMIDataRequestHelper {
     }
     catch (ConnectException $e) {
       $this->ssoHelper->log('Invalid response from Data Service.');
-      return $data;
+      throw new \Exception($e);
     }
     /** @var \GuzzleHttp\Psr7\Response $response */
     foreach ($results as $response) {
@@ -143,9 +144,9 @@ class PMMIDataRequestHelper {
    *
    * @param array $request_param
    *   Parameters of the request.
-   *
    * @return array
    *   The JSON decoded array of response from PMMI Personify Services.
+   * @throws \Exception
    */
   public function handleRequest(array $request_param) {
     $uri = $request_param['uri'];
@@ -164,7 +165,7 @@ class PMMIDataRequestHelper {
     }
     catch (RequestException $e) {
       $this->ssoHelper->log('Invalid response from Data Service.');
-      return $data;
+      throw new \Exception($e);
     }
     return $data;
   }
