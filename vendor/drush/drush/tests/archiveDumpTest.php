@@ -2,7 +2,6 @@
 
 namespace Unish;
 
-require_once dirname(__FILE__) . '/../includes/context.inc';
 require_once dirname(__FILE__) . '/../includes/filesystem.inc';
 
 /**

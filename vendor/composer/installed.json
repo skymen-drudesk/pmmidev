@@ -7999,205 +7999,6 @@
         ]
     },
     {
-        "name": "phpdocumentor/reflection-common",
-        "version": "1.0.1",
-        "version_normalized": "1.0.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phpDocumentor/ReflectionCommon.git",
-            "reference": "21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/phpDocumentor/ReflectionCommon/zipball/21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6",
-            "reference": "21bdeb5f65d7ebf9f43b1b25d404f87deab5bfb6",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "^4.6"
-        },
-        "time": "2017-09-11T18:02:19+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "phpDocumentor\\Reflection\\": [
-                    "src"
-                ]
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jaap van Otterdijk",
-                "email": "opensource@ijaap.nl"
-            }
-        ],
-        "description": "Common reflection classes used by phpdocumentor to reflect the code structure",
-        "homepage": "http://www.phpdoc.org",
-        "keywords": [
-            "FQSEN",
-            "phpDocumentor",
-            "phpdoc",
-            "reflection",
-            "static analysis"
-        ]
-    },
-    {
-        "name": "phpdocumentor/type-resolver",
-        "version": "0.4.0",
-        "version_normalized": "0.4.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phpDocumentor/TypeResolver.git",
-            "reference": "9c977708995954784726e25d0cd1dddf4e65b0f7"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/phpDocumentor/TypeResolver/zipball/9c977708995954784726e25d0cd1dddf4e65b0f7",
-            "reference": "9c977708995954784726e25d0cd1dddf4e65b0f7",
-            "shasum": ""
-        },
-        "require": {
-            "php": "^5.5 || ^7.0",
-            "phpdocumentor/reflection-common": "^1.0"
-        },
-        "require-dev": {
-            "mockery/mockery": "^0.9.4",
-            "phpunit/phpunit": "^5.2||^4.8.24"
-        },
-        "time": "2017-07-14T14:27:02+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "phpDocumentor\\Reflection\\": [
-                    "src/"
-                ]
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Mike van Riel",
-                "email": "me@mikevanriel.com"
-            }
-        ]
-    },
-    {
-        "name": "phpdocumentor/reflection-docblock",
-        "version": "4.2.0",
-        "version_normalized": "4.2.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-            "reference": "66465776cfc249844bde6d117abff1d22e06c2da"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/66465776cfc249844bde6d117abff1d22e06c2da",
-            "reference": "66465776cfc249844bde6d117abff1d22e06c2da",
-            "shasum": ""
-        },
-        "require": {
-            "php": "^7.0",
-            "phpdocumentor/reflection-common": "^1.0.0",
-            "phpdocumentor/type-resolver": "^0.4.0",
-            "webmozart/assert": "^1.0"
-        },
-        "require-dev": {
-            "doctrine/instantiator": "~1.0.5",
-            "mockery/mockery": "^1.0",
-            "phpunit/phpunit": "^6.4"
-        },
-        "time": "2017-11-27T17:38:31+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "4.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "phpDocumentor\\Reflection\\": [
-                    "src/"
-                ]
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Mike van Riel",
-                "email": "me@mikevanriel.com"
-            }
-        ],
-        "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock."
-    },
-    {
-        "name": "chi-teck/drupal-code-generator",
-        "version": "1.22.0",
-        "version_normalized": "1.22.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Chi-teck/drupal-code-generator.git",
-            "reference": "c7e3018ebcbdb5befcfe928c792146078c8c2d05"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Chi-teck/drupal-code-generator/zipball/c7e3018ebcbdb5befcfe928c792146078c8c2d05",
-            "reference": "c7e3018ebcbdb5befcfe928c792146078c8c2d05",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5.9",
-            "symfony/console": "~2.7|^3",
-            "symfony/filesystem": "~2.7|^3",
-            "twig/twig": "^1.23.1"
-        },
-        "time": "2018-01-06T15:54:30+00:00",
-        "bin": [
-            "bin/dcg"
-        ],
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "src/bootstrap.php"
-            ],
-            "psr-4": {
-                "DrupalCodeGenerator\\": "src"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "GPL2"
-        ],
-        "description": "Drupal code generator"
-    },
-    {
         "name": "derhasi/viewfield",
         "version": "2.0",
         "version_normalized": "2.0.0.0",
@@ -13172,63 +12973,6 @@
         }
     },
     {
-        "name": "drupal/varnish_purge",
-        "version": "1.9.0",
-        "version_normalized": "1.9.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupal.org/project/varnish_purge",
-            "reference": "8.x-1.9"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/varnish_purge-8.x-1.9.zip",
-            "reference": "8.x-1.9",
-            "shasum": "ecc6857c81c493609b360e659bab1fce65ceec3d"
-        },
-        "require": {
-            "drupal/core": "~8.0"
-        },
-        "require-dev": {
-            "drupal/purge": "*",
-            "drupal/purge_tokens": "*",
-            "drupal/varnish_purger": "*"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.9",
-                "datestamp": "1509622084",
-                "security-coverage": {
-                    "status": "covered",
-                    "message": "Covered by Drupal's security advisory policy"
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "MiSc",
-                "homepage": "https://www.drupal.org/user/382892"
-            },
-            {
-                "name": "deadbeef",
-                "homepage": "https://www.drupal.org/user/93644"
-            }
-        ],
-        "homepage": "https://www.drupal.org/project/varnish_purge",
-        "support": {
-            "source": "http://cgit.drupalcode.org/varnish_purge"
-        }
-    },
-    {
         "name": "drupal/video",
         "version": "1.2.0",
         "version_normalized": "1.2.0.0",
@@ -14128,18 +13872,126 @@
         "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it"
     },
     {
-        "name": "pear/console_table",
-        "version": "v1.3.0",
-        "version_normalized": "1.3.0.0",
+        "name": "drupal/varnish_purge",
+        "version": "1.10.0",
+        "version_normalized": "1.10.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/pear/Console_Table.git",
-            "reference": "64100b9ee81852f4fa17823e55d0b385a544f976"
+            "url": "https://git.drupal.org/project/varnish_purge",
+            "reference": "8.x-1.10"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pear/Console_Table/zipball/64100b9ee81852f4fa17823e55d0b385a544f976",
-            "reference": "64100b9ee81852f4fa17823e55d0b385a544f976",
+            "url": "https://ftp.drupal.org/files/projects/varnish_purge-8.x-1.10.zip",
+            "reference": "8.x-1.10",
+            "shasum": "ab7ea1bd933856fc759dc0e1d53018cc5dee2718"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "require-dev": {
+            "drupal/purge": "*",
+            "drupal/purge_tokens": "*",
+            "drupal/varnish_purger": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.10",
+                "datestamp": "1516954984",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "MiSc",
+                "homepage": "https://www.drupal.org/user/382892"
+            },
+            {
+                "name": "deadbeef",
+                "homepage": "https://www.drupal.org/user/93644"
+            }
+        ],
+        "homepage": "https://www.drupal.org/project/varnish_purge",
+        "support": {
+            "source": "http://cgit.drupalcode.org/varnish_purge"
+        }
+    },
+    {
+        "name": "phpdocumentor/reflection-docblock",
+        "version": "2.0.5",
+        "version_normalized": "2.0.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
+            "reference": "e6a969a640b00d8daa3c66518b0405fb41ae0c4b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/e6a969a640b00d8daa3c66518b0405fb41ae0c4b",
+            "reference": "e6a969a640b00d8daa3c66518b0405fb41ae0c4b",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0"
+        },
+        "suggest": {
+            "dflydev/markdown": "~1.0",
+            "erusev/parsedown": "~1.0"
+        },
+        "time": "2016-01-25T08:17:30+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "phpDocumentor": [
+                    "src/"
+                ]
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Mike van Riel",
+                "email": "mike.vanriel@naenius.com"
+            }
+        ]
+    },
+    {
+        "name": "pear/console_table",
+        "version": "v1.3.1",
+        "version_normalized": "1.3.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/pear/Console_Table.git",
+            "reference": "1930c11897ca61fd24b95f2f785e99e0f36dcdea"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/pear/Console_Table/zipball/1930c11897ca61fd24b95f2f785e99e0f36dcdea",
+            "reference": "1930c11897ca61fd24b95f2f785e99e0f36dcdea",
             "shasum": ""
         },
         "require": {
@@ -14148,7 +14000,7 @@
         "suggest": {
             "pear/Console_Color2": ">=0.1.2"
         },
-        "time": "2016-01-21T16:14:31+00:00",
+        "time": "2018-01-25T20:47:17+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -14186,24 +14038,25 @@
     },
     {
         "name": "drush/drush",
-        "version": "8.x-dev",
-        "version_normalized": "8.9999999.9999999.9999999-dev",
+        "version": "8.1.15",
+        "version_normalized": "8.1.15.0",
         "source": {
             "type": "git",
             "url": "https://github.com/drush-ops/drush.git",
-            "reference": "15ec52d730f14672cb90896055ff3926321ba0c9"
+            "reference": "f78b619806a9bc7c3d167fa425e8757eb046bb87"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/drush-ops/drush/zipball/15ec52d730f14672cb90896055ff3926321ba0c9",
-            "reference": "15ec52d730f14672cb90896055ff3926321ba0c9",
+            "url": "https://api.github.com/repos/drush-ops/drush/zipball/f78b619806a9bc7c3d167fa425e8757eb046bb87",
+            "reference": "f78b619806a9bc7c3d167fa425e8757eb046bb87",
             "shasum": ""
         },
         "require": {
-            "consolidation/annotated-command": "^2.8.1",
+            "consolidation/annotated-command": "~2",
             "consolidation/output-formatters": "~3",
             "pear/console_table": "~1.3.0",
             "php": ">=5.4.5",
+            "phpdocumentor/reflection-docblock": "^2.0",
             "psr/log": "~1.0",
             "psy/psysh": "~0.6",
             "symfony/console": "~2.7|^3",
@@ -14226,7 +14079,7 @@
             "drush/config-extra": "Provides configuration workflow commands, such as config-merge.",
             "ext-pcntl": "*"
         },
-        "time": "2018-01-07T02:39:41+00:00",
+        "time": "2017-10-10T02:05:46+00:00",
         "bin": [
             "drush",
             "drush.launcher",
