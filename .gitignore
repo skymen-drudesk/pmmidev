@@ -31,9 +31,9 @@ console
 .composer/*
 
 # Ignore npm modules
-node_modules
-*/node_modules
-*/node_modules/*
+#node_modules
+#*/node_modules
+#*/node_modules/*
 
 # Ignore sass cache
 */.sass-cache
