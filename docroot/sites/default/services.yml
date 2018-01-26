@@ -153,3 +153,11 @@ parameters:
     - sftp
     - webcal
     - rtsp
+  # Add in stampede protection
+  services:
+    lock:
+      class: Drupal\Core\Lock\LockBackendInterface
+      factory: ['@memcache.lock.factory', get]
+    lock.persistent:
+      class: Drupal\Core\Lock\LockBackendInterface
+      factory: ['@memcache.lock.factory', getPersistent]
