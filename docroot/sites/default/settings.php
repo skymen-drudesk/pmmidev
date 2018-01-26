@@ -422,11 +422,6 @@ $settings['update_free_access'] = FALSE;
  */
 # $settings['omit_vary_cookie'] = TRUE;
 
-if (isset($settings['memcache']['servers'])) {
-  // Memcache settings.
-  $settings['cache']['default'] = 'cache.backend.memcache';
-}
-
 /**
  * Class Loader.
  *
