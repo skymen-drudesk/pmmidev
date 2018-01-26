@@ -2,13 +2,33 @@
   "name": "PMMI",
   "scripts": {
     "start": "gulp",
-    "bower": "bower install --allow-root"
+    "bower": "bower install --allow-root",
+    "postinstall": "node -e \"try { require('fs').symlinkSync(require('path').resolve('node_modules/@bower_components'), 'libraries', 'junction') } catch (e) { }\""
   },
   "dependencies": {
-    "bower": "^1.8"
+    "bower": "^1.8",
+    "components-font-awesome": "^4.6.3",
+    "imagesloaded": "^4.1.4",
+    "jquery.countdown": "^1.2.8",
+    "jquery.uniform": "^4.2.2",
+    "matchheight": "^0.1.0",
+    "moment-timezone": "^0.5.14",
+    "stacktable.js": "^1.0.3",
+    "@bower_components/compass-sass-mixins": "askucher/compass-sass-mixins#*",
+    "@bower_components/components-font-awesome": "components/font-awesome#^4.7.0",
+    "@bower_components/ev-emitter": "metafizzy/ev-emitter#~1.0.0",
+    "@bower_components/imagesloaded": "desandro/imagesloaded#^4.1.1",
+    "@bower_components/jquery": "jquery/jquery-dist#^1.6",
+    "@bower_components/jquery.countdown": "hilios/jQuery.countdown#^2.2.0",
+    "@bower_components/jquery.uniform": "AudithSoftworks/Uniform#^4.0.1",
+    "@bower_components/matchHeight": "liabru/jquery-match-height#^0.7.0",
+    "@bower_components/moment": "moment/moment#>= 2.9.0",
+    "@bower_components/moment-timezone": "moment/moment-timezone#^0.5.11",
+    "@bower_components/stacktable.js": "johnpolacek/stacktable.js#^1.0.2"
   },
   "devDependencies": {
     "autoprefixer": "^6.5.1",
+    "compass-sass-mixins": "^0.12.7",
     "gulp": "^3.9.1",
     "gulp-eslint": "^3.0.1",
     "gulp-livereload": "^3.8.1",
@@ -18,5 +38,8 @@
     "gulp-sourcemaps": "^1.9.1",
     "gulp-watch": "^4.3.10",
     "pixrem": "^3.0.2"
+  },
+  "engines": {
+    "yarn": ">= 1.0.0"
   }
 }
