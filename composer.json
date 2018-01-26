@@ -29,7 +29,7 @@
     }
   ],
   "repositories": {
-    "0": {
+    "drupal": {
       "type": "composer",
       "url": "https://packages.drupal.org/8"
     },
@@ -352,7 +352,7 @@
     "ckeditor/colorbutton": "4.7.3",
     "ckeditor/panelbutton": "4.7.3",
     "codemirror/codemirror": "^5.17.0",
-    "composer/installers": "^1.0",
+    "composer/installers": "^1.2.0",
     "consolidation/robo": "^1.1",
     "cweagans/composer-patches": "^1.6.0",
     "derhasi/viewfield": "^2.0",
@@ -439,12 +439,14 @@
     "enyo/dropzone": "4.2.0",
     "file_permissions": "^1.0",
     "gjunge/jquery.rateit": "^1.1.1",
+    "grasmash/drupal-security-warning": "^1.0.0",
     "harvesthq/chosen": "^1.6.1",
     "jonthornton/jquery.timepicker": "^1.11.9",
     "kenwheeler/slick": "~1.6.0",
     "mikey179/vfsStream": "~1",
     "phpoffice/phpspreadsheet": "1.0.0-beta",
     "qwertypants/word-and-character-counter": "^2.3.5",
+    "roave/security-advisories": "dev-master",
     "select2/select2": "^4.0.3",
     "selectize/selectize": "^0.12.4",
     "simontabor/jquery.toggles": "^4.0.0",
@@ -467,7 +469,6 @@
     "symfony/filesystem": "^3.3"
   },
   "conflict": {
-    "drupal/drupal": "*",
     "drupal/core": "7.*"
   },
   "autoload": {

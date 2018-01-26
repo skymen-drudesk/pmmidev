@@ -31,6 +31,10 @@ class ComposerStaticInitf56b34b6454907f4fc7fdb67112bd3b9
             'phpseclib\\' => 10,
             'phpDocumentor\\Reflection\\' => 25,
         ),
+        'g' => 
+        array (
+            'grasmash\\DrupalSecurityWarning\\' => 31,
+        ),
         'd' => 
         array (
             'derhasi\\Composer\\' => 17,
@@ -193,6 +197,10 @@ class ComposerStaticInitf56b34b6454907f4fc7fdb67112bd3b9
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
             1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
             2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+        ),
+        'grasmash\\DrupalSecurityWarning\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/grasmash/drupal-security-warning/src',
         ),
         'derhasi\\Composer\\' => 
         array (
