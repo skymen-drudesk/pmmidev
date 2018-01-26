@@ -521,6 +521,11 @@
       "docroot/sites/default/settings.php",
       "docroot/sites/default/files"
     ],
+    "drupal-scaffold": {
+      "excludes": [
+        ".htaccess"
+      ]
+    },
     "merge-plugin": {
       "include": [
         "docroot/modules/custom/pmmi_crawler_detect/composer.json",
