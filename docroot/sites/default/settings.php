@@ -425,7 +425,6 @@ $settings['update_free_access'] = FALSE;
 if (isset($settings['memcache']['servers'])) {
   // Memcache settings.
   $settings['cache']['default'] = 'cache.backend.memcache';
-  $settings['memcache']['stampede_protection'] = TRUE;
 }
 
 /**
