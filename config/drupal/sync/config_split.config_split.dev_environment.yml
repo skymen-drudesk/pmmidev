@@ -1,6 +1,6 @@
 uuid: b593babe-dd0a-488e-aa45-6e8c609d7248
 langcode: en
-status: false
+status: true
 dependencies: {  }
 id: dev_environment
 label: 'Dev environment'
@@ -9,21 +9,26 @@ module:
   blazy_ui: 0
   config_devel: 0
   config_update_ui: 0
+  dblog: 0
+  devel: 0
+  devel_debug_log: 0
   field_ui: 0
   kint: 0
+  maillog: 0
+  purge_ui: 0
+  queue_ui: 0
   slick_ui: 0
   stage_file_proxy: 0
   update: 0
   views_ui: 0
-  dblog: 0
-  devel: 0
-  devel_debug_log: 0
 theme: {  }
 blacklist:
   - maillog.settings
-  - mailsystem.settings
   - system.menu.devel
-graylist: {  }
+graylist:
+  - core.extension
+  - mailsystem.settings
+  - system.performance
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 2
