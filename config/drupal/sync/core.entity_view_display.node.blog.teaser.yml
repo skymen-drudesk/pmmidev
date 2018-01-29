@@ -25,4 +25,9 @@ content:
   links:
     weight: 100
     region: content
-hidden: {  }
+hidden:
+  field_blog_category: true
+  field_blog_date: true
+  field_blog_page_name: true
+  field_blog_tags: true
+  field_image_header: true

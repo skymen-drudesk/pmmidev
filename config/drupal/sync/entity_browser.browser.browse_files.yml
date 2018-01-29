@@ -45,7 +45,14 @@ widgets:
       dropzone_description: 'Click or drop files here to upload them'
       max_filesize: 2M
       extensions: 'jpg jpeg gif png txt doc xls pdf ppt pps odt ods odp'
+      clientside_resize: false
+      resize_width: null
+      resize_height: null
+      resize_quality: !!float 1
+      resize_method: contain
+      thumbnail_method: contain
       submit_text: 'Select entities'
+      auto_select: false
     uuid: 735d146c-a4b2-4327-a057-d109e0905e05
     weight: 0
     label: 'Upload files'

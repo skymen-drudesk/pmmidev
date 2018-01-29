@@ -208,7 +208,7 @@ display:
           decimal: .
           separator: ', '
           format_plural: 0
-          format_plural_string: "1\x03@count"
+          format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
           suffix: ''
           click_sort_column: target_id
@@ -277,7 +277,7 @@ display:
           decimal: .
           separator: ', '
           format_plural: 0
-          format_plural_string: "1\x03@count"
+          format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
           suffix: ''
           click_sort_column: value
@@ -346,7 +346,7 @@ display:
           decimal: .
           separator: ', '
           format_plural: 0
-          format_plural_string: "1\x03@count"
+          format_plural_string: !!binary MQNAY291bnQ=
           prefix: ''
           suffix: ''
           click_sort_column: value

@@ -1,6 +1,6 @@
 uuid: f70bfea9-dac2-44c6-89ed-bc02a7214fea
 langcode: en
-status: true
+status: false
 dependencies: {  }
 id: test_environment
 label: 'Test environment'
@@ -8,8 +8,9 @@ folder: ../config/drupal/test
 module:
   config_readonly: 0
   dblog: 0
-  stage_file_proxy: 0
 theme: {  }
 blacklist: {  }
 graylist: {  }
+graylist_dependents: true
+graylist_skip_equal: true
 weight: 1
