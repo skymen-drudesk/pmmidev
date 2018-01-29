@@ -25,6 +25,11 @@ subscription_data:
         secret_key: ''
         js_path: ''
     search_service_enabled: 1
+    search_cores:
+      -
+        balancer: useast1-c26.acquia-search.com
+        core_id: GIJT-166429
+    search_service_colony: useast1-c26.acquia-search.com
 subscription_name: ''
 debug: false
 cron_interval: 30
