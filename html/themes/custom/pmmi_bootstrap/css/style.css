@@ -19191,8 +19191,13 @@ div.view {
 
 .block-box.mode-full .field-name-field-image, .block-box.mode-default .field-name-field-image {
   float: left;
-  width: 246px;
+  max-width: 250px;
+  width: 100%;
   margin-left: -280px;
+}
+
+.block-box.mode-full .field-name-field-image img, .block-box.mode-default .field-name-field-image img {
+  width: 100%;
 }
 
 @media screen and (max-width: 1199px) {
@@ -19200,8 +19205,8 @@ div.view {
     padding-left: 250px;
   }
   .block-box.mode-full .field-name-field-image, .block-box.mode-default .field-name-field-image {
-    width: auto;
     margin-left: -230px;
+    max-width: 210px;
   }
 }
 
@@ -19213,10 +19218,12 @@ div.view {
   .block-box.mode-full .field-name-field-image, .block-box.mode-default .field-name-field-image {
     float: none;
     width: auto;
+    max-width: initial;
     margin: 0 0 15px;
     text-align: center;
   }
   .block-box.mode-full .field-name-field-image img, .block-box.mode-default .field-name-field-image img {
+    width: auto;
     margin: 0 auto;
   }
   .block-box.mode-full .field-name-field-buttons a, .block-box.mode-default .field-name-field-buttons a {
