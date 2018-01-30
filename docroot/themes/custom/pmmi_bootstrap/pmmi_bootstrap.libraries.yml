@@ -43,7 +43,7 @@ bootstrap-scripts:
 
 jquery-uniform:
   js:
-    libraries/jquery.uniform/src/js/jquery.uniform.js: {}
+    node_modules/jquery.uniform/src/js/jquery.uniform.js: {}
 
 breakpoints:
   js:
@@ -53,11 +53,11 @@ breakpoints:
 
 matchheight:
   js:
-    libraries/matchHeight/dist/jquery.matchHeight-min.js: {}
+    node_modules/jquery-match-height/dist/jquery.matchHeight-min.js: {}
 
 imagesloaded:
   js:
-    libraries/imagesloaded/imagesloaded.pkgd.min.js: {}
+    node_modules/imagesloaded/imagesloaded.pkgd.min.js: {}
 
 selectize-plugins:
   js:
@@ -65,9 +65,9 @@ selectize-plugins:
 
 jquery.countdown:
   js:
-    libraries/moment/min/moment.min.js: {}
-    libraries/moment-timezone/builds/moment-timezone-with-data.min.js: {}
-    libraries/jquery.countdown/dist/jquery.countdown.min.js: {}
+    node_modules/moment/min/moment.min.js: {}
+    node_modules/moment-timezone/builds/moment-timezone-with-data.min.js: {}
+    node_modules/jquery-countdown/dist/jquery.countdown.min.js: {}
 
 blueconic:
   header: true
@@ -76,4 +76,4 @@ blueconic:
 
 stacktable.js:
   js:
-    libraries/stacktable.js/stacktable.js: {}
+    node_modules/stacktable.js/stacktable.js: {}

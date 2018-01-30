@@ -12,8 +12,8 @@ var eslint = require('gulp-eslint');
 
 // Define list of vendors.
 var _vendors = [
-  './libraries/compass-sass-mixins/lib',
-  './libraries/components-font-awesome/scss'
+  './node_modules/compass-sass-mixins/lib',
+  './node_modules/components-font-awesome/scss'
 ];
 
 gulp.task('sass:build', function () {
