@@ -16,6 +16,7 @@ module:
   field_ui: 0
   kint: 0
   maillog: 0
+  seckit: 0
   slick_ui: 0
   stage_file_proxy: 0
   update: 0
@@ -26,6 +27,7 @@ blacklist:
   - pmmi_sales_agent.mail_mass_settings
   - pmmi_sales_agent.mail_settings
   - pmmi_sales_agent.reporting_settings
+  - seckit.settings
   - 'page_manager.page.*'
   - 'page_manager.page_variant.*'
   - 'tb_megamenu.menu_config.*'

@@ -17,6 +17,7 @@ module:
   maillog: 0
   purge_ui: 0
   queue_ui: 0
+  seckit: 0
   slick_ui: 0
   update: 0
   views_ui: 0
@@ -24,6 +25,7 @@ module:
 theme: {  }
 blacklist:
   - maillog.settings
+  - seckit.settings
   - system.menu.devel
 graylist:
   - core.extension

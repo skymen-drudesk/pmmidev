@@ -1,6 +1,6 @@
 seckit_xss:
   csp:
-    checkbox: false
+    checkbox: true
     report-only: false
     default-src: ''
     script-src: ''
@@ -11,8 +11,9 @@ seckit_xss:
     child-src: ''
     font-src: ''
     connect-src: ''
-    report-uri: /report-csp-violation
+    report-uri: report-csp-violation
     policy-uri: ''
+    style-src: ''
   x_xss:
     seckit_x_xss_option_disable: Disabled
     seckit_x_xss_option_0: '0'
@@ -32,8 +33,8 @@ seckit_clickjacking:
 seckit_ssl:
   hsts: false
   hsts_subdomains: false
-  hsts_max_age: 1000
-  hsts_preload: false
+  hsts_max_age: 10886400
+  hsts_preload: true
 seckit_various:
   from_origin: false
   from_origin_destination: same
