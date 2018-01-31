@@ -2,17 +2,18 @@ uuid: f70bfea9-dac2-44c6-89ed-bc02a7214fea
 langcode: en
 status: true
 dependencies: {  }
-id: test
-label: Test
-folder: ../config/test
+id: stage
+label: Stage
+folder: ../config/stage
 module:
-  maillog: 0
-  syslog: 0
+  acquia_connector: 0
   config_readonly: 0
+  syslog: 0
+  maillog: 0
 theme: {  }
-blacklist: {  }
-graylist:
+blacklist:
   - acquia_connector.settings
+graylist:
   - core.extension
   - mailsystem.settings
   - system.logging
