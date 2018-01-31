@@ -18,9 +18,9 @@ module:
   purge_ui: 0
   queue_ui: 0
   slick_ui: 0
-  syslog: 0
   update: 0
   views_ui: 0
+  syslog: 0
 theme: {  }
 blacklist:
   - maillog.settings
@@ -29,6 +29,7 @@ graylist:
   - core.extension
   - mailsystem.settings
   - system.logging
+  - system.performance
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 2
