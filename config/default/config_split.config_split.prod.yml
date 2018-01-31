@@ -8,6 +8,7 @@ folder: ../config/prod
 module:
   acquia_connector: 0
   seckit: 0
+  shield: 0
   config_readonly: 0
   sendgrid_integration: 0
   syslog: 0
@@ -15,6 +16,7 @@ theme: {  }
 blacklist:
   - acquia_connector.settings
   - seckit.settings
+  - shield.settings
 graylist:
   - core.extension
   - mailsystem.settings

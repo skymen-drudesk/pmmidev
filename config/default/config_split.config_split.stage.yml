@@ -9,6 +9,7 @@ module:
   acquia_connector: 0
   maillog: 0
   seckit: 0
+  shield: 0
   config_readonly: 0
   syslog: 0
 theme: {  }
@@ -16,6 +17,7 @@ blacklist:
   - acquia_connector.settings
   - maillog.settings
   - seckit.settings
+  - shield.settings
 graylist:
   - core.extension
   - mailsystem.settings
