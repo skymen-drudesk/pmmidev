@@ -7,12 +7,17 @@ label: Prod
 folder: ../config/prod
 module:
   acquia_connector: 0
+  config_readonly: 0
   sendgrid_integration: 0
+  syslog: 0
 theme: {  }
-blacklist: {  }
+blacklist:
+  - acquia_connector.settings
 graylist:
   - core.extension
   - mailsystem.settings
+  - system.logging
+  - system.performance
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 0

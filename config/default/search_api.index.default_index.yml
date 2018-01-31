@@ -22,7 +22,7 @@ dependencies:
 id: default_index
 name: 'Default Index'
 description: ''
-read_only: true
+read_only: false
 field_settings:
   node_grants:
     label: 'Node access information'
@@ -192,12 +192,11 @@ datasource_settings:
   'entity:pmmi_page_manager_search': {  }
 processor_settings:
   report_year: {  }
-  pmmi_shows: {  }
   state: {  }
   country: {  }
-  rendered_item: {  }
+  pmmi_shows: {  }
   add_url: {  }
-  aggregated_field: {  }
+  rendered_item: {  }
   entity_status: {  }
   ignorecase:
     all_fields: false
@@ -210,14 +209,13 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
+  aggregated_field: {  }
   content_access:
     weights:
       preprocess_query: -30
 tracker_settings:
-  default:
-    indexing_order: fifo
+  default: {  }
 options:
   index_directly: true
   cron_limit: 50
-  overridden_by_acquia_search: 2
 server: solr_server
