@@ -244,9 +244,8 @@ $databases = array();
  *   );
  * @endcode
  */
-$config_directories = array(
-  CONFIG_SYNC_DIRECTORY => '../config/default',
-);
+$config_directories[CONFIG_SYNC_DIRECTORY] = '../config/default';
+$config_directories['vcs'] = $app_root . '/../config/' . basename($site_path);
 
 /**
  * Settings:
@@ -730,6 +729,18 @@ $settings['trusted_host_patterns'] = array(
 
 $settings['install_profile'] = 'config_installer';
 
+## Enable always necessary split config settings
+$config['config_split.config_split.ignore']['status'] = TRUE;
+
+## Disable environment specific split config settings
+$config['config_split.config_split.prod']['status'] = FALSE;
+$config['config_split.config_split.stage']['status'] = FALSE;
+$config['config_split.config_split.dev']['status'] = FALSE;
+$config['config_split.config_split.local']['status'] = FALSE;
+
+## Disable legacy split config settings
+$config['config_split.config_split.config_panels_pages']['status'] = FALSE;
+
 /**
  * Load local development override configuration, if available.
  *
@@ -760,3 +771,18 @@ if (isset($_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR']) && file_exists($_SERVER['D
   require $_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR'] . '/cld_prod_pmmi_dev_default.inc';
 }
 // </DDSETTINGS>
+
+## Enable environment specific split config settings
+if (AH_SITE_ENVIRONMENT && !empty(AH_SITE_ENVIRONMENT)) {
+  switch (AH_SITE_ENVIRONMENT) {
+    case 'prod':
+      $config['config_split.config_split.prod']['status'] = TRUE;
+      break;
+    case 'test':
+      $config['config_split.config_split.stage']['status'] = TRUE;
+      break;
+    case 'dev':
+      $config['config_split.config_split.dev']['status'] = TRUE;
+      break;
+  }
+}
