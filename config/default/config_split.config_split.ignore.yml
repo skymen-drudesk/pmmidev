@@ -7,7 +7,6 @@ label: Ignore
 folder: ''
 module:
   acquia_connector: 0
-  audience_select: 0
   blazy_ui: 0
   config_devel: 0
   config_update_ui: 0
@@ -17,20 +16,22 @@ module:
   kint: 0
   maillog: 0
   slick_ui: 0
-  tb_megamenu: 0
   update: 0
   views_ui: 0
   dblog: 0
   stage_file_proxy: 0
 theme: {  }
 blacklist:
+  - audience_select.settings
   - pmmi_sales_agent.mail_mass_settings
   - pmmi_sales_agent.mail_settings
   - pmmi_sales_agent.reporting_settings
   - 'page_manager.page.*'
   - 'page_manager.page_variant.*'
+  - 'tb_megamenu.menu_config.*'
   - 'webform.webform.*'
 graylist:
+  - core.extension
   - page_manager.page.node_add
   - page_manager.page.node_edit
   - page_manager.page.node_view

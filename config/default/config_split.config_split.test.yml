@@ -1,19 +1,20 @@
 uuid: f70bfea9-dac2-44c6-89ed-bc02a7214fea
 langcode: en
-status: false
+status: true
 dependencies: {  }
-id: test_environment
-label: 'Test environment'
-folder: ../config/drupal/test
+id: test
+label: Test
+folder: ../config/test
 module:
+  acquia_connector: 0
   maillog: 0
+  syslog: 0
+  config_readonly: 0
 theme: {  }
-blacklist:
-  - maillog.settings
+blacklist: {  }
 graylist:
   - core.extension
   - mailsystem.settings
-  - sendgrid_integration.settings
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 1

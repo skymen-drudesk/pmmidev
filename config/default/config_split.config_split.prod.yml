@@ -1,11 +1,12 @@
-uuid: 7d39d477-b54a-4fb9-88a9-022dcc32d5d3
+uuid: 9796f309-bc41-457c-8047-a96d39635943
 langcode: en
-status: false
+status: true
 dependencies: {  }
-id: prod_environment
-label: 'Prod environment'
-folder: ../config/drupal/prod
+id: prod
+label: Prod
+folder: ../config/prod
 module:
+  acquia_connector: 0
   sendgrid_integration: 0
 theme: {  }
 blacklist: {  }
