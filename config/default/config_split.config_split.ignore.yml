@@ -6,53 +6,34 @@ id: ignore
 label: Ignore
 folder: ''
 module:
+  acquia_connector: 0
+  audience_select: 0
+  blazy_ui: 0
   config_devel: 0
   config_update_ui: 0
+  devel: 0
+  devel_debug_log: 0
   field_ui: 0
   kint: 0
   maillog: 0
-  stage_file_proxy: 0
-  update: 0
-  blazy_ui: 0
-  dblog: 0
-  devel: 0
-  devel_debug_log: 0
   slick_ui: 0
+  tb_megamenu: 0
+  update: 0
   views_ui: 0
+  dblog: 0
+  stage_file_proxy: 0
 theme: {  }
 blacklist:
-  - audience_select.settings
-  - page_manager.page.blog_search
-  - page_manager.page.site_template
-  - page_manager.page_variant.403_page-panels_variant-0
-  - page_manager.page_variant.404_page-panels_variant-0
-  - page_manager.page_variant.blog_search-panels_variant-0
-  - page_manager.page_variant.contact_us-panels_variant-0
-  - page_manager.page_variant.site_template-panels_everywhere_variant-0
-  - page_manager.page_variant.site_template-panels_everywhere_variant-1
-  - page_manager.page_variant.site_template-panels_everywhere_variant-2
-  - page_manager.page_variant.site_template-panels_everywhere_variant-3
-  - page_manager.page_variant.site_template-panels_everywhere_variant-4
-  - page_manager.page_variant.site_template-panels_everywhere_variant-6
   - pmmi_sales_agent.mail_mass_settings
   - pmmi_sales_agent.mail_settings
   - pmmi_sales_agent.reporting_settings
-  - tb_megamenu.menu_config.annual-meeting-nav__pmmi_bootstrap
-  - tb_megamenu.menu_config.emerging-leaders-nav__pmmi_bootstrap
-  - tb_megamenu.menu_config.executive-leadership-nav__pmmi_bootstrap
   - 'page_manager.page.*'
   - 'page_manager.page_variant.*'
-  - 'tb_megamenu.menu_config.*'
   - 'webform.webform.*'
-  - 'webform.webform_options.*'
 graylist:
-  - page_manager.page.403_page
-  - page_manager.page.404_page
   - page_manager.page.node_add
   - page_manager.page.node_edit
   - page_manager.page.node_view
-  - page_manager.page_variant.403_page-panels_variant-0
-  - page_manager.page_variant.404_page-panels_variant-0
   - page_manager.page_variant.node_add-panels_variant-0
   - page_manager.page_variant.node_edit-panels_variant-0
 graylist_dependents: true
