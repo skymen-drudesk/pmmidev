@@ -13,6 +13,7 @@ module:
 theme: {  }
 blacklist:
   - acquia_connector.settings
+  - maillog.settings
 graylist:
   - core.extension
   - mailsystem.settings
