@@ -31,7 +31,6 @@ blacklist:
   - 'tb_megamenu.menu_config.*'
   - 'webform.webform.*'
 graylist:
-  - core.extension
   - page_manager.page.node_add
   - page_manager.page.node_edit
   - page_manager.page.node_view
@@ -39,4 +38,4 @@ graylist:
   - page_manager.page_variant.node_edit-panels_variant-0
 graylist_dependents: true
 graylist_skip_equal: true
-weight: 3
+weight: 4

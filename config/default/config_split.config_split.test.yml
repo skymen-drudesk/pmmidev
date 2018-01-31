@@ -6,15 +6,16 @@ id: test
 label: Test
 folder: ../config/test
 module:
-  acquia_connector: 0
   maillog: 0
   syslog: 0
   config_readonly: 0
 theme: {  }
 blacklist: {  }
 graylist:
+  - acquia_connector.settings
   - core.extension
   - mailsystem.settings
+  - system.logging
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 1
