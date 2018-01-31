@@ -773,8 +773,8 @@ if (isset($_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR']) && file_exists($_SERVER['D
 // </DDSETTINGS>
 
 ## Enable environment specific split config settings
-if (AH_SITE_ENVIRONMENT && !empty(AH_SITE_ENVIRONMENT)) {
-  switch (AH_SITE_ENVIRONMENT) {
+if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+  switch ($_ENV['AH_SITE_ENVIRONMENT']) {
     case 'prod':
       $config['config_split.config_split.prod']['status'] = TRUE;
       break;
