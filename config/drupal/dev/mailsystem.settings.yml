@@ -4,6 +4,6 @@ modules:
       formatter: sendgrid_integration
       sender: sendgrid_integration
 defaults:
-  formatter: maillog
-  sender: maillog
+  formatter: sendgrid_integration
+  sender: sendgrid_integration
 theme: current
