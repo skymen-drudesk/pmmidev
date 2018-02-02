@@ -25,10 +25,11 @@ dependencies:
     - field.storage.node.field_equipment_sold_type_other
     - field.storage.node.field_manufacturers_represented
     - field.storage.node.field_after_sales_service
-    - search_api.server.solr_agent_contacts_server
+    - search_api.server.acquia_search_server
   module:
     - node
     - search_api
+    - pmmi_reports
     - pmmi_search
     - pmmi_company_contact
 id: agent_contacts_index
@@ -341,15 +342,17 @@ field_settings:
 datasource_settings:
   'entity:pmmi_company_contact': {  }
 processor_settings:
+  report_year: {  }
   pmmi_shows: {  }
   state: {  }
   country: {  }
+  rendered_item: {  }
   add_url: {  }
   aggregated_field: {  }
-  rendered_item: {  }
 tracker_settings:
-  default: {  }
+  default:
+    indexing_order: fifo
 options:
   index_directly: true
   cron_limit: 50
-server: solr_agent_contacts_server
+server: acquia_search_server

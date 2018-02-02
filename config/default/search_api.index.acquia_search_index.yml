@@ -1,9 +1,10 @@
-uuid: 17012976-c52c-4640-b809-fc5b8cca1113
+uuid: 16b321c5-592c-4af3-a6d8-bc98668b8acf
 langcode: en
 status: false
 dependencies:
   config:
     - field.storage.node.body
+    - search_api.server.acquia_search_server
   module:
     - search_api
     - pmmi_reports
@@ -47,14 +48,14 @@ datasource_settings:
       selected: {  }
 processor_settings:
   report_year: {  }
-  country: {  }
   pmmi_shows: {  }
   state: {  }
+  country: {  }
+  rendered_item: {  }
   add_url:
     plugin_id: add_url
     settings: {  }
   aggregated_field: {  }
-  rendered_item: {  }
 tracker_settings:
   default:
     plugin_id: default
@@ -70,4 +71,4 @@ options:
       settings: {  }
       processorPluginId: language
   overridden_by_acquia_search: 2
-server: null
+server: acquia_search_server

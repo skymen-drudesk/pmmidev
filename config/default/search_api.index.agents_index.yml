@@ -21,7 +21,7 @@ dependencies:
     - field.storage.node.field_equipment_sold_type_other
     - field.storage.node.field_after_sales_service
     - field.storage.node.field_approval_state
-    - search_api.server.solr_agents_server
+    - search_api.server.acquia_search_server
   module:
     - search_api
     - pmmi_reports
@@ -302,6 +302,8 @@ datasource_settings:
 processor_settings:
   report_year: {  }
   pmmi_shows: {  }
+  state: {  }
+  country: {  }
   pmmi_country_area_ws:
     fields:
       - ts
@@ -309,9 +311,38 @@ processor_settings:
       preprocess_index: -6
       preprocess_query: -6
     all_fields: false
-  state: {  }
-  country: {  }
+  stemmer:
+    fields:
+      - title_f
+    exceptions:
+      texan: texa
+      mexican: mexic
+    weights:
+      preprocess_index: 0
+      preprocess_query: 0
+    all_fields: false
+  rendered_item: {  }
+  add_url: {  }
   aggregated_field: {  }
+  highlight:
+    highlight: always
+    highlight_partial: false
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+  tokenizer:
+    fields: {  }
+    spaces: ''
+    overlap_cjk: 1
+    minimum_word_size: '3'
+    weights:
+      preprocess_index: -6
+      preprocess_query: -6
+    all_fields: false
   stopwords:
     fields: {  }
     stopwords:
@@ -354,8 +385,16 @@ processor_settings:
       preprocess_index: -5
       preprocess_query: -2
     all_fields: false
-  add_url: {  }
-  rendered_item: {  }
+  ignorecase:
+    fields:
+      - title
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+    all_fields: false
+  content_access:
+    weights:
+      preprocess_query: -10
   html_filter:
     fields:
       - title
@@ -371,48 +410,10 @@ processor_settings:
       preprocess_index: -10
       preprocess_query: -10
     all_fields: false
-  highlight:
-    highlight: always
-    highlight_partial: false
-    excerpt: true
-    excerpt_length: 256
-    exclude_fields: {  }
-    prefix: '<strong>'
-    suffix: '</strong>'
-    weights:
-      postprocess_query: 0
-  content_access:
-    weights:
-      preprocess_query: -10
-  tokenizer:
-    fields: {  }
-    spaces: ''
-    overlap_cjk: 1
-    minimum_word_size: '3'
-    weights:
-      preprocess_index: -6
-      preprocess_query: -6
-    all_fields: false
-  stemmer:
-    fields:
-      - title_f
-    exceptions:
-      texan: texa
-      mexican: mexic
-    weights:
-      preprocess_index: 0
-      preprocess_query: 0
-    all_fields: false
-  ignorecase:
-    fields:
-      - title
-    weights:
-      preprocess_index: -10
-      preprocess_query: -10
-    all_fields: false
 tracker_settings:
-  default: {  }
+  default:
+    indexing_order: fifo
 options:
   index_directly: true
   cron_limit: 50
-server: solr_agents_server
+server: acquia_search_server
