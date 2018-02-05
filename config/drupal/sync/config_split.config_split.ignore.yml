@@ -37,14 +37,17 @@ blacklist:
   - page_manager.page_variant.site_template-panels_everywhere_variant-4
   - page_manager.page_variant.site_template-panels_everywhere_variant-5
   - page_manager.page_variant.site_template-panels_everywhere_variant-6
-  - page_manager.page_variant.site_templatepanels_everywhere_variant7
+  - page_manager.page_variant.site_template-panels_everywhere_variant-7
   - pmmi_sales_agent.mail_mass_settings
   - pmmi_sales_agent.mail_settings
   - pmmi_sales_agent.reporting_settings
   - tb_megamenu.menu_config.annual-meeting-nav__pmmi_bootstrap
   - tb_megamenu.menu_config.emerging-leaders-nav__pmmi_bootstrap
   - tb_megamenu.menu_config.executive-leadership-nav__pmmi_bootstrap
-graylist: {  }
+  - page_manager.page_variant.site_templatepanels_everywhere_variant7
+graylist:
+  - page_manager.page.contact_us
+  - page_manager.page_variant.contact_us-panels_variant-0
 graylist_dependents: true
 graylist_skip_equal: true
 weight: 3
