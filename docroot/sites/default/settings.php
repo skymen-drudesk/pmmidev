@@ -244,8 +244,7 @@ $databases = array();
  *   );
  * @endcode
  */
-$config_directories[CONFIG_SYNC_DIRECTORY] = '../config/default';
-$config_directories['vcs'] = $app_root . '/../config/' . basename($site_path);
+#$config_directories[CONFIG_SYNC_DIRECTORY] = '../config/default';
 
 /**
  * Settings:
@@ -420,12 +419,6 @@ $settings['update_free_access'] = FALSE;
  * getting cached pages from the proxy.
  */
 # $settings['omit_vary_cookie'] = TRUE;
-
-if (isset($settings['memcache']['servers'])) {
-  // Memcache settings.
-  $settings['cache']['default'] = 'cache.backend.memcache';
-  $settings['memcache']['stampede_protection'] = TRUE;
-}
 
 /**
  * Class Loader.
@@ -715,6 +708,9 @@ $settings['install_profile'] = 'config_installer';
 if (file_exists('/var/www/site-php')) {
   require('/var/www/site-php/pmmi/pmmi-settings.inc');
 }
+
+// set memcache as default cache backend.
+$settings['cache']['default'] = 'cache.backend.memcache';
 
 /**
  * Private file path:
