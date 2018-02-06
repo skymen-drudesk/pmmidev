@@ -693,10 +693,6 @@ $settings['trusted_host_patterns'] = array(
   '^.+\.pmmi\.org$',
   '^pmmi$',
   '^.+\.pmmimediagroup\.com$',
-  '^pmmi\.dev$',
-  '^.+\.pmmi\.dev$',
-  '^pmmidev\.dd$',
-  '^localhost$',
 );
 
 $settings['install_profile'] = 'config_installer';
