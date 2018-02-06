@@ -514,27 +514,6 @@ if ($settings['hash_salt']) {
 # $settings['file_public_path'] = 'sites/default/files';
 
 /**
- * Private file path:
- *
- * A local file system path where private files will be stored. This directory
- * must be absolute, outside of the Drupal installation directory and not
- * accessible over the web.
- *
- * Note: Caches need to be cleared when this value is changed to make the
- * private:// stream wrapper available to the system.
- *
- * See https://www.drupal.org/documentation/modules/file for more information
- * about securing private files.
- */
-#$settings['file_private_path'] = '/var/www/private';
-if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
-  $settings['file_private_path'] = '/mnt/files/' . $_ENV['AH_SITE_GROUP'] . '.' . $_ENV['AH_SITE_ENVIRONMENT'] . '/' . $site_path . '/files-private';
-}
-else {
-  $settings['file_private_path'] = '{PATH}';
-}
-
-/**
  * Session write interval:
  *
  * Set the minimum interval between each session write to database.
@@ -729,17 +708,68 @@ $settings['trusted_host_patterns'] = array(
 
 $settings['install_profile'] = 'config_installer';
 
-## Enable always necessary split config settings
-$config['config_split.config_split.ignore']['status'] = TRUE;
+// On Acquia Cloud, this include file configures Drupal to use the correct
+// database in each site environment (Dev, Stage, or Prod). To use this
+// settings.php for development on your local workstation, set $db_url
+// (Drupal 5 or 6) or $databases (Drupal 7 or 8) as described in comments above.
+if (file_exists('/var/www/site-php')) {
+  require('/var/www/site-php/pmmi/pmmi-settings.inc');
+}
 
-## Disable environment specific split config settings
+/**
+ * Private file path:
+ *
+ * A local file system path where private files will be stored. This directory
+ * must be absolute, outside of the Drupal installation directory and not
+ * accessible over the web.
+ *
+ * Note: Caches need to be cleared when this value is changed to make the
+ * private:// stream wrapper available to the system.
+ *
+ * See https://www.drupal.org/documentation/modules/file for more information
+ * about securing private files.
+ */
+#$settings['file_private_path'] = '/var/www/private';
+if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+    $settings['file_private_path'] = '/mnt/files/' . $_ENV['AH_SITE_GROUP'] . '.' . $_ENV['AH_SITE_ENVIRONMENT'] . '/' . $site_path . '/files-private';
+}
+else {
+    $settings['file_private_path'] = '{PATH}';
+}
+
+/**
+ * Handling of config splits.
+ * Adapted from Acquia BLT Settings:
+ * https://github.com/acquia/blt/commit/491e9b22548112cc19b577a58080042d377eb5f6#diff-23e918c0d5babc912180ce25a549fcb5
+ */
+// Configuration directories.
+$dir = dirname(DRUPAL_ROOT);
+$config_directories['sync'] = $dir . "../config/default";
+$config_directories['vcs'] = $config_directories['sync'];
+
+## Disable all config splits by default
 $config['config_split.config_split.prod']['status'] = FALSE;
 $config['config_split.config_split.stage']['status'] = FALSE;
 $config['config_split.config_split.dev']['status'] = FALSE;
 $config['config_split.config_split.local']['status'] = FALSE;
-
+$config['config_split.config_split.ignore']['status'] = FALSE;
 ## Disable legacy split config settings
 $config['config_split.config_split.config_panels_pages']['status'] = FALSE;
+
+## Enable environment specific split config settings
+if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+    switch ($_ENV['AH_SITE_ENVIRONMENT']) {
+        case 'prod':
+            $config['config_split.config_split.prod']['status'] = TRUE;
+            break;
+        case 'test':
+            $config['config_split.config_split.stage']['status'] = TRUE;
+            break;
+        case 'dev':
+            $config['config_split.config_split.dev']['status'] = TRUE;
+            break;
+    }
+}
 
 /**
  * Load local development override configuration, if available.
@@ -752,16 +782,7 @@ $config['config_split.config_split.config_panels_pages']['status'] = FALSE;
  * Keep this code block at the end of this file to take full effect.
  */
 if (file_exists(__DIR__ . '/settings.local.php')) {
-  include __DIR__ . '/settings.local.php';
-}
-
-
-// On Acquia Cloud, this include file configures Drupal to use the correct
-// database in each site environment (Dev, Stage, or Prod). To use this
-// settings.php for development on your local workstation, set $db_url
-// (Drupal 5 or 6) or $databases (Drupal 7 or 8) as described in comments above.
-if (file_exists('/var/www/site-php')) {
-  require('/var/www/site-php/pmmi/pmmi-settings.inc');
+    include __DIR__ . '/settings.local.php';
 }
 
 // <DDSETTINGS>
@@ -771,18 +792,3 @@ if (isset($_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR']) && file_exists($_SERVER['D
   require $_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR'] . '/cld_prod_pmmi_dev_default.inc';
 }
 // </DDSETTINGS>
-
-## Enable environment specific split config settings
-if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
-  switch ($_ENV['AH_SITE_ENVIRONMENT']) {
-    case 'prod':
-      $config['config_split.config_split.prod']['status'] = TRUE;
-      break;
-    case 'test':
-      $config['config_split.config_split.stage']['status'] = TRUE;
-      break;
-    case 'dev':
-      $config['config_split.config_split.dev']['status'] = TRUE;
-      break;
-  }
-}
