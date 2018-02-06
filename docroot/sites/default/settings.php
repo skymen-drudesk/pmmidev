@@ -741,7 +741,7 @@ else {
  */
 // Configuration directories.
 $dir = dirname(DRUPAL_ROOT);
-$config_directories['sync'] = $dir . "../config/default";
+$config_directories['sync'] = $dir . "/config/default";
 $config_directories['vcs'] = $config_directories['sync'];
 
 ## Disable all config splits by default
