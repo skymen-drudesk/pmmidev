@@ -17,14 +17,18 @@
     }
     .field-name-field-image {
       float: left;
-      width: 246px;
-      margin-left: - 280px;
+      max-width: 250px;
+      width: 100%;
+      margin-left: -280px;
+      img {
+        width: 100%;
+      }
     }
     @include desktop-max {
       padding-left: 250px;
       .field-name-field-image {
-        width: auto;
         margin-left: -230px;
+        max-width: 210px;
       }
     }
     .field-name-field-buttons a:not(:first-child) {
@@ -36,9 +40,11 @@
       .field-name-field-image {
         float: none;
         width: auto;
+        max-width: initial;
         margin: 0 0 15px;
         text-align: center;
         img {
+          width: auto;
           margin: 0 auto;
         }
       }

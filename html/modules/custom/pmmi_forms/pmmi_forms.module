@@ -363,7 +363,7 @@ function pmmi_forms_custom_filter_by_year_submit(array &$form, FormStateInterfac
   else {
     $form_state->setValue(['year', 'min'], NULL);
     $form_state->setValue(['year', 'max'], NULL);
-    $form_state->setValue('filter_by_year', NULL);
+    $form_state->setValue('filter_by_year', 'All');
   }
 }
 

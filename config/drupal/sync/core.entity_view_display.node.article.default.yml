@@ -43,8 +43,13 @@ third_party_settings:
       body:
         - body
       button:
-        - news_category_link
+        - node_link
     fields:
+      node_link:
+        plugin_id: node_link
+        weight: 5
+        label: hidden
+        formatter: default
       node_title:
         plugin_id: node_title
         weight: 3
@@ -54,21 +59,6 @@ third_party_settings:
           wrapper: ''
           class: ''
           link: false
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
-      news_category_link:
-        plugin_id: news_category_link
-        weight: 5
-        label: hidden
-        formatter: default
-        settings:
-          'link class': ''
-          wrapper: ''
-          class: ''
         ft:
           id: minimal
           settings:
