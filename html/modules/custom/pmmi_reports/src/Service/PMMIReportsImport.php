@@ -8,6 +8,7 @@ use Drupal\Component\Utility\DiffArray;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueWorkerManagerInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
+use GuzzleHttp\Exception\GuzzleException;
 
 /**
  * Class PMMIReportsImport.
@@ -101,25 +102,36 @@ class PMMIReportsImport {
    *   Show done message or not.
    */
   public function fetchContent($show_message = TRUE) {
-    $reports_data = $this->getReportsData();
-    $stored_items = $this->reportsImportStore->getAll();
-    $fetched_items = [];
-    $queue = $this->queue->get('pmmi_reports_import');
-    foreach ($reports_data as $id => $item) {
-      if (!isset($stored_items[$id]) || $diff = DiffArray::diffAssocRecursive($stored_items[$id], $item)) {
-        $queue->createItem([$id => $item]);
-        $fetched_items[$id] = $item;
+    $int_count = 0;
+    $int_max_tries = 3;
+    while ($int_count < $int_max_tries) {
+      try {
+        $reports_data = $this->getReportsData();
+        $stored_items = $this->reportsImportStore->getAll();
+        $fetched_items = [];
+        $queue = $this->queue->get('pmmi_reports_import');
+        foreach ($reports_data as $id => $item) {
+          if (!isset($stored_items[$id]) || $diff = DiffArray::diffAssocRecursive($stored_items[$id], $item)) {
+            $queue->createItem([$id => $item]);
+            $fetched_items[$id] = $item;
+          }
+        }
+        // Save fetched items to keyValue storage.
+        if (!empty($fetched_items)) {
+          $this->reportsImportStore->setMultiple($fetched_items);
+        }
+        // Show status message.
+        if ($show_message) {
+          drupal_set_message($this->formatPlural(count($fetched_items), 'Fetched 1 item', 'Fetched @count items.'));
+        }
+        \Drupal::logger('PMMI Reports')
+          ->info("Successfully fetched reports data. Try number {$int_count}");
+        break;
+      } catch (\Exception $e) {
+        \Drupal::logger('PMMI Reports')
+          ->error("Error found when fetching reports data. Try number {$int_count}: " . $e->getMessage());
+        $int_count++;
       }
-    }
-
-    // Save fetched items to keyValue storage.
-    if (!empty($fetched_items)) {
-      $this->reportsImportStore->setMultiple($fetched_items);
-    }
-
-    // Show status message.
-    if ($show_message) {
-      drupal_set_message($this->formatPlural(count($fetched_items), 'Fetched 1 item', 'Fetched @count items.'));
     }
   }
 
