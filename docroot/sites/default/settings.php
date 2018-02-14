@@ -691,7 +691,6 @@ $settings['container_yamls'][] = __DIR__ . '/services.yml';
 $settings['trusted_host_patterns'] = array(
   '^pmmi\.org$',
   '^.+\.pmmi\.org$',
-  '^pmmi\.loc$',
   '^pmmi$',
   '^.+\.pmmimediagroup\.com$',
 );
@@ -713,6 +712,12 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
 
 # Disable Drupal Core Search Functionality
 $conf['search_cron_limit'] = 0;
+
+
+## Make Acquia search read-only on dev and staging.
+if (!isset($_ENV['AH_SITE_ENVIRONMENT']) || $_ENV['AH_SITE_ENVIRONMENT'] != 'prod' ) {
+  $conf['apachesolr_read_only'] = "1";
+}
 
 /**
  * Private file path:
@@ -790,8 +795,3 @@ if (isset($_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR']) && file_exists($_SERVER['D
   require $_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR'] . '/cld_prod_pmmi_dev_default.inc';
 }
 // </DDSETTINGS>
-
-## Make Acquia search read-only on dev and staging.
-if (!isset($_ENV['AH_SITE_ENVIRONMENT']) || $_ENV['AH_SITE_ENVIRONMENT'] != 'prod' ) {
-  $conf['apachesolr_read_only'] = "1";
-}
