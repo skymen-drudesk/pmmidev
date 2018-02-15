@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "8a28d9aae8e48988228ca0bcdd8a53af",
+    "content-hash": "5b518306601affd3132deef8cf3d6b3c",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -1996,53 +1996,6 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/backup_migrate",
                 "issues": "https://www.drupal.org/project/issues/backup_migrate"
-            }
-        },
-        {
-            "name": "drupal/big_pipe_sessionless",
-            "version": "1.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://git.drupal.org/project/big_pipe_sessionless",
-                "reference": "8.x-1.1"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://ftp.drupal.org/files/projects/big_pipe_sessionless-8.x-1.1.zip",
-                "reference": "8.x-1.1",
-                "shasum": "d896ceadb7cbd7b12c28387ff1afb0e28e0b30b1"
-            },
-            "require": {
-                "drupal/core": "^8.3.0"
-            },
-            "type": "drupal-module",
-            "extra": {
-                "branch-alias": {
-                    "dev-1.x": "1.x-dev"
-                },
-                "drupal": {
-                    "version": "8.x-1.1",
-                    "datestamp": "1496913542",
-                    "security-coverage": {
-                        "status": "covered",
-                        "message": "Covered by Drupal's security advisory policy"
-                    }
-                }
-            },
-            "notification-url": "https://packages.drupal.org/8/downloads",
-            "license": [
-                "GPL-2.0+"
-            ],
-            "authors": [
-                {
-                    "name": "Wim Leers",
-                    "homepage": "https://www.drupal.org/user/99777"
-                }
-            ],
-            "description": "Accelerates Page Cache misses using the BigPipe technique.",
-            "homepage": "https://www.drupal.org/project/big_pipe_sessionless",
-            "support": {
-                "source": "http://cgit.drupalcode.org/big_pipe_sessionless"
             }
         },
         {
@@ -11231,7 +11184,7 @@
                 "reference": "origin/master"
             },
             "type": "drupal-library",
-            "time": "2018-02-12T16:01:32+00:00"
+            "time": "2018-01-19 19:23:34"
         },
         {
             "name": "twig/twig",
