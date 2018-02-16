@@ -95,6 +95,13 @@ AddEncoding gzip svgz
   # downloaded.
   RewriteRule "/\.|^\.(?!well-known/)" - [F]
 
+  RewriteCond %{HTTPS} off
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteCond %{ENV:AH_SITE_ENVIRONMENT} prod [OR]
+  RewriteCond %{ENV:AH_SITE_ENVIRONMENT} test [OR]
+  RewriteCond %{ENV:AH_SITE_ENVIRONMENT} dev
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
   # If your site can be accessed both with and without the 'www.' prefix, you
   # can use one of the following settings to redirect users to your preferred
   # URL, either WITH or WITHOUT the 'www.' prefix. Choose ONLY one option:
@@ -102,10 +109,12 @@ AddEncoding gzip svgz
   # To redirect all users to access the site WITH the 'www.' prefix,
   # (http://example.com/foo will be redirected to http://www.example.com/foo)
   # uncomment the following:
+
   # RewriteCond %{HTTP_HOST} .
   # RewriteCond %{HTTP_HOST} !^www\. [NC]
+  # RewriteCond %{ENV:AH_SITE_ENVIRONMENT} prod
   # RewriteRule ^ http%{ENV:protossl}://www.%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
-  #
+
   # To redirect all users to access the site WITHOUT the 'www.' prefix,
   # (http://www.example.com/foo will be redirected to http://example.com/foo)
   # uncomment the following:
