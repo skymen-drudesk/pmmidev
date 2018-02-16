@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "5b518306601affd3132deef8cf3d6b3c",
+    "content-hash": "f109ff65249c2549986a950c4b91b14a",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -4260,6 +4260,64 @@
                 "source": "git://git.drupal.org/project/facets.git",
                 "issues": "https://www.drupal.org/project/issues/facets",
                 "irc": "irc://irc.freenode.org/drupal-search-api"
+            }
+        },
+        {
+            "name": "drupal/fast_404",
+            "version": "1.0.0-alpha2",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/fast_404",
+                "reference": "8.x-1.0-alpha2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/fast_404-8.x-1.0-alpha2.zip",
+                "reference": "8.x-1.0-alpha2",
+                "shasum": "7cdf2287eaf1fbe12ed19cb95c008ee15fafa4de"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0-alpha2",
+                    "datestamp": "1462171443",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Alpha releases are not covered by Drupal security advisories."
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "adammalone",
+                    "homepage": "https://www.drupal.org/user/1295980"
+                },
+                {
+                    "name": "naveenvalecha",
+                    "homepage": "https://www.drupal.org/user/2665733"
+                },
+                {
+                    "name": "neetu morwani",
+                    "homepage": "https://www.drupal.org/user/2632025"
+                },
+                {
+                    "name": "soyarma",
+                    "homepage": "https://www.drupal.org/user/286273"
+                }
+            ],
+            "homepage": "https://www.drupal.org/project/fast_404",
+            "support": {
+                "source": "http://cgit.drupalcode.org/fast_404"
             }
         },
         {
@@ -13864,6 +13922,7 @@
         "drupal/entity_browser": 10,
         "drupal/externalauth": 15,
         "drupal/facets": 20,
+        "drupal/fast_404": 15,
         "drupal/field_group": 5,
         "drupal/field_permissions": 10,
         "drupal/file_browser": 20,
