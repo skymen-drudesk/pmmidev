@@ -716,9 +716,9 @@ if (file_exists('/var/www/site-php')) {
 }
 
 // set memcache as default cache backend.
-if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
-  $settings['cache']['default'] = 'cache.backend.memcache';
-}
+# if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+  # $settings['cache']['default'] = 'cache.backend.memcache';
+# }
 
 # Disable Drupal Core Search Functionality
 $conf['search_cron_limit'] = 0;
