@@ -8,6 +8,7 @@ folder: ../config/prod
 module:
   acquia_connector: 0
   config_readonly: 0
+  google_analytics: 0
   seckit: 0
   shield: 0
   syslog: 0
@@ -16,6 +17,8 @@ blacklist:
   - acquia_connector.settings
   - seckit.settings
   - shield.settings
+  - google_analytics.settings
+  - ultimate_cron.job.google_analytics_cron
 graylist:
   - core.extension
   - mailsystem.settings
