@@ -647,7 +647,7 @@ $settings['fast404_allow_anon_imagecache'] = TRUE;
 # BE CAREFUL with this setting as some modules
 # use their own php files and you need to be certain they do not bootstrap
 # Drupal. If they do, you will need to whitelist them too.
-$conf['fast404_url_whitelisting'] = TRUE;
+$settings['fast404_url_whitelisting'] = TRUE;
 # Array of whitelisted files/urls. Used if whitelisting is set to TRUE.
 $settings['fast404_whitelist']  = array('index.php', 'rss.xml', 'install.php', 'cron.php', 'update.php', 'xmlrpc.php');
 # Array of whitelisted URL fragment strings that conflict with fast404.
