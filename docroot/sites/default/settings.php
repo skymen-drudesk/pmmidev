@@ -731,6 +731,7 @@ if (file_exists('/var/www/site-php')) {
 // set memcache as default cache backend.
 if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   $settings['cache']['default'] = 'cache.backend.memcache';
+  $settings['memcache']['stampede_protection'] = TRUE;
 }
 
 # Disable Drupal Core Search Functionality
