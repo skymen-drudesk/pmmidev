@@ -235,12 +235,10 @@ class PMMISSOGetUserDataSubscriber implements EventSubscriberInterface {
       return;
     }
     $user_id = $event->getSsoPropertyBag()->getUserId();
-    $date = new \DateTime();
     foreach ($role_id_mapping as $committee_id) {
       $query = [
         '$filter' => 'MemberMasterCustomer eq \'' . $user_id . '\' and ' .
         'CommitteeMasterCustomer eq \'' . $committee_id . '\' and ' .
-        'EndDate ge datetime\'' . $date->format('Y-m-d') . '\' and ' .
         'ParticipationStatusCodeString eq \'ACTIVE\'',
       ];
       $request_options = $this->ssoHelper->buildDataServiceQuery(
