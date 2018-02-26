@@ -638,9 +638,22 @@ if ($settings['hash_salt']) {
 # $config['system.performance']['fast_404']['paths'] = '/\.(?:txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
 # $config['system.performance']['fast_404']['html'] = '<!DOCTYPE html><html><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>';
 
-$settings['fast404_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>';
+# Disallowed extensions. Any extension in here will not be served by Drupal and
+# will get a fast 404.
 $settings['fast404_exts'] = '/^(?!robots).*\.(txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
+# Allow anonymous users to hit URLs containing 'imagecache' even if the file
+# does not exist.
+$settings['fast404_allow_anon_imagecache'] = TRUE;
+# BE CAREFUL with this setting as some modules
+# use their own php files and you need to be certain they do not bootstrap
+# Drupal. If they do, you will need to whitelist them too.
+$settings['fast404_url_whitelisting'] = TRUE;
+# Array of whitelisted files/urls. Used if whitelisting is set to TRUE.
 $settings['fast404_whitelist']  = array('index.php', 'rss.xml', 'install.php', 'cron.php', 'update.php', 'xmlrpc.php');
+# Array of whitelisted URL fragment strings that conflict with fast404.
+$settings['fast404_string_whitelisting'] = array('/advagg_');
+# Default fast 404 error message.
+$settings['fast404_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN" "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL "@path" was not found on this server.</p></body></html>';
 
 if (file_exists('./modules/contrib/fast_404/fast404.inc')) {
   include_once './modules/contrib/fast_404/fast404.inc';
