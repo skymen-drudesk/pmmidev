@@ -8,7 +8,6 @@ dependencies:
     - taxonomy.vocabulary.report_type
   module:
     - search_api
-    - search_api_views_taxonomy
     - text
 id: search_page
 label: 'Search Page'
@@ -832,6 +831,7 @@ display:
               pmmi_member: '0'
               staff: '0'
               membership_committee: '0'
+              pmc_committee: '0'
           is_grouped: false
           group_info:
             label: ''
@@ -844,11 +844,12 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          parse_mode: direct
+          parse_mode: terms
           min_length: 1
           fields:
             title_f: title_f
             body_f: body_f
+            field_keywords: field_keywords
           plugin_id: search_api_fulltext
         field_category:
           id: field_category
