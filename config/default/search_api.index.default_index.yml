@@ -11,6 +11,7 @@ dependencies:
     - field.storage.node.field_available_from_date
     - field.storage.node.field_blog_date
     - field.storage.node.field_blog_category
+    - field.storage.node.field_keywords
     - search_api.server.acquia_search_server
   module:
     - search_api_solr
@@ -22,7 +23,7 @@ dependencies:
 id: default_index
 name: 'Default Index'
 description: ''
-read_only: false
+read_only: true
 field_settings:
   node_grants:
     label: 'Node access information'
@@ -167,6 +168,15 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_blog_category
+  field_keywords:
+    label: Keywords
+    datasource_id: 'entity:node'
+    property_path: field_keywords
+    type: text
+    boost: !!float 13
+    dependencies:
+      config:
+        - field.storage.node.field_keywords
   content:
     label: Content
     datasource_id: 'entity:pmmi_page_manager_search'
@@ -192,12 +202,15 @@ datasource_settings:
   'entity:pmmi_page_manager_search': {  }
 processor_settings:
   report_year: {  }
+  country: {  }
   pmmi_shows: {  }
   state: {  }
-  country: {  }
-  rendered_item: {  }
   add_url: {  }
+  content_access:
+    weights:
+      preprocess_query: -30
   aggregated_field: {  }
+  rendered_item: {  }
   entity_status: {  }
   ignorecase:
     all_fields: false
@@ -210,13 +223,11 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
-  content_access:
-    weights:
-      preprocess_query: -30
 tracker_settings:
   default:
     indexing_order: fifo
 options:
   index_directly: true
   cron_limit: 50
+  overridden_by_acquia_search: 2
 server: acquia_search_server

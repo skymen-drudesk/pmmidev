@@ -58,12 +58,6 @@ services:
     tags:
       - { name: page_cache_response_policy }
 
-  pmmi_sso.auto_assign_roles_subscriber:
-    class: Drupal\pmmi_sso\EventSubscriber\PMMISSOAutoAssignRolesSubscriber
-    arguments: ['@config.factory']
-    tags:
-      - { name: 'event_subscriber' }
-
   pmmi_sso.cron_data_collector:
     class: Drupal\pmmi_sso\Service\PMMISSOCronDataCollector
     arguments: ['@config.factory', '@entity_type.manager', '@user.data', '@database']

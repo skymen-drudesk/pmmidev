@@ -219,3 +219,57 @@ function pmmi_update_8009() {
     }
   }
 }
+
+/**
+ * Update URL alias for "Blog" Content Type.
+ */
+function pmmi_update_8010(&$sandbox) {
+  $query = \Drupal::entityQuery('node');
+  $query->condition('type', 'blog');
+  $entities = $query->execute();
+
+  if (empty($entities)) {
+    return t('No entities found.');
+  }
+
+  $result = [];
+
+  foreach ($entities as $entity_id) {
+    $result[] = [
+      'id' => $entity_id,
+    ];
+  }
+
+  // Use the sandbox to store the information needed to track progression.
+  if (!isset($sandbox['current'])) {
+    // The count of entities visited so far.
+    $sandbox['current'] = 0;
+    // Total entities that must be visited.
+    $sandbox['max'] = count($result);
+    // A place to store messages during the run.
+  }
+
+  // Process entities by groups of 20.
+  // When a group is processed, the batch update engine determines
+  // whether it should continue processing in the same request or provide
+  // progress feedback to the user and wait for the next request.
+  $limit = 20;
+  $result = array_slice($result, $sandbox['current'], $limit);
+
+  foreach ($result as $row) {
+    $entity_storage = \Drupal::entityTypeManager()->getStorage('node');
+    $entity = $entity_storage->load($row['id']);
+
+    // Update Entity URL alias.
+    \Drupal::service('pathauto.generator')->updateEntityAlias($entity, 'update');
+
+    // Update our progress information.
+    $sandbox['current']++;
+  }
+
+  $sandbox['#finished'] = empty($sandbox['max']) ? 1 : ($sandbox['current'] / $sandbox['max']);
+
+  if ($sandbox['#finished'] >= 1) {
+    return t('The batch URL Alias update is finished.');
+  }
+}

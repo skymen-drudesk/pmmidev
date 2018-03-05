@@ -377,7 +377,6 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
       $query = [
         '$filter' => 'MemberMasterCustomer eq \'' . $personify_id . '\' and ' .
           'CommitteeMasterCustomer eq \'' . $committee_id . '\' and ' .
-          'EndDate ge datetime\'' . $date->format('Y-m-d') . '\' and ' .
           'ParticipationStatusCodeString eq \'ACTIVE\'',
       ];
       $request_options = $this->ssoHelper->buildDataServiceQuery(
