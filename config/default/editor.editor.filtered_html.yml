@@ -49,10 +49,12 @@ settings:
             - PasteText
             - PasteFromWord
   plugins:
+    stylescombo:
+      styles: "h2.title|H2 block title\r\ntable.responsive|Responsive promo table with image\r\ntable.cardtable| Responsive table with stacked columns\r\nh2.headline2|Headline 2\r\nh3.headline3|Headline 3\r\nh4.headline4|Headline 4\r\np.paragraph1|Paragraph 1\r\np.paragraph3|Paragraph 3\r\nspan.button.btn-prm-wrap|Primary button\r\na.button-primary|Dark blue button\r\na.btn-primary-opacity|Light blue button\r\nspan.copy-button|Copy button"
     language:
       language_list: un
-    stylescombo:
-      styles: "h2.title|H2 block title\r\ntable.responsive|Responsive promo table with image\r\ntable.cardtable| Responsive table with stacked columns\r\nh2.headline2|Headline 2\r\nh3.headline3|Headline 3\r\nh4.headline4|Headline 4\r\np.paragraph1|Paragraph 1\r\np.paragraph3|Paragraph 3\r\na.button-primary|Dark blue button\r\na.btn-primary-opacity|Light blue button\r\nspan.copy-button|Copy button"
+    colorbutton:
+      colors: ''
 image_upload:
   status: false
   scheme: public
