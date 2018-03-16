@@ -23,7 +23,7 @@ dependencies:
 id: default_index
 name: 'Default Index'
 description: ''
-read_only: true
+read_only: false
 field_settings:
   node_grants:
     label: 'Node access information'
@@ -202,16 +202,15 @@ datasource_settings:
   'entity:pmmi_page_manager_search': {  }
 processor_settings:
   report_year: {  }
-  country: {  }
   pmmi_shows: {  }
+  country: {  }
   state: {  }
+  aggregated_field: {  }
   add_url: {  }
+  rendered_item: {  }
   content_access:
     weights:
       preprocess_query: -30
-  aggregated_field: {  }
-  rendered_item: {  }
-  entity_status: {  }
   ignorecase:
     all_fields: false
     fields:
@@ -223,11 +222,11 @@ processor_settings:
     weights:
       preprocess_index: -10
       preprocess_query: -10
+  entity_status: {  }
 tracker_settings:
   default:
     indexing_order: fifo
 options:
   index_directly: true
   cron_limit: 50
-  overridden_by_acquia_search: 2
 server: acquia_search_server
