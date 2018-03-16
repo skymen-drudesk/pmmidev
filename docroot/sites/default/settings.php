@@ -642,7 +642,7 @@ if ($settings['hash_salt']) {
 # will get a fast 404.
 if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
   $acquia_private_files = '/mnt/files/' . $_ENV['AH_SITE_GROUP'] . '.' . $_ENV['AH_SITE_ENVIRONMENT'] . '/' . $site_path . '/files-private';
-  $settings['fast404_exts'] = '/^(?!robots)^(?!' . $acquia_private_files . ').*\.(txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
+  $settings['fast404_exts'] = '/^(?!robots)^(((?!{PATH})|(?!' . $acquia_private_files . '))).*\.(txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
 }
 else {
   $settings['fast404_exts'] = '/^(?!robots)^(?!{PATH}).*\.(txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
