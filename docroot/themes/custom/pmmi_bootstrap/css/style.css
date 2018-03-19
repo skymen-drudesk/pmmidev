@@ -23459,4 +23459,45 @@ button.slick-arrow.slick-next {
   margin-left: -3px;
 }
 
+.page-node-type-training-provider .block-text {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: none;
+  text-align: center;
+  max-width: 0;
+}
+
+.page-node-type-training-provider .block-text .block-body {
+  max-width: 870px;
+  margin-left: 0;
+}
+
+.page-node-type-training-provider .block-text .block-body p, .page-node-type-training-provider .block-text .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .page-node-type-training-provider .block-text .block-body .field-name-field-head {
+  font-size: 18px;
+  font-size: 1.125rem;
+  line-height: 23px;
+  line-height: 1.4375rem;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .page-node-type-training-provider .block-text {
+    width: 750px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-node-type-training-provider .block-text {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-node-type-training-provider .block-text {
+    width: 1200px;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
