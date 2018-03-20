@@ -640,14 +640,7 @@ if ($settings['hash_salt']) {
 
 # Disallowed extensions. Any extension in here will not be served by Drupal and
 # will get a fast 404.
-if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
-  $acquia_private_files = '/mnt/files/' . $_ENV['AH_SITE_GROUP'] . '.' . $_ENV['AH_SITE_ENVIRONMENT'] . '/' . $site_path . '/files-private';
-  $settings['fast404_exts'] = '/^(?!robots)^(((?!{PATH})|(?!' . $acquia_private_files . '))).*\.(txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
-}
-else {
-  $settings['fast404_exts'] = '/^(?!robots)^(?!{PATH}).*\.(txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
-}
-
+$settings['fast404_exts'] = '/^(?!robots).*\.(txt|png|gif|jpe?g|css|js|ico|swf|flv|cgi|bat|pl|dll|exe|asp)$/i';
 # Allow anonymous users to hit URLs containing 'imagecache' even if the file
 # does not exist.
 $settings['fast404_allow_anon_imagecache'] = TRUE;
@@ -768,7 +761,7 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
     $settings['file_private_path'] = '/mnt/files/' . $_ENV['AH_SITE_GROUP'] . '.' . $_ENV['AH_SITE_ENVIRONMENT'] . '/' . $site_path . '/files-private';
 }
 else {
-    $settings['file_private_path'] = '{PATH}';
+    $settings['file_private_path'] = 'sites/default/files-private';
 }
 
 /**
