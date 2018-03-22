@@ -2,9 +2,13 @@
 
 namespace Drupal\pmmi_search\Plugin\Block;
 
+use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Core\Block\BlockBase;
+use Drupal\Core\Url;
 use Drupal\views\Views;
 use Drupal\Core\Form\FormStateInterface;
+use Psy\Util\Json;
+
 
 /**
  * Provides a 'PMMIFavoritesHeaderBlock' block.
@@ -51,6 +55,26 @@ class PMMIFavoritesHeaderBlock extends BlockBase {
     if (isset($view->header['downloads_favorites_button'])) {
       $output['download_link'] = $view->header['downloads_favorites_button']->render();
     }
+
+    // Display `Clear favorites` button if views has any results.
+//    if (count($view->result) > 0) {
+      $output['clear_favorites'] = [
+        '#type' => 'link',
+        '#title' => $this->t('Clear Favorites'),
+        '#url' => Url::fromRoute('pmmi_search.pmmi_clear_favorites_form'),
+        '#options' => [
+          'attributes' => [
+            'class' => ['use-ajax'],
+            'data-dialog-type' => 'modal',
+            'data-dialog-options' => Json::encode([
+              'width' => 700,
+            ]),
+          ]
+        ],
+        '#attached' => ['library' => ['core/drupal.dialog.ajax']],
+      ];
+//    }
+
     return $output;
   }
 
