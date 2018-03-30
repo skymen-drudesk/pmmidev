@@ -78,7 +78,12 @@ class PMMISSOValidator {
         $this->ssoHelper->log('Attempting to validate service token using URL: ' . $options['uri']);
       }
       try {
-        $response = $this->httpClient->request('POST', $options['uri'], ['form_params' => $options['params']]);
+        $options = [
+          'form_params' => $options['params'],
+          'timeout' => 30,
+        ];
+
+        $response = $this->httpClient->request('POST', $options['uri'], $options);
         $response_data = $response->getBody()->getContents();
         $this->ssoHelper->log("Validation response received from PMMI SSO server: " . htmlspecialchars($response_data));
       }
@@ -155,7 +160,12 @@ class PMMISSOValidator {
     );
 
     try {
-      $response = $this->httpClient->request('POST', $query_options['uri'], ['form_params' => $query_options['params']]);
+      $options = [
+        'form_params' => $query_options['params'],
+        'timeout' => 30
+      ];
+
+      $response = $this->httpClient->request('POST', $query_options['uri'], $options);
       $response_data = $response->getBody()->getContents();
       $this->ssoHelper->log("User ID received from PMMI SSO server: " . htmlspecialchars($response_data));
     }
