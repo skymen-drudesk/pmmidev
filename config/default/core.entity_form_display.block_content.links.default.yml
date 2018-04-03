@@ -7,6 +7,7 @@ dependencies:
     - field.field.block_content.links.field_head
     - field.field.block_content.links.field_links
   module:
+    - content_moderation
     - link_attributes
 id: block_content.links.default
 targetEntityType: block_content
@@ -27,11 +28,12 @@ content:
       placeholder_url: ''
       placeholder_title: ''
       enabled_attributes:
-        id: false
-        name: false
         target: true
         rel: true
         class: true
+        title: true
+        id: false
+        name: false
         accesskey: false
     third_party_settings: {  }
     type: link_attributes
@@ -44,4 +46,10 @@ content:
       placeholder: ''
     third_party_settings: {  }
     region: content
+  moderation_state:
+    type: moderation_state_default
+    weight: 100
+    settings: {  }
+    region: content
+    third_party_settings: {  }
 hidden: {  }
