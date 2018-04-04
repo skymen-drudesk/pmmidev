@@ -30,9 +30,9 @@ dependencies:
   module:
     - address
     - ds
+    - link
     - options
     - pmmi_address
-    - pmmi_fields
     - telephone
     - text
     - user
@@ -85,11 +85,6 @@ third_party_settings:
         - 'dynamic_block_field:node-company_trade_shows'
         - field_admin_notes
     fields:
-      node_title:
-        plugin_id: node_title
-        weight: 19
-        label: hidden
-        formatter: default
       'dynamic_block_field:node-company_trade_shows':
         plugin_id: 'dynamic_block_field:node-company_trade_shows'
         weight: 22
@@ -103,6 +98,11 @@ third_party_settings:
       'dynamic_block_field:node-sales_agent_directory_image_head':
         plugin_id: 'dynamic_block_field:node-sales_agent_directory_image_head'
         weight: 0
+        label: hidden
+        formatter: default
+      node_title:
+        plugin_id: node_title
+        weight: 19
         label: hidden
         formatter: default
 id: node.company.default
@@ -289,13 +289,19 @@ content:
     label: hidden
     settings:
       trim_length: 80
+      target: _blank
       url_only: false
       url_plain: false
-      rel: ''
-      target: ''
-      link_label: ''
-    third_party_settings: {  }
-    type: link_as_label
+      rel: '0'
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+    type: link
     region: general_line_2
 hidden:
   content_moderation_control: true

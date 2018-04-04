@@ -473,6 +473,8 @@ abstract class PMMISSOBaseQueue extends QueueWorkerBase implements ContainerFact
     else {
       $options = $request_param['params'];
     }
+    $options['timeout'] = 30;
+
     try {
       $response = $this->httpClient->request($method, $uri, $options);
       $response_data = $response->getBody()->getContents();
