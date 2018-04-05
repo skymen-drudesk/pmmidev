@@ -78,7 +78,7 @@ class PMMISSOValidator {
         $this->ssoHelper->log('Attempting to validate service token using URL: ' . $options['uri']);
       }
       try {
-        $options = [
+        $options += [
           'form_params' => $options['params'],
           'timeout' => 30,
         ];
