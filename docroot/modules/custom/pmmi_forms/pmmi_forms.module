@@ -169,7 +169,7 @@ function pmmi_forms_form_alter(array &$form, FormStateInterface $form_state) {
           '#markup' => "<h2 class='block-title'>{$view_title}</h2>",
         ];
         // Hide default filter;
-        $form['field_p_p_hall_of_fame_honorees_value']['#type'] = 'hidden';
+        hide($form['field_p_p_hall_of_fame_honorees_value']);
         if (!empty($results)) {
           $min_val = reset($results);
           $max_val = end($results);
