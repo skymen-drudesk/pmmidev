@@ -23207,11 +23207,13 @@ button.slick-arrow.slick-next {
 .block-views-blockevents-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .block-icons .column .col div.field, .block-icons .region-under-top .containers.mode-all-blocks-unformatted .rows .column .col div.field {
   padding: 10px 15px;
   -webkit-box-flex: 0;
-      -ms-flex: 0 1 33%;
-          flex: 0 1 33%;
+      -ms-flex: 0 1 calc(33% - 30px);
+          flex: 0 1 calc(33% - 30px);
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+  -ms-flex-preferred-size: calc(33% - 30px);
+      flex-basis: calc(33% - 30px);
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -23249,6 +23251,10 @@ button.slick-arrow.slick-next {
       -ms-grid-row-align: center;
       align-self: center;
   padding-right: 15px;
+}
+
+.region-under-top .containers.mode-all-blocks-unformatted > .container, .region-under-top .path-hall-of-fame .containers.mode-all-blocks-unformatted > .block-views-blockpast-hall-of-fame-honorees-block-1, .path-hall-of-fame .region-under-top .containers.mode-all-blocks-unformatted > .block-views-blockpast-hall-of-fame-honorees-block-1, .region-under-top .path-hall-of-fame .region-bottom .plain-text.block-block-content .containers.mode-all-blocks-unformatted > .block-plain_text, .path-hall-of-fame .region-bottom .plain-text.block-block-content .region-under-top .containers.mode-all-blocks-unformatted > .block-plain_text, .region-under-top .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-3 .containers.mode-all-blocks-unformatted > .view-content, .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-3 .region-under-top .containers.mode-all-blocks-unformatted > .view-content, .region-under-top .containers.mode-all-blocks-unformatted > .region-under-top {
+  width: 100%;
 }
 
 .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head {
@@ -23457,6 +23463,46 @@ button.slick-arrow.slick-next {
 
 .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-3 .block-person-company-style .inline-text .separator {
   margin-left: -3px;
+}
+
+.page-node-type-training-provider .block-text {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: none;
+  text-align: center;
+}
+
+.page-node-type-training-provider .block-text .block-body {
+  max-width: 870px;
+  margin-left: 0;
+}
+
+.page-node-type-training-provider .block-text .block-body p, .page-node-type-training-provider .block-text .block-body .region-under-top .containers.mode-all-blocks-unformatted .field-name-field-head, .region-under-top .containers.mode-all-blocks-unformatted .page-node-type-training-provider .block-text .block-body .field-name-field-head {
+  font-size: 18px;
+  font-size: 1.125rem;
+  line-height: 23px;
+  line-height: 1.4375rem;
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .page-node-type-training-provider .block-text {
+    width: 750px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-node-type-training-provider .block-text {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .page-node-type-training-provider .block-text {
+    width: 1200px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
