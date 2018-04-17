@@ -9,6 +9,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Path\CurrentPathStack;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\flag\FlagService;
+use Drupal\pmmi_search\Ajax\PageReloadCommand;
 use Drupal\views\Views;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
@@ -85,14 +86,7 @@ class PMMIClearFavorites extends FormBase {
       ],
     ];
 
-    $form['actions']['cancel'] = [
-      '#type' => 'submit',
-      '#value' => $this->t('Cancel'),
-      '#ajax' => [
-        'callback' => [$this, 'closeModal'],
-        'event' => 'click'
-      ],
-    ];
+    $form['#attached']['library'][] = 'pmmi_search/pmmi_search.ajax';
 
     return $form;
   }
@@ -101,8 +95,10 @@ class PMMIClearFavorites extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
+
     $response = new AjaxResponse();
-    $response->addCommand((new CloseModalDialogCommand()));
+    $response->addCommand(new CloseModalDialogCommand());
+    $response->addCommand(new PageReloadCommand());
 
     // Get all flagged entities by current user.
     $view = Views::getView('my_favorites_companies');
@@ -120,17 +116,6 @@ class PMMIClearFavorites extends FormBase {
         $this->flag->unflag($flag, $result_row->_entity, $this->account);
       }
     }
-
-    return $response;
-  }
-
-  /**
-   * Close modal dialog window.
-   */
-  public function closeModal(array &$form, $form_state) {
-    $response = new AjaxResponse();
-
-    $response->addCommand((new CloseModalDialogCommand()));
 
     return $response;
   }

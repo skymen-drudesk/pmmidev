@@ -57,14 +57,14 @@ class PMMIFavoritesHeaderBlock extends BlockBase {
     }
 
     // Display `Clear favorites` button if views has any results.
-//    if (count($view->result) > 0) {
+    if (count($view->result) > 0) {
       $output['clear_favorites'] = [
         '#type' => 'link',
         '#title' => $this->t('Clear Favorites'),
         '#url' => Url::fromRoute('pmmi_search.pmmi_clear_favorites_form'),
         '#options' => [
           'attributes' => [
-            'class' => ['use-ajax'],
+            'class' => ['use-ajax pmmi-clear-favorites'],
             'data-dialog-type' => 'modal',
             'data-dialog-options' => Json::encode([
               'width' => 700,
@@ -73,7 +73,7 @@ class PMMIFavoritesHeaderBlock extends BlockBase {
         ],
         '#attached' => ['library' => ['core/drupal.dialog.ajax']],
       ];
-//    }
+    }
 
     return $output;
   }
