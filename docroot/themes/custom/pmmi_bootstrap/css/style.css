@@ -18117,6 +18117,22 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   font-weight: 700;
 }
 
+.page-sales-agent-directory-my-favorites .favorites-header a.pmmi-clear-favorites {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 12px;
+  font-size: 20px;
+  font-size: 1.25rem;
+}
+
+.page-sales-agent-directory-my-favorites .favorites-header a.pmmi-clear-favorites:before {
+  font-family: FontAwesome;
+  content: '\f00d';
+  padding-right: 5px;
+  font-weight: normal;
+  text-decoration: none;
+}
+
 .page-sales-agent-directory-my-favorites thead > tr > th {
   border: none;
   border-bottom: 1px solid #c2c2c2;

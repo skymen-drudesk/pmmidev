@@ -513,6 +513,21 @@
         font-weight: 700;
       }
     }
+
+    a.pmmi-clear-favorites {
+      display: inline-block;
+      margin: 5px;
+      padding: 5px 12px;
+      font-size: $r20;
+
+      &:before {
+        font-family: FontAwesome;
+        content: '\f00d';
+        padding-right: 5px;
+        font-weight: normal;
+        text-decoration: none;
+      }
+    }
   }
   thead > tr > th {
     border: none;
