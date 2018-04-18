@@ -18032,6 +18032,20 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   color: #004e75;
 }
 
+@media screen and (min-width: 1024px) {
+  .block-pmmi-training-provider-search-results-block .view-search-training-provider-directory tbody td {
+    max-width: 30% !important;
+    width: 30% !important;
+  }
+  .block-pmmi-training-provider-search-results-block .view-search-training-provider-directory tbody td:first-child {
+    display: table-cell;
+  }
+  .block-pmmi-training-provider-search-results-block .view-search-training-provider-directory tbody td:first-child a {
+    white-space: normal;
+    text-overflow: initial;
+  }
+}
+
 .page-search-training-provider-directory .region-bottom {
   margin-right: auto;
   margin-left: auto;
