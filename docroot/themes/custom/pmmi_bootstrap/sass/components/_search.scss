@@ -460,6 +460,17 @@
           color: $blue;
         }
       }
+      @include desktop-min {
+        max-width: 30% !important;
+        width: 30% !important;
+        &:first-child {
+          display: table-cell;
+          a {
+            white-space: normal;
+            text-overflow: initial;
+          }
+        }
+      }
     }
   }
 }

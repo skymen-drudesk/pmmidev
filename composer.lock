@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d4c6fe39cadaa07c4b5d538c6313e8d8",
+    "content-hash": "c54414f3c53c768db3095286bd17b1ab",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -3736,6 +3736,57 @@
             "homepage": "https://www.drupal.org/project/display_field_copy",
             "support": {
                 "source": "http://cgit.drupalcode.org/display_field_copy"
+            }
+        },
+        {
+            "name": "drupal/double_field",
+            "version": "3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/double_field",
+                "reference": "8.x-3.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/double_field-8.x-3.1.zip",
+                "reference": "8.x-3.1",
+                "shasum": "7ca38d202db8f87eea768727059b80cc9303a8a3"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-3.x": "3.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-3.1",
+                    "datestamp": "1507986244",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Chi",
+                    "homepage": "https://www.drupal.org/user/556138"
+                }
+            ],
+            "description": "Provides a Drupal field type with two separate subfields.",
+            "homepage": "https://www.drupal.org/project/double_field",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/double_field",
+                "issues": "https://www.drupal.org/project/issues/double_field"
             }
         },
         {
@@ -11387,7 +11438,7 @@
                 "reference": "origin/master"
             },
             "type": "drupal-library",
-            "time": "2018-02-12 16:01:32"
+            "time": "2018-02-12T16:01:32+00:00"
         },
         {
             "name": "twig/twig",
