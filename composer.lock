@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "d4c6fe39cadaa07c4b5d538c6313e8d8",
@@ -1785,11 +1785,14 @@
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "Don't require late runtime processor": "https://www.drupal.org/files/issues/remove-runime.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
             "license": [
-                "GPL-2.0+"
+                "GPL-2.0-or-later"
             ],
             "authors": [
                 {
@@ -11387,7 +11390,7 @@
                 "reference": "origin/master"
             },
             "type": "drupal-library",
-            "time": "2018-02-12 16:01:32"
+            "time": "2018-02-12T16:01:32+00:00"
         },
         {
             "name": "twig/twig",
