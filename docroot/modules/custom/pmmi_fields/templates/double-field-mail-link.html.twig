@@ -1,3 +1,7 @@
-<div class="double-field">
-  <a href="mailto:{{ item.second }}">{{ item.first }}</a>
-</div>
+{% if item.first is empty %}
+  {% set title = item.second %}
+{% else %}
+  {% set title = item.first %}
+{% endif %}
+  <a href="mailto:{{ item.second }}">{{ title }}</a>
+
