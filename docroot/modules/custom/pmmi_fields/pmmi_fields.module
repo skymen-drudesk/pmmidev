@@ -63,6 +63,10 @@ function pmmi_fields_theme() {
       'render element' => 'form',
       'function' => 'theme_pmmi_fields_entity_table',
     ],
+    'double_field_mail_link' => [
+      'render element' => 'element',
+      'variables' => ['item' => NULL],
+    ],
   ];
 }
 
