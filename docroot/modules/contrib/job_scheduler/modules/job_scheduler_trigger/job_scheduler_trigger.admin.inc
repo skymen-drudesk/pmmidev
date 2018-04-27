@@ -137,7 +137,7 @@ function job_scheduler_trigger_edit_form_submit($form, &$form_state) {
     }
   }
   elseif ($op == t('Delete')) {
-    db_delete('job_scheduler_trigger')
+    \Drupal::database()->delete('job_scheduler_trigger')
       ->condition('trid', $trigger['trid'])
       ->execute();
     drupal_set_message(t('The trigger has been deleted.'));

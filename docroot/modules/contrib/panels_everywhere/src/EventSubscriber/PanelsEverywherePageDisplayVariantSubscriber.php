@@ -6,6 +6,7 @@ use Drupal\Core\Condition\ConditionAccessResolverTrait;
 use Drupal\Core\Display\ContextAwareVariantInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Render\PageDisplayVariantSelectionEvent;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\Core\Render\RenderEvents;
 use Drupal\page_manager\Entity\PageVariant;
 use Drupal\page_manager\Entity\PageVariantAccess;
@@ -17,6 +18,20 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class PanelsEverywherePageDisplayVariantSubscriber implements EventSubscriberInterface {
 
   use ConditionAccessResolverTrait;
+
+  /**
+   * The event-derived route match.
+   *
+   * @var \Drupal\Core\Routing\RouteMatchInterface
+   */
+  protected $routeMatch;
+
+  /**
+   * The event-derived route object.
+   *
+   * @var \Symfony\Component\Routing\Route
+   */
+  protected $route;
 
   /**
    * The entity storage.
@@ -42,27 +57,81 @@ class PanelsEverywherePageDisplayVariantSubscriber implements EventSubscriberInt
    *   The event to process.
    */
   public function onSelectPageDisplayVariant(PageDisplayVariantSelectionEvent $event) {
-    $page = $this->entityStorage->load('site_template');
-    $route_options = $event->getRouteMatch()->getRouteObject()->getOptions();
+    $this->routeMatch = $event->getRouteMatch();
+    $this->route = $this->routeMatch->getRouteObject();
 
-    $isAdminRoute = array_key_exists('_admin_route', $route_options) && $route_options['_admin_route'];
-
-    if (!is_object($page) || !$page->get('status') || $isAdminRoute) {
+    if (
+      // If this is a Page Manager route which our RouteSubscriber
+      // did not remove, do not process it.
+      $this->route->hasDefault('page_manager_page_variant') ||
+      // if this is an admin path, do not process it
+      $this->route->getOption('_admin_route')
+    ) {
       return;
+    } elseif ($variant = $this->getVariant()) {
+      $event->setPluginId($variant->getPluginId());
+      $event->setPluginConfiguration($variant->getConfiguration());
+      $event->setContexts($variant->getContexts());
+      $event->stopPropagation();
+    }
+  }
+
+  /**
+   * Copied from VariantRouteFilter.php
+   *
+   * Checks access of a page variant.
+   *
+   * @param string $variant
+   *   The page varian.
+   *
+   * @return bool
+   *   TRUE if the route is valid, FALSE otherwise.
+   */
+  protected function checkVariantAccess($variant) {
+    try {
+      $access = $variant && $variant->access('view');
+    }
+    // Since access checks can throw a context exception, consider that as
+    // a disallowed variant.
+    catch (ContextException $e) {
+      $access = FALSE;
     }
 
-    foreach ($page->getVariants() as $variant) {
-      $access = $this->resolveConditions($variant->getSelectionConditions(), $variant->getSelectionLogic());
+    return $access;
+  }
 
-      if (!$access) {
-        continue;
+  /**
+   * get the display variant for this route, if it exists.
+   *
+   * @return \Drupal\page_manager\Entity\Page|null
+   *   A page object. NULL if no matching page is found.
+   */
+  protected function getVariant() {
+    $page = NULL;
+
+    // pass 1 - try getting the page using the overridable getPageEntity function
+    $routeObject = $this->routeMatch->getRouteObject();
+    if ($routeObject) {
+      $pageID = $routeObject->getDefault('page_id');
+      if ($pageID) {
+        $page = $this->entityStorage->load($pageID);
       }
+    }
 
-      $plugin = $variant->getVariantPlugin();
-      $event->setPluginId($plugin->getPluginId());
-      $event->setPluginConfiguration($plugin->getConfiguration());
-      $event->setContexts($variant->getContexts());
-      break;
+    // pass 2 - use the global "Site Template" page
+    if (!is_object($page)) {
+      $page = $this->entityStorage->load('site_template');
+    }
+
+    if (is_object($page) && $page->get('status')) {
+      // return the first variant which selects for this context
+      foreach ($page->getVariants() as $variant) {
+        if (!$this->checkVariantAccess($variant)) {
+          continue;
+        }
+
+        return $variant->getVariantPlugin();
+      }
     }
   }
 
