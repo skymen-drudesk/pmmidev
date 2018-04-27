@@ -3,7 +3,9 @@
 namespace Drupal\xhprof\Extension;
 
 /**
- * Class TidewaysExtension
+ * Implements support for tideways extension.
+ *
+ * @see https://tideways.io/profiler/downloads
  */
 class TidewaysExtension implements ExtensionInterface {
 
@@ -38,5 +40,5 @@ class TidewaysExtension implements ExtensionInterface {
   public function disable() {
     return tideways_disable();
   }
-  
+
 }

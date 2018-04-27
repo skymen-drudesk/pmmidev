@@ -88,7 +88,7 @@ function job_scheduler_trigger_cron_job_scheduler_info() {
  * Get job list for job scheduler
  */
 function job_scheduler_trigger_list() {
-  return db_select('job_scheduler_trigger', 't')
+  return \Drupal::database()->select('job_scheduler_trigger', 't')
     ->fields('t')
     ->orderBy('status', 'DESC')
     ->execute()->fetchAll();
@@ -99,7 +99,7 @@ function job_scheduler_trigger_list() {
  */
 function job_scheduler_trigger_worker($job) {
   // Mark last time triggered for the records
-  db_update('job_scheduler_trigger')
+  \Drupal::database()->update('job_scheduler_trigger')
     ->fields(array('last' => REQUEST_TIME))
     ->condition('trid', $job['id'])
     ->execute();
@@ -119,7 +119,7 @@ function job_scheduler_trigger_worker($job) {
  * Menu loader
  */
 function job_scheduler_trigger_load($trid) {
-  return db_select('job_scheduler_trigger', 't')
+  return \Drupal::database()->select('job_scheduler_trigger', 't')
     ->fields('t')
     ->condition('trid', $trid)
     ->execute()->fetchObject();

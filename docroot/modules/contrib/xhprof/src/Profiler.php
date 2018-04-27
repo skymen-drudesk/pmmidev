@@ -3,10 +3,11 @@
 namespace Drupal\xhprof;
 
 use Drupal\Core\Config\ConfigFactoryInterface;
-use Drupal\Core\Url;
+use Drupal\Core\Link;
+use Drupal\xhprof\Extension\TidewaysExtension;
+use Drupal\xhprof\Extension\TidewaysXHProfExtension;
 use Drupal\xhprof\Extension\UprofilerExtension;
 use Drupal\xhprof\Extension\XHProfExtension;
-use Drupal\xhprof\Extension\TidewaysExtension;
 use Drupal\xhprof\XHProfLib\Storage\StorageInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestMatcherInterface;
@@ -62,6 +63,9 @@ class Profiler implements ProfilerInterface {
     }
     elseif ($extension == 'tideways') {
       $this->activeExtension = new TidewaysExtension();
+    }
+    elseif ($extension == 'tideways_xhprof') {
+      $this->activeExtension = new TidewaysXHProfExtension();
     }
   }
 
@@ -158,6 +162,10 @@ class Profiler implements ProfilerInterface {
       $extensions['tideways'] = 'Tideways';
     }
 
+    if (TidewaysXHProfExtension::isLoaded()) {
+      $extensions['tideways_xhprof'] = 'Tideways xhprof';
+    }
+
     return $extensions;
   }
 
@@ -165,9 +173,9 @@ class Profiler implements ProfilerInterface {
    * {@inheritdoc}
    */
   public function link($run_id) {
-    $url = Url::fromRoute('xhprof.run', ['run' => $run_id], ['absolute' => TRUE]);
+    $link = Link::createFromRoute(t('XHProf output'), 'xhprof.run', ['run' => $run_id], ['absolute' => TRUE]);
 
-    return \Drupal::l(t('XHProf output'), $url);
+    return $link->toString();
   }
 
   /**

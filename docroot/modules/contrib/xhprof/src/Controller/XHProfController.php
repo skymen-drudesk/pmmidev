@@ -10,6 +10,7 @@ namespace Drupal\xhprof\Controller;
 use Drupal\Component\Render\FormattableMarkup;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Link;
 use Drupal\Core\Url;
 use Drupal\xhprof\ProfilerInterface;
 use Drupal\xhprof\XHProfLib\Report\ReportConstants;
@@ -131,7 +132,7 @@ class XHProfController extends ControllerBase {
 
     $build['table'] = array(
       '#theme' => 'table',
-      '#header' => $this->getRunHeader($report, $descriptions),
+      '#header' => $this->getRunHeader($report, $descriptions, $run->getId()),
       '#rows' => $this->getRunRows($report, $length),
       '#attributes' => array('class' => array('responsive')),
       '#attached' => array(
@@ -189,7 +190,7 @@ class XHProfController extends ControllerBase {
    *
    * @return array
    */
-  private function getRunHeader(ReportInterface $report, $descriptions) {
+  private function getRunHeader(ReportInterface $report, $descriptions, $run_id) {
     $headers = array('fn', 'ct', 'ct_perc');
 
     $metrics = $report->getMetrics();
@@ -201,8 +202,20 @@ class XHProfController extends ControllerBase {
       $headers[] = 'excl_' . $metric . '_perc';
     }
 
+    $sortable = ReportConstants::getSortableColumns();
     foreach ($headers as &$header) {
-      $header = new FormattableMarkup($descriptions[$header], []);
+      if (isset($sortable[$header])) {
+        $header = [
+          'data' => Link::createFromRoute($descriptions[$header], 'xhprof.run', ['run' => $run_id], [
+            'query' => [
+              'sort' => $header,
+            ],
+          ])->toRenderable(),
+        ];
+      }
+      else {
+        $header = new FormattableMarkup($descriptions[$header], []);
+      }
     }
 
     return $headers;
