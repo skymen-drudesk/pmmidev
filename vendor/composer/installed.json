@@ -2212,67 +2212,6 @@
         }
     },
     {
-        "name": "drupal/backup_migrate",
-        "version": "dev-4.x",
-        "version_normalized": "dev-4.x",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupal.org/project/backup_migrate",
-            "reference": "6dfc86f618531c13bbd0297ca4cb2fc572cba2d6"
-        },
-        "require": {
-            "drupal/core": "~8.0"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-4.x": "4.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-4.0-beta3+3-dev",
-                "datestamp": "1511391485",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Dev releases are not covered by Drupal security advisories."
-                }
-            }
-        },
-        "installation-source": "source",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "Ronan Dowling",
-                "homepage": "https://www.drupal.org/u/ronan",
-                "role": "Maintainer"
-            },
-            {
-                "name": "DamienMcKenna",
-                "homepage": "https://www.drupal.org/user/108450"
-            },
-            {
-                "name": "dgorton",
-                "homepage": "https://www.drupal.org/user/19044"
-            },
-            {
-                "name": "ikit-claw",
-                "homepage": "https://www.drupal.org/user/3285813"
-            },
-            {
-                "name": "ronan",
-                "homepage": "https://www.drupal.org/user/72815"
-            }
-        ],
-        "description": "Backup and Migrate Drupal Module",
-        "homepage": "https://www.drupal.org/project/backup_migrate",
-        "support": {
-            "source": "http://cgit.drupalcode.org/backup_migrate",
-            "issues": "https://www.drupal.org/project/issues/backup_migrate"
-        }
-    },
-    {
         "name": "drupal/blazy",
         "version": "1.0.0-rc2",
         "version_normalized": "1.0.0.0-RC2",
@@ -3928,6 +3867,7 @@
         "require": {
             "drupal/core": "~8.0"
         },
+        "time": "2012-10-28T09:20:01+00:00",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
@@ -4082,6 +4022,7 @@
         "suggest": {
             "symfony/var-dumper": "Pretty print complex values better with var-dumper available"
         },
+        "time": "2017-12-28T22:38:51+00:00",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
@@ -5621,6 +5562,7 @@
         "require": {
             "drupal/core": "~8.1"
         },
+        "time": "2017-07-04T13:18:23+00:00",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
@@ -5924,6 +5866,7 @@
         "require": {
             "drupal/core": "*"
         },
+        "time": "2016-08-05T21:18:07+00:00",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
@@ -6110,6 +6053,7 @@
         "require": {
             "drupal/core": "~8.0"
         },
+        "time": "2016-07-09T18:44:08+00:00",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
@@ -6749,6 +6693,7 @@
             "drupal/page_manager": ">=4.0.0",
             "drupal/panels": ">=4.0.0"
         },
+        "time": "2017-10-25T11:06:45+00:00",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
@@ -7107,6 +7052,7 @@
         "require": {
             "drupal/core": "~8.0"
         },
+        "time": "2017-12-04T13:07:46+00:00",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
@@ -7991,6 +7937,7 @@
         "require": {
             "drupal/core": "~8.0"
         },
+        "time": "2017-12-11T05:59:19+00:00",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
@@ -8363,6 +8310,7 @@
         "require": {
             "drupal/core": "*"
         },
+        "time": "2017-10-13T06:53:22+00:00",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
@@ -8756,6 +8704,7 @@
         "require": {
             "drupal/core": "~8.0"
         },
+        "time": "2017-05-29T08:34:02+00:00",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
@@ -14063,7 +14012,7 @@
             "url": "https://github.com/tobia/Pause",
             "reference": "origin/master"
         },
-        "time": "2018-02-12T16:01:32+00:00",
+        "time": "2010-06-13T23:39:18+00:00",
         "type": "drupal-library",
         "installation-source": "source"
     },
