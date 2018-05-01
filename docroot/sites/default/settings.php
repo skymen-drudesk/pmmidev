@@ -775,7 +775,7 @@ $config_directories['sync'] = $dir . "/config/default";
 $config_directories['vcs'] = $config_directories['sync'];
 
 ## Disable all config splits by default
-$config['config_split.config_split.prod']['status'] = TRUE;
+$config['config_split.config_split.prod']['status'] = FALSE;
 $config['config_split.config_split.stage']['status'] = FALSE;
 $config['config_split.config_split.dev']['status'] = FALSE;
 $config['config_split.config_split.local']['status'] = FALSE;
