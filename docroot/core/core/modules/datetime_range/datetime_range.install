@@ -1,0 +1,112 @@
+<?php
+
+/**
+ * @file
+ * Contains install and update functions for Datetime Range.
+ */
+
+/**
+ * Update existing views using datetime_range fields.
+ */
+function datetime_range_update_8001(&$sandbox) {
+  $config_factory = \Drupal::configFactory();
+  $message = NULL;
+  $ids = [];
+
+  foreach ($config_factory->listAll('views.view.') as $view_config_name) {
+    $view = $config_factory->getEditable($view_config_name);
+    $displays = $view->get('display');
+
+    foreach ($displays as $display_name => $display) {
+
+      // Update datetime_range filters.
+      if (isset($display['display_options']['filters'])) {
+        foreach ($display['display_options']['filters'] as $field_name => $filter) {
+          if ($filter['plugin_id'] == 'string') {
+
+            // Get field config.
+            $filter_views_data = \Drupal\views\Views::viewsData()->get($filter['table'])[$filter['field']]['filter'];
+            $field_storage_name = 'field.storage.' . $filter_views_data['entity_type'] . '.' . $filter_views_data['field_name'];
+            $field_configuration = $config_factory->get($field_storage_name);
+
+            if ($field_configuration->get('type') == 'daterange') {
+              $ids[] = $view->get('id');
+
+              // Save off the base part of the config path we are updating.
+              $base = "display.$display_name.display_options.filters.$field_name";
+
+              // Set entity_type and field_name if missing.
+              if (!isset($filter['entity_type'])) {
+                $view->set($base . '.entity_type', $filter_views_data['entity_type']);
+              }
+              if (!isset($filter['field_name'])) {
+                $view->set($base . '.field_name', $filter_views_data['field_name']);
+              }
+
+              // Set datetime plugin_id.
+              $view->set($base . '.plugin_id', 'datetime');
+
+              // Set datetime value.
+              $datetime_value = [
+                'min' => '',
+                'max' => '',
+                'value' => $filter['value'],
+                'type' => 'date',
+              ];
+              $view->set($base . '.value', $datetime_value);
+
+              // Default to '=' operator.
+              $view->set($base . '.operator', '=');
+
+              // Store the changes.
+              $view->save(TRUE);
+            }
+          }
+        }
+      }
+
+      // Update datetime_range sort handlers.
+      if (isset($display['display_options']['sorts'])) {
+        foreach ($display['display_options']['sorts'] as $field_name => $sort) {
+          if ($sort['plugin_id'] == 'standard') {
+
+            // Get field config.
+            $sort_views_data = \Drupal\views\Views::viewsData()->get($sort['table'])[$sort['field']]['sort'];
+            $field_storage_name = 'field.storage.' . $sort_views_data['entity_type'] . '.' . $sort_views_data['field_name'];
+            $field_configuration = $config_factory->get($field_storage_name);
+
+            if ($field_configuration->get('type') == 'daterange') {
+              $ids[] = $view->get('id');
+
+              // Save off the base part of the config path we are updating.
+              $base = "display.$display_name.display_options.sorts.$field_name";
+
+              // Set entity_type and field_name if missing.
+              if (!isset($sort['entity_type'])) {
+                $view->set($base . '.entity_type', $sort_views_data['entity_type']);
+              }
+              if (!isset($sort['field_name'])) {
+                $view->set($base . '.field_name', $sort_views_data['field_name']);
+              }
+
+              // Set datetime plugin_id.
+              $view->set($base . '.plugin_id', 'datetime');
+
+              // Set granularity.
+              $view->set($base . '.granularity', 'seconds');
+
+              // Store the changes.
+              $view->save(TRUE);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  if (!empty($ids)) {
+    $message = \Drupal::translation()->translate('Updated datetime_range filter/sort plugins for views: @ids', ['@ids' => implode(', ', array_unique($ids))]);
+  }
+
+  return $message;
+}
