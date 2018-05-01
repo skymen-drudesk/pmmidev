@@ -1969,6 +1969,9 @@
                     "status": "not-covered",
                     "message": "Beta releases are not covered by Drupal security advisories."
                 }
+            },
+            "patches_applied": {
+                "Don't require late runtime processor": "https://www.drupal.org/files/issues/remove-runime.patch"
             }
         },
         "installation-source": "dist",

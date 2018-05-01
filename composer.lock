@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "e323398db66b1b884562e7ebd0d7e0e3",
@@ -1785,6 +1785,9 @@
                         "status": "not-covered",
                         "message": "Beta releases are not covered by Drupal security advisories."
                     }
+                },
+                "patches_applied": {
+                    "Don't require late runtime processor": "https://www.drupal.org/files/issues/remove-runime.patch"
                 }
             },
             "notification-url": "https://packages.drupal.org/8/downloads",
