@@ -18,6 +18,7 @@ dependencies:
     - field.field.node.article.field_page_name
     - field.field.node.article.field_phone
     - field.field.node.article.field_tags
+    - field.field.node.article.field_yoast_seo
     - node.type.article
   module:
     - datetime
@@ -127,6 +128,14 @@ content:
             lb-col: false
             classes: {  }
     region: press_date
+  field_yoast_seo:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
 hidden:
   field_author: true
   field_author_title: true

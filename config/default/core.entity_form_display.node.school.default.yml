@@ -11,11 +11,13 @@ dependencies:
     - field.field.node.school.field_image
     - field.field.node.school.field_image_header
     - field.field.node.school.field_logo
+    - field.field.node.school.field_meta_tags
     - field.field.node.school.field_partner_school_type
     - field.field.node.school.field_phone
     - field.field.node.school.field_programs_focus
     - field.field.node.school.field_school_contact
     - field.field.node.school.field_website
+    - field.field.node.school.field_yoast_seo
     - image.style.thumbnail
     - node.type.school
   module:
@@ -27,9 +29,11 @@ dependencies:
     - image
     - inline_entity_form
     - link
+    - metatag
     - path
     - telephone
     - text
+    - yoast_seo
 third_party_settings:
   field_group:
     group_school_information:
@@ -127,6 +131,12 @@ content:
     third_party_settings: {  }
     type: image_image
     region: content
+  field_meta_tags:
+    weight: 121
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_firehose
+    region: content
   field_partner_school_type:
     weight: 31
     settings:
@@ -166,6 +176,13 @@ content:
       placeholder_title: ''
     third_party_settings: {  }
     type: link_default
+    region: content
+  field_yoast_seo:
+    weight: 122
+    settings:
+      body: body
+    third_party_settings: {  }
+    type: yoast_seo_widget
     region: content
   moderation_state:
     type: moderation_state_default
@@ -216,5 +233,8 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
+  url_redirects:
+    weight: 50
     region: content
 hidden: {  }

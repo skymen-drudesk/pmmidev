@@ -6,6 +6,7 @@ use Drupal\Core\Entity\ContentEntityType;
 use Drupal\Core\Entity\EntityForm;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\page_manager\Entity\PageVariant;
 
 /**
  * Class MetatagDefaultsForm.
@@ -135,7 +136,7 @@ class MetatagDefaultsForm extends EntityForm {
           // Check if page manager is enabled and try to load the page variant
           // so the label of the variant can be used.
           $moduleHandler = \Drupal::service('module_handler');
-          if ($moduleHandler->moduleExists('metatag_page_variants')) {
+          if ($moduleHandler->moduleExists('metatag_page_manager')) {
             $page_variant = PageVariant::load($entity_bundle);
             $page = $page_variant->getPage();
             if ($page_variant) {

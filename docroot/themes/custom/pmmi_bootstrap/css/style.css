@@ -18032,6 +18032,20 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   color: #004e75;
 }
 
+@media screen and (min-width: 1024px) {
+  .block-pmmi-training-provider-search-results-block .view-search-training-provider-directory tbody td.views-field {
+    max-width: 30%;
+    width: 30%;
+  }
+  .block-pmmi-training-provider-search-results-block .view-search-training-provider-directory tbody td.views-field:first-child {
+    display: table-cell;
+  }
+  .block-pmmi-training-provider-search-results-block .view-search-training-provider-directory tbody td.views-field:first-child a {
+    white-space: normal;
+    text-overflow: initial;
+  }
+}
+
 .page-search-training-provider-directory .region-bottom {
   margin-right: auto;
   margin-left: auto;
@@ -18115,6 +18129,22 @@ body.path-batch .pmmi-panel .block-region-main .batch-container {
   font-size: 0.875rem;
   padding: 5px;
   font-weight: 700;
+}
+
+.page-sales-agent-directory-my-favorites .favorites-header a.pmmi-clear-favorites {
+  display: inline-block;
+  margin: 5px;
+  padding: 5px 12px;
+  font-size: 20px;
+  font-size: 1.25rem;
+}
+
+.page-sales-agent-directory-my-favorites .favorites-header a.pmmi-clear-favorites:before {
+  font-family: FontAwesome;
+  content: '\f00d';
+  padding-right: 5px;
+  font-weight: normal;
+  text-decoration: none;
 }
 
 .page-sales-agent-directory-my-favorites thead > tr > th {

@@ -156,7 +156,12 @@ content:
       placeholder: ''
     region: content
     third_party_settings: {  }
+  url_redirects:
+    weight: 50
+    region: content
 hidden:
   field_available_from_date: true
+  field_meta_tags: true
   field_product_id: true
   field_product_status_date: true
+  field_yoast_seo: true

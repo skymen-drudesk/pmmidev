@@ -19,8 +19,10 @@ dependencies:
     - field.field.node.article.field_page_name
     - field.field.node.article.field_phone
     - field.field.node.article.field_tags
+    - field.field.node.article.field_yoast_seo
     - node.type.article
   module:
+    - content_moderation
     - datetime
     - entity_browser
     - inline_entity_form
@@ -29,6 +31,7 @@ dependencies:
     - path
     - telephone
     - text
+    - yoast_seo
 id: node.article.default
 targetEntityType: node
 bundle: article
@@ -164,6 +167,13 @@ content:
     third_party_settings: {  }
     type: entity_reference_autocomplete_tags
     region: content
+  field_yoast_seo:
+    weight: 121
+    settings:
+      body: body
+    third_party_settings: {  }
+    type: yoast_seo_widget
+    region: content
   moderation_state:
     type: moderation_state_default
     weight: 100
@@ -213,5 +223,8 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
+  url_redirects:
+    weight: 50
     region: content
 hidden: {  }

@@ -460,6 +460,19 @@
           color: $blue;
         }
       }
+      @include desktop-min {
+        &.views-field {
+          max-width: 30%;
+          width: 30%;
+          &:first-child {
+            display: table-cell;
+            a {
+              white-space: normal;
+              text-overflow: initial;
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -511,6 +524,21 @@
         font-size: $r14;
         padding: 5px;
         font-weight: 700;
+      }
+    }
+
+    a.pmmi-clear-favorites {
+      display: inline-block;
+      margin: 5px;
+      padding: 5px 12px;
+      font-size: $r20;
+
+      &:before {
+        font-family: FontAwesome;
+        content: '\f00d';
+        padding-right: 5px;
+        font-weight: normal;
+        text-decoration: none;
       }
     }
   }

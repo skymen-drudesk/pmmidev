@@ -9,12 +9,17 @@ dependencies:
     - field.field.node.training_provider.field_delivery_options_offered
     - field.field.node.training_provider.field_general_company_email
     - field.field.node.training_provider.field_main_phone_number
+    - field.field.node.training_provider.field_meta_tags
+    - field.field.node.training_provider.field_organization_email
     - field.field.node.training_provider.field_territory_served
     - field.field.node.training_provider.field_website_url
+    - field.field.node.training_provider.field_yoast_seo
     - node.type.training_provider
   module:
+    - double_field
     - ds
     - link
+    - metatag
     - pmmi
     - pmmi_address
     - pmmi_training_provider
@@ -39,7 +44,7 @@ third_party_settings:
         - field_main_phone_number
       general_line_2:
         - field_website_url
-        - field_general_company_email
+        - field_organization_email
       course_topics:
         - field_course_topics_offered
       delivery_options:
@@ -52,6 +57,11 @@ third_party_settings:
         - node_changed_date
         - 'dynamic_block_field:node-tpd_contact_questions'
     fields:
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
       node_changed_date:
         plugin_id: node_changed_date
         weight: 10
@@ -63,11 +73,6 @@ third_party_settings:
             lb: 'Profile last updated'
             lb-col: false
             classes: {  }
-      node_title:
-        plugin_id: node_title
-        weight: 1
-        label: hidden
-        formatter: default
       'dynamic_block_field:node-tpd_contact_questions':
         plugin_id: 'dynamic_block_field:node-tpd_contact_questions'
         weight: 11
@@ -136,13 +141,6 @@ content:
             classes: {  }
     type: pmmi_multiple_formatter
     region: delivery_options
-  field_general_company_email:
-    weight: 5
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: basic_string
-    region: general_line_2
   field_main_phone_number:
     weight: 3
     label: hidden
@@ -151,6 +149,32 @@ content:
     third_party_settings: {  }
     type: telephone_link
     region: general_line_1
+  field_meta_tags:
+    weight: 10
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: metatag_empty_formatter
+  field_organization_email:
+    weight: 10
+    label: above
+    settings:
+      inline: true
+      first:
+        hidden: false
+        prefix: ''
+        suffix: ''
+        link: false
+        format_type: medium
+      second:
+        hidden: false
+        prefix: ''
+        suffix: ''
+        link: false
+        format_type: medium
+    third_party_settings: {  }
+    type: double_field_unformatted_list
+    region: content
   field_territory_served:
     weight: 8
     label: above
@@ -170,5 +194,14 @@ content:
     third_party_settings: {  }
     type: link
     region: general_line_2
+  field_yoast_seo:
+    weight: 11
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
 hidden:
+  field_general_company_email: true
   links: true

@@ -10,6 +10,7 @@ dependencies:
     - field.field.node.training_provider.field_delivery_options_offered
     - field.field.node.training_provider.field_general_company_email
     - field.field.node.training_provider.field_main_phone_number
+    - field.field.node.training_provider.field_organization_email
     - field.field.node.training_provider.field_territory_served
     - field.field.node.training_provider.field_website_url
     - node.type.training_provider
@@ -18,8 +19,8 @@ dependencies:
     - link
     - pmmi
     - pmmi_address
+    - pmmi_fields
     - pmmi_training_provider
-    - telephone
     - text
     - user
 third_party_settings:
@@ -38,7 +39,7 @@ third_party_settings:
         - field_main_phone_number
       general_line_2:
         - field_website_url
-        - field_general_company_email
+        - field_organization_email
       course_topics:
         - field_course_topics_offered
       delivery_options:
@@ -124,21 +125,33 @@ content:
             classes: {  }
     type: pmmi_multiple_formatter
     region: delivery_options
-  field_general_company_email:
-    weight: 4
-    label: hidden
-    settings: {  }
-    third_party_settings: {  }
-    type: email_mailto
-    region: general_line_2
   field_main_phone_number:
     weight: 2
     label: hidden
     settings:
-      title: ''
+      link_to_entity: false
     third_party_settings: {  }
-    type: telephone_link
+    type: string
     region: general_line_1
+  field_organization_email:
+    type: double_field_link
+    weight: 4
+    region: general_line_2
+    label: hidden
+    settings:
+      first:
+        hidden: false
+        prefix: ''
+        suffix: ''
+        link: false
+        format_type: medium
+      second:
+        hidden: false
+        prefix: ''
+        suffix: ''
+        link: false
+        format_type: medium
+    third_party_settings: {  }
   field_territory_served:
     weight: 7
     label: above
@@ -159,4 +172,5 @@ content:
     type: link
     region: general_line_2
 hidden:
+  field_general_company_email: true
   links: true

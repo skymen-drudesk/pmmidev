@@ -160,18 +160,6 @@ class BetaProgramCheck extends DiagnosticCheckBase implements DiagnosticCheckInt
       return SELF::SEVERITY_ERROR;
     }
 
-    // Test for the existence of the lateruntime processor, which runs on every
-    // request. This provides a prime and hyperfast clearing experience, so that
-    // no clients will notice any "content stuck in time" as there's no waiting
-    // time. Added bonus is, that the lateruntime processor CAN be resource
-    // intensive and therefore disruptive, so if this works without issues for
-    // most client participates, we'll likely require it by default and by doing
-    // so, create a really smooth experience.
-    if (!$this->purgeProcessors->get('lateruntime')) {
-      $this->recommendation = $this->t("Beta testers must enable the late runtime processor.");
-      return SELF::SEVERITY_ERROR;
-    }
-
     // Enforce the database queue during the beta program.
     if (!in_array('database', $this->purgeQueue->getPluginsEnabled())) {
       $this->recommendation = $this->t("Beta testers must use the database queue.");
