@@ -6228,7 +6228,9 @@
                     "message": "Covered by Drupal's security advisory policy"
                 }
             },
-            "patches_applied": []
+            "patches_applied": {
+                "Panels/Page Manager integration": "https://www.drupal.org/files/issues/panels_page_manager-2563657-36.patch"
+            }
         },
         "installation-source": "dist",
         "notification-url": "https://packages.drupal.org/8/downloads",
