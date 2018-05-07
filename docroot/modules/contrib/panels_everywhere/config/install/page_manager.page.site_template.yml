@@ -1,14 +1,8 @@
 langcode: en
 status: false
-dependencies:
-  module:
-    - panels_everywhere
-third_party_settings:
-  panels_everywhere:
-    disable_route_override: false
+dependencies: {  }
 id: site_template
 label: 'Site template'
-description: ''
 use_admin_theme: false
 path: /site_template
 access_logic: and
