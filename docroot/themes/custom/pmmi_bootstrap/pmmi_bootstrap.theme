@@ -347,7 +347,9 @@ function pmmi_bootstrap_preprocess_pager(&$variables) {
  * Implements hook_theme_suggestions_block_alter().
  */
 function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array $variables) {
-  if (!empty($variables['elements']['#plugin_id'])) {
+  if (!empty($variables['elements']['#plugin_id'])
+    && isset($variables['elements']['#configuration']['region'])
+  ) {
     switch ($variables['elements']['#plugin_id']) {
       case 'pmmi_search_block':
         if ($variables['elements']['#configuration']['region'] == 'header_main_nav') {
@@ -364,10 +366,12 @@ function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array
         break;
     }
     if ($variables['elements']['#base_plugin_id'] == 'system_menu_block'
-    && $variables['elements']['#configuration']['region'] == 'header_main_nav') {
+      && $variables['elements']['#configuration']['region'] == 'header_main_nav'
+    ) {
       $suggestions[] = 'block__collapsible_menu';
     }
   }
+
   return $suggestions;
 }
 
