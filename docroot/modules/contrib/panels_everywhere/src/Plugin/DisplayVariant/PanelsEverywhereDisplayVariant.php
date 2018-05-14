@@ -5,7 +5,6 @@ namespace Drupal\panels_everywhere\Plugin\DisplayVariant;
 use Drupal\panels\Plugin\DisplayVariant\PanelsDisplayVariant;
 use Drupal\Core\Display\PageVariantInterface;
 use Drupal\Core\Block\MainContentBlockPluginInterface;
-use Drupal\Core\Block\TitleBlockPluginInterface;
 
 /**
  * Provides a display variant that simply contains blocks.
