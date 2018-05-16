@@ -5,9 +5,10 @@ dependencies:
   config:
     - search_api.index.default_index
     - taxonomy.vocabulary.blog
+  content:
+    - 'taxonomy_term:blog:ee48bb3c-f05c-4474-b67e-c90318472a00'
   module:
     - search_api
-    - search_api_views_taxonomy
 id: blog_search_api
 label: 'Blog Search API'
 module: views
