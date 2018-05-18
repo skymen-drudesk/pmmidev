@@ -739,7 +739,7 @@ $conf['search_cron_limit'] = 0;
 
 
 ## Make Acquia search read-only on dev and staging.
-if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod' && PHP_SAPI !== 'cli') {
+if (!isset($_ENV['AH_SITE_ENVIRONMENT']) || $_ENV['AH_SITE_ENVIRONMENT'] != 'prod' ) {
   $conf['apachesolr_read_only'] = "1";
 }
 
@@ -799,7 +799,7 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
 }
 
 ## Set config read-only for prod environment.
-if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod') {
+if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod' && PHP_SAPI !== 'cli') {
   $settings['config_readonly'] = TRUE;
 }
 
