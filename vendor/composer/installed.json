@@ -6721,7 +6721,7 @@
         "source": {
             "type": "git",
             "url": "https://git.drupal.org/project/panels_everywhere",
-            "reference": "5b1c92baad5b3fa51ce94dbbf0581cc1fa631d09"
+            "reference": "134e8de0b87ded5dafa92b9389d32b0767a733af"
         },
         "require": {
             "drupal/core": "*",
@@ -6730,6 +6730,7 @@
             "drupal/page_manager": ">=4.0.0",
             "drupal/panels": ">=4.0.0"
         },
+        "time": "2018-03-12T01:50:33+00:00",
         "type": "drupal-module",
         "extra": {
             "branch-alias": {
@@ -6737,11 +6738,14 @@
             },
             "drupal": {
                 "version": "8.x-4.x-dev",
-                "datestamp": "1507779545",
+                "datestamp": "1508929744",
                 "security-coverage": {
                     "status": "not-covered",
                     "message": "Dev releases are not covered by Drupal security advisories."
                 }
+            },
+            "patches_applied": {
+                "Latest version of module doesn't work for panels pages.": "https://www.drupal.org/files/issues/2018-05-18/panels_everywhere-dont-work-for-panels-pages-2973881-2.patch"
             }
         },
         "installation-source": "source",
@@ -7250,6 +7254,75 @@
         "homepage": "https://www.drupal.org/project/redirect",
         "support": {
             "source": "http://cgit.drupalcode.org/redirect"
+        }
+    },
+    {
+        "name": "drupal/search_api",
+        "version": "1.8.0",
+        "version_normalized": "1.8.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/search_api",
+            "reference": "8.x-1.8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.8.zip",
+            "reference": "8.x-1.8",
+            "shasum": "04d7b3b680e84aad086a61fb9eb4ffe77dc278e4"
+        },
+        "require": {
+            "drupal/core": "^8.4"
+        },
+        "require-dev": {
+            "drupal/search_api_autocomplete": "@dev",
+            "drupal/search_api_db": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.8",
+                "datestamp": "1523872384",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            },
+            "drush": {
+                "services": {
+                    "drush.services.yml": "^9"
+                }
+            },
+            "patches_applied": []
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Thomas Seidl",
+                "homepage": "https://www.drupal.org/u/drunken-monkey"
+            },
+            {
+                "name": "Nick Veenhof",
+                "homepage": "https://www.drupal.org/u/nick_vh"
+            },
+            {
+                "name": "See other contributors",
+                "homepage": "https://www.drupal.org/node/790418/committers"
+            }
+        ],
+        "description": "Provides a generic framework for modules offering search capabilities.",
+        "homepage": "https://www.drupal.org/project/search_api",
+        "support": {
+            "source": "http://git.drupal.org/project/search_api.git",
+            "issues": "https://www.drupal.org/project/issues/search_api",
+            "irc": "irc://irc.freenode.org/drupal-search-api"
         }
     },
     {
@@ -8823,6 +8896,117 @@
         }
     },
     {
+        "name": "drush/drush",
+        "version": "8.1.16",
+        "version_normalized": "8.1.16.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/drush-ops/drush.git",
+            "reference": "bbaff2dc725a5f3eb22006c5de3dc92a2de54b08"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/drush-ops/drush/zipball/bbaff2dc725a5f3eb22006c5de3dc92a2de54b08",
+            "reference": "bbaff2dc725a5f3eb22006c5de3dc92a2de54b08",
+            "shasum": ""
+        },
+        "require": {
+            "consolidation/annotated-command": "^2.8.1",
+            "consolidation/output-formatters": "~3",
+            "pear/console_table": "~1.3.1",
+            "php": ">=5.4.5",
+            "psr/log": "~1.0",
+            "psy/psysh": "~0.6",
+            "symfony/console": "~2.7|^3",
+            "symfony/event-dispatcher": "~2.7|^3",
+            "symfony/finder": "~2.7|^3",
+            "symfony/var-dumper": "~2.7|^3",
+            "symfony/yaml": "~2.3|^3",
+            "webmozart/path-util": "~2"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "4.*",
+            "symfony/console": "~2.7",
+            "symfony/event-dispatcher": "~2.7",
+            "symfony/finder": "~2.7",
+            "symfony/process": "2.7.*",
+            "symfony/var-dumper": "~2.7",
+            "symfony/yaml": "~2.3"
+        },
+        "suggest": {
+            "drush/config-extra": "Provides configuration workflow commands, such as config-merge.",
+            "ext-pcntl": "*"
+        },
+        "time": "2018-02-06T21:18:48+00:00",
+        "bin": [
+            "drush",
+            "drush.launcher",
+            "drush.php",
+            "drush.complete.sh"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "8.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Drush": "lib/",
+                "Consolidation": "lib/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Moshe Weitzman",
+                "email": "weitzman@tejasa.com"
+            },
+            {
+                "name": "Owen Barton",
+                "email": "drupal@owenbarton.com"
+            },
+            {
+                "name": "Mark Sonnabaum",
+                "email": "marksonnabaum@gmail.com"
+            },
+            {
+                "name": "Antoine Beaupré",
+                "email": "anarcat@koumbit.org"
+            },
+            {
+                "name": "Greg Anderson",
+                "email": "greg.1.anderson@greenknowe.org"
+            },
+            {
+                "name": "Jonathan Araña Cruz",
+                "email": "jonhattan@faita.net"
+            },
+            {
+                "name": "Jonathan Hedstrom",
+                "email": "jhedstrom@gmail.com"
+            },
+            {
+                "name": "Christopher Gervais",
+                "email": "chris@ergonlogic.com"
+            },
+            {
+                "name": "Dave Reid",
+                "email": "dave@davereid.net"
+            },
+            {
+                "name": "Damian Lee",
+                "email": "damiankloip@googlemail.com"
+            }
+        ],
+        "description": "Drush is a command line shell and scripting interface for Drupal, a veritable Swiss Army knife designed to make life easier for those of us who spend some of our working hours hacking away at the command prompt.",
+        "homepage": "http://www.drush.org"
+    },
+    {
         "name": "easyrdf/easyrdf",
         "version": "0.9.1",
         "version_normalized": "0.9.1.0",
@@ -10174,6 +10358,63 @@
             "csprng",
             "pseudorandom",
             "random"
+        ]
+    },
+    {
+        "name": "pear/console_table",
+        "version": "v1.3.1",
+        "version_normalized": "1.3.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/pear/Console_Table.git",
+            "reference": "1930c11897ca61fd24b95f2f785e99e0f36dcdea"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/pear/Console_Table/zipball/1930c11897ca61fd24b95f2f785e99e0f36dcdea",
+            "reference": "1930c11897ca61fd24b95f2f785e99e0f36dcdea",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.2.0"
+        },
+        "suggest": {
+            "pear/Console_Color2": ">=0.1.2"
+        },
+        "time": "2018-01-25T20:47:17+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "Table.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-2-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Jan Schneider",
+                "homepage": "http://pear.php.net/user/yunosh"
+            },
+            {
+                "name": "Tal Peer",
+                "homepage": "http://pear.php.net/user/tal"
+            },
+            {
+                "name": "Xavier Noguer",
+                "homepage": "http://pear.php.net/user/xnoguer"
+            },
+            {
+                "name": "Richard Heyes",
+                "homepage": "http://pear.php.net/user/richard"
+            }
+        ],
+        "description": "Library that makes it easy to build console style tables.",
+        "homepage": "http://pear.php.net/package/Console_Table/",
+        "keywords": [
+            "console"
         ]
     },
     {
@@ -13897,23 +14138,22 @@
     },
     {
         "name": "symfony/var-dumper",
-        "version": "v4.0.3",
-        "version_normalized": "4.0.3.0",
+        "version": "v3.4.9",
+        "version_normalized": "3.4.9.0",
         "source": {
             "type": "git",
             "url": "https://github.com/symfony/var-dumper.git",
-            "reference": "883f6109a2069773e088c08626b87a3d3d61c566"
+            "reference": "0e6545672d8c9ce70dd472adc2f8b03155a46f73"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/883f6109a2069773e088c08626b87a3d3d61c566",
-            "reference": "883f6109a2069773e088c08626b87a3d3d61c566",
+            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/0e6545672d8c9ce70dd472adc2f8b03155a46f73",
+            "reference": "0e6545672d8c9ce70dd472adc2f8b03155a46f73",
             "shasum": ""
         },
         "require": {
-            "php": "^7.1.3",
-            "symfony/polyfill-mbstring": "~1.0",
-            "symfony/polyfill-php72": "~1.5"
+            "php": "^5.5.9|>=7.0.8",
+            "symfony/polyfill-mbstring": "~1.0"
         },
         "conflict": {
             "phpunit/phpunit": "<4.8.35|<5.4.3,>=5.0"
@@ -13924,13 +14164,14 @@
         },
         "suggest": {
             "ext-iconv": "To convert non-UTF-8 strings to UTF-8 (or symfony/polyfill-iconv in case ext-iconv cannot be used).",
-            "ext-intl": "To show region name in time zone dump"
+            "ext-intl": "To show region name in time zone dump",
+            "ext-symfony_debug": ""
         },
-        "time": "2018-01-03T17:15:19+00:00",
+        "time": "2018-04-26T12:42:15+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "4.0-dev"
+                "dev-master": "3.4-dev"
             }
         },
         "installation-source": "dist",
@@ -14622,74 +14863,5 @@
             "stdlib",
             "zf2"
         ]
-    },
-    {
-        "name": "drupal/search_api",
-        "version": "1.8.0",
-        "version_normalized": "1.8.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupal.org/project/search_api",
-            "reference": "8.x-1.8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.8.zip",
-            "reference": "8.x-1.8",
-            "shasum": "04d7b3b680e84aad086a61fb9eb4ffe77dc278e4"
-        },
-        "require": {
-            "drupal/core": "^8.4"
-        },
-        "require-dev": {
-            "drupal/search_api_autocomplete": "@dev",
-            "drupal/search_api_db": "*"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.8",
-                "datestamp": "1523872384",
-                "security-coverage": {
-                    "status": "covered",
-                    "message": "Covered by Drupal's security advisory policy"
-                }
-            },
-            "drush": {
-                "services": {
-                    "drush.services.yml": "^9"
-                }
-            },
-            "patches_applied": []
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "Thomas Seidl",
-                "homepage": "https://www.drupal.org/u/drunken-monkey"
-            },
-            {
-                "name": "Nick Veenhof",
-                "homepage": "https://www.drupal.org/u/nick_vh"
-            },
-            {
-                "name": "See other contributors",
-                "homepage": "https://www.drupal.org/node/790418/committers"
-            }
-        ],
-        "description": "Provides a generic framework for modules offering search capabilities.",
-        "homepage": "https://www.drupal.org/project/search_api",
-        "support": {
-            "source": "http://git.drupal.org/project/search_api.git",
-            "issues": "https://www.drupal.org/project/issues/search_api",
-            "irc": "irc://irc.freenode.org/drupal-search-api"
-        }
     }
 ]
