@@ -321,7 +321,19 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: search_api_date
-      sorts: {  }
+      sorts:
+        field_date:
+          id: field_date
+          table: search_api_index_default_index
+          field: field_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
       title: 'Blog Search API'
       header: {  }
       footer: {  }
@@ -346,6 +358,21 @@ display:
     display_options:
       display_extenders: {  }
       exposed_block: true
+      sorts:
+        field_blog_date:
+          id: field_blog_date
+          table: search_api_index_default_index
+          field: field_blog_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
+      defaults:
+        sorts: false
     cache_metadata:
       max-age: -1
       contexts:
@@ -488,6 +515,7 @@ display:
         arguments: false
         title: false
         relationships: false
+        sorts: false
       filter_groups:
         operator: AND
         groups:
@@ -498,6 +526,7 @@ display:
       allow:
         items_per_page: true
       display_description: 'Blog (Global Trends)'
+      sorts: {  }
     cache_metadata:
       max-age: -1
       contexts:
