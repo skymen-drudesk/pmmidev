@@ -32,12 +32,25 @@
 
             // Check if Women's Leadership Network is selected. If so make a few fields required.
             function checkElemState(elem) {
-                if ($(elem).find('option:checked')[0].value == '191') {
-                    changeFieldAttr(true);
-                }
-                else {
-                    changeFieldAttr(false);
-                }
+                try {
+                    var $checkedElem = $(elem).find('option:checked');
+                    var processed = false;
+                    if ($checkedElem.length > 0) {
+                        for (var i = 0; i < il; i++) {
+                            if ($checkedElem[i].value == '191') {
+                                changeFieldAttr(true);
+                            }
+                            else {
+                                // Prevent do the same job several times.
+                                if (!processed) {
+                                    changeFieldAttr(false);
+                                    processed = true;
+                                }
+                            }
+                        }
+                    }
+                } catch (e) { }
+
             }
 
             // Helper function to change required attr.
