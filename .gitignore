@@ -23,6 +23,8 @@ cnf/config.yml
 # Ignore Drupal console data.
 .console
 console
+# But don't ignore symfony/console
+!vendor/symfony/console
 
 # Ignore IDE stuff
 .idea/
