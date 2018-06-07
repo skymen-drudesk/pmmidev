@@ -21,11 +21,13 @@ class WebformName extends WebformCompositeBase {
    */
   public static function getCompositeElements(array $element) {
     $elements = [];
+    // Any webform options prefixed with 'title' will automatically
+    // be included within the Composite Element UI.
+    // @see \Drupal\webform\Plugin\WebformElement\WebformCompositeBase::getCompositeElementOptions
     $elements['title'] = [
       '#type' => 'webform_select_other',
       '#title' => t('Title'),
       '#options' => 'titles',
-      '#empty_option' => '',
     ];
     $elements['first'] = [
       '#type' => 'textfield',

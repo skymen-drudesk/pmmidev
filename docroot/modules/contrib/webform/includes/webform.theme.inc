@@ -25,6 +25,14 @@ function webform_theme() {
       'variables' => ['youtube_id' => NULL, 'autoplay' => TRUE],
     ],
 
+    'webform_contribute' => [
+      'variables' => [
+        'account' => [],
+        'membership' => [],
+        'contribution' => [],
+      ],
+    ],
+
     'webform' => [
       'render element' => 'element',
     ],
@@ -51,8 +59,16 @@ function webform_theme() {
       'variables' => ['webform' => NULL, 'source_entity' => NULL, 'webform_submission' => NULL],
     ],
 
+    'webform_required' => [
+      'variables' => ['label' => NULL],
+    ],
+
     'webform_submission' => [
       'render element' => 'elements',
+    ],
+
+    'webform_submission_form' => [
+      'render element' => 'form',
     ],
 
     'webform_submission_navigation' => [
@@ -121,9 +137,6 @@ function webform_theme() {
       'render element' => 'element',
     ],
     'webform_composite_contact' => [
-      'render element' => 'element',
-    ],
-    'webform_composite_creditcard' => [
       'render element' => 'element',
     ],
     'webform_composite_location' => [
@@ -201,12 +214,10 @@ function webform_theme_registry_alter(&$theme_registry) {
  * Applies custom link attributes to local actions.
  * Custom attributes are used to open Webform UI modals.
  *
- * Issue #2897396: Add a Reference Tab to track Webform nodes.
- * @see https://www.drupal.org/node/2897396
- *
  * @see template_preprocess_menu_local_action();
  * @see \Drupal\webform\WebformEntityHandlersForm
  * @see \Drupal\webform_ui\WebformUiEntityEditForm
+ * @see https://www.drupal.org/node/2897396
  */
 function webform_preprocess_menu_local_action(&$variables) {
   $link = $variables['element']['#link'];
@@ -252,15 +263,16 @@ function webform_preprocess_radios(&$variables) {
 /**
  * Prepares variables for checkboxes and radios options templates.
  *
- * Below code must be trigger and template_preprocess_(radios|checkboxes) which
+ * Below code must be called by template_preprocess_(radios|checkboxes) which
  * reset the element's 'attributes';
  */
 function _webform_preprocess_options(&$variables) {
   $element = $variables['element'];
 
+  $variables['attributes']['class'][] = Html::getClass('js-webform-' . $element['#type']);
+
   if (!empty($element['#options_display'])) {
-    $variables['attributes']['class'][] = 'js-webform-' . $element['#type'];
-    $variables['attributes']['class'][] = 'webform-options-display-' . str_replace('_', '-', $element['#options_display']);
+    $variables['attributes']['class'][] = Html::getClass('webform-options-display-' . $element['#options_display']);
     $variables['#attached']['library'][] = 'webform/webform.element.options';
   }
 }
@@ -280,6 +292,14 @@ function webform_preprocess_details(&$variables) {
   // Restructure the details's title to include #help.
   if (isset($variables['title'])) {
     _webform_preprocess_help_title($variables['title'], $element);
+  }
+
+  // Remove invalid 'required' and 'aria-required' attributes from details.
+  if (isset($element['#webform_key'])) {
+    unset(
+      $variables['attributes']['required'],
+      $variables['attributes']['aria-required']
+    );
   }
 }
 
@@ -304,6 +324,21 @@ function webform_preprocess_fieldset(&$variables) {
   // Restructure the fieldset's legend title to include #help.
   if (isset($variables['legend']['title'])) {
     _webform_preprocess_help_title($variables['legend']['title'], $element);
+  }
+
+  // Add .js-webform-form-composite class to be used #states API.
+  // @see js/webform.states.js
+  if (isset($element['#type']) && in_array($element['#type'], ['checkboxes', 'radios'])) {
+    $variables['attributes']['class'][] = 'js-webform-type-' . $element['#type'];
+    $variables['attributes']['class'][] = 'webform-type-' . $element['#type'];
+  }
+
+  // Remove invalid 'required' and 'aria-required' attributes from fieldset.
+  if (isset($element['#webform_key'])) {
+    unset(
+      $variables['attributes']['required'],
+      $variables['attributes']['aria-required']
+    );
   }
 }
 
@@ -381,10 +416,10 @@ function webform_preprocess_form_element(&$variables) {
  */
 function _webform_preprocess_description_help(&$variables) {
   $element = &$variables['element'];
-
   // Move #description to #help for webform admin routes.
   if (\Drupal::config('webform.settings')->get('ui.description_help')
     && \Drupal::service('webform.request')->isWebformAdminRoute()
+    && \Drupal::routeMatch()->getRouteName() != 'webform.contribute.settings'
     && isset($element['#description'])
     && !isset($element['#help'])
     && !empty($element['#title'])
@@ -604,6 +639,9 @@ function _webform_theme_suggestions(array $variables, $hook) {
   if ($hook == 'webform' && isset($variables['element']) && isset($variables['element']['#webform_id'])) {
     $suggestions[] = $hook . '__' . $variables['element']['#webform_id'];
   }
+  elseif ($hook == 'webform_submission_form' && isset($variables['form']) && isset($variables['form']['#webform_id'])) {
+    $suggestions[] = $hook . '__' . $variables['form']['#webform_id'];
+  }
   elseif (strpos($hook, 'webform_element_base_') === 0 || strpos($hook, 'webform_container_base_') === 0) {
     $element = $variables['element'];
 
@@ -631,7 +669,7 @@ function _webform_theme_suggestions(array $variables, $hook) {
       $webform = $webform_submission->getWebform();
     }
     elseif (isset($variables['webform'])) {
-        /** @var \Drupal\webform\WebformInterface $webform */
+      /** @var \Drupal\webform\WebformInterface $webform */
       $webform = $variables['webform'];
     }
 
@@ -726,6 +764,13 @@ function webform_theme_suggestions_webform_submission_navigation(array $variable
  */
 function webform_theme_suggestions_webform_submission(array $variables) {
   return _webform_theme_suggestions($variables, 'webform_submission');
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK().
+ */
+function webform_theme_suggestions_webform_submission_form(array $variables) {
+  return _webform_theme_suggestions($variables, 'webform_submission_form');
 }
 
 /**

@@ -7,6 +7,13 @@
 
   'use strict';
 
+  Drupal.webform = Drupal.webform || {};
+  Drupal.webform.states = Drupal.webform.states || {};
+  Drupal.webform.states.slideDown = Drupal.webform.states.slideDown || {};
+  Drupal.webform.states.slideDown.duration = 'slow';
+  Drupal.webform.states.slideUp = Drupal.webform.states.slideUp || {};
+  Drupal.webform.states.slideUp.duration = 'fast';
+
   /**
    * Check if an element has a specified data attribute.
    *
@@ -18,6 +25,16 @@
    */
   $.fn.hasData = function (data) {
     return (typeof this.data(data) !== 'undefined');
+  };
+
+  /**
+   * Check if element is within the webform or not.
+   *
+   * @returns {boolean}
+   *   TRUE if element is within the webform.
+   */
+  $.fn.isWebform = function () {
+    return $(this).closest('form[id^="webform"]').length ? true : false;
   };
 
   // The change event is triggered by cut-n-paste and select menus.
@@ -50,26 +67,75 @@
 
   var $document = $(document);
 
-  // Issue #2860529: Conditional required File upload field don't work.
   $document.on('state:required', function (e) {
-    if (e.trigger) {
+    if (e.trigger && $(e.target).isWebform()) {
+      var $target = $(e.target);
+      // Fix #required file upload.
+      // @see Issue #2860529: Conditional required File upload field don't work.
       if (e.value) {
-        $(e.target).find('input[type="file"]').attr({'required': 'required', 'aria-required': 'aria-required'});
+        $target.find('input[type="file"]').attr({'required': 'required', 'aria-required': 'true'});
       }
       else {
-        $(e.target).find('input[type="file"]').removeAttr('required aria-required');
+        $target.find('input[type="file"]').removeAttr('required aria-required');
+      }
+
+      // Fix required label for checkboxes and radios.
+      // @see Issue #2938414: Checkboxes don't support #states required
+      // @see Issue #2731991: Setting required on radios marks all options required.
+      // @see Issue #2856315: Conditional Logic - Requiring Radios in a Fieldset.
+      if ($target.is('.js-webform-type-radios, .js-webform-type-checkboxes')) {
+        if (e.value) {
+          $target.find('legend span').addClass('js-form-required form-required');
+        }
+        else {
+          $target.find('legend span').removeClass('js-form-required form-required');
+        }
+      }
+
+      // Fix #required for radios.
+      // @see Issue #2856795: If radio buttons are required but not filled form is nevertheless submitted.
+      if ($target.is('.js-webform-type-radios, .js-form-type-webform-radios-other')) {
+        if (e.value) {
+          $target.find('input[type="radio"]').attr({'required': 'required', 'aria-required': 'true'});
+        }
+        else {
+          $target.find('input[type="radio"]').removeAttr('required aria-required');
+        }
+      }
+
+      // Fix #required for checkboxes.
+      // @see Issue #2938414: Checkboxes don't support #states required.
+      // @see checkboxRequiredhandler
+      if ($target.is('.js-webform-type-checkboxes, .js-form-type-webform-checkboxes-other')) {
+        var $checkboxes = $target.find('input[type="checkbox"]');
+        if (e.value) {
+          // Bind the event handler and add custom HTML5 required validation
+          // to all checkboxes.
+          $checkboxes.bind('click', checkboxRequiredhandler);
+          if (!$checkboxes.is(':checked')) {
+            $checkboxes.attr({'required': 'required', 'aria-required': 'true'});
+          }
+        }
+        else {
+          // Remove custom HTML5 required validation from all checkboxes
+          // and unbind the event handler.
+          $checkboxes
+            .removeAttr('required aria-required')
+            .unbind('click', checkboxRequiredhandler);
+        }
       }
     }
+
   });
 
   $document.on('state:readonly', function (e) {
-    if (e.trigger) {
+    if (e.trigger && $(e.target).isWebform()) {
       $(e.target).prop('readonly', e.value).closest('.js-form-item, .js-form-wrapper').toggleClass('webform-readonly', e.value).find('input, textarea').prop('readonly', e.value);
     }
   });
 
-  $document.on('state:visible', function (e) {
-    if (e.trigger) {
+  $document.on('state:visible state:visible-slide', function (e) {
+    if (e.trigger && $(e.target).isWebform()) {
       if (e.value) {
         $(':input', e.target).addBack().each(function () {
           restoreValueAndRequired(this);
@@ -87,8 +153,17 @@
     }
   });
 
+  $document.bind('state:visible-slide', function(e) {
+    if (e.trigger && $(e.target).isWebform()) {
+      var effect = e.value ? 'slideDown' : 'slideUp';
+      var duration = Drupal.webform.states[effect].duration;
+      $(e.target).closest('.js-form-item, .js-form-submit, .js-form-wrapper')[effect ](duration);
+    }
+  });
+  Drupal.states.State.aliases['invisible-slide'] = '!visible-slide';
+
   $document.on('state:disabled', function (e) {
-    if (e.trigger) {
+    if (e.trigger && $(e.target).isWebform()) {
       // Make sure disabled property is set before triggering webform:disabled.
       // Copied from: core/misc/states.js
       $(e.target)
@@ -101,6 +176,21 @@
         .find('select, input, textarea').trigger('webform:disabled');
     }
   });
+
+  /**
+   * Trigger custom HTML5 multiple checkboxes validation.
+   *
+   * @see https://stackoverflow.com/a/37825072/145846
+   */
+  function checkboxRequiredhandler() {
+    var $checkboxes = $(this).closest('.js-webform-type-checkboxes, .js-form-type-webform-checkboxes-other').find('input[type="checkbox"]');
+    if ($checkboxes.is(':checked')) {
+      $checkboxes.removeAttr('required aria-required');
+    }
+    else {
+      $checkboxes.attr({'required': 'required', 'aria-required': 'true'});
+    }
+  }
 
   /**
    * Trigger an input's event handlers.
@@ -125,7 +215,7 @@
         .trigger('change', extraParameters)
         .trigger('blur', extraParameters);
     }
-    else if (type !== 'submit' && type !== 'button') {
+    else if (type !== 'submit' && type !== 'button' && type !== 'file') {
       $input
         .trigger('input', extraParameters)
         .trigger('change', extraParameters)
