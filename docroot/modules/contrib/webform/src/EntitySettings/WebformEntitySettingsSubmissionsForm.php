@@ -48,12 +48,8 @@ class WebformEntitySettingsSubmissionsForm extends WebformEntitySettingsBaseForm
     /** @var \Drupal\webform\WebformInterface $webform */
     $webform = $this->entity;
 
-    $elements = $webform->getElementsDecoded();
-    $settings = $webform->getSettings();
-
     // Display warning and disable the submission form.
-    $results_enabled = empty($settings['results_disabled']) && empty($elements['#method']);
-    if (!$results_enabled) {
+    if ($webform->isResultsDisabled()) {
       drupal_set_message($this->t('Saving of submissions is disabled, submission settings, submission limits, purging and the saving of drafts is disabled. Submissions must be sent via an email or handled using a <a href=":href">custom webform handler</a>.', [':href' => $webform->toUrl('handlers')->toString()]), 'warning');
       return $form;
     }
@@ -94,6 +90,24 @@ class WebformEntitySettingsSubmissionsForm extends WebformEntitySettingsBaseForm
       '#description' => $this->t('A message to be displayed if submission handling breaks.'),
       '#default_value' => $settings['submission_exception_message'],
     ];
+    $form['submission_settings']['submission_locked_message'] = [
+      '#type' => 'webform_html_editor',
+      '#title' => $this->t('Submission locked message'),
+      '#description' => $this->t('A message to be displayed if submission is locked.'),
+      '#default_value' => $settings['submission_locked_message'],
+    ];
+    $form['submission_settings']['previous_submission_message'] = [
+      '#type' => 'webform_html_editor',
+      '#title' => $this->t('Previous submission message'),
+      '#description' => $this->t('A message to be displayed when there is previous submission.'),
+      '#default_value' => $settings['previous_submission_message'],
+    ];
+    $form['submission_settings']['previous_submissions_message'] = [
+      '#type' => 'webform_html_editor',
+      '#title' => $this->t('Previous submissions message'),
+      '#description' => $this->t('A message to be displayed when there are previous submissions.'),
+      '#default_value' => $settings['previous_submissions_message'],
+    ];
     $form['submission_settings']['next_serial'] = [
       '#type' => 'number',
       '#title' => $this->t('Next submission number'),
@@ -111,7 +125,7 @@ class WebformEntitySettingsSubmissionsForm extends WebformEntitySettingsBaseForm
     // @see \Drupal\webform\Form\WebformResultsCustomForm::buildForm
     $available_columns = $webform_submission_storage->getColumns($webform);
     // Remove columns that should never be displayed to users.
-    $available_columns = array_diff_key($available_columns, array_flip(['uuid', 'in_draft', 'entity', 'sticky', 'notes', 'uid', 'operations']));
+    $available_columns = array_diff_key($available_columns, array_flip(['uuid', 'in_draft', 'entity', 'sticky', 'locked', 'notes', 'uid', 'operations']));
     $custom_columns = $webform_submission_storage->getUserColumns($webform);
     // Change sid's # to an actual label.
     $available_columns['sid']['title'] = $this->t('Submission ID');
@@ -139,7 +153,6 @@ class WebformEntitySettingsSubmissionsForm extends WebformEntitySettingsBaseForm
       '#default_value' => $columns_default_value,
     ];
 
-
     // Submission access denied.
     $form['submission_access_denied'] = [
       '#type' => 'details',
@@ -164,6 +177,13 @@ class WebformEntitySettingsSubmissionsForm extends WebformEntitySettingsBaseForm
       ],
     ];
     $form['submission_access_denied']['token_tree_link'] = $this->tokenManager->buildTreeLink();
+    if ($form['submission_access_denied']['token_tree_link']) {
+      $form['submission_access_denied']['token_tree_link']['#states'] = [
+        'visible' => [
+          ':input[name="submission_login"]' => ['checked' => TRUE],
+        ]
+      ];
+    }
 
     // Submission behaviors.
     $form['submission_behaviors'] = [
@@ -221,7 +241,7 @@ class WebformEntitySettingsSubmissionsForm extends WebformEntitySettingsBaseForm
       'submission_log' => [
         'title' => $this->t('Log submission events'),
         'all_description' => $this->t('All submission event are being logged for all webforms'),
-        'form_description' => $this->t('If checked, events will be logged for submissions to this webforms.'),
+        'form_description' => $this->t('If checked, events will be logged for submissions to this webform.'),
       ],
     ];
     $this->appendBehaviors($form['submission_behaviors'], $behavior_elements, $settings, $default_settings);
@@ -432,6 +452,45 @@ class WebformEntitySettingsSubmissionsForm extends WebformEntitySettingsBaseForm
       '#default_value' => $settings['draft_loaded_message'],
     ];
     $form['draft_settings']['draft_container']['token_tree_link'] = $this->tokenManager->buildTreeLink();
+
+    // Autofill settings.
+    $form['autofill_settings'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Autofill settings'),
+      '#open' => TRUE,
+    ];
+    $form['autofill_settings']['autofill'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Autofill with previous submission data'),
+      '#return_value' => TRUE,
+      '#default_value' => $settings['autofill'],
+    ];
+    $form['autofill_settings']['autofill_container'] = [
+      '#type' => 'container',
+      '#states' => [
+        'visible' => [
+          ':input[name="autofill"]' => ['checked' => TRUE],
+        ],
+      ],
+    ];
+    $form['autofill_settings']['autofill_container']['autofill_message'] = [
+      '#type' => 'webform_html_editor',
+      '#title' => $this->t('Autofill message'),
+      '#description' => $this->t('A message to be displayed when form is autofilled with previous submission data.'),
+      '#default_value' => $settings['autofill_message'],
+    ];
+    $form['autofill_settings']['autofill_container']['elements'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Autofill elements'),
+      '#open' => $settings['autofill_excluded_elements'] ? TRUE : FALSE,
+    ];
+    $form['autofill_settings']['autofill_container']['elements']['autofill_excluded_elements'] = [
+      '#type' => 'webform_excluded_elements',
+      '#webform_id' => $this->getEntity()->id(),
+      '#default_value' => $settings['autofill_excluded_elements'],
+    ];
+
+    $this->tokenManager->elementValidate($form);
 
     return parent::form($form, $form_state);
   }

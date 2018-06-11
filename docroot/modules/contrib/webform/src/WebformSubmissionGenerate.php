@@ -2,6 +2,7 @@
 
 namespace Drupal\webform;
 
+use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Form\OptGroup;
 use Drupal\Core\Serialization\Yaml;
 use Drupal\Core\Config\ConfigFactoryInterface;
@@ -114,6 +115,23 @@ class WebformSubmissionGenerate implements WebformSubmissionGenerateInterface {
       $values = [$values];
     }
 
+    // Apply #maxlength to values.
+    // @see \Drupal\webform\Plugin\WebformElement\TextBase
+    if (!empty($element['#maxlength'])) {
+      $maxlength = $element['#maxlength'];
+    }
+    elseif (!empty($element['#counter_type']) && !empty($element['#counter_maximum']) && $element['#counter_type'] === 'character') {
+      $maxlength = $element['#counter_maximum'];
+    }
+    else {
+      $maxlength = NULL;
+    }
+    if ($maxlength) {
+      foreach ($values as $index => $value) {
+        $values[$index] = Unicode::substr($value, 0, $maxlength);
+      }
+    }
+
     // $values = $this->tokenManager->replace($values, $webform);.
     // Elements that use multiple values require an array as the
     // default value.
@@ -160,11 +178,6 @@ class WebformSubmissionGenerate implements WebformSubmissionGenerateInterface {
     // Get test value from the actual element.
     if (isset($element['#test'])) {
       return $element['#test'];
-    }
-
-    // Never populate hidden and value elements.
-    if (in_array($element['#type'], ['hidden', 'value'])) {
-      return NULL;
     }
 
     // Invoke WebformElement::test and get a test value.
