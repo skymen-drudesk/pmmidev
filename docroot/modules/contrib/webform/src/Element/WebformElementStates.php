@@ -3,6 +3,7 @@
 namespace Drupal\webform\Element;
 
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\Form\OptGroup;
 use Drupal\Core\Serialization\Yaml;
 use Drupal\Component\Utility\Unicode;
 use Drupal\Core\Render\Element\FormElement;
@@ -25,7 +26,6 @@ class WebformElementStates extends FormElement {
     return [
       '#input' => TRUE,
       '#selector_options' => [],
-      '#selector_other' => TRUE,
       '#empty_states' => 3,
       '#process' => [
         [$class, 'processWebformStates'],
@@ -75,7 +75,8 @@ class WebformElementStates extends FormElement {
     $element['#tree'] = TRUE;
 
     // Add validate callback that extracts the associative array of states.
-    $element['#element_validate'] = [[get_called_class(), 'validateWebformElementStates']];
+    $element += ['#element_validate' => []];
+    array_unshift($element['#element_validate'], [get_called_class(), 'validateWebformElementStates']);
 
     // For customized #states display a CodeMirror YAML editor.
     if ($warning_message = static::isDefaultValueCustomizedFormApiStates($element)) {
@@ -120,7 +121,7 @@ class WebformElementStates extends FormElement {
     // Build header.
     $header = [
       ['data' => t('State'), 'width' => '25%'],
-      ['data' => t('Element/Selector'), 'width' => '50%'],
+      ['data' => t('Element'), 'width' => '50%'],
       ['data' => t('Trigger/Value'), 'width' => '25%'],
       ['data' => ''],
     ];
@@ -208,8 +209,7 @@ class WebformElementStates extends FormElement {
       '#type' => 'select',
       '#options' => $element['#state_options'],
       '#default_value' => $state['state'],
-      '#empty_option' => '',
-      '#empty_value' => '',
+      '#empty_option' => t('- Select -'),
       '#wrapper_attributes' => ['class' => ['webform-states-table--state']],
     ];
     $row['operator'] = [
@@ -265,13 +265,10 @@ class WebformElementStates extends FormElement {
       '#options' => $element['#selector_options'],
       '#wrapper_attributes' => ['class' => ['webform-states-table--selector']],
       '#default_value' => $condition['selector'],
-      '#empty_option' => '',
-      '#empty_value' => '',
+      '#empty_option' => t('- Select -'),
     ];
-    if ($element['#selector_other']) {
-      $row['selector']['#type'] = 'webform_select_other';
-      $row['selector']['#other__option_label'] = t('Custom selector...');
-      $row['selector']['#other__placeholder'] = t('Enter custom selector...');
+    if (!isset($element['#selector_options'][$condition['selector']])) {
+      $row['selector']['#options'][$condition['selector']] = $condition['selector'];
     }
     $row['condition'] = [
       '#wrapper_attributes' => ['class' => ['webform-states-table--condition']],
@@ -280,8 +277,7 @@ class WebformElementStates extends FormElement {
       '#type' => 'select',
       '#options' => $element['#trigger_options'],
       '#default_value' => $condition['trigger'],
-      '#empty_option' => '',
-      '#empty_value' => '',
+      '#empty_option' => t('- Select -'),
       '#parents' => [$element_name, 'states', $row_index , 'trigger'],
       '#wrapper_attributes' => ['class' => ['webform-states-table--trigger']],
     ];
@@ -312,7 +308,7 @@ class WebformElementStates extends FormElement {
     ];
     $row['condition']['pattern'] = [
       '#type' => 'container',
-      'description' => ['#markup' => t('Enter a <a href=":href">regular expression</a>')],
+      'description' => ['#markup' => t('Enter a <a href=":href">regular expression</a>', [':href' => 'http://www.w3schools.com/js/js_regexp.asp'])],
       '#states' => [
         'visible' => [
           [$trigger_selector => ['value' => 'pattern']],
@@ -389,7 +385,7 @@ class WebformElementStates extends FormElement {
       'operator' => 'and',
     ];
     $values[] = [
-      'selector' => ($element['#selector_other']) ? ['select' => '', 'other' => ''] : '',
+      'selector' => '',
       'trigger' => '',
       'value' => '',
     ];
@@ -505,6 +501,8 @@ class WebformElementStates extends FormElement {
       $states = static::convertFormValuesToFormApiStates($element['states']['#value']);
     }
     $form_state->setValueForElement($element, NULL);
+
+    $element['#value'] = $states;
     $form_state->setValueForElement($element, $states);
   }
 
@@ -605,6 +603,12 @@ class WebformElementStates extends FormElement {
         continue;
       }
 
+      // Define values extracted from
+      // WebformElementStates::getFormApiStatesCondition().
+      $selector = NULL;
+      $trigger = NULL;
+      $value = NULL;
+
       $operator = $state_array['operator'];
       $conditions = $state_array['conditions'];
       if (count($conditions) === 1) {
@@ -695,19 +699,6 @@ class WebformElementStates extends FormElement {
         ];
       }
       else {
-        // ISSUE:
-        // Select other #element_validate callback is not being triggered
-        // for conditions added add and remove callbacks.
-        //
-        // WORKAROUND:
-        // Manually process select other values.
-        if (isset($value['selector']['select'])) {
-          $selector = $value['selector']['select'];
-          if ($selector == WebformSelectOther::OTHER_OPTION) {
-            $selector = $value['selector']['other'];
-          }
-          $value['selector'] = $selector;
-        }
         $states[$index]['conditions'][] = $value;
       }
     }
@@ -748,9 +739,10 @@ class WebformElementStates extends FormElement {
       return t('Conditional logic (Form API #states) is not an array.');
     }
 
+    $state_options = OptGroup::flattenOptions($element['#state_options']);
     $states = $element['#default_value'];
     foreach ($states as $state => $conditions) {
-      if (!isset($element['#state_options'][$state])) {
+      if (!isset($state_options[$state])) {
         return t('Conditional logic (Form API #states) is using a custom %state state.', ['%state' => $state]);
       }
 
@@ -794,19 +786,33 @@ class WebformElementStates extends FormElement {
    *   An associative array of translated state options.
    */
   public static function getStateOptions() {
+    $visibility_optgroup = (string) t('Visibility');
+    $state_optgroup = (string) t('State');
+    $validation_optgroup = (string) t('Validation');
+    $value_optgroup = (string) t('Value');
     return [
-      'visible' => t('Visible'),
-      'invisible' => t('Hidden'),
-      'enabled' => t('Enabled'),
-      'disabled' => t('Disabled'),
-      'readwrite' => t('Read/write'),
-      'readonly' => t('Read-only'),
-      'required' => t('Required'),
-      'optional' => t('Optional'),
-      'checked' => t('Checked'),
-      'unchecked' => t('Unchecked'),
-      'expanded' => t('Expanded'),
-      'collapsed' => t('Collapsed'),
+      $visibility_optgroup => [
+        'visible' => t('Visible'),
+        'invisible' => t('Hidden'),
+        'visible-slide' => t('Visible (Slide)'),
+        'invisible-slide' => t('Hidden (Slide)'),
+      ],
+      $state_optgroup => [
+        'enabled' => t('Enabled'),
+        'disabled' => t('Disabled'),
+        'readwrite' => t('Read/write'),
+        'readonly' => t('Read-only'),
+        'expanded' => t('Expanded'),
+        'collapsed' => t('Collapsed'),
+      ],
+      $validation_optgroup => [
+        'required' => t('Required'),
+        'optional' => t('Optional'),
+      ],
+      $value_optgroup => [
+        'checked' => t('Checked'),
+        'unchecked' => t('Unchecked'),
+      ],
     ];
   }
 

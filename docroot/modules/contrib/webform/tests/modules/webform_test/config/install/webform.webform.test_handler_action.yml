@@ -8,6 +8,7 @@ open: null
 close: null
 uid: null
 template: false
+archive: false
 id: test_handler_action
 title: 'Test: Handler: Action'
 description: 'Test action handler.'
@@ -23,6 +24,16 @@ elements: |
       '#options':
         flag: Flag/Star
         unflag: Unflag/Unstar
+  locked:
+    '#type': fieldset
+    '#title': Locked
+    lock:
+      '#type': radios
+      '#title': Lock
+      '#title_display': invisible
+      '#options':
+        locked: Locked
+        unlocked: Unlocked
   notes:
     '#type': fieldset
     '#title': Notes
@@ -58,6 +69,8 @@ settings:
   form_reset: false
   form_disable_autocomplete: false
   form_novalidate: false
+  form_disable_inline_errors: false
+  form_required: false
   form_unsaved: false
   form_disable_back: false
   form_submit_back: false
@@ -71,6 +84,12 @@ settings:
   submission_login: false
   submission_login_message: ''
   submission_exception_message: ''
+  submission_locked_message: 'This is submission was automatically locked.'
+  previous_submission_message: ''
+  previous_submissions_message: ''
+  autofill: false
+  autofill_message: ''
+  autofill_excluded_elements: {  }
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
@@ -85,6 +104,7 @@ settings:
   preview_attributes: {  }
   preview_excluded_elements: {  }
   preview_exclude_empty: true
+  preview_exclude_empty_checkbox: false
   draft: authenticated
   draft_multiple: false
   draft_auto_save: false
@@ -98,6 +118,8 @@ settings:
   confirmation_back: true
   confirmation_back_label: ''
   confirmation_back_attributes: {  }
+  confirmation_exclude_query: false
+  confirmation_exclude_token: false
   limit_total: null
   limit_total_interval: null
   limit_total_message: ''
@@ -148,6 +170,14 @@ access:
     roles: {  }
     users: {  }
     permissions: {  }
+  administer:
+    roles: {  }
+    users: {  }
+    permissions: {  }
+  test:
+    roles: {  }
+    users: {  }
+    permissions: {  }
 handlers:
   notes:
     id: action
@@ -166,6 +196,7 @@ handlers:
         - updated
       notes: '[webform_submission:values:notes_add]'
       sticky: null
+      locked: null
       data: |
         notes_add: ''
         notes_last: '[webform_submission:values:notes_add]'
@@ -190,6 +221,7 @@ handlers:
         - updated
       notes: ''
       sticky: true
+      locked: null
       data: ''
       message: 'Submission has been flagged.'
       message_type: status
@@ -212,7 +244,51 @@ handlers:
         - updated
       notes: ''
       sticky: false
+      locked: null
       data: ''
       message: 'Submission has been unflagged.'
+      message_type: status
+      debug: true
+  locked:
+    id: action
+    label: Locked
+    handler_id: locked
+    status: true
+    conditions:
+      enabled:
+        ':input[name="lock"]':
+          value: locked
+    weight: -52
+    settings:
+      states:
+        - draft
+        - converted
+        - completed
+        - updated
+      notes: ''
+      sticky: null
+      locked: true
+      data: ''
+      message: 'Submission has been locked.'
+      message_type: status
+      debug: true
+  unlocked:
+    id: action
+    label: Unlocked
+    handler_id: unlocked
+    status: true
+    conditions:
+      enabled:
+        ':input[name="lock"]':
+          value: unlocked
+    weight: -51
+    settings:
+      states:
+        - locked
+      notes: ''
+      sticky: null
+      locked: false
+      data: ''
+      message: 'Submission has been unlocked.'
       message_type: status
       debug: true

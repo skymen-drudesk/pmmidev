@@ -71,8 +71,17 @@ class WebformEntitySettingsConfirmationForm extends WebformEntitySettingsBaseFor
     $form['confirmation_type']['ajax_confirmation'] = [
       '#type' => 'webform_message',
       '#message_type' => 'warning',
-      '#message_message' => $this->t("Only 'Inline' and 'Message' confirmation types are fully supported by Ajax."),
+      '#message_message' => $this->t("Only 'Inline', 'Message', and 'Modal' confirmation types are fully supported by Ajax."),
       '#access' => $settings['ajax'],
+      '#states' => [
+        'invisible' => [
+          [':input[name="confirmation_type"]' => ['value' => WebformInterface::CONFIRMATION_INLINE]],
+          'or',
+          [':input[name="confirmation_type"]' => ['value' => WebformInterface::CONFIRMATION_MESSAGE]],
+          'or',
+          [':input[name="confirmation_type"]' => ['value' => WebformInterface::CONFIRMATION_MODAL]],
+        ],
+      ],
     ];
     $form['confirmation_type']['confirmation_type'] = [
       '#title' => $this->t('Confirmation type'),
@@ -95,6 +104,8 @@ class WebformEntitySettingsConfirmationForm extends WebformEntitySettingsBaseFor
       '#open' => TRUE,
       '#states' => [
         'visible' => [
+          [':input[name="confirmation_type"]' => ['value' => WebformInterface::CONFIRMATION_PAGE]],
+          'or',
           [':input[name="confirmation_type"]' => ['value' => WebformInterface::CONFIRMATION_URL]],
           'or',
           [':input[name="confirmation_type"]' => ['value' => WebformInterface::CONFIRMATION_URL_MESSAGE]],
@@ -108,6 +119,11 @@ class WebformEntitySettingsConfirmationForm extends WebformEntitySettingsBaseFor
       '#default_value' => $settings['confirmation_url'],
       '#maxlength' => NULL,
       '#states' => [
+        'visible' => [
+          [':input[name="confirmation_type"]' => ['value' => WebformInterface::CONFIRMATION_URL]],
+          'or',
+          [':input[name="confirmation_type"]' => ['value' => WebformInterface::CONFIRMATION_URL_MESSAGE]],
+        ],
         'required' => [
           [':input[name="confirmation_type"]' => ['value' => WebformInterface::CONFIRMATION_URL]],
           'or',
@@ -115,6 +131,23 @@ class WebformEntitySettingsConfirmationForm extends WebformEntitySettingsBaseFor
         ],
       ],
     ];
+    $form['confirmation_url']['confirmation_exclude_query'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Exclude query string from Confirmation URL'),
+      '#description' => $this->t('If checked, all query string parameters will be removed from the Confirmation URL.'),
+      '#default_value' => $settings['confirmation_exclude_query'],
+    ];
+    $form['confirmation_url']['confirmation_exclude_token'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Exclude token from Confirmation URL'),
+      '#description' => $this->t('If checked, to submissions token will be removed from the Confirmation URL and the [webform-submission] tokens will not be available within the confirmation message.'),
+      '#default_value' => $settings['confirmation_exclude_token'],
+      '#access' => !$webform->isResultsDisabled(),
+    ];
+    $form['confirmation_url']['token_tree_link'] = $this->tokenManager->buildTreeLink(
+      ['webform', 'webform_submission', 'webform_handler'],
+      $this->t('You may use tokens to pass query string parameters. Make sure all tokens include the urlencode suffix. (i.e. [webform-submission:values:email:urlencode])')
+    );
 
     // Confirmation settings.
     $form['confirmation_settings'] = [
@@ -216,6 +249,8 @@ class WebformEntitySettingsConfirmationForm extends WebformEntitySettingsBaseFor
       '#default_value' => $settings['confirmation_back_attributes'],
     ];
     $form['back']['back_container']['token_tree_link'] = $this->tokenManager->buildTreeLink();
+
+    $this->tokenManager->elementValidate($form);
 
     return parent::form($form, $form_state);
   }

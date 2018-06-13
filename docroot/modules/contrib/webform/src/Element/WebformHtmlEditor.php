@@ -5,6 +5,8 @@ namespace Drupal\webform\Element;
 use Drupal\Component\Utility\Xss;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Render\Element\FormElement;
+use Drupal\webform\Utility\WebformElementHelper;
+use Drupal\webform\Utility\WebformXss;
 
 /**
  * Provides a webform element for entering HTML using CodeMirror, TextFormat, or custom CKEditor.
@@ -21,15 +23,12 @@ class WebformHtmlEditor extends FormElement {
     return [
       '#input' => TRUE,
       '#process' => [
+        [$class, 'processWebformHtmlEditor'],
         [$class, 'processAjaxForm'],
         [$class, 'processGroup'],
-        [$class, 'preRenderWebformHtmlEditor'],
       ],
       '#pre_render' => [
         [$class, 'preRenderGroup'],
-      ],
-      '#element_validate' => [
-        [$class, 'validateWebformHtmlEditor'],
       ],
       '#theme_wrappers' => ['form_element'],
       '#format' => '',
@@ -40,15 +39,17 @@ class WebformHtmlEditor extends FormElement {
    * {@inheritdoc}
    */
   public static function valueCallback(&$element, $input, FormStateInterface $form_state) {
+    $element += ['#default_value' => ''];
     if ($input === FALSE) {
-      if (!isset($element['#default_value'])) {
-        $element['#default_value'] = '';
-      }
       return [
         'value' => $element['#default_value'],
       ];
     }
     else {
+      // Get value from TextFormat element.
+      if (isset($input['value']['value'])) {
+        $input['value'] = $input['value']['value'];
+      }
       return $input;
     }
   }
@@ -63,14 +64,25 @@ class WebformHtmlEditor extends FormElement {
    *   The HTML Editor which can be a CodeMirror element, TextFormat, or
    *   Textarea which is transformed into a custom HTML Editor.
    */
-  public static function preRenderWebformHtmlEditor(array $element) {
+  public static function processWebformHtmlEditor(array $element) {
     $element['#tree'] = TRUE;
 
-    $element['value']['#title'] = $element['#title'];
+    // Define value element.
+    $element += ['value' => []];
+
+    // Copy properties to value element.
+    $properties = ['#title', '#required', '#attributes', '#default_value'];
+    $element['value'] += array_intersect_key($element, array_combine($properties, $properties));
+
+    // Hide title.
     $element['value']['#title_display'] = 'invisible';
-    if (isset($element['#required'])) {
-      $element['value']['#required'] = $element['#required'];
-    }
+
+    // Don't display inline form error messages.
+    $element['#error_no_message'] = TRUE;
+
+    // Add validate callback.
+    $element += ['#element_validate' => []];
+    array_unshift($element['#element_validate'], [get_called_class(), 'validateWebformHtmlEditor']);
 
     // If HTML disabled and no #format is specified return simple CodeMirror
     // HTML editor.
@@ -79,7 +91,6 @@ class WebformHtmlEditor extends FormElement {
       $element['value'] += [
         '#type' => 'webform_codemirror',
         '#mode' => 'html',
-        '#value' => empty($element['#value']) ? NULL : $element['#value']['value'],
       ];
       return $element;
     }
@@ -92,17 +103,16 @@ class WebformHtmlEditor extends FormElement {
         '#type' => 'text_format',
         '#format' => $format,
         '#allowed_formats' => [$format],
-        '#value' => empty($element['#value']) ? NULL : $element['#value']['value'],
       ];
+      WebformElementHelper::fixStatesWrapper($element);
       return $element;
     }
 
     // Else use textarea with completely custom HTML Editor.
     $element['value'] += [
       '#type' => 'textarea',
-      '#attributes' => ['class' => ['js-html-editor']],
-      '#value' => empty($element['#value']) ? NULL : $element['#value']['value'],
     ];
+    $element['value']['#attributes']['class'][] = 'js-html-editor';
 
     $element['#attached']['library'][] = 'webform/webform.element.html_editor';
     $element['#attached']['drupalSettings']['webform']['html_editor']['allowedContent'] = static::getAllowedContent();
@@ -132,7 +142,7 @@ class WebformHtmlEditor extends FormElement {
       $element['#attached']['drupalSettings']['webform']['html_editor']['ImceImageIcon'] = file_create_url(drupal_get_path('module', 'imce') . '/js/plugins/ckeditor/icons/imceimage.png');
     }
 
-    if (isset($element['#states'])) {
+    if (!empty($element['#states'])) {
       webform_process_states($element, '#wrapper_attributes');
     }
 
@@ -146,11 +156,14 @@ class WebformHtmlEditor extends FormElement {
     $value = $element['#value']['value'];
     if (is_array($value)) {
       // Get value from TextFormat element.
-      $form_state->setValueForElement($element, $value['value']);
+      $value = $value['value'];
     }
     else {
-      $form_state->setValueForElement($element, trim($value));
+      $value = trim($value);
     }
+
+    $element['#value'] = $value;
+    $form_state->setValueForElement($element, $value);
   }
 
   /**
@@ -190,18 +203,10 @@ class WebformHtmlEditor extends FormElement {
     $allowed_tags = \Drupal::config('webform.settings')->get('element.allowed_tags');
     switch ($allowed_tags) {
       case 'admin':
-        $allowed_tags = Xss::getAdminTagList();
-        // <label>, <fieldset>, <legend>, <font> is missing from allowed tags.
-        $allowed_tags[] = 'label';
-        $allowed_tags[] = 'fieldset';
-        $allowed_tags[] = 'legend';
-        $allowed_tags[] = 'font';
-        return $allowed_tags;
+        return WebformXss::getAdminTagList();
 
       case 'html':
-        $allowed_tags = Xss::getHtmlTagList();
-        $allowed_tags[] = 'font';
-        return $allowed_tags;
+        return WebformXss::getHtmlTagList();
 
       default:
         return preg_split('/ +/', $allowed_tags);
