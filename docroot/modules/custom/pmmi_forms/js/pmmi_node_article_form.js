@@ -38,12 +38,12 @@
                     if ($checkedElem.length > 0) {
                         for (var i = 0; i < il; i++) {
                             if ($checkedElem[i].value == '191') {
-                                changeFieldAttr(true);
+                                changeFieldAttr(false);
                             }
                             else {
                                 // Prevent do the same job several times.
                                 if (!processed) {
-                                    changeFieldAttr(false);
+                                    changeFieldAttr(true);
                                     processed = true;
                                 }
                             }
