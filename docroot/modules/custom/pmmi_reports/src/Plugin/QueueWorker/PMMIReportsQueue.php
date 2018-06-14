@@ -48,6 +48,8 @@ class PMMIReportsQueue extends QueueWorkerBase implements ContainerFactoryPlugin
    *   The key value store to use.
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The config factory to get related configs.
+   * @param \Drupal\Core\StringTranslation\TranslationInterface $string_translation
+   *   The string translation service.
    */
   public function __construct(
     array $configuration,
@@ -147,7 +149,7 @@ class PMMIReportsQueue extends QueueWorkerBase implements ContainerFactoryPlugin
         'format' => 'full_html',
       ],
       'field_member_price' => $data['mem_currency_symbol'] . $data['mem_price'],
-      'field_non_member_price' => $data['list_currency_symbol'] . $data['list_price'],
+      'field_non_member_price' => $data["member_only_flag"] == 1 ? '' : $data['list_currency_symbol'] . $data['list_price'],
       'field_product_id' => (string) $product_id,
       'field_product_status_date' => $data['status_date'],
       'field_available_from_date' => $data['available_date'],

@@ -224,6 +224,7 @@ class PMMIReportsImport {
         'body' => 'WebShortDescription',
         'summary' => 'WebLongDescription',
         'category' => 'ProductClassCodeString',
+        'member_only_flag' => 'MembersOnlyFlag',
       ],
       'product_price' => [
         'mem_price' => 'MemPrice',
