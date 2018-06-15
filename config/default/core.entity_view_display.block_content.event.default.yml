@@ -13,16 +13,14 @@ dependencies:
     - field.field.block_content.event.field_link
     - field.field.block_content.event.field_location
   module:
-    - address
     - ds
-    - link
     - pmmi_fields
+    - pmmi_training_provider
 third_party_settings:
   ds:
     layout:
       id: block_event_default
-      path: themes/custom/pmmi_bootstrap
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
@@ -35,8 +33,6 @@ third_party_settings:
         - field_location
       hosted_by:
         - field_hosted_by
-      button:
-        - field_button
       link:
         - field_link
 id: block_content.event.default
@@ -44,25 +40,6 @@ targetEntityType: block_content
 bundle: event
 mode: default
 content:
-  field_button:
-    weight: 4
-    label: hidden
-    settings:
-      trim_length: 80
-      url_only: false
-      url_plain: false
-      rel: '0'
-      target: '0'
-    third_party_settings:
-      ds:
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
-    type: link
-    region: content
   field_dates:
     weight: 0
     label: hidden
@@ -82,7 +59,7 @@ content:
             lb-col: false
             classes: {  }
     type: daterange_event_custom
-    region: content
+    region: dates
   field_head:
     weight: 1
     label: hidden
@@ -97,7 +74,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
-    region: content
+    region: head
   field_hosted_by:
     weight: 3
     label: inline
@@ -112,10 +89,10 @@ content:
             lb-col: false
             classes: {  }
     type: string
-    region: content
+    region: hosted_by
   field_link:
-    type: link
-    weight: 5
+    type: link_as_label
+    weight: 4
     label: hidden
     settings:
       trim_length: 80
@@ -123,6 +100,7 @@ content:
       url_plain: false
       rel: '0'
       target: '0'
+      link_label: ''
     third_party_settings:
       ds:
         ft:
@@ -131,9 +109,9 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: link
   field_location:
-    type: address_default
+    type: address_simple
     weight: 2
     label: hidden
     settings: {  }
@@ -145,7 +123,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: location
   field_locations:
     weight: 8
     label: hidden
@@ -171,5 +149,6 @@ content:
     third_party_settings: {  }
     region: content
 hidden:
+  field_button: true
   field_event_types: true
   field_exclude_main_calendar: true

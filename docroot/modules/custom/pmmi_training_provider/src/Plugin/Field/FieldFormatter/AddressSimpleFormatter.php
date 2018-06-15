@@ -56,12 +56,36 @@ class AddressSimpleFormatter extends AddressDefaultFormatter {
    */
   protected function viewElement(AddressInterface $address, $langcode) {
     $country_code = $address->getCountryCode();
+    $locality = $address->getLocality();
     $countries = $this->countryRepository->getList();
     $country = $countries[$country_code];
     $state = $address->getAdministrativeArea();
-    $element['address_simple'] = [
-      '#markup' => $state ? implode(', ', array($state, $country)) : $country,
-    ];
+    $organization = $address->getOrganization();
+
+    $organization_render = '';
+    if (!empty($organization)) {
+      $organization_render = '<span class="organization">' . $organization . '</span><br>';
+    }
+
+    // Use 'city and state' format for USA
+    // and 'city and country' for other countries.
+    if ($country_code == 'US') {
+      $element['address_simple'] = [
+        '#markup' => $organization_render . implode(', ', array_filter([
+          $locality,
+          $state,
+        ])),
+      ];
+    }
+    else {
+      $element['address_simple'] = [
+        '#markup' => $organization_render . implode(', ', array_filter([
+          $locality,
+          $country,
+        ])),
+      ];
+    }
+
 
     return $element;
   }
