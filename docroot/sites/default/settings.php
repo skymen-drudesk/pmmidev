@@ -798,11 +798,6 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
     }
 }
 
-## Set config read-only for prod environment.
-if (isset($_ENV['AH_SITE_ENVIRONMENT']) && $_ENV['AH_SITE_ENVIRONMENT'] === 'prod') {
-  $settings['config_readonly'] = TRUE;
-}
-
 /**
  * Load local development override configuration, if available.
  *
