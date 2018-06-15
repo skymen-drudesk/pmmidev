@@ -60,6 +60,8 @@ function datetime_type_field_views_data(FieldStorageConfigInterface $field_stora
         'argument' => [
           'field' => $field_storage->getName() . '_' . $column_name,
           'id' => 'datetime_' . $argument_type,
+          'entity_type' => $field_storage->getTargetEntityTypeId(),
+          'field_name' => $field_storage->getName(),
         ],
         'group' => $group,
       ];
