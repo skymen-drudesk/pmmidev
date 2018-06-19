@@ -795,6 +795,8 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
         case 'dev':
             $config['config_split.config_split.dev']['status'] = TRUE;
             break;
+        default:
+            $config['config_split.config_split.stage']['status'] = TRUE;
     }
 }
 
