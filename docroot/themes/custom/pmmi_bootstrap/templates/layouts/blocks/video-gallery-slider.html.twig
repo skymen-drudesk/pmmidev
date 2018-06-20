@@ -1,0 +1,13 @@
+{{ attach_library('pmmi/jsor.lity') }}
+{{ attach_library('slick/slick') }}
+
+<div{{ content['#attrs'].addClass('block-layout block-video-gallery video-gallery video-gallery--slider') }}>
+
+  {{ field_render([content.title, 'title', 'h2']) }}
+
+  {{ field_render([content.description, 'description']) }}
+
+  <div class="video-gallery__slider">
+    {{ field_render([content.gallery_items, 'video-gallery__slider']) }}
+  </div>
+</div>

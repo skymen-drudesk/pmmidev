@@ -1,0 +1,9 @@
+<div{{ content['#attrs'].addClass('block-layout block-video-gallery-item') }}>
+
+  {{ field_render([content.title, 'title', 'h2']) }}
+
+  {{ field_render([content.description, 'description']) }}
+
+  {{ field_render([content.gallery_items, 'gallery-items']) }}
+
+</div>

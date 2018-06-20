@@ -1,0 +1,9 @@
+<div{{ content['#attrs'].addClass('video-gallery__slider-item') }}>
+  <div class="video-gallery__video">
+    {{ field_render([content.video]) }}
+  </div>
+
+  <div class="video-gallery__title">
+    {{ field_render([content.video_title]) }}
+  </div>
+</div>
