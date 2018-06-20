@@ -1,0 +1,41 @@
+uuid: b68c3adc-ba17-4e80-8a90-61beae67b93b
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.video_gallery_item
+    - field.field.block_content.video_gallery_item.field_video_title
+    - field.field.block_content.video_gallery_item.field_video_url
+  module:
+    - link
+id: block_content.video_gallery_item.default
+targetEntityType: block_content
+bundle: video_gallery_item
+mode: default
+content:
+  field_video_title:
+    weight: 26
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_video_url:
+    weight: 1
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+    type: link_default
+    region: content
+  info:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  moderation_state: true

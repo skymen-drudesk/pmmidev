@@ -1,0 +1,28 @@
+uuid: 28efe1aa-f046-4ca2-804b-f267c7ba0847
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.video_gallery_item
+    - core.entity_view_mode.block_content.video_gallery_item_expanded
+    - field.field.block_content.video_gallery_item.field_video_url
+  module:
+    - link
+id: block_content.video_gallery_item.video_gallery_item_expanded
+targetEntityType: block_content
+bundle: video_gallery_item
+mode: video_gallery_item_expanded
+content:
+  field_video_url:
+    weight: 0
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+hidden: {  }
