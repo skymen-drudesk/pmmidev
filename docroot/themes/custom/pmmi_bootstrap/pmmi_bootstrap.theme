@@ -453,6 +453,17 @@ function pmmi_bootstrap_preprocess_field(&$vars) {
           }
         }
         break;
+
+      case 'field_video_url':
+        if (!empty($vars['items'])) {
+          foreach ($vars['items'] as $key => &$item) {
+            $url = $item['content']['#url'];
+            /* @var $url \Drupal\Core\Url */
+            $item['url'] = $url->getUri();
+          }
+        }
+
+        break;
     }
   }
 }
@@ -466,4 +477,3 @@ function pmmi_bootstrap_preprocess_menu(&$variables) {
 
   $variables['username'] = $account->getDisplayName();
 }
-
