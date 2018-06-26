@@ -526,7 +526,19 @@ display:
       allow:
         items_per_page: true
       display_description: 'Blog (Global Trends)'
-      sorts: {  }
+      sorts:
+        field_blog_date:
+          id: field_blog_date
+          table: search_api_index_default_index
+          field: field_blog_date
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: ''
+          plugin_id: search_api
     cache_metadata:
       max-age: -1
       contexts:
