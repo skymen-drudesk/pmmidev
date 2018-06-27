@@ -281,9 +281,9 @@
           var $link = $(this);
           if (!$link.attr('href').length) {
             $link.removeAttr('href').css('cursor', 'default')
-                .on('click', function (e) {
-                  e.preventDefault();
-                });
+              .on('click', function (e) {
+                e.preventDefault();
+              });
           }
         });
         // Search block.
@@ -297,8 +297,8 @@
               $dropdownLink.on('click.mobile-toggler', function (e) {
                 e.preventDefault();
                 $dropdownLink.toggleClass('opened').parent().toggleClass('opened')
-                    .siblings().removeClass('opened')
-                    .find('>a').removeClass('opened');
+                  .siblings().removeClass('opened')
+                  .find('>a').removeClass('opened');
               });
             });
           }
@@ -338,13 +338,13 @@
       var headerH = $header.outerHeight(true);
       if (scrollTop > headerH) {
         $header
-            .addClass('below-fold')
-            .parent().css('padding-top', headerH);
+          .addClass('below-fold')
+          .parent().css('padding-top', headerH);
       }
       else {
         $header
-            .removeClass('below-fold')
-            .parent().css('padding-top', 0);
+          .removeClass('below-fold')
+          .parent().css('padding-top', 0);
       }
     },
     attach: function (context, settings) {
@@ -391,4 +391,44 @@
     }
   };
 
+  Drupal.behaviors.pmmiVideoGallery = {
+    attach: function (context, settings) {
+      // Connect slick slider to each
+      // class="video-gallery--slider" DOM element.
+      $('.video-gallery--slider').each(function() {
+        // Navigation container.
+        let $nav = $(this).find('.video-gallery__slider-navigation');
+        $(this).find('.video-gallery__slider > div').once().slick({
+          dots: true,
+          slide: '.video-gallery__slider-item',
+          infinite: false,
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          lazyLoad: 'ondemand',
+          nextArrow: '<span class="video-gallery__slider-arrow video-gallery__slider-arrow--right"></span>',
+          prevArrow: '<span class="video-gallery__slider-arrow video-gallery__slider-arrow--left"></span>',
+          appendArrows: $nav,
+          appendDots: $nav,
+          centerPadding: '100px',
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                dots: false
+              }
+            }
+          ]
+        });
+      });
+    }
+  };
 })(jQuery, window, Drupal);

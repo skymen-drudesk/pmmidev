@@ -1,5 +1,5 @@
-  {% for item in items %}
-    <a href="{{ item.url }}" data-lity>
-      <img src="https://pbs.twimg.com/profile_images/666895655412080640/3ZuXgRgi_400x400.png" alt="">
-    </a>
-  {% endfor %}
+{% for item in items %}
+  <a href="{{ item.url }}" data-lity class="video-gallery__slider-link">
+    <img src="{{ item.image_thumbnail }}" class="video-gallery__slider-image">
+  </a>
+{% endfor %}

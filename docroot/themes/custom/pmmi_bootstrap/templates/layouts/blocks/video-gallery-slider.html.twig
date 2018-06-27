@@ -1,13 +1,15 @@
 {{ attach_library('pmmi/jsor.lity') }}
 {{ attach_library('slick/slick') }}
+{{ attach_library('slick/slick.theme') }}
 
-<div{{ content['#attrs'].addClass('block-layout block-video-gallery video-gallery video-gallery--slider') }}>
+<div{{ content['#attrs'].addClass('block-layout video-gallery video-gallery--slider') }}>
 
-  {{ field_render([content.title, 'title', 'h2']) }}
+  {{ field_render([content.title, 'video-gallery__title']) }}
 
-  {{ field_render([content.description, 'description']) }}
+  {{ field_render([content.description, 'video-gallery__description']) }}
 
-  <div class="video-gallery__slider">
+  <div class="video-gallery__slider-wrapper">
     {{ field_render([content.gallery_items, 'video-gallery__slider']) }}
+    <div class="video-gallery__slider-navigation"></div>
   </div>
 </div>

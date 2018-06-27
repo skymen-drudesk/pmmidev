@@ -460,12 +460,44 @@ function pmmi_bootstrap_preprocess_field(&$vars) {
             $url = $item['content']['#url'];
             /* @var $url \Drupal\Core\Url */
             $item['url'] = $url->getUri();
+            $item['image_thumbnail'] = '';
+            $parsed_url = parse_url($url->getUri());
+
+            $youtube_pattern = '/(youtube(-nocookie)?\.com|youtu\.be)\/(watch\?v=|v\/|u\/|embed\/?)?([\w-]{11})(.*)?/i';
+            $vimeo_pattern = '/(vimeo(pro)?\.com)\/(?:[^\d]+)?(\d+)\??(.*)?$/';
+
+            // Get video thumbnails.
+            // Check if video host is youtube.
+            if (preg_match($youtube_pattern, $item['url'])) {
+              if (isset($parsed_url['query'])) {
+                parse_str($parsed_url['query'], $parsed_query);
+                $item['image_thumbnail'] = "https://img.youtube.com/vi/{$parsed_query['v']}/0.jpg";
+              }
+            }
+            // Check if video host is Vimeo.
+            elseif (preg_match($vimeo_pattern, $item['url'])) {
+              $item['image_thumbnail'] = pmmi_bootstrap_get_vimeo_thumbnail(substr($parsed_url['path'], 1));
+            }
           }
         }
 
         break;
     }
   }
+}
+
+/**
+ * Helper function for retrieving thumbnail from video which hosted on Vimeo.
+ *
+ * @param $video_id
+ *
+ * @return mixed
+ */
+function pmmi_bootstrap_get_vimeo_thumbnail($video_id) {
+  $data = file_get_contents("http://vimeo.com/api/v2/video/{$video_id}.json");
+  $data = json_decode($data);
+
+  return $data[0]->thumbnail_medium;
 }
 
 /**

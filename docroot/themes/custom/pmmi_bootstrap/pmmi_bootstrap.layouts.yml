@@ -938,17 +938,19 @@ block_video_gallery_expanded:
 block_video_gallery_item_slider:
   label: Video gallery item (Slider)
   category: 'PMMI: Blocks'
-  template: templates/layouts/blocks/video-gallery-item-slider
+  template: templates/layouts/blocks/video-gallery-slider-item
   regions:
     video:
       label: Video
     video_title:
       label: Video title
+    video_description:
+      label: Video description
 
 block_video_gallery_item_expanded:
   label: Video gallery item (Expanded)
   category: 'PMMI: Blocks'
-  template: templates/layouts/blocks/video-gallery-item-expanded
+  template: templates/layouts/blocks/video-gallery-expanded-item
   regions:
     title:
       label: Video gallery title
