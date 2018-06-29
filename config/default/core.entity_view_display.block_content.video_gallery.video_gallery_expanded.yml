@@ -35,20 +35,22 @@ mode: video_gallery_expanded
 content:
   field_video_gallery_additional:
     type: basic_string
-    weight: 1
+    weight: 0
     region: additional_info
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_video_gallery_description:
     type: basic_string
-    weight: 2
+    weight: 0
     region: description
     label: hidden
     settings: {  }
     third_party_settings: {  }
   field_video_gallery_item:
-    weight: 3
+    type: entity_reference_entity_view
+    weight: 0
+    region: gallery_items
     label: hidden
     settings:
       view_mode: video_gallery_item_expanded
@@ -62,8 +64,6 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: entity_reference_entity_view
-    region: gallery_items
   field_video_gallery_title:
     type: string
     weight: 0

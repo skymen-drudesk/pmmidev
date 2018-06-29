@@ -9,6 +9,7 @@ dependencies:
     - field.field.block_content.video_gallery_item.field_video_description
     - field.field.block_content.video_gallery_item.field_video_title
     - field.field.block_content.video_gallery_item.field_video_url
+    - image.style.video_gallery_slider_275x155
   module:
     - ds
     - image
@@ -40,8 +41,15 @@ content:
     region: video
     label: visually_hidden
     settings:
-      image_style: ''
-    third_party_settings: {  }
+      image_style: video_gallery_slider_275x155
+    third_party_settings:
+      ds:
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
   field_video_description:
     type: basic_string
     weight: 3
