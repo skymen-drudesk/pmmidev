@@ -5,10 +5,13 @@ dependencies:
   config:
     - block_content.type.video_gallery_item
     - core.entity_view_mode.block_content.video_gallery_item_slider
+    - field.field.block_content.video_gallery_item.field_image
+    - field.field.block_content.video_gallery_item.field_video_description
     - field.field.block_content.video_gallery_item.field_video_title
     - field.field.block_content.video_gallery_item.field_video_url
   module:
     - ds
+    - image
     - link
 third_party_settings:
   ds:
@@ -20,24 +23,44 @@ third_party_settings:
       settings: {  }
     regions:
       video:
+        - field_image
         - field_video_url
       video_title:
         - field_video_title
+      video_description:
+        - field_video_description
 id: block_content.video_gallery_item.video_gallery_item_slider
 targetEntityType: block_content
 bundle: video_gallery_item
 mode: video_gallery_item_slider
 content:
+  field_image:
+    type: image_url
+    weight: 0
+    region: video
+    label: visually_hidden
+    settings:
+      image_style: ''
+    third_party_settings: {  }
+  field_video_description:
+    type: basic_string
+    weight: 3
+    region: video_description
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
   field_video_title:
     type: string
-    weight: 1
+    weight: 2
     region: video_title
     label: hidden
     settings:
       link_to_entity: false
     third_party_settings: {  }
   field_video_url:
-    weight: 0
+    type: link
+    weight: 1
+    region: video
     label: hidden
     settings:
       trim_length: 80
@@ -46,6 +69,4 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    type: link
-    region: video
 hidden: {  }

@@ -4,6 +4,8 @@ status: true
 dependencies:
   config:
     - block_content.type.video_gallery_item
+    - field.field.block_content.video_gallery_item.field_image
+    - field.field.block_content.video_gallery_item.field_video_description
     - field.field.block_content.video_gallery_item.field_video_title
     - field.field.block_content.video_gallery_item.field_video_url
   module:
@@ -13,6 +15,13 @@ targetEntityType: block_content
 bundle: video_gallery_item
 mode: default
 content:
+  field_video_description:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
   field_video_title:
     weight: 1
     label: above
@@ -33,4 +42,5 @@ content:
     third_party_settings: {  }
     type: link
     region: content
-hidden: {  }
+hidden:
+  field_image: true
