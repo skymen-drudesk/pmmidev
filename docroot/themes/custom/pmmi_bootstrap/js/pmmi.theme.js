@@ -397,8 +397,19 @@
       // class="video-gallery--slider" DOM element.
       $('.video-gallery--slider').each(function() {
         // Navigation container.
-        let $nav = $(this).find('.video-gallery__slider-navigation');
-        $(this).find('.video-gallery__slider > div').once().slick({
+        let $nav = $(this).find('.video-gallery__slider-navigation'),
+            $slickSlider = $(this).find('.video-gallery__slider > div');
+        // Counter container.
+        let $countBlock = $nav.find('.video-gallery__slider-counter');
+
+        // Add text in counter container in format: "1 of 6".
+        $slickSlider.on('init reInit afterChange', function(event, slick, currentSlide) {
+          let i = (currentSlide ? currentSlide : 0) + 1;
+          $countBlock.text(i + ' ' + Drupal.t('of') + ' ' + slick.slideCount);
+        });
+
+        // Initiate slick slider.
+        $slickSlider.once().slick({
           dots: true,
           slide: '.video-gallery__slider-item',
           infinite: false,

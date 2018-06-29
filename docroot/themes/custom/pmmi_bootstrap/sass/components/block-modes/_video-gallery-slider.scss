@@ -57,6 +57,15 @@ $title-color: #184e75;
         }
       }
     }
+
+    .video-gallery__slider-counter {
+      display: none;
+      color: $title-color;
+
+      @include mobile {
+        display: block;
+      }
+    }
     .slick-dots {
       order: 1;
       margin-bottom: 0;

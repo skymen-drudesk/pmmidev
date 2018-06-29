@@ -21416,6 +21416,17 @@ button.slick-arrow.slick-next {
   border-left-color: #979797;
 }
 
+.video-gallery__slider-navigation .video-gallery__slider-counter {
+  display: none;
+  color: #184e75;
+}
+
+@media screen and (max-width: 767px) {
+  .video-gallery__slider-navigation .video-gallery__slider-counter {
+    display: block;
+  }
+}
+
 .video-gallery__slider-navigation .slick-dots {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
