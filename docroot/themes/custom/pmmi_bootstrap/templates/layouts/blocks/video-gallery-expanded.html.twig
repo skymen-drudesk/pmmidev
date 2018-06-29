@@ -1,9 +1,33 @@
-<div{{ content['#attrs'].addClass('block-layout block-video-gallery-item') }}>
+{{ attach_library('pmmi/jsor.lity') }}
 
-  {{ field_render([content.title, 'title', 'h2']) }}
+{% set classes = [
+    'block-layout',
+    'col-xs-12',
+    'col-sm-6',
+    'col-md-4',
+    'video-gallery',
+    'video-gallery--expanded',
+  ]
+%}
 
-  {{ field_render([content.description, 'description']) }}
+<div{{ content['#attrs'].addClass(classes) }}>
 
-  {{ field_render([content.gallery_items, 'gallery-items']) }}
+  <div class="video-gallery__expanded-main-info">
+    {{ field_render([content.title, 'video-gallery__title', 'h2']) }}
+
+    {{ field_render([content.additional_info, 'video-gallery__additional-info']) }}
+  </div>
+
+  <div class="video-gallery__expanded-video--wrapper">
+    <a href="https://www.youtube.com/watch?v=b1sd9hxFXTE" data-lity class="video-gallery__expanded-video">
+      <img src="/sites/default/files/2018-06/0_2.jpg" class="video-gallery__expanded-image">
+    </a>
+  </div>
+
+  <div class="video-gallery__expanded-items">
+    {{ field_render([content.description, 'video-gallery__expanded-items-title']) }}
+
+    {{ field_render([content.gallery_items, 'video-gallery__expanded-items-wrapper']) }}
+  </div>
 
 </div>

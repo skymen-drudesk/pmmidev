@@ -3,8 +3,8 @@
   <div class="video-gallery__slider-container">
 
     <div class="video-gallery__slider-video">
-      <a href="{{ content.video.video_url }}" data-lity class="video-gallery__slider-link">
-        <img src="{{ content.video.image_url }}" class="video-gallery__slider-image">
+      <a href="{{ content.video.video_url|e }}" data-lity class="video-gallery__slider-link">
+        <img src="{{ content.video.image_url|e }}" class="video-gallery__slider-image">
       </a>
     </div>
 

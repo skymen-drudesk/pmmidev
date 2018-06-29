@@ -391,7 +391,7 @@
     }
   };
 
-  Drupal.behaviors.pmmiVideoGallery = {
+  Drupal.behaviors.pmmiVideoGallerySlider = {
     attach: function (context, settings) {
       // Connect slick slider to each
       // class="video-gallery--slider" DOM element.
@@ -439,6 +439,25 @@
             }
           ]
         });
+      });
+    }
+  };
+
+  Drupal.behaviors.pmmiVideGalleryExpanded = {
+    attach: function (context, settings) {
+      $('.video-gallery--expanded').each(function() {
+        let $_that = $(this);
+
+        $(this).find('.video-gallery__expanded-link').on('click', function(e) {
+          e.preventDefault();
+
+          let videoUrl =  $(this).attr('data-video-url'),
+              imageUrl =  $(this).attr('data-image-url');
+
+          $_that.find('.video-gallery__expanded-video').attr('href', videoUrl);
+          $_that.find('.video-gallery__expanded-image').attr('src', imageUrl);
+        });
+
       });
     }
   };

@@ -941,7 +941,7 @@ block_video_gallery_item_slider:
   template: templates/layouts/blocks/video-gallery-slider-item
   regions:
     video:
-      label: Video
+      label: Video Info
     video_title:
       label: Video title
     video_description:
@@ -952,14 +952,12 @@ block_video_gallery_item_expanded:
   category: 'PMMI: Blocks'
   template: templates/layouts/blocks/video-gallery-expanded-item
   regions:
-    title:
-      label: Video gallery title
-    additional_info:
-      label: Video gallery additional information
-    description:
-      label: Video gallery description
-    gallery_items:
-      label: Video gallery items
+    video:
+      label: Video Info
+    video_title:
+      label: Video title
+    video_description:
+      label: Video description
 
 panel_default:
   label: Default panel layout
