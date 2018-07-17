@@ -443,21 +443,35 @@
     }
   };
 
-  Drupal.behaviors.pmmiVideGalleryExpanded = {
+  Drupal.behaviors.pmmiVideoGalleryExpanded = {
     attach: function (context, settings) {
-      $('.video-gallery--expanded').each(function() {
+      // Add active class only to first expanded gallery elements.
+      $('.video-gallery__expanded-items-title').first().addClass('active');
+      $('.video-gallery__expanded-items-wrapper').first().addClass('active');
+
+      $('.video-gallery--expanded').each(function () {
         let $_that = $(this);
 
-        $(this).find('.video-gallery__expanded-link').on('click', function(e) {
+        // Replace
+        $(this).find('.video-gallery__expanded-link').on('click', function (e) {
           e.preventDefault();
 
-          let videoUrl =  $(this).attr('data-video-url'),
-              imageUrl =  $(this).attr('data-image-url');
+          let videoUrl = $(this).attr('data-video-url'),
+            imageUrl = $(this).attr('data-image-url');
 
           $_that.find('.video-gallery__expanded-video').attr('href', videoUrl);
           $_that.find('.video-gallery__expanded-image').attr('src', imageUrl);
         });
 
+        $(this).find('.video-gallery__expanded-items-title').on('click', function (e) {
+          if (!$(this).hasClass('active')) {
+            $('.video-gallery__expanded-items-title').removeClass('active');
+            $('.video-gallery__expanded-items-wrapper').removeClass('active');
+
+            $(this).toggleClass('active');
+            $_that.find('.video-gallery__expanded-items-wrapper').toggleClass('active');
+          }
+        });
       });
     }
   };

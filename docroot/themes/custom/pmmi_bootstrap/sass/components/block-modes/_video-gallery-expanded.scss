@@ -20,9 +20,12 @@ $title-color: #184e75;
 
     .video-gallery__expanded-video--wrapper {
       .video-gallery__expanded-image {
-        @include mobile-min {
-          width: 100%;
-          height: auto;
+        width: 100%;
+        height: auto;
+
+        @include mobile {
+          margin: 0 auto;
+          max-width: 480px;
         }
       }
     }
@@ -32,15 +35,48 @@ $title-color: #184e75;
       padding: 15px 0;
       border-top: 1px solid $mdgrey;
       border-bottom: 1px solid $mdgrey;
-    }
 
-    .video-gallery__expanded-items-title {
-      color: $title-color;
-      font-size: $r25;
+      // .video-gallery__expanded-items-title
+      &-title {
+        color: $dkgrey;
+        font-size: $r25;
+
+        &:hover,
+        &:focus,
+        &:active {
+          cursor: pointer;
+        }
+        
+        &:before {
+          content: '\f107';
+          transition: 0.25s linear;
+          color: $title-color;
+          margin-right: 10px;
+          float: left;
+          font-family: 'fontawesome';
+        }
+
+        &.active {
+          color: $title-color;
+          &:before {
+            transform: rotate(180deg);
+          }
+        }
+      }
+
+      // .video-gallery__expanded-items-wrapper
+      &-wrapper {
+        height: 0;
+        overflow: hidden;
+
+        &.active {
+          height: 100%;
+          margin-top: 15px;
+        }
+      }
     }
 
     .video-gallery__expanded-items-wrapper {
-      margin-top: 15px;
 
       .video-gallery__expanded-item {
         margin-bottom: 15px;
@@ -53,10 +89,8 @@ $title-color: #184e75;
           font-size: $r17;
 
           &:before {
-            content: '\f0da';
+            content: '\f04b';
             margin-right: 10px;
-            float: left;
-            font-size: $r24;
             font-family: 'fontawesome';
           }
 
@@ -67,12 +101,6 @@ $title-color: #184e75;
               text-decoration: underline;
             }
           }
-        }
-
-        .video-gallery__expanded-title {
-
-
-
         }
 
         .video-gallery__expanded-description {

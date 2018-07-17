@@ -1,7 +1,7 @@
 $title-color: #184e75;
 
 .video-gallery {
-  margin: 25px 0;
+  margin: 15px 0;
 
   // .video-gallery__title
   &__title {
@@ -66,6 +66,7 @@ $title-color: #184e75;
         display: block;
       }
     }
+
     .slick-dots {
       order: 1;
       margin-bottom: 0;
@@ -121,12 +122,12 @@ $title-color: #184e75;
 
     // .video-gallery__slider-container
     &-container {
-      margin: 15px;
+      margin: 10px;
       padding: 20px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
       &:hover {
-        background: #d8d8d8;
+        background: rgba(216, 216, 216, 0.75);
       }
     }
 
@@ -140,7 +141,6 @@ $title-color: #184e75;
     &-title {
       color: $title-color;
       font-size: $r25;
-      font-weight: $extrabold;
     }
 
     // .video-gallery__slider-image

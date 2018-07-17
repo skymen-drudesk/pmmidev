@@ -38,7 +38,7 @@ gulp.task('sass:build', function () {
 gulp.task('watch', function () {
   livereload.listen();
   gulp.watch('./sass/**/*.scss', ['sass:build']);
-  gulp.watch('./js/**/*.js', ['eslint']);
+  // gulp.watch('./js/**/*.js', ['eslint']);
   gulp.watch(['./templates/**/*.twig', './js/*.js', './i/*'], function (files) {
     livereload.changed(files);
   });
@@ -51,4 +51,6 @@ gulp.task('eslint', function () {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('default', ['sass:build', 'watch', 'eslint']);
+gulp.task('default', ['sass:build', 'watch'
+  // , 'eslint'
+]);
