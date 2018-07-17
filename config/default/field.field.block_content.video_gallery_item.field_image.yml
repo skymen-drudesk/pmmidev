@@ -12,12 +12,13 @@ field_name: field_image
 entity_type: block_content
 bundle: video_gallery_item
 label: 'Video thumbnail image'
-description: ''
+description: 'Leave this empty and thumbnail image will be pulled from video host based on video URL.'
 required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
   file_extensions: 'png gif jpg jpeg'
   alt_field: true
   alt_field_required: true
@@ -26,7 +27,7 @@ settings:
   max_resolution: ''
   min_resolution: ''
   default_image:
-    uuid: null
+    uuid: ''
     alt: ''
     title: ''
     width: null
