@@ -170,9 +170,13 @@ function pmmi_block_content_presave(BlockContent $entity) {
       }
 
       if (!empty($image_url)) {
-        $folder_name = 'public://' . date('Y-m');
-        $image_file = system_retrieve_file($image_url, $folder_name, TRUE);
-        $entity->set('field_image', $image_file);
+        $folder_name = 'public://video-gallery';
+
+        // Check if file directory is exist.
+        if (file_prepare_directory($folder_name, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS)) {
+          $image_file = system_retrieve_file($image_url, $folder_name, TRUE);
+          $entity->set('field_image', $image_file);
+        }
       }
     }
   }
