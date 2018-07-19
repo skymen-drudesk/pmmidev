@@ -7306,75 +7306,6 @@
         }
     },
     {
-        "name": "drupal/search_api",
-        "version": "1.8.0",
-        "version_normalized": "1.8.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupal.org/project/search_api",
-            "reference": "8.x-1.8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.8.zip",
-            "reference": "8.x-1.8",
-            "shasum": "04d7b3b680e84aad086a61fb9eb4ffe77dc278e4"
-        },
-        "require": {
-            "drupal/core": "^8.4"
-        },
-        "require-dev": {
-            "drupal/search_api_autocomplete": "@dev",
-            "drupal/search_api_db": "*"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-1.x": "1.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-1.8",
-                "datestamp": "1523872384",
-                "security-coverage": {
-                    "status": "covered",
-                    "message": "Covered by Drupal's security advisory policy"
-                }
-            },
-            "drush": {
-                "services": {
-                    "drush.services.yml": "^9"
-                }
-            },
-            "patches_applied": []
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0+"
-        ],
-        "authors": [
-            {
-                "name": "Thomas Seidl",
-                "homepage": "https://www.drupal.org/u/drunken-monkey"
-            },
-            {
-                "name": "Nick Veenhof",
-                "homepage": "https://www.drupal.org/u/nick_vh"
-            },
-            {
-                "name": "See other contributors",
-                "homepage": "https://www.drupal.org/node/790418/committers"
-            }
-        ],
-        "description": "Provides a generic framework for modules offering search capabilities.",
-        "homepage": "https://www.drupal.org/project/search_api",
-        "support": {
-            "source": "http://git.drupal.org/project/search_api.git",
-            "issues": "https://www.drupal.org/project/issues/search_api",
-            "irc": "irc://irc.freenode.org/drupal-search-api"
-        }
-    },
-    {
         "name": "drupal/search_api_page",
         "version": "1.0.0-alpha11",
         "version_normalized": "1.0.0.0-alpha11",
@@ -8145,71 +8076,6 @@
         "homepage": "https://www.drupal.org/project/token",
         "support": {
             "source": "http://cgit.drupalcode.org/token"
-        }
-    },
-    {
-        "name": "drupal/ultimate_cron",
-        "version": "2.0.0-alpha2",
-        "version_normalized": "2.0.0.0-alpha2",
-        "source": {
-            "type": "git",
-            "url": "https://git.drupal.org/project/ultimate_cron",
-            "reference": "8.x-2.0-alpha2"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://ftp.drupal.org/files/projects/ultimate_cron-8.x-2.0-alpha2.zip",
-            "reference": "8.x-2.0-alpha2",
-            "shasum": "adfebde3e4c13b99c6edbf0f4b994b9e91ce7ef7"
-        },
-        "require": {
-            "drupal/core": "~8.0"
-        },
-        "type": "drupal-module",
-        "extra": {
-            "branch-alias": {
-                "dev-2.x": "2.x-dev"
-            },
-            "drupal": {
-                "version": "8.x-2.0-alpha2",
-                "datestamp": "1518220384",
-                "security-coverage": {
-                    "status": "not-covered",
-                    "message": "Alpha releases are not covered by Drupal security advisories."
-                }
-            }
-        },
-        "installation-source": "dist",
-        "notification-url": "https://packages.drupal.org/8/downloads",
-        "license": [
-            "GPL-2.0-or-later"
-        ],
-        "authors": [
-            {
-                "name": "Berdir",
-                "homepage": "https://www.drupal.org/user/214652"
-            },
-            {
-                "name": "Dane Powell",
-                "homepage": "https://www.drupal.org/user/339326"
-            },
-            {
-                "name": "arnested",
-                "homepage": "https://www.drupal.org/user/245635"
-            },
-            {
-                "name": "gielfeldt",
-                "homepage": "https://www.drupal.org/user/366993"
-            },
-            {
-                "name": "miro_dietiker",
-                "homepage": "https://www.drupal.org/user/227761"
-            }
-        ],
-        "description": "Cron",
-        "homepage": "https://www.drupal.org/project/ultimate_cron",
-        "support": {
-            "source": "http://cgit.drupalcode.org/ultimate_cron"
         }
     },
     {
@@ -15104,5 +14970,139 @@
             "stdlib",
             "zf"
         ]
+    },
+    {
+        "name": "drupal/ultimate_cron",
+        "version": "2.0.0-alpha4",
+        "version_normalized": "2.0.0.0-alpha4",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/ultimate_cron",
+            "reference": "8.x-2.0-alpha4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/ultimate_cron-8.x-2.0-alpha4.zip",
+            "reference": "8.x-2.0-alpha4",
+            "shasum": "50cdadd061f1f6fadb961b04ed04348bcc4719d3"
+        },
+        "require": {
+            "drupal/core": "~8.0"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-2.x": "2.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-2.0-alpha4",
+                "datestamp": "1527925385",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Alpha releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "Berdir",
+                "homepage": "https://www.drupal.org/user/214652"
+            },
+            {
+                "name": "Dane Powell",
+                "homepage": "https://www.drupal.org/user/339326"
+            },
+            {
+                "name": "arnested",
+                "homepage": "https://www.drupal.org/user/245635"
+            },
+            {
+                "name": "gielfeldt",
+                "homepage": "https://www.drupal.org/user/366993"
+            },
+            {
+                "name": "miro_dietiker",
+                "homepage": "https://www.drupal.org/user/227761"
+            }
+        ],
+        "description": "Cron",
+        "homepage": "https://www.drupal.org/project/ultimate_cron",
+        "support": {
+            "source": "http://cgit.drupalcode.org/ultimate_cron"
+        }
+    },
+    {
+        "name": "drupal/search_api",
+        "version": "1.8.0",
+        "version_normalized": "1.8.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/search_api",
+            "reference": "8.x-1.8"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/search_api-8.x-1.8.zip",
+            "reference": "8.x-1.8",
+            "shasum": "04d7b3b680e84aad086a61fb9eb4ffe77dc278e4"
+        },
+        "require": {
+            "drupal/core": "^8.4"
+        },
+        "require-dev": {
+            "drupal/search_api_autocomplete": "@dev",
+            "drupal/search_api_db": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-1.x": "1.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-1.8",
+                "datestamp": "1531985581",
+                "security-coverage": {
+                    "status": "covered",
+                    "message": "Covered by Drupal's security advisory policy"
+                }
+            },
+            "drush": {
+                "services": {
+                    "drush.services.yml": "^9"
+                }
+            },
+            "patches_applied": []
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0+"
+        ],
+        "authors": [
+            {
+                "name": "Thomas Seidl",
+                "homepage": "https://www.drupal.org/u/drunken-monkey"
+            },
+            {
+                "name": "Nick Veenhof",
+                "homepage": "https://www.drupal.org/u/nick_vh"
+            },
+            {
+                "name": "See other contributors",
+                "homepage": "https://www.drupal.org/node/790418/committers"
+            }
+        ],
+        "description": "Provides a generic framework for modules offering search capabilities.",
+        "homepage": "https://www.drupal.org/project/search_api",
+        "support": {
+            "source": "http://git.drupal.org/project/search_api.git",
+            "issues": "https://www.drupal.org/project/issues/search_api",
+            "irc": "irc://irc.freenode.org/drupal-search-api"
+        }
     }
 ]
