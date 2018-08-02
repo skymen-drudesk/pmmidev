@@ -2,6 +2,7 @@
 
 namespace Drupal\pmmi_reports\Service;
 
+use Drupal\datetime\Plugin\Field\FieldType\DateTimeItemInterface;
 use Drupal\pmmi_psdata\Service\PMMIDataRequestHelper;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Component\Utility\DiffArray;
@@ -200,7 +201,7 @@ class PMMIReportsImport {
   public function prepareItems($value, $type = 'date') {
     switch ($type) {
       case 'date':
-        $value = $this->requestHelper->formatDate($value, DATETIME_DATETIME_STORAGE_FORMAT);
+        $value = $this->requestHelper->formatDate($value, DateTimeItemInterface::DATETIME_STORAGE_FORMAT);
         break;
     }
 
@@ -233,7 +234,7 @@ class PMMIReportsImport {
         'list_currency_symbol' => 'ListCurrencySymbol',
       ],
       'links' => [
-        'title' => 'Caption',
+        'title' => 'DisplayLabel',
         'url' => 'URL',
       ],
     ];
