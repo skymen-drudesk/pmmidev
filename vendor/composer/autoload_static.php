@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit6a4867c6c0e1425078c4789109896ec7
+class ComposerStaticInitf611ddf66bc9478c6e0b9cb86c9b7ba2
 {
     public static $files = array (
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
@@ -17,6 +17,14 @@ class ComposerStaticInit6a4867c6c0e1425078c4789109896ec7
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
+        'cf97c57bfe0f23854afd2f3818abb7a0' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/create_uploaded_file.php',
+        '9bf37a3d0dad93e29cb4e1b1bfab04e9' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_headers_from_sapi.php',
+        'ce70dccb4bcc2efc6e94d2ee526e6972' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_method_from_sapi.php',
+        'f86420df471f14d568bfcb71e271b523' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_protocol_version_from_sapi.php',
+        'b87481e008a3700344428ae089e7f9e5' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/marshal_uri_from_sapi.php',
+        '0b0974a5566a1077e4f2e111341112c1' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_server.php',
+        '1ca3bc274755662169f9629d5412a1da' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/normalize_uploaded_files.php',
+        '40360c0b9b437e69bcbb7f1349ce029e' => __DIR__ . '/..' . '/zendframework/zend-diactoros/src/functions/parse_cookie_header.php',
         '5a12a5271c58108e0aa33355e6ac54ea' => __DIR__ . '/..' . '/drupal/console-core/src/functions.php',
         '2cffec82183ee1cea088009cef9a6fc3' => __DIR__ . '/..' . '/ezyang/htmlpurifier/library/HTMLPurifier.composer.php',
         'e7223560d890eab89cda23685e711e2c' => __DIR__ . '/..' . '/psy/psysh/src/Psy/functions.php',
@@ -508,6 +516,9 @@ class ComposerStaticInit6a4867c6c0e1425078c4789109896ec7
         'Doctrine\\Common\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+            1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
+            2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
+            3 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
         ),
         'DeepCopy\\' => 
         array (
@@ -1246,10 +1257,10 @@ class ComposerStaticInit6a4867c6c0e1425078c4789109896ec7
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit6a4867c6c0e1425078c4789109896ec7::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit6a4867c6c0e1425078c4789109896ec7::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit6a4867c6c0e1425078c4789109896ec7::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit6a4867c6c0e1425078c4789109896ec7::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitf611ddf66bc9478c6e0b9cb86c9b7ba2::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitf611ddf66bc9478c6e0b9cb86c9b7ba2::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitf611ddf66bc9478c6e0b9cb86c9b7ba2::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitf611ddf66bc9478c6e0b9cb86c9b7ba2::$classMap;
 
         }, null, ClassLoader::class);
     }
