@@ -801,6 +801,15 @@ if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
 }
 
 /**
+ * Acquia purge settings overrides.
+ *
+ * Changes configuration values from default.
+ */
+$conf['acquia_purge_cron'] = TRUE;
+$conf['acquia_purge_http'] = FALSE;
+$conf['acquia_purge_https'] = TRUE;
+
+/**
  * Load local development override configuration, if available.
  *
  * Use settings.local.php to override variables on secondary (staging,
