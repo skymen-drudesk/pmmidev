@@ -81,12 +81,12 @@ function pmmi_panels_build_alter(array &$build, PanelsDisplayVariant $panels_dis
     $classes = [Html::getClass('panel-' . $panel->get('page'))];
     if ($panels_display->getPluginId() == 'panels_everywhere_variant') {
       $classes[] = Html::getClass('page-' . $panel->get('page'));
-//      $site_template_variants = \Drupal::entityTypeManager()
-//        ->getStorage('page')->load('site_template')->getVariants();
-//      if ($panels_display->getStorageId()
-//      && $current_variant = $site_template_variants[$panels_display->getStorageId()]) {
-//        $classes[] = Html::getClass('variant-' . $current_variant->label());
-//      }
+      $site_template_variants = \Drupal::entityTypeManager()
+        ->getStorage('page')->load('site_template')->getVariants();
+      if ($panels_display->getStorageId()
+      && $current_variant = $site_template_variants[$panels_display->getStorageId()]) {
+        $classes[] = Html::getClass('variant-' . $current_variant->label());
+      }
     }
     $attributes['class'] = $classes;
     $build['#attrs'] = $attributes;

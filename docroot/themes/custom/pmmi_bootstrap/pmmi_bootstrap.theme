@@ -498,3 +498,24 @@ function pmmi_bootstrap_preprocess_menu(&$variables) {
 
   $variables['username'] = $account->getDisplayName();
 }
+
+
+/**
+ * Implements template_preprocess_layout().
+ */
+function pmmi_bootstrap_preprocess_layout(&$variables) {
+  if (isset($variables['content']['#node'])
+    && $variables['content']['#node']->bundle() == 'report'
+  ) {
+    $variables['render_download_btn'] = TRUE;
+
+    /* @var $node \Drupal\node\Entity\Node */
+    $node = $variables['content']['#node'];
+    $member_price = $node->get('field_member_price')->getString();
+    $non_member_price = $node->get('field_non_member_price')->getString();
+
+    if ($member_price == '$0.00' && $non_member_price == '$0.00') {
+      $variables['render_download_btn'] = FALSE;
+    }
+  }
+}

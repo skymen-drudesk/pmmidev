@@ -51,4 +51,4 @@ gulp.task('eslint', function () {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('default', ['sass:build', 'watch' , 'eslint']);
+gulp.task('default', ['sass:build', 'watch', 'eslint']);

@@ -31,8 +31,10 @@
               {{ content.non_member_price }}
             </div>
 
-            {% if content['#node'].field_product_id.0.value %}
-              {{ field_render([content.file_download_button, 'download-link btn-prm-wrap']) }}
+            {% if render_download_btn %}
+              {% if content['#node'].field_product_id.0.value %}
+                {{ field_render([content.file_download_button, 'download-link btn-prm-wrap']) }}
+              {% endif %}
             {% endif %}
 
           </div>
