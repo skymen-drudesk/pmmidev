@@ -26,6 +26,12 @@ countdown:
   dependencies:
     - pmmi_bootstrap/jquery.countdown
 
+gallery:
+  js:
+    js/pmmi.gallery.js: {}
+  dependencies:
+    - pmmi/jsor.lity
+
 bootstrap-scripts:
   js:
     bootstrap-sass/assets/javascripts/bootstrap/affix.js: {}
