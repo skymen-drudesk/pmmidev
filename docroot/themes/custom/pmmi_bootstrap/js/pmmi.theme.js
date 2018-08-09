@@ -390,4 +390,31 @@
       });
     }
   };
+
+  /**
+   * Attaches the iFrame resize behaviour for video field.
+   */
+  Drupal.behaviors.pmmiPrivacyPolicyAgreement = {
+    attach: function () {
+      if ($('#node-company-form').length != 0) {
+        $('#node-company-form').once("pmmiPrivacyPolicyAgreement").each(function(){
+          var $form = $('#node-company-form');
+          var $privacyPolicyField = $form.find("[name='field_privacy_policy_agreement']");
+          if ($privacyPolicyField.length != 0) {
+            $privacyPolicyField.each(function () {
+              if($(this).attr('value') == '_none') {
+                $(this).closest('.form-type-radio').remove();
+              }
+            });
+            $privacyPolicyField.attr({type: 'checkbox', required: 'required'});
+            var $fildestWrapper =  $privacyPolicyField.closest('.js-webform-type-radios');
+            $fildestWrapper.attr('required', 'required');
+            $fildestWrapper.find('.fieldset-legend').addClass('js-form-required form-required');
+          }
+        });
+
+      }
+    }
+  };
+
 })(jQuery, window, Drupal);

@@ -152,64 +152,44 @@
 }
 
 .fa-spin {
-  -webkit-animation: fa-spin 2s infinite linear;
   animation: fa-spin 2s infinite linear;
 }
 
 .fa-pulse {
-  -webkit-animation: fa-spin 1s infinite steps(8);
   animation: fa-spin 1s infinite steps(8);
-}
-
-@-webkit-keyframes fa-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-    transform: rotate(359deg);
-  }
 }
 
 @keyframes fa-spin {
   0% {
-    -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(359deg);
     transform: rotate(359deg);
   }
 }
 
 .fa-rotate-90 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
-  -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 
 .fa-rotate-180 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
-  -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
 .fa-rotate-270 {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
-  -webkit-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 
 .fa-flip-horizontal {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
-  -webkit-transform: scale(-1, 1);
   transform: scale(-1, 1);
 }
 
 .fa-flip-vertical {
   -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
-  -webkit-transform: scale(1, -1);
   transform: scale(1, -1);
 }
 
@@ -218,8 +198,7 @@
 :root .fa-rotate-270,
 :root .fa-flip-horizontal,
 :root .fa-flip-vertical {
-  -webkit-filter: none;
-          filter: none;
+  filter: none;
 }
 
 .fa-stack {
@@ -8937,15 +8916,6 @@ a.thumbnail.active {
   color: #843534;
 }
 
-@-webkit-keyframes progress-bar-stripes {
-  from {
-    background-position: 40px 0;
-  }
-  to {
-    background-position: 0 0;
-  }
-}
-
 @keyframes progress-bar-stripes {
   from {
     background-position: 40px 0;
@@ -8985,7 +8955,6 @@ a.thumbnail.active {
 
 .progress.active .progress-bar,
 .progress-bar.active {
-  -webkit-animation: progress-bar-stripes 2s linear infinite;
   animation: progress-bar-stripes 2s linear infinite;
 }
 
@@ -9795,15 +9764,11 @@ button.close {
 }
 
 .modal.fade .modal-dialog {
-  -webkit-transform: translate(0, -25%);
   transform: translate(0, -25%);
-  transition: -webkit-transform 0.3s ease-out;
   transition: transform 0.3s ease-out;
-  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
 }
 
 .modal.in .modal-dialog {
-  -webkit-transform: translate(0, 0);
   transform: translate(0, 0);
 }
 
@@ -10235,26 +10200,20 @@ button.close {
 
 @media all and (transform-3d), (-webkit-transform-3d) {
   .carousel-inner > .item {
-    transition: -webkit-transform 0.6s ease-in-out;
     transition: transform 0.6s ease-in-out;
-    transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-perspective: 1000px;
     perspective: 1000px;
   }
   .carousel-inner > .item.next, .carousel-inner > .item.active.right {
-    -webkit-transform: translate3d(100%, 0, 0);
     transform: translate3d(100%, 0, 0);
     left: 0;
   }
   .carousel-inner > .item.prev, .carousel-inner > .item.active.left {
-    -webkit-transform: translate3d(-100%, 0, 0);
     transform: translate3d(-100%, 0, 0);
     left: 0;
   }
   .carousel-inner > .item.next.left, .carousel-inner > .item.prev.right, .carousel-inner > .item.active {
-    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     left: 0;
   }
@@ -11245,7 +11204,6 @@ ul.pagination li > a.progress-disabled {
 
 .glyphicon-spin {
   display: inline-block;
-  -webkit-animation: spin 1s infinite linear;
   animation: spin 1s infinite linear;
 }
 
@@ -11254,23 +11212,12 @@ a .glyphicon-spin {
   text-decoration: none;
 }
 
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(359deg);
-  }
-}
-
 @keyframes spin {
   0% {
-    -webkit-transform: rotate(0deg);
-            transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(359deg);
-            transform: rotate(359deg);
+    transform: rotate(359deg);
   }
 }
 
@@ -14923,8 +14870,7 @@ body.use-container .page-title.hidden {
   bottom: 0;
   left: 50%;
   position: absolute;
-  -webkit-transform: translate(-50%, 0);
-          transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
 }
 
 @media screen and (min-width: 1200px) {
@@ -14938,8 +14884,7 @@ body.use-container .page-title.hidden {
   .block-image-header .name-container {
     left: 0;
     right: 0;
-    -webkit-transform: none;
-            transform: none;
+    transform: none;
   }
 }
 
@@ -16133,8 +16078,7 @@ body > .page-wrapper:after,
 @media screen and (min-width: 768px) {
   .navbar .main-nav .mega-align-center > .dropdown-menu {
     left: 50%;
-    -webkit-transform: translate(-50%);
-            transform: translate(-50%);
+    transform: translate(-50%);
   }
   .navbar .main-nav .mega-align-right > .dropdown-menu {
     left: auto;
@@ -19346,8 +19290,7 @@ div.view {
   transition: 0.5s ease-out;
   -o-transition: 0.5s ease-out;
   -ms-transition: 0.5s ease-out;
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
+  transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;
   -webkit-backface-visibility: visible;
@@ -19357,11 +19300,8 @@ div.view {
 }
 
 .block-card .side {
-  -webkit-transform-style: preserve-3d;
-          transform-style: preserve-3d;
-  transition: -webkit-transform 0.5s linear;
+  transform-style: preserve-3d;
   transition: transform 0.5s linear;
-  transition: transform 0.5s linear, -webkit-transform 0.5s linear;
   background-color: white;
   position: absolute;
   left: 0;
@@ -19421,12 +19361,10 @@ div.view {
 }
 
 .ie11 .block-card .front-side {
-  -webkit-transform: rotateY(0deg);
-          transform: rotateY(0deg);
+  transform: rotateY(0deg);
   -o-transform: rotateY(0deg);
   -ms-transform: rotateY(0deg);
-  -webkit-animation: stayvisible 0.7s both;
-          animation: stayvisible 0.7s both;
+  animation: stayvisible 0.7s both;
   -o-animation: stayvisible 0.7s both;
   -ms-animation: donothing 0.5s;
   -ms-transition: visibility 0s linear 0.17s;
@@ -19434,8 +19372,7 @@ div.view {
 }
 
 .block-card .back-side {
-  -webkit-transform: rotateY(-180deg);
-          transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
   font-size: 0;
 }
 
@@ -19462,12 +19399,10 @@ div.view {
 }
 
 .ie11 .block-card .back-side {
-  -webkit-transform: rotateY(-180deg);
-          transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
   -o-transform: rotateY(-180deg);
   -ms-transform: rotateY(-180deg);
-  -webkit-animation: stayvisible 0.5s both;
-          animation: stayvisible 0.5s both;
+  animation: stayvisible 0.5s both;
   -o-animation: stayvisible 0.5s both;
   -ms-animation: donothing 0.5s;
   -ms-transition: visibility 0s linear 0.17s;
@@ -19475,24 +19410,20 @@ div.view {
 }
 
 .ie11 .block-card:hover .flipper {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
+  transform: rotateY(180deg);
   -o-transform: rotateY(180deg);
   -ms-transform: rotateY(180deg);
 }
 
 .block-card:hover .front-side {
-  -webkit-transform: rotateY(180deg);
-          transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .ie11 .block-card:hover .front-side {
-  -webkit-transform: rotateY(0deg);
-          transform: rotateY(0deg);
+  transform: rotateY(0deg);
   -o-transform: rotateY(0deg);
   -ms-transform: rotateY(0deg);
-  -webkit-animation: stayvisible 0.5s both;
-          animation: stayvisible 0.5s both;
+  animation: stayvisible 0.5s both;
   -o-animation: stayvisible 0.5s both;
   -ms-animation: donothing 0.5s;
   -ms-transition: visibility 0s linear 0.17s;
@@ -19500,17 +19431,14 @@ div.view {
 }
 
 .block-card:hover .back-side {
-  -webkit-transform: rotateY(0deg);
-          transform: rotateY(0deg);
+  transform: rotateY(0deg);
 }
 
 .ie11 .block-card:hover .back-side {
-  -webkit-transform: rotateY(-180deg);
-          transform: rotateY(-180deg);
+  transform: rotateY(-180deg);
   -o-transform: rotateY(-180deg);
   -ms-transform: rotateY(-180deg);
-  -webkit-animation: stayvisible 0.5s both;
-          animation: stayvisible 0.5s both;
+  animation: stayvisible 0.5s both;
   -o-animation: stayvisible 0.5s both;
   -ms-animation: donothing 0.5s;
   -ms-transition: visibility 0s linear 0.17s;
@@ -20423,7 +20351,6 @@ div.view {
 .view-pack-expo-shows .views-view-grid .row, .view-pack-expo-shows .views-view-grid .footer .region-footer, .footer .view-pack-expo-shows .views-view-grid .region-footer, .view-pack-expo-shows .views-view-grid .events-block-upcoming-ribbon .view-content, .events-block-upcoming-ribbon .view-pack-expo-shows .views-view-grid .view-content, .view-pack-expo-shows .views-view-grid
 .block-views-blockevents-block-upcoming-ribbon .view-content,
 .block-views-blockevents-block-upcoming-ribbon .view-pack-expo-shows .views-view-grid .view-content, .view-pack-expo-shows .views-view-grid .block-icons .column, .block-icons .view-pack-expo-shows .views-view-grid .column {
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -20433,7 +20360,6 @@ div.view {
 .view-pack-expo-shows .views-view-grid .row [class*='col-'], .view-pack-expo-shows .views-view-grid .footer .region-footer [class*='col-'], .footer .view-pack-expo-shows .views-view-grid .region-footer [class*='col-'], .view-pack-expo-shows .views-view-grid .events-block-upcoming-ribbon .view-content [class*='col-'], .events-block-upcoming-ribbon .view-pack-expo-shows .views-view-grid .view-content [class*='col-'], .view-pack-expo-shows .views-view-grid
 .block-views-blockevents-block-upcoming-ribbon .view-content [class*='col-'],
 .block-views-blockevents-block-upcoming-ribbon .view-pack-expo-shows .views-view-grid .view-content [class*='col-'], .view-pack-expo-shows .views-view-grid .block-icons .column [class*='col-'], .block-icons .view-pack-expo-shows .views-view-grid .column [class*='col-'] {
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
@@ -20958,16 +20884,12 @@ button.slick-arrow.slick-next {
 
 @media (min-width: 400px) {
   .block-image-slide .slide-info {
-    display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-pack: center;
+        justify-content: center;
+    -ms-flex-direction: column;
+        flex-direction: column;
   }
 }
 
@@ -22609,6 +22531,23 @@ button.slick-arrow.slick-next {
   }
 }
 
+.node-company-form .form-item-field-privacy-policy-agreement label {
+  padding-left: 0;
+}
+
+.node-company-form .form-item-field-privacy-policy-agreement * {
+  display: inline-block;
+  text-align: justify;
+}
+
+.node-company-form .form-item-field-privacy-policy-agreement .radio {
+  margin-bottom: 0;
+}
+
+.node-company-form .form-item-field-privacy-policy-agreement .radio .form-radio {
+  margin-right: 10px;
+}
+
 /**
  * block-pmmi-sales-agent-action-toolbar.
  */
@@ -22714,12 +22653,10 @@ button.slick-arrow.slick-next {
 }
 
 .compare-forms-inner {
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
 }
 
 .compare-forms-inner > div {
@@ -23495,13 +23432,10 @@ button.slick-arrow.slick-next {
 
 .region-under-top .containers.mode-all-blocks-unformatted {
   margin-bottom: 20px;
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+      flex-flow: row nowrap;
 }
 
 .region-under-top .containers.mode-all-blocks-unformatted .rows .row, .region-under-top .containers.mode-all-blocks-unformatted .rows .footer .region-footer, .footer .region-under-top .containers.mode-all-blocks-unformatted .rows .region-footer, .region-under-top .containers.mode-all-blocks-unformatted .rows .events-block-upcoming-ribbon .view-content, .events-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content, .region-under-top .containers.mode-all-blocks-unformatted .rows
@@ -23513,22 +23447,18 @@ button.slick-arrow.slick-next {
 .region-under-top .containers.mode-all-blocks-unformatted .rows .row .col, .region-under-top .containers.mode-all-blocks-unformatted .rows .footer .region-footer .col, .footer .region-under-top .containers.mode-all-blocks-unformatted .rows .region-footer .col, .region-under-top .containers.mode-all-blocks-unformatted .rows .events-block-upcoming-ribbon .view-content .col, .events-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col, .region-under-top .containers.mode-all-blocks-unformatted .rows
 .block-views-blockevents-block-upcoming-ribbon .view-content .col,
 .block-views-blockevents-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col, .region-under-top .containers.mode-all-blocks-unformatted .rows .block-icons .column .col, .block-icons .region-under-top .containers.mode-all-blocks-unformatted .rows .column .col {
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
 }
 
 .region-under-top .containers.mode-all-blocks-unformatted .rows .row .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .footer .region-footer .col div.field, .footer .region-under-top .containers.mode-all-blocks-unformatted .rows .region-footer .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .events-block-upcoming-ribbon .view-content .col div.field, .events-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows
 .block-views-blockevents-block-upcoming-ribbon .view-content .col div.field,
 .block-views-blockevents-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .block-icons .column .col div.field, .block-icons .region-under-top .containers.mode-all-blocks-unformatted .rows .column .col div.field {
   padding: 10px 15px;
-  -webkit-box-flex: 0;
-      -ms-flex: 0 1 calc(33% - 30px);
-          flex: 0 1 calc(33% - 30px);
+  -ms-flex: 0 1 calc(33% - 30px);
+      flex: 0 1 calc(33% - 30px);
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
@@ -23540,18 +23470,15 @@ button.slick-arrow.slick-next {
   .region-under-top .containers.mode-all-blocks-unformatted .rows .row .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .footer .region-footer .col div.field, .footer .region-under-top .containers.mode-all-blocks-unformatted .rows .region-footer .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .events-block-upcoming-ribbon .view-content .col div.field, .events-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows
   .block-views-blockevents-block-upcoming-ribbon .view-content .col div.field,
   .block-views-blockevents-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .block-icons .column .col div.field, .block-icons .region-under-top .containers.mode-all-blocks-unformatted .rows .column .col div.field {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 1 50%;
-            flex: 0 1 50%;
+    -ms-flex: 0 1 50%;
+        flex: 0 1 50%;
   }
 }
 
 @media screen and (max-width: 767px) {
   .region-under-top .containers.mode-all-blocks-unformatted {
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-flow: row wrap;
-            flex-flow: row wrap;
+    -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
   }
   .region-under-top .containers.mode-all-blocks-unformatted .region-top {
     text-align: center;
@@ -23560,9 +23487,8 @@ button.slick-arrow.slick-next {
   .region-under-top .containers.mode-all-blocks-unformatted .rows .row .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .footer .region-footer .col div.field, .footer .region-under-top .containers.mode-all-blocks-unformatted .rows .region-footer .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .events-block-upcoming-ribbon .view-content .col div.field, .events-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows
   .block-views-blockevents-block-upcoming-ribbon .view-content .col div.field,
   .block-views-blockevents-block-upcoming-ribbon .region-under-top .containers.mode-all-blocks-unformatted .rows .view-content .col div.field, .region-under-top .containers.mode-all-blocks-unformatted .rows .block-icons .column .col div.field, .block-icons .region-under-top .containers.mode-all-blocks-unformatted .rows .column .col div.field {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 1 50%;
-            flex: 0 1 50%;
+    -ms-flex: 0 1 50%;
+        flex: 0 1 50%;
   }
 }
 
@@ -23612,16 +23538,12 @@ button.slick-arrow.slick-next {
 }
 
 .path-hall-of-fame .block-views-exposed-filter-blockpast-hall-of-fame-honorees-block-1 form .form-inline {
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row nowrap;
-          flex-flow: row nowrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-flow: row nowrap;
+      flex-flow: row nowrap;
+  -ms-flex-align: center;
+      align-items: center;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -23652,9 +23574,8 @@ button.slick-arrow.slick-next {
 }
 
 .path-hall-of-fame .block-views-exposed-filter-blockpast-hall-of-fame-honorees-block-1 form .form-inline .form-item-title {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 auto;
-          flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+      flex: 1 1 auto;
 }
 
 .path-hall-of-fame .block-views-exposed-filter-blockpast-hall-of-fame-honorees-block-1 form .form-inline .form-item-title h2 {
@@ -23673,38 +23594,31 @@ button.slick-arrow.slick-next {
 }
 
 .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-1 .view-content {
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -ms-flex-flow: row wrap;
+      flex-flow: row wrap;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
 }
 
 .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-1 .view-content .item-list {
-  -webkit-box-flex: 0;
-      -ms-flex: 0 1 33%;
-          flex: 0 1 33%;
+  -ms-flex: 0 1 33%;
+      flex: 0 1 33%;
   margin-bottom: 15px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-1 .view-content .item-list {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 1 45%;
-            flex: 0 1 45%;
+    -ms-flex: 0 1 45%;
+        flex: 0 1 45%;
   }
 }
 
 @media screen and (max-width: 767px) {
   .path-hall-of-fame .block-views-blockpast-hall-of-fame-honorees-block-1 .view-content .item-list {
-    -webkit-box-flex: 0;
-        -ms-flex: 0 1 100%;
-            flex: 0 1 100%;
+    -ms-flex: 0 1 100%;
+        flex: 0 1 100%;
   }
 }
 
