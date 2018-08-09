@@ -43,13 +43,16 @@ function pmmi_company_contact_form_alter(array &$form, FormStateInterface $form_
 
         // Display contacts form before actions.
         $form['trade_shows']['#weight'] = 100;
-        $form['actions']['#weight'] = $form['trade_shows']['#weight'] + 1;
-
         // Add custom submit to handle contacts.
         $form['actions']['submit']['#submit'][] = 'pmmi_company_contact_contacts_submit_handler';
-        hide($form['moderation_state']);
       }
-      break;
+      // Keep 101 for Privacy Policy agreement field that added
+      // through Manage form display
+      $form['actions']['#weight'] = 102;
+      // Always hide moderation state field, because we don't want modify it
+      // manually.
+      hide($form['moderation_state']);
+    break;
   }
 }
 

@@ -542,6 +542,23 @@
       margin-bottom: 20px;
     }
   }
+  .form-item-field-privacy-policy-agreement {
+    label {
+      padding-left: 0;
+    }
+    * {
+      display: inline-block;
+      text-align: justify;
+    }
+    .radio {
+      margin-bottom: 0;
+      .form-radio {
+        margin-right: 10px;
+      }
+    }
+
+
+  }
 }
 
 /**

@@ -909,6 +909,56 @@ block_countdown_circle:
     button:
       label: Button
 
+block_video_gallery_slider:
+  label: Video gallery (Slider)
+  category: 'PMMI: Blocks'
+  template: templates/layouts/blocks/video-gallery-slider
+  regions:
+    title:
+      label: Video gallery title
+    description:
+      label: Video gallery description
+    gallery_items:
+      label: Video gallery items
+
+block_video_gallery_expanded:
+  label: Video gallery (Expanded)
+  category: 'PMMI: Blocks'
+  template: templates/layouts/blocks/video-gallery-expanded
+  regions:
+    title:
+      label: Video gallery title
+    additional_info:
+      label: Video gallery additional information
+    description:
+      label: Video gallery description
+    gallery_items:
+      label: Video gallery items
+
+block_video_gallery_item_slider:
+  label: Video gallery item (Slider)
+  category: 'PMMI: Blocks'
+  template: templates/layouts/blocks/video-gallery-slider-item
+  regions:
+    video:
+      label: Video Info
+    video_title:
+      label: Video title
+    video_description:
+      label: Video description
+
+block_video_gallery_item_expanded:
+  label: Video gallery item (Expanded)
+  category: 'PMMI: Blocks'
+  template: templates/layouts/blocks/video-gallery-expanded-item
+  regions:
+    video:
+      label: Video Info
+    video_title:
+      label: Video title
+    video_description:
+      label: Video description
+
 panel_default:
   label: Default panel layout
   category: 'PMMI: Panels'
