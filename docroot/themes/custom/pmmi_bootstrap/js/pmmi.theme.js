@@ -281,9 +281,9 @@
           var $link = $(this);
           if (!$link.attr('href').length) {
             $link.removeAttr('href').css('cursor', 'default')
-                .on('click', function (e) {
-                  e.preventDefault();
-                });
+              .on('click', function (e) {
+                e.preventDefault();
+              });
           }
         });
         // Search block.
@@ -297,8 +297,8 @@
               $dropdownLink.on('click.mobile-toggler', function (e) {
                 e.preventDefault();
                 $dropdownLink.toggleClass('opened').parent().toggleClass('opened')
-                    .siblings().removeClass('opened')
-                    .find('>a').removeClass('opened');
+                  .siblings().removeClass('opened')
+                  .find('>a').removeClass('opened');
               });
             });
           }
@@ -338,13 +338,13 @@
       var headerH = $header.outerHeight(true);
       if (scrollTop > headerH) {
         $header
-            .addClass('below-fold')
-            .parent().css('padding-top', headerH);
+          .addClass('below-fold')
+          .parent().css('padding-top', headerH);
       }
       else {
         $header
-            .removeClass('below-fold')
-            .parent().css('padding-top', 0);
+          .removeClass('below-fold')
+          .parent().css('padding-top', 0);
       }
     },
     attach: function (context, settings) {
@@ -402,7 +402,7 @@
           var $privacyPolicyField = $form.find("[name='field_privacy_policy_agreement']");
           if ($privacyPolicyField.length != 0) {
             $privacyPolicyField.each(function () {
-              if($(this).attr('value') =='_none') {
+              if($(this).attr('value') == '_none') {
                 $(this).closest('.form-type-radio').remove();
               }
             });
