@@ -16,10 +16,10 @@
 #}
 
 <div{{ attributes.addClass('video-gallery__expanded-item') }}>
-  <a  class="video-gallery__expanded-link"
-      data-video-url="{{ content.video.video_url|e }}"
-      data-image-url="{{ content.video.image_url|e }}"
-      href="#">{{ content.video_title }}
+  <a class="video-gallery__expanded-link"
+     data-video-url="{{ content.video.video_url|e }}"
+     data-image-url="{{ content.video.image_url|e }}"
+     href="#">{{ content.video_title }}
   </a>
 
   {{ field_render([content.video_description, 'video-gallery__expanded-description']) }}
