@@ -3,10 +3,10 @@ langcode: en
 status: true
 dependencies:
   config:
-  - block_content.type.video_gallery_item
-  - field.storage.block_content.field_video_url
+    - block_content.type.video_gallery_item
+    - field.storage.block_content.field_video_url
   module:
-  - link
+    - link
 id: block_content.video_gallery_item.field_video_url
 field_name: field_video_url
 entity_type: block_content
