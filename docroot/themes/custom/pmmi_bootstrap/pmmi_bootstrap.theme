@@ -174,11 +174,11 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
 
     case 'video_gallery_item':
       // Remove schema form URL.
-      $url = $vars['content']['field_video_url'][0]['#url']->getUri();
-      $url = str_replace(['http:', 'https:'], '', $url);
+      $video_url = $vars['content']['field_video'][0]['#attributes']['src'];
+      $video_url = str_replace(['http:', 'https:'], '', $video_url);
 
       $vars['content']['video'] = [
-        'video_url' => $url,
+        'video_url' => $video_url,
         'image_url' => $vars['content']['field_image'][0]['#markup'],
       ];
 
@@ -188,11 +188,11 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
       // Get default video data to initial rendering of expanded gallery.
       $first_item = $vars['content']['field_video_gallery_item'][0];
       // Remove schema form URL.
-      $url = $first_item['field_video_url'][0]['#url']->getUri();
-      $url = str_replace(['http:', 'https:'], '', $url);
+      $video_url = $first_item['field_video'][0]['#attributes']['src'];
+      $video_url = str_replace(['http:', 'https:'], '', $video_url);
 
       $vars['content']['first_item'] = [
-        'video_url' => $url,
+        'video_url' => $video_url,
         'image_url' => $first_item['field_image'][0]['#markup'],
       ];
 
