@@ -19,6 +19,8 @@ $title-color: #184e75;
     }
 
     .video-gallery__expanded-video--wrapper {
+      position: relative;
+
       .video-gallery__expanded-image {
         width: 100%;
         height: auto;
@@ -26,6 +28,21 @@ $title-color: #184e75;
         @include mobile {
           margin: 0 auto;
           max-width: 480px;
+        }
+      }
+
+      // Add Play button on hover over container.
+      &:hover {
+        &:after {
+          pointer-events: none;
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          top: 0;
+          background: url(../i/youtube.png) no-repeat center;
+          background-size: 100px;
         }
       }
     }
@@ -85,7 +102,7 @@ $title-color: #184e75;
           display: flex;
           align-items: center;
           color: $title-color;
-          font-weight: $medium;
+          font-weight: $bold;
           font-size: $r17;
 
           &:before {

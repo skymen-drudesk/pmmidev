@@ -54,10 +54,6 @@
 
   Drupal.behaviors.pmmiVideoGalleryExpanded = {
     attach: function (context, settings) {
-      // Add active class only to first expanded gallery elements.
-      $('.video-gallery__expanded-items-title').first().addClass('active');
-      $('.video-gallery__expanded-items-wrapper').first().addClass('active');
-
       $('.video-gallery--expanded').each(function () {
         let $_that = $(this);
 
@@ -73,7 +69,15 @@
         });
 
         $(this).find('.video-gallery__expanded-items-title').on('click', function (e) {
-          if (!$(this).hasClass('active')) {
+          // Close container if current container is active.
+          if ($(this).hasClass('active')) {
+            $(this).toggleClass('active');
+
+            $('.video-gallery__expanded-items-title').removeClass('active');
+            $('.video-gallery__expanded-items-wrapper').removeClass('active');
+          }
+          else {
+            // Collapse other containers and make active clicked container.
             $('.video-gallery__expanded-items-title').removeClass('active');
             $('.video-gallery__expanded-items-wrapper').removeClass('active');
 

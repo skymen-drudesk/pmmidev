@@ -139,64 +139,6 @@ function pmmi_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
 }
 
 /**
- * Implements hook_ENTITY_TYPE_presave().
- *
- * @param \Drupal\block_content\Entity\BlockContent $entity
- */
-function pmmi_block_content_presave(BlockContent $entity) {
-  if ($entity->bundle() === 'video_gallery_item') {
-    $image_field = $entity->get('field_image')->getValue();
-
-    // Check if field image was filled. If no - thumbnail from YouTube/Vimeo.
-    if (empty($image_field)) {
-      $image_url = '';
-      $video_url = $entity->get('field_video_url')->getString();
-      $parsed_url = parse_url($video_url);
-
-      $youtube_pattern = '/(youtube(-nocookie)?\.com|youtu\.be)\/(watch\?v=|v\/|u\/|embed\/?)?([\w-]{11})(.*)?/i';
-      $vimeo_pattern = '/(vimeo(pro)?\.com)\/(?:[^\d]+)?(\d+)\??(.*)?$/';
-
-      // Get video thumbnails.
-      // Check if video host is youtube.
-      if (preg_match($youtube_pattern, $video_url)) {
-        if (isset($parsed_url['query'])) {
-          parse_str($parsed_url['query'], $parsed_query);
-          $image_url = "https://img.youtube.com/vi/{$parsed_query['v']}/0.jpg";
-        }
-      }
-      // Check if video host is Vimeo.
-      elseif (preg_match($vimeo_pattern, $video_url)) {
-        $image_url = pmmi_get_vimeo_thumbnail(substr($parsed_url['path'], 1));
-      }
-
-      if (!empty($image_url)) {
-        $folder_name = 'public://video-gallery';
-
-        // Check if file directory is exist.
-        if (file_prepare_directory($folder_name, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS)) {
-          $image_file = system_retrieve_file($image_url, $folder_name, TRUE);
-          $entity->set('field_image', $image_file);
-        }
-      }
-    }
-  }
-}
-
-/**
- * Helper function for retrieving thumbnail from video which hosted on Vimeo.
- *
- * @param $video_id
- *
- * @return mixed
- */
-function pmmi_get_vimeo_thumbnail($video_id) {
-  $data = file_get_contents("http://vimeo.com/api/v2/video/{$video_id}.json");
-  $data = json_decode($data);
-
-  return $data[0]->thumbnail_medium;
-}
-
-/**
  * Implements hook_theme_registry_alter().
  */
 function pmmi_theme_registry_alter(&$theme_registry) {
