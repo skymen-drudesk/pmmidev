@@ -1,20 +1,18 @@
 (function ($) {
-
   Drupal.behaviors.pmmiVideoGallerySlider = {
-    attach: function (context, settings) {
+    attach: function () {
       // Connect slick slider to each
       // class="video-gallery--slider" DOM element.
       $('.video-gallery--slider').each(function () {
         // Navigation container.
-        let $nav = $(this).find('.video-gallery__slider-navigation'),
-          $slickSlider = $(this).find('.video-gallery__slider > div');
-        // Counter container.
-        let $countBlock = $nav.find('.video-gallery__slider-counter');
+        const $nav = $(this).find('.video-gallery__slider-navigation');
+        const $slickSlider = $(this).find('.video-gallery__slider > div');
+        const $countBlock = $nav.find('.video-gallery__slider-counter');
 
         // Add text in counter container in format: "1 of 6".
         $slickSlider.on('init reInit afterChange', function (event, slick, currentSlide) {
-          let i = (currentSlide ? currentSlide : 0) + 1;
-          $countBlock.text(i + ' ' + Drupal.t('of') + ' ' + slick.slideCount);
+          const itemNumber = (currentSlide ? currentSlide : 0) + 1;
+          $countBlock.text(itemNumber + ' ' + Drupal.t('of') + ' ' + slick.slideCount);
         });
 
         // Initiate slick slider.
@@ -36,56 +34,52 @@
               settings: {
                 slidesToShow: 2,
                 slidesToScroll: 1,
-              }
+              },
             },
             {
               breakpoint: 768,
               settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1,
-                dots: false
-              }
-            }
-          ]
+                dots: false,
+              },
+            },
+          ],
         });
       });
-    }
+    },
   };
 
   Drupal.behaviors.pmmiVideoGalleryExpanded = {
     attach: function (context, settings) {
       $('.video-gallery--expanded').each(function () {
-        let $_that = $(this);
+        const $_that = $(this);
 
         // Replace
         $(this).find('.video-gallery__expanded-link').on('click', function (e) {
           e.preventDefault();
 
-          let videoUrl = $(this).attr('data-video-url'),
-            imageUrl = $(this).attr('data-image-url');
+          const videoUrl = $(this).attr('data-video-url');
+          const imageUrl = $(this).attr('data-image-url');
 
           $_that.find('.video-gallery__expanded-video').attr('href', videoUrl);
           $_that.find('.video-gallery__expanded-image').attr('src', imageUrl);
         });
 
-        $(this).find('.video-gallery__expanded-items-title').on('click', function (e) {
-          // Close container if current container is active.
-          if ($(this).hasClass('active')) {
-            $(this).toggleClass('active');
+        $(this).find('.video-gallery__expanded-items-title').on('click', function () {
 
-            $('.video-gallery__expanded-items-title').removeClass('active');
-            $('.video-gallery__expanded-items-wrapper').removeClass('active');
+          // Close container if current container is active.
+          if ($_that.hasClass('active')) {
+            $_that.toggleClass('active');
+            $('.video-gallery--expanded').removeClass('active');
           }
           else {
             // Collapse other containers and make active clicked container.
-            $('.video-gallery__expanded-items-title').removeClass('active');
-            $('.video-gallery__expanded-items-wrapper').removeClass('active');
-
-            $(this).toggleClass('active');
-            $_that.find('.video-gallery__expanded-items-wrapper').toggleClass('active');
+            $('.video-gallery--expanded').removeClass('active');
+            $_that.toggleClass('active');
           }
         });
       });
-    }
+    },
   };
 })(jQuery, window, Drupal);
