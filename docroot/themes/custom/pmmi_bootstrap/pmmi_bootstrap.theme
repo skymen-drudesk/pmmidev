@@ -173,27 +173,46 @@ function pmmi_bootstrap_preprocess_ds_entity_view(&$vars) {
       break;
 
     case 'video_gallery_item':
+      $video_url = '';
+      $image_url = '';
+
       // Remove schema form URL.
-      $video_url = $vars['content']['field_video'][0]['#attributes']['src'];
-      $video_url = str_replace(['http:', 'https:'], '', $video_url);
+      if (isset($vars['content']['field_video'][0])) {
+        $video_url = $vars['content']['field_video'][0]['#attributes']['src'];
+        $video_url = str_replace(['http:', 'https:'], '', $video_url);
+      }
+
+      if (isset($vars['content']['field_image'][0])) {
+        $image_url = $vars['content']['field_image'][0];
+      }
 
       $vars['content']['video'] = [
         'video_url' => $video_url,
-        'image_url' => $vars['content']['field_image'][0]['#markup'],
+        'image_url' => $image_url,
       ];
 
       break;
 
     case 'video_gallery':
+      $video_url = '';
+      $image_url = '';
+
       // Get default video data to initial rendering of expanded gallery.
       $first_item = $vars['content']['field_video_gallery_item'][0];
+
       // Remove schema form URL.
-      $video_url = $first_item['field_video'][0]['#attributes']['src'];
-      $video_url = str_replace(['http:', 'https:'], '', $video_url);
+      if (isset($first_item['field_video'][0])) {
+        $video_url = $first_item['field_video'][0]['#attributes']['src'];
+        $video_url = str_replace(['http:', 'https:'], '', $video_url);
+      }
+
+      if (isset($first_item['field_image'][0]['#markup'])) {
+        $image_url = $first_item['field_image'][0]['#markup'];
+      }
 
       $vars['content']['first_item'] = [
         'video_url' => $video_url,
-        'image_url' => $first_item['field_image'][0]['#markup'],
+        'image_url' => $image_url,
       ];
 
       break;
