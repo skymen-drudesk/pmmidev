@@ -21289,17 +21289,13 @@ button.slick-arrow.slick-next {
   font-size: 1.0625rem;
 }
 
-.video-gallery.video-gallery--expanded .video-gallery__expanded-video--wrapper {
-  position: relative;
-}
-
-.video-gallery.video-gallery--expanded .video-gallery__expanded-video--wrapper .video-gallery__expanded-image {
+.video-gallery.video-gallery--expanded .video-gallery__expanded-image {
   width: 100%;
   height: auto;
 }
 
 @media screen and (max-width: 767px) {
-  .video-gallery.video-gallery--expanded .video-gallery__expanded-video--wrapper .video-gallery__expanded-image {
+  .video-gallery.video-gallery--expanded .video-gallery__expanded-image {
     margin: 0 auto;
     max-width: 480px;
   }
@@ -21375,18 +21371,6 @@ button.slick-arrow.slick-next {
   font-size: 17px;
   font-size: 1.0625rem;
   color: #656363;
-}
-
-.video-gallery.active .video-gallery__expanded-video--wrapper:hover:after {
-  pointer-events: none;
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  top: 0;
-  background: url(../i/youtube.png) no-repeat center;
-  background-size: 100px;
 }
 
 .video-gallery.active .video-gallery__expanded-items-title {

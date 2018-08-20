@@ -51,23 +51,11 @@
   };
 
   Drupal.behaviors.pmmiVideoGalleryExpanded = {
-    attach: function (context, settings) {
+    attach: function() {
       $('.video-gallery--expanded').each(function () {
         const $_that = $(this);
-
-        // Replace
-        $(this).find('.video-gallery__expanded-link').on('click', function (e) {
-          e.preventDefault();
-
-          const videoUrl = $(this).attr('data-video-url');
-          const imageUrl = $(this).attr('data-image-url');
-
-          $_that.find('.video-gallery__expanded-video').attr('href', videoUrl);
-          $_that.find('.video-gallery__expanded-image').attr('src', imageUrl);
-        });
-
-        $(this).find('.video-gallery__expanded-items-title').on('click', function () {
-
+        // Click event for video title.
+        $(this).find('.video-gallery__expanded-items-title').on('click touchstart', () => {
           // Close container if current container is active.
           if ($_that.hasClass('active')) {
             $_that.toggleClass('active');
@@ -82,4 +70,4 @@
       });
     },
   };
-})(jQuery, window, Drupal);
+}(jQuery, window, Drupal));

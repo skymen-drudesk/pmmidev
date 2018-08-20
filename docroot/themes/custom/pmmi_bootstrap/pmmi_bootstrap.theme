@@ -417,6 +417,7 @@ function pmmi_bootstrap_theme_suggestions_block_alter(array &$suggestions, array
     }
 
     if ($variables['elements']['#base_plugin_id'] === 'block_content'
+      && isset($variables['elements']['content']['#bundle'])
       && $variables['elements']['content']['#bundle'] === 'video_gallery'
     ) {
       switch($variables['elements']['content']['#view_mode']) {

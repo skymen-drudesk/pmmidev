@@ -19,10 +19,7 @@ $title-color: #184e75;
       }
     }
 
-    .video-gallery__expanded-video--wrapper {
-      position: relative;
-
-      .video-gallery__expanded-image {
+     .video-gallery__expanded-image {
         width: 100%;
         height: auto;
 
@@ -31,7 +28,6 @@ $title-color: #184e75;
           max-width: 480px;
         }
       }
-    }
 
     .video-gallery__expanded-items {
       margin: 15px 0;
@@ -108,23 +104,6 @@ $title-color: #184e75;
   }
 
   &.active {
-    .video-gallery__expanded-video--wrapper {
-      // Add Play button on hover over container.
-      &:hover {
-        &:after {
-          pointer-events: none;
-          content: '';
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          top: 0;
-          background: url(../i/youtube.png) no-repeat center;
-          background-size: 100px;
-        }
-      }
-    }
-
     .video-gallery__expanded-items {
 
       // .video-gallery__expanded-items-title
