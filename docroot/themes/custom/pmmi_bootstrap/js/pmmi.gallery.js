@@ -51,24 +51,11 @@
   };
 
   Drupal.behaviors.pmmiVideoGalleryExpanded = {
-    attach: function (context, settings) {
+    attach: function() {
       $('.video-gallery--expanded').each(function () {
         const $_that = $(this);
-
-        // Replace thumbnail image and video url to
-        // currently selected video item.
-        $(this).find('.video-gallery__expanded-link').on('click', function (e) {
-          e.preventDefault();
-
-          const videoUrl = $(this).attr('data-video-url');
-          const imageUrl = $(this).attr('data-image-url');
-
-          $_that.find('.video-gallery__expanded-video').attr('href', videoUrl);
-          $_that.find('.video-gallery__expanded-image').attr('src', imageUrl);
-        });
-
         // Click event for video title.
-        $(this).find('.video-gallery__expanded-items-title').on('click touchstart', function () {
+        $(this).find('.video-gallery__expanded-items-title').on('click touchstart', () => {
           // Close container if current container is active.
           if ($_that.hasClass('active')) {
             $_that.toggleClass('active');
@@ -80,22 +67,7 @@
             $_that.toggleClass('active');
           }
         });
-
-        // Click event for video thumbnail.
-        $(this).find('.video-gallery__expanded-video').on('click touchstart', function (e) {
-          e.preventDefault();
-
-          // Trigger Lity open modal only if current container is active.
-          if ($_that.hasClass('active')) {
-            lity($(this).attr('href'));
-          }
-          else {
-            // Collapse other containers and make active clicked container.
-            $('.video-gallery--expanded').removeClass('active');
-            $_that.toggleClass('active');
-          }
-        });
       });
     },
   };
-})(jQuery, window, Drupal);
+}(jQuery, window, Drupal));
