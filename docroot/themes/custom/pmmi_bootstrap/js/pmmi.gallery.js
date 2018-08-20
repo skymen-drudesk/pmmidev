@@ -55,7 +55,8 @@
       $('.video-gallery--expanded').each(function () {
         const $_that = $(this);
 
-        // Replace
+        // Replace thumbnail image and video url to
+        // currently selected video item.
         $(this).find('.video-gallery__expanded-link').on('click', function (e) {
           e.preventDefault();
 
@@ -66,12 +67,27 @@
           $_that.find('.video-gallery__expanded-image').attr('src', imageUrl);
         });
 
-        $(this).find('.video-gallery__expanded-items-title').on('click', function () {
-
+        // Click event for video title.
+        $(this).find('.video-gallery__expanded-items-title').on('click touchstart', function () {
           // Close container if current container is active.
           if ($_that.hasClass('active')) {
             $_that.toggleClass('active');
             $('.video-gallery--expanded').removeClass('active');
+          }
+          else {
+            // Collapse other containers and make active clicked container.
+            $('.video-gallery--expanded').removeClass('active');
+            $_that.toggleClass('active');
+          }
+        });
+
+        // Click event for video thumbnail.
+        $(this).find('.video-gallery__expanded-video').on('click touchstart', function (e) {
+          e.preventDefault();
+
+          // Trigger Lity open modal only if current container is active.
+          if ($_that.hasClass('active')) {
+            lity($(this).attr('href'));
           }
           else {
             // Collapse other containers and make active clicked container.
