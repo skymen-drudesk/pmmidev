@@ -55,7 +55,7 @@
       $('.video-gallery--expanded').each(function () {
         const $_that = $(this);
         // Click event for video title.
-        $(this).find('.video-gallery__expanded-items-title').on('click touchstart', () => {
+        $(this).find('.video-gallery__expanded-items-title').off().on('click touchstart', () => {
           // Close container if current container is active.
           if ($_that.hasClass('active')) {
             $_that.toggleClass('active');
