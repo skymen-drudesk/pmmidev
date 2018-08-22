@@ -3,20 +3,20 @@ langcode: en
 status: true
 dependencies:
   config:
-  - block_content.type.video_gallery
-  - field.field.block_content.video_gallery.field_video_gallery_additional
-  - field.field.block_content.video_gallery.field_video_gallery_description
-  - field.field.block_content.video_gallery.field_video_gallery_item
-  - field.field.block_content.video_gallery.field_video_gallery_title
+    - block_content.type.video_gallery
+    - field.field.block_content.video_gallery.field_video_gallery_additional
+    - field.field.block_content.video_gallery.field_video_gallery_description
+    - field.field.block_content.video_gallery.field_video_gallery_item
+    - field.field.block_content.video_gallery.field_video_gallery_title
   module:
-  - content_moderation
-  - field_group
-  - inline_entity_form
+    - content_moderation
+    - field_group
+    - inline_entity_form
 third_party_settings:
   field_group:
     group_videos:
       children:
-      - field_video_gallery_item
+        - field_video_gallery_item
       parent_name: ''
       weight: 4
       format_type: fieldset

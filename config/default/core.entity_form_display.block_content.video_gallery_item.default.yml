@@ -5,13 +5,13 @@ dependencies:
   config:
     - block_content.type.video_gallery_item
     - field.field.block_content.video_gallery_item.field_image
+    - field.field.block_content.video_gallery_item.field_video
     - field.field.block_content.video_gallery_item.field_video_description
     - field.field.block_content.video_gallery_item.field_video_title
-    - field.field.block_content.video_gallery_item.field_video_url
     - image.style.thumbnail
   module:
     - image
-    - link
+    - video
 id: block_content.video_gallery_item.default
 targetEntityType: block_content
 bundle: video_gallery_item
@@ -24,6 +24,21 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     type: image_image
+    region: content
+  field_video:
+    weight: 29
+    settings:
+      allowed_providers:
+        youtube: youtube
+        vimeo: vimeo
+        dailymotion: 0
+        instagram: 0
+        vine: 0
+        facebook: 0
+      file_directory: 'video-thumbnails/[date:custom:Y]-[date:custom:m]'
+      uri_scheme: public
+    third_party_settings: {  }
+    type: video_embed
     region: content
   field_video_description:
     weight: 27
@@ -40,14 +55,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  field_video_url:
-    weight: 1
-    settings:
-      placeholder_url: ''
-      placeholder_title: ''
-    third_party_settings: {  }
-    type: link_default
     region: content
   info:
     type: string_textfield

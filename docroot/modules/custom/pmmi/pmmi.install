@@ -273,3 +273,18 @@ function pmmi_update_8010(&$sandbox) {
     return t('The batch URL Alias update is finished.');
   }
 }
+
+/**
+ * Delete field_video_url from 'Video Gallery Item' block.
+ */
+function pmmi_update_8011() {
+  $entityManager = \Drupal::service('entity.manager');
+
+  $fields = $entityManager->getFieldDefinitions('block_content', 'video_gallery_item');
+
+  if (!empty($fields['field_video_url'])) {
+    $field = $fields['field_video_url'];
+
+    $field->delete();
+  }
+}
