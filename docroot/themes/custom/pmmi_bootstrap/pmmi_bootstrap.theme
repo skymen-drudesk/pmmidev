@@ -245,6 +245,17 @@ function pmmi_bootstrap_page_attachments_alter(array &$page) {
     }
     $page['#attached']['drupalSettings']['responsive']['breakpoints'] = $media_queries;
   }
+
+  $page['#attached']['html_head'][] = [
+    [
+      '#tag' => 'link',
+      '#attributes' => [
+        'rel' => 'stylesheet',
+        'href' => 'https://olytics.omeda.com/olytics/css/v1/p/olytics.css',
+      ],
+    ],
+    'omega_stylesheet',
+  ];
 }
 
 
