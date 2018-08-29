@@ -288,3 +288,12 @@ function pmmi_update_8011() {
     $field->delete();
   }
 }
+
+/**
+ * Delete audience_select.settings configuration from database.
+ */
+function pmmi_update_8012() {
+  \Drupal::configFactory()
+    ->getEditable('audience_select.settings')
+    ->delete();
+}
