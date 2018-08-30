@@ -5809,7 +5809,9 @@
                     "message": "Covered by Drupal's security advisory policy"
                 }
             },
-            "patches_applied": []
+            "patches_applied": {
+                "Add title attribute": "https://www.drupal.org/files/issues/2018-06-05/link_attributes-title-attribute-2920269-5.patch"
+            }
         },
         "installation-source": "dist",
         "notification-url": "https://packages.drupal.org/8/downloads",
@@ -7291,7 +7293,9 @@
                     "drush.services.yml": "^9"
                 }
             },
-            "patches_applied": []
+            "patches_applied": {
+                "Remove 'Search API Taxonomy Term Handlers' module": "https://www.drupal.org/files/issues/2018-08-30/remove_search_api_taxonomy_term_handlers_module-2867479-7.patch"
+            }
         },
         "installation-source": "dist",
         "notification-url": "https://packages.drupal.org/8/downloads",
@@ -8438,7 +8442,7 @@
                 }
             },
             "patches_applied": {
-                "Support for batch operations": "https://www.drupal.org/files/issues/views_data_export-batch_support-2789531-58-D8.patch"
+                "Support for batch operations": "https://www.drupal.org/files/issues/2018-08-16/2789531-144.patch"
             }
         },
         "installation-source": "dist",
