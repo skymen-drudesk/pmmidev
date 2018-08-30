@@ -16,15 +16,19 @@ category: 'Test: Element'
 elements: |
   details:
     '#type': details
-    '#title': details
+    '#title': 'details'
+    '#description': 'This is a description.'
+    '#help': 'This is help text.'
+    '#more': 'This is more text'
+    '#required': true
+    '#open': true
     details_markup:
       '#markup': '<p>This is some markup</p>'
-  details_required:
+  details_title_invisible:
     '#type': details
-    '#title': details_required
-    '#required': true
-    details_required_markup:
-      '#markup': '<p>This is some markup</p>'
+    '#title': 'Details title invisible'
+    '#description': 'This is a description.'
+    '#title_display': invisible
 css: ''
 javascript: ''
 settings:
@@ -60,6 +64,7 @@ settings:
   submission_label: ''
   submission_log: false
   submission_user_columns: {  }
+  submission_user_duplicate: false
   submission_login: false
   submission_login_message: ''
   submission_exception_message: ''
@@ -72,7 +77,9 @@ settings:
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
+  wizard_progress_link: false
   wizard_start_label: ''
+  wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
   wizard_track: ''
@@ -158,3 +165,4 @@ access:
     users: {  }
     permissions: {  }
 handlers: {  }
+weight: 0

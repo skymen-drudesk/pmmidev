@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\search_api_page\Form\SearchApiPageDeleteForm.
- */
-
 namespace Drupal\search_api_page\Form;
 
 use Drupal\Core\Entity\EntityDeleteForm;
@@ -20,7 +15,7 @@ class SearchApiPageDeleteForm extends EntityDeleteForm {
    * {@inheritdoc}
    */
   public function getQuestion() {
-    return $this->t('Are you sure you want to delete %name?', array('%name' => $this->entity->label()));
+    return $this->t('Are you sure you want to delete %name?', ['%name' => $this->entity->label()]);
   }
 
   /**

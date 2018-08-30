@@ -7,6 +7,7 @@ use Drupal\Core\Render\Element;
 use Drupal\Core\Render\Element\FormElement;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Template\Attribute;
+use Drupal\webform\Utility\WebformAccessibilityHelper;
 use Drupal\webform\Utility\WebformElementHelper;
 
 /**
@@ -35,7 +36,7 @@ class WebformMultiple extends FormElement {
         '#type' => 'textfield',
         '#title' => t('Item value'),
         '#title_display' => 'invisible',
-        '#placeholder' => t('Enter value'),
+        '#placeholder' => t('Enter value…'),
       ],
       '#cardinality' => FALSE,
       '#min_items' => NULL,
@@ -226,7 +227,7 @@ class WebformMultiple extends FormElement {
     // Build add items actions.
     if (empty($element['#cardinality'])) {
       $element['add'] = [
-        '#prefix' => '<div class="container-inline">',
+        '#prefix' => '<div class="webform-multiple-add js-webform-multiple-add container-inline">',
         '#suffix' => '</div>',
       ];
       $element['add']['submit'] = [
@@ -239,6 +240,8 @@ class WebformMultiple extends FormElement {
       ];
       $element['add']['more_items'] = [
         '#type' => 'number',
+        '#title' => $element['#add_more_button_label'] . ' ' . $element['#add_more_input_label'],
+        '#title_display' => 'invisible',
         '#min' => 1,
         '#max' => 100,
         '#default_value' => $element['#add_more'],
@@ -293,11 +296,11 @@ class WebformMultiple extends FormElement {
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
    * @param array $complete_form
-   *    An associative array containing the structure of the form.
+   *   An associative array containing the structure of the form.
    * @param array $sub_elements
    *   The sub element.
    * @param array $required_states
-   *   An associative array of required states froim the main element's
+   *   An associative array of required states from the main element's
    *   visible/hidden states.
    */
   protected static function initializeElementRecursive(array $element, FormStateInterface $form_state, array &$complete_form, array &$sub_elements, array $required_states) {
@@ -376,24 +379,36 @@ class WebformMultiple extends FormElement {
 
     if (empty($element['#header'])) {
       return [
-        ['data' => '', 'colspan' => ($colspan + 1)],
+        [
+          'data' => (!empty($element['#title'])) ? WebformAccessibilityHelper::buildVisuallyHidden($element['#title']) : [],
+          'colspan' => ($colspan + 1),
+        ],
       ];
     }
     elseif (is_array($element['#header'])) {
       $header = [];
 
       if ($element['#sorting']) {
-        $header[] = ['class' => ["$table_id--handle", "webform-multiple-table--handle"]];
+        $header[] = [
+          'data' => WebformAccessibilityHelper::buildVisuallyHidden(t('Re-order')),
+          'class' => ["$table_id--handle", 'webform-multiple-table--handle'],
+        ];
       }
 
       $header = array_merge($header, $element['#header']);
 
       if ($element['#sorting']) {
-        $header[] = ['class' => ["$table_id--weight", "webform-multiple-table--weight"]];
+        $header[] = [
+          'data' => ['#markup' => t('Weight')],
+          'class' => ["$table_id--weight", 'webform-multiple-table--weight'],
+        ];
       }
 
       if ($element['#operations']) {
-        $header[] = ['class' => ["$table_id--handle", "webform-multiple-table--operations"]];
+        $header[] = [
+          'data' => WebformAccessibilityHelper::buildVisuallyHidden(t('Operations')),
+          'class' => ["$table_id--handle", 'webform-multiple-table--operations'],
+        ];
       }
 
       return $header;
@@ -407,7 +422,10 @@ class WebformMultiple extends FormElement {
       $header = [];
 
       if ($element['#sorting']) {
-        $header['_handle_'] = ['class' => ["$table_id--handle", "webform-multiple-table--handle"]];
+        $header['_handle_'] = [
+          'data' => WebformAccessibilityHelper::buildVisuallyHidden(t('Re-order')),
+          'class' => ["$table_id--handle", "webform-multiple-table--handle"],
+        ];
       }
 
       if ($element['#child_keys']) {
@@ -416,9 +434,11 @@ class WebformMultiple extends FormElement {
             continue;
           }
 
+          $child_title = (!empty($element['#element'][$child_key]['#title'])) ? $element['#element'][$child_key]['#title'] : '';
+
           $title = [];
           $title['title'] = [
-            '#markup' => (!empty($element['#element'][$child_key]['#title'])) ? $element['#element'][$child_key]['#title'] : '',
+            '#markup' => $child_title,
           ];
           if (!empty($element['#element'][$child_key]['#required']) || !empty($element['#element'][$child_key]['#_required'])) {
             $title['title'] += [
@@ -430,6 +450,7 @@ class WebformMultiple extends FormElement {
             $title['help'] = [
               '#type' => 'webform_help',
               '#help' => $element['#element'][$child_key]['#help'],
+              '#help_title' => $child_title,
             ];
           }
           $header[$child_key] = [
@@ -454,6 +475,7 @@ class WebformMultiple extends FormElement {
 
       if ($element['#operations']) {
         $header['_operations_'] = [
+          'data' => WebformAccessibilityHelper::buildVisuallyHidden(t('Operations')),
           'class' => ["$table_id--operations", "webform-multiple-table--operations"],
         ];
       }
@@ -640,7 +662,7 @@ class WebformMultiple extends FormElement {
   }
 
   /**
-   * Set element row default value recusively.
+   * Set element row default value recursively.
    *
    * @param array $element
    *   The element.
@@ -657,7 +679,7 @@ class WebformMultiple extends FormElement {
   }
 
   /**
-   * Set element row default value recusively.
+   * Set element row default value recursively.
    *
    * @param array $element
    *   The element.

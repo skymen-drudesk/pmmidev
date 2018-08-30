@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\search_api_page\Form\SearchApiPageBlockForm.
- */
-
 namespace Drupal\search_api_page\Form;
 
 use Drupal\Core\Form\FormBase;
@@ -68,16 +63,16 @@ class SearchApiPageBlockForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function buildForm(array $form, FormStateInterface $form_state, $args = array()) {
+  public function buildForm(array $form, FormStateInterface $form_state, $args = []) {
     /* @var $search_api_page \Drupal\search_api_page\SearchApiPageInterface */
     $search_api_page = SearchApiPage::load($args['search_api_page']);
 
     $langcode = $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
 
-    $form['search_api_page'] = array(
+    $form['search_api_page'] = [
       '#type' => 'value',
       '#value' => $search_api_page->id(),
-    );
+    ];
 
     $default_value = '';
     if (isset($args['keys'])) {
@@ -87,20 +82,25 @@ class SearchApiPageBlockForm extends FormBase {
       $default_value = $search_value;
     }
 
-    $form['keys'] = array(
+    $keys_title = $this->t(
+      'Enter the terms you wish to search for.',
+      [],
+      ['langcode' => $langcode]
+    );
+    $form['keys'] = [
       '#type' => 'search',
-      '#title' => $this->t('Search', array(), array('langcode' => $langcode)),
+      '#title' => $this->t('Search', [], ['langcode' => $langcode]),
       '#title_display' => 'invisible',
       '#size' => 15,
       '#default_value' => $default_value,
-      '#attributes' => array('title' => $this->t('Enter the terms you wish to search for.', array(), array('langcode' => $langcode))),
-    );
+      '#attributes' => ['title' => $keys_title],
+    ];
 
-    $form['actions'] = array('#type' => 'actions');
-    $form['actions']['submit'] = array(
+    $form['actions'] = ['#type' => 'actions'];
+    $form['actions']['submit'] = [
       '#type' => 'submit',
-      '#value' => $this->t('Search', array(), array('langcode' => $langcode)),
-    );
+      '#value' => $this->t('Search', [], ['langcode' => $langcode]),
+    ];
 
     if (!$search_api_page->getCleanUrl()) {
       $route = 'search_api_page.' . $langcode . '.' . $search_api_page->id();
@@ -124,7 +124,7 @@ class SearchApiPageBlockForm extends FormBase {
     $keys = $form_state->getValue('keys');
     $langcode = $this->languageManager->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)->getId();
     /* @var $searchApiPage \Drupal\search_api_page\SearchApiPageInterface */
-    $form_state->setRedirectUrl(Url::fromRoute('search_api_page.' . $langcode . '.' . $form_state->getValue('search_api_page'), array('keys' => $keys)));
+    $form_state->setRedirectUrl(Url::fromRoute('search_api_page.' . $langcode . '.' . $form_state->getValue('search_api_page'), ['keys' => $keys]));
   }
 
 }

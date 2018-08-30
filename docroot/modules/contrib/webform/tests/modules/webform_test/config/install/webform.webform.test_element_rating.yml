@@ -20,14 +20,18 @@ elements: |
     '#open': true
     rating_basic:
       '#type': webform_rating
-      '#title': 'Rating basic'
+      '#title': rating_basic
     rating_advanced:
       '#type': webform_rating
-      '#title': 'Rating advanced'
+      '#title': rating_advanced
       '#star_size': large
       '#reset': true
       '#max': '10'
       '#step': '0.1'
+    rating_required:
+      '#type': webform_rating
+      '#title': rating_required
+      '#required': true
 css: ''
 javascript: ''
 settings:
@@ -63,6 +67,7 @@ settings:
   submission_label: ''
   submission_log: false
   submission_user_columns: {  }
+  submission_user_duplicate: false
   submission_login: false
   submission_login_message: ''
   submission_exception_message: ''
@@ -75,7 +80,9 @@ settings:
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
+  wizard_progress_link: false
   wizard_start_label: ''
+  wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
   wizard_track: ''
@@ -169,3 +176,4 @@ handlers:
     conditions: {  }
     weight: 1
     settings: {  }
+weight: 0

@@ -332,8 +332,9 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
       'description' => $this->t('Code Mirror is a versatile text editor implemented in JavaScript for the browser.'),
       'notes' => $this->t('Code Mirror is used to provide a text editor for YAML, HTML, CSS, and JavaScript configuration settings and messages.'),
       'homepage_url' => Url::fromUri('http://codemirror.net/'),
-      'download_url' => Url::fromUri('https://github.com/components/codemirror/archive/5.36.0.zip'),
-      'version' => '5.36.0',
+      'download_url' => Url::fromUri('https://github.com/components/codemirror/archive/5.39.2.zip'),
+      'issues_url' => Url::fromUri('https://github.com/codemirror/codemirror/issues'),
+      'version' => '5.39.2',
       'optional' => TRUE,
     ];
     $libraries['jquery.geocomplete'] = [
@@ -353,15 +354,15 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
       'download_url' => Url::fromUri('https://github.com/fronteed/icheck/archive/1.0.2.zip'),
       'version' => '1.0.2 ',
       'optional' => TRUE,
-      'deprecated' => $this->t('The iCheck library is not being maintained and has been <a href=":href">deprecated</a>. It wil be removed before Webform 8.x-5.0.', [':href' => 'https://www.drupal.org/project/webform/issues/2931154']),
+      'deprecated' => $this->t('The iCheck library is not being maintained. It has been <a href=":href">deprecated</a> and will be removed before Webform 8.x-5.0.', [':href' => 'https://www.drupal.org/project/webform/issues/2931154']),
     ];
     $libraries['jquery.inputmask'] = [
       'title' => $this->t('jQuery: Input Mask'),
-      'description' => $this->t('Input masks ensures a predefined format is entered. This can be useful for dates, numerics, phone numbers, etc...'),
+      'description' => $this->t('Input masks ensures a predefined format is entered. This can be useful for dates, numerics, phone numbers, etc…'),
       'notes' => $this->t('Input masks are used to ensure predefined and custom formats for text fields.'),
       'homepage_url' => Url::fromUri('https://robinherbots.github.io/Inputmask/'),
-      'download_url' => Url::fromUri('https://github.com/RobinHerbots/jquery.inputmask/archive/3.3.11.zip'),
-      'version' => '3.3.11',
+      'download_url' => Url::fromUri('https://github.com/RobinHerbots/jquery.inputmask/archive/4.0.0.zip'),
+      'version' => '4.0.0',
       'optional' => TRUE,
     ];
     $libraries['jquery.intl-tel-input'] = [
@@ -369,8 +370,8 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
       'description' => $this->t("A jQuery plugin for entering and validating international telephone numbers. It adds a flag dropdown to any input, detects the user's country, displays a relevant placeholder and provides formatting/validation methods."),
       'notes' => $this->t('International Telephone Input is used by the Telephone element.'),
       'homepage_url' => Url::fromUri('https://github.com/jackocnr/intl-tel-input'),
-      'download_url' => Url::fromUri('https://github.com/jackocnr/intl-tel-input/archive/v12.1.12.zip'),
-      'version' => '12.1.12',
+      'download_url' => Url::fromUri('https://github.com/jackocnr/intl-tel-input/archive/v13.0.0.zip'),
+      'version' => '13.0.0',
       'optional' => TRUE,
     ];
     $libraries['jquery.rateit'] = [
@@ -396,8 +397,17 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
       'description' => $this->t('A jQuery plugin that makes long, unwieldy select boxes much more user-friendly.'),
       'notes' => $this->t('Chosen is used to improve the user experience for select menus. Chosen is an alternative to Select2.'),
       'homepage_url' => Url::fromUri('https://harvesthq.github.io/chosen/'),
-      'download_url' => Url::fromUri('https://github.com/harvesthq/chosen/releases/download/v1.8.3/chosen_v1.8.3.zip'),
-      'version' => '1.8.3',
+      'download_url' => Url::fromUri('https://github.com/harvesthq/chosen/releases/download/v1.8.7/chosen_v1.8.7.zip'),
+      'version' => '1.8.7',
+      'optional' => TRUE,
+    ];
+    $libraries['jquery.textcounter'] = [
+      'title' => $this->t('jQuery: Text Counter'),
+      'description' => $this->t('A jQuery plugin for counting and limiting characters/words on text input, or textarea, elements.'),
+      'notes' => $this->t('Word or character counting, with server-side validation, is available for text fields and text areas.'),
+      'homepage_url' => Url::fromUri('https://github.com/ractoon/jQuery-Text-Counter'),
+      'download_url' => Url::fromUri('https://github.com/ractoon/jQuery-Text-Counter/archive/0.8.0.zip'),
+      'version' => '0.8.0',
       'optional' => TRUE,
     ];
     $libraries['jquery.timepicker'] = [
@@ -417,19 +427,12 @@ class WebformLibrariesManager implements WebformLibrariesManagerInterface {
       'download_url' => Url::fromUri('https://github.com/simontabor/jquery-toggles/archive/v4.0.0.zip'),
       'version' => '4.0.0',
       'elements' => ['webform_toggle', 'webform_toggles'],
-    ];
-    $libraries['jquery.word-and-character-counter'] = [
-      'title' => $this->t('jQuery: Word and character counter plug-in!'),
-      'description' => $this->t('The jQuery word and character counter plug-in allows you to count characters or words'),
-      'notes' => $this->t('Word or character counting, with server-side validation, is available for text fields and text areas.'),
-      'homepage_url' => Url::fromUri('https://github.com/qwertypants/jQuery-Word-and-Character-Counter-Plugin'),
-      'download_url' => Url::fromUri('https://github.com/qwertypants/jQuery-Word-and-Character-Counter-Plugin/archive/2.5.1.zip'),
-      'version' => '2.5.1',
+      'deprecated' => $this->t('The Toogles library is not being maintained and has major accessibility issues. It has been <a href=":href">deprecated</a> amd will be removed before Webform 8.x-5.0.', [':href' => 'https://www.drupal.org/project/webform/issues/2890861']),
       'optional' => TRUE,
     ];
     $libraries['progress-tracker'] = [
       'title' => $this->t('Progress Tracker'),
-      'description' => $this->t("A flexible SASS component to illustrate the steps in a multi step process e.g. a multi step form, a timeline or a quiz."),
+      'description' => $this->t("A flexible SASS component to illustrate the steps in a multi-step process e.g. a multi-step form, a timeline or a quiz."),
       'notes' => $this->t('Progress Tracker is used by multi-step wizard forms.'),
       'homepage_url' => Url::fromUri('http://nigelotoole.github.io/progress-tracker/'),
       'download_url' => Url::fromUri('https://github.com/NigelOToole/progress-tracker/archive/v1.4.0.zip'),

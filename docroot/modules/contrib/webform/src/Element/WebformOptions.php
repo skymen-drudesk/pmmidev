@@ -86,7 +86,7 @@ class WebformOptions extends FormElement {
         '#type' => 'webform_codemirror',
         '#mode' => 'yaml',
         '#default_value' => trim(Yaml::encode($element['#default_value'])),
-        '#placeholder' => t('Enter custom options'),
+        '#placeholder' => t('Enter custom options…'),
         '#description' => t('Key-value pairs MUST be specified as "safe_key: \'Some readable options\'". Use of only alphanumeric characters and underscores is recommended in keys. One option per line.') . '<br /><br />' .
           t('Option groups can be created by using just the group name followed by indented group options.'),
       ];
@@ -100,6 +100,8 @@ class WebformOptions extends FormElement {
         '#type' => 'webform_multiple',
         '#header' => TRUE,
         '#default_value' => (isset($element['#default_value'])) ? static::convertOptionsToValues($element['#default_value'], $element['#options_description']) : [],
+        '#error_no_message' => TRUE,
+        '#add_more_input_label' => t('more options'),
       ];
 
       if ($element['#options_description']) {
@@ -107,29 +109,32 @@ class WebformOptions extends FormElement {
           'value' => [
             '#type' => 'textfield',
             '#title' => t('@label value', $t_args),
-            '#title_display' => t('invisible'),
-            '#placeholder' => t('Enter value'),
+            '#title_display' => 'invisible',
+            '#placeholder' => t('Enter value…'),
             '#attributes' => ['class' => ['js-webform-options-value']],
             '#maxlength' => $element['#options_value_maxlength'],
+            '#error_no_message' => TRUE,
           ],
           'option' => [
             '#type' => 'container',
             '#title' => t('@label text/description', $t_args),
-            '#title_display' => t('invisible'),
+            '#title_display' => 'invisible',
             'text' => [
               '#type' => 'textfield',
               '#title' => t('@label text', $t_args),
-              '#title_display' => t('invisible'),
-              '#placeholder' => t('Enter text'),
+              '#title_display' => 'invisible',
+              '#placeholder' => t('Enter text…'),
               '#maxlength' => $element['#options_text_maxlength'],
+              '#error_no_message' => TRUE,
             ],
             'description' => [
               '#type' => 'textarea',
               '#title' => t('@label description', $t_args),
-              '#title_display' => t('invisible'),
-              '#placeholder' => t('Enter description'),
+              '#title_display' => 'invisible',
+              '#placeholder' => t('Enter description…'),
               '#rows' => 2,
               '#maxlength' => $element['#options_description_maxlength'],
+              '#error_no_message' => TRUE,
             ],
           ],
         ];
@@ -139,17 +144,19 @@ class WebformOptions extends FormElement {
           'value' => [
             '#type' => 'textfield',
             '#title' => t('@label value', $t_args),
-            '#title_display' => t('invisible'),
-            '#placeholder' => t('Enter value'),
+            '#title_display' => 'invisible',
+            '#placeholder' => t('Enter value…'),
             '#attributes' => ['class' => ['js-webform-options-value']],
             '#maxlength' => $element['#options_value_maxlength'],
+            '#error_no_message' => TRUE,
           ],
           'text' => [
             '#type' => 'textfield',
             '#title' => t('@label text', $t_args),
-            '#title_display' => t('invisible'),
-            '#placeholder' => t('Enter text'),
+            '#title_display' => 'invisible',
+            '#placeholder' => t('Enter text…'),
             '#maxlength' => $element['#options_text_maxlength'],
+            '#error_no_message' => TRUE,
           ],
         ];
       }

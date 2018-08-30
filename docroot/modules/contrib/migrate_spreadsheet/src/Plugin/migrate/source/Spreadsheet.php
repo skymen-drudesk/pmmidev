@@ -4,10 +4,14 @@ namespace Drupal\migrate_spreadsheet\Plugin\migrate\source;
 
 use Drupal\Component\Plugin\ConfigurablePluginInterface;
 use Drupal\Component\Utility\NestedArray;
+use Drupal\Core\File\FileSystemInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\migrate\MigrateException;
 use Drupal\migrate\Plugin\migrate\source\SourcePluginBase;
 use Drupal\migrate\Plugin\MigrationInterface;
+use Drupal\migrate_spreadsheet\SpreadsheetIteratorInterface;
 use PhpOffice\PhpSpreadsheet\IOFactory;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
  * Provides a source plugin that migrate from spreadsheet files.
@@ -19,7 +23,28 @@ use PhpOffice\PhpSpreadsheet\IOFactory;
  *   id = "spreadsheet"
  * )
  */
-class Spreadsheet extends SourcePluginBase implements ConfigurablePluginInterface/*, ContainerFactoryPluginInterface*/ {
+class Spreadsheet extends SourcePluginBase implements ConfigurablePluginInterface, ContainerFactoryPluginInterface {
+
+  /**
+   * The file system service.
+   *
+   * @var \Drupal\Core\File\FileSystemInterface
+   */
+  protected $fileSystem;
+
+  /**
+   * The migrate spreadsheet iterator.
+   *
+   * @var \Drupal\migrate_spreadsheet\SpreadsheetIteratorInterface
+   */
+  protected $spreadsheetIterator;
+
+  /**
+   * Flag to determine if the iterator has been initialized.
+   *
+   * @var bool
+   */
+  protected $iteratorIsInitialized = FALSE;
 
   /**
    * Constructs a spreadsheet migration source plugin object.
@@ -30,12 +55,32 @@ class Spreadsheet extends SourcePluginBase implements ConfigurablePluginInterfac
    *   The plugin_id for the plugin instance.
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
-   * @param \Drupal\migrate\Plugin\MigrationInterface
+   * @param \Drupal\migrate\Plugin\MigrationInterface $migration
    *   The current migration.
+   * @param \Drupal\Core\File\FileSystemInterface $file_system
+   *   The file system service.
+   * @param \Drupal\migrate_spreadsheet\SpreadsheetIteratorInterface $spreadsheet_iterator
+   *   The migrate spreadsheet iterator.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration, FileSystemInterface $file_system, SpreadsheetIteratorInterface $spreadsheet_iterator) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $migration);
     $this->setConfiguration($configuration);
+    $this->fileSystem = $file_system;
+    $this->spreadsheetIterator = $spreadsheet_iterator;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition, MigrationInterface $migration = NULL) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $migration,
+      $container->get('file_system'),
+      $container->get('migrate_spreadsheet.iterator')
+    );
   }
 
   /**
@@ -99,8 +144,13 @@ class Spreadsheet extends SourcePluginBase implements ConfigurablePluginInterfac
    * {@inheritdoc}
    */
   public function fields() {
-    $columns = $this->getConfiguration()['columns'];
-    if (!empty($row_index_column = $this->getConfiguration()['row_index_colums'])) {
+    // No column headers provided in config, read worksheet for header row.
+    if (!$columns = $this->getConfiguration()['columns']) {
+      $this->initializeIterator();
+      $columns = array_keys($this->spreadsheetIterator->getHeaders());
+    }
+    // Add $row_index_column if it's been configured.
+    if ($row_index_column = $this->getConfiguration()['row_index_column']) {
       $columns[] = $row_index_column;
     }
     return array_combine($columns, $columns);
@@ -110,19 +160,26 @@ class Spreadsheet extends SourcePluginBase implements ConfigurablePluginInterfac
    * {@inheritdoc}
    */
   public function initializeIterator() {
-    $configuration = $this->getConfiguration();
-    $configuration['worksheet'] = $this->loadWorksheet();
-    $configuration['keys'] = array_keys($configuration['keys']);
-    // The 'file' and 'plugin' items are not part of iterator configuration.
-    unset($configuration['file'], $configuration['plugin']);
-    return \Drupal::service('migrate_spreadsheet.iterator')
-      ->setConfiguration($configuration);
+    if (!$this->iteratorIsInitialized) {
+      $configuration = $this->getConfiguration();
+      $configuration['worksheet'] = $this->loadWorksheet();
+      $configuration['keys'] = array_keys($configuration['keys']);
+
+      // The 'file' and 'plugin' items are not part of iterator configuration.
+      unset($configuration['file'], $configuration['plugin']);
+      $this->spreadsheetIterator->setConfiguration($configuration);
+
+      // Flag that the iterator has been initialized.
+      $this->iteratorIsInitialized = TRUE;
+    }
+
+    return $this->spreadsheetIterator;
   }
 
   /**
    * Loads the worksheet.
    *
-   * @return \PhpOffice\PhpSpreadsheet\Worksheet
+   * @return \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
    *   The source worksheet.
    *
    * @throws \Drupal\migrate\MigrateException
@@ -143,8 +200,10 @@ class Spreadsheet extends SourcePluginBase implements ConfigurablePluginInterfac
 
     // Load the workbook.
     try {
+      $file_path = $this->fileSystem->realpath($config['file']);
+
       // Identify the type of the input file.
-      $type = IOFactory::identify($config['file']);
+      $type = IOFactory::identify($file_path);
 
       // Create a new Reader of the file type.
       /** @var \PhpOffice\PhpSpreadsheet\Reader\BaseReader $reader */
@@ -157,7 +216,7 @@ class Spreadsheet extends SourcePluginBase implements ConfigurablePluginInterfac
       $reader->setLoadSheetsOnly($config['worksheet']);
 
       /** @var \PhpOffice\PhpSpreadsheet\Spreadsheet $workbook */
-      $workbook = $reader->load($config['file']);
+      $workbook = $reader->load($file_path);
 
       return $workbook->getSheet(0);
     }

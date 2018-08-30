@@ -302,7 +302,7 @@ class WebformSubmissionForm extends ContentEntityForm {
 
     // Look _webform_dialog which enables Ajax support when this form is
     // opened in dialog.
-    // @see  webform.dialog.js
+    // @see webform.dialog.js
     //
     // Must be called after WebformHandler::overrideSettings which resets all
     // overridden settings.
@@ -337,7 +337,6 @@ class WebformSubmissionForm extends ContentEntityForm {
   protected function copyFormValuesToEntity(EntityInterface $entity, array $form, FormStateInterface $form_state) {
     // NOTE: We are not copying form values to the entity because
     // webform element keys can override webform submission properties.
-
     /* @var $webform_submission \Drupal\webform\WebformSubmissionInterface */
     $webform_submission = $entity;
     $webform = $webform_submission->getWebform();
@@ -533,9 +532,15 @@ class WebformSubmissionForm extends ContentEntityForm {
     // Prepare webform elements.
     $this->prepareElements($elements, $form, $form_state);
 
-    // Add wizard progress tracker to the webform.
-    if ($webform->getPages($this->operation)) {
+    // Add wizard progress tracker and page links to the webform.
+    $pages = $webform->getPages($this->operation);
+    if ($pages) {
       $current_page = $this->getCurrentPage($form, $form_state);
+
+      // Add hidden pages submit actions.
+      $form['pages'] = $this->pagesElement($form, $form_state);
+
+      // Add progress tracker.
       $display_wizard_progress = ($this->getWebformSetting('wizard_progress_bar') || $this->getWebformSetting('wizard_progress_pages') || $this->getWebformSetting('wizard_progress_percentage'));
       if ($current_page && $display_wizard_progress) {
         $form['progress'] = [
@@ -563,7 +568,7 @@ class WebformSubmissionForm extends ContentEntityForm {
     // Pages: Set current wizard or preview page.
     $this->displayCurrentPage($form, $form_state);
 
-    /* Webform  */
+    /* Webform */
 
     // Move all $elements properties to the $form.
     $this->setFormPropertiesFromElements($form, $elements);
@@ -620,7 +625,7 @@ class WebformSubmissionForm extends ContentEntityForm {
       $form['#attributes']['novalidate'] = 'novalidate';
     }
 
-    // Inline form errors: Add  #disable_inline_form_errors property to form.
+    // Inline form errors: Add #disable_inline_form_errors property to form.
     if ($this->getWebformSetting('form_disable_inline_errors')) {
       $form['#disable_inline_form_errors'] = TRUE;
     }
@@ -722,7 +727,7 @@ class WebformSubmissionForm extends ContentEntityForm {
     }
 
     // Don't display webform if it is closed.
-    if ($webform_submission->isNew() && $webform->isClosed()) {
+    if (($webform_submission->isNew() || $webform_submission->isDraft()) && $webform->isClosed()) {
       // If the current user can update any submission just display the closed
       // message and still allow them to create new submissions.
       if ($webform->isTemplate() && $webform->access('duplicate') && !$webform->isArchived()) {
@@ -824,7 +829,7 @@ class WebformSubmissionForm extends ContentEntityForm {
           '#title' => $this->t('Generate %title submissions', ['%title' => $webform->label()]),
           '#url' => Url::fromRoute('devel_generate.webform_submission', [], ['query' => $query]),
         ];
-        drupal_set_message($this->renderer->renderPlain($build), 'warning');
+        $this->messenger()->addWarning($this->renderer->renderPlain($build));
       }
     }
 
@@ -842,7 +847,7 @@ class WebformSubmissionForm extends ContentEntityForm {
         $this->getMessageManager()->display(WebformMessageManagerInterface::SUBMISSION_DRAFT_SAVED_MESSAGE);
         $form_state->set('draft_saved', FALSE);
       }
-      elseif ($this->isGet() && !$webform->getSetting('draft_multiple')) {
+      elseif ($this->isGet() && !$webform->getSetting('draft_multiple') && !$webform->isClosed()) {
         $this->getMessageManager()->display(WebformMessageManagerInterface::SUBMISSION_DRAFT_LOADED_MESSAGE);
       }
     }
@@ -914,6 +919,74 @@ class WebformSubmissionForm extends ContentEntityForm {
       );
     }
     return $form;
+  }
+
+  /**
+   * Returns the wizard page submit buttons for the current entity form.
+   */
+  protected function pagesElement(array $form, FormStateInterface $form_state) {
+    $pages = $this->getPages($form, $form_state);
+    if (!$pages) {
+      return NULL;
+    }
+
+    $current_page_name = $this->getCurrentPage($form, $form_state);
+    if (!$this->getWebformSetting('wizard_progress_link') && !($this->getWebformSetting('wizard_preview_link') && $current_page_name === 'webform_preview')) {
+      return NULL;
+    }
+
+    $page_indexes = array_flip(array_keys($pages));
+    $current_index = $page_indexes[$current_page_name] - 1;
+
+    // Build dedicated actions element for pages links.
+    $element = [
+      '#type' => 'actions',
+      '#weight' => -20,
+      '#attributes' => [
+        'class' => ['webform-wizard-pages-links', 'js-webform-wizard-pages-links'],
+      ],
+    ];
+    if ($this->getWebformSetting('wizard_progress_link')) {
+      $element['#attributes']['data-wizard-progress-link'] = 'true';
+    }
+    if ($this->getWebformSetting('wizard_preview_link')) {
+      $element['#attributes']['data-wizard-preview-link'] = 'true';
+    }
+
+    $index = 1;
+    $total = count($pages);
+    foreach ($pages as $page_name => $page) {
+      // Always include submit button for each page but only allows access
+      // to previous and visible pages.
+      //
+      // Developers who want to allow users to jump to any wizard page can
+      // expose these buttons via a form alter hook. Beware that
+      // skipped pages will not be validated.
+      $access = ($page['#access'] && ($page_indexes[$page_name] <= $current_index)) ? TRUE : FALSE;
+      $t_args = [
+        '@label' => $page['#title'],
+        '@start' => $index++,
+        '@end' => $total,
+      ];
+      $element[$page_name] = [
+        '#type' => 'submit',
+        '#value' => $this->t('Edit'),
+        '#page' => $page_name,
+        '#validate' => ['::noValidate'],
+        '#submit' => ['::gotoPage'],
+        '#name' => 'webform_wizard_page-' . $page_name,
+        '#attributes' => [
+          'data-webform-page' => $page_name,
+          'class' => ['js-webform-novalidate', 'webform-wizard-pages-link', 'js-webform-wizard-pages-link'],
+          'title' => $this->t("Edit '@label' (Page @start of @end)", $t_args),
+        ],
+        '#access' => $access,
+      ];
+    }
+
+    $element['#attached']['library'][] = 'webform/webform.wizard.pages';
+
+    return $element;
   }
 
   /**
@@ -1084,7 +1157,9 @@ class WebformSubmissionForm extends ContentEntityForm {
           }
         }
       }
-      $element['#attached']['library'][] = 'webform/webform.form.wizard';
+      if ($track) {
+        $element['#attached']['library'][] = 'webform/webform.wizard.track';
+      }
     }
 
     // Draft.
@@ -1117,6 +1192,20 @@ class WebformSubmissionForm extends ContentEntityForm {
   }
 
   /**
+   * Webform submission handler for the 'goto' action.
+   *
+   * @param array $form
+   *   An associative array containing the structure of the form.
+   * @param \Drupal\Core\Form\FormStateInterface $form_state
+   *   The current state of the form.
+   */
+  public function gotoPage(array &$form, FormStateInterface $form_state) {
+    $element = $form_state->getTriggeringElement();
+    $form_state->set('current_page', $element['#page']);
+    $this->wizardSubmit($form, $form_state);
+  }
+
+  /**
    * Webform submission handler for the 'next' action.
    *
    * @param array $form
@@ -1129,8 +1218,15 @@ class WebformSubmissionForm extends ContentEntityForm {
       return;
     }
     $pages = $this->getPages($form, $form_state);
+
+    // Get next page.
     $current_page = $this->getCurrentPage($form, $form_state);
-    $form_state->set('current_page', $this->getNextPage($pages, $current_page));
+    $next_page = $this->getNextPage($pages, $current_page);
+
+    // Set next page.
+    $form_state->set('current_page', $next_page);
+
+    // Submit next page.
     $this->wizardSubmit($form, $form_state);
   }
 
@@ -1144,8 +1240,15 @@ class WebformSubmissionForm extends ContentEntityForm {
    */
   public function previous(array &$form, FormStateInterface $form_state) {
     $pages = $this->getPages($form, $form_state);
+
+    // Get previous page.
     $current_page = $this->getCurrentPage($form, $form_state);
-    $form_state->set('current_page', $this->getPreviousPage($pages, $current_page));
+    $previous_page = $this->getPreviousPage($pages, $current_page);
+
+    // Set previous page.
+    $form_state->set('current_page', $previous_page);
+
+    // Submit previous page.
     $this->wizardSubmit($form, $form_state);
   }
 
@@ -1176,6 +1279,25 @@ class WebformSubmissionForm extends ContentEntityForm {
     else {
       $this->submitForm($form, $form_state);
       $this->rebuild($form, $form_state);
+    }
+
+    // Announce current page with progress.
+    // @see template_preprocess_webform_progress()
+    if ($this->isAjax()) {
+      $pages = $this->getPages($form, $form_state);
+
+      $page_keys = array_keys($pages);
+      $page_indexes = array_flip($page_keys);
+      $current_index = $page_indexes[$current_page];
+      $total_pages = count($page_keys);
+
+      $t_args = [
+        '@title' => $this->getWebform()->label(),
+        '@page' => $pages[$current_page]['#title'],
+        '@start' => ($current_index + 1),
+        '@end' => $total_pages,
+      ];
+      $this->announce($this->t('"@title: @page" loaded. (Page @start of @end)', $t_args));
     }
   }
 
@@ -1241,7 +1363,7 @@ class WebformSubmissionForm extends ContentEntityForm {
    * More complex (web)form elements user #validate callbacks
    * to process and alter an element's submitted value. Element's that rely on
    * #validate to alter the submitted value include 'Password Confirm',
-   * 'Email Confirm', 'Composite Elements', 'Other Elements', and more...
+   * 'Email Confirm', 'Composite Elements', 'Other Elements', and more…
    *
    * If the #limit_validation_errors property is used within a multi-step wizard
    * form, previously submitted values will be corrupted.
@@ -1484,10 +1606,10 @@ class WebformSubmissionForm extends ContentEntityForm {
   /****************************************************************************/
 
   /**
-   * Determine if this is a multistep wizard form.
+   * Determine if this is a multi-step wizard form.
    *
    * @return bool
-   *   TRUE if this multistep wizard form.
+   *   TRUE if this multi-step wizard form.
    */
   protected function hasPages() {
     return $this->getWebform()->getPages($this->operation);
@@ -1762,7 +1884,7 @@ class WebformSubmissionForm extends ContentEntityForm {
           ];
           // Display warning to use who can update the webform.
           if ($webform->access('update')) {
-            drupal_set_message($this->t('Confirmation URL %url is not valid.', $t_args), 'warning');
+            $this->messenger()->addWarning($this->t('Confirmation URL %url is not valid.', $t_args));
           }
           // Log warning.
           $this->getLogger('webform')->warning('@webform: Confirmation URL %url is not valid.', $t_args);

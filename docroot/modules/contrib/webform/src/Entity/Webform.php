@@ -44,6 +44,7 @@ use Drupal\webform\WebformSubmissionStorageInterface;
  *       "duplicate" = "Drupal\webform\WebformEntityAddForm",
  *       "delete" = "Drupal\webform\WebformEntityDeleteForm",
  *       "edit" = "Drupal\webform\WebformEntityElementsForm",
+ *       "export" = "Drupal\webform\WebformEntityExportForm",
  *       "settings" = "Drupal\webform\EntitySettings\WebformEntitySettingsGeneralForm",
  *       "settings_form" = "Drupal\webform\EntitySettings\WebformEntitySettingsFormForm",
  *       "settings_submissions" = "Drupal\webform\EntitySettings\WebformEntitySettingsSubmissionsForm",
@@ -86,6 +87,7 @@ use Drupal\webform\WebformSubmissionStorageInterface;
  *     "status",
  *     "open",
  *     "close",
+ *     "weight",
  *     "uid",
  *     "template",
  *     "archive",
@@ -155,6 +157,13 @@ class Webform extends ConfigEntityBundleBase implements WebformInterface {
    * @var bool
    */
   protected $close;
+
+  /**
+   * The webform weight.
+   *
+   * @var int
+   */
+  protected $weight = 0;
 
   /**
    * The webform template indicator.
@@ -385,6 +394,13 @@ class Webform extends ConfigEntityBundleBase implements WebformInterface {
    */
   public function getLangcode() {
     return $this->langcode;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getWeight() {
+    return $this->weight;
   }
 
   /**
@@ -880,6 +896,7 @@ class Webform extends ConfigEntityBundleBase implements WebformInterface {
       'submission_label' => '',
       'submission_log' => FALSE,
       'submission_user_columns' => [],
+      'submission_user_duplicate' => FALSE,
       'submission_login' => FALSE,
       'submission_login_message' => '',
       'submission_exception_message' => '',
@@ -892,7 +909,9 @@ class Webform extends ConfigEntityBundleBase implements WebformInterface {
       'wizard_progress_bar' => TRUE,
       'wizard_progress_pages' => FALSE,
       'wizard_progress_percentage' => FALSE,
+      'wizard_progress_link' => FALSE,
       'wizard_start_label' => '',
+      'wizard_preview_link' => FALSE,
       'wizard_confirmation' => TRUE,
       'wizard_confirmation_label' => '',
       'wizard_track' => '',
@@ -1291,9 +1310,14 @@ class Webform extends ConfigEntityBundleBase implements WebformInterface {
 
       // If current webform is translated, load the base (default) webform and apply
       // the translation to the elements.
-      if ($config_translation && $this->langcode != $language_manager->getCurrentLanguage()->getId()) {
+      if ($config_translation
+        && ($this->langcode != $language_manager->getCurrentLanguage()->getId())) {
+        // Always get the elements in the original language.
         $elements = $translation_manager->getElements($this);
-        $this->elementsTranslations = $translation_manager->getElements($this, $language_manager->getCurrentLanguage()->getId());
+        // For none admin routes get the element (label) translations.
+        if (!$translation_manager->isAdminRoute()) {
+          $this->elementsTranslations = $translation_manager->getElements($this, $language_manager->getCurrentLanguage()->getId());
+        }
       }
       else {
         $elements = Yaml::decode($this->elements);
@@ -1983,7 +2007,7 @@ class Webform extends ConfigEntityBundleBase implements WebformInterface {
 
     // Update confirm path.
     $confirm_source = '/webform/' . $this->id() . '/confirmation';
-    $confirm_alias = $this->settings['page_confirm_path'] ?:  $submit_base_path . '/confirmation';
+    $confirm_alias = $this->settings['page_confirm_path'] ?: $submit_base_path . '/confirmation';
     $confirm_alias = '/' . trim($confirm_alias, '/');
     $this->updatePath($confirm_source, $confirm_alias, $this->langcode);
     $this->updatePath($confirm_source, $confirm_alias, LanguageInterface::LANGCODE_NOT_SPECIFIED);

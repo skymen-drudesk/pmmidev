@@ -23,6 +23,7 @@ use Drupal\webform\Entity\WebformSubmission;
 use Drupal\webform\Element\WebformMessage;
 use Drupal\webform\Plugin\WebformElement\ManagedFile;
 use Drupal\webform\Utility\WebformArrayHelper;
+use Drupal\webform\Utility\WebformElementHelper;
 use Drupal\webform\Utility\WebformDialogHelper;
 use Drupal\webform\Utility\WebformOptionsHelper;
 use Drupal\webform\WebformInterface;
@@ -220,18 +221,6 @@ function webform_form_alter(&$form, FormStateInterface $form_state, $form_id) {
     // Make sure webform libraries are always attached to submission form.
     _webform_page_attachments($form);
 
-    // Execute hook_form_BASE_FORM_ID_alter for the webform & source entity
-    // without the operation. (i.e. 'add', 'edit', 'notes', etc...)
-    // @see \Drupal\webform\WebformSubmissionForm::getFormId
-    /** @var \Drupal\webform\WebformSubmissionInterface $webform_submission */
-    $webform_submission = $form_object->getEntity();
-    $webform = $webform_submission->getWebform();
-
-    $hook = 'form_webform_submission_' . $webform->id() . '_form';
-    $form_id = $form_object->getFormId();
-    \Drupal::service('module_handler')->alter($hook, $form, $form_state, $form_id);
-    \Drupal::service('theme.manager')->alter($hook, $form, $form_state, $form_id);
-
     // After build.
     $form['#after_build'][] = '_webform_form_webform_submission_form_after_build';
   }
@@ -316,7 +305,7 @@ function webform_form_update_manager_update_form_alter(&$form, FormStateInterfac
     '#weight' => -10,
   ];
 
-  // Display warning to backup site when webform  is checked.
+  // Display warning to backup site when webform is checked.
   $form['projects']['#options']['webform']['title']['data'] = [
     'title' => $form['projects']['#options']['webform']['title']['data'],
     'container' => [
@@ -472,7 +461,7 @@ function webform_mail_alter(&$message) {
  * Implements hook_page_attachments().
  */
 function webform_page_attachments(array &$attachments) {
-  $route_name = Drupal::routeMatch()->getRouteName();
+  $route_name = \Drupal::routeMatch()->getRouteName();
   $url = Url::fromRoute('<current>')->toString();
 
   // Attach global libraries only to webform specific pages.
@@ -735,6 +724,10 @@ function webform_element_info_alter(array &$info) {
  *   The processed element.
  */
 function webform_process_options(&$element, FormStateInterface $form_state, &$complete_form) {
+  if (!WebformElementHelper::isWebformElement($element)) {
+    return $element;
+  }
+
   if (!empty($element['#options_description_display'])) {
     $description_property_name = ($element['#options_description_display'] == 'help') ? '#help' : '#description';
     foreach (Element::children($element) as $key) {
@@ -746,9 +739,22 @@ function webform_process_options(&$element, FormStateInterface $form_state, &$co
 
       list($title, $description) = explode(WebformOptionsHelper::DESCRIPTION_DELIMITER, $title);
       $element[$key]['#title'] = $title;
+      $element[$key]['#webform_element'] = TRUE;
       $element[$key][$description_property_name] = $description;
     }
   }
+
+  // Issue #2839344: Some aria-describedby refers to not existing element ID.
+  // @see https://www.drupal.org/project/drupal/issues/2839344
+  if (!empty($element['#attributes']['aria-describedby'])) {
+    foreach (Element::children($element) as $key) {
+      if (empty($element[$key]['#attributes']['aria-describedby'])
+        && $element['#attributes']['aria-describedby'] === $element[$key]['#attributes']['aria-describedby']) {
+        unset($element[$key]['#attributes']['aria-describedby']);
+      }
+    }
+  }
+
   return $element;
 }
 

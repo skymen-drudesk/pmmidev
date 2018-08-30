@@ -5,7 +5,7 @@ namespace Drupal\migrate_spreadsheet;
 /**
  * Provides an interface for spreadsheet iterators.
  */
-interface SpreadsheetIteratorInterface extends \Iterator{
+interface SpreadsheetIteratorInterface extends \Iterator {
 
   /**
    * Sets the iterator configuration.
@@ -14,7 +14,8 @@ interface SpreadsheetIteratorInterface extends \Iterator{
    *
    * @param array $configuration
    *   An associative array with the next keys:
-   *   - worksheet (\PhpOffice\PhpSpreadsheet\Worksheet): The worksheet object.
+   *   - worksheet (\PhpOffice\PhpSpreadsheet\Worksheet\Worksheet): The
+   *     worksheet object.
    *   - columns (string[]): An indexed array of columns.
    *   - keys (string[]): A list of columns that are giving the primary key.
    *   - header_row (int): The index of the first row from where the table
@@ -37,13 +38,15 @@ interface SpreadsheetIteratorInterface extends \Iterator{
    * Gets the iterator configuration.
    *
    * @return array
+   *   The iterator configuration as an associative array.
    */
   public function getConfiguration();
 
   /**
    * Gets the worksheet.
    *
-   * @return \PhpOffice\PhpSpreadsheet\Worksheet
+   * @return \PhpOffice\PhpSpreadsheet\Worksheet\Worksheet
+   *   The PHP Office worksheet object.
    *
    * @throws \InvalidArgumentException
    *   If an empty or invalid 'worksheet' has been passed.
@@ -54,6 +57,7 @@ interface SpreadsheetIteratorInterface extends \Iterator{
    * Retrieves the top-left origin of data area.
    *
    * @return string
+   *   The top-left cell of data area (such as A2 or B5).
    */
   public function getOrigin();
 
@@ -85,6 +89,7 @@ interface SpreadsheetIteratorInterface extends \Iterator{
    * Gets the header row index.
    *
    * @return int
+   *   The header row index.
    */
   public function getHeaderRow();
 
@@ -92,6 +97,7 @@ interface SpreadsheetIteratorInterface extends \Iterator{
    * Gets the name of the row index column.
    *
    * @return string
+   *   A name to be given to the column returning the numeric index of the row.
    */
   public function getRowIndexColumn();
 
@@ -112,6 +118,7 @@ interface SpreadsheetIteratorInterface extends \Iterator{
    * Gets the total number of rows in the worksheet.
    *
    * @return int
+   *   The total number of rows in the worksheet.
    */
   public function getRowsCount();
 
@@ -119,11 +126,12 @@ interface SpreadsheetIteratorInterface extends \Iterator{
    * Gets the total number of columns in the worksheet.
    *
    * @return int
+   *   The total number of columns in the worksheet.
    */
   public function getColumnsCount();
 
   /**
-   * Clears the internal cache.
+   * Clears the iterator internal, static cache.
    */
   public function clearCache();
 

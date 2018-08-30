@@ -204,6 +204,22 @@ entity.webform.user.submission.delete:
   requirements:
     _entity_access: 'webform_submission.delete'
 
+entity.webform.user.submission.duplicate:
+  path: '/webform/{webform}/submissions/{webform_submission}/duplicate'
+  defaults:
+    _entity_form: 'webform_submission.duplicate'
+    _title_callback: '\Drupal\webform\Controller\WebformSubmissionViewController::title'
+    duplicate: TRUE
+    setting: 'submission_user_duplicate'
+    value: TRUE
+  options:
+    parameters:
+      webform:
+        type: 'entity:webform'
+  requirements:
+    _entity_access: 'webform_submission.update'
+    _custom_access: '\Drupal\webform\Access\WebformEntityAccess::checkWebformSettingValue'
+
 entity.webform.test_form:
   path: '/webform/{webform}/test'
   defaults:
@@ -215,6 +231,14 @@ entity.webform.test_form:
         type: 'entity:webform'
   requirements:
     _entity_access: 'webform.test'
+
+entity.webform.export_form:
+  path: '/admin/structure/webform/manage/{webform}/export'
+  defaults:
+    _entity_form: 'webform.export'
+    _title_callback: '\Drupal\webform\Controller\WebformEntityController::title'
+  requirements:
+    _permission: 'export configuration'
 
 entity.webform.add_form:
   path: '/admin/structure/webform/add'
@@ -319,6 +343,18 @@ entity.webform.results_submissions:
   defaults:
     _entity_list: 'webform_submission'
     _title_callback: '\Drupal\webform\Controller\WebformEntityController::title'
+  options:
+    parameters:
+      webform:
+        type: 'entity:webform'
+  requirements:
+    _entity_access: 'webform.submission_view_any'
+    _custom_access: '\Drupal\webform\Access\WebformEntityAccess:checkResultsAccess'
+
+entity.webform.results.source_entity.autocomplete:
+  path: '/admin/structure/webform/manage/{webform}/results/source-entity/autocomplete'
+  defaults:
+    _controller: '\Drupal\webform\Controller\WebformSubmissionsController::sourceEntityAutocomplete'
   options:
     parameters:
       webform:
@@ -647,6 +683,24 @@ entity.webform.handler.delete_form:
   requirements:
     _entity_access: 'webform.update'
 
+entity.webform.handler.enable:
+  path: '/admin/structure/webform/manage/{webform}/handlers/{webform_handler}/enable'
+  defaults:
+    _controller: '\Drupal\webform\WebformEntityHandlersForm::ajaxOperation'
+    op: enable
+  requirements:
+    _entity_access: 'webform.update'
+    _csrf_token: 'TRUE'
+
+entity.webform.handler.disable:
+  path: '/admin/structure/webform/manage/{webform}/handlers/{webform_handler}/disable'
+  defaults:
+    _controller: '\Drupal\webform\WebformEntityHandlersForm::ajaxOperation'
+    op: disable
+  requirements:
+    _entity_access: 'webform.update'
+    _csrf_token: 'TRUE'
+
 # Plugins.
 
 webform.reports_plugins.elements:
@@ -673,6 +727,20 @@ webform.reports_plugins.exporters:
   requirements:
     _permission: 'administer webform'
 
+# User submissions.
+
+webform.user.submissions:
+  path: '/user/{user}/submissions'
+  defaults:
+    _entity_list: 'webform_submission'
+    _title: 'Submissions'
+  requirements:
+    _custom_access: '\Drupal\webform\Access\WebformAccountAccess::checkUserSubmissionsAccess'
+  options:
+    parameters:
+      user:
+        type: entity:user
+
 # Autocomplete.
 
 webform.element.autocomplete:
@@ -696,3 +764,4 @@ webform.element.message.close:
   requirements:
     _user_is_logged_in: 'TRUE'
     _csrf_token: 'TRUE'
+

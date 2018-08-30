@@ -16,6 +16,7 @@ use Drupal\webform\Plugin\WebformElementManagerInterface;
 use Drupal\webform\Utility\WebformYaml;
 use Drupal\webform\WebformEntityElementsValidatorInterface;
 use Drupal\webform\WebformInterface;
+use Drupal\webform\WebformTokenManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -65,6 +66,13 @@ abstract class WebformUiElementFormBase extends FormBase implements WebformUiEle
    * @var \Drupal\webform\WebformEntityElementsValidatorInterface
    */
   protected $elementsValidator;
+
+  /**
+   * The token manager.
+   *
+   * @var \Drupal\webform\WebformTokenManagerInterface
+   */
+  protected $tokenManager;
 
   /**
    * The webform.
@@ -126,12 +134,15 @@ abstract class WebformUiElementFormBase extends FormBase implements WebformUiEle
    *   The webform element manager.
    * @param \Drupal\webform\WebformEntityElementsValidatorInterface $elements_validator
    *   Webform element validator.
+   * @param \Drupal\webform\WebformTokenManagerInterface $token_manager
+   *   The webform token manager.
    */
-  public function __construct(RendererInterface $renderer, EntityFieldManagerInterface $entity_field_manager, WebformElementManagerInterface $element_manager, WebformEntityElementsValidatorInterface $elements_validator) {
+  public function __construct(RendererInterface $renderer, EntityFieldManagerInterface $entity_field_manager, WebformElementManagerInterface $element_manager, WebformEntityElementsValidatorInterface $elements_validator, WebformTokenManagerInterface $token_manager) {
     $this->renderer = $renderer;
     $this->entityFieldManager = $entity_field_manager;
     $this->elementManager = $element_manager;
     $this->elementsValidator = $elements_validator;
+    $this->tokenManager = $token_manager;
   }
 
   /**
@@ -142,7 +153,8 @@ abstract class WebformUiElementFormBase extends FormBase implements WebformUiEle
       $container->get('renderer'),
       $container->get('entity_field.manager'),
       $container->get('plugin.manager.webform.element'),
-      $container->get('webform.elements_validator')
+      $container->get('webform.elements_validator'),
+      $container->get('webform.token_manager')
     );
   }
 
@@ -271,6 +283,14 @@ abstract class WebformUiElementFormBase extends FormBase implements WebformUiEle
       '#_validate_form' => TRUE,
     ];
 
+    // Add token links below the form and on every tab.
+    $form['token_tree_link'] = $this->tokenManager->buildTreeElement();
+    if ($form['token_tree_link']) {
+      $form['token_tree_link'] += [
+        '#weight' => 101,
+      ];
+    }
+
     $form = $this->buildDefaultValueForm($form, $form_state);
 
     return $this->buildDialogForm($form, $form_state);
@@ -320,7 +340,7 @@ abstract class WebformUiElementFormBase extends FormBase implements WebformUiEle
       $t_args = [':href' => Url::fromRoute('entity.webform.source_form', ['webform' => $webform->id()])->toString()];
       $form_state->setErrorByName('elements', $this->t('There has been error validating the elements. You may need to edit the <a href=":href">YAML source</a> to resolve the issue.', $t_args));
       foreach ($messages as $message) {
-        drupal_set_message($message, 'error');
+        $this->messenger()->addError($message);
       }
     }
   }
@@ -354,7 +374,7 @@ abstract class WebformUiElementFormBase extends FormBase implements WebformUiEle
       '%title' => (!empty($properties['title'])) ? $properties['title'] : $key,
       '@action' => $this->action,
     ];
-    drupal_set_message($this->t('%title has been @action.', $t_args));
+    $this->messenger()->addStatus($this->t('%title has been @action.', $t_args));
 
     // Append ?update= to (redirect) destination.
     if ($this->requestStack->getCurrentRequest()->query->get('destination')) {
@@ -459,7 +479,7 @@ abstract class WebformUiElementFormBase extends FormBase implements WebformUiEle
   /**
    * Get the default key for the current element.
    *
-   * Default key will be auto incremented when there are  duplicate keys.
+   * Default key will be auto incremented when there are duplicate keys.
    *
    * @return null|string
    *   An element's default key which will be incremented to prevent duplicate
@@ -536,9 +556,6 @@ abstract class WebformUiElementFormBase extends FormBase implements WebformUiEle
       // Using #access: FALSE is causing all properties to be lost.
       $form['properties']['#type'] = 'container';
       $form['properties']['#attributes']['style'] = 'display: none';
-
-      // Add tokens.
-      $form['token_tree_link'] = $form['properties']['token_tree_link'];
 
       // Disable client-side validation.
       $form['#attributes']['novalidate'] = TRUE;

@@ -21,6 +21,7 @@ elements: |
     radios_required:
       '#type': radios
       '#title': radios_required
+      '#description': 'This is a description'
       '#required': true
       '#options': yes_no
   radios_required_conditional_example:
@@ -134,6 +135,7 @@ settings:
   submission_label: ''
   submission_log: false
   submission_user_columns: {  }
+  submission_user_duplicate: false
   submission_login: false
   submission_login_message: ''
   submission_exception_message: ''
@@ -146,7 +148,9 @@ settings:
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
+  wizard_progress_link: false
   wizard_start_label: ''
+  wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
   wizard_track: ''
@@ -240,3 +244,4 @@ handlers:
     conditions: {  }
     weight: 1
     settings: {  }
+weight: 0

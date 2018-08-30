@@ -1,14 +1,10 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\search_api_page\Entity\SearchApiPage.
- */
-
 namespace Drupal\search_api_page\Entity;
 
 use Drupal\Core\Config\Entity\ConfigEntityBase;
 use Drupal\search_api\Entity\Index;
+use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\search_api_page\SearchApiPageInterface;
 
 /**
@@ -96,7 +92,7 @@ class SearchApiPage extends ConfigEntityBase implements SearchApiPageInterface {
    *
    * @var array
    */
-  protected $searched_fields = array();
+  protected $searched_fields = [];
 
   /**
    * The style of the results.
@@ -110,7 +106,7 @@ class SearchApiPage extends ConfigEntityBase implements SearchApiPageInterface {
    *
    * @var array
    */
-  protected $view_mode_configuration = array();
+  protected $view_mode_configuration = [];
 
   /**
    * Whether to show the search form above search results.
@@ -167,7 +163,7 @@ class SearchApiPage extends ConfigEntityBase implements SearchApiPageInterface {
    * {@inheritdoc}
    */
   public function getFulltextFields() {
-    $fields = array();
+    $fields = [];
     if (!empty($this->index)) {
       /* @var  $index \Drupal\search_api\IndexInterface */
       $index = Index::load($this->index);
@@ -221,6 +217,14 @@ class SearchApiPage extends ConfigEntityBase implements SearchApiPageInterface {
    */
   public function showAllResultsWhenNoSearchIsPerformed() {
     return $this->show_all_when_no_keys;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public static function postDelete(EntityStorageInterface $storage, array $entities) {
+    parent::postDelete($storage, $entities);
+    \Drupal::service('router.builder')->rebuild();
   }
 
 }

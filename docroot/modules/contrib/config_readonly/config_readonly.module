@@ -35,3 +35,10 @@ function config_readonly_form_alter(array &$form, FormStateInterface &$form_stat
 function _config_readonly_validate_failure(array $form, FormStateInterface &$form_state) {
   $form_state->setErrorByName(NULL, t('This configuration form cannot be saved because the configuration active store is read-only.'));
 }
+
+/**
+ * Implements hook_config_readonly_whitelist_patterns().
+ */
+function config_readonly_config_readonly_whitelist_patterns() {
+  return Settings::get('config_readonly_whitelist_patterns');
+}
