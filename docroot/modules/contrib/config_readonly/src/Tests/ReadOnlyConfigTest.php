@@ -47,7 +47,7 @@ class ReadOnlyConfigTest extends WebTestBase {
     $this->drupalGet('admin/modules/uninstall');
     $this->assertNoText('This form will not be saved because the configuration active store is read-only.', 'Warning not shown on modules uninstall page.');
     $edit = [
-      'modules[Core][action][enable]' => 'action',
+      'modules[action][enable]' => 'action',
     ];
     $this->drupalPostForm('admin/modules', $edit, t('Install'));
     $this->assertNoText('This form will not be saved because the configuration active store is read-only.', 'Able to install a module.');

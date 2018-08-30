@@ -5,6 +5,9 @@ webform.webform.*:
     status:
       type: string
       label: 'Status'
+    weight:
+      type: integer
+      label: 'Weight'
     open:
       type: string
       label: 'Open date/time'
@@ -152,6 +155,9 @@ webform.webform.*:
           sequence:
             type: string
             label: 'Column name'
+        submission_user_duplicate:
+          type: boolean
+          label: 'Submission user duplicate'
         submission_login:
           type: boolean
           label: 'Redirect to login when access denied to submission'
@@ -185,12 +191,18 @@ webform.webform.*:
         wizard_progress_percentage:
           type: boolean
           label: 'Show wizard progress pages'
+        wizard_progress_link:
+          type: boolean
+          label: 'Link to previous pages in progress bar'
         wizard_start_label:
           type: label
           label: 'Wizard start label'
         wizard_start_attributes:
           type: ignore
           label: 'Wizard start attributes'
+        wizard_preview_link:
+          type: boolean
+          label: 'Link to previous pages in preview'
         wizard_confirmation:
           type: boolean
           label: 'Include confirmation page in progress'
@@ -323,7 +335,7 @@ webform.webform.*:
       mapping:
         create:
           type: mapping
-          label: 'Create webform submissions'
+          label: 'Create submissions'
           mapping:
             roles:
               type: sequence
@@ -345,7 +357,7 @@ webform.webform.*:
                 label: 'Permission'
         view_any:
           type: mapping
-          label: 'View any webform submissions'
+          label: 'View any submissions'
           mapping:
             roles:
               type: sequence
@@ -367,7 +379,7 @@ webform.webform.*:
                 label: 'Permission'
         update_any:
           type: mapping
-          label: 'Update any webform submissions'
+          label: 'Update any submissions'
           mapping:
             roles:
               type: sequence
@@ -389,7 +401,7 @@ webform.webform.*:
                 label: 'Permission'
         delete_any:
           type: mapping
-          label: 'Delete any webform submissions'
+          label: 'Delete any submissions'
           mapping:
             roles:
               type: sequence
@@ -411,7 +423,7 @@ webform.webform.*:
                 label: 'Permission'
         purge_any:
           type: mapping
-          label: 'Purge any webform submissions'
+          label: 'Purge any submissions'
           mapping:
             roles:
               type: sequence
@@ -433,7 +445,7 @@ webform.webform.*:
                 label: 'Permission'
         view_own:
           type: mapping
-          label: 'View own webform submissions'
+          label: 'View own submissions'
           mapping:
             roles:
               type: sequence
@@ -455,7 +467,7 @@ webform.webform.*:
                 label: 'Permission'
         update_own:
           type: mapping
-          label: 'Update own webform submissions'
+          label: 'Update own submissions'
           mapping:
             roles:
               type: sequence
@@ -477,7 +489,7 @@ webform.webform.*:
                 label: 'Permission'
         delete_own:
           type: mapping
-          label: 'Delete own webform submissions'
+          label: 'Delete own submissions'
           mapping:
             roles:
               type: sequence

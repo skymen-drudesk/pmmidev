@@ -21,12 +21,12 @@
 function hook_search_api_page_alter(&$build, $query_result) {
   $search_title = \Drupal::translation()->translate(
     'Search results (@results)',
-    array(
+    [
       '@results' => $query_result->getResultCount(),
-    )
+    ]
   );
 
-  $build['#search_title'] = array(
+  $build['#search_title'] = [
     '#markup' => $search_title,
-  );
+  ];
 }

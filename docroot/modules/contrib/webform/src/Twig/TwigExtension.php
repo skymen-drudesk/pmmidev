@@ -175,7 +175,7 @@ class TwigExtension extends \Twig_Extension {
     }
     catch (\Exception $exception) {
       if ($webform_submission->getWebform()->access('update')) {
-        drupal_set_message(t('Failed to render computed Twig value due to error "%error"', ['%error' => $exception->getMessage()]), 'error');
+        \Drupal::messenger()->addError(t('Failed to render computed Twig value due to error "%error"', ['%error' => $exception->getMessage()]));
       }
       return '';
     }
@@ -192,7 +192,7 @@ class TwigExtension extends \Twig_Extension {
    *   (optional) Template and token options.
    *
    * @return array
-   *  A renderable containing an inline twig  template.
+   *   A renderable containing an inline twig template.
    */
   public static function buildTwigTemplate(WebformSubmissionInterface $webform_submission, $template, array $options = []) {
     $options += [
@@ -223,10 +223,10 @@ class TwigExtension extends \Twig_Extension {
   }
 
   /**
-   * Determine if the  current user can edit Twig templates.
+   * Determine if the current user can edit Twig templates.
    *
    * @return bool
-   *   TRUE if the  current user can edit Twig templates.
+   *   TRUE if the current user can edit Twig templates.
    */
   public static function hasEditTwigAccess() {
     return (\Drupal::currentUser()->hasPermission('edit webform twig') || \Drupal::currentUser()->hasPermission('administer webform'));

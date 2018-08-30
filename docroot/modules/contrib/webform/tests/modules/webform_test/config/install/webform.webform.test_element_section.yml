@@ -17,27 +17,22 @@ elements: |
   webform_section:
     '#type': webform_section
     '#title': webform_section
-    '#help': '{This is help text}'
-    '#description': '{This is a description}'
-    webform_section_textfield:
-      '#type': textfield
-      '#title': webform_section_textfield
-  webform_section_required:
-    '#type': webform_section
-    '#title': webform_section_required
+    '#description': 'This is a description.'
+    '#help': 'This is help text.'
+    '#more': 'This is more text'
     '#required': true
-    webform_section_required_textfield:
-      '#type': textfield
-      '#title': webform_section_required_textfield
+    webform_section_markup:
+      '#markup': '<p>This is some markup</p>'
+  webform_section_title_invisible:
+    '#type': webform_section
+    '#title': webform_section_title_invisible
+    '#title_display': invisible
   webform_section_title_custom:
     '#type': webform_section
     '#title': webform_section_title_custom
     '#title_tag': h5
     '#title_attributes':
       'style': 'color: red'
-    webform_section_h5_textfield:
-      '#type': textfield
-      '#title': webform_section_h5_textfield
 css: ''
 javascript: ''
 settings:
@@ -73,6 +68,7 @@ settings:
   submission_label: ''
   submission_log: false
   submission_user_columns: {  }
+  submission_user_duplicate: false
   submission_login: false
   submission_login_message: ''
   submission_exception_message: ''
@@ -85,7 +81,9 @@ settings:
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
+  wizard_progress_link: false
   wizard_start_label: ''
+  wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
   wizard_track: ''
@@ -171,3 +169,4 @@ access:
     users: {  }
     permissions: {  }
 handlers: {  }
+weight: 0

@@ -15,7 +15,7 @@ index (or use the default one) and configure them according to your needs.
 Configuration
 -------------
 
-To add and configure a Search API page, go to admin/config/search/search-api-pages
-and add a new page.
+To add and configure a Search API page, go to
+admin/config/search/search-api-pages and add a new page.
 
 [1] https://drupal.org/project/search_api

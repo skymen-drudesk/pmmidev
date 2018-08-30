@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\search_api_page\SearchApiPageInterface.
- */
-
 namespace Drupal\search_api_page;
 
 use Drupal\Core\Config\Entity\ConfigEntityInterface;

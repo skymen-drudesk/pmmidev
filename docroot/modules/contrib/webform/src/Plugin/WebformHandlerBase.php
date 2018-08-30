@@ -6,6 +6,7 @@ use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Logger\LoggerChannelFactoryInterface;
+use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Plugin\PluginBase;
 use Drupal\Core\Render\Element;
 use Drupal\webform\WebformInterface;
@@ -22,6 +23,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
  * @see plugin_api
  */
 abstract class WebformHandlerBase extends PluginBase implements WebformHandlerInterface {
+
+  use MessengerTrait;
 
   /**
    * The webform.
@@ -101,7 +104,7 @@ abstract class WebformHandlerBase extends PluginBase implements WebformHandlerIn
    * webform. Make sure not include any services as a dependency injection
    * that directly connect to the database. This will prevent
    * "LogicException: The database connection is not serializable." exceptions
-   * from being thrown when a form is serialized via an Ajax callaback and/or
+   * from being thrown when a form is serialized via an Ajax callback and/or
    * form build.
    *
    * @param array $configuration
@@ -202,6 +205,13 @@ abstract class WebformHandlerBase extends PluginBase implements WebformHandlerIn
   /**
    * {@inheritdoc}
    */
+  public function supportsTokens() {
+    return $this->pluginDefinition['tokens'];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getHandlerId() {
     return $this->handler_id;
   }
@@ -272,6 +282,20 @@ abstract class WebformHandlerBase extends PluginBase implements WebformHandlerIn
    */
   public function getWeight() {
     return $this->weight;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function enable() {
+    return $this->setStatus(TRUE);
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function disable() {
+    return $this->setStatus(FALSE);
   }
 
   /**

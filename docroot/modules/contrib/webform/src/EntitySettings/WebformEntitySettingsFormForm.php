@@ -90,6 +90,7 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
       '#description' => [
         '#type' => 'webform_help',
         '#help' => $this->t('If the open date/time is left blank, this form will immediately be opened.'),
+        '#help_title' => $this->t('Open'),
       ],
     ];
     $form['form_settings']['scheduled']['close'] = [
@@ -102,6 +103,7 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
       '#description' => [
         '#type' => 'webform_help',
         '#help' => $this->t('If the close date/time is left blank, this webform will never be closed.'),
+        '#help_title' => $this->t('Close'),
       ],
       '#default_value' => $webform->get('close') ? DrupalDateTime::createFromTimestamp(strtotime($webform->get('close'))) : NULL,
     ];
@@ -128,7 +130,7 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
       '#description' => $this->t('A message to be displayed if the webform breaks.'),
       '#default_value' => $settings['form_exception_message'],
     ];
-    $form['form_settings']['token_tree_link'] = $this->tokenManager->buildTreeLink();
+    $form['form_settings']['token_tree_link'] = $this->tokenManager->buildTreeElement();
 
     // Form attributes.
     $form['form_attributes'] = [
@@ -167,7 +169,7 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
         ],
       ],
     ];
-    $form['form_access_denied']['token_tree_link'] = $this->tokenManager->buildTreeLink();
+    $form['form_access_denied']['token_tree_link'] = $this->tokenManager->buildTreeElement();
     if ($form['form_access_denied']['token_tree_link']) {
       $form['form_access_denied']['token_tree_link']['#states'] = [
         'visible' => [
@@ -220,7 +222,6 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
       ];
     }
 
-
     // Wizard settings.
     $form['wizard_settings'] = [
       '#type' => 'details',
@@ -235,36 +236,66 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
     $form['wizard_settings']['wizard_progress_bar'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Show wizard progress bar'),
+      '#description' => $this->t('If checked, a progress bar will displayed about the form.'),
       '#return_value' => TRUE,
       '#default_value' => $settings['wizard_progress_bar'],
+    ];
+    $form['wizard_settings']['wizard_progress_link'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Link to previous pages in progress bar'),
+      '#description' => $this->t('If checked, previous pages will be link in the progress bar.'),
+      '#return_value' => TRUE,
+      '#default_value' => $settings['wizard_progress_link'],
+      '#states' => [
+        'visible' => [
+          ':input[name="wizard_progress_bar"]' => ['checked' => TRUE],
+        ],
+      ],
     ];
     $form['wizard_settings']['wizard_progress_pages'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Show wizard progress pages'),
+      '#description' => $this->t('If checked, the current page and total remaining pages will be displayed. (i.e. Page 1 of 10)'),
       '#return_value' => TRUE,
       '#default_value' => $settings['wizard_progress_pages'],
     ];
     $form['wizard_settings']['wizard_progress_percentage'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Show wizard progress percentage'),
+      '#description' => $this->t('If checked, the percentage of completed pages will be displayed. (i.e. 10%)'),
       '#return_value' => TRUE,
       '#default_value' => $settings['wizard_progress_percentage'],
+    ];
+    $form['wizard_settings']['wizard_preview_link'] = [
+      '#type' => 'checkbox',
+      '#title' => $this->t('Link to previous pages in preview'),
+      '#description' => $this->t("If checked, the preview page will included 'Edit' buttons for each previous page."),
+      '#return_value' => TRUE,
+      '#default_value' => $settings['wizard_preview_link'],
+      '#states' => [
+        'visible' => [
+          ':input[name="preview"]' => ['!value' => DRUPAL_DISABLED],
+        ],
+      ],
     ];
     $form['wizard_settings']['wizard_confirmation'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Include confirmation page in progress'),
+      '#description' => $this->t("If checked, the confirmation page will be included in the progress bar."),
       '#return_value' => TRUE,
       '#default_value' => $settings['wizard_confirmation'],
     ];
     $form['wizard_settings']['wizard_start_label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Wizard start label'),
+      '#description' => $this->t('The first page label in the progress bar. Subsequent pages are titled by their wizard page title.'),
       '#size' => 20,
       '#default_value' => $settings['wizard_start_label'],
     ];
     $form['wizard_settings']['wizard_confirmation_label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Wizard end label'),
+      '#description' => $this->t("The confirmation page label's in the progress bar."),
       '#size' => 20,
       '#default_value' => $settings['wizard_confirmation_label'],
       '#states' => [
@@ -276,6 +307,7 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
     $form['wizard_settings']['wizard_track'] = [
       '#type' => 'select',
       '#title' => $this->t('Track wizard progress in the URL by'),
+      '#description' => $this->t("Progress tracking allows analytic software to capture a multi-step form's progress."),
       '#options' => [
         'name' => $this->t("Page name (?page=contact)"),
         'index' => $this->t("Page index (?page=2)"),
@@ -318,7 +350,7 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
     $form['preview_settings']['preview_container']['preview_label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Preview label'),
-      '#description' => $this->t("The text displayed within a multistep wizard's progress bar"),
+      '#description' => $this->t("The text displayed within a multi-step wizard's progress bar"),
       '#default_value' => $settings['preview_label'],
     ];
     $form['preview_settings']['preview_container']['preview_title'] = [
@@ -368,7 +400,7 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
       '#classes' => $this->config('webform.settings')->get('settings.preview_classes'),
       '#default_value' => $settings['preview_attributes'],
     ];
-    $form['preview_settings']['preview_container']['token_tree_link'] = $this->tokenManager->buildTreeLink();
+    $form['preview_settings']['preview_container']['token_tree_link'] = $this->tokenManager->buildTreeElement();
 
     // Custom settings.
     $properties = WebformElementHelper::getProperties($webform->getElementsDecoded());
@@ -544,7 +576,7 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
       'form_reset' => [
         'group' => $this->t('Form'),
         'title' => $this->t('Display reset button'),
-        'form_description' => $this->t("If checked, users will be able to reset a form and restart multistep wizards. Current drafts will be deleted when the form is reset."),
+        'form_description' => $this->t("If checked, users will be able to reset a form and restart multi-step wizards. Current drafts will be deleted when the form is reset."),
       ],
       'form_submit_once' => [
         'group' => $this->t('Form'),
@@ -585,7 +617,6 @@ class WebformEntitySettingsFormForm extends WebformEntitySettingsBaseForm {
         'title' => $this->t('Disable inline form errors'),
         'all_description' => $this->t('Inline form errors is disabled for all forms.'),
         'form_description' => $this->t('If checked, <a href=":href">inline form errors</a> will be disabled for this form.', [':href' => 'https://www.drupal.org/docs/8/core/modules/inline-form-errors/inline-form-errors-module-overview']),
-        'access' => (\Drupal::moduleHandler()->moduleExists('inline_form_errors') && floatval(\Drupal::VERSION) >= 8.5),
       ],
       'form_required' => [
         'group' => $this->t('Validation'),

@@ -60,6 +60,7 @@ settings:
   submission_label: ''
   submission_log: false
   submission_user_columns: {  }
+  submission_user_duplicate: false
   submission_login: false
   submission_login_message: ''
   submission_exception_message: ''
@@ -72,7 +73,9 @@ settings:
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
+  wizard_progress_link: false
   wizard_start_label: ''
+  wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
   wizard_track: ''
@@ -168,16 +171,16 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: default
+      to_mail: _default
       to_options: {  }
       cc_mail: ''
       cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
-      from_mail: default
+      from_mail: _default
       from_options: {  }
-      from_name: default
-      subject: default
+      from_name: _default
+      subject: _default
       body: |
         <h3>default:</h3>[webform_submission:values:checkboxes]<hr />
         <h3>comma:</h3>[webform_submission:values:checkboxes:value:comma]<hr />
@@ -208,16 +211,16 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: default
+      to_mail: _default
       to_options: {  }
       cc_mail: ''
       cc_options: {  }
       bcc_mail: ''
       bcc_options: {  }
-      from_mail: default
+      from_mail: _default
       from_options: {  }
-      from_name: default
-      subject: default
+      from_name: _default
+      subject: _default
       body: |
         default:
         [webform_submission:values:checkboxes]
@@ -251,3 +254,4 @@ handlers:
       return_path: ''
       sender_mail: ''
       sender_name: ''
+weight: 0

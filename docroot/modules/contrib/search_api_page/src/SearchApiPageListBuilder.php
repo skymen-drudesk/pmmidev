@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\search_api_page\SearchApiPageListBuilder.
- */
-
 namespace Drupal\search_api_page;
 
 use Drupal\Core\Config\Entity\ConfigEntityListBuilder;

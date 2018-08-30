@@ -85,6 +85,16 @@ elements: |
     '#display_on': none
     '#value': '{{ data.simple_string }}'
     '#store': true
+  webform_computed_twig_trim:
+    '#type': webform_computed_twig
+    '#title': webform_computed_twig_trim
+    '#whitespace': 'trim'
+    '#value': ' <em>This is trimmed</em>  <br/> '
+  webform_computed_twig_spaceless:
+    '#type': webform_computed_twig
+    '#title': webform_computed_twig_spaceless
+    '#whitespace': 'spaceless'
+    '#value': ' <em>This is spaceless</em>  <br/> '
 css: ''
 javascript: ''
 settings:
@@ -120,6 +130,7 @@ settings:
   submission_label: ''
   submission_log: false
   submission_user_columns: {  }
+  submission_user_duplicate: false
   submission_login: false
   submission_login_message: ''
   submission_exception_message: ''
@@ -132,7 +143,9 @@ settings:
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
+  wizard_progress_link: false
   wizard_start_label: ''
+  wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
   wizard_track: ''
@@ -218,3 +231,4 @@ access:
     users: {  }
     permissions: {  }
 handlers: {  }
+weight: 0

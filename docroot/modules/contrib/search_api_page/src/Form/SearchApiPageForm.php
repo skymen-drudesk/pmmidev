@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\search_api_page\Form\SearchApiPageForm.
- */
-
 namespace Drupal\search_api_page\Form;
 
 use Drupal\Core\Entity\EntityForm;
@@ -17,6 +12,7 @@ use Drupal\search_api\Entity\Index;
  * @package Drupal\search_api_page\Form
  */
 class SearchApiPageForm extends EntityForm {
+
   /**
    * {@inheritdoc}
    */
@@ -26,59 +22,59 @@ class SearchApiPageForm extends EntityForm {
     /* @var $search_api_page \Drupal\search_api_page\SearchApiPageInterface */
     $search_api_page = $this->entity;
 
-    $form['label'] = array(
+    $form['label'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Title'),
       '#maxlength' => 255,
       '#default_value' => $search_api_page->label(),
       '#required' => TRUE,
       '#description' => $this->t('This will also be used as the page title.'),
-    );
+    ];
 
-    $form['id'] = array(
+    $form['id'] = [
       '#type' => 'machine_name',
       '#default_value' => $search_api_page->id(),
-      '#machine_name' => array(
+      '#machine_name' => [
         'exists' => '\Drupal\search_api_page\Entity\SearchApiPage::load',
-      ),
+      ],
       '#disabled' => !$search_api_page->isNew(),
-    );
+    ];
 
     // Default index and states.
     $default_index = $search_api_page->getIndex();
-    $default_index_states = array(
-      'visible' => array(
-        ':input[name="index"]' => array('value' => $default_index),
-      ),
-    );
+    $default_index_states = [
+      'visible' => [
+        ':input[name="index"]' => ['value' => $default_index],
+      ],
+    ];
 
-    $index_options = array();
+    $index_options = [];
     $search_api_indexes = $this->entityTypeManager->getStorage('search_api_index')->loadMultiple();
     /* @var  $search_api_index \Drupal\search_api\IndexInterface */
     foreach ($search_api_indexes as $search_api_index) {
       $index_options[$search_api_index->id()] = $search_api_index->label();
     }
 
-    $form['index_fieldset'] = array(
+    $form['index_fieldset'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Index'),
-    );
+    ];
 
-    $form['index_fieldset']['index'] = array(
+    $form['index_fieldset']['index'] = [
       '#type' => 'select',
       '#title' => $this->t('Search API index'),
       '#options' => $index_options,
       '#default_value' => $default_index,
       '#required' => TRUE,
-    );
+    ];
 
-    $form['index_fieldset']['previous_index'] = array(
+    $form['index_fieldset']['previous_index'] = [
       '#type' => 'value',
       '#value' => $default_index,
-    );
+    ];
 
     $searched_fields = $search_api_page->getFullTextFields();
-    $form['index_fieldset']['searched_fields'] = array(
+    $form['index_fieldset']['searched_fields'] = [
       '#type' => 'select',
       '#multiple' => TRUE,
       '#options' => $searched_fields,
@@ -88,18 +84,18 @@ class SearchApiPageForm extends EntityForm {
       '#default_value' => $search_api_page->getSearchedFields(),
       '#access' => !empty($default_index),
       '#states' => $default_index_states,
-    );
+    ];
 
-    $form['page_fieldset'] = array(
+    $form['page_fieldset'] = [
       '#type' => 'fieldset',
       '#title' => $this->t('Page'),
-      '#states' => array(
-        'visible' => array(':input[name="index"]' => array('value' => $default_index)),
-      ),
+      '#states' => [
+        'visible' => [':input[name="index"]' => ['value' => $default_index]],
+      ],
       '#access' => !empty($default_index),
-    );
+    ];
 
-    $form['page_fieldset']['path'] = array(
+    $form['page_fieldset']['path'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Path'),
       '#maxlength' => 255,
@@ -108,28 +104,28 @@ class SearchApiPageForm extends EntityForm {
       '#required' => TRUE,
       '#access' => !empty($default_index),
       '#states' => $default_index_states,
-    );
+    ];
 
-    $form['page_fieldset']['previous_path'] = array(
+    $form['page_fieldset']['previous_path'] = [
       '#type' => 'value',
       '#value' => $search_api_page->getPath(),
       '#access' => !empty($default_index),
-    );
+    ];
 
-    $form['page_fieldset']['clean_url'] = array(
+    $form['page_fieldset']['clean_url'] = [
       '#type' => 'checkbox',
-      '#title' => $this->t('Use clean URL\'s'),
+      '#title' => $this->t("Use clean URL's"),
       '#default_value' => $search_api_page->getCleanUrl(),
       '#access' => !empty($default_index),
       '#states' => $default_index_states,
-    );
+    ];
 
-    $form['page_fieldset']['previous_clean_url'] = array(
+    $form['page_fieldset']['previous_clean_url'] = [
       '#type' => 'value',
       '#default_value' => $search_api_page->getCleanUrl(),
-    );
+    ];
 
-    $form['page_fieldset']['limit'] = array(
+    $form['page_fieldset']['limit'] = [
       '#type' => 'number',
       '#title' => $this->t('Limit'),
       '#default_value' => $search_api_page->getLimit(),
@@ -137,46 +133,46 @@ class SearchApiPageForm extends EntityForm {
       '#required' => TRUE,
       '#access' => !empty($default_index),
       '#states' => $default_index_states,
-    );
+    ];
 
-    $form['page_fieldset']['show_search_form'] = array(
+    $form['page_fieldset']['show_search_form'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Show search form above results'),
       '#default_value' => $search_api_page->showSearchForm(),
       '#access' => !empty($default_index),
       '#states' => $default_index_states,
-    );
+    ];
 
-    $form['page_fieldset']['show_all_when_no_keys'] = array(
+    $form['page_fieldset']['show_all_when_no_keys'] = [
       '#type' => 'checkbox',
       '#title' => $this->t('Show all results when no search is performed'),
       '#default_value' => $search_api_page->showAllResultsWhenNoSearchIsPerformed(),
       '#access' => !empty($default_index),
       '#states' => $default_index_states,
-    );
+    ];
 
-    $form['page_fieldset']['style'] = array(
+    $form['page_fieldset']['style'] = [
       '#type' => 'radios',
       '#title' => $this->t('Style'),
-      '#options' => array(
+      '#options' => [
         'view_modes' => $this->t('View modes'),
         'search_results' => $this->t('Search results'),
-      ),
+      ],
       '#default_value' => $search_api_page->getStyle(),
       '#required' => TRUE,
       '#access' => !empty($default_index),
       '#states' => $default_index_states,
-    );
+    ];
 
     if (!empty($default_index)) {
-      $form['view_mode_configuration'] = array(
+      $form['view_mode_configuration'] = [
         '#type' => 'fieldset',
         '#tree' => TRUE,
         '#title' => $this->t('View modes'),
-        '#states' => array(
-          'visible' => array(':input[name="style"]' => array('value' => 'view_modes'), ':input[name="index"]' => array('value' => $default_index)),
-        ),
-      );
+        '#states' => [
+          'visible' => [':input[name="style"]' => ['value' => 'view_modes'], ':input[name="index"]' => ['value' => $default_index]],
+        ],
+      ];
 
       /* @var $index \Drupal\search_api\IndexInterface */
       $index = Index::load($search_api_page->getIndex());
@@ -185,11 +181,11 @@ class SearchApiPageForm extends EntityForm {
         $bundles = $datasource->getBundles();
         foreach ($bundles as $bundle_id => $bundle_label) {
           $view_modes = $datasource->getViewModes($bundle_id);
-          $form['view_mode_configuration'][$datasource_id . '_' . $bundle_id] = array(
+          $form['view_mode_configuration'][$datasource_id . '_' . $bundle_id] = [
             '#type' => 'select',
-            '#title' => $this->t('View mode for %datasource » %bundle', array('%datasource' => $datasource->label(), '%bundle' => $bundle_label)),
+            '#title' => $this->t('View mode for %datasource » %bundle', ['%datasource' => $datasource->label(), '%bundle' => $bundle_label]),
             '#options' => $view_modes,
-          );
+          ];
           if (isset($view_mode_configuration[$datasource_id . '_' . $bundle_id])) {
             $form['view_mode_configuration'][$datasource_id . '_' . $bundle_id]['#default_value'] = $view_mode_configuration[$datasource_id . '_' . $bundle_id];
           }
@@ -216,21 +212,21 @@ class SearchApiPageForm extends EntityForm {
     if (!empty($default_index)) {
 
       // Add an update button that shows up when changing the index.
-      $default_index_states_invisible = array(
-        'invisible' => array(
-          ':input[name="index"]' => array('value' => $default_index),
-        ),
-      );
+      $default_index_states_invisible = [
+        'invisible' => [
+          ':input[name="index"]' => ['value' => $default_index],
+        ],
+      ];
       $actions['update'] = $actions['submit'];
       $actions['update']['#value'] = $this->t('Update');
       $actions['update']['#states'] = $default_index_states_invisible;
 
       // Hide the Save button when the index changes.
-      $default_index_states_visible = array(
-        'visible' => array(
-          ':input[name="index"]' => array('value' => $default_index),
-        ),
-      );
+      $default_index_states_visible = [
+        'visible' => [
+          ':input[name="index"]' => ['value' => $default_index],
+        ],
+      ];
       $actions['submit']['#states'] = $default_index_states_visible;
     }
 
@@ -246,7 +242,7 @@ class SearchApiPageForm extends EntityForm {
 
     // Reset view mode configuration.
     if (!$search_api_page->renderAsViewModes()) {
-      $search_api_page->set('view_mode_configuration', array());
+      $search_api_page->set('view_mode_configuration', []);
     }
 
     // Check searched fields. In case nothing has been selected, select all

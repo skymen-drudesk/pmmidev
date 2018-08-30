@@ -16,7 +16,7 @@ category: ''
 elements: |
   evaluator_information:
     '#title': 'Your Information'
-    '#type': fieldset
+    '#type': webform_section
     evaluator_first_name:
       '#title': 'First Name'
       '#type': textfield
@@ -38,7 +38,7 @@ elements: |
       '#required': true
   employee_information:
     '#title': 'Employee Information'
-    '#type': fieldset
+    '#type': webform_section
     employee_first_name:
       '#title': 'First Name'
       '#type': textfield
@@ -53,7 +53,7 @@ elements: |
       '#required': true
     employee_ratings:
       '#type': webform_likert
-      '#title': 'How would you rate the employee''s...'
+      '#title': 'How would you rate the employee''s…'
       '#questions':
         attendance: Attendance
         attire: Attire
@@ -116,6 +116,7 @@ settings:
   submission_label: ''
   submission_log: false
   submission_user_columns: {  }
+  submission_user_duplicate: false
   submission_login: false
   submission_login_message: ''
   submission_exception_message: ''
@@ -128,7 +129,9 @@ settings:
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
+  wizard_progress_link: false
   wizard_start_label: ''
+  wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
   wizard_track: ''
@@ -214,3 +217,4 @@ access:
     users: {  }
     permissions: {  }
 handlers: {  }
+weight: 0

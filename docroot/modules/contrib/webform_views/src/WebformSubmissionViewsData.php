@@ -63,6 +63,22 @@ class WebformSubmissionViewsData extends WebformSubmissionViewsDataBase {
 
     $base_table = $this->entityType->getBaseTable() ?: $this->entityType->id();
 
+    $data[$base_table]['source_entity_label'] = [
+      'title' => $this->t('Submitted to: Entity label'),
+      'help' => $this->t('The label of entity to which this submission was submitted.'),
+      'field' => [
+        'id' => 'webform_submission_submitted_to_label',
+      ],
+    ];
+
+    $data[$base_table]['source_entity_rendered_entity'] = [
+      'title' => $this->t('Submitted to: Rendered entity'),
+      'help' => $this->t('Rendered entity to which this submission was submitted.'),
+      'field' => [
+        'id' => 'webform_submission_submitted_to_rendered_entity',
+      ],
+    ];
+
     // Reverse relationship on the "entity_type" and "entity_id" columns, i.e.
     // from an arbitrary entity to webform submissions that have been submitted
     // to it.
@@ -79,8 +95,8 @@ class WebformSubmissionViewsData extends WebformSubmissionViewsDataBase {
         ];
 
         // Depending on whether the foreign entity has data table we join on its
-        // data table or on its base table. Additionally, if it we join on the
-        // data table, then we also must join on langcode column.
+        // data table or on its base table. Additionally, if we join on the data
+        // table, then we also must join on langcode column.
         if ($definition->getDataTable()) {
           $foreign_table = $definition->getDataTable();
           $relationship['extra'][] = ['field' => 'langcode', 'left_field' => 'langcode'];
@@ -96,6 +112,90 @@ class WebformSubmissionViewsData extends WebformSubmissionViewsDataBase {
 
         $data[$foreign_table]['webform_submission']['relationship'] = $relationship;
       }
+    }
+
+    // Add non-admin "view" and "edit" links.
+    $data[$base_table]['webform_submission_user_submission_view'] = [
+      'title' => $this->t('Non-admin view link'),
+      'help' => $this->t('Link to view a webform submission for non-admin users.'),
+      'field' => [
+        'id' => 'webform_submission_user_submission_view_field',
+        'real field' => $this->entityType->getKey('id'),
+        'click sortable' => FALSE,
+      ],
+    ];
+
+    $data[$base_table]['webform_submission_user_submission_edit'] = [
+      'title' => $this->t('Non-admin edit link'),
+      'help' => $this->t('Link to edit a webform submission for non-admin users.'),
+      'field' => [
+        'id' => 'webform_submission_user_submission_edit_field',
+        'real field' => $this->entityType->getKey('id'),
+        'click sortable' => FALSE,
+      ],
+    ];
+
+    $data[$base_table]['webform_submission_notes_edit'] = [
+      'title' => $this->t('Edit notes'),
+      'help' => $this->t('In-line text area to edit webform submission notes.'),
+      'field' => [
+        'id' => 'webform_submission_notes_edit',
+        'real field' => 'notes',
+        'click sortable' => FALSE,
+      ],
+    ];
+
+    $data[$base_table]['webform_category'] = [
+      'title' => $this->t('Webform category'),
+      'help' => $this->t('Webform category of webform submission.'),
+      'filter' => [
+        'id' => 'webform_views_webform_category',
+        'real field' => $this->entityType->getKey('bundle'),
+      ],
+    ];
+
+    $data[$base_table]['webform_status'] = [
+      'title' => $this->t('Webform status'),
+      'help' => $this->t('Status of a webform to which submission is submitted to.'),
+      'filter' => [
+        'id' => 'webform_views_webform_status',
+        'real field' => $this->entityType->getKey('bundle'),
+      ],
+    ];
+
+    // There is no general way to add a relationship to an entity where webform
+    // submission has been submitted to, so we just cover the most common case here -
+    // the case when the source is a node.
+    $node_definition = $this->entityManager->getDefinition('node');
+
+    $data[$base_table]['entity_id'] = [
+      'title' => $this->t('Submitted to: Content'),
+      'help' => $this->t('Content (node) which webform submission is submitted to.'),
+      'relationship' => [
+        'base' => $node_definition->getDataTable(),
+        'base field' => $node_definition->getKey('id'),
+        'id' => 'standard',
+        'label' => $this->t('Submitted to: Content'),
+        'extra' => [
+          ['left_field' => 'entity_type', 'value' => 'node'],
+        ],
+      ],
+    ];
+
+    // Add relationship from user to webform submissions he has submitted.
+    $user_definition = $this->entityManager->getDefinition('user');
+    if ($user_definition->getDataTable()) {
+      $data[$user_definition->getDataTable()]['webform_submission'] = [
+        'title' => $this->t('Webform submission'),
+        'help' => $this->t('Webform submission(-s) the user has submitted.'),
+        'relationship' => [
+          'relationship field' => $user_definition->getKey('id'),
+          'base' => $base_table,
+          'base field' => 'uid',
+          'id' => 'standard',
+          'label' => $this->t('Webform submission'),
+        ],
+      ];
     }
 
     foreach ($this->webformStorage->loadMultiple() as $webform) {

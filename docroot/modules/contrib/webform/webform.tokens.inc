@@ -146,7 +146,7 @@ function webform_token_info() {
   $webform_submission['values'] = [
     'name' => t('Submission values'),
     'description' => Markup::create((string) t('Webform tokens from submitted data.') .
-      t("Replace the '?' with...") . '<br />' .
+      t("Replace the '?' with…") . '<br />' .
       '<ul>' .
       '<li>element_key</li>' .
       '<li>element_key:format:items</li>' .
@@ -217,7 +217,7 @@ function webform_token_info() {
   ];
 
   // Append link to token help to source-entity and submitted-to description.
-  if (\Drupal::moduleHandler()->moduleExists('token') && \Drupal::moduleHandler()->moduleExists('help'))  {
+  if (\Drupal::moduleHandler()->moduleExists('token') && \Drupal::moduleHandler()->moduleExists('help')) {
     $t_args = [':href' => Url::fromRoute('help.page', ['name' => 'token'])->toString()];
     $token_help = t('For a list of the currently available source entity related tokens, please see <a href=":href">token help</a>.', $t_args);
     $webform_submission['source-entity']['description'] = Markup::create($webform_submission['source-entity']['description'] . '<br/>' . $token_help);
@@ -270,7 +270,7 @@ function webform_token_info() {
   $webform['handler'] = [
     'name' => t('Handler response'),
     'description' => Markup::create((string) t('Webform handler response tokens.') . '<br/>' .
-      t("Replace the '?' with...") . '<br />' .
+      t("Replace the '?' with…") . '<br />' .
       '<ul>' .
       '<li>handler_id:state:key</li>' .
       '<li>handler_id:state:key1:key2</li>' .
@@ -290,7 +290,7 @@ function webform_token_info() {
   if ($roles) {
     $types['webform_role'] = [
       'name' => t('Webform roles'),
-      'description' => t("Tokens related to user roles that can receive email. <em>This token is only available to a Webform email handler's 'To', 'CC', and 'BCC' email recipents.</em>"),
+      'description' => t("Tokens related to user roles that can receive email. <em>This token is only available to a Webform email handler's 'To', 'CC', and 'BCC' email recipients.</em>"),
       'needs-data' => 'webform_role',
     ];
 
@@ -378,7 +378,7 @@ function webform_tokens($type, $tokens, array $data, array $options, BubbleableM
     $webform = $webform_submission->getWebform();
     $bubbleable_metadata->addCacheableDependency($webform);
 
-    $source_entity = $webform_submission->getSourceEntity();
+    $source_entity = $webform_submission->getSourceEntity(TRUE);
     if ($source_entity) {
       $bubbleable_metadata->addCacheableDependency($source_entity);
     }
@@ -564,10 +564,10 @@ function webform_tokens($type, $tokens, array $data, array $options, BubbleableM
     if (($webform_tokens = $token_service->findWithPrefix($tokens, 'webform')) && ($webform = $webform_submission->getWebform())) {
       $replacements += $token_service->generate('webform', $webform_tokens, ['webform' => $webform], $options, $bubbleable_metadata);
     }
-    if (($source_entity_tokens = $token_service->findWithPrefix($tokens, 'source-entity')) && ($source_entity = $webform_submission->getSourceEntity())) {
+    if (($source_entity_tokens = $token_service->findWithPrefix($tokens, 'source-entity')) && ($source_entity = $webform_submission->getSourceEntity(TRUE))) {
       $replacements += $token_service->generate($source_entity->getEntityTypeId(), $source_entity_tokens, [$source_entity->getEntityTypeId() => $source_entity], $options, $bubbleable_metadata);
     }
-    if (($submitted_to_tokens = $token_service->findWithPrefix($tokens, 'submitted-to')) && ($submitted_to = $webform_submission->getSourceEntity() ?: $webform_submission->getWebform())) {
+    if (($submitted_to_tokens = $token_service->findWithPrefix($tokens, 'submitted-to')) && ($submitted_to = $webform_submission->getSourceEntity(TRUE) ?: $webform_submission->getWebform())) {
       $replacements += $token_service->generate($submitted_to->getEntityTypeId(), $submitted_to_tokens, [$submitted_to->getEntityTypeId() => $submitted_to], $options, $bubbleable_metadata);
     }
 
@@ -717,6 +717,12 @@ function _webform_token_get_submission_value($value_token, array $options, Webfo
 
   $element_plugin = $element_manager->getElementInstance($element);
 
+  // Always get value for a computed element.
+  if ($element_plugin instanceof WebformComputedBase) {
+    $token_value = $element_plugin->getValue($element, $webform_submission);
+    return _webform_token_get_submission_value_encode($token_value, $options);
+  }
+
   // Exit if no submission data and form element is not a container.
   if (!isset($submission_data[$element_key]) && !$element_plugin->isContainer($element)) {
     return NULL;
@@ -743,12 +749,6 @@ function _webform_token_get_submission_value($value_token, array $options, Webfo
   /****************************************************************************/
   // Get value.
   /****************************************************************************/
-
-  // Get value for a computed element.
-  if ($element_plugin instanceof WebformComputedBase) {
-    $token_value = $element_plugin->getValue($element, $webform_submission);
-    return _webform_token_get_submission_value_encode($token_value, $options);
-  }
 
   // Set entity reference chaining.
   if ($keys && $keys[0] == 'entity' && $element_plugin instanceof WebformElementEntityReferenceInterface) {
