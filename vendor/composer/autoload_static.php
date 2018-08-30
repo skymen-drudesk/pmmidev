@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit9439b74005f5217836c79315ce616422
+class ComposerStaticInit4b9dc20e2dac857f75fb4bb5fd86632c
 {
     public static $files = array (
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
@@ -30,14 +30,11 @@ class ComposerStaticInit9439b74005f5217836c79315ce616422
         '5a12a5271c58108e0aa33355e6ac54ea' => __DIR__ . '/..' . '/drupal/console-core/src/functions.php',
         'fbeead2280a8f3911a1fe6dd034f7d5e' => __DIR__ . '/..' . '/mkalkbrenner/php-htmldiff-advanced/src/HtmlDiffAdvancedInterface.php',
         '96f8d8288528d52059397cad6ec61f17' => __DIR__ . '/..' . '/mkalkbrenner/php-htmldiff-advanced/src/HtmlDiffAdvanced.php',
-        'c65d09b6820da036953a371c8c73a9b1' => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook/polyfills.php',
-        'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         'p' => 
         array (
-            'phpseclib\\' => 10,
             'phpDocumentor\\Reflection\\' => 25,
         ),
         'g' => 
@@ -126,10 +123,6 @@ class ComposerStaticInit9439b74005f5217836c79315ce616422
             'League\\Csv\\' => 11,
             'League\\Container\\' => 17,
         ),
-        'J' => 
-        array (
-            'Jaybizzle\\CrawlerDetect\\' => 24,
-        ),
         'I' => 
         array (
             'Interop\\Container\\' => 18,
@@ -145,10 +138,6 @@ class ComposerStaticInit9439b74005f5217836c79315ce616422
             'GuzzleHttp\\' => 11,
             'Grasmash\\YamlExpander\\' => 22,
             'Grasmash\\Expander\\' => 18,
-        ),
-        'F' => 
-        array (
-            'Facebook\\' => 9,
         ),
         'D' => 
         array (
@@ -184,10 +173,6 @@ class ComposerStaticInit9439b74005f5217836c79315ce616422
     );
 
     public static $prefixDirsPsr4 = array (
-        'phpseclib\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib',
-        ),
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
@@ -394,10 +379,6 @@ class ComposerStaticInit9439b74005f5217836c79315ce616422
         array (
             0 => __DIR__ . '/..' . '/league/container/src',
         ),
-        'Jaybizzle\\CrawlerDetect\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/jaybizzle/crawler-detect/src',
-        ),
         'Interop\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/container-interop/container-interop/src/Interop/Container',
@@ -426,10 +407,6 @@ class ComposerStaticInit9439b74005f5217836c79315ce616422
         'Grasmash\\Expander\\' => 
         array (
             0 => __DIR__ . '/..' . '/grasmash/expander/src',
-        ),
-        'Facebook\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/facebook/graph-sdk/src/Facebook',
         ),
         'Drupal\\Driver\\' => 
         array (
@@ -478,6 +455,9 @@ class ComposerStaticInit9439b74005f5217836c79315ce616422
         'Doctrine\\Common\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/lib/Doctrine/Common',
+            1 => __DIR__ . '/..' . '/doctrine/event-manager/lib/Doctrine/Common',
+            2 => __DIR__ . '/..' . '/doctrine/persistence/lib/Doctrine/Common',
+            3 => __DIR__ . '/..' . '/doctrine/reflection/lib/Doctrine/Common',
         ),
         'DeepCopy\\' => 
         array (
@@ -1189,29 +1169,16 @@ class ComposerStaticInit9439b74005f5217836c79315ce616422
         'TheSeer\\Tokenizer\\TokenCollectionException' => __DIR__ . '/..' . '/theseer/tokenizer/src/TokenCollectionException.php',
         'TheSeer\\Tokenizer\\Tokenizer' => __DIR__ . '/..' . '/theseer/tokenizer/src/Tokenizer.php',
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
-        'Twitter' => __DIR__ . '/..' . '/dg/twitter-php/src/Twitter.php',
-        'TwitterException' => __DIR__ . '/..' . '/dg/twitter-php/src/Twitter.php',
-        'Twitter_OAuthConsumer' => __DIR__ . '/..' . '/dg/twitter-php/src/OAuth.php',
-        'Twitter_OAuthDataStore' => __DIR__ . '/..' . '/dg/twitter-php/src/OAuth.php',
-        'Twitter_OAuthException' => __DIR__ . '/..' . '/dg/twitter-php/src/OAuth.php',
-        'Twitter_OAuthRequest' => __DIR__ . '/..' . '/dg/twitter-php/src/OAuth.php',
-        'Twitter_OAuthServer' => __DIR__ . '/..' . '/dg/twitter-php/src/OAuth.php',
-        'Twitter_OAuthSignatureMethod' => __DIR__ . '/..' . '/dg/twitter-php/src/OAuth.php',
-        'Twitter_OAuthSignatureMethod_HMAC_SHA1' => __DIR__ . '/..' . '/dg/twitter-php/src/OAuth.php',
-        'Twitter_OAuthSignatureMethod_PLAINTEXT' => __DIR__ . '/..' . '/dg/twitter-php/src/OAuth.php',
-        'Twitter_OAuthSignatureMethod_RSA_SHA1' => __DIR__ . '/..' . '/dg/twitter-php/src/OAuth.php',
-        'Twitter_OAuthToken' => __DIR__ . '/..' . '/dg/twitter-php/src/OAuth.php',
-        'Twitter_OAuthUtil' => __DIR__ . '/..' . '/dg/twitter-php/src/OAuth.php',
         'TypeError' => __DIR__ . '/..' . '/symfony/polyfill-php70/Resources/stubs/TypeError.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit9439b74005f5217836c79315ce616422::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit9439b74005f5217836c79315ce616422::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit9439b74005f5217836c79315ce616422::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit9439b74005f5217836c79315ce616422::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit4b9dc20e2dac857f75fb4bb5fd86632c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit4b9dc20e2dac857f75fb4bb5fd86632c::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit4b9dc20e2dac857f75fb4bb5fd86632c::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit4b9dc20e2dac857f75fb4bb5fd86632c::$classMap;
 
         }, null, ClassLoader::class);
     }
