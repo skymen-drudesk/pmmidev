@@ -49,7 +49,7 @@ CONFIGURATION
 
 Global settings: /admin/config/system/menu_per_role
 
-Just activate the menu_per_role module and edit a menu item as usual. There will
+Just activate the Menu per Role module and edit a menu item as usual. There will
 be one or two fieldsets, depending on the configuration of the module, that
 allows you to restrict access by role.
 

@@ -2,33 +2,31 @@
 
 ## Overview
 
-The module provides a migrate source plugin for importing data from spreadsheet files. This source plugin uses the [PhpOffice/PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet) library to read from the spreadsheet files.
+The module provides a migrate source plugin for importing data from spreadsheet
+files. This source plugin uses the
+[PhpOffice/PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet) library
+to read from the spreadsheet files.
 
-[The supported source files](https://github.com/PHPOffice/PhpSpreadsheet#file-formats-supported) includes .ods, .xls, .xlsx, .csv.
+[The supported source
+files](https://github.com/PHPOffice/PhpSpreadsheet#file-formats-supported)
+includes .ods, .xls, .xlsx, .csv.
 
 ## Installing PHPSpreadsheet
 
 ### Requirements
 
-Migrate Spreadsheet module requires PHP >= 5.6 due to its dependency on [PhpOffice/PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet) library, which requires at least PHP 5.6.
+Migrate Spreadsheet module requires PHP >= 5.6 due to its dependency on
+[PhpOffice/PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet) library,
+which requires at least PHP 5.6.
 
 ### Get the code
 
-Usually we use [Composer](https://getcomposer.org/) to install dependencies in Drupal 8. All you need to do is to add this module as dependency in your project top `composer.json` file:
+Use [Composer](https://getcomposer.org/) to install [Migrate
+Spreadsheet](https://www.drupal.org/project/migrate_spreadsheet) module:
 
-```json
-{
-    ...
-    "require": {
-        ...
-        "drupal/migrate_spreadsheet": "~1.0-beta2",
-        ...
-    },
-    ...
-}
+```batch
+$ composer require drupal/migrate_spreadsheet
 ```
-
-Then a `$ composer update` should be issued and Composer will install the [PhpOffice/PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet) dependency.
 
 ### Enable the module
 

@@ -2,8 +2,8 @@
 
 namespace Drupal\migrate_spreadsheet;
 
-use PhpOffice\PhpSpreadsheet\Cell;
-use PhpOffice\PhpSpreadsheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Cell\Coordinate;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 /**
  * Provides a spreadsheet iterator.
@@ -157,15 +157,15 @@ class SpreadsheetIterator implements SpreadsheetIteratorInterface {
     if (!isset($this->cache['origin'])) {
       $config = $this->getConfiguration();
       if (empty($config['origin'])) {
-        // Defaulting to a table where the first row contains the header and data
-        // starts on the second row, column A.
+        // Defaulting to a table where the first row contains the header and
+        // data starts on the second row, column A.
         return 'A2';
       }
-      if ($coordinates = Cell::coordinateFromString($config['origin'])) {
+      if ($coordinates = Coordinate::coordinateFromString($config['origin'])) {
         $row_count = $this->getRowsCount();
         $column_count = $this->getColumnsCount();
-        if (($coordinates[1] > $row_count) || ((Cell::columnIndexFromString($coordinates[0])) > $column_count)) {
-          $max = Cell::stringFromColumnIndex($column_count - 1) . $row_count;
+        if (($coordinates[1] > $row_count) || ((Coordinate::columnIndexFromString($coordinates[0])) > $column_count)) {
+          $max = Coordinate::stringFromColumnIndex($column_count) . $row_count;
           throw new \InvalidArgumentException("Origin '{$config['origin']}' is out of bounds. Max value is '$max'.");
         }
       }
@@ -250,11 +250,12 @@ class SpreadsheetIterator implements SpreadsheetIteratorInterface {
    */
   public function getHeaders() {
     if (!isset($this->cache['headers'])) {
-      // Get the first column index (zero based).
-      $first_col_index = Cell::columnIndexFromString(Cell::coordinateFromString($this->getOrigin())[0]) - 1;
-      for ($col_index = $first_col_index; $col_index < $this->getColumnsCount(); ++$col_index) {
-        $col_letter = Cell::stringFromColumnIndex($col_index);
+      // Get the first column index (one based, A is 1).
+      $first_col_index = Coordinate::columnIndexFromString(Coordinate::coordinateFromString($this->getOrigin())[0]);
+      for ($col_index = $first_col_index; $col_index <= $this->getColumnsCount(); ++$col_index) {
+        $col_letter = Coordinate::stringFromColumnIndex($col_index);
         if ($header_row = $this->getHeaderRow()) {
+          $value = '';
           if ($cell = $this->getWorksheet()->getCell("$col_letter$header_row", FALSE)) {
             $value = trim($cell->getValue());
             if (isset($this->cache['headers'][$value])) {
@@ -289,7 +290,7 @@ class SpreadsheetIterator implements SpreadsheetIteratorInterface {
    */
   public function getColumnsCount() {
     if (!isset($this->cache['columns_count'])) {
-      $this->cache['columns_count'] = Cell::columnIndexFromString($this->getWorksheet()->getHighestDataColumn());
+      $this->cache['columns_count'] = Coordinate::columnIndexFromString($this->getWorksheet()->getHighestDataColumn());
     }
     return $this->cache['columns_count'];
   }
@@ -305,10 +306,11 @@ class SpreadsheetIterator implements SpreadsheetIteratorInterface {
    * Gets the absolute row index.
    *
    * @return int
+   *   The absolute row index.
    */
   protected function getAbsoluteRowIndex() {
     if (!isset($this->absoluteRow)) {
-      $row = Cell::coordinateFromString($this->getOrigin())[1];
+      $row = Coordinate::coordinateFromString($this->getOrigin())[1];
       $this->absoluteRow = $row + $this->relativeRow;
     }
     return $this->absoluteRow;
