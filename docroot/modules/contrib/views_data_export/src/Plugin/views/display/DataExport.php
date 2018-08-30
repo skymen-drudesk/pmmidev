@@ -35,7 +35,7 @@ class DataExport extends RestExport {
    * {@inheritdoc}
    */
   public static function buildResponse($view_id, $display_id, array $args = []) {
-    // Load the View we're working with and set it's display ID so we can get
+    // Load the View we're working with and set its display ID so we can get
     // the exposed input.
     $view = Views::getView($view_id);
     $view->setDisplay($display_id);
@@ -43,10 +43,10 @@ class DataExport extends RestExport {
 
     // Build different responses whether batch or standard method is used.
     if ($view->display_handler->getOption('export_method') == 'batch') {
-      return self::buildBatch($view);
+      return static::buildBatch($view, $args);
     }
 
-    return self::buildStandard($view);
+    return static::buildStandard($view);
   }
 
   /**
@@ -58,17 +58,28 @@ class DataExport extends RestExport {
    * @return null|\Symfony\Component\HttpFoundation\RedirectResponse
    *    Redirect to the batching page.
    */
-  protected static function buildBatch(ViewExecutable $view) {
+  protected static function buildBatch(ViewExecutable $view, $args) {
     // Get total number of items.
     $view->get_total_rows = TRUE;
     $export_limit = $view->getDisplay()->getOption('export_limit');
 
+    $view->preExecute($args);
     $view->build();
-    $view->get_total_rows = TRUE;
+    $count_query = clone $view->query;
+    $count_query_results = $count_query->query(true)->execute();
+
+
+    if ($count_query_results instanceof \Drupal\search_api\Query\ResultSetInterface) {
+      $total_rows = $count_query_results->getResultCount();
+    }
+    else {
+      $count_query_results->allowRowCount = TRUE;
+      $total_rows = $count_query_results->rowCount();
+    }
+
     // Don't load and instantiate so many entities.
     $view->query->setLimit(1);
     $view->execute();
-    $total_rows = $view->total_rows;
 
     // If export limit is set and the number of rows is greater than the
     // limit, then set the total to limit.
@@ -97,8 +108,15 @@ class DataExport extends RestExport {
     batch_set($batch_definition);
 
     // The redirect destination is usually set with a destination, fall back
-    // to <front> to avoid a endless loop.
-    return batch_process(Url::fromRoute('<front>'));
+    // to option redirect path, if empty redirect to front.
+    $redirect_path = $view->display_handler->getOption('redirect_path');
+    if (empty($redirect_path)) {
+      return batch_process(Url::fromRoute('<front>'));
+    }
+    else {
+      return batch_process(Url::fromUserInput(trim($redirect_path)));
+    }
+
   }
 
   /**
@@ -267,7 +285,7 @@ class DataExport extends RestExport {
       $options['style']['value'] .= $this->t(' (@export_format)', ['@export_format' => reset($style_options['formats'])]);
     }
   }
-    /**
+  /**
    * {@inheritdoc}
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
@@ -330,8 +348,15 @@ class DataExport extends RestExport {
         $form['automatic_download'] = [
           '#type' => 'checkbox',
           '#title' => $this->t("Download instantly"),
-          '#description' => $this->t("Check this if you want to download the file instantly after being created. Otherwise you will be redirected to front-page containing the download link."),
+          '#description' => $this->t("Check this if you want to download the file instantly after being created. Otherwise you will be redirected to above Redirect path containing the download link."),
           '#default_value' => $this->options['automatic_download'],
+        ];
+
+        $form['redirect_path'] = [
+         '#type' => 'textfield',
+         '#title' => $this->t('Redirect path'),
+         '#default_value' => $this->options['redirect_path'],
+         '#description' => $this->t('If you do not check Download instantly, you will be redirected to this path containing download link after export finished. Leave blank for <front>.'),
         ];
 
         // Support tokens.
@@ -418,6 +443,7 @@ class DataExport extends RestExport {
       case 'path':
         $this->setOption('filename', $form_state->getValue('filename'));
         $this->setOption('automatic_download', $form_state->getValue('automatic_download'));
+        $this->setOption('redirect_path', $form_state->getValue('redirect_path'));
         break;
     }
   }
@@ -440,7 +466,7 @@ class DataExport extends RestExport {
    *   Batch context information.
    */
   public static function processBatch($view_id, $display_id, array $args, array $exposed_input, $total_rows, &$context) {
-    // Load the View we're working with and set it's display ID so we get the
+    // Load the View we're working with and set its display ID so we get the
     // content we expect.
     $view = Views::getView($view_id);
     $view->setDisplay($display_id);
@@ -454,6 +480,7 @@ class DataExport extends RestExport {
     $display_handler = $view->display_handler;
     $export_limit = $display_handler->getOption('export_limit');
 
+    $view->preExecute($args);
     // Build the View so the query parameters and offset get applied. so our
     // This is necessary for the total to be calculated accurately and the call
     // to $view->render() to return the items we expect to process in the
@@ -474,8 +501,13 @@ class DataExport extends RestExport {
       // This is a private file because some use cases will want to restrict
       // access to the file. The View display's permissions will govern access
       // to the file.
-      $filename =  \Drupal::token()->replace($view->getDisplay()->options['filename'], array('view' => $view));
-      $destination = 'private://' . $filename;
+      $current_user = \Drupal::currentUser();
+      $user_ID = $current_user->id();
+      $timestamp = \Drupal::time()->getRequestTime();
+      $filename = \Drupal::token()->replace($view->getDisplay()->options['filename'], array('view' => $view));
+      $directory = "private://views_data_export/$user_ID-$timestamp/";
+      file_prepare_directory($directory, FILE_CREATE_DIRECTORY);
+      $destination = $directory . $filename;
       $file = file_save_data('', $destination, FILE_EXISTS_REPLACE);
       if (!$file) {
         // Failed to create the file, abort the batch.
@@ -497,7 +529,7 @@ class DataExport extends RestExport {
     // amount of rows and not more.
     $items_this_batch = $display_handler->getOption('export_batch_size');
     if ($export_limit && $context['sandbox']['progress'] + $items_this_batch > $export_limit) {
-      $items_this_batch = $context['sandbox']['progress'] + $items_this_batch - $export_limit;
+      $items_this_batch = $export_limit - $context['sandbox']['progress'];
     }
 
     // Set the limit directly on the query.
@@ -510,14 +542,53 @@ class DataExport extends RestExport {
       $string = preg_replace('/^[^\n]+/', '', $string);
     }
 
+    // Workaround for XML
+    $output_format = reset($view->getStyle()->options['formats']);
+    if ($output_format == 'xml') {
+      $maximum = $export_limit ? $export_limit : $total_rows;
+      // Remove xml declaration and response opening tag.
+      if ($context['sandbox']['progress'] != 0) {
+        $string = str_replace('<?xml version="1.0"?>', '', $string);
+        $string = str_replace('<response>', '', $string);
+      }
+      // Remove response closing tag.
+      if ($context['sandbox']['progress'] + $items_this_batch < $maximum) {
+        $string = str_replace('</response>', '', $string);
+      }
+    }
+
+    // Workaround for XLS/XLSX
+    if ($context['sandbox']['progress'] != 0 && ($output_format == 'xls' || $output_format == 'xlsx')) {
+      $vdeFileRealPath = \Drupal::service('file_system')->realpath($context['sandbox']['vde_file']);
+      $previousExcel = \PHPExcel_IOFactory::load($vdeFileRealPath);
+      file_put_contents($vdeFileRealPath, $string);
+      $currentExcel = \PHPExcel_IOFactory::load($vdeFileRealPath);
+
+      // Append all rows to previous created excel.
+      $rowIndex = $previousExcel->getActiveSheet()->getHighestRow();
+      foreach ($currentExcel->getActiveSheet()->getRowIterator() as $row) {
+        if ($row->getRowIndex() == 1) {
+          // Skip header.
+          continue;
+        }
+        $rowIndex++;
+        $colIndex = 0;
+        foreach ($row->getCellIterator() as $cell) {
+          $previousExcel->getActiveSheet()->setCellValueByColumnAndRow($colIndex++, $rowIndex, $cell->getValue());
+        }
+      }
+
+      $objWriter = new \PHPExcel_Writer_Excel2007($previousExcel);
+      $objWriter->save($vdeFileRealPath);
+    }
     // Write rendered rows to output file.
-    if (file_put_contents($context['sandbox']['vde_file'], $string, FILE_APPEND) === FALSE) {
+    elseif (file_put_contents($context['sandbox']['vde_file'], $string, FILE_APPEND) === FALSE) {
       // Write to output file failed - log in logger and in ResponseText on
       // batch execution page user will end up on if write to file fails.
       $message = t('Could not write to temporary output file for result export (@file). Check permissions.', ['@file' => $context['sandbox']['vde_file']]);
       \Drupal::logger('views_data_export')->error($message);
       throw new ServiceUnavailableHttpException(NULL, $message);
-    };
+    }
 
     // Update the progress of our batch export operation (i.e. number of
     // items we've processed). Note can exceed the number of total rows we're
@@ -577,7 +648,8 @@ class DataExport extends RestExport {
 
         // If the user specified instant download than redirect to the file.
         if ($results['automatic_download']) {
-          return new RedirectResponse($url);
+          $response = new RedirectResponse($url);
+          $response->send();
         }
 
         drupal_set_message(t('Export complete. Download the file <a href=":download_url">here</a>.', [':download_url' => $url]));
@@ -586,6 +658,22 @@ class DataExport extends RestExport {
     else {
       drupal_set_message(t('Export failed. Make sure the private file system is configured and check the error log.'), 'error');
     }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  protected function getRoute($view_id, $display_id) {
+    $route = parent::getRoute($view_id, $display_id);
+    $view = Views::getView($view_id);
+    $view->setDisplay($display_id);
+
+    // If this display is going to perform a redirect to the batch url
+    // make sure thr redirect response is never cached.
+    if ($view->display_handler->getOption('export_method') == 'batch') {
+      $route->setOption('no_cache', TRUE);
+    }
+    return $route;
   }
 
 }
