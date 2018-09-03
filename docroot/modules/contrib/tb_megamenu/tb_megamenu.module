@@ -649,7 +649,7 @@ function tb_megamenu_update_megamenus(&$form, FormStateInterface $form_state) {
  */
 function tb_megamenu_block_view_tb_megamenu_menu_block_alter(array &$build, BlockPluginInterface $block) {
   $build['#contextual_links']['tb_megamenu_block']['route_parameters'] = [
-    'tb_megamenu' => "{$build['#derivative_plugin_id']}__{$build['#block']->get('theme')}",
+    'tb_megamenu' => "{$build['#derivative_plugin_id']}__{$block->getThemeName()}",
   ];
   $build['#contextual_links']['menu']['route_parameters'] = [
     'menu' => $build['#derivative_plugin_id'],
