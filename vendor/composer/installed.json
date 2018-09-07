@@ -7023,6 +7023,72 @@
         }
     },
     {
+        "name": "drupal/password_policy",
+        "version": "3.0.0-alpha4",
+        "version_normalized": "3.0.0.0-alpha4",
+        "source": {
+            "type": "git",
+            "url": "https://git.drupal.org/project/password_policy",
+            "reference": "8.x-3.0-alpha4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://ftp.drupal.org/files/projects/password_policy-8.x-3.0-alpha4.zip",
+            "reference": "8.x-3.0-alpha4",
+            "shasum": "79997599fbce390e79eda0aba10f403324c48b99"
+        },
+        "require": {
+            "drupal/core": "*",
+            "drupal/ctools": "*"
+        },
+        "type": "drupal-module",
+        "extra": {
+            "branch-alias": {
+                "dev-3.x": "3.x-dev"
+            },
+            "drupal": {
+                "version": "8.x-3.0-alpha4",
+                "datestamp": "1506649448",
+                "security-coverage": {
+                    "status": "not-covered",
+                    "message": "Alpha releases are not covered by Drupal security advisories."
+                }
+            }
+        },
+        "installation-source": "dist",
+        "notification-url": "https://packages.drupal.org/8/downloads",
+        "license": [
+            "GPL-2.0-or-later"
+        ],
+        "authors": [
+            {
+                "name": "AohRveTPV",
+                "homepage": "https://www.drupal.org/user/2760115"
+            },
+            {
+                "name": "deekayen",
+                "homepage": "https://www.drupal.org/user/972"
+            },
+            {
+                "name": "miglius",
+                "homepage": "https://www.drupal.org/user/18741"
+            },
+            {
+                "name": "nerdstein",
+                "homepage": "https://www.drupal.org/user/1557710"
+            },
+            {
+                "name": "shrop",
+                "homepage": "https://www.drupal.org/user/14767"
+            }
+        ],
+        "description": "Sets up constraints and expiration of passwords.",
+        "homepage": "https://www.drupal.org/project/password_policy",
+        "support": {
+            "source": "http://cgit.drupalcode.org/password_policy"
+        }
+    },
+    {
         "name": "drupal/pathauto",
         "version": "1.2.0",
         "version_normalized": "1.2.0.0",
@@ -11789,6 +11855,11 @@
         "name": "roave/security-advisories",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Roave/SecurityAdvisories.git",
+            "reference": "0abc14e0df387fe74b4b32e0b8647d1639256d38"
+        },
         "conflict": {
             "3f/pygmentize": "<1.2",
             "adodb/adodb-php": "<5.20.12",
