@@ -764,6 +764,11 @@ else {
     $settings['file_private_path'] = 'sites/default/files-private';
 }
 
+# Set temporary file directory based on environment;
+if (isset($_ENV['AH_SITE_ENVIRONMENT'])) {
+  $config['system.file']['path']['temporary'] = "/mnt/gfs/{$_ENV['AH_SITE_GROUP']}.{$_ENV['AH_SITE_ENVIRONMENT']}/tmp";
+}
+
 /**
  * Handling of config splits.
  * Adapted from Acquia BLT Settings:
