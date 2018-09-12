@@ -7053,6 +7053,9 @@
                     "status": "not-covered",
                     "message": "Alpha releases are not covered by Drupal security advisories."
                 }
+            },
+            "patches_applied": {
+                "Field field_last_password_reset is unknown": "https://www.drupal.org/files/issues/2018-07-30/password_policy-config_import_field_error-2771129-57.patch"
             }
         },
         "installation-source": "dist",
@@ -11855,11 +11858,6 @@
         "name": "roave/security-advisories",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Roave/SecurityAdvisories.git",
-            "reference": "0abc14e0df387fe74b4b32e0b8647d1639256d38"
-        },
         "conflict": {
             "3f/pygmentize": "<1.2",
             "adodb/adodb-php": "<5.20.12",
