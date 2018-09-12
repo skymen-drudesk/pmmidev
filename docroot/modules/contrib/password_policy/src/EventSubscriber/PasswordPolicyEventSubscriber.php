@@ -2,6 +2,8 @@
 
 namespace Drupal\password_policy\EventSubscriber;
 
+use Drupal\Core\Config\ConfigEvents;
+use Drupal\Core\Config\ConfigImporterEvent;
 use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -53,11 +55,42 @@ class PasswordPolicyEventSubscriber implements EventSubscriberInterface {
   }
 
   /**
+   * Updates password reset value for all users.
+   *
+   * @param \Drupal\Core\Config\ConfigImporterEvent $event
+   *   The config importer event.
+   */
+  public function onConfigImport(ConfigImporterEvent $event) {
+    $modules = $event->getConfigImporter()->getExtensionChangelist('module', 'install');
+
+    if (!in_array('password_policy', $modules)) {
+      return;
+    }
+
+    $timestamp = gmdate(DATETIME_DATETIME_STORAGE_FORMAT, REQUEST_TIME);
+
+    /** @var \Drupal\user\UserInterface[] $users */
+    $users = \Drupal::entityTypeManager()->getStorage('user')->loadMultiple();
+
+    // @todo Get rid of updating all users.
+    foreach ($users as $user) {
+      if ($user->getAccountName() == NULL) {
+        continue;
+      }
+      $user
+        ->set('field_last_password_reset', $timestamp)
+        ->set('field_password_expiration', '0')
+        ->save();
+    }
+  }
+
+  /**
    * {@inheritdoc}
    */
   static public function getSubscribedEvents() {
     // TODO - Evaluate if there is a better place to add this check.
     $events[KernelEvents::REQUEST][] = ['checkForUserPasswordExpiration'];
+    $events[ConfigEvents::IMPORT][] = ['onConfigImport'];
     return $events;
   }
 
