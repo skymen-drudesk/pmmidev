@@ -98,6 +98,16 @@ interface WebformInterface extends ConfigEntityInterface, EntityWithPluginCollec
   public function getLangcode();
 
   /**
+   * Returns the webform's weight.
+   *
+   * Only applies to when multiple webforms are attached to a single node.
+   *
+   * @return int
+   *   The webform's weight.
+   */
+  public function getWeight();
+
+  /**
    * Determine if the webform has page or is attached to other entities.
    *
    * @return bool
@@ -170,10 +180,10 @@ interface WebformInterface extends ConfigEntityInterface, EntityWithPluginCollec
   public function hasPreview();
 
   /**
-   * Determine if the webform has multistep form wizard pages.
+   * Determine if the webform has multi-step form wizard pages.
    *
    * @return bool
-   *   TRUE if the webform has multistep form wizard pages.
+   *   TRUE if the webform has multi-step form wizard pages.
    */
   public function hasWizardPages();
 
@@ -466,18 +476,18 @@ interface WebformInterface extends ConfigEntityInterface, EntityWithPluginCollec
   public function setPropertyOverride($property_name, $value);
 
   /**
-   * Returns the webform access controls.
+   * Returns the webform access rules.
    *
    * @return array
-   *   A structured array containing all the webform access controls.
+   *   A structured array containing all the webform access rules.
    */
   public function getAccessRules();
 
   /**
-   * Sets the webform access.
+   * Sets the webform access rules.
    *
    * @param array $access
-   *   The structured array containing all the webform access controls.
+   *   The structured array containing all the webform access rules.
    *
    * @return $this
    */
@@ -492,10 +502,10 @@ interface WebformInterface extends ConfigEntityInterface, EntityWithPluginCollec
   public static function getDefaultSettings();
 
   /**
-   * Returns the webform default access controls.
+   * Returns the webform default access rules.
    *
    * @return array
-   *   A structured array containing all the webform default access controls.
+   *   A structured array containing all the webform default access rules.
    */
   public static function getDefaultAccessRules();
 

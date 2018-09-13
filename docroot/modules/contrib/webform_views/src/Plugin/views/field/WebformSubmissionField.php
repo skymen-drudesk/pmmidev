@@ -56,6 +56,8 @@ class WebformSubmissionField extends FieldPluginBase {
     $options = parent::defineOptions();
 
     $options['webform_element_format'] = ['default' => ''];
+    $options['webform_multiple_value'] = ['default' => TRUE];
+    $options['webform_multiple_delta'] = ['default' => 0];
 
     return $options;
   }
@@ -65,6 +67,32 @@ class WebformSubmissionField extends FieldPluginBase {
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     parent::buildOptionsForm($form, $form_state);
+
+    $form['webform_multiple_value'] = [
+      '#type' => 'radios',
+      '#title' => $this->t('In this field show'),
+      '#options' => [
+        1 => $this->t('All multiple values'),
+        0 => $this->t('A value that corresponds to specific delta'),
+      ],
+      '#default_value' => $this->options['webform_multiple_value'],
+      '#required' => TRUE,
+      '#access' => $this->definition['multiple'],
+    ];
+
+    $form['webform_multiple_delta'] = [
+      '#type' => 'number',
+      '#title' => $this->t('Delta'),
+      '#description' => $this->t('Specify which delta to use for this field.'),
+      '#required' => TRUE,
+      '#default_value' => $this->options['webform_multiple_delta'],
+      '#access' => $this->definition['multiple'],
+      '#states' => [
+        'visible' => [
+          ':input[name$="[webform_multiple_value]"]' => ['value' => 0],
+        ],
+      ],
+    ];
 
     $form['webform_element_format'] = [
       '#type' => 'select',
@@ -81,12 +109,10 @@ class WebformSubmissionField extends FieldPluginBase {
    * {@inheritdoc}
    */
   public function render(ResultRow $values) {
-    if ($values->_entity->access('view')) {
-      /** @var \Drupal\webform\Plugin\WebformElementManagerInterface $element_manager */
-      $element_manager = \Drupal::service('plugin.manager.webform.element');
+    /** @var \Drupal\webform\WebformSubmissionInterface $webform_submission */
+    $webform_submission = $this->getEntity($values);
 
-      /** @var \Drupal\webform\WebformSubmissionInterface $webform_submission */
-      $webform_submission = $values->_entity;
+    if ($webform_submission && $webform_submission->access('view')) {
       $webform = $webform_submission->getWebform();
 
       // Get format and element key.
@@ -103,8 +129,14 @@ class WebformSubmissionField extends FieldPluginBase {
       $element['#format'] = $format;
 
       // Get element handler and get the element's HTML render array.
-      $element_handler = $element_manager->getElementInstance($element);
-      return $element_handler->formatHtml($element, $webform_submission);
+      $element_handler = $this->webformElementManager->getElementInstance($element);
+
+      $options = [];
+      if (!$this->options['webform_multiple_value']) {
+        $options['delta'] = $this->options['webform_multiple_delta'];
+      }
+
+      return $element_handler->formatHtml($element, $webform_submission, $options);
     }
 
     return [];

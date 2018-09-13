@@ -288,3 +288,65 @@ function pmmi_update_8011() {
     $field->delete();
   }
 }
+
+/**
+ * Remove audience_select from pages and page variants.
+ */
+function pmmi_update_8012() {
+  $page_storage = \Drupal::entityTypeManager()->getStorage('page');
+
+  // Delete gateway page.
+  if ($gateway_page = $page_storage->load('gateway')) {
+    $gateway_page->delete();
+  }
+
+  // Load pages need to be updated.
+  $pages_ids = ['home', 'standards_regulations', 'site_template'];
+  $pages = $page_storage->loadMultiple($pages_ids);
+
+  /* @var \Drupal\page_manager\PageInterface $page */
+  foreach ($pages as $page) {
+    $variants = $page->getVariants();
+    /** @var \Drupal\page_manager\Entity\PageVariant $variant */
+    foreach ($variants as $variant_id => $variant) {
+      // Remove excessive variants for home page.
+      if (in_array($variant_id, [
+        'home-panels_variant-1',
+        'home-panels_variant-2',
+      ])) {
+        $variant->delete();
+      }
+      else {
+        // Remove blocks which depend on audience_select.
+        if ($variant_plugin = $variant->getVariantPlugin()) {
+          if (isset($variant_plugin->getConfiguration()['blocks'])) {
+            foreach ($variant_plugin->getConfiguration()['blocks'] as $uuid => $block) {
+              if (
+                isset($block['provider']) &&
+                $block['provider'] == 'audience_select'
+              ) {
+                $variant_plugin->removeBlock($uuid);
+              }
+            }
+          }
+        }
+
+        // Remove audience selection condition.
+        /** @var \Drupal\Core\Condition\ConditionPluginCollection $selection_conditions */
+        $selection_conditions = $variant->getSelectionConditions();
+        $selection_configuration = $selection_conditions->getConfiguration();
+        foreach ($selection_configuration as $scid => $configuration) {
+          if ($configuration['id'] == 'audience') {
+            $variant = $variant->removeSelectionCondition($scid);
+          }
+        }
+        $variant->save();
+      }
+    }
+  }
+
+  // Delete audience_select module configuration.
+  \Drupal::configFactory()
+    ->getEditable('audience_select.settings')
+    ->delete();
+}

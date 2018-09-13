@@ -9,16 +9,35 @@ use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
 use Drupal\menu_per_role\Form\MenuPerRoleAdminSettings;
 
 /**
- * Implements hook_entity_base_field_info_alter().
+ * Implements hook_help().
+ */
+function menu_per_role_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.menu_per_role':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The Menu per Role module allows you to restrict access of menu items per roles.') . '</p>';
+      $output .= '<h3>' . t('Configuration') . '</h3>';
+      $output .= '<p>' . t('Just activate the Menu per Role module and edit a menu item as usual. There will be one or two fieldsets, depending on the configuration of the module, that allows you to restrict access by role.') . '</p>';
+      $output .= '<p>' . t("If you don't check any roles the default access permissions will be kept. Otherwise the module will additionally restrict access to the chosen user roles.") . '</p>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_entity_base_field_info().
  *
  * Adds two fields to menu_link_content, so access restrictions can be set.
  */
-function menu_per_role_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+function menu_per_role_entity_base_field_info(EntityTypeInterface $entity_type) {
+  $fields = [];
+
   if ($entity_type->id() != 'menu_link_content') {
-    return;
+    return $fields;
   }
 
   $fields['menu_per_role__show_role'] = BaseFieldDefinition::create('entity_reference')
@@ -42,6 +61,8 @@ function menu_per_role_entity_base_field_info_alter(&$fields, EntityTypeInterfac
       'type' => 'options_buttons',
       'weight' => 0,
     ]);
+
+  return $fields;
 }
 
 /**

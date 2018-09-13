@@ -23,6 +23,11 @@ elements: |
     '#title': help_required
     '#required': true
     '#help': '{This is an example of help for a required element}'
+  help_title:
+    '#type': textfield
+    '#title': help_title
+    '#help': '{This is an example of help with a custom help title}'
+    '#help_title': '{Help custom title}'
   help_html:
     '#type': textfield
     '#title': help_html
@@ -99,6 +104,7 @@ settings:
   submission_label: ''
   submission_log: false
   submission_user_columns: {  }
+  submission_user_duplicate: false
   submission_login: false
   submission_login_message: ''
   submission_exception_message: ''
@@ -111,7 +117,9 @@ settings:
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
+  wizard_progress_link: false
   wizard_start_label: ''
+  wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
   wizard_track: ''
@@ -197,3 +205,4 @@ access:
     users: {  }
     permissions: {  }
 handlers: {  }
+weight: 0

@@ -1,16 +1,13 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\search_api_page\Controller\SearchApiPageController.
- */
-
 namespace Drupal\search_api_page\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
+use Drupal\Core\Language\LanguageInterface;
 use Drupal\search_api\Entity\Index;
 use Drupal\search_api_page\Entity\SearchApiPage;
 use Symfony\Component\HttpFoundation\Request;
+use Drupal\search_api\SearchApiException;
 
 /**
  * Defines a controller to serve search pages.
@@ -20,18 +17,18 @@ class SearchApiPageController extends ControllerBase {
   /**
    * Page callback.
    *
-   * @param Request $request
+   * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
    * @param string $search_api_page_name
    *   The search api page name.
    * @param string $keys
    *   The search word.
    *
-   * @return array $build
+   * @return array
    *   The page build.
    */
   public function page(Request $request, $search_api_page_name, $keys = '') {
-    $build = array();
+    $build = [];
 
     /* @var $search_api_page \Drupal\search_api_page\SearchApiPageInterface */
     $search_api_page = SearchApiPage::load($search_api_page_name);
@@ -43,10 +40,10 @@ class SearchApiPageController extends ControllerBase {
 
     // Show the search form.
     if ($search_api_page->showSearchForm()) {
-      $args = array(
+      $args = [
         'search_api_page' => $search_api_page->id(),
         'keys' => $keys,
-      );
+      ];
       $build['#form'] = $this->formBuilder()->getForm('Drupal\search_api_page\Form\SearchApiPageBlockForm', $args);
     }
 
@@ -64,8 +61,9 @@ class SearchApiPageController extends ControllerBase {
       $query = $search_api_index->query([
         'limit' => $search_api_page->getLimit(),
         'offset' => !is_null($request->get('page')) ? $request->get('page') * $search_api_page->getLimit() : 0,
-        'search id' => 'search_api_page:' . $search_api_page->id(),
       ]);
+
+      $query->setSearchID('search_api_page:' . $search_api_page->id());
 
       $parse_mode = \Drupal::getContainer()
         ->get('plugin.manager.search_api.parse_mode')
@@ -77,6 +75,12 @@ class SearchApiPageController extends ControllerBase {
         $query->keys($keys);
       }
 
+      // Add filter for current language.
+      $langcode = \Drupal::service('language_manager')
+        ->getCurrentLanguage(LanguageInterface::TYPE_CONTENT)
+        ->getId();
+      $query->addCondition('search_api_language', $langcode);
+
       // Index fields.
       $query->setFulltextFields($search_api_page->getSearchedFields());
 
@@ -84,11 +88,16 @@ class SearchApiPageController extends ControllerBase {
       $items = $result->getResultItems();
 
       /* @var $item \Drupal\search_api\Item\ItemInterface*/
-      $results = array();
+      $results = [];
       foreach ($items as $item) {
 
-        /** @var \Drupal\Core\Entity\EntityInterface $entity */
-        $entity = $item->getOriginalObject()->getValue();
+        try {
+          /** @var \Drupal\Core\Entity\EntityInterface $entity */
+          $entity = $item->getOriginalObject()->getValue();
+        }
+        catch (SearchApiException $e) {
+          continue;
+        }
         if (!$entity) {
           continue;
         }
@@ -103,51 +112,51 @@ class SearchApiPageController extends ControllerBase {
 
         // Render as snippets.
         if ($search_api_page->renderAsSnippets()) {
-          $results[] = array(
+          $results[] = [
             '#theme' => 'search_api_page_result',
             '#item' => $item,
             '#entity' => $entity,
-          );
+          ];
         }
       }
 
       if (!empty($results)) {
 
-        $build['#search_title'] = array(
+        $build['#search_title'] = [
           '#markup' => $this->t('Search results'),
-        );
+        ];
 
-        $build['#no_of_results'] = array(
+        $build['#no_of_results'] = [
           '#markup' => $this->formatPlural($result->getResultCount(), '1 result found', '@count results found'),
-        );
+        ];
 
         $build['#results'] = $results;
 
         // Build pager.
         pager_default_initialize($result->getResultCount(), $search_api_page->getLimit());
-        $build['#pager'] = array(
+        $build['#pager'] = [
           '#type' => 'pager',
-        );
+        ];
       }
       elseif ($perform_search) {
-        $build['#no_results_found'] = array(
+        $build['#no_results_found'] = [
           '#markup' => $this->t('Your search yielded no results.'),
-        );
+        ];
 
-        $build['#search_help'] = array(
+        $build['#search_help'] = [
           '#markup' => $this->t('<ul>
 <li>Check if your spelling is correct.</li>
 <li>Remove quotes around phrases to search for each word individually. <em>bike shed</em> will often show more results than <em>&quot;bike shed&quot;</em>.</li>
 <li>Consider loosening your query with <em>OR</em>. <em>bike OR shed</em> will often show more results than <em>bike shed</em>.</li>
 </ul>'),
-        );
+        ];
       }
     }
 
+    $build['#theme'] = 'search_api_page';
+
     // Let other modules alter the search page.
     \Drupal::moduleHandler()->alter('search_api_page', $build, $result);
-
-    $build['#theme'] = 'search_api_page';
 
     // TODO caching dependencies.
     return $build;
@@ -156,19 +165,25 @@ class SearchApiPageController extends ControllerBase {
   /**
    * Title callback.
    *
-   * @param Request $request
+   * @param \Symfony\Component\HttpFoundation\Request $request
    *   The request.
    * @param string $search_api_page_name
    *   The search api page name.
    * @param string $keys
    *   The search word.
    *
-   * @return string $title
+   * @return string
    *   The page title.
    */
-  public function title(Request $request, $search_api_page_name, $keys = '') {
+  public function title(Request $request, $search_api_page_name = NULL, $keys = '') {
+    // Provide a default title if no search API page name is provided.
+    if ($search_api_page_name === NULL) {
+      return $this->t('Search');
+    }
+
     /* @var $search_api_page \Drupal\search_api_page\SearchApiPageInterface */
     $search_api_page = SearchApiPage::load($search_api_page_name);
     return $search_api_page->label();
   }
+
 }

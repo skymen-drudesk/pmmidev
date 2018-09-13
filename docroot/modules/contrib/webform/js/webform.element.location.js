@@ -24,7 +24,7 @@
         return;
       }
 
-      $(context).find('div.js-form-type-webform-location').once('webform-location').each(function () {
+      $(context).find('.js-webform-type-webform-location').once('webform-location').each(function () {
         var $element = $(this);
         var $input = $element.find('.webform-location-geocomplete');
         var $map = null;
@@ -47,7 +47,7 @@
         }, Drupal.webform.locationGeocomplete.options);
 
         var $geocomplete = $input.geocomplete(options);
-        
+
         // If there is default value look up location's attributes, else see if
         // the default value should be set to the browser's current geolocation.
         var value = $geocomplete.val();

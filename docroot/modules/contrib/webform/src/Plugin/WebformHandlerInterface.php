@@ -92,6 +92,14 @@ interface WebformHandlerInterface extends PluginInspectionInterface, Configurabl
   public function supportsConditions();
 
   /**
+   * Determine if webform handler supports tokens.
+   *
+   * @return bool
+   *   TRUE if the webform handler supports tokens.
+   */
+  public function supportsTokens();
+
+  /**
    * Returns the unique ID representing the webform handler.
    *
    * @return string
@@ -182,6 +190,20 @@ interface WebformHandlerInterface extends PluginInspectionInterface, Configurabl
   public function setConditions(array $conditions);
 
   /**
+   * Enables the webform handler.
+   *
+   * @return $this
+   */
+  public function enable();
+
+  /**
+   * Disables the webform handler.
+   *
+   * @return $this
+   */
+  public function disable();
+
+  /**
    * Checks if the handler is excluded via webform.settings.
    *
    * @return bool
@@ -248,7 +270,7 @@ interface WebformHandlerInterface extends PluginInspectionInterface, Configurabl
    * Note: Conditions are only applied to callbacks that require a
    * webform submissions.
    *
-   * Conditions are ignored by...
+   * Conditions are ignored by…
    * - \Drupal\webform\Plugin\WebformHandlerInterface::alterElements
    * - \Drupal\webform\Plugin\WebformHandlerInterface::preCreate
    *

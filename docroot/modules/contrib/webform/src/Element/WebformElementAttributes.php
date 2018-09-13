@@ -71,18 +71,19 @@ class WebformElementAttributes extends FormElement {
       $element['class'] = [
         '#type' => 'webform_select_other',
         '#title' => t('@title CSS classes', $t_args),
-        '#description' => t("Apply classes to the @type. Select 'custom...' to enter custom classes.", $t_args),
+        '#description' => t("Apply classes to the @type. Select 'custom…' to enter custom classes.", $t_args),
         '#multiple' => TRUE,
-        '#options' => [WebformSelectOther::OTHER_OPTION => t('custom...')] + array_combine($classes, $classes),
+        '#options' => [WebformSelectOther::OTHER_OPTION => t('custom…')] + array_combine($classes, $classes),
         '#other__option_delimiter' => ' ',
         '#attributes' => [
           'class' => [
             'js-' . $element['#id'] . '-attributes-style',
           ],
         ],
+        '#select2' => TRUE,
         '#default_value' => $element['#default_value']['class'],
       ];
-      WebformElementHelper::enhanceSelect($element['class'], TRUE);
+      WebformElementHelper::process($element['class']);
     }
     else {
       $element['class'] = [
@@ -96,7 +97,7 @@ class WebformElementAttributes extends FormElement {
     // Custom options.
     $element['custom'] = [
       '#type' => 'texfield',
-      '#placeholder' => t('Enter custom classes...'),
+      '#placeholder' => t('Enter custom classes…'),
       '#states' => [
         'visible' => [
           'select.js-' . $element['#id'] . '-attributes-style' => ['value' => '_custom_'],

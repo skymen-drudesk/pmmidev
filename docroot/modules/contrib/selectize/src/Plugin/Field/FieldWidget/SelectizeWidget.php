@@ -14,6 +14,12 @@ use Drupal\Component\Utility\Html;
  * @FieldWidget(
  *   id = "selectize_widget",
  *   label = @Translation("Selectize"),
+ *   label_singular = @Translation("Selectize"),
+ *   label_plural = @Translation("Selects"),
+ *   label_count = @PluralTranslation(
+ *     singular = @Translation("selectize"),
+ *     plural = @Translation("selects"),
+ *   ),
  *   field_types = {
  *     "list_string"
  *   },
@@ -45,7 +51,7 @@ class SelectizeWidget extends OptionsWidgetBase {
     $element['plugins'] = array(
       '#type' => 'checkboxes',
       '#title' => $this->t('Enabled Plugins'),
-      '#description' => $this->t('For a demonstration of what these plugins do, visit the demo site (need link).'),
+      '#description' => $this->t('For a demonstration of what these plugins do, visit the <a href="@url">demo site</a>.', ['@url' => 'https://selectize.github.io/selectize.js/']),
       '#default_value' => $this->getSetting('plugins'),
       '#options' => [
         'remove_button' => $this->t('Remove Button'),
@@ -81,7 +87,7 @@ class SelectizeWidget extends OptionsWidgetBase {
     $plugins = $this->getSetting('plugins');
 
     if (!empty($plugins)) {
-      $summary[] = t('Enabled plugins: @plugins', array('@plugins' => implode(', ', $plugins)));
+      $summary[] = $this->t('Enabled plugins: @plugins', array('@plugins' => implode(', ', $plugins)));
     }
 
     return $summary;
@@ -107,6 +113,8 @@ class SelectizeWidget extends OptionsWidgetBase {
       '#multiple' => $this->multiple && count($this->options) > 1,
     );
 
+    $element['#attributes']['placeholder'] = $this->t('Start typing to see a list of options...');
+
     return $element;
   }
 
@@ -116,12 +124,9 @@ class SelectizeWidget extends OptionsWidgetBase {
   protected function sanitizeLabel(&$label) {
     // Select form inputs allow unencoded HTML entities, but no HTML tags.
     $label = Html::decodeEntities(strip_tags($label));
+
+    // Replace hyphens at the start of an item, example, taxonomy children.
+    $label = preg_replace('/^-+/', '', $label);
   }
 
-  /**
-   * {@inheritdoc}
-   */
-  protected function supportsGroups() {
-    return FALSE;
-  }
 }

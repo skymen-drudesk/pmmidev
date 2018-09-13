@@ -41,3 +41,10 @@ search_api_page.search_api_page.*:
       label: 'Show search form'
     uuid:
       type: string
+
+block.settings.search_api_page_form_block:
+  type: block_settings
+  mapping:
+    search_api_page:
+      type: string
+      label: 'Search page ID'

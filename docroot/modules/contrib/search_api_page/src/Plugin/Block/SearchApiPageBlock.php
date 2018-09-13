@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\search_api_page\Plugin\Block\SearchApiPageBlock.
- */
-
 namespace Drupal\search_api_page\Plugin\Block;
 
 use Drupal\Core\Form\FormStateInterface;
@@ -26,21 +21,21 @@ class SearchApiPageBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function blockForm($form, FormStateInterface $form_state) {
-    $options = array();
+    $options = [];
 
-    $search_api_pages = \Drupal::entityManager()->getStorage('search_api_page')->loadMultiple();
+    $search_api_pages = \Drupal::entityTypeManager()->getStorage('search_api_page')->loadMultiple();
     foreach ($search_api_pages as $search_api_page) {
       $options[$search_api_page->id()] = $search_api_page->label();
     }
 
-    $form['search_api_page'] = array(
+    $form['search_api_page'] = [
       '#type' => 'select',
       '#title' => $this->t('Search page'),
       '#default_value' => !empty($this->configuration['search_api_page']) ? $this->configuration['search_api_page'] : '',
       '#description' => $this->t('Select to which search page a submission of this form will redirect to'),
       '#options' => $options,
       '#required' => TRUE,
-    );
+    ];
 
     return $form;
   }
@@ -66,9 +61,9 @@ class SearchApiPageBlock extends BlockBase {
    * {@inheritdoc}
    */
   public function build() {
-    $args = array(
+    $args = [
       'search_api_page' => $this->configuration['search_api_page'],
-    );
+    ];
     return \Drupal::formBuilder()->getForm('Drupal\search_api_page\Form\SearchApiPageBlockForm', $args);
   }
 

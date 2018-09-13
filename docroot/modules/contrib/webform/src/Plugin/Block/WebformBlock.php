@@ -2,6 +2,7 @@
 
 namespace Drupal\webform\Plugin\Block;
 
+use Drupal\Core\Access\AccessResult;
 use Drupal\Core\Block\BlockBase;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
@@ -45,7 +46,7 @@ class WebformBlock extends BlockBase implements ContainerFactoryPluginInterface 
    * @param mixed $plugin_definition
    *   The plugin implementation definition.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
-   *   The entity type manager service.
+   *   The entity type manager.
    * @param \Drupal\webform\WebformTokenManagerInterface $token_manager
    *   The webform token manager.
    */
@@ -91,13 +92,30 @@ class WebformBlock extends BlockBase implements ContainerFactoryPluginInterface 
     ];
     $form['default_data'] = [
       '#title' => $this->t('Default webform submission data (YAML)'),
-      '#description' => $this->t('Enter webform submission data as name and value pairs which will be used to prepopulate the selected webform. You may use tokens.'),
       '#type' => 'webform_codemirror',
       '#mode' => 'yaml',
       '#default_value' => $this->configuration['default_data'],
+      '#webform_element' => TRUE,
+      '#description' => [
+        'content' => ['#markup' => $this->t('Enter submission data as name and value pairs as <a href=":href">YAML</a> which will be used to prepopulate the selected webform.', [':href' => 'https://en.wikipedia.org/wiki/YAML']), '#suffix' => ' '],
+        'token' => $this->tokenManager->buildTreeLink(),
+      ],
+      '#more_title' => $this->t('Example'),
+      '#more' => [
+        '#theme' => 'webform_codemirror',
+        '#type' => 'yaml',
+        '#code' => "# This is an example of a comment.
+element_key: 'some value'
+
+# The below example uses a token to get the current node's title.
+# Add ':clear' to the end token to return an empty value when the token is missing.
+title: '[webform_submission:node:title:clear]'
+# The below example uses a token to get a field value from the current node.
+full_name: '[webform_submission:node:field_full_name:clear]",
+      ],
     ];
 
-    $form['token_tree_link'] = $this->tokenManager->buildTreeLink();
+    $form['token_tree_link'] = $this->tokenManager->buildTreeElement();
 
     $this->tokenManager->elementValidate($form);
 
@@ -127,7 +145,12 @@ class WebformBlock extends BlockBase implements ContainerFactoryPluginInterface 
    * {@inheritdoc}
    */
   protected function blockAccess(AccountInterface $account) {
-    return $this->getWebform()->access('submission_create', $account, TRUE);
+    $webform = $this->getWebform();
+    if (!$webform) {
+      return AccessResult::forbidden();
+    }
+
+    return $webform->access('submission_create', $account, TRUE);
   }
 
   /**

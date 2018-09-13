@@ -16,7 +16,7 @@ category: ''
 elements: |
   information:
     '#title': 'Your Information'
-    '#type': fieldset
+    '#type': webform_section
     first_name:
       '#title': 'First Name'
       '#type': textfield
@@ -32,7 +32,7 @@ elements: |
       '#required': true
   contact_information:
     '#title': 'Contact Information'
-    '#type': fieldset
+    '#type': webform_section
     contact:
       '#type': webform_contact
       '#title': Contact
@@ -41,7 +41,7 @@ elements: |
       '#company__access': false
   resume:
     '#title': 'Your Resume'
-    '#type': fieldset
+    '#type': webform_section
     resume_method:
       '#type': radios
       '#options':
@@ -117,6 +117,7 @@ settings:
   submission_label: ''
   submission_log: false
   submission_user_columns: {  }
+  submission_user_duplicate: false
   submission_login: false
   submission_login_message: ''
   submission_exception_message: ''
@@ -129,7 +130,9 @@ settings:
   wizard_progress_bar: true
   wizard_progress_pages: false
   wizard_progress_percentage: false
+  wizard_progress_link: false
   wizard_start_label: ''
+  wizard_preview_link: false
   wizard_confirmation: true
   wizard_confirmation_label: ''
   wizard_track: ''
@@ -225,7 +228,7 @@ handlers:
     settings:
       states:
         - completed
-      to_mail: default
+      to_mail: _default
       to_options: {  }
       cc_mail: ''
       cc_options: {  }
@@ -234,8 +237,8 @@ handlers:
       from_mail: '[webform_submission:values:email:raw]'
       from_options: {  }
       from_name: '[webform_submission:values:first_name] [webform_submission:values:last_name]'
-      subject: default
-      body: default
+      subject: _default
+      body: _default
       excluded_elements: {  }
       ignore_access: false
       exclude_empty: true
@@ -248,3 +251,4 @@ handlers:
       return_path: ''
       sender_mail: ''
       sender_name: ''
+weight: 0

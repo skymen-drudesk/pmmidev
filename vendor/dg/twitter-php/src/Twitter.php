@@ -8,7 +8,7 @@
  *
  * Homepage:    https://phpfashion.com/twitter-for-php
  * Twitter API: https://dev.twitter.com/rest/public
- * Version:     3.6
+ * Version:     3.7
  */
 
 
@@ -34,19 +34,18 @@ class Twitter
 	public static $cacheDir;
 
 	/** @var array */
-	public $httpOptions = array(
+	public $httpOptions = [
 		CURLOPT_TIMEOUT => 20,
 		CURLOPT_SSL_VERIFYPEER => 0,
-		CURLOPT_HTTPHEADER => array('Expect:'),
+		CURLOPT_HTTPHEADER => ['Expect:'],
 		CURLOPT_USERAGENT => 'Twitter for PHP',
-	);
+	];
 
 	/** @var Twitter_OAuthConsumer */
 	private $consumer;
 
 	/** @var Twitter_OAuthConsumer */
 	private $token;
-
 
 
 	/**
@@ -57,7 +56,7 @@ class Twitter
 	 * @param  string  optinal access token secret
 	 * @throws TwitterException when CURL extension is not loaded
 	 */
-	public function __construct($consumerKey, $consumerSecret, $accessToken = NULL, $accessTokenSecret = NULL)
+	public function __construct($consumerKey, $consumerSecret, $accessToken = null, $accessTokenSecret = null)
 	{
 		if (!extension_loaded('curl')) {
 			throw new TwitterException('PHP extension CURL is not loaded.');
@@ -81,7 +80,7 @@ class Twitter
 
 		} catch (TwitterException $e) {
 			if ($e->getCode() === 401) {
-				return FALSE;
+				return false;
 			}
 			throw $e;
 		}
@@ -91,25 +90,27 @@ class Twitter
 	/**
 	 * Sends message to the Twitter.
 	 * @param  string   message encoded in UTF-8
+	 * @param  string  path to local media file to be uploaded
+	 * @param  array  additional options to send to statuses/update
 	 * @return stdClass  see https://dev.twitter.com/rest/reference/post/statuses/update
 	 * @throws TwitterException
 	 */
-	public function send($message, $media = NULL)
+	public function send($message, $media = null, $options = [])
 	{
-		$mediaIds = array();
+		$mediaIds = [];
 		foreach ((array) $media as $item) {
 			$res = $this->request(
 				'https://upload.twitter.com/1.1/media/upload.json',
 				'POST',
-				NULL,
-				array('media' => $item)
+				null,
+				['media' => $item]
 			);
 			$mediaIds[] = $res->media_id_string;
 		}
 		return $this->request(
 			'statuses/update',
 			'POST',
-			array('status' => $message, 'media_ids' => $mediaIds ? implode(',', $mediaIds) : NULL)
+			$options + ['status' => $message, 'media_ids' => implode(',', $mediaIds) ?: null]
 		);
 	}
 
@@ -124,7 +125,7 @@ class Twitter
 		return $this->request(
 			'direct_messages/new',
 			'POST',
-			array('text' => $message, 'screen_name' => $username)
+			['text' => $message, 'screen_name' => $username]
 		);
 	}
 
@@ -137,7 +138,7 @@ class Twitter
 	 */
 	public function follow($username)
 	{
-		return $this->request('friendships/create', 'POST', array('screen_name' => $username));
+		return $this->request('friendships/create', 'POST', ['screen_name' => $username]);
 	}
 
 
@@ -149,21 +150,21 @@ class Twitter
 	 * @return stdClass[]
 	 * @throws TwitterException
 	 */
-	public function load($flags = self::ME, $count = 20, array $data = NULL)
+	public function load($flags = self::ME, $count = 20, array $data = null)
 	{
-		static $timelines = array(
+		static $timelines = [
 			self::ME => 'user_timeline',
 			self::ME_AND_FRIENDS => 'home_timeline',
 			self::REPLIES => 'mentions_timeline',
-		);
+		];
 		if (!isset($timelines[$flags & 3])) {
 			throw new InvalidArgumentException;
 		}
 
-		return $this->cachedRequest('statuses/' . $timelines[$flags & 3], (array) $data + array(
+		return $this->cachedRequest('statuses/' . $timelines[$flags & 3], (array) $data + [
 			'count' => $count,
 			'include_rts' => $flags & self::RETWEETS ? 1 : 0,
-		));
+		]);
 	}
 
 
@@ -175,7 +176,7 @@ class Twitter
 	 */
 	public function loadUserInfo($username)
 	{
-		return $this->cachedRequest('users/show', array('screen_name' => $username));
+		return $this->cachedRequest('users/show', ['screen_name' => $username]);
 	}
 
 
@@ -187,7 +188,7 @@ class Twitter
 	 */
 	public function loadUserInfoById($id)
 	{
-		return $this->cachedRequest('users/show', array('user_id' => $id));
+		return $this->cachedRequest('users/show', ['user_id' => $id]);
 	}
 
 
@@ -199,11 +200,11 @@ class Twitter
 	 */
 	public function loadUserFollowers($username, $count = 5000, $cursor = -1, $cacheExpiry = null)
 	{
-		return $this->cachedRequest('followers/ids', array(
+		return $this->cachedRequest('followers/ids', [
 			'screen_name' => $username,
 			'count' => $count,
 			'cursor' => $cursor,
-		), $cacheExpiry);
+		], $cacheExpiry);
 	}
 
 
@@ -215,11 +216,11 @@ class Twitter
 	 */
 	public function loadUserFollowersList($username, $count = 200, $cursor = -1, $cacheExpiry = null)
 	{
-		return $this->cachedRequest('followers/list', array(
+		return $this->cachedRequest('followers/list', [
 			'screen_name' => $username,
 			'count' => $count,
 			'cursor' => $cursor,
-		), $cacheExpiry);
+		], $cacheExpiry);
 	}
 
 
@@ -232,7 +233,7 @@ class Twitter
 	public function destroy($id)
 	{
 		$res = $this->request("statuses/destroy/$id", 'POST');
-		return $res->id ? $res->id : FALSE;
+		return $res->id ? $res->id : false;
 	}
 
 
@@ -243,9 +244,9 @@ class Twitter
 	 * @return stdClass  see https://dev.twitter.com/rest/reference/get/search/tweets
 	 * @throws TwitterException
 	 */
-	public function search($query, $full = FALSE)
+	public function search($query, $full = false)
 	{
-		$res = $this->request('search/tweets', 'GET', is_array($query) ? $query : array('q' => $query));
+		$res = $this->request('search/tweets', 'GET', is_array($query) ? $query : ['q' => $query]);
 		return $full ? $res : $res->statuses;
 	}
 
@@ -259,7 +260,7 @@ class Twitter
 	 * @return stdClass|stdClass[]
 	 * @throws TwitterException
 	 */
-	public function request($resource, $method, array $data = NULL, array $files = NULL)
+	public function request($resource, $method, array $data = null, array $files = null)
 	{
 		if (!strpos($resource, '://')) {
 			if (!strpos($resource, '.')) {
@@ -268,10 +269,10 @@ class Twitter
 			$resource = self::API_URL . $resource;
 		}
 
-		$hasCURLFile = class_exists('CURLFile', FALSE) && defined('CURLOPT_SAFE_UPLOAD');
+		$hasCURLFile = class_exists('CURLFile', false) && defined('CURLOPT_SAFE_UPLOAD');
 
 		foreach ((array) $data as $key => $val) {
-			if ($val === NULL) {
+			if ($val === null) {
 				unset($data[$key]);
 			} elseif ($files && !$hasCURLFile && substr($val, 0, 1) === '@') {
 				throw new TwitterException('Due to limitation of cURL it is not possible to send message starting with @ and upload file at the same time in PHP < 5.5');
@@ -285,22 +286,22 @@ class Twitter
 			$data[$key] = $hasCURLFile ? new CURLFile($file) : '@' . $file;
 		}
 
-		$request = Twitter_OAuthRequest::from_consumer_and_token($this->consumer, $this->token, $method, $resource, $files ? array() : $data);
+		$request = Twitter_OAuthRequest::from_consumer_and_token($this->consumer, $this->token, $method, $resource, $files ? [] : $data);
 		$request->sign_request(new Twitter_OAuthSignatureMethod_HMAC_SHA1, $this->consumer, $this->token);
 
-		$options = array(
-			CURLOPT_HEADER => FALSE,
-			CURLOPT_RETURNTRANSFER => TRUE,
-		) + ($method === 'POST' ? array(
-			CURLOPT_POST => TRUE,
+		$options = [
+			CURLOPT_HEADER => false,
+			CURLOPT_RETURNTRANSFER => true,
+		] + ($method === 'POST' ? [
+			CURLOPT_POST => true,
 			CURLOPT_POSTFIELDS => $files ? $data : $request->to_postdata(),
 			CURLOPT_URL => $files ? $request->to_url() : $request->get_normalized_http_url(),
-		) : array(
+		] : [
 			CURLOPT_URL => $request->to_url(),
-		)) + $this->httpOptions;
+		]) + $this->httpOptions;
 
 		if ($method === 'POST' && $hasCURLFile) {
-			$options[CURLOPT_SAFE_UPLOAD] = TRUE;
+			$options[CURLOPT_SAFE_UPLOAD] = true;
 		}
 
 		$curl = curl_init();
@@ -311,10 +312,10 @@ class Twitter
 		}
 
 		$payload = defined('JSON_BIGINT_AS_STRING')
-			? @json_decode($result, FALSE, 128, JSON_BIGINT_AS_STRING)
+			? @json_decode($result, false, 128, JSON_BIGINT_AS_STRING)
 			: @json_decode($result); // intentionally @
 
-		if ($payload === FALSE) {
+		if ($payload === false) {
 			throw new TwitterException('Invalid server response');
 		}
 
@@ -338,18 +339,18 @@ class Twitter
 	 * @param  int
 	 * @return stdClass|stdClass[]
 	 */
-	public function cachedRequest($resource, array $data = NULL, $cacheExpire = NULL)
+	public function cachedRequest($resource, array $data = null, $cacheExpire = null)
 	{
 		if (!self::$cacheDir) {
 			return $this->request($resource, 'GET', $data);
 		}
-		if ($cacheExpire === NULL) {
+		if ($cacheExpire === null) {
 			$cacheExpire = self::$cacheExpire;
 		}
 
 		$cacheFile = self::$cacheDir
 			. '/twitter.'
-			. md5($resource . json_encode($data) . serialize(array($this->consumer, $this->token)))
+			. md5($resource . json_encode($data) . serialize([$this->consumer, $this->token]))
 			. '.json';
 
 		$cache = @json_decode(@file_get_contents($cacheFile)); // intentionally @
@@ -374,37 +375,27 @@ class Twitter
 
 	/**
 	 * Makes twitter links, @usernames and #hashtags clickable.
-	 * @param  stdClass  status
 	 * @return string
 	 */
-	public static function clickable($status)
+	public static function clickable(stdClass $status)
 	{
-		if (!is_object($status)) { // back compatibility
-			trigger_error(__METHOD__ . '() has been changed; pass as parameter status object, not just text.', E_USER_WARNING);
-			return preg_replace_callback(
-				'~(?<!\w)(https?://\S+\w|www\.\S+\w|@\w+|#\w+)|[<>&]~u',
-				array(__CLASS__, 'clickableCallback'),
-				html_entity_decode($status, ENT_QUOTES, 'UTF-8')
-			);
-		}
-
-		$all = array();
+		$all = [];
 		foreach ($status->entities->hashtags as $item) {
-			$all[$item->indices[0]] = array("https://twitter.com/search?q=%23$item->text", "#$item->text", $item->indices[1]);
+			$all[$item->indices[0]] = ["https://twitter.com/search?q=%23$item->text", "#$item->text", $item->indices[1]];
 		}
 		foreach ($status->entities->urls as $item) {
 			if (!isset($item->expanded_url)) {
-				$all[$item->indices[0]] = array($item->url, $item->url, $item->indices[1]);
+				$all[$item->indices[0]] = [$item->url, $item->url, $item->indices[1]];
 			} else {
-				$all[$item->indices[0]] = array($item->expanded_url, $item->display_url, $item->indices[1]);
+				$all[$item->indices[0]] = [$item->expanded_url, $item->display_url, $item->indices[1]];
 			}
 		}
 		foreach ($status->entities->user_mentions as $item) {
-			$all[$item->indices[0]] = array("https://twitter.com/$item->screen_name", "@$item->screen_name", $item->indices[1]);
+			$all[$item->indices[0]] = ["https://twitter.com/$item->screen_name", "@$item->screen_name", $item->indices[1]];
 		}
 		if (isset($status->entities->media)) {
 			foreach ($status->entities->media as $item) {
-				$all[$item->indices[0]] = array($item->url, $item->display_url, $item->indices[1]);
+				$all[$item->indices[0]] = [$item->url, $item->display_url, $item->indices[1]];
 			}
 		}
 
@@ -417,26 +408,6 @@ class Twitter
 		}
 		return $s;
 	}
-
-
-	private static function clickableCallback($m)
-	{
-		$m = htmlspecialchars($m[0]);
-		if ($m[0] === '#') {
-			$m = substr($m, 1);
-			return "<a href='https://twitter.com/search?q=%23$m'>#$m</a>";
-		} elseif ($m[0] === '@') {
-			$m = substr($m, 1);
-			return "@<a href='https://twitter.com/$m'>$m</a>";
-		} elseif ($m[0] === 'w') {
-			return "<a href='http://$m'>$m</a>";
-		} elseif ($m[0] === 'h') {
-			return "<a href='$m'>$m</a>";
-		} else {
-			return $m;
-		}
-	}
-
 }
 
 

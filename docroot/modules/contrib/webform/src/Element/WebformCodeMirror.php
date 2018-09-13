@@ -219,7 +219,6 @@ class WebformCodeMirror extends Textarea {
    * @return array|null
    *   An array of error messages.
    */
-
   protected static function validateHtml($element, FormStateInterface $form_state, $complete_form) {
     // @see: http://stackoverflow.com/questions/3167074/which-function-in-php-validate-if-the-string-is-valid-html
     // @see: http://stackoverflow.com/questions/5030392/x-html-validator-in-php
@@ -258,7 +257,7 @@ class WebformCodeMirror extends Textarea {
     $template = $element['#value'];
     $form_object = $form_state->getFormObject();
     try {
-      // If form object has getWebform mehthod. validate Twig template
+      // If form object has getWebform method. validate Twig template
       // using a temporary webform submission context.
       if (method_exists($form_object, 'getWebform')) {
         /** @var \Drupal\webform\WebformInterface $webform */

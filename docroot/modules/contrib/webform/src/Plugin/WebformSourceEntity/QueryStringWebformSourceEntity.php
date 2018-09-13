@@ -60,22 +60,6 @@ class QueryStringWebformSourceEntity extends PluginBase implements WebformSource
   protected $webformEntityReferenceManager;
 
   /**
-   * {@inheritdoc}
-   */
-  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
-    return new static(
-      $configuration,
-      $plugin_id,
-      $plugin_definition,
-      $container->get('entity_type.manager'),
-      $container->get('current_route_match'),
-      $container->get('request_stack'),
-      $container->get('language_manager'),
-      $container->get('webform.entity_reference_manager')
-    );
-  }
-
-  /**
    * QueryStringWebformSourceEntity constructor.
    *
    * @param array $configuration
@@ -108,6 +92,22 @@ class QueryStringWebformSourceEntity extends PluginBase implements WebformSource
   /**
    * {@inheritdoc}
    */
+  public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
+    return new static(
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('entity_type.manager'),
+      $container->get('current_route_match'),
+      $container->get('request_stack'),
+      $container->get('language_manager'),
+      $container->get('webform.entity_reference_manager')
+    );
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function getSourceEntity(array $ignored_types) {
     // Note: We deliberately discard $ignored_types because through query string
     // any arbitrary entity can be injected as a source.
@@ -134,7 +134,7 @@ class QueryStringWebformSourceEntity extends PluginBase implements WebformSource
       return NULL;
     }
 
-    if (is_subclass_of($source_entity, TranslatableInterface::class) && $source_entity->hasTranslation($this->languageManager->getCurrentLanguage()->getId())) {
+    if ($source_entity instanceof TranslatableInterface && $source_entity->hasTranslation($this->languageManager->getCurrentLanguage()->getId())) {
       $source_entity = $source_entity->getTranslation($this->languageManager->getCurrentLanguage()->getId());
     }
 

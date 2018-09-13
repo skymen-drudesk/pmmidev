@@ -1,14 +1,9 @@
 <?php
 
-/**
- * @file
- * Contains Drupal\search_api_page\Routing\SearchApiRoutes.
- */
-
 namespace Drupal\search_api_page\Routing;
 
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Language\LanguageManagerInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Routing\Route;
@@ -19,11 +14,11 @@ use Symfony\Component\Routing\Route;
 class SearchApiPageRoutes implements ContainerInjectionInterface {
 
   /**
-   * The entity manager service.
+   * The entity type manager service.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
    * The language manager service.
@@ -35,13 +30,13 @@ class SearchApiPageRoutes implements ContainerInjectionInterface {
   /**
    * Constructs a new SearchApiRoutes object.
    *
-   * @param \Drupal\Core\Entity\EntityManagerInterface $entity_manager
-   *   The entity manager service.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager service.
    * @param \Drupal\Core\Language\LanguageManagerInterface $language_manager
    *   The language manager service.
    */
-  public function __construct(EntityManagerInterface $entity_manager, LanguageManagerInterface $language_manager) {
-    $this->entityManager = $entity_manager;
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, LanguageManagerInterface $language_manager) {
+    $this->entityTypeManager = $entity_type_manager;
     $this->languageManager = $language_manager;
   }
 
@@ -50,7 +45,7 @@ class SearchApiPageRoutes implements ContainerInjectionInterface {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager'),
+      $container->get('entity_type.manager'),
       $container->get('language_manager')
     );
   }
@@ -62,12 +57,12 @@ class SearchApiPageRoutes implements ContainerInjectionInterface {
    *   An array of route objects.
    */
   public function routes() {
-    $routes = array();
+    $routes = [];
 
     $is_multilingual = $this->languageManager->isMultilingual();
 
     /* @var $search_api_page \Drupal\search_api_page\SearchApiPageInterface */
-    foreach ($this->entityManager->getStorage('search_api_page')->loadMultiple() as $search_api_page) {
+    foreach ($this->entityTypeManager->getStorage('search_api_page')->loadMultiple() as $search_api_page) {
 
       // Default path.
       $default_path = $search_api_page->getPath();
@@ -104,9 +99,10 @@ class SearchApiPageRoutes implements ContainerInjectionInterface {
         $routes['search_api_page.' . $language->getId() . '.' . $search_api_page->id()] = new Route(
           $path,
           $args,
-          array(
+          [
             '_permission' => 'view search api pages',
-          )
+            'keys' => '.*',
+          ]
         );
       }
     }

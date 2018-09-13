@@ -33,7 +33,7 @@ class WebformPluginHandlerController extends ControllerBase implements Container
   protected $pluginManager;
 
   /**
-   * Constructs a WebformPluginHanderController object.
+   * Constructs a WebformPluginHandlerController object.
    *
    * @param \Drupal\Core\Config\ConfigFactoryInterface $config_factory
    *   The factory for configuration objects.
@@ -88,7 +88,7 @@ class WebformPluginHandlerController extends ControllerBase implements Container
 
     $build = [];
 
-    // Settings
+    // Settings.
     $build['settings'] = [
       '#type' => 'link',
       '#title' => $this->t('Edit configuration'),
@@ -231,6 +231,8 @@ class WebformPluginHandlerController extends ControllerBase implements Container
       '#attributes' => [
         'class' => ['webform-form-filter-text'],
         'data-element' => '.webform-handler-add-table',
+        'data-item-single' => $this->t('handler'),
+        'data-item-plural' => $this->t('handlers'),
         'title' => $this->t('Enter a part of the handler name to filter by.'),
         'autofocus' => 'autofocus',
       ],
@@ -240,6 +242,7 @@ class WebformPluginHandlerController extends ControllerBase implements Container
       '#type' => 'table',
       '#header' => $headers,
       '#rows' => $rows,
+      '#sticky' => TRUE,
       '#empty' => $this->t('No handler available.'),
       '#attributes' => [
         'class' => ['webform-handler-add-table'],

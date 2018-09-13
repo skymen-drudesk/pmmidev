@@ -12,12 +12,14 @@ use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Form\OptGroup;
 use Drupal\Core\Link;
+use Drupal\Core\Messenger\MessengerTrait;
 use Drupal\Core\Render\Element;
 use Drupal\Core\Render\ElementInfoManagerInterface;
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\Core\Url;
+use Drupal\webform\Element\WebformCompositeFormElementTrait;
 use Drupal\webform\Element\WebformHtmlEditor;
 use Drupal\webform\Element\WebformMessage;
 use Drupal\webform\Entity\WebformOptions;
@@ -50,6 +52,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class WebformElementBase extends PluginBase implements WebformElementInterface {
 
   use StringTranslationTrait;
+  use MessengerTrait;
+  use WebformCompositeFormElementTrait;
 
   /**
    * A logger instance.
@@ -193,6 +197,7 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
       'default_value' => '',
       // Description/Help.
       'help' => '',
+      'help_title' => '',
       'description' => '',
       'more' => '',
       'more_title' => '',
@@ -285,6 +290,7 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
       'title',
       'label',
       'help',
+      'help_title',
       'more',
       'more_title',
       'description',
@@ -414,6 +420,13 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
    */
   public function getPluginDescription() {
     return $this->pluginDefinition['description'];
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getPluginCategory() {
+    return $this->pluginDefinition['category'];
   }
 
   /**
@@ -581,8 +594,8 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
         continue;
       }
 
-      // Skip disable or hidden.
-      if (!$element_instance->isEnabled() || $element_instance->isHidden()) {
+      // Skip disabled or hidden.
+      if ($element_instance->isDisabled() || $element_instance->isHidden()) {
         continue;
       }
 
@@ -652,6 +665,10 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
       $element['#access'] = $this->checkAccessRules($operation, $element);
     }
 
+    // Enable webform template preprocessing enhancements.
+    // @see \Drupal\webform\Utility\WebformElementHelper::isWebformElement
+    $element['#webform_element'] = TRUE;
+
     // Add #allowed_tags.
     $allowed_tags = $this->configFactory->get('webform.settings')->get('element.allowed_tags');
     switch ($allowed_tags) {
@@ -700,8 +717,6 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
       $element[$attributes_property]['class'][] = 'js-webform-tooltip-element';
       $element[$attributes_property]['class'][] = 'webform-tooltip-element';
       $element['#attached']['library'][] = 'webform/webform.tooltip';
-      // More is not supported with tooltip.
-      unset($element['#more']);
     }
 
     // Add iCheck support.
@@ -754,16 +769,16 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
         $element['#attributes']['data-webform-required-error'] = $element['#required_error'];
       }
 
-      // Add webform element #minlength, #unique, and/or #multiple
+      // Add webform element #minlength, #multiple, and/or #unique
       // validation handler.
       if (isset($element['#minlength'])) {
         $element['#element_validate'][] = [get_class($this), 'validateMinlength'];
       }
-      if (isset($element['#unique'])) {
-        $element['#element_validate'][] = [get_class($this), 'validateUnique'];
-      }
       if (isset($element['#multiple']) && $element['#multiple'] > 1) {
         $element['#element_validate'][] = [get_class($this), 'validateMultiple'];
+      }
+      if (isset($element['#unique']) && $webform_submission) {
+        $element['#element_validate'][] = [get_class($this), 'validateUnique'];
       }
     }
 
@@ -777,6 +792,13 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
    * {@inheritdoc}
    */
   public function finalize(array &$element, WebformSubmissionInterface $webform_submission = NULL) {
+    // Set element's #pre_render callback so that is not replaced by
+    // additional element #pre_render callbacks.
+    $this->setElementDefaultCallback($element, 'pre_render');
+
+    // Prepare composite element.
+    $this->prepareCompositeFormElement($element);
+
     // Prepare multiple element.
     $this->prepareMultipleWrapper($element);
 
@@ -877,6 +899,29 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
   }
 
   /**
+   * Replace Core's composite #pre_render with Webform's composite #pre_render.
+   *
+   * @param array $element
+   *   An element.
+   *
+   * @see \Drupal\Core\Render\Element\CompositeFormElementTrait
+   * @see \Drupal\webform\Element\WebformCompositeFormElementTrait
+   */
+  protected function prepareCompositeFormElement(array &$element) {
+    if (empty($element['#pre_render'])) {
+      return;
+    }
+
+    // Replace preRenderCompositeFormElement with
+    // preRenderWebformCompositeFormElement.
+    foreach ($element['#pre_render'] as $index => $pre_render) {
+      if (is_array($pre_render) && $pre_render[1] === 'preRenderCompositeFormElement') {
+        $element['#pre_render'][$index] = [get_called_class(), 'preRenderWebformCompositeFormElement'];
+      }
+    }
+  }
+
+  /**
    * Set an elements #states and flexbox wrapper.
    *
    * @param array $element
@@ -890,10 +935,6 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
     }
 
     $class = get_class($this);
-
-    // Set element's #pre_render callback so that is not replaced by
-    // additional element #pre_render callbacks.
-    $this->setElementDefaultCallback($element, 'pre_render');
 
     // Fix #states wrapper.
     if ($has_states_wrapper) {
@@ -1014,7 +1055,7 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
     else {
       $message = $this->t('%title is a %type element, which has been disabled and will not be rendered. Please contact a site administrator.', $t_args);
     }
-    drupal_set_message($message, 'warning');
+    $this->messenger()->addWarning($message);
 
     $context = [
       '@title' => $this->getLabel($element),
@@ -1440,15 +1481,7 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
 
     // Build a render that used #plain_text so that HTML characters are escaped.
     // @see \Drupal\Core\Render\Renderer::ensureMarkupIsSafe
-    if ($value === '0') {
-      // Issue #2765609: #plain_text doesn't render empty-like values
-      // (e.g. 0 and "0").
-      // Workaround: Use #markup until this issue is fixed.
-      $build = ['#markup' => $value];
-    }
-    else {
-      $build = ['#plain_text' => $value];
-    }
+    $build = ['#plain_text' => $value];
 
     $options += ['prefixing' => TRUE];
     if ($options['prefixing']) {
@@ -1748,7 +1781,7 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
       return;
     }
 
-    if (Unicode::strlen($element['#value']) < $element['#minlength']) {
+    if (!empty($element['#value']) && Unicode::strlen($element['#value']) < $element['#minlength']) {
       $t_args = [
         '%name' => empty($element['#title']) ? $element['#parents'][0] : $element['#title'],
         '%min' => $element['#minlength'],
@@ -2110,49 +2143,53 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
       ],
     ];
 
-    /* Element description */
+    /* Element description/help/more */
 
     $form['element_description'] = [
       '#type' => 'details',
-      '#title' => $this->t('Element description/help'),
-    ];
-    $form['element_description']['help'] = [
-      '#type' => 'webform_html_editor',
-      '#title' => $this->t('Help text'),
-      '#description' => $this->t('A tooltip displayed after the title.'),
-      '#states' => [
-        'invisible' => [
-          [':input[name="properties[title_display]"]' => ['value' => 'invisible']],
-          'or',
-          [':input[name="properties[title_display]"]' => ['value' => 'attribute']],
-        ],
-      ],
+      '#title' => $this->t('Element description/help/more'),
     ];
     $form['element_description']['description'] = [
       '#type' => 'webform_html_editor',
       '#title' => $this->t('Description'),
       '#description' => $this->t('A short description of the element used as help for the user when he/she uses the webform.'),
     ];
-    $form['element_description']['more_title'] = [
-      '#type' => 'textfield',
-      '#title' => $this->t('More label'),
-      '#description' => $this->t('The click-able label used to open and close more text.') . '<br /><br />' .
-        $this->t('Defaults to: %value', ['%value' => $this->configFactory->get('webform.settings')->get('element.default_more_title')]),
+    $form['element_description']['help'] = [
+      '#type' => 'details',
+      '#title' => $this->t('Help'),
+      '#description' => $this->t("Displays a help tooltip after the element's title"),
       '#states' => [
         'invisible' => [
-          ':input[name="properties[description_display]"]' => ['value' => 'tooltip'],
+          [':input[name="properties[title_display]"]' => ['value' => 'invisible']],
         ],
       ],
     ];
+    $form['element_description']['help']['help_title'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Help title'),
+      '#description' => $this->t("The text displayed in help tooltip after the element's title.") . '<br /><br />' .
+        $this->t("Defaults to the element's title"),
+    ];
+    $form['element_description']['help']['help'] = [
+      '#type' => 'webform_html_editor',
+      '#title' => $this->t('Help text'),
+      '#description' => $this->t("The text displayed in help tooltip after the element's title."),
+    ];
     $form['element_description']['more'] = [
+      '#type' => 'details',
+      '#title' => $this->t('More'),
+      '#description' => $this->t("Displays a read more hide/show widget below the element's description."),
+    ];
+    $form['element_description']['more']['more_title'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('More title'),
+      '#description' => $this->t('The click-able label used to open and close more text.') . '<br /><br />' .
+        $this->t('Defaults to: %value', ['%value' => $this->configFactory->get('webform.settings')->get('element.default_more_title')]),
+    ];
+    $form['element_description']['more']['more'] = [
       '#type' => 'webform_html_editor',
       '#title' => $this->t('More text'),
       '#description' => $this->t('A long description of the element that provides form additional information which can opened and closed.'),
-      '#states' => [
-        'invisible' => [
-          ':input[name="properties[description_display]"]' => ['value' => 'tooltip'],
-        ],
-      ],
     ];
 
     /* Form display */
@@ -2171,7 +2208,6 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
         'after' => $this->t('After'),
         'inline' => $this->t('Inline'),
         'invisible' => $this->t('Invisible'),
-        'attribute' => $this->t('Attribute'),
       ],
       '#description' => $this->t('Determines the placement of the title.'),
     ];
@@ -2187,6 +2223,13 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
       ],
       '#description' => $this->t('Determines the placement of the description.'),
     ];
+
+    // Remove unsupported title and description display from composite elements.
+    if ($this->isComposite()) {
+      unset($form['form']['display_container']['title_display']['#options']['inline']);
+      unset($form['form']['display_container']['description_display']['#options']['tooltip']);
+    }
+
     $form['form']['field_container'] = $this->getFormInlineContainer();
     $form['form']['field_container']['field_prefix'] = [
       '#type' => 'textfield',
@@ -2479,19 +2522,21 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
         '#type' => 'webform_codemirror',
         '#mode' => 'yaml',
         '#title' => $this->t('Default value'),
-        '#description' => $this->t('The default value of the webform element.'),
       ];
     }
     else {
       $form['default']['default_value'] = [
         '#type' => 'textfield',
         '#title' => $this->t('Default value'),
-        '#description' => $this->t('The default value of the webform element.'),
         '#maxlength' => NULL,
       ];
     }
+    $form['default']['default_value']['#description'] = [
+      'content' => ['#markup' => $this->t('The default value of the webform element.'), '#suffix' => ' '],
+      'token' => $this->tokenManager->buildTreeLink(),
+    ];
     if ($this->hasProperty('multiple')) {
-      $form['default']['default_value']['#description'] .= ' ' . $this->t('For multiple options, use commas to separate multiple defaults.');
+      $form['default']['default_value']['#description']['content']['#markup'] .= ' ' . $this->t('For multiple options, use commas to separate multiple defaults.');
     }
 
     // Multiple.
@@ -2588,7 +2633,7 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
     $form['wrapper_attributes']['wrapper_attributes'] = [
       '#type' => 'webform_element_attributes',
       '#title' => $this->t('Wrapper'),
-      '#class__description' => $this->t("Apply classes to the element's wrapper around both the field and its label. Select 'custom...' to enter custom classes."),
+      '#class__description' => $this->t("Apply classes to the element's wrapper around both the field and its label. Select 'custom…' to enter custom classes."),
       '#style__description' => $this->t("Apply custom styles to the element's wrapper around both the field and its label."),
       '#attributes__description' => $this->t("Enter additional attributes to be added to the element's wrapper."),
       '#classes' => $this->configFactory->get('webform.settings')->get('element.wrapper_classes'),
@@ -2655,7 +2700,7 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
     $format = isset($element_properties['format']) ? $element_properties['format'] : NULL;
     $format_custom = ($has_edit_twig_access || $format === 'custom');
     if ($format_custom) {
-      $form['display']['item']['format']['#options'] += ['custom' => $this->t('Custom...')];
+      $form['display']['item']['format']['#options'] += ['custom' => $this->t('Custom…')];
     }
     $custom_states = [
       'visible' => [':input[name="properties[format]"]' => ['value' => 'custom']],
@@ -2728,7 +2773,7 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
     $format_items = isset($element_properties['format_items']) ? $element_properties['format_items'] : NULL;
     $format_items_custom = ($has_edit_twig_access || $format_items === 'custom');
     if ($format_items_custom) {
-      $form['display']['items']['format_items']['#options'] += ['custom' => $this->t('Custom...')];
+      $form['display']['items']['format_items']['#options'] += ['custom' => $this->t('Custom…')];
     }
     $custom_states = [
       'visible' => [':input[name="properties[format_items]"]' => ['value' => 'custom']],
@@ -2799,17 +2844,17 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
 
     $operations = [
       'create' => [
-        '#title' => $this->t('Create webform submission'),
+        '#title' => $this->t('Create submission'),
         '#description' => $this->t('Select roles and users that should be able to populate this element when creating a new submission.'),
         '#open' => TRUE,
       ],
       'update' => [
-        '#title' => $this->t('Update webform submission'),
+        '#title' => $this->t('Update submission'),
         '#description' => $this->t('Select roles and users that should be able to update this element when updating an existing submission.'),
         '#open' => FALSE,
       ],
       'view' => [
-        '#title' => $this->t('View webform submission'),
+        '#title' => $this->t('View submission'),
         '#description' => $this->t('Select roles and users that should be able to view this element when viewing a submission.'),
         '#open' => FALSE,
       ],
@@ -2948,8 +2993,6 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
       '#default_value' => $custom_properties ,
       '#parents' => ['properties', 'custom'],
     ];
-
-    $form['token_tree_link'] = $this->tokenManager->buildTreeLink();
 
     $this->tokenManager->elementValidate($form);
 
@@ -3116,7 +3159,7 @@ class WebformElementBase extends PluginBase implements WebformElementInterface {
       case 'radios':
       case 'select':
         // Handle invalid default_value throwing
-        // "An illegal choice has been detected..." error.
+        // "An illegal choice has been detected…" error.
         if (!is_array($default_value) && isset($property_element['#options'])) {
           $flattened_options = OptGroup::flattenOptions($property_element['#options']);
           if (!isset($flattened_options[$default_value])) {

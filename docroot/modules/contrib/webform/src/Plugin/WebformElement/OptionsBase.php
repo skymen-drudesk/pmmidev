@@ -39,9 +39,8 @@ abstract class OptionsBase extends WebformElementBase {
   public function getDefaultProperties() {
     $properties = parent::getDefaultProperties();
 
-    // Issue #2836374: Wrapper attributes are not supported by composite
-    // elements, this includes radios, checkboxes, and buttons.
-    if (preg_match('/(radios|checkboxes|buttons|tableselect|tableselect_sort|table_sort)$/', $this->getPluginId())) {
+    // Wrapper attributes are not supported by table elements.
+    if (preg_match('/(tableselect|tableselect_sort|table_sort)$/', $this->getPluginId())) {
       unset($properties['wrapper_attributes']);
     }
 
@@ -61,10 +60,10 @@ abstract class OptionsBase extends WebformElementBase {
     // Add other properties to elements that include the other text field.
     if ($this->isOptionsOther()) {
       $properties += [
-        'other__option_label' => $this->t('Other...'),
+        'other__option_label' => $this->t('Other…'),
         'other__type' => 'textfield',
         'other__title' => '',
-        'other__placeholder' => $this->t('Enter other...'),
+        'other__placeholder' => $this->t('Enter other…'),
         'other__description' => '',
         // Text field or textarea.
         'other__size' => '',
@@ -215,7 +214,7 @@ abstract class OptionsBase extends WebformElementBase {
             $element['#options'][$default_value] = $default_value;
           }
         }
-    }
+      }
     }
 
     // If the element is #required and the #default_value is an empty string
@@ -588,7 +587,7 @@ abstract class OptionsBase extends WebformElementBase {
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
 
-    $form['default']['default_value']['#description'] = $this->t('The default value of the field identified by its key.');
+    $form['default']['default_value']['#description']['content']['#markup'] .= ' ' . $this->t('The default value of the field identified by its key.');
 
     // Issue #2836374: Wrapper attributes are not supported by composite
     // elements, this includes radios, checkboxes, and buttons.

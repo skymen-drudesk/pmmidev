@@ -171,14 +171,14 @@ abstract class DateBase extends WebformElementBase {
     $form = parent::form($form, $form_state);
 
     // Append supported date input format to #default_value description.
-    $form['default']['default_value']['#description'] .= '<br /><br />' . $this->t('Accepts any date in any <a href="https://www.gnu.org/software/tar/manual/html_chapter/tar_7.html#Date-input-formats">GNU Date Input Format</a>. Strings such as today, +2 months, and Dec 9 2004 are all valid.');
+    $form['default']['default_value']['#description']['content']['#markup'] .= '<br /><br />' . $this->t('Accepts any date in any <a href="https://www.gnu.org/software/tar/manual/html_chapter/tar_7.html#Date-input-formats">GNU Date Input Format</a>. Strings such as today, +2 months, and Dec 9 2004 are all valid.');
 
     // Append token date format to #default_value description.
-    $form['default']['default_value']['#description'] .= '<br /><br />' . $this->t("You may use tokens. Tokens should use the 'html_date' or 'html_datetime' date format. (i.e. @date_format)", ['@date_format' => '[current-user:field_date_of_birth:date:html_date]']);
+    $form['default']['default_value']['#description']['content']['#markup'] .= '<br /><br />' . $this->t("You may use tokens. Tokens should use the 'html_date' or 'html_datetime' date format. (i.e. @date_format)", ['@date_format' => '[current-user:field_date_of_birth:date:html_date]']);
 
     // Allow custom date formats to be entered.
     $form['display']['format']['#type'] = 'webform_select_other';
-    $form['display']['format']['#other__option_label'] = $this->t('Custom date format...');
+    $form['display']['format']['#other__option_label'] = $this->t('Custom date format…');
     $form['display']['format']['#other__description'] = $this->t('A user-defined date format. See the <a href="http://php.net/manual/function.date.php">PHP manual</a> for available options.');
 
     $form['date'] = [

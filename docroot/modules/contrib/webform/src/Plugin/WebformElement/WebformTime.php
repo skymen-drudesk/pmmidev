@@ -72,7 +72,7 @@ class WebformTime extends WebformElementBase {
     $form = parent::form($form, $form_state);
 
     // Append supported time input format to #default_value description.
-    $form['default']['default_value']['#description'] .= '<br />' . $this->t('Accepts any time in any <a href="https://www.gnu.org/software/tar/manual/html_chapter/tar_7.html#Date-input-formats">GNU Date Input Format</a>. Strings such as now, +2 hours, and 4:30 PM are all valid.');
+    $form['default']['default_value']['#description']['content']['#markup'] .= '<br />' . $this->t('Accepts any time in any <a href="https://www.gnu.org/software/tar/manual/html_chapter/tar_7.html#Date-input-formats">GNU Date Input Format</a>. Strings such as now, +2 hours, and 4:30 PM are all valid.');
 
     // Time.
     $form['time'] = [
@@ -95,8 +95,8 @@ class WebformTime extends WebformElementBase {
         'g:i A' => $this->t('12 hour - @format (@time)', ['@format' => 'g:i A', '@time' => date('g:i A')]),
         'g:i:s A' => $this->t('12 hour with seconds - @format (@time)', ['@format' => 'g:i:s A', '@time' => date('g:i:s A')]),
       ],
-      '#other__option_label' => $this->t('Custom...'),
-      '#other__placeholder' => $this->t('Custom time format...'),
+      '#other__option_label' => $this->t('Custom…'),
+      '#other__placeholder' => $this->t('Custom time format…'),
       '#other__description' => $this->t('Enter time format using <a href="http://php.net/manual/en/function.date.php">Time Input Format</a>.'),
     ];
     $form['time']['time_container'] = $this->getFormInlineContainer();
