@@ -3,15 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
-  - field.field.user.user.field_company
-  - field.field.user.user.field_first_name
-  - field.field.user.user.field_last_name
-  - field.field.user.user.field_last_password_reset
-  - field.field.user.user.field_password_expiration
+    - field.field.user.user.field_company
+    - field.field.user.user.field_first_name
+    - field.field.user.user.field_last_name
+    - field.field.user.user.field_last_password_reset
+    - field.field.user.user.field_password_expiration
   module:
-  - datetime
-  - path
-  - user
+    - datetime
+    - path
+    - user
 id: user.user.default
 targetEntityType: user
 bundle: user

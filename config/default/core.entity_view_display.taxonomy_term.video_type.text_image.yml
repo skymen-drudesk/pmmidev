@@ -6,18 +6,16 @@ dependencies:
     - core.entity_view_mode.taxonomy_term.text_image
     - field.field.taxonomy_term.video_type.field_head
     - field.field.taxonomy_term.video_type.field_logo
-    - image.style.brand_block_dhd
     - taxonomy.vocabulary.video_type
   module:
+    - blazy
     - ds
-    - image
     - text
 third_party_settings:
   ds:
     layout:
       id: block_text_image
-      path: themes/custom/pmmi_bootstrap
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
@@ -39,7 +37,7 @@ content:
     weight: 1
     settings: {  }
     third_party_settings: {  }
-    region: content
+    region: body
   field_head:
     type: string
     weight: 0
@@ -54,13 +52,37 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: head
   field_logo:
     weight: 2
     label: hidden
     settings:
       image_style: brand_block_dhd
-      image_link: ''
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      media_switch: ''
+      ratio: ''
+      responsive_image_style: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:
@@ -69,6 +91,6 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: image
-    region: content
+    type: blazy
+    region: image
 hidden: {  }

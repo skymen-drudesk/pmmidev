@@ -6,16 +6,14 @@ dependencies:
     - block_content.type.image_header
     - field.field.block_content.image_header.field_head
     - field.field.block_content.image_header.field_image
-    - responsive_image.styles.image_header_styles
   module:
+    - blazy
     - ds
-    - responsive_image
 third_party_settings:
   ds:
     layout:
       id: block_image_header
-      path: themes/custom/pmmi_bootstrap
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
@@ -43,13 +41,37 @@ content:
             lb-col: false
             classes: {  }
     type: string
-    region: content
+    region: head
   field_image:
     weight: 1
     label: hidden
     settings:
       responsive_image_style: image_header_styles
-      image_link: ''
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:
@@ -58,6 +80,6 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
-    region: content
+    type: blazy
+    region: image
 hidden: {  }

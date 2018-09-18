@@ -44,6 +44,7 @@ content:
           checked: 0
       multiple: '1'
       implode_character: ','
+      hide_empty: false
     third_party_settings:
       ds:
         ds_limit: ''
@@ -53,5 +54,5 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: main
 hidden: {  }

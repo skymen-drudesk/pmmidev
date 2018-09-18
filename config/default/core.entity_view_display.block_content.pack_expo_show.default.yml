@@ -11,26 +11,25 @@ dependencies:
     - field.field.block_content.pack_expo_show.field_location
     - field.field.block_content.pack_expo_show.field_logo
     - field.field.block_content.pack_expo_show.field_show_dates
-    - responsive_image.styles.shows_block
   module:
     - address
+    - blazy
     - ds
     - link
     - pmmi_fields
-    - responsive_image
     - text
 third_party_settings:
   ds:
     layout:
       id: block_pack_expo_show
-      path: themes/custom/pmmi_bootstrap
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
       logo:
         - field_logo
+        - field_head
       dates:
         - field_show_dates
       location:
@@ -50,7 +49,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: content
+    region: body
   field_buttons:
     weight: 4
     label: hidden
@@ -62,7 +61,7 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-    region: content
+    region: button
   field_head:
     weight: 5
     label: above
@@ -70,20 +69,44 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
+    region: logo
   field_location:
     weight: 2
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: address_default
-    region: content
+    region: location
   field_logo:
     weight: 0
     label: hidden
     settings:
       responsive_image_style: shows_block
-      image_link: ''
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:
@@ -92,8 +115,8 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
-    region: content
+    type: blazy
+    region: logo
   field_show_dates:
     weight: 1
     label: hidden
@@ -105,6 +128,6 @@ content:
       date_format_year: 'Y'
     third_party_settings: {  }
     type: daterange_event_custom
-    region: content
+    region: dates
 hidden:
   field_dates: true

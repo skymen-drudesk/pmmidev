@@ -8,6 +8,7 @@ dependencies:
     - field.field.block_content.event.field_button
     - field.field.block_content.event.field_dates
     - field.field.block_content.event.field_event_types
+    - field.field.block_content.event.field_exclude_main_calendar
     - field.field.block_content.event.field_head
     - field.field.block_content.event.field_hosted_by
     - field.field.block_content.event.field_link
@@ -56,7 +57,7 @@ content:
             lb-col: false
             classes: {  }
     type: link
-    region: content
+    region: main
   field_dates:
     weight: 0
     label: hidden
@@ -76,7 +77,7 @@ content:
             lb-col: false
             classes: {  }
     type: daterange_event_custom
-    region: content
+    region: main
   field_head:
     weight: 1
     label: hidden
@@ -91,7 +92,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
-    region: content
+    region: main
   field_link:
     type: link
     weight: 3
@@ -110,7 +111,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: main
   field_location:
     type: address_default
     weight: 2
@@ -124,7 +125,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: main
   field_locations:
     weight: 8
     label: hidden

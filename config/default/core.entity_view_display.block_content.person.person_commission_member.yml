@@ -15,10 +15,9 @@ dependencies:
     - field.field.block_content.person.field_p_p_hall_of_fame_honorees
     - field.field.block_content.person.field_pmmi_member_since
     - field.field.block_content.person.field_retired
-    - responsive_image.styles.brand_block
   module:
+    - blazy
     - ds
-    - responsive_image
 third_party_settings:
   ds:
     layout:
@@ -58,13 +57,37 @@ content:
       link_to_entity: false
     third_party_settings: {  }
   field_logo:
-    type: responsive_image
+    type: blazy
     weight: 0
     region: logo
     label: hidden
     settings:
       responsive_image_style: brand_block
-      image_link: ''
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:

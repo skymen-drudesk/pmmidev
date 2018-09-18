@@ -13,11 +13,10 @@ dependencies:
     - field.field.block_content.news.field_head_bkg_color_class
     - field.field.block_content.news.field_image
     - field.field.block_content.news.field_logo
-    - image.style.news_block
   module:
+    - blazy
     - datetime
     - ds
-    - image
     - link
     - text
 third_party_settings:
@@ -90,13 +89,37 @@ content:
     type: string
     region: head
   field_image:
-    type: image
+    type: blazy
     weight: 0
     region: block_title
     label: hidden
     settings:
       image_style: shows_block_dhd
-      image_link: ''
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      media_switch: ''
+      ratio: ''
+      responsive_image_style: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:
@@ -110,7 +133,31 @@ content:
     label: hidden
     settings:
       image_style: news_block
-      image_link: ''
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      media_switch: ''
+      ratio: ''
+      responsive_image_style: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:
@@ -119,7 +166,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: image
+    type: blazy
     region: logo
 hidden:
   field_block_title: true

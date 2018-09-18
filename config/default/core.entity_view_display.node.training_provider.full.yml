@@ -10,9 +10,11 @@ dependencies:
     - field.field.node.training_provider.field_delivery_options_offered
     - field.field.node.training_provider.field_general_company_email
     - field.field.node.training_provider.field_main_phone_number
+    - field.field.node.training_provider.field_meta_tags
     - field.field.node.training_provider.field_organization_email
     - field.field.node.training_provider.field_territory_served
     - field.field.node.training_provider.field_website_url
+    - field.field.node.training_provider.field_yoast_seo
     - node.type.training_provider
   module:
     - ds
@@ -173,4 +175,6 @@ content:
     region: general_line_2
 hidden:
   field_general_company_email: true
+  field_meta_tags: true
+  field_yoast_seo: true
   links: true

@@ -155,6 +155,7 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: metatag_empty_formatter
+    region: content
   field_organization_email:
     weight: 10
     label: above
@@ -174,7 +175,7 @@ content:
         format_type: medium
     third_party_settings: {  }
     type: double_field_unformatted_list
-    region: content
+    region: general_line_2
   field_territory_served:
     weight: 8
     label: above

@@ -16,6 +16,8 @@ dependencies:
     - field.field.node.certification_test.field_image
     - field.field.node.certification_test.field_image_header
     - field.field.node.certification_test.field_link
+    - field.field.node.certification_test.field_meta_tags
+    - field.field.node.certification_test.field_yoast_seo
     - node.type.certification_test
   module:
     - ds
@@ -71,7 +73,7 @@ content:
     weight: 101
     settings: {  }
     third_party_settings: {  }
-    region: content
+    region: body
   content_moderation_control:
     weight: -20
     region: content
@@ -112,21 +114,21 @@ content:
             fi: false
             fi-def-at: false
     type: entity_reference_entity_view
-    region: content
+    region: accordions
   field_cert_test_length:
     weight: 109
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: content
+    region: cert_test_length
   field_cert_test_num_attempts:
     weight: 111
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: content
+    region: cert_test_num_attempts
   field_cert_test_price:
     weight: 105
     label: inline
@@ -144,7 +146,7 @@ content:
             lb-col: true
             classes: {  }
     type: number_decimal
-    region: content
+    region: cert_test_price
   field_cert_test_text_price:
     weight: 106
     label: inline
@@ -152,21 +154,21 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
+    region: cert_test_text_price
   field_cert_test_time_to_take:
     weight: 110
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: content
+    region: cert_test_time_to_take
   field_cert_test_who:
     weight: 108
     label: above
     settings: {  }
     third_party_settings: {  }
     type: text_default
-    region: content
+    region: cert_test_who
   field_image_header:
     type: entity_reference_entity_view
     weight: 0
@@ -175,7 +177,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    region: content
+    region: image_header
   field_link:
     weight: 107
     label: hidden
@@ -187,8 +189,10 @@ content:
       target: ''
     third_party_settings: {  }
     type: link
-    region: content
+    region: link
 hidden:
   field_cert_test_coming: true
   field_image: true
+  field_meta_tags: true
+  field_yoast_seo: true
   links: true

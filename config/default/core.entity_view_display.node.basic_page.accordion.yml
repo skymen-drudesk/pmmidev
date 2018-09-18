@@ -9,6 +9,7 @@ dependencies:
     - field.field.node.basic_page.field_meta_tags
     - field.field.node.basic_page.field_page_name
     - field.field.node.basic_page.field_tags
+    - field.field.node.basic_page.field_yoast_seo
     - node.type.basic_page
   module:
     - ds
@@ -39,7 +40,7 @@ content:
     weight: 1
     settings: {  }
     third_party_settings: {  }
-    region: content
+    region: body
   content_moderation_control:
     weight: -20
     region: content
@@ -55,9 +56,10 @@ content:
           settings:
             lb: ''
     type: string
-    region: content
+    region: header
 hidden:
   field_image_header: true
   field_meta_tags: true
   field_tags: true
+  field_yoast_seo: true
   links: true

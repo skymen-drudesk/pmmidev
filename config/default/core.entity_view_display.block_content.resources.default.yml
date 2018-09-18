@@ -44,7 +44,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: main
   field_head:
     weight: 0
     label: hidden
@@ -59,11 +59,12 @@ content:
             lb-col: false
             classes: {  }
     type: string
-    region: content
+    region: head
   field_resource_files:
     weight: 2
     label: hidden
-    settings: {  }
+    settings:
+      use_description_as_link_text: true
     third_party_settings:
       ds:
         ds_limit: ''
@@ -95,5 +96,5 @@ content:
             ow-def-at: false
             ow-def-cl: false
     type: file_default
-    region: content
+    region: main
 hidden: {  }

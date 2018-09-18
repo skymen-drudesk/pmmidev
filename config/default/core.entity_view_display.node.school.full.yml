@@ -11,19 +11,20 @@ dependencies:
     - field.field.node.school.field_image
     - field.field.node.school.field_image_header
     - field.field.node.school.field_logo
+    - field.field.node.school.field_meta_tags
+    - field.field.node.school.field_partner_school_type
     - field.field.node.school.field_phone
     - field.field.node.school.field_programs_focus
     - field.field.node.school.field_school_contact
     - field.field.node.school.field_website
+    - field.field.node.school.field_yoast_seo
     - node.type.school
-    - responsive_image.styles.detail_page
   module:
     - address
+    - blazy
     - datetime
     - ds
-    - image
     - pmmi_fields
-    - responsive_image
     - telephone
     - text
     - user
@@ -31,13 +32,13 @@ third_party_settings:
   ds:
     layout:
       id: school
-      path: themes/custom/pmmi_bootstrap
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
     regions:
       image_header:
+        - content_moderation_control
         - field_image_header
       title:
         - node_title
@@ -78,10 +79,12 @@ content:
     weight: 101
     settings: {  }
     third_party_settings: {  }
-    region: content
+    region: body
   content_moderation_control:
     weight: -20
-    region: content
+    region: image_header
+    settings: {  }
+    third_party_settings: {  }
   field_address:
     weight: 108
     label: hidden
@@ -95,7 +98,7 @@ content:
             lb-col: false
             classes: {  }
     type: address_default
-    region: content
+    region: address
   field_content_verified:
     weight: 105
     label: inline
@@ -111,7 +114,7 @@ content:
             lb-col: false
             classes: {  }
     type: datetime_default
-    region: content
+    region: content_verified
   field_email:
     weight: 110
     label: inline
@@ -125,13 +128,37 @@ content:
             lb-col: false
             classes: {  }
     type: email_mailto
-    region: content
+    region: email
   field_image:
     weight: 103
     label: hidden
     settings:
       responsive_image_style: detail_page
-      image_link: ''
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:
@@ -140,8 +167,8 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
-    region: content
+    type: blazy
+    region: image
   field_image_header:
     type: entity_reference_entity_view
     weight: 0
@@ -150,16 +177,40 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    region: content
+    region: image_header
   field_logo:
     weight: 106
     label: hidden
     settings:
       image_style: ''
-      image_link: ''
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      media_switch: ''
+      ratio: ''
+      responsive_image_style: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings: {  }
-    type: image
-    region: content
+    type: blazy
+    region: logo
   field_phone:
     weight: 109
     label: hidden
@@ -174,7 +225,7 @@ content:
             lb-col: false
             classes: {  }
     type: telephone_link
-    region: content
+    region: phone
   field_programs_focus:
     weight: 104
     label: inline
@@ -189,7 +240,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
-    region: content
+    region: progarm_focus
   field_school_contact:
     weight: 107
     label: hidden
@@ -197,7 +248,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
+    region: school_contact
   field_website:
     weight: 111
     label: hidden
@@ -217,7 +268,9 @@ content:
             lb-col: false
             classes: {  }
     type: link_as_label
-    region: content
+    region: website
 hidden:
+  field_meta_tags: true
   field_partner_school_type: true
+  field_yoast_seo: true
   links: true

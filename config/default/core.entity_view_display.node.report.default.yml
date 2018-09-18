@@ -10,15 +10,16 @@ dependencies:
     - field.field.node.report.field_keywords
     - field.field.node.report.field_links
     - field.field.node.report.field_member_price
+    - field.field.node.report.field_meta_tags
     - field.field.node.report.field_non_member_price
     - field.field.node.report.field_note
     - field.field.node.report.field_product_id
     - field.field.node.report.field_product_status_date
-    - image.style.download_page
+    - field.field.node.report.field_yoast_seo
     - node.type.report
   module:
+    - blazy
     - ds
-    - image
     - pmmi_fields
     - user
 third_party_settings:
@@ -36,21 +37,6 @@ third_party_settings:
         - body
         - node_link
     fields:
-      node_title:
-        plugin_id: node_title
-        weight: 1
-        label: hidden
-        formatter: default
-        settings:
-          link: true
-          wrapper: h2
-          class: ''
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
       node_link:
         plugin_id: node_link
         weight: 3
@@ -60,6 +46,21 @@ third_party_settings:
           'link text': 'Learn More'
           'link class': 'btn button-primary'
           wrapper: ''
+          class: ''
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
+      node_title:
+        plugin_id: node_title
+        weight: 1
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h2
           class: ''
         ft:
           id: minimal
@@ -98,7 +99,53 @@ content:
     label: hidden
     settings:
       image_style: download_page
-      image_link: content
+      thumbnail_style: ''
+      responsive_image_style: ''
+      media_switch: content
+      ratio: ''
+      sizes: ''
+      breakpoints:
+        xs:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        sm:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        md:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        lg:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        xl:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+      current_view_mode: default
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      optionset: default
+      skin: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:
@@ -107,7 +154,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: image
+    type: blazy
     region: content
 hidden:
   field_available_from_date: true

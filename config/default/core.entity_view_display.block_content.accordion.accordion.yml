@@ -13,19 +13,17 @@ dependencies:
     - field.field.block_content.accordion.field_link
     - field.field.block_content.accordion.field_resources_block
     - field.field.block_content.accordion.field_video_node
-    - responsive_image.styles.accordion_styles
   module:
+    - blazy
     - ds
     - link
     - pmmi_fields
-    - responsive_image
     - text
 third_party_settings:
   ds:
     layout:
       id: accordion
-      path: themes/custom/pmmi_bootstrap
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
@@ -53,7 +51,7 @@ content:
     weight: 3
     settings: {  }
     third_party_settings: {  }
-    region: content
+    region: body
   field_accordions:
     type: entity_reference_entity_view
     weight: 7
@@ -70,7 +68,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: nested_accordion
   field_button:
     weight: 5
     label: hidden
@@ -89,7 +87,7 @@ content:
             lb-col: false
             classes: {  }
     type: link
-    region: content
+    region: body
   field_head:
     weight: 0
     label: hidden
@@ -97,13 +95,37 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
+    region: header
   field_image:
     weight: 2
     label: hidden
     settings:
       responsive_image_style: accordion_styles
-      image_link: ''
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:
@@ -112,8 +134,8 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
-    region: content
+    type: blazy
+    region: left_side
   field_link:
     type: link
     weight: 6
@@ -132,7 +154,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: body
   field_resources_block:
     type: pmmi_entity_reference_entity_view
     weight: 4
@@ -141,7 +163,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    region: content
+    region: body
   field_video_node:
     weight: 1
     label: hidden
@@ -157,5 +179,5 @@ content:
             lb-col: false
             classes: {  }
     type: entity_reference_entity_view
-    region: content
+    region: left_side
 hidden: {  }

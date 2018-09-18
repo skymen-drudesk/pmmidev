@@ -47,7 +47,7 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
-    region: content
+    region: body
   content_moderation_control:
     weight: -20
     region: content
@@ -59,7 +59,7 @@ content:
       view_mode: default
       link: false
     third_party_settings: {  }
-    region: content
+    region: image_header
   field_yoast_seo:
     weight: 3
     label: above
