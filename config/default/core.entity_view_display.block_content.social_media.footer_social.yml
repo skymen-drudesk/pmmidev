@@ -59,7 +59,7 @@ content:
           settings:
             lb: ''
     type: link
-    region: content
+    region: facebook
   field_google:
     weight: 3
     label: hidden
@@ -76,7 +76,7 @@ content:
           settings:
             lb: ''
     type: link
-    region: content
+    region: google_plus
   field_instagram:
     type: link
     weight: 5
@@ -88,7 +88,7 @@ content:
       rel: ''
       target: ''
     third_party_settings: {  }
-    region: content
+    region: instagram
   field_linkedin:
     weight: 2
     label: hidden
@@ -105,7 +105,7 @@ content:
           settings:
             lb: ''
     type: link
-    region: content
+    region: linkedin
   field_twitter:
     weight: 1
     label: hidden
@@ -122,7 +122,7 @@ content:
           settings:
             lb: ''
     type: link
-    region: content
+    region: twitter
   field_youtube:
     weight: 4
     label: hidden
@@ -139,7 +139,7 @@ content:
           settings:
             lb: ''
     type: link
-    region: content
+    region: youtube
 hidden:
   body: true
   field_head: true

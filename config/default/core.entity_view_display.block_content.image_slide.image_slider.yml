@@ -13,19 +13,17 @@ dependencies:
     - field.field.block_content.image_slide.field_subhead
     - field.field.block_content.image_slide.field_video
     - field.field.block_content.image_slide.field_weight
-    - responsive_image.styles.home_image_heade_style
   module:
+    - blazy
     - ds
     - link
-    - responsive_image
     - text
     - video
 third_party_settings:
   ds:
     layout:
       id: block_image_slide
-      path: themes/custom/pmmi_bootstrap
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
@@ -59,7 +57,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: body
   field_button:
     weight: 5
     label: hidden
@@ -78,7 +76,7 @@ content:
             lb-col: false
             classes: {  }
     type: link
-    region: content
+    region: button
   field_head:
     weight: 2
     label: hidden
@@ -93,13 +91,37 @@ content:
             lb-col: false
             classes: {  }
     type: string
-    region: content
+    region: head
   field_image:
     weight: 0
     label: hidden
     settings:
       responsive_image_style: home_image_heade_style
-      image_link: ''
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:
@@ -108,8 +130,8 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
-    region: content
+    type: blazy
+    region: image
   field_subhead:
     weight: 3
     label: hidden
@@ -124,7 +146,7 @@ content:
             lb-col: false
             classes: {  }
     type: string
-    region: content
+    region: subhead
   field_video:
     type: video_embed_player
     weight: 1
@@ -134,7 +156,7 @@ content:
       height: '480'
       autoplay: true
     third_party_settings: {  }
-    region: content
+    region: image
 hidden:
   field_slide_type: true
   field_weight: true

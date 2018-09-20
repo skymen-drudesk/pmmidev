@@ -12,17 +12,15 @@ dependencies:
     - field.field.block_content.image_slide.field_subhead
     - field.field.block_content.image_slide.field_video
     - field.field.block_content.image_slide.field_weight
-    - responsive_image.styles.our_mission_slide
   module:
+    - blazy
     - ds
-    - responsive_image
     - text
 third_party_settings:
   ds:
     layout:
       id: block_image_slide_default
-      path: themes/custom/pmmi_bootstrap
-      library: ''
+      library: null
       disable_css: false
       entity_classes: all_classes
       settings: {  }
@@ -51,7 +49,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    region: content
+    region: body
   field_head:
     weight: 1
     label: hidden
@@ -66,13 +64,37 @@ content:
             lb-col: false
             classes: {  }
     type: string
-    region: content
+    region: head
   field_image:
     weight: 0
     label: hidden
     settings:
       responsive_image_style: our_mission_slide
-      image_link: ''
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:
@@ -81,8 +103,8 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
-    region: content
+    type: blazy
+    region: image
 hidden:
   field_button: true
   field_slide_type: true

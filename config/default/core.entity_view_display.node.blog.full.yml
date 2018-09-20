@@ -10,6 +10,8 @@ dependencies:
     - field.field.node.blog.field_blog_page_name
     - field.field.node.blog.field_blog_tags
     - field.field.node.blog.field_image_header
+    - field.field.node.blog.field_meta_tags
+    - field.field.node.blog.field_yoast_seo
     - node.type.blog
   module:
     - ds
@@ -93,4 +95,6 @@ hidden:
   field_blog_category: true
   field_blog_date: true
   field_blog_page_name: true
+  field_meta_tags: true
+  field_yoast_seo: true
   links: true

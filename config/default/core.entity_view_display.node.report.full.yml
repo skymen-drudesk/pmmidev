@@ -11,15 +11,16 @@ dependencies:
     - field.field.node.report.field_keywords
     - field.field.node.report.field_links
     - field.field.node.report.field_member_price
+    - field.field.node.report.field_meta_tags
     - field.field.node.report.field_non_member_price
     - field.field.node.report.field_note
     - field.field.node.report.field_product_id
     - field.field.node.report.field_product_status_date
-    - image.style.download_page
+    - field.field.node.report.field_yoast_seo
     - node.type.report
   module:
+    - blazy
     - ds
-    - image
     - link
     - text
     - user
@@ -52,21 +53,6 @@ third_party_settings:
         - 'dynamic_token_field:node-download_report_link'
         - field_note
     fields:
-      node_title:
-        plugin_id: node_title
-        weight: 2
-        label: hidden
-        formatter: default
-        settings:
-          link: true
-          wrapper: h2
-          class: ''
-        ft:
-          id: minimal
-          settings:
-            lb: ''
-            lb-col: false
-            classes: {  }
       'dynamic_block_field:node-other_reports_and_research':
         plugin_id: 'dynamic_block_field:node-other_reports_and_research'
         weight: 1
@@ -82,6 +68,21 @@ third_party_settings:
         weight: 8
         label: hidden
         formatter: default
+      node_title:
+        plugin_id: node_title
+        weight: 2
+        label: hidden
+        formatter: default
+        settings:
+          link: true
+          wrapper: h2
+          class: ''
+        ft:
+          id: minimal
+          settings:
+            lb: ''
+            lb-col: false
+            classes: {  }
 id: node.report.full
 targetEntityType: node
 bundle: report
@@ -99,7 +100,53 @@ content:
     label: hidden
     settings:
       image_style: download_page
-      image_link: content
+      thumbnail_style: ''
+      responsive_image_style: ''
+      media_switch: content
+      ratio: ''
+      sizes: ''
+      breakpoints:
+        xs:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        sm:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        md:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        lg:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+        xl:
+          image_style: ''
+          width: ''
+          breakpoint: ''
+      current_view_mode: full
+      background: false
+      caption:
+        title: '0'
+        alt: '0'
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      view_mode: ''
+      cache: 0
+      optionset: default
+      skin: ''
+      style: ''
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:
@@ -108,7 +155,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: image
+    type: blazy
     region: image
   field_links:
     type: link
@@ -170,6 +217,8 @@ hidden:
   field_available_from_date: true
   field_category: true
   field_keywords: true
+  field_meta_tags: true
   field_product_id: true
   field_product_status_date: true
+  field_yoast_seo: true
   links: true

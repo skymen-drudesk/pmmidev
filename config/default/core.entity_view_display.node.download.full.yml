@@ -5,15 +5,19 @@ dependencies:
   config:
     - core.entity_view_mode.node.full
     - field.field.node.download.body
+    - field.field.node.download.field_block_button_text
     - field.field.node.download.field_document_link
+    - field.field.node.download.field_file_download_button
     - field.field.node.download.field_image
     - field.field.node.download.field_image_header
     - field.field.node.download.field_links
+    - field.field.node.download.field_meta_tags
+    - field.field.node.download.field_yoast_seo
     - node.type.download
   module:
+    - blazy
     - ds
     - pmmi_fields
-    - responsive_image
     - text
     - user
 third_party_settings:
@@ -86,8 +90,32 @@ content:
     weight: 4
     label: hidden
     settings:
-      image_link: ''
       responsive_image_style: ''
+      iframe_lazy: true
+      icon: ''
+      layout: ''
+      thumbnail_style: ''
+      view_mode: ''
+      cache: 0
+      current_view_mode: ''
+      optionset: default
+      skin: ''
+      style: ''
+      background: false
+      box_caption: ''
+      box_caption_custom: ''
+      box_style: ''
+      box_media_style: ''
+      breakpoints: {  }
+      caption: {  }
+      image_style: ''
+      media_switch: ''
+      ratio: ''
+      sizes: ''
+      grid: 0
+      grid_header: ''
+      grid_medium: 0
+      grid_small: 0
     third_party_settings:
       ds:
         ft:
@@ -96,7 +124,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: responsive_image
+    type: blazy
     region: image
   field_image_header:
     type: entity_reference_entity_view
@@ -123,4 +151,6 @@ content:
 hidden:
   field_block_button_text: true
   field_file_download_button: true
+  field_meta_tags: true
+  field_yoast_seo: true
   links: true
