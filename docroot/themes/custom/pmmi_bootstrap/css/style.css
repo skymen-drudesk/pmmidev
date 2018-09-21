@@ -16230,6 +16230,16 @@ body > .page-wrapper:after,
   min-height: 26px;
 }
 
+.navbar .utility-nav .block-region-header-utility-nav {
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.navbar .utility-nav .block-region-header-utility-nav .user-menu {
+  -ms-flex: 1 0 auto;
+      flex: 1 0 auto;
+}
+
 .navbar .utility-navigation {
   padding-top: 6px;
   margin-bottom: 10px;
