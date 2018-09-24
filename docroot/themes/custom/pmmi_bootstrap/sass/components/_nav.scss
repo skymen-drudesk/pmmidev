@@ -539,7 +539,8 @@
     .block-region-header-utility-nav {
       display: flex;
 
-      .user-menu {
+      .user-menu,
+      .utility-navigation {
         flex: 1 0 auto;
       }
     }

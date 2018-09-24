@@ -16235,7 +16235,8 @@ body > .page-wrapper:after,
   display: flex;
 }
 
-.navbar .utility-nav .block-region-header-utility-nav .user-menu {
+.navbar .utility-nav .block-region-header-utility-nav .user-menu,
+.navbar .utility-nav .block-region-header-utility-nav .utility-navigation {
   -ms-flex: 1 0 auto;
       flex: 1 0 auto;
 }
