@@ -50,6 +50,9 @@ function pmmi_bootstrap_preprocess_block(&$variables) {
       if (strpos($variables['plugin_id'], 'utility-navigation') !== FALSE) {
         $variables['attributes']['class'][] = 'utility-navigation';
       }
+      if (strpos($variables['plugin_id'], 'user-menu') !== FALSE) {
+        $variables['attributes']['class'][] = 'user-menu';
+      }
       break;
 
     case 'pmmi_twitter_block':
