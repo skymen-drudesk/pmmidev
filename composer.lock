@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c153271f444f33fb946aab5a284e309e",
+    "content-hash": "b22ca589464501ccd821544a604b6fa1",
     "packages": [
         {
             "name": "RobinHerbots/jquery.inputmask",
@@ -1094,6 +1094,17 @@
                 "twitter"
             ],
             "time": "2018-03-15T10:07:08+00:00"
+        },
+        {
+            "name": "dinbror/blazy",
+            "version": "1.8.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/dinbror/blazy/archive/1.8.2.zip",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "drupal-library"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2309,8 +2320,7 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/blazy",
                 "issues": "https://drupal.org/project/issues/blazy"
-            },
-            "time": "2018-09-12T22:11:12+00:00"
+            }
         },
         {
             "name": "drupal/bootstrap",
@@ -6713,8 +6723,7 @@
             "homepage": "https://www.drupal.org/project/queue_ui",
             "support": {
                 "source": "http://cgit.drupalcode.org/queue_ui"
-            },
-            "time": "2018-07-07T11:21:03+00:00"
+            }
         },
         {
             "name": "drupal/recaptcha",
@@ -10032,6 +10041,11 @@
         {
             "name": "roave/security-advisories",
             "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Roave/SecurityAdvisories.git",
+                "reference": "8605f2e74f558d3e349b219e58414b75b0adc30e"
+            },
             "conflict": {
                 "3f/pygmentize": "<1.2",
                 "adodb/adodb-php": "<5.20.12",
@@ -13178,7 +13192,8 @@
             "homepage": "https://www.drupal.org/project/xhprof",
             "support": {
                 "source": "http://cgit.drupalcode.org/xhprof"
-            }
+            },
+            "time": "2018-03-21T10:43:24+00:00"
         },
         {
             "name": "ezyang/htmlpurifier",

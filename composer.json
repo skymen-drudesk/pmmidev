@@ -351,6 +351,18 @@
           "type": "zip"
         }
       }
+    },
+    "28": {
+      "type": "package",
+      "package": {
+        "name": "dinbror/blazy",
+        "version": "1.8.2",
+        "type": "drupal-library",
+        "dist": {
+          "url": "https://github.com/dinbror/blazy/archive/1.8.2.zip",
+          "type": "zip"
+        }
+      }
     }
   },
   "minimum-stability": "dev",
@@ -370,6 +382,7 @@
     "derhasi/viewfield": "^2.0",
     "desandro/imagesloaded": "3.1.8",
     "desandro/masonry": "3.3.1",
+    "dinbror/blazy": "^1.8.2",
     "douglascrockford/json2": "^2.0",
     "drupal-composer/drupal-scaffold": "^2.0.0",
     "drupal-composer/preserve-paths": "^0.1.4",

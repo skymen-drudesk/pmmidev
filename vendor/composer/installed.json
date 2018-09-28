@@ -1199,6 +1199,19 @@
         ]
     },
     {
+        "name": "dinbror/blazy",
+        "version": "1.8.2",
+        "version_normalized": "1.8.2.0",
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/dinbror/blazy/archive/1.8.2.zip",
+            "reference": null,
+            "shasum": null
+        },
+        "type": "drupal-library",
+        "installation-source": "dist"
+    },
+    {
         "name": "dnoegel/php-xdg-base-dir",
         "version": "0.1",
         "version_normalized": "0.1.0.0",
@@ -11923,6 +11936,11 @@
         "name": "roave/security-advisories",
         "version": "dev-master",
         "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Roave/SecurityAdvisories.git",
+            "reference": "8605f2e74f558d3e349b219e58414b75b0adc30e"
+        },
         "conflict": {
             "3f/pygmentize": "<1.2",
             "adodb/adodb-php": "<5.20.12",
