@@ -10,9 +10,10 @@ dependencies:
     - field.field.block_content.box.field_buttons
     - field.field.block_content.box.field_head
     - field.field.block_content.box.field_image
+    - image.style.left_image_block
   module:
-    - blazy
     - ds
+    - image
     - link
     - text
 third_party_settings:
@@ -89,31 +90,7 @@ content:
     label: hidden
     settings:
       image_style: left_image_block
-      iframe_lazy: true
-      icon: ''
-      layout: ''
-      thumbnail_style: ''
-      view_mode: ''
-      cache: 0
-      current_view_mode: ''
-      optionset: default
-      skin: ''
-      style: ''
-      background: false
-      box_caption: ''
-      box_caption_custom: ''
-      box_style: ''
-      box_media_style: ''
-      breakpoints: {  }
-      caption: {  }
-      media_switch: ''
-      ratio: ''
-      responsive_image_style: ''
-      sizes: ''
-      grid: 0
-      grid_header: ''
-      grid_medium: 0
-      grid_small: 0
+      image_link: ''
     third_party_settings:
       ds:
         ft:
@@ -122,7 +99,7 @@ content:
             lb: ''
             lb-col: false
             classes: {  }
-    type: blazy
+    type: image
     region: main
 hidden:
   field_box_type: true
