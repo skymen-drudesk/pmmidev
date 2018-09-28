@@ -12,12 +12,13 @@ dependencies:
     - field.field.block_content.pack_expo_show.field_location
     - field.field.block_content.pack_expo_show.field_logo
     - field.field.block_content.pack_expo_show.field_show_dates
+    - responsive_image.styles.shows_block
   module:
     - address
-    - blazy
     - ds
     - linked_field
     - pmmi_fields
+    - responsive_image
 third_party_settings:
   ds:
     layout:
@@ -72,36 +73,12 @@ content:
         advanced: {  }
     region: main
   field_logo:
-    type: blazy
+    type: responsive_image
     weight: 0
     label: hidden
     settings:
       responsive_image_style: shows_block
-      iframe_lazy: true
-      icon: ''
-      layout: ''
-      thumbnail_style: ''
-      view_mode: ''
-      cache: 0
-      current_view_mode: ''
-      optionset: default
-      skin: ''
-      style: ''
-      background: false
-      box_caption: ''
-      box_caption_custom: ''
-      box_style: ''
-      box_media_style: ''
-      breakpoints: {  }
-      caption: {  }
-      image_style: ''
-      media_switch: ''
-      ratio: ''
-      sizes: ''
-      grid: 0
-      grid_header: ''
-      grid_medium: 0
-      grid_small: 0
+      image_link: ''
     third_party_settings:
       ds:
         ft:
