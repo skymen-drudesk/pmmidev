@@ -14,6 +14,7 @@ git:
     cloud: pmmi@svn-28441.prod.hosting.acquia.com:pmmi.git
 deploy:
   tag_source: true
+  gitignore_file: ${repo.root}/.gitignore
 drush:
   aliases:
     remote: '${project.machine_name}.test'
