@@ -59,3 +59,9 @@ config/varnish/prod/secret
 
 #Ignore sql-dumps.
 *.sql*
+
+# Vendors
+vendor
+
+# Contrib moduels
+docroot/modules/contrib
