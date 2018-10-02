@@ -8,7 +8,7 @@ project:
     protocol: http
     hostname: 'id-${project.machine_name}.skm.pp.ua'
 git:
-  default_branch: development/PMMI-143__blt-pipelines
+  default_branch: origin/development/PMMI-143__blt-pipelines
   remotes:
     github: git@github.com:summitmedia/pmmi.git
     cloud: pmmi@svn-28441.prod.hosting.acquia.com:pmmi.git
