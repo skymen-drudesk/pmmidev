@@ -1,15 +1,17 @@
 project:
-  machine_name: blted8
+  machine_name: pmmi
   prefix: BLT
-  human_name: 'BLTed 8'
+  human_name: 'PMMI BLT'
   profile:
     name: lightning
   local:
     protocol: http
-    hostname: 'local.${project.machine_name}.com'
+    hostname: 'id-${project.machine_name}.skm.pp.ua'
 git:
-  default_branch: master
-  remotes: {  }
+  default_branch: development/PMMI-143__blt-pipelines
+  remotes:
+    github: git@github.com:summitmedia/pmmi.git
+    cloud: pmmi@svn-28441.prod.hosting.acquia.com:pmmi.git
 deploy:
   tag_source: true
 drush:
