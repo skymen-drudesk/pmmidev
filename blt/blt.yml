@@ -13,6 +13,7 @@ git:
     github: git@github.com:summitmedia/pmmi.git
     cloud: pmmi@svn-28441.prod.hosting.acquia.com:pmmi.git
 deploy:
+  default_branch: origin/development/PMMI-143__blt-pipelines
   tag_source: true
   gitignore_file: ${repo.root}/.gitignore
 drush:
