@@ -840,3 +840,9 @@ if (isset($_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR']) && file_exists($_SERVER['D
   require $_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR'] . '/cld_prod_pmmi_dev_default.inc';
 }
 // </DDSETTINGS>
+
+
+// For Acquia cloud
+if (file_exists('/var/www/site-php')) {
+  require '/var/www/site-php/pmmi/pmmi-settings.inc';
+}

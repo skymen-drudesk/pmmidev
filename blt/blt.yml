@@ -11,8 +11,8 @@ git:
   default_branch: develop
   remotes:
     # skymen: 'git@github.com:skymen-drudesk/pmmi.git'
-    # skyac: 'pmmi@svn-6634.devcloud.hosting.acquia.com:pmmi.git'
-    ac: 'pmmi@svn-28441.prod.hosting.acquia.com:pmmi.git'
+    skyac: 'pmmi@svn-6634.devcloud.hosting.acquia.com:pmmi.git'
+    # ac: 'pmmi@svn-28441.prod.hosting.acquia.com:pmmi.git'
 deploy:
   dir: '${repo.root}/blt/deploy'
   tag_source: false
