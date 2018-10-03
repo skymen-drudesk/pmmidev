@@ -1,0 +1,9 @@
+name: pmmi
+
+recipe: drupal8
+
+config:
+  webroot: docroot
+  php: '7.2'
+  # via: nginx
+  # drush: composer

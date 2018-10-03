@@ -97,18 +97,36 @@ $settings['extension_discovery_scan_tests'] = TRUE;
  */
 $settings['rebuild_access'] = TRUE;
 
-$settings['trusted_host_patterns'][] = 'id-pmmi.skm.pp.ua';
+$settings['trusted_host_patterns'] = array(
+  'id-pmmi.skm.pp.ua',
+  '^localhost$',
+  '^192.168.1.101$'
+);
 
 $databases['default']['default'] = array (
   'database' => 'id_pmmi',
   'username' => 'skyweb',
   'password' => 'SkyWeb2018',
   'prefix' => '',
-  'host' => 'localhost',
+  'host' => '127.0.0.1',
   'port' => '3306',
   'namespace' => 'Drupal\\Core\\Database\\Driver\\mysql',
   'driver' => 'mysql',
 );
+
+if (getenv('LANDO') === 'ON') {
+  $lando_info = json_decode(getenv('LANDO_INFO'), TRUE);
+  $settings['trusted_host_patterns'] = ['.*'];
+  $settings['hash_salt'] = md5(getenv('LANDO_HOST_IP'));
+  $databases['default']['default'] = [
+    'driver' => 'mysql',
+    'database' => $lando_info['database']['creds']['database'],
+    'username' => $lando_info['database']['creds']['user'],
+    'password' => $lando_info['database']['creds']['password'],
+    'host' => $lando_info['database']['internal_connection']['host'],
+    'port' => $lando_info['database']['internal_connection']['port'],
+  ];
+}
 
 $config['config_split.config_split.local']['status'] = TRUE;
 $config['config_split.config_split.ignore']['status'] = TRUE;

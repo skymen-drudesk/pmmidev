@@ -4,7 +4,6 @@
       "Avoid illegal characters in database name": "https://www.drupal.org/files/issues/fix-dbname-validation-2443839-40.patch",
       "Install profile is disabled for lots of different reasons and core doesn't allow for that": "https://www.drupal.org/files/issues/1170362-239.patch",
       "SystemBrandingBlock causes fatal error if theme is not set when place it in Panels": "https://www.drupal.org/files/issues/2838601-11.patch",
-      "Improve the views integration for daterange fields": "https://www.drupal.org/files/issues/improve_the_views-2786577-71.patch",
       "Batch API should use the current theme to run the batches": "https://www.drupal.org/files/issues/wrong-route-check-539022-71.patch",
       "Lock system is broken in many regards": "https://www.drupal.org/files/issues/lock_system_needs_a-2077827-49_0.patch",
       "HtmlEscapedText object to string conversation error" : "https://www.drupal.org/files/issues/drupal_8_3_2_HtmlEscapedText_to_string_01.patch",
@@ -14,7 +13,8 @@
       "Don't require late runtime processor": "https://www.drupal.org/files/issues/remove-runime.patch"
     },
     "drupal/ds": {
-      "Only search for templates in templates directory of themes": "patches/3879__ds__only_scan_templates_dir.patch"
+      "Only search for templates in templates directory of themes": "patches/3879__ds__only_scan_templates_dir.patch",
+      "Language Render Problem": "https://www.drupal.org/files/issues/2018-05-17/ds-getLangcode.patch"
     },
     "drupal/page_manager": {
       "Don't call getCacheTagsToInvalidate() when null": "https://www.drupal.org/files/issues/2696345-2.patch",

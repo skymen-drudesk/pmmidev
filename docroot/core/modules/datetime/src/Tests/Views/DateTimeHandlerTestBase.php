@@ -34,13 +34,6 @@ abstract class DateTimeHandlerTestBase extends HandlerTestBase {
   protected static $field_name = 'field_date';
 
   /**
-   * Type of the field.
-   *
-   * @var string
-   */
-  protected static $field_type = 'datetime';
-
-  /**
    * Nodes to test.
    *
    * @var \Drupal\node\NodeInterface[]
@@ -62,7 +55,7 @@ abstract class DateTimeHandlerTestBase extends HandlerTestBase {
     $fieldStorage = FieldStorageConfig::create([
       'field_name' => static::$field_name,
       'entity_type' => 'node',
-      'type' => static::$field_type,
+      'type' => 'datetime',
       'settings' => ['datetime_type' => DateTimeItem::DATETIME_TYPE_DATETIME],
     ]);
     $fieldStorage->save();

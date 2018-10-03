@@ -13,10 +13,6 @@ SystemBrandingBlock causes fatal error if theme is not set when place it in Pane
 Source: https://www.drupal.org/files/issues/2838601-11.patch
 
 
-Improve the views integration for daterange fields
-Source: https://www.drupal.org/files/issues/improve_the_views-2786577-71.patch
-
-
 Batch API should use the current theme to run the batches
 Source: https://www.drupal.org/files/issues/wrong-route-check-539022-71.patch
 
@@ -31,5 +27,9 @@ Source: https://www.drupal.org/files/issues/drupal_8_3_2_HtmlEscapedText_to_stri
 
 Twig - only search for templates in templates directory of themes
 Source: patches/3879__twig__only_scan_templates_dir.patch
+
+
+Language Render Problem
+Source: https://www.drupal.org/files/issues/2018-05-17/ds-getLangcode.patch
 
 

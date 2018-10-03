@@ -15,7 +15,7 @@ git:
 deploy:
   dir: ${repo.root}/blt/deploy
   tag_source: false
-  gitignore_file: ${repo.root}/blt/deploy/.gitignore
+  gitignore_file: ${repo.root}/blt/.gitignore
 drush:
   aliases:
     remote: '${project.machine_name}.test'
