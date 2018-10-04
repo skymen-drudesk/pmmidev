@@ -1,0 +1,10 @@
+blt
+db
+# Ignore Drupal's file directory
+*/sites/*/files
+*/sites/*/private
+private
+
+# Ignore Drupal's local settings file.
+*/sites/*/settings.local.php
+*/sites/*/local.settings.php
